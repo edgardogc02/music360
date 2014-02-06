@@ -1,0 +1,26 @@
+/*	=HELPERS
+----------------------------------------------------------------------*/
+
+.group {
+	@include clearfix;
+}
+
+.clear {
+	clear: both; 
+	display: block; 
+	height: 1px; 
+	margin: -1px 0 0 0;
+}
+
+.box {
+	@include box;
+
+	.box-inset {
+		margin: -$box-inset;
+		margin-bottom: inherit;
+	}
+}
+
+.avatar {
+	@include border-radius(100%);
+}

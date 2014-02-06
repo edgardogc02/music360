@@ -1,0 +1,51 @@
+// Colors
+
+$accent:				#119BBA;
+$gray:					#666;
+$gray-light:			#aaa;
+$dark: 					#2C343B;
+
+$text-color: 			#323232;
+
+$body-background: 		#f7f7f7;
+
+$btn-color:				blue;
+$btn-color-dangerous:	red;
+$btn-color-accent:		green;
+
+$link-color: 			$accent;
+
+
+// Typography
+
+$sans:					"Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$serif: 				Georgia, serif;
+
+$base-size:				15;
+$leading:				21;
+
+$fontsize:				$base-size/16 * 1em;
+$lineheight:			($leading/$base-size) * 1em;
+
+// Grid
+
+$page-width:			1040px;
+$box-inset: 			10px;
+
+// Foundation variables
+
+$include-html-global-classes: false;
+
+$base-font-size: 		$fontsize;
+$base-line-height: 		$lineheight;
+$rem-base: 				$base-size * 1px;
+
+// Foundation grid variables
+
+$row-width: 			$page-width;
+$total-columns: 		16;
+
+// Viewports
+
+$medium-screen: 		940px;
+$small-screen: 			560px;

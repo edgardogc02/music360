@@ -1,0 +1,58 @@
+<!doctype html>
+<html>
+<head>
+  <title>Music360</title>
+	
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,300' rel='stylesheet' type='text/css' />
+  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body role="application">
+	<header role="banner">
+		<div class="row">
+			<h1 class="medium-3 columns"><%= link_to "Music360", :root%></h1>
+			<div class="medium-6 columns">
+				<form role="search" action="/search">
+					<input type="search" results="1" placeholder="Search …" name="q" />
+				</form>
+			</div>
+			<div class="medium-2 columns">
+				<div class="header-controls">
+					<a href="#">Sign out</a>
+				</div>
+			</div>
+		</div>
+	</header>
+	
+	<div class="page-wrap">
+		<div class="medium-3 columns">
+			<section class="side-panel">
+				<%= render current_user %>
+
+				<nav role="navigation">
+					<ul>
+						<%= nav_link "Home", :root, icon: "house" %>
+						<%= nav_link "People", peoples_path, icon: "users"%>
+						<%= nav_link "Songs", songs_path, icon: "music"%>
+						<%= nav_link "Challenges", challenges_path, icon: "challenge"%>
+					</ul>
+				</nav>
+			</section>
+		</div>
+		
+		<div class="medium-9 columns">
+			<main role="main" class="box">
+				<%= yield %>
+			</main>
+		</div>
+		
+		<div class="medium-4 columns">
+			<aside role="complementary">
+				<%= yield :sidebar %>
+			</aside>
+		</div>
+	</div>
+
+<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+</body>
+</html>

@@ -1,0 +1,28 @@
+/*	
+	GRUND.CSS
+	
+	A foundation to build upon.
+----------------------------------------------------------------------*/
+
+
+// Setup
+
+@import "compass/css3";
+@import "settings";
+
+// Foundation grid
+
+@import "lib/foundation/functions";
+@import "lib/foundation/components/global";
+@import "lib/foundation/components/grid";
+
+// Lib files
+
+@import "lib/reset";
+@import "lib/fonts";
+@import "lib/mixins";
+@import "lib/helpers";
+
+// Main site styles
+
+@import "main";

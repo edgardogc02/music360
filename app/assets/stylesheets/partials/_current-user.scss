@@ -1,0 +1,33 @@
+/* =CURRENT USER
+------------------------------- */
+
+.current-user {
+	@include clearfix;
+	font-size: .9em;
+
+	.current-user-name {
+		font-size: to_em(15);
+		font-weight: 600;
+		margin: 0;
+	}
+	.current-user-info,
+	.avatar {
+		float: left;
+	}
+
+	.current-user-info {
+		line-height: 1.25;
+		margin-top: 5px;
+	}
+
+	.avatar {
+		margin-right: 10px;
+		max-width: 48px;
+	}
+
+	.current-user-level {
+		font-size: .8em;
+		color: $gray-light;
+		font-weight: 600;
+	}
+}

@@ -1,0 +1,30 @@
+/*	=HEADINGS
+----------------------------------------------------------------------*/
+
+
+h1, h2, h3, h4, h5, h6 {
+	margin: 0 0 $lineheight / 3;
+	font-weight: 600;
+	color: #555;
+	-webkit-font-smoothing: antialiased;
+}
+
+.huge {
+	font-size: to_em(28);
+}
+
+h1 {
+	font-size: to_em(22);
+}
+
+h2 {
+	font-size: to_em(18);
+}
+
+h3 {
+	font-size: to_em(16);
+}
+
+h4 {
+	font-size: to_em(14);
+}

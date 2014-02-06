@@ -1,0 +1,37 @@
+/* =NAVIGATION
+----------------------------------- */
+
+[role="navigation"] {
+	@include box;
+	padding: 3px 0;
+	font-size: .8em;
+
+	a {
+		display: block;
+		text-decoration: none;
+		padding: 8px 1em;
+		color: lighten($text-color, 20%);
+
+		&:hover {
+			background-color: #f8f8f8;
+			@include box-shadow(inset rgba(#fff, .5) 0 1px 0);
+		}
+
+		[class^="icon-"] {
+			margin-right: 5px;
+		}
+	}
+
+	li {
+		&.current a {
+			background-color: desaturate(lighten($accent, 55%), 30%);
+			color: $text-color;
+			font-weight: 600;
+			cursor: default;
+		}
+	}
+	
+	li:not(:last-child) {
+		border-bottom: 1px solid #e9e9e9;
+	}
+}

@@ -1,0 +1,9 @@
+<% unless @users.blank? %>
+
+<% @users.each do |user| %>
+
+	<h2><%= image_avatar(user) %> <%= user.username%></h2>
+
+<% end %>
+
+<% end %>
