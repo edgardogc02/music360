@@ -10,3 +10,11 @@
 .list {
 	@extend %list;
 }
+
+.horizontal-list {
+	@extend %list;
+	
+	li {
+		display: inline-block;
+	}
+}
