@@ -7,7 +7,7 @@
   <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
   <%= csrf_meta_tags %>
 </head>
-<body role="application">
+<body role="application" class="<%= body_classes %>">
 	<header role="banner">
 		<div class="row">
 			<h1 class="medium-3 columns"><%= link_to "Music360", :root%></h1>

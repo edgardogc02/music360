@@ -1,9 +1,18 @@
+<h1>People</h1>
+
 <% unless @users.blank? %>
 
+<ul class="list peoples-list">
 <% @users.each do |user| %>
 
-	<h2><%= image_avatar(user) %> <%= user.username%></h2>
+	<li>
+		<%= link_to people_path(user) do %>
+			<%= image_avatar(user) %>		
+			<span class="username"><%= user.username%></span>
+		<% end %>
+	</li>
+
 
 <% end %>
-
+</ul>
 <% end %>

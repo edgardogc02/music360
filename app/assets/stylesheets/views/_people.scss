@@ -1,0 +1,36 @@
+/* =PEOPLE VIEW
+---------------------------------------- */
+
+.users {
+	
+	.peoples-list {
+		@include clearfix;
+
+		li {
+			@include grid-column(4);
+			margin-bottom: $lineheight;
+			position: relative;
+
+			&:hover {
+				.username {
+					display: block;
+				}
+			}
+		}
+
+		.username {
+			position: absolute;
+			display: none;
+			text-align: center;
+			top: 0;
+			right: 0;
+			left: 0;
+			bottom: 0;
+			color: $text-color;
+			padding-top: 35%;
+			font-weight: bold;
+			background-color: #fff;
+			background-color: rgba(#fff, .9);
+		}
+	}	
+}
