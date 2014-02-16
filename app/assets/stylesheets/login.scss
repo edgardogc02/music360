@@ -1,0 +1,46 @@
+/* =LOGIN
+------------------------------------ */
+
+@import "compass/css3";
+@import "settings";
+
+html {
+	background-color: $accent;
+}
+
+body, h1, .subtitle {
+	color: #fff;
+}
+
+.sessions.new {
+	text-align: center;
+	margin: $lineheight*3 auto;
+	max-width: 20em;
+}
+
+
+#login-form {
+	input {
+		text-align: center;
+	}
+
+	.form-list {
+		input {
+			border-color: #fff;
+		}
+
+		li:first-child input {
+			border-bottom: 0;
+			@include border-radius(4px 4px 0 0);
+		}
+
+		li:last-child input {
+			border-top-color: #e2e2e2;
+			@include border-radius(0 0 4px 4px);
+		}
+
+		li {
+			margin: 0;
+		}
+	}
+}

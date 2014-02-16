@@ -10,7 +10,15 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .huge {
-	font-size: to_em(28);
+	font-size: to_em(36);
+}
+
+.light {
+	font-weight: 300;
+}
+
+.subtitle {
+	color: $gray-light;
 }
 
 h1 {

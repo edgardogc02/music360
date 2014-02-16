@@ -22,7 +22,9 @@ Dir.foreach(Rails.root.join("vendor/assets/images/avatars")) do |avatar|
 		username: name, 
 		avatar: avatar,
 		email: "#{name}@gmail.com",
-		level: levels.sample
+		level: levels.sample,
+		password: "password",
+		password_confirmation: "password"
 	}
 end
 
@@ -30,7 +32,9 @@ users << {
 	username: "johan", 
 	avatar: "johan.jpg",
 	email: "johan.jvb@gmail.com",
-	level: levels.sample
+	level: levels.sample,
+	password: "password",
+	password_confirmation: "password"
 }
 
 puts users

@@ -1,11 +1,7 @@
 <!doctype html>
 <html>
 <head>
-  <title>Music360</title>
-	
-  <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,600,700,300' rel='stylesheet' type='text/css' />
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= csrf_meta_tags %>
+  <%= render "layouts/head" %>
 </head>
 <body role="application" class="<%= body_classes %>">
 	<header role="banner">
@@ -18,7 +14,7 @@
 			</div>
 			<div class="medium-2 columns">
 				<div class="header-controls">
-					<a href="#">Sign out</a>
+					<%= link_to "Sign out", logout_path %>
 				</div>
 			</div>
 		</div>

@@ -3,4 +3,13 @@
 
 .home {
 	
+	[role="main"] {
+		
+		.actions {
+			margin: $lineheight / 2 0;
+			padding: $lineheight / 2;
+			background-color: $body-background;
+			@include border-radius(4px);
+		}	
+	}
 }

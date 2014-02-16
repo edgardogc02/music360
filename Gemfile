@@ -27,6 +27,9 @@ gem 'jquery-rails'
 # For user seeds
 gem 'namey'
 
+# Use ActiveModel has_secure_password
+gem 'bcrypt-ruby', '~> 3.1.2'
+
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 
@@ -41,6 +44,9 @@ end
 group :development, :test do
 	# Use sqlite3 as the database for Active Record
 	gem 'sqlite3'
+
+	# Better errors
+	gem 'better_errors'
 end
 
 group :production do 

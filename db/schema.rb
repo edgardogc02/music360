@@ -31,6 +31,7 @@ ActiveRecord::Schema.define(version: 20140205133453) do
     t.string   "email"
     t.string   "avatar"
     t.string   "level"
+    t.string   "password_digest"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
