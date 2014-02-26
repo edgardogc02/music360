@@ -23,10 +23,15 @@
 
 <% @categories.each do |category| %>
 	<section>
-		<h2><%= category.title%> <small><%= link_to "View all", songs_path(category: category.id)%></small></h2>
+		<h2 class="subtle"><%= category.title%> <small><%= link_to "View all", songs_path(category: category.id)%></small></h2>
+
+		<% unless category.songs.blank? %>
 		<ul class="list songs-list">
 			<%= render partial: "song", collection: category.songs.limit(3), layout: "songs/song_layout" %>
 		</ul>
+		<% else %>
+		<p class="no-content">No songs</p>
+		<% end %>
 	</section>
 <% end %>
 

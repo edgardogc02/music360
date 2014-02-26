@@ -12,26 +12,30 @@
 
 	main > section {
 		margin-bottom: $lineheight;
+
+		.no-content {
+			text-align: center;
+		}
 	}
 }
 
 .songs-list {
-	font-size: .9em;
+	border: 1px solid #d5d5d5;
+	@include border-radius(4px);
 
-	li:nth-child(even) {
-		background-color: #f9f9f9;
-	}
-	li:nth-child(odd) {
-		background-color: #fcfcfc;
-	}
-
-	li {
-		padding: .3em 0;
+	li:not(:last-child) {
+		border-bottom: 1px solid #eaeaea;
 	}
 
 	a {
+		padding: .5em 5px;
 		text-decoration: none;
 		color: $text-color;
-		font-weight: 600;
+		font-weight: normal;
+		display: block;
+
+		&:hover {
+			background-color: $body-background;
+		}
 	}
 }

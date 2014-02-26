@@ -29,6 +29,10 @@
 	@include border-radius(2px);
 }
 
+.no-content {
+	color: $gray-light;
+}
+
 .actions {
 	margin: $lineheight / 2 0;
 	padding: $lineheight / 2;
