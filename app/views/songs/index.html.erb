@@ -1,0 +1,33 @@
+<!--<ul class="category-menu horizontal-menu">
+	<li class="<%= current_category(nil) %>">
+		<%= link_to "All", songs_path %>
+	</li>
+	<% Category.all.each do |c| %>
+	<li class="<%= current_category(c) %>">
+		<%= link_to c.title, songs_path(category: c.id) %>
+	</li>
+	<% end %>
+</ul>-->
+
+<% if @categories.blank? and !@songs.blank? %>
+
+<h1>Songs</h1>
+
+<ul class="list songs-list">
+	<%= render partial: "song", collection: @songs, layout: "songs/song_layout" %>
+</ul>
+
+<% else %>
+
+<h1>Songs</h1>
+
+<% @categories.each do |category| %>
+	<section>
+		<h2><%= category.title%> <small><%= link_to "View all", songs_path(category: category.id)%></small></h2>
+		<ul class="list songs-list">
+			<%= render partial: "song", collection: category.songs.limit(3), layout: "songs/song_layout" %>
+		</ul>
+	</section>
+<% end %>
+
+<% end %>

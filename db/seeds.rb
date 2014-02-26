@@ -11,7 +11,7 @@ require 'namey'
 @generator = Namey::Generator.new
 
 users = []
-levels = [:greenhorn, :rookie, :player, :band_member, :instrumentchamp]
+levels = ["Greenhorn", "Rookie", "Player", "Band member", "InstrumentChamp"]
 
 # Create a user account for each avatar image
 Dir.foreach(Rails.root.join("vendor/assets/images/avatars")) do |avatar|
@@ -37,6 +37,61 @@ users << {
 	password_confirmation: "password"
 }
 
-puts users
-
+puts "***** Seeding users ******"
 User.create(users)
+
+# CATEGORIES
+
+puts "***** Seeding categories ******"
+newRelases = Category.create(title: "New releases")
+kids = Category.create(title: "Kids")
+popular = Category.create(title: "Popular")
+
+# ARTISTS
+
+ledzep = Artist.create(title: "Led Zeppelin")
+acdc = Artist.create(title: "AC/DC")
+other = Artist.create(title: "Unknown")
+
+# SONGS
+
+songs = [
+	{
+		title: "Stairway To Heaven",
+		category: popular,
+		artist: ledzep
+	},
+	{
+		title: "Highway To Hell",
+		category: popular,
+		artist: acdc
+	},
+	{
+		title: "Lorem ipsum",
+		category: kids,
+		artist: other
+	},
+	{
+		title: "Lorem ipsum",
+		category: kids,
+		artist: other
+	},
+	{
+		title: "Lorem ipsum",
+		category: popular,
+		artist: other
+	},
+	{
+		title: "Lorem ipsum",
+		category: kids,
+		artist: other
+	},
+	{
+		title: "Lorem ipsum",
+		category: kids,
+		artist: other
+	}
+]
+
+puts "***** Seeding songs ******"
+Song.create(songs)

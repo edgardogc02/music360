@@ -42,6 +42,10 @@ input[type="submit"] {
 		@include border-radius(4px);
 	}
 
+	&:hover {
+		text-decoration: none;
+	}
+
 	&.block {
 		width: 100%;
 	}
@@ -51,5 +55,9 @@ input[type="submit"] {
 	@extend .btn;
 	@include states($btn-color-light-on-dark, $color: $text-color);
 	border: 0;
-	@include box-shadow(rgba(#000, .4) 0 1px 1px);
+}
+
+.btn-accent {
+	@extend .btn;
+	@include states($accent, $color: #fff, $border-color: #fff);
 }

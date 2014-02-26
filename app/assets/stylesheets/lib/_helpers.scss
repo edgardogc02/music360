@@ -21,6 +21,17 @@
 	}
 }
 
+.detail {
+	color: #888;
+}
+
 .avatar {
 	@include border-radius(2px);
 }
+
+.actions {
+	margin: $lineheight / 2 0;
+	padding: $lineheight / 2;
+	background-color: $body-background;
+	@include border-radius(4px);
+}	

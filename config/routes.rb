@@ -1,4 +1,10 @@
 InstrumentchampPrototype::Application.routes.draw do
+  
+
+  resources :artists
+
+  resources :apps
+
   root to: "home#index"
 
   resources :challenges
@@ -6,6 +12,7 @@ InstrumentchampPrototype::Application.routes.draw do
   resources :users, as: :peoples, path: "people"
 
   resources :songs
+  resources :categories
 
   get 'signup' => "users#new", as: :signup
 

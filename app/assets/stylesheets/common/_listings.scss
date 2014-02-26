@@ -18,3 +18,59 @@
 		display: inline-block;
 	}
 }
+
+.horizontal-menu {
+	$color: $text-color;
+	$border-color: lighten($color, 50%);
+
+	@extend %list;
+	display: table;
+	table-layout: fixed;
+	width: 100%;
+	text-align: center;
+	font-size: .9em;
+
+	&.large {
+		font-size: 1.1em;
+
+		a {
+			padding: .9em;
+			font-weight: bold;
+		}
+	}
+
+	li {
+		display: table-cell;
+
+		&:first-child a {
+			@include border-radius(3px 0 0 3px);
+		}
+		&:last-child a {
+			@include border-radius(0 3px 3px 0);
+			border-right-width: 1px;
+		}
+
+		&.current a {
+			color: #fff;
+			background-color: $color;
+			border-color: $color;
+		}
+	}
+
+	a {
+		display: block;
+		padding: .3em;
+		background-color: #fff;
+		color: lighten($color, 20%);
+		border: 1px solid $border-color;
+		border-right-width: 0;
+		text-transform: uppercase;
+		font-weight: normal;
+
+		&:hover {
+			color: $color;
+			background-color: #f3f3f3;
+			text-decoration: none;
+		}
+	}
+}

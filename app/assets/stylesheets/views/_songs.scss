@@ -1,0 +1,37 @@
+/* =SONGS
+---------------------------- */
+
+.songs {
+
+}
+
+.songs.index {
+	.category-menu {
+		margin-bottom: $lineheight;
+	}
+
+	main > section {
+		margin-bottom: $lineheight;
+	}
+}
+
+.songs-list {
+	font-size: .9em;
+
+	li:nth-child(even) {
+		background-color: #f9f9f9;
+	}
+	li:nth-child(odd) {
+		background-color: #fcfcfc;
+	}
+
+	li {
+		padding: .3em 0;
+	}
+
+	a {
+		text-decoration: none;
+		color: $text-color;
+		font-weight: 600;
+	}
+}

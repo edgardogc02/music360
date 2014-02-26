@@ -1,0 +1,12 @@
+<h1><%= @song.title %></h1> 
+
+<div class="actions">
+	<a href="#" class="btn large">Quick start song</a>
+	<a href="#" class="btn large">Create challenge</a>
+</div>
+
+<p>
+	<%= link_to "Back to songs", songs_path %>
+	·
+	<%= link_to "View all songs in '#{@song.category.title}'", category_path(@song.category) %>
+</p>

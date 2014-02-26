@@ -27,6 +27,7 @@ textarea {
 
 input[type="search"] {
 	@include border-radius(2em);
+	@include box-shadow(inset rgba(#000, .2) 0 1px 1px);
 }
 
 .form-list {

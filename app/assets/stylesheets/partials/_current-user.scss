@@ -9,6 +9,10 @@
 		font-size: to_em(15);
 		font-weight: 600;
 		margin: 0;
+
+		a {
+			color: $text-color;
+		}
 	}
 	.current-user-info,
 	.avatar {
@@ -25,9 +29,14 @@
 		max-width: 48px;
 	}
 
-	.current-user-level {
+	.user-level {
+		margin-top: .5em;
 		font-size: .8em;
 		color: $gray-light;
+	}
+
+	.current-user-level {
+		color: $gray;
 		font-weight: 600;
 	}
 }
