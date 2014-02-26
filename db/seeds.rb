@@ -49,8 +49,12 @@ popular = Category.create(title: "Popular")
 
 # ARTISTS
 
-ledzep = Artist.create(title: "Led Zeppelin")
-acdc = Artist.create(title: "AC/DC")
+ledzep = Artist.create(title: "Led Zeppelin", 
+	bio: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi, distinctio, ratione aut rem quae nam nostrum facere dicta qui rerum debitis nesciunt nobis dolor iste obcaecati ea pariatur eveniet sequi!",
+	country: "USA")
+acdc = Artist.create(title: "AC/DC",
+	bio: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi, distinctio, ratione aut rem quae nam nostrum facere dicta qui rerum debitis nesciunt nobis dolor iste obcaecati ea pariatur eveniet sequi!",
+	country: "USA")
 other = Artist.create(title: "Unknown")
 
 # SONGS

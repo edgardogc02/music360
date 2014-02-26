@@ -1,4 +1,8 @@
 class User < ActiveRecord::Base
+	extend FriendlyId
+
+	friendly_id :username
+
 	has_many :challenges
 	has_secure_password
 
