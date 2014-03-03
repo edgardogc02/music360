@@ -6,9 +6,9 @@
 }
 
 .clear {
-	clear: both; 
-	display: block; 
-	height: 1px; 
+	clear: both;
+	display: block;
+	height: 1px;
 	margin: -1px 0 0 0;
 }
 
@@ -25,6 +25,11 @@
 	color: #888;
 }
 
+.intro {
+	@extend .detail;
+	font-size: 1.1em;
+}
+
 .avatar {
 	@include border-radius(2px);
 }
@@ -38,4 +43,4 @@
 	padding: $lineheight / 2;
 	background-color: $body-background;
 	@include border-radius(4px);
-}	
+}

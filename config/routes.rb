@@ -1,11 +1,12 @@
 InstrumentchampPrototype::Application.routes.draw do
-  
+
+  root to: "pages#home"
+
+  get ':action' => 'pages'
 
   resources :artists
 
   resources :apps
-
-  root to: "home#index"
 
   resources :challenges
 
