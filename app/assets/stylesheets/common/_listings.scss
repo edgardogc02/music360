@@ -19,6 +19,70 @@
 	}
 }
 
+.block-grid {
+	@extend %list;
+
+	@include clearfix;
+
+	& > li {
+		@include grid-column(4);
+		margin-bottom: $lineheight;
+		position: relative;
+
+		&:hover .overlay,
+		&:hover .overlay-actions {
+			display: block;
+		}
+	}
+
+	.overlay {
+		position: absolute;
+		display: none;
+		text-align: center;
+		top: 0;
+		right: 0;
+		left: 0;
+		bottom: 0;
+		color: $text-color;
+		padding-top: 35%;
+		font-weight: bold;
+		background-color: #fff;
+		background-color: rgba(#fff, .9);
+	}
+
+	.overlay-actions {
+		display: none;
+		position: absolute;
+		z-index: 999;
+		bottom: 10px;
+		left: 15px;
+		right: 15px;
+		font-size: .8em;
+		text-align: center;
+		background-color: #fff;
+		background-color: rgba(#fff, .9);
+		@include border-radius(4px);
+		border: 1px solid #ddd;
+
+		li:not(:last-child) {
+			border-bottom: 1px solid #ddd;
+		}
+
+		a {
+			display: block;
+			padding: 2px 0;
+			color: $text-color;
+
+			&:hover {
+				text-decoration: none;
+				background-color: $text-color;
+				color: #fff;
+				border-color: $text-color;
+			}
+		}
+	}
+}
+
 .horizontal-menu {
 	$color: $text-color;
 	$border-color: lighten($color, 50%);

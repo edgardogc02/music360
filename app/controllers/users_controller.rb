@@ -3,7 +3,8 @@ class UsersController < ApplicationController
 	before_action :set_user, only: [:show, :edit, :update, :destroy]
 
 	def index
-		@users = User.all
+		@categories = PeopleCategory.all
+		@users = params[:type].present? ? User.where(people_category_id: params[:type]) : User.all
 	end
 
 	def show

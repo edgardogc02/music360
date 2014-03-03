@@ -1,0 +1,23 @@
+<h1 class="huge"><%= @artist.title %></h1>
+
+<img src="http://placehold.it/1024x300" alt="">
+
+<% if @artist.bio %>
+<section>
+	<h2>Bio</h2>
+	<p><%= @artist.bio %></p>
+</section>
+<% end %>
+
+<% if @artist.country%><p class="subtitle"><%= @artist.country%></p><% end %>
+
+<% unless @artist.songs.blank? %>
+<section>
+	<h2><%= pluralize @artist.songs.count, "song"%></h2>
+	
+	<ul class="songs-list">
+	<%= render partial: "songs/song", collection: @artist.songs, layout: "songs/song_layout" %>
+	</ul>
+</section>
+
+<% end %>

@@ -26,7 +26,7 @@
 		<h2 class="subtle"><%= category.title%> <small><%= link_to "View all", songs_path(category: category.id)%></small></h2>
 
 		<% unless category.songs.blank? %>
-		<ul class="list songs-list">
+		<ul class="songs-list">
 			<%= render partial: "song", collection: category.songs.limit(3), layout: "songs/song_layout" %>
 		</ul>
 		<% else %>

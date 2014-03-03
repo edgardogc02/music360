@@ -2,7 +2,7 @@
 
 <div class="actions">
 	<a href="#" class="btn large">Quick start song</a>
-	<a href="#" class="btn large">Create challenge</a>
+	<%= link_to "Create challenge", new_challenge_path(song: @song.id), class: "btn large" %>
 </div>
 
 <p>

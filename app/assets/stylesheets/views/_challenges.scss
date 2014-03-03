@@ -1,0 +1,28 @@
+/* =CHALLENGES
+-------------------------------- */
+
+.challenges.new {
+
+	.opponents {
+		text-align: center;
+		display: table;
+		width: 100%;
+		table-layout: fixed;
+
+		.vs {
+			vertical-align: middle;
+			display: table-cell;
+			width: 30px;
+		}
+
+		img {
+			max-width: 10em;
+			margin: 0 auto;
+			display: block;
+		}
+
+		& > div {
+			display: table-cell;
+		}
+	}		
+}

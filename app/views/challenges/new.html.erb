@@ -1,0 +1,38 @@
+<h1 class="huge">Create challenge</h1>
+
+<% if !@opponent.blank? %>
+
+<section class="row">
+	<h2 class="subtle">1. Friend chosen</h2>
+	
+	<div class="opponents">
+		<div><%= image_avatar(current_user)%></div>
+		<div class="vs"><strong>vs</strong></div>
+		<div><%= image_avatar(@opponent)%></div>
+	</div>
+</section>
+
+<section>
+	<h2>2. Choose song</h2>
+</section>
+
+<% elsif !@song.blank?%>
+
+<section class="row">
+	<h2 class="subtle">1. Song chosen</h2>
+	
+	<div class="column medium-4">
+		<img src="http://placehold.it/150x150" alt="">
+	</div>
+
+	<div class="column medium-12">
+		<h3>"<%= @song.title%>"</h3>
+		<p class="subtle"><%= @song.artist.title%></p>
+	</div>
+</section>
+
+<section>
+	<h2>2. Choose friend to challenge</h2>
+</section>
+
+<% end %>

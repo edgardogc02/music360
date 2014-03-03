@@ -12,24 +12,29 @@ require 'namey'
 
 users = []
 levels = ["Greenhorn", "Rookie", "Player", "Band member", "InstrumentChamp"]
+people_types = [
+	PeopleCategory.create(title: "Teachers"),
+	PeopleCategory.create(title: "Friends"),
+	PeopleCategory.create(title: "Top players")]
 
 # Create a user account for each avatar image
 Dir.foreach(Rails.root.join("vendor/assets/images/avatars")) do |avatar|
 	next if avatar == "." or avatar == ".." or avatar == "johan.jpg"
 	name = @generator.name(:all, false).downcase
 
-	users << { 
-		username: name, 
+	users << {
+		username: name,
 		avatar: avatar,
 		email: "#{name}@gmail.com",
 		level: levels.sample,
+		people_category: people_types.sample,
 		password: "password",
 		password_confirmation: "password"
 	}
 end
 
 users << {
-	username: "johan", 
+	username: "johan",
 	avatar: "johan.jpg",
 	email: "johan.jvb@gmail.com",
 	level: levels.sample,
@@ -49,7 +54,7 @@ popular = Category.create(title: "Popular")
 
 # ARTISTS
 
-ledzep = Artist.create(title: "Led Zeppelin", 
+ledzep = Artist.create(title: "Led Zeppelin",
 	bio: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Commodi, distinctio, ratione aut rem quae nam nostrum facere dicta qui rerum debitis nesciunt nobis dolor iste obcaecati ea pariatur eveniet sequi!",
 	country: "USA")
 acdc = Artist.create(title: "AC/DC",

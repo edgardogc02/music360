@@ -7,6 +7,8 @@ class CreateUsers < ActiveRecord::Migration
       t.string :level
       t.string :password_digest
 
+      t.belongs_to :people_category
+
       t.timestamps
     end
   end

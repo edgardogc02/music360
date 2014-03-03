@@ -1,15 +1,32 @@
 <h1>People</h1>
 
+<% unless @categories.blank?%>
+<ul class="horizontal-menu">
+	<li class="<%= current_category(nil, :type)%>"><%= link_to "All", peoples_path %></li>
+	<% @categories.each do |category| %>
+	<li class="<%= current_category(category, :type)%>"><%= link_to category.title, peoples_path(type: category.id)%></li>
+	<% end %>
+</ul>
+<% end %>
+
 <% unless @users.blank? %>
 
-<ul class="list peoples-list">
+<ul class="block-grid">
 <% @users.each do |user| %>
 
 	<li>
 		<%= link_to people_path(user) do %>
-			<%= image_avatar(user) %>		
-			<span class="username"><%= user.username%></span>
+			<%= image_avatar(user) %>
+
+			<div class="overlay">
+				<%= user.username%>
+			</div>
 		<% end %>
+
+		<ul class="overlay-actions list">
+			<li><%= link_to "Add as friend", "#" %></li>
+			<li><%= link_to "Challenge", new_challenge_path(user: user.id)%></li>
+		</ul>
 	</li>
 
 

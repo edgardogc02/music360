@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
 	friendly_id :username
 
 	has_many :challenges
+	belongs_to :people_category
 	has_secure_password
 
 	validates :username, presence: true, uniqueness: true

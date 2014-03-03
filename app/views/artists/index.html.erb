@@ -1,0 +1,16 @@
+<h1>Artists</h1>
+
+<% unless @artists.blank?%>
+
+<ul class="block-grid">
+<% @artists.each do |artist| %>
+	<li>
+		<%= link_to artist_path(artist) do %>
+			<img src="http://placehold.it/300x300" alt="<%= artist.title %>">		
+			<span class="overlay"><%= artist.title%></span>
+		<% end %>
+	</li>
+<% end %>
+</ul>
+
+<% end %>
