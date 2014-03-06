@@ -25,7 +25,7 @@ gem 'coffee-rails', '~> 4.0.0'
 gem 'jquery-rails'
 
 # For user seeds
-gem 'namey'
+# gem 'namey'
 
 # Use ActiveModel has_secure_password
 gem 'bcrypt-ruby', '~> 3.1.2'
@@ -52,7 +52,7 @@ group :development, :test do
 	gem 'better_errors'
 end
 
-group :production do 
+group :production do
 	gem 'pg'
 end
 
