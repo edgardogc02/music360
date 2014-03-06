@@ -20,6 +20,5 @@ test:
 
 production:
   adapter: postgresql
-  database: music360_production
   pool: 5
   timeout: 5000
