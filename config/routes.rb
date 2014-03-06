@@ -2,8 +2,6 @@ InstrumentchampPrototype::Application.routes.draw do
 
   root to: "pages#home"
 
-  get ':action' => 'pages'
-
   resources :artists
 
   resources :apps
@@ -20,6 +18,8 @@ InstrumentchampPrototype::Application.routes.draw do
   resources :sessions, :only => [:new, :create, :destroy]
   get 'login' => "sessions#new", :as => :login
   get 'logout' => "sessions#destroy", :as => :logout
+
+  get ':action' => 'pages'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
