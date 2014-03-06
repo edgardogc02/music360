@@ -1,5 +1,3 @@
-require 'namey'
-
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
 #
@@ -8,8 +6,6 @@ require 'namey'
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-@generator = Namey::Generator.new
-
 users = []
 levels = ["Greenhorn", "Rookie", "Player", "Band member", "InstrumentChamp"]
 people_types = [
@@ -17,14 +13,12 @@ people_types = [
 	PeopleCategory.create(title: "Friends"),
 	PeopleCategory.create(title: "Top players")]
 
-# Create a user account for each avatar image
-Dir.foreach(Rails.root.join("vendor/assets/images/avatars")) do |avatar|
-	next if avatar == "." or avatar == ".." or avatar == "johan.jpg"
-	name = @generator.name(:all, false).downcase
+30.times do |num|
+	name = "johndoe_#{num}"
 
 	users << {
 		username: name,
-		avatar: avatar,
+		avatar: "http://placehold.it/300x300",
 		email: "#{name}@gmail.com",
 		level: levels.sample,
 		people_category: people_types.sample,
@@ -35,14 +29,14 @@ end
 
 users << {
 	username: "johan",
-	avatar: "johan.jpg",
+	avatar: "http://placehold.it/300x300",
 	email: "johan.jvb@gmail.com",
 	level: levels.sample,
 	password: "password",
 	password_confirmation: "password"
 }
 
-puts "***** Seeding users ******"
+puts "***** Seeding #{users.size} users ******"
 User.create(users)
 
 # CATEGORIES
