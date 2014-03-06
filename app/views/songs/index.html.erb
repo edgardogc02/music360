@@ -1,14 +1,3 @@
-<!--<ul class="category-menu horizontal-menu">
-	<li class="<%= current_category(nil) %>">
-		<%= link_to "All", songs_path %>
-	</li>
-	<% Category.all.each do |c| %>
-	<li class="<%= current_category(c) %>">
-		<%= link_to c.title, songs_path(category: c.id) %>
-	</li>
-	<% end %>
-</ul>-->
-
 <% if @categories.blank? and !@songs.blank? %>
 
 <h1>Songs</h1>
