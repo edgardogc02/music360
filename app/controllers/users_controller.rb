@@ -8,6 +8,7 @@ class UsersController < ApplicationController
 	end
 
 	def show
+		@challenges = Challenge.open.where(owner: @user)
 	end
 
 	private

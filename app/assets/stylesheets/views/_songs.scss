@@ -11,32 +11,82 @@
 	}
 
 	main > section {
-		margin-bottom: $lineheight;
+		margin-bottom: $lineheight*2;
 
 		.no-content {
 			text-align: center;
+		}
+	}
+
+	.songs-list {
+
+		li {
+			@include grid-column(5);
+		}
+
+		.cover-controls,
+		.song-info {
+			vertical-align: top;
+		}
+
+		.song-cover {
+			display: block;
+			width: 100%;
+			height: auto;
 		}
 	}
 }
 
 .songs-list {
 	@extend %list;
-	border: 1px solid #d5d5d5;
-	@include border-radius(4px);
+	display: table;
+	width: 100%;
+	font-size: .9em;
 
-	li:not(:last-child) {
-		border-bottom: 1px solid #eaeaea;
+	.song-info,
+	.cover-controls {
+		display: table-cell;
+		vertical-align: middle;
 	}
 
-	a {
-		padding: .5em 5px;
-		text-decoration: none;
-		color: $text-color;
-		font-weight: normal;
+	p {
+		margin: 0;
+	}
+
+	.song-play {
+		font-size: 2em;
+	}
+
+	.cover-controls {
+		width: 50px;
+		position: relative;
+
+		& + * {
+			padding-left: 1em;
+		}
+	}
+
+	.overlay {
+		line-height: 50px;
+	}
+
+	.song-cover {
 		display: block;
+	}
+
+	.song-artist {
+		font-size: .9em;
+		font-weight: normal;
+	}
+
+	li {
+		display: table-row;
+		padding-bottom: 5px;
 
 		&:hover {
-			background-color: $body-background;
+			.overlay {
+				display: block;
+			}
 		}
 	}
 }

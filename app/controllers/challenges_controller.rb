@@ -2,7 +2,7 @@ class ChallengesController < ApplicationController
 	before_action :authorize
 
 	def index
-		
+		@challenges = Challenge.open.where(finished: false)
 	end
 
 	def new

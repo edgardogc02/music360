@@ -1,18 +1,34 @@
-<div class="row">
-	<div class="medium-4 columns">
-		<%= image_avatar(@user) %>
-	</div>	
+<header class="row">
+	<div class="columns medium-4">
+		<%= image_avatar(@user)%>
+	</div>
 
 	<div class="medium-12 columns">
-		<header>
-			<h1><%= @user.username%></h1>
-			<ul class="user-meta horizontal-list">
-				<li class="user-level"><%= @user.level%></li>
-			</ul>
-		</header>
+		<h1><%= @user.username%></h1>
+		<p class="user-level">
+			Career level: <strong><%= @user.level%></strong>
+		</p>
+
+		<% if is_current_user?(@user) %>
+		<div class="user-controls">
+			<p>
+				<%= link_to "Edit profile", edit_people_path(@user), class: "btn"%>
+			</p>
+		</div>
+		<% end %>
 	</div>
-</div>
+</header>
 
 <section>
-	<h2>Open challenges</h2>
+	<h2><i class="icon-challenge"></i> Open challenges</h2>
+
+	<% unless @challenges.blank? %>
+		<ol class="challenges-list">
+			<%= render partial: "challenges/challenge", collection: @challenges, layout: "layouts/list_layout" %>
+		</ol>
+	<% else %>
+	<p class="no-content">
+		<%= @user.username%> has no open challenges right now
+	</p>
+	<% end %>
 </section>

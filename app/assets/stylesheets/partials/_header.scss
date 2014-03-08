@@ -6,23 +6,48 @@
 	padding: 5px 0;
 	height: 50px;
 	color: #fff;
-	@include box-shadow(inset rgba(#000, .1) 0 -2px 10px);
-
-	a {
-		color: #fff;
-	}	
+	border-bottom: 1px solid darken($accent, 5%);
+	@include box-shadow(rgba(#000, .2) 0 1px 4px);
 
 	h1 {
 		margin: 0;
+		font-size: to_em(18);
+		text-shadow: rgba(#000, .3) 0 1px 3px;
+		letter-spacing: -1px;
+	}
+
+	.logo {
+		color: #fff;
+		font-weight: bold;
+		text-decoration: none;
+		@include transition(text-shadow .2s ease-out);
+
+		&:hover {
+			text-shadow: rgba(#fff, .5) 0 0 5px;
+		}
+
+		[class^="icon-"] {
+			color: #fff;
+			margin-right: 4px;
+		}
+	}
+
+	& > * {
+		margin-top: 8px;
 	}
 
 	[role="search"] {
 		position: relative;
-		top: 5px;
+		top: -3px;
 
 		input {
 			width: 100%;
 			border: 0;
+			@include box-shadow(none);
 		}
+	}
+
+	.columns:last-child {
+		text-align: right;
 	}
 }

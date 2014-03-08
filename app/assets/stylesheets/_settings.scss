@@ -1,37 +1,39 @@
 // Colors
 
-$accent:				#119BBA;
-$gray:					#666;
-$gray-light:			#aaa;
-$dark: 					#2C343B;
+$accent:				      #426385;      // greyish blue
+$comp:                #398AE6;     // bright blue
+$gray:					      #666;
+$gray-light:			    #aaa;
+$dark:                #2C343B;
 
-$text-color: 			#323232;
+$text-color:          #323232;
+$body-background:     #f9f9f9;
 
-$body-background: 		#f9f9f9;
-
-$btn-color:				#fff;
+$btn-color:           #fff;
 $btn-color-light-on-dark: #f5f5f5;
 $btn-color-dangerous:	red;
-$btn-color-accent:		green;
+$btn-color-accent:		$comp;
 
-$link-color: 			$accent;
+$link-color: 			   $accent;
 
+$active-color:        $comp;
+$accent-light:        desaturate(lighten($accent, 50%), 10%);
 
 // Typography
 
-$sans:					"Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
-$serif: 				Georgia, serif;
+$sans:              "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$serif: 				    Georgia, serif;
 
-$base-size:				15;
-$leading:				21;
+$base-size:				  15;
+$leading:				    21;
 
-$fontsize:				$base-size/16 * 1em;
-$lineheight:			($leading/$base-size) * 1em;
+$fontsize:				   $base-size/16 * 1em;
+$lineheight:			   ($leading/$base-size) * 1em;
 
 // Grid
 
-$page-width:			1040px;
-$box-inset: 			10px;
+$page-width:			   1040px;
+$box-inset: 			   10px;
 
 // Foundation variables
 

@@ -1,0 +1,16 @@
+<div class="challenge-cover">
+  <%= image_tag challenge.cover_url, class: "song-cover" %>
+  <%= link_to "#", title: "Start challenge", class: "overlay challenge-start" do %>
+    <i class="icon-play"></i>
+  <% end %>
+</div>
+
+<div class="challenge-info">
+
+  <p class="challenge-song"><%= link_to challenge.song.title, song_path(challenge.song) %>
+    by <%= link_to challenge.song.artist.title, artist_path(challenge.song.artist)%></p>
+  <p class="challenge-owner">
+    Created by <%= link_to challenge.owner.username, people_path(challenge.owner)%>
+    <time datetime="<%= challenge.created_at%>" pubdate><%= time_ago_in_words(challenge.created_at)%> ago</time>
+  </p>
+</div>

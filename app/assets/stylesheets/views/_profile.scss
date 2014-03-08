@@ -1,0 +1,14 @@
+/* =USER PROFILE
+--------------------------------------------- */
+
+.users.show {
+  [role="main"] > header {
+
+  }
+
+  [role="main"] {
+    & > section {
+      margin: $lineheight 0;
+    }
+  }
+}

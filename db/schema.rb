@@ -36,7 +36,10 @@ ActiveRecord::Schema.define(version: 20140303102549) do
   end
 
   create_table "challenges", force: true do |t|
-    t.integer  "user_id"
+    t.integer  "owner_id"
+    t.integer  "song_id"
+    t.boolean  "public",     default: false, null: false
+    t.boolean  "finished",   default: false, null: false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -62,7 +65,7 @@ ActiveRecord::Schema.define(version: 20140303102549) do
 
   create_table "songs", force: true do |t|
     t.string   "title"
-    t.integer  "challenge_id"
+    t.string   "cover"
     t.integer  "category_id"
     t.integer  "artist_id"
     t.datetime "created_at"

@@ -1,16 +1,15 @@
 <h1 class="huge light">Music360</h1>
-<h2 class="subtitle">Sign in</h2>
 
 <%= flash.alert %>
 
 <%= form_tag sessions_path, id: "login-form" do %>
-	
+
 	<ol class="form-list">
 		<li><%= text_field_tag :username, "", placeholder: "Username", class: "large", required: true, autofocus: true %></li>
 		<li><%= password_field_tag :password, "", placeholder: "Password", class: "large", required: true %></li>
-	</ol>	
+	</ol>
 
 	<p>
-		<%= submit_tag "Sign in", class: "btn-light-on-dark large block" %>
+		<%= submit_tag "Sign in", class: "btn-accent large block" %>
 	</p>
 <% end %>

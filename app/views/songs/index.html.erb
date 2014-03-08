@@ -1,22 +1,20 @@
+<h1><i class="icon-music"></i> Songs</h1>
+
 <% if @categories.blank? and !@songs.blank? %>
 
-<h1>Songs</h1>
-
 <ul class="list songs-list">
-	<%= render partial: "song", collection: @songs, layout: "songs/song_layout" %>
+	<%= render partial: "song", collection: @songs, layout: "layouts/list_layout" %>
 </ul>
 
 <% else %>
 
-<h1>Songs</h1>
-
 <% @categories.each do |category| %>
 	<section>
-		<h2 class="subtle"><%= category.title%> <small><%= link_to "View all", songs_path(category: category.id)%></small></h2>
+		<h2><%= category.title%> <small><%= link_to "View all", songs_path(category: category.id)%></small></h2>
 
 		<% unless category.songs.blank? %>
-		<ul class="songs-list">
-			<%= render partial: "song", collection: category.songs.limit(3), layout: "songs/song_layout" %>
+		<ul class="songs-list block-grid">
+			<%= render partial: "song", collection: category.songs.limit(3), layout: "layouts/list_layout" %>
 		</ul>
 		<% else %>
 		<p class="no-content">No songs</p>

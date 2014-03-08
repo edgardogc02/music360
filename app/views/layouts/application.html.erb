@@ -6,7 +6,7 @@
 <body role="application" class="<%= body_classes %>">
 	<header role="banner">
 		<div class="row">
-			<h1 class="medium-3 columns"><%= link_to "Music360", :root%></h1>
+			<h1 class="medium-3 columns"><%= link_to :root, class: "logo" do %><i class="icon-music"></i></%>Music360<% end %></h1>
 			<div class="medium-6 columns">
 				<form role="search" action="/search">
 					<input type="search" results="1" placeholder="Search …" name="q" />
@@ -14,12 +14,14 @@
 			</div>
 			<div class="medium-2 columns">
 				<div class="header-controls">
-					<%= link_to "Sign out", logout_path %>
+					<%= link_to logout_path, class: "btn-light-on-dark small" do %>
+            <i class="icon-logout"></i> Sign out
+          <% end %>
 				</div>
 			</div>
 		</div>
 	</header>
-	
+
 	<div class="page-wrap">
 		<div class="medium-3 columns">
 			<section class="side-panel">
@@ -30,20 +32,20 @@
 						<%= nav_link "Home", :root, icon: "house" %>
 						<%= nav_link "People", peoples_path, icon: "users"%>
 						<%= nav_link "Songs", songs_path, icon: "music"%>
-						<%= nav_link "Artists", artists_path, icon: "music"%>
+						<%= nav_link "Artists", artists_path, icon: "star"%>
 						<%= nav_link "Challenges", challenges_path, icon: "challenge"%>
-						<%= nav_link "Apps", apps_path, icon: "challenge"%>
+						<%= nav_link "Apps", apps_path, icon: "tools"%>
 					</ul>
 				</nav>
 			</section>
 		</div>
-		
+
 		<div class="medium-9 columns">
 			<main role="main" class="row box">
 				<%= yield %>
 			</main>
 		</div>
-		
+
 		<div class="medium-4 columns">
 			<aside role="complementary" class="box">
 				<%= yield :sidebar %>
@@ -56,6 +58,23 @@
 		</div>
 	</div>
 
-<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <footer role="contentinfo">
+    <div class="row">
+      <div class="medium-4 columns">
+        <p>
+           © <%= link_to "Music360", :root %>
+        </p>
+      </div>
+
+      <div class="medium-9 columns">
+        <p>
+           Prototype
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Code by Johan (http://johanbrook.com) -->
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
 </body>
 </html>

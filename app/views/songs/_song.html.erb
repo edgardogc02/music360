@@ -1,1 +1,16 @@
-<%= link_to song.title, song_path(song)%>
+<div class="cover-controls">
+  <%= image_tag song.cover_url, class: "song-cover" %>
+  <a href="#" class="overlay song-play">
+    <i class="icon-play"></i>
+  </a>
+</div>
+
+<div class="song-info">
+  <p>
+    <%= link_to song.title, song_path(song), class: "song-title" %>
+  </p>
+  <p>
+    <%= link_to song.artist.title, artist_path(song.artist), class: "song-artist" %>
+  </p>
+
+</div>

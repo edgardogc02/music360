@@ -1,3 +1,18 @@
-<h1>Challenges</h1>
+<h1><i class="icon-challenge"></i> Challenges</h1>
 
+<p class="detail">
+  Latest, open challenges right now.
+</p>
 
+<% unless @challenges.blank? %>
+<ol class="challenges-list">
+  <%= render partial: "challenge", collection: @challenges, layout: "layouts/list_layout" %>
+</ol>
+
+<% else %>
+
+<p class="no-content">
+  No open challenges right now
+</p>
+
+<% end %>

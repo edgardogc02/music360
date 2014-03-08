@@ -27,14 +27,14 @@ people_types = [
 	}
 end
 
-users << {
+johan = User.create({
 	username: "johan",
 	avatar: "http://placehold.it/300x300",
 	email: "johan.jvb@gmail.com",
 	level: levels.sample,
 	password: "password",
 	password_confirmation: "password"
-}
+})
 
 puts "***** Seeding #{users.size} users ******"
 User.create(users)
@@ -62,17 +62,20 @@ songs = [
 	{
 		title: "Stairway To Heaven",
 		category: popular,
-		artist: ledzep
+		artist: ledzep,
+		cover: "http://upload.wikimedia.org/wikipedia/en/2/26/Led_Zeppelin_-_Led_Zeppelin_IV.jpg"
 	},
 	{
 		title: "Highway To Hell",
 		category: popular,
-		artist: acdc
+		artist: acdc,
+		cover: "http://ecx.images-amazon.com/images/I/31XXJ7KVAGL.jpg"
 	},
 	{
-		title: "Lorem ipsum",
+		title: "Kashmir",
 		category: kids,
-		artist: other
+		artist: ledzep,
+		cover: "http://upload.wikimedia.org/wikipedia/en/e/e3/Led_Zeppelin_-_Physical_Graffiti.jpg"
 	},
 	{
 		title: "Lorem ipsum",
@@ -98,3 +101,27 @@ songs = [
 
 puts "***** Seeding songs ******"
 Song.create(songs)
+
+
+# CHALLENGES
+
+challenges = []
+
+challenges << {
+	owner: johan,
+	public: true,
+	song: Song.first
+}
+
+10.times do |num|
+	challenges << {
+		owner: User.last,
+		public: true,
+		song: Song.last,
+		created_at: num.days.ago
+	}
+end
+
+puts "***** Seeding challenges ******"
+
+Challenge.create(challenges)

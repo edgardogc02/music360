@@ -14,9 +14,9 @@
 <% unless @artist.songs.blank? %>
 <section>
 	<h2><%= pluralize @artist.songs.count, "song"%></h2>
-	
+
 	<ul class="songs-list">
-	<%= render partial: "songs/song", collection: @artist.songs, layout: "songs/song_layout" %>
+	<%= render partial: "songs/song", collection: @artist.songs, layout: "layouts/list_layout" %>
 	</ul>
 </section>
 

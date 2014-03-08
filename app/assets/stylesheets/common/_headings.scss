@@ -6,6 +6,11 @@ h1, h2, h3, h4, h5, h6 {
 	margin: 0 0 $lineheight / 3;
 	font-weight: normal;
 	-webkit-font-smoothing: antialiased;
+
+	[class^="icon-"] {
+		font-size: .8em;
+		color: $gray;
+	}
 }
 
 .huge {
@@ -18,10 +23,6 @@ h1, h2, h3, h4, h5, h6 {
 
 .subtitle {
 	color: $gray-light;
-}
-
-.subtle {
-	color: $gray;
 }
 
 h1 {

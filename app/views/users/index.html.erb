@@ -1,7 +1,7 @@
-<h1>People</h1>
+<h1><i class="icon-users"></i> People</h1>
 
 <% unless @categories.blank?%>
-<ul class="horizontal-menu">
+<ul class="user-categories horizontal-menu large">
 	<li class="<%= current_category(nil, :type)%>"><%= link_to "All", peoples_path %></li>
 	<% @categories.each do |category| %>
 	<li class="<%= current_category(category, :type)%>"><%= link_to category.title, peoples_path(type: category.id)%></li>

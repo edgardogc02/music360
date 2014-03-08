@@ -21,6 +21,10 @@
 	}
 }
 
+.subtle {
+	color: $gray;
+}
+
 .detail {
 	color: #888;
 }
@@ -43,4 +47,32 @@
 	padding: $lineheight / 2;
 	background-color: $body-background;
 	@include border-radius(4px);
+}
+
+.overlay {
+	display: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	background-color: #fff;
+	background-color: rgba(#fff, .9);
+	text-decoration: none;
+	text-align: center;
+	font-size: 2em;
+	color: #000;
+
+	&:hover {
+		text-decoration: none;
+		color: $comp;
+	}
+}
+
+/* ALIGNMENT */
+
+@each $alignment in right, left, center {
+	.#{$alignment} {
+		text-align: $alignment;
+	}
 }

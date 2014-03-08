@@ -16,6 +16,10 @@ body {
 	margin-top: $lineheight / 2;
 }
 
+[role="main"] {
+	@include grid-row;
+}
+
 // ELEMENTS
 // Include stuff like headings, links, buttons, forms, element styling ..
 

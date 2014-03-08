@@ -3,6 +3,12 @@
 
 .home {
 
+	[role="main"]{
+		.actions a {
+			font-weight: bold;
+		}
+	}
+
 	.get-started {
 		text-align: center;
 

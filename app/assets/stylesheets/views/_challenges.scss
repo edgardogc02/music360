@@ -1,6 +1,87 @@
 /* =CHALLENGES
 -------------------------------- */
 
+.challenges-list {
+	@extend %list;
+	display: table;
+	width: 100%;
+
+	li {
+		display: table-row;
+
+		&:nth-child(even) {
+			background-color: #f9f9f9;
+		}
+
+		&:hover {
+			background-color: rgba($accent-light, .4);
+
+			.challenge-start {
+				display: inherit;
+			}
+		}
+	}
+
+	.challenge-cover,
+	.challenge-info {
+		display: table-cell;
+		vertical-align: middle;
+	}
+
+	.challenge-info {
+		font-size: .9em;
+		position: relative;
+
+		p {
+			margin: 0;
+			line-height: 1.618;
+		}
+	}
+
+	.challenge-owner {
+		font-size: .8em;
+		color: $gray;
+	}
+
+	.challenge-cover {
+		width: 50px;
+		height: 50px;
+		position: relative;
+
+		& + * {
+			padding-left: 1em;
+		}
+
+		&:hover .overlay {
+			display: block;
+		}
+	}
+
+	.overlay {
+		display: none;
+		position: absolute;
+		top: 0;
+		left: 0;
+		bottom: 0;
+		right: 0;
+		background-color: #fff;
+		background-color: rgba(#fff, .9);
+		text-decoration: none;
+		text-align: center;
+		line-height: 50px;
+		font-size: 2em;
+		color: #000;
+	}
+
+	.challenge-start {
+		text-decoration: none;
+	}
+
+	.song-cover {
+		display: block;
+	}
+}
+
 .challenges.new {
 
 	.opponents {
@@ -24,5 +105,5 @@
 		& > div {
 			display: table-cell;
 		}
-	}		
+	}
 }

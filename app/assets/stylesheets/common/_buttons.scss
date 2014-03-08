@@ -7,16 +7,20 @@
 	@if ($border-color != none) {
 	border: 1px solid $border-color;
 	}
-	
+
 	&:hover,
 	&:focus {
+		outline: none;
 		background-color: lighten($base-color, 5%);
-		border-color: darken($border-color, 10%);
+
+		@if ($border-color != none) {
+			border-color: darken($border-color, 10%);
+		}
 	}
 
 	&:active {
+		outline: none;
 		background-color: darken($base-color, 5%);
-		outline: 0;
 	}
 }
 
@@ -35,11 +39,17 @@ input[type="submit"] {
 	@include border-radius(2px);
 	@include states($btn-color);
 	@include transition(border-color .15s ease-out);
+	@include box-shadow(rgba(#000, .06) 0 1px 1px);
 
 	&.large {
 		font-size: 1em;
 		text-transform: uppercase;
 		@include border-radius(4px);
+	}
+
+	&.small {
+		padding: .3em .5em;
+		font-size: .8em;
 	}
 
 	&:hover {
@@ -55,9 +65,26 @@ input[type="submit"] {
 	@extend .btn;
 	@include states($btn-color-light-on-dark, $color: $text-color);
 	border: 0;
+	@include box-shadow(rgba(#000, .2) 0 1px 2px);
+}
+
+@mixin btn-accent {
+	@include states($btn-color-accent, $color: #fff, $border-color: none);
+	@include box-shadow(darken($btn-color-accent, 15%) 0 2px 0);
+	position: relative;
+	border: 0;
+
+	&:active {
+		top: 2px;
+		@include box-shadow(none);
+	}
 }
 
 .btn-accent {
 	@extend .btn;
-	@include states($accent, $color: #fff, $border-color: #fff);
+	@include btn-accent;
+}
+
+input[type="submit"].btn-accent {
+	@include btn-accent;
 }
