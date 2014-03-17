@@ -9,6 +9,17 @@ class CreateUsers < ActiveRecord::Migration
 
       t.belongs_to :people_category
 
+      t.string    :name
+      t.string    :city
+      t.string    :countrycode
+      t.string    :macaddress
+      t.string    :productkey
+      t.integer   :invitebyuser
+      t.datetime  :confirmed_at
+      t.datetime  :converted_at
+      t.integer   :timezone
+      t.string    :comment
+
       t.timestamps
     end
   end
