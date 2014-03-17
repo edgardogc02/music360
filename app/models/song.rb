@@ -8,6 +8,6 @@ class Song < ActiveRecord::Base
 
 	def song_uri
 			# Format: "ic:song=Amazing%20grace.mid"
-			"ic:song=#{Rack::Utils.escape(title)}.mid"
+			"ic:song=#{URI::escape(title)}.mid"
 	end
 end
