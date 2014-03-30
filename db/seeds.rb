@@ -18,7 +18,7 @@ people_types = [
 
 	users << {
 		username: name,
-		avatar: "http://placehold.it/300x300",
+		avatar_url: "http://placehold.it/300x300",
 		email: "#{name}@gmail.com",
 		level: levels.sample,
 		people_category: people_types.sample,
@@ -29,7 +29,7 @@ end
 
 johan = User.create({
 	username: "johan",
-	avatar: "http://placehold.it/300x300",
+	avatar_url: "http://placehold.it/300x300",
 	email: "johan.jvb@gmail.com",
 	level: levels.sample,
 	password: "password",
@@ -108,15 +108,17 @@ Song.create(songs)
 challenges = []
 
 challenges << {
-	owner: johan,
+	user1: johan,
 	public: true,
+	instrument: 'Guitar',
 	song: Song.first
 }
 
 10.times do |num|
 	challenges << {
-		owner: User.last,
+		user1: User.last,
 		public: true,
+		instrument: 'Guitar',
 		song: Song.last,
 		created_at: num.days.ago
 	}
