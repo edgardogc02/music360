@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
-	before_action :authorize, except: [:create]
+	before_action :authorize, except: [:create, :new]
+	before_action :not_authorized, only: [:create, :new]
 	before_action :set_user, only: [:show, :edit, :update, :destroy]
 
 	def index
@@ -11,6 +12,21 @@ class UsersController < ApplicationController
 		@challenges = Challenge.open.where(owner: @user)
 	end
 
+	def new
+	  @user = User.new
+	end
+
+	def create
+	  @user = User.new(user_params)
+
+	  if @user.save
+	    signin_user(@user)
+      redirect_to root_path
+	  else
+	    render "new"
+	  end
+	end
+
 	private
 
 	def set_user
@@ -18,6 +34,6 @@ class UsersController < ApplicationController
 	end
 
 	def user_params
-	  params.require(:user).permit(:username, :email, :level, :password, :password_confirmation)
+	  params.require(:user).permit(:username, :email, :password, :password_confirmation)
 	end
 end

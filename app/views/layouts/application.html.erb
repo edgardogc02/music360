@@ -23,22 +23,25 @@
 	</header>
 
 	<div class="page-wrap">
-		<div class="medium-3 columns">
-			<section class="side-panel">
-				<%= render current_user, locals: {user: current_user} %>
 
-				<nav role="navigation">
-					<ul>
-						<%= nav_link "Home", :root, icon: "house" %>
-						<%= nav_link "People", peoples_path, icon: "users"%>
-						<%= nav_link "Songs", songs_path, icon: "music"%>
-						<%= nav_link "Artists", artists_path, icon: "star"%>
-						<%= nav_link "Challenges", challenges_path, icon: "challenge"%>
-						<%= nav_link "Apps", apps_path, icon: "tools"%>
-					</ul>
-				</nav>
-			</section>
-		</div>
+	  <% if signed_in? %>
+  		<div class="medium-3 columns">
+  			<section class="side-panel">
+  				<%= render current_user, locals: {user: current_user} %>
+
+  				<nav role="navigation">
+  					<ul>
+  						<%= nav_link "Home", :root, icon: "house" %>
+  						<%= nav_link "People", peoples_path, icon: "users"%>
+  						<%= nav_link "Songs", songs_path, icon: "music"%>
+  						<%= nav_link "Artists", artists_path, icon: "star"%>
+  						<%= nav_link "Challenges", challenges_path, icon: "challenge"%>
+  						<%= nav_link "Apps", apps_path, icon: "tools"%>
+  					</ul>
+  				</nav>
+  			</section>
+  		</div>
+    <% end %>
 
 		<div class="medium-9 columns">
 			<main role="main" class="row box">

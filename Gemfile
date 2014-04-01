@@ -41,6 +41,9 @@ gem 'jbuilder', '~> 1.2'
 # Slugs and nice URLs
 gem 'friendly_id', '~> 5.0.0'
 
+# simple forms
+gem 'simple_form'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
@@ -49,6 +52,8 @@ end
 group :development, :test do
 	# Better errors
 	gem 'better_errors'
+  gem 'therubyracer'
+  gem 'rspec-rails'
 end
 
 group :production do
@@ -56,14 +61,10 @@ group :production do
   gem 'rails3_serve_static_assets', github: 'heroku/rails3_serve_static_assets'
 end
 
-# Use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.1.2'
-
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano', group: :development
-
-# Use debugger
-# gem 'debugger', group: [:development, :test]
+group :test do
+  gem 'factory_girl_rails'
+  gem 'capybara'
+  gem 'guard-rspec'
+  gem 'zeus'
+  gem 'shoulda-matchers'
+end

@@ -6,7 +6,7 @@ development:
   pool: 25
   host: 127.0.0.1
   username: root
-  password:
+  password: 12345
   socket: /tmp/mysql.sock
 
 # Warning: The database defined as "test" will be erased and
@@ -20,7 +20,7 @@ test:
   pool: 25
   host: 127.0.0.1
   username: root
-  password:
+  password: 12345
   socket: /tmp/mysql.sock
 
 production:

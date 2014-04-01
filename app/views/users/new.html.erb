@@ -1,0 +1,18 @@
+<h1 class="huge light">Music360</h1>
+
+<%= flash.alert %>
+
+<%= simple_form_for @user, url: "/people" do |f| %>
+
+  <div>
+    <%= f.input :username, label_html: { class: 'large' } %>
+    <%= f.input :email, label_html: { class: 'large' } %>
+    <%= f.input :password, label_html: { class: 'large' } %>
+    <%= f.input :password_confirmation, label_html: { class: 'large' } %>
+  </div>
+
+  <div>
+    <%= f.submit "Sign up", {class: "btn-accent large block"} %>
+  </div>
+
+<% end %>

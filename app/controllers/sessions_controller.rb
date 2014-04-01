@@ -9,7 +9,7 @@ class SessionsController < ApplicationController
 
 		respond_to do |format|
 			if user and user.authenticate(params[:password])
-				session[:user_id] = user.id
+			  signin_user(user)
 				flash.notice = "Hi #{user.username}!"
 				format.html { redirect_to root_path }
 			else

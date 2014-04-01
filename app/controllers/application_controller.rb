@@ -5,6 +5,10 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user, :signed_in?
 
+  def signin_user(user)
+    session[:user_id] = user.id
+  end
+
   private
 
   def current_user
@@ -18,6 +22,12 @@ class ApplicationController < ActionController::Base
   def authorize
     session[:redirect] = root_path
     redirect_to login_path, :alert => "You have to sign in to view this page" unless signed_in?
+  end
+
+  def not_authorized
+    if signed_in?
+      redirect_to root_path
+    end
   end
 
 end
