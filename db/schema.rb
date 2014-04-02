@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140303102549) do
+ActiveRecord::Schema.define(version: 20140401152033) do
 
   create_table "apps", force: true do |t|
     t.datetime "created_at"
@@ -79,6 +79,20 @@ ActiveRecord::Schema.define(version: 20140303102549) do
     t.string   "comment"
     t.string   "status"
     t.boolean  "onclient"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_omniauth_credentials", force: true do |t|
+    t.integer  "user_id"
+    t.string   "provider"
+    t.string   "oauth_uid"
+    t.string   "username"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "email"
+    t.string   "oauth_token"
+    t.datetime "oauth_expires_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

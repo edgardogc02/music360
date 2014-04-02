@@ -6,6 +6,7 @@ describe User do
     it { should have_secure_password }
 
     it "should validate username" do
+      pending "check if we'll use useranme or not"
       should validate_presence_of(:username)
       validate_uniqueness_of(:username)
     end
@@ -24,8 +25,29 @@ describe User do
   end
 
   context "Associations" do
-#    it { should have_many(:challenges) }
+    it "should have many challenges" do
+      pending "check how are challenges done"
+      should have_many(:challenges)
+    end
+
     it { should belong_to(:people_category) }
+
+    [:user_omniauth_credentials].each do |assoc|
+      it "should have has many #{assoc} with dependent destroy" do
+        should have_many(assoc).dependent(:destroy)
+      end
+    end
+  end
+
+  context "Methods" do
+    it "should create new user from omniauth facebook credentials" do
+      expect { User.from_omniauth(mock_facebook_auth_hash) }.to change{User.count}.by(1)
+    end
+
+    it "should not create new user from omniauth facebook credentials" do
+      create(:user, email: "test@test.com") # email from facebook
+      expect { User.from_omniauth(mock_facebook_auth_hash) }.to change{User.count}.by(0)
+    end
   end
 
 end

@@ -44,6 +44,10 @@ gem 'friendly_id', '~> 5.0.0'
 # simple forms
 gem 'simple_form'
 
+# aomniauth and facebook authentication
+gem 'omniauth'
+gem 'omniauth-facebook', '1.4.0'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false

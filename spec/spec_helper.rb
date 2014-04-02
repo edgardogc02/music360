@@ -44,5 +44,8 @@ RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
 
   config.include(MailerMacros)
+  config.include(OmniauthMacros)
   config.before(:each) { reset_email }
 end
+
+OmniAuth.config.test_mode = true
