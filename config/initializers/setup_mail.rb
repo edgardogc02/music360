@@ -1,12 +1,12 @@
-ActionMailer::Base.smtp_settings = {
-  :address  => "",
-  :port  => 25,
-  :domain  => "",
-  :user_name  => "",
-  :password  => "",
-  :authentication  => :plain,
-  :enable_starttls_auto => true,
-  :openssl_verify_mode  => 'none'
+# ActionMailer::Base.smtp_settings = {
+#  :address  => "",
+#  :port  => 25,
+#  :domain  => "",
+#  :user_name  => "",
+#  :password  => "",
+#  :authentication  => :plain,
+#  :enable_starttls_auto => true,
+#  :openssl_verify_mode  => 'none'
 #  :tls  => true
 
 #  :address              => "smtp.gmail.com",
@@ -17,4 +17,4 @@ ActionMailer::Base.smtp_settings = {
 #  :authentication       => "plain",
 #  :enable_starttls_auto => true
 
-}
+# }

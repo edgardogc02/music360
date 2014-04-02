@@ -43,7 +43,7 @@ class User < ActiveRecord::Base
 	private
 
 	def send_confirmation_email
-    EmailNotifier.send_user_confirmation(self).deliver
+#    EmailNotifier.send_user_confirmation(self).deliver
 	end
 
 	def self.create_from_omniauth(auth)
