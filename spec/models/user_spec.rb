@@ -32,7 +32,7 @@ describe User do
 
     it { should belong_to(:people_category) }
 
-    [:user_omniauth_credentials].each do |assoc|
+    [:user_omniauth_credentials, :user_sent_facebook_invitations].each do |assoc|
       it "should have has many #{assoc} with dependent destroy" do
         should have_many(assoc).dependent(:destroy)
       end

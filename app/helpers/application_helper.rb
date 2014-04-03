@@ -32,4 +32,11 @@ module ApplicationHelper
 		def is_current_user?(user)
 			current_user and current_user.id == user.id
 		end
+
+    def js_scripts
+      if content_for?(:js_scripts)
+        content_for(:js_scripts)
+      end
+    end
+
 end

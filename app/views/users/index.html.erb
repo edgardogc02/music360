@@ -1,4 +1,34 @@
+
 <h1><i class="icon-users"></i> People</h1>
+
+<%= link_to "Invite facebook friends", "#", {id: "invite_fb_friends"}%>
+
+<%= content_for :js_scripts do %>
+
+  <div id="fb-root"></div>
+
+  <script src="https://connect.facebook.net/en_US/all.js"></script>
+
+  <script type="text/javascript">
+    $("a#invite_fb_friends").click(function() {
+
+      FB.init({
+        appId: "563800430326433",
+        cookie: true,
+        status: true
+      });
+
+      FB.ui({method: "apprequests", message: "Invite your friends to Music360"}, requestCallback);
+
+      function requestCallback(response) {
+        $.post("<%= user_sent_facebook_invitations_path %>", {user_sent_facebook_invitations: {facebook_user_ids: response.to}});
+      }
+
+      return false;
+    });
+  </script>
+
+<% end %>
 
 <% unless @categories.blank?%>
 <ul class="user-categories horizontal-menu large">

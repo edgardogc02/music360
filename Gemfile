@@ -58,6 +58,7 @@ group :development, :test do
 	gem 'better_errors'
   gem 'therubyracer'
   gem 'rspec-rails'
+  gem 'thin'
 end
 
 group :production do

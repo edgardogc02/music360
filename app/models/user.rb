@@ -10,6 +10,8 @@ class User < ActiveRecord::Base
 	has_secure_password
 	has_many :user_omniauth_credentials, dependent: :destroy
 
+  has_many :user_sent_facebook_invitations, dependent: :destroy
+
 #	validates :username, presence: true, uniqueness: true
   validates :email, presence: true, uniqueness: true, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
 	validates :password, presence: true, on: :create
@@ -50,13 +52,17 @@ class User < ActiveRecord::Base
     user = User.new
     user.username = auth.info.name
     user.email = auth.info.email
-    user.password = "12345"
-    user.password_confirmation = "12345"
+    user.password = User.generate_random_password(5)
+    user.password_confirmation = user.password
     user.save!
 
     user.user_omniauth_credentials.create_from_omniauth(auth)
 
     user
+	end
+
+	def self.generate_random_password(length)
+    (Digest::SHA1.hexdigest("--#{Time.now.to_s}--"))[0..length]
 	end
 
 end
