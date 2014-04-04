@@ -7,6 +7,10 @@ class UsersController < ApplicationController
 		@categories = PeopleCategory.all
 		@users = User.page params[:page]
 		@users = @users.where(people_category_id: params[:type]) if params[:type].present?
+
+    if current_user.has_facebook_credentials?
+		  @fb_friends = current_user.facebook.get_connections("me", "friends")
+		end
 	end
 
 	def show

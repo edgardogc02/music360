@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
 	end
 
 	def avatar_url
-		"http://placehold.it/300x300"
+		imagename || "http://placehold.it/300x300"
 	end
 
   def self.from_omniauth(auth)
@@ -61,6 +61,18 @@ class User < ActiveRecord::Base
 
   def unfollow(followed_user)
     self.inverse_user_followers.find_by(user_id: followed_user.id).destroy
+  end
+
+  def facebook
+    @facebook ||= Koala::Facebook::API.new(facebook_credentials.oauth_token)
+  end
+
+  def facebook_credentials
+    self.user_omniauth_credentials.find_by(provider: 'facebook')
+  end
+
+  def has_facebook_credentials?
+    !facebook_credentials.nil?
   end
 
 	private
