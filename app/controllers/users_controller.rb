@@ -5,7 +5,8 @@ class UsersController < ApplicationController
 
 	def index
 		@categories = PeopleCategory.all
-		@users = params[:type].present? ? User.where(people_category_id: params[:type]) : User.all
+		@users = User.page params[:page]
+		@users = @users.where(people_category_id: params[:type]) if params[:type].present?
 	end
 
 	def show

@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+
+  paginates_per 20
+
 	extend FriendlyId
 
 	alias_attribute :id, :id_user
