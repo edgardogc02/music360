@@ -37,7 +37,7 @@ class User < ActiveRecord::Base
 	end
 
 	def avatar_url
-		imagename || "http://placehold.it/300x300"
+		"http://placehold.it/300x300"
 	end
 
   def self.from_omniauth(auth)
