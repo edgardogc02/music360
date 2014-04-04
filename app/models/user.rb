@@ -12,6 +12,12 @@ class User < ActiveRecord::Base
 
   has_many :user_sent_facebook_invitations, dependent: :destroy
 
+  has_many :user_followers, dependent: :destroy
+  has_many :inverse_user_followers, class_name: "UserFollower", foreign_key: "follower_id"
+
+  has_many :followers, through: :user_followers, source: :follower
+  has_many :followed_users, through: :inverse_user_followers, source: :followed
+
 #	validates :username, presence: true, uniqueness: true
   validates :email, presence: true, uniqueness: true, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
 	validates :password, presence: true, on: :create
@@ -40,6 +46,14 @@ class User < ActiveRecord::Base
       user.user_omniauth_credentials.create_or_update_from_omniauth(auth)
     end
     user
+  end
+
+  def following?(followed_user)
+    self.inverse_user_followers.find_by(user_id: followed_user.id)
+  end
+
+  def follow(followed_user)
+    self.inverse_user_followers.create(user_id: followed_user.id)
   end
 
 	private

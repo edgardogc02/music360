@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140403101336) do
+ActiveRecord::Schema.define(version: 20140404084843) do
 
   create_table "apps", force: true do |t|
     t.datetime "created_at"
@@ -82,6 +82,17 @@ ActiveRecord::Schema.define(version: 20140403101336) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  create_table "user_followers", force: true do |t|
+    t.integer  "user_id",     null: false
+    t.integer  "follower_id", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "user_followers", ["follower_id"], name: "index_user_followers_on_follower_id", using: :btree
+  add_index "user_followers", ["user_id", "follower_id"], name: "index_user_followers_on_user_id_and_follower_id", unique: true, using: :btree
+  add_index "user_followers", ["user_id"], name: "index_user_followers_on_user_id", using: :btree
 
   create_table "user_omniauth_credentials", force: true do |t|
     t.integer  "user_id"
