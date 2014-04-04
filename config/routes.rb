@@ -8,12 +8,14 @@ InstrumentchampPrototype::Application.routes.draw do
 
   resources :challenges
 
-  resources :users, as: :peoples, path: "people"
+  resources :users, as: :people, path: "people"
 
   resources :songs
   resources :categories
 
   resources :user_sent_facebook_invitations, only: [:create]
+
+  resources :user_followers, only: [:create, :destroy]
 
   get 'signup' => "users#new", as: :signup
 

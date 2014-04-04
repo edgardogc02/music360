@@ -54,7 +54,15 @@
 		<% end %>
 
 		<ul class="overlay-actions list">
-			<li><%= link_to "Add as friend", "#" %></li>
+
+      <li>
+        <% if current_user.following?(user) %>
+          <%= render 'unfollow', user: user %>
+        <% else %>
+          <%= render 'follow', user: user %>
+        <% end %>
+      </li>
+
 			<li><%= link_to "Challenge", new_challenge_path(user: user.id)%></li>
 		</ul>
 	</li>

@@ -30,7 +30,7 @@ describe "Users" do
 
     click_on 'Sign up'
 
-    current_path.should eq(peoples_path)
+    current_path.should eq(people_path)
     page.should have_selector('#new_user')
   end
 

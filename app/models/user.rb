@@ -59,6 +59,10 @@ class User < ActiveRecord::Base
     self.inverse_user_followers.create(user_id: followed_user.id)
   end
 
+  def unfollow(followed_user)
+    self.inverse_user_followers.find_by(user_id: followed_user.id).destroy
+  end
+
 	private
 
 	def send_confirmation_email
