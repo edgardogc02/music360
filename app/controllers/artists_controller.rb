@@ -9,6 +9,9 @@ class ArtistsController < ApplicationController
 	def show
 	end
 
+  def most_popular
+    @artists = Echowrap.artist_top_hottt(results: 50, bucket: ['hotttnesss', 'images'])
+  end
 
 	private
 

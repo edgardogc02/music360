@@ -1,0 +1,9 @@
+Most popular 50 artists
+
+<% @artists.each do |artist| %>
+  <div>
+    <div><%= image_tag artist.images.first.url, height: '300', width: '250' %></div>
+    <div><%= artist.name %></div>
+  </div>
+  <br />
+<% end %>
