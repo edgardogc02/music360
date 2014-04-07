@@ -39,8 +39,4 @@ module ApplicationHelper
     end
   end
 
-  def display_left_menu_second_level?(allowed_paths)
-    allowed_paths.any? { |allowed_path| current_page?(allowed_path) }
-  end
-
 end

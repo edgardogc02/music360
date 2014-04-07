@@ -3,30 +3,22 @@
     <%= nav_link "Home", :root, icon: "house" %>
 
     <%= nav_link "People", people_path, icon: "users"%>
-    <% if display_left_menu_second_level?([people_path, artists_path]) %>
-      <%= nav_link "Friends", "#", icon: "users"%>
-      <%= nav_link "Artists", artists_path, icon: "star"%>
-      <%= nav_link "Teachers", "#", icon: "users"%>
-    <% end %>
+    <%= nav_link "Friends", "#", icon: "users"%>
+    <%= nav_link "Artists", artists_path, icon: "star"%>
+    <%= nav_link "Teachers", "#", icon: "users"%>
 
     <%= nav_link "Music", songs_path, icon: "music"%>
-    <% if display_left_menu_second_level?([songs_path]) %>
-      <%= nav_link "Popular songs", "#", icon: "music"%>
-      <%= nav_link "Free songs", "#", icon: "music"%>
-      <%= nav_link "Your library", "#", icon: "music"%>
-    <% end %>
+    <%= nav_link "Popular songs", "#", icon: "music"%>
+    <%= nav_link "Free songs", "#", icon: "music"%>
+    <%= nav_link "Your library", "#", icon: "music"%>
 
     <%= nav_link "Challenges", challenges_path, icon: "challenge"%>
-    <% if display_left_menu_second_level?([challenges_path]) %>
-      <%= nav_link "Yours", "#", icon: "challenge"%>
-      <%= nav_link "Friends", "#", icon: "challenge"%>
-      <%= nav_link "Artists", "#", icon: "challenge"%>
-    <% end %>
+    <%= nav_link "Yours", "#", icon: "challenge"%>
+    <%= nav_link "Friends", "#", icon: "challenge"%>
+    <%= nav_link "Artists", "#", icon: "challenge"%>
 
     <%= nav_link "Instruments", apps_path, icon: "tools"%>
-    <% if display_left_menu_second_level?([apps_path]) %>
-      <%= nav_link "Apps", apps_path, icon: "tools"%>
-      <%= nav_link "Premium", "#", icon: "tools"%>
-    <% end %>
+    <%= nav_link "Apps", apps_path, icon: "tools"%>
+    <%= nav_link "Premium", "#", icon: "tools"%>
   </ul>
 </nav>
