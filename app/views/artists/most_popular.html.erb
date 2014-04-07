@@ -1,9 +1,18 @@
 <h1><i class="icon-star"></i> Most popular 50 artists</h1>
 
-<% @artists.each do |artist| %>
-  <div>
-    <div><%= image_tag artist.images.first.url, height: '300', width: '250' %></div>
-    <div><%= artist.name %></div>
-  </div>
-  <br />
-<% end %>
+
+<ul class="block-grid">
+
+  <% @artists.each do |artist| %>
+    <li>
+      <%= image_tag artist.images.first.url %>
+      <div class="overlay username">
+        <%= artist.name %>
+      </div>
+      <ul class="overlay-actions list">
+        <li><%= link_to "Follow", "#" %></li>
+      </ul>
+    </li>
+  <% end %>
+
+</ul>
