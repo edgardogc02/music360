@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140407142601) do
+ActiveRecord::Schema.define(version: 20140408074204) do
 
   create_table "apps", force: true do |t|
     t.datetime "created_at"
@@ -96,7 +96,10 @@ ActiveRecord::Schema.define(version: 20140407142601) do
     t.datetime "published_at"
     t.string   "publisher"
     t.float    "cost"
+    t.string   "slug"
   end
+
+  add_index "songs", ["slug"], name: "index_songs_on_slug", using: :btree
 
   create_table "user_followers", force: true do |t|
     t.integer  "user_id",     null: false

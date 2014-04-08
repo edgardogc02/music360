@@ -3,6 +3,9 @@ InstrumentchampPrototype::Application.routes.draw do
   root to: "pages#home"
 
   resources :artists do
+    resources :songs do
+      get 'free', on: :collection
+    end
     get 'most_popular', on: :collection
   end
 

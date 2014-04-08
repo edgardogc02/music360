@@ -1,5 +1,9 @@
 class Song < ActiveRecord::Base
 
+  extend FriendlyId
+
+  friendly_id :title, use: :slugged
+
   validates :title, presence: true
   validates :writer, presence: true
   validates :length, presence: true

@@ -7,7 +7,7 @@
 
 <div class="song-info">
   <p>
-    <%= link_to song.title, song_path(song), class: "song-title" %>
+    <%= link_to song.title, artist_song_path(song.artist, song), class: "song-title" %>
   </p>
   <p>
     <%= link_to song.artist.title, artist_path(song.artist), class: "song-artist" %>
