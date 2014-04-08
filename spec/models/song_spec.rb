@@ -35,6 +35,7 @@ describe Song do
       popular_song = create(:song)
       unpopular_song = create(:song)
       unrated_song = create(:song)
+      unrated_song_2 = create(:song)
 
       create(:song_rating, song: most_popular_song, rating: 5)
       create(:song_rating, song: most_popular_song, rating: 4)
@@ -44,7 +45,7 @@ describe Song do
 
       create(:song_rating, song: unpopular_song, rating: 1)
 
-      Song.by_popularity.should eq([most_popular_song, popular_song, unpopular_song, unrated_song])
+      Song.by_popularity.should eq([most_popular_song, popular_song, unpopular_song, unrated_song, unrated_song_2])
     end
 
     it "should list all free songs order by popularity" do
