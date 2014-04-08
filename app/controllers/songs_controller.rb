@@ -14,6 +14,10 @@ class SongsController < ApplicationController
 
 	end
 
+  def free
+    @songs = Song.free.by_popularity.page params[:page]
+  end
+
 	private
 
 	def set_song

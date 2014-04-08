@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140404084843) do
+ActiveRecord::Schema.define(version: 20140407142601) do
 
   create_table "apps", force: true do |t|
     t.datetime "created_at"
@@ -68,12 +68,22 @@ ActiveRecord::Schema.define(version: 20140404084843) do
     t.datetime "updated_at"
   end
 
+  create_table "songratings", force: true do |t|
+    t.integer  "song_id",    null: false
+    t.integer  "user_id",    null: false
+    t.integer  "rating",     null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "songratings", ["song_id"], name: "index_songratings_on_song_id", using: :btree
+  add_index "songratings", ["user_id"], name: "index_songratings_on_user_id", using: :btree
+
   create_table "songs", force: true do |t|
     t.integer  "category_id"
     t.integer  "artist_id"
     t.string   "title"
     t.string   "cover"
-    t.integer  "arranger_id"
     t.string   "length"
     t.integer  "difficulty"
     t.string   "comment"
@@ -81,6 +91,11 @@ ActiveRecord::Schema.define(version: 20140404084843) do
     t.boolean  "onclient"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "writer"
+    t.integer  "arranger_userid"
+    t.datetime "published_at"
+    t.string   "publisher"
+    t.float    "cost"
   end
 
   create_table "user_followers", force: true do |t|

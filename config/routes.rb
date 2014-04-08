@@ -12,7 +12,10 @@ InstrumentchampPrototype::Application.routes.draw do
 
   resources :users, as: :people, path: "people"
 
-  resources :songs
+  resources :songs do
+    get 'free', on: :collection
+  end
+
   resources :categories
 
   resources :user_sent_facebook_invitations, only: [:create]
