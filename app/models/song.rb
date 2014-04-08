@@ -22,7 +22,7 @@ class Song < ActiveRecord::Base
   scope :by_popularity, -> { joins('LEFT JOIN songratings ON songratings.song_id = songs.id').group('case when songratings.song_id is null then songs.id else songratings.song_id end').order('AVG(songratings.rating) DESC') }
 
 	def cover_url
-		cover || "http://placehold.it/300x300"
+	  cover.blank? ? "http://placehold.it/300x300" : cover
 	end
 
 	def song_uri

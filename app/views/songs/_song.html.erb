@@ -1,16 +1,11 @@
-<div class="cover-controls">
-  <%= image_tag song.cover_url, class: "song-cover" %>
-  <a href="<%= song.song_uri%>" class="overlay song-play">
-    <i class="icon-play"></i>
-  </a>
-</div>
+<%= image_tag song.cover_url, class: "song-cover" %>
 
-<div class="song-info">
-  <p>
-    <%= link_to song.title, artist_song_path(song.artist, song), class: "song-title" %>
-  </p>
-  <p>
-    <%= link_to song.artist.title, artist_path(song.artist), class: "song-artist" %>
-  </p>
-
+<div class="overlay">
+  <%= link_to song.title, artist_song_path(song.artist, song), class: "song-title" %>
+  <br />
+  <%= link_to song.artist.title, artist_path(song.artist), class: "song-artist" %>
 </div>
+<ul class="overlay-actions list">
+  <li><i class="icon-play"><%= link_to "Play", song.song_uri %></i></li>
+  <li><%= link_to "Challenge", "#" %></li>
+</ul>
