@@ -8,8 +8,8 @@ class User < ActiveRecord::Base
 
 	friendly_id :username
 
-	has_many :challenges, foreign_key: "user1"
-  has_many :proposed_challenges, class_name: "Challenge", foreign_key: "user2"
+	has_many :challenges, foreign_key: "challenger_id"
+  has_many :proposed_challenges, class_name: "Challenge", foreign_key: "challenged_id"
 
 	belongs_to :people_category
 	has_secure_password

@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Challenge do
 
   context "Validations" do
-    [:user1, :user2, :song_id, :instrument].each do |attr|
+    [:challenger_id, :challenged_id, :song_id, :instrument].each do |attr|
       it "should validate #{attr}" do
         should validate_presence_of(attr)
       end
@@ -22,11 +22,11 @@ describe Challenge do
     end
 
     it "should belongs to challenger" do
-      should belong_to(:challenger).class_name('User').with_foreign_key('user1')
+      should belong_to(:challenger).class_name('User').with_foreign_key('challenger_id')
     end
 
     it "should belongs to challenged" do
-      should belong_to(:challenged).class_name('User').with_foreign_key('user2')
+      should belong_to(:challenged).class_name('User').with_foreign_key('challenged_id')
     end
 
     it "should not be able to create more than one open challenge with the same user and the same song" do

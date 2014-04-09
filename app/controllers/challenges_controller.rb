@@ -31,7 +31,7 @@ class ChallengesController < ApplicationController
 	end
 
   def challenge_params
-    params.require(:challenge).permit(:song_id, :user2, :instrument, :public, :finished)
+    params.require(:challenge).permit(:song_id, :challenged_id, :instrument, :public, :finished)
   end
 
 end
