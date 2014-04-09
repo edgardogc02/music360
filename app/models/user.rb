@@ -24,7 +24,7 @@ class User < ActiveRecord::Base
   has_many :followed_users, through: :inverse_user_followers, source: :followed
 
 #	validates :username, presence: true, uniqueness: true
-  validates :email, presence: true, uniqueness: true, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
+#   validates :email, presence: true, uniqueness: true, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
 	validates :password, presence: true, on: :create
 	validates :password_confirmation, presence: true, confirmation: true, on: :create
 
