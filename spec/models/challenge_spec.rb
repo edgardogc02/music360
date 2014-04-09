@@ -28,6 +28,69 @@ describe Challenge do
     it "should belongs to challenged" do
       should belong_to(:challenged).class_name('User').with_foreign_key('user2')
     end
+
+    it "should not be able to create more than one open challenge with the same user and the same song" do
+      challenger = create(:user)
+      challenged = create(:user)
+      song = create(:song)
+
+      challenge = build(:challenge, finished: false, song: song, challenger: challenger, challenged: challenged)
+      challenge.save
+      challenge.should_not be_new_record
+
+      same_challenge = build(:challenge, finished: false, song: song, challenger: challenger, challenged: challenged)
+      same_challenge.save
+      same_challenge.should be_new_record
+    end
+
+    it "should be able to create different challenges with different users with different songs" do
+      challenger = create(:user)
+      first_challenge = build(:challenge)
+      first_challenge.challenger = challenger
+      first_challenge.save
+
+      first_challenge.should_not be_new_record
+
+      second_challenge = build(:challenge)
+      second_challenge.challenger = challenger
+      second_challenge.save
+
+      second_challenge.should_not be_new_record
+    end
+
+    it "should be able to create different challenges with different users with the same song" do
+      challenger = create(:user)
+      song = create(:song)
+      first_challenge = build(:challenge, song: song, challenger: challenger)
+      first_challenge.save
+
+      first_challenge.should_not be_new_record
+
+      second_challenge = build(:challenge, song: song, challenger: challenger)
+      second_challenge.save
+
+      second_challenge.should_not be_new_record
+    end
+
+    it "should be able to create a new challenge with the same user for the same song if the challenge is already finished" do
+      challenger = create(:user)
+      challenged = create(:user)
+      song = create(:song)
+      first_challenge = build(:challenge, finished: true, song: song, challenger: challenger, challenged: challenged)
+      first_challenge.save
+      first_challenge.should_not be_new_record
+
+      second_challenge = build(:challenge, finished: false, song: song, challenger: challenger, challenged: challenged)
+      second_challenge.save
+
+      second_challenge.should_not be_new_record
+
+      third_challenge = build(:challenge, finished: false, song: song, challenger: challenger, challenged: challenged)
+      third_challenge.save
+
+      third_challenge.should be_new_record
+    end
+
   end
 
   context "Scopes" do
