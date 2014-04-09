@@ -11,7 +11,9 @@ InstrumentchampPrototype::Application.routes.draw do
 
   resources :apps
 
-  resources :challenges
+  resources :challenges do
+    get 'yours', on: :collection
+  end
 
   resources :users, as: :people, path: "people"
 

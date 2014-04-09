@@ -2,14 +2,36 @@ class ChallengesController < ApplicationController
 	before_action :authorize
 
 	def index
-		@challenges = Challenge.open.where(finished: false)
+		@challenges = Challenge.public.open
 	end
 
 	def new
-		if params[:user].present?
-			@opponent = User.find(params[:user])
-		elsif params[:song].present?
-			@song = Song.find(params[:song])
+	  @challenge = current_user.challenges.build(public: false, finished: false)
+
+		if params[:challenged].present?
+			@challenge.challenged = User.find(params[:challenged])
+		end
+		if params[:song_id].present?
+		  @challenge.song = Song.find(params[:song_id])
 		end
 	end
+
+  def yours
+    @challenges = current_user.challenges
+  end
+
+	def create
+	  @challenge = current_user.challenges.build(challenge_params)
+
+	  if @challenge.save
+	    redirect_to yours_challenges_path
+	  else
+	    render 'new'
+	  end
+	end
+
+  def challenge_params
+    params.require(:challenge).permit(:song_id, :user2, :instrument, :public, :finished)
+  end
+
 end

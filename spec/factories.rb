@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :user, aliases: [:followed, :follower] do
+  factory :user, aliases: [:followed, :follower, :challenger, :challenged] do
     sequence(:username) { |n| "testuser#{n}"}
     password "12345"
     password_confirmation { "#{password}" }
@@ -41,6 +41,15 @@ FactoryGirl.define do
     user
     song
     rating 5
+  end
+
+  factory :challenge do
+    challenger
+    challenged
+    song
+    public false
+    finished false
+    instrument "Guitar"
   end
 
 end

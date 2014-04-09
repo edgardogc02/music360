@@ -26,8 +26,11 @@ describe User do
 
   context "Associations" do
     it "should have many challenges" do
-      pending "check how are challenges done"
-      should have_many(:challenges)
+      should have_many(:challenges).with_foreign_key('user1')
+    end
+
+    it "should have many proposed challenges" do
+      should have_many(:proposed_challenges).class_name('Challenge').with_foreign_key('user2')
     end
 
     it "should have many followers associations" do

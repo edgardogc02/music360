@@ -1,9 +1,18 @@
 class Challenge < ActiveRecord::Base
-	belongs_to :owner, class_name: "User", foreign_key: "user1"
-	has_one :opponent, class_name: "User", foreign_key: "user2"
+
+  validates :user1, presence: true
+  validates :user2, presence: true
+  validates :song_id, presence: true
+  validates :instrument, presence: true
+  validates :public, inclusion: {in: [true, false]}
+  validates :finished, inclusion: {in: [true, false]}
+
+	belongs_to :challenger, class_name: "User", foreign_key: "user1"
+	belongs_to :challenged, class_name: "User", foreign_key: "user2"
 	belongs_to :song
 
-	scope :open, -> { where(public: true) }
+  scope :public, -> { where(public: true) }
+	scope :open, -> { where(finished: false) }
 
 	def cover_url
 		song.cover_url
