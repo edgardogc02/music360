@@ -27,7 +27,6 @@ class User < ActiveRecord::Base
   validates :email, presence: true, uniqueness: true, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
 	validates :password, presence: true, on: :create
 	validates :password_confirmation, presence: true, confirmation: true, on: :create
-  validates :auth_token, uniqueness: true
 
   before_create { generate_token(:auth_token) }
 

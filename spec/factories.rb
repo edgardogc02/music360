@@ -3,7 +3,7 @@ FactoryGirl.define do
     sequence(:username) { |n| "testuser#{n}"}
     password "12345"
     password_confirmation { "#{password}" }
-    email { "#{username}@test.com" }
+    sequence(:email) { |n| "user#{n}@test.com"}
   end
 
   factory :user_follower do
