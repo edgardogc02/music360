@@ -9,12 +9,30 @@ class SessionsController < ApplicationController
 
 		respond_to do |format|
 			if user and user.authenticate(params[:password])
-			  signin_user(user)
-				flash.notice = "Hi #{user.username}!"
-				format.html { redirect_to root_path }
+			  format.json do
+			    render :json => {
+			      request: request.url,
+			      response: { user_access_token: user.auth_token },
+			      status: { code: 200, message: "OK" }
+			    }
+			  end
+			  format.html do
+  			  signin_user(user)
+  				flash.notice = "Hi #{user.username}!"
+				  redirect_to root_path
+				end
 			else
-				flash.now.alert = "Invalid username or password"
-				format.html { redirect_to login_path }
+        format.json do
+          render :json => {
+            request: request.url,
+            response: { user_access_token: "" },
+            status: { code: 401, message: "Unauthorized" }
+          }
+        end
+			  format.html do
+  				flash.now.alert = "Invalid username or password"
+  				redirect_to login_path
+  		  end
 			end
 		end
 	end

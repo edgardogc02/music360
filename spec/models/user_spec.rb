@@ -22,6 +22,10 @@ describe User do
       should validate_presence_of(:password)
       should validate_presence_of(:password_confirmation)
     end
+
+    it "should auth token" do
+      validate_uniqueness_of(:auth_token)
+    end
   end
 
   context "Associations" do

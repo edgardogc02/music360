@@ -27,6 +27,9 @@ class User < ActiveRecord::Base
   validates :email, presence: true, uniqueness: true, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
 	validates :password, presence: true, on: :create
 	validates :password_confirmation, presence: true, confirmation: true, on: :create
+  validates :auth_token, uniqueness: true
+
+  before_create { generate_token(:auth_token) }
 
   after_create :send_confirmation_email
 
@@ -99,5 +102,11 @@ class User < ActiveRecord::Base
 	def self.generate_random_password(length)
     (Digest::SHA1.hexdigest("--#{Time.now.to_s}--"))[0..length]
 	end
+
+  def generate_token(column)
+    begin
+      self[column] = SecureRandom.urlsafe_base64
+    end while User.exists?(column => self[column])
+  end
 
 end
