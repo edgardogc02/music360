@@ -63,44 +63,93 @@ songs = [
 		title: "Stairway To Heaven",
 		category: popular,
 		artist: ledzep,
+		writer: "Lorem Ipsum",
+		onclient: false,
+		status: 1,
+		length: 1,
+		difficulty: 1,
+		arranger_userid: 1,
+		published_at: Time.now,
 		cover: "http://upload.wikimedia.org/wikipedia/en/2/26/Led_Zeppelin_-_Led_Zeppelin_IV.jpg"
 	},
 	{
 		title: "Highway To Hell",
 		category: popular,
 		artist: acdc,
+		writer: "Lorem Ipsum",
+		onclient: false,
+		status: 1,
+		length: 1,
+		difficulty: 1,
+		arranger_userid: 1,
+		published_at: Time.now,
 		cover: "http://ecx.images-amazon.com/images/I/31XXJ7KVAGL.jpg"
 	},
 	{
 		title: "Kashmir",
 		category: kids,
 		artist: ledzep,
+		writer: "Lorem Ipsum",
+		onclient: false,
+		status: 1,
+		length: 1,
+		difficulty: 1,
+		arranger_userid: 1,
+		published_at: Time.now,
 		cover: "http://upload.wikimedia.org/wikipedia/en/e/e3/Led_Zeppelin_-_Physical_Graffiti.jpg"
 	},
 	{
 		title: "Lorem ipsum",
 		category: kids,
-		artist: other
+		artist: other,
+		writer: "Lorem Ipsum",
+		onclient: false,
+		status: 1,
+		length: 1,
+		difficulty: 1,
+		arranger_userid: 1,
+		published_at: Time.now
 	},
 	{
 		title: "Lorem ipsum",
 		category: popular,
-		artist: other
+		artist: other,
+		writer: "Lorem Ipsum",
+		onclient: false,
+		status: 1,
+		length: 1,
+		difficulty: 1,
+		arranger_userid: 1,
+		published_at: Time.now
 	},
 	{
 		title: "Lorem ipsum",
 		category: kids,
-		artist: other
+		artist: other,
+		writer: "Lorem Ipsum",
+		onclient: false,
+		status: 1,
+		length: 1,
+		difficulty: 1,
+		arranger_userid: 1,
+		published_at: Time.now
 	},
 	{
 		title: "Lorem ipsum",
 		category: kids,
-		artist: other
+		artist: other,
+		writer: "Lorem Ipsum",
+		onclient: false,
+		status: 1,
+		length: 1,
+		difficulty: 1,
+		arranger_userid: 1,
+		published_at: Time.now
 	}
 ]
 
 puts "***** Seeding songs ******"
-Song.create(songs)
+Song.create!(songs)
 
 
 # CHALLENGES
@@ -108,22 +157,24 @@ Song.create(songs)
 challenges = []
 
 challenges << {
-	user1: johan,
+	challenger: johan,
 	public: true,
 	instrument: 'Guitar',
-	song: Song.first
+	song: Song.first,
+	challenged: User.last
 }
 
-10.times do |num|
+1.times do |num|
 	challenges << {
-		user1: User.last,
+		challenger: User.last,
 		public: true,
 		instrument: 'Guitar',
 		song: Song.last,
+		challenged: johan,
 		created_at: num.days.ago
 	}
 end
 
 puts "***** Seeding challenges ******"
 
-Challenge.create(challenges)
+Challenge.create!(challenges)
