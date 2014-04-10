@@ -2,6 +2,10 @@ require 'spec_helper'
 
 describe "Sessions" do
 
+  before(:each) do
+    @song = create(:song)
+  end
+
   it "Sign in with correct credentials" do
     user = create(:user, username: "testuser", email: "testuser@test.com", password: "12345")
 
@@ -15,6 +19,7 @@ describe "Sessions" do
     click_on 'Sign in'
 
     current_path.should eq(root_path)
+    page.should have_content("testuser")
   end
 
   it "Sign in with incorrect credentials" do

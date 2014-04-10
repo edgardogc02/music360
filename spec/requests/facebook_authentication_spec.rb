@@ -2,6 +2,10 @@ require 'spec_helper'
 
 describe "UserOmniauthCredentials" do
 
+  before(:each) do
+    @song = create(:song)
+  end
+
   it "can sign in user with facebook account" do
     visit login_path
 
@@ -11,6 +15,7 @@ describe "UserOmniauthCredentials" do
     click_link "facebook_signin"
 
     current_path.should eq(root_path) # successfully signed in
+    page.should have_content("Test User") # user name from facebook
   end
 
   it "can handle authentication error" do

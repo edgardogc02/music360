@@ -6,7 +6,6 @@ require 'rspec/rails'
 
 require 'capybara/rails'
 require 'capybara/rspec'
-include Capybara::DSL
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
@@ -45,7 +44,10 @@ RSpec.configure do |config|
 
   config.include(MailerMacros)
   config.include(OmniauthMacros)
+  config.include(LoginMacros)
   config.before(:each) { reset_email }
+
+  config.include Capybara::DSL
 end
 
 OmniAuth.config.test_mode = true

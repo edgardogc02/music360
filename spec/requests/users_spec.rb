@@ -2,7 +2,11 @@ require 'spec_helper'
 
 describe "Users" do
 
-  it "Sign up with correct credentials" do
+  before(:each) do
+    @song = create(:song)
+  end
+
+  it "should sign up with correct credentials" do
     visit signup_path
 
     within("#new_user") do
@@ -16,9 +20,10 @@ describe "Users" do
 
     current_path.should eq(root_path)
 #    last_email.to.should include('testuser@test.com')
+    page.should have_content('testuser')
   end
 
-  it "Sign up with incorrect credentials" do
+  it "should sign up with incorrect credentials" do
     visit signup_path
 
     within("#new_user") do
@@ -34,12 +39,12 @@ describe "Users" do
     page.should have_selector('#new_user')
   end
 
-  it "sign up form if user is not signed in" do
+  it "should display sign up form if user is not signed in" do
     visit signup_path
     page.should have_selector('#new_user')
   end
 
-  it "dont show sign up form if user is already signed in" do
+  it "should not show sign up form if user is already signed in" do
     user = create(:user, username: "testuser", email: "testuser@test.com", password: "12345")
     visit login_path
 
