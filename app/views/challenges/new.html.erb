@@ -17,42 +17,56 @@
   	</div>
   </section>
 
-  <section class="row">
-  	<h2>2. Choose friend to challenge</h2>
-
-    <div class="medium-4 columns">
-      <p><%= image_avatar(@challenge.challenger) %></p>
-      <p><%= @challenge.challenger.username %></p>
-    </div>
-
-    <div class="medium-1 columns"> VS </div>
-
-    <div class="medium-4 columns">
-      <% if @challenge.challenged %>
-        <p><%= image_avatar(@challenge.challenged) %></p>
-        <p><%= @challenge.challenged.username %></p>
-      <% else %>
-        <img src="http://placehold.it/300x300" alt="">
-        <div>
-          <%= link_to "Click to choose your opponent", people_path(user_action: "challenge", song_id: @challenge.song.id) %>
-        </div>
-        <p>Player 2</p>
-      <% end %>
-    </div>
-  </section>
+<% else %>
 
   <section class="row">
-    <%= simple_form_for @challenge do |f| %>
-      <%= f.association :challenger, as: :hidden %>
-      <%= f.association :challenged, as: :hidden %>
-      <%= f.association :song, as: :hidden %>
-      <%= f.input :public, as: :hidden %>
-      <%= f.input :finished, as: :hidden %>
-      <%= f.input :instrument, as: :hidden, input_html: { value: 'Guitar' } %>
-      <p>
-        <%= f.submit "Start Challenge", {class: "btn-accent large block"} %>
-      </p>
-    <% end %>
+    <h2 class="subtle">1. Chose your song</h2>
+
+    <div>
+      <img src="http://placehold.it/150x150" alt="">
+    </div>
+
+    <div>
+      <%= link_to "Click to choose your song", songs_path(challenged_id: @challenge.challenged_id) %>
+    </div>
   </section>
 
 <% end %>
+
+<section class="row">
+	<h2>2. Choose friend to challenge</h2>
+
+  <div class="medium-4 columns">
+    <p><%= image_avatar(@challenge.challenger) %></p>
+    <p><%= @challenge.challenger.username %></p>
+  </div>
+
+  <div class="medium-1 columns"> VS </div>
+
+  <div class="medium-4 columns">
+    <% if @challenge.challenged %>
+      <p><%= image_avatar(@challenge.challenged) %></p>
+      <p><%= @challenge.challenged.username %></p>
+    <% else %>
+      <img src="http://placehold.it/300x300" alt="">
+      <div>
+        <%= link_to "Click to choose your opponent", people_path(song_id: @challenge.song.id) %>
+      </div>
+      <p>Player 2</p>
+    <% end %>
+  </div>
+</section>
+
+<section class="row">
+  <%= simple_form_for @challenge do |f| %>
+    <%= f.association :challenger, as: :hidden %>
+    <%= f.association :challenged, as: :hidden %>
+    <%= f.association :song, as: :hidden %>
+    <%= f.input :public, as: :hidden %>
+    <%= f.input :finished, as: :hidden %>
+    <%= f.input :instrument, as: :hidden, input_html: { value: 'Guitar' } %>
+    <p>
+      <%= f.submit "Start Challenge", {class: "btn-accent large block"} %>
+    </p>
+  <% end %>
+</section>

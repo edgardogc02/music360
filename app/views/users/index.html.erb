@@ -85,7 +85,7 @@
         <% end %>
       </li>
 
-			<li><%= link_to "Challenge", new_challenge_path(song_id: params[:song_id], challenged: user.id)%></li>
+			<li><%= link_to "Challenge", new_challenge_path(song_id: params[:song_id], challenged_id: user.id), {id: "challenge_#{user.id}"} %></li>
 		</ul>
 	</li>
 

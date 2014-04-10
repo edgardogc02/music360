@@ -8,8 +8,8 @@ class ChallengesController < ApplicationController
 	def new
 	  @challenge = current_user.challenges.build(public: false, finished: false)
 
-		if params[:challenged].present?
-			@challenge.challenged = User.find(params[:challenged])
+		if params[:challenged_id].present?
+			@challenge.challenged = User.find(params[:challenged_id])
 		end
 		if params[:song_id].present?
 		  @challenge.song = Song.find(params[:song_id])

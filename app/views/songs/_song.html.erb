@@ -7,5 +7,5 @@
 </div>
 <ul class="overlay-actions list">
   <li><i class="icon-play"><%= link_to "Play", song.song_uri %></i></li>
-  <li><%= link_to "Challenge", new_challenge_path(song_id: song.id) %></li>
+  <li><%= link_to "Challenge", new_challenge_path(song_id: song.id, challenged_id: params[:challenged_id]), {id: "challenge_#{song.id}"} %></li>
 </ul>
