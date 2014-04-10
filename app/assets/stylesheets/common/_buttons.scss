@@ -47,6 +47,11 @@ input[type="submit"] {
 		@include border-radius(4px);
 	}
 
+	&.huge {
+		font-size: 2em;
+		@include border-radius(.3em);
+	}
+
 	&.small {
 		padding: .3em .5em;
 		font-size: .8em;
@@ -68,9 +73,9 @@ input[type="submit"] {
 	@include box-shadow(rgba(#000, .2) 0 1px 2px);
 }
 
-@mixin btn-accent {
-	@include states($btn-color-accent, $color: #fff, $border-color: none);
-	@include box-shadow(darken($btn-color-accent, 15%) 0 2px 0);
+@mixin btn-accent($bcolor: $btn-color-accent) {
+	@include states($bcolor, $color: #fff, $border-color: none);
+	@include box-shadow(darken($bcolor, 15%) 0 2px 0);
 	position: relative;
 	border: 0;
 
@@ -83,6 +88,11 @@ input[type="submit"] {
 .btn-accent {
 	@extend .btn;
 	@include btn-accent;
+}
+
+.btn-confirm {
+	@extend .btn;
+	@include btn-accent($bcolor: $confirm);
 }
 
 input[type="submit"].btn-accent {

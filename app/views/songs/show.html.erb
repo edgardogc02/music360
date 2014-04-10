@@ -1,8 +1,13 @@
-<h1><%= @song.title %></h1>
+<h1 class="huge light"><%= @song.title %> – <%= @song.artist.title%></h1>
 
-<div class="actions">
-	<a href="<%= @song.desktop_app_uri %>" class="btn large">Quick start song</a>
-	<%= link_to "Create challenge", new_challenge_path(song: @song.id), class: "btn large" %>
+<%= link_to @song.desktop_app_uri, class: "overlay-hover song-cover" do %>
+	<span class="overlay"><i class="icon-play"></i></span>
+	<%= image_tag @song.cover_url, alt: @song.title %>
+<% end %>
+
+<div class="list actions">
+	<li><a href="<%= @song.desktop_app_uri %>" class="btn-accent large">Quick start song</a></li>
+	<li><%= link_to "Create challenge", new_challenge_path(song: @song.id), class: "btn-confirm large" %></li>
 </div>
 
 <p>

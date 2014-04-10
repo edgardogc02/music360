@@ -1,14 +1,14 @@
 
 <h1><i class="icon-users"></i> People</h1>
 
-<% unless @categories.blank?%>
+<!--<% unless @categories.blank?%>
 <ul class="user-categories horizontal-menu large">
 	<li class="<%= current_category(nil, :type)%>"><%= link_to "All", people_path %></li>
 	<% @categories.each do |category| %>
 	<li class="<%= current_category(category, :type)%>"><%= link_to category.title, people_path(type: category.id)%></li>
 	<% end %>
 </ul>
-<% end %>
+<% end %>-->
 
 <% unless @users.blank? %>
 
@@ -67,7 +67,7 @@
 <% @users.each do |user| %>
 
 	<li>
-		<%= link_to people_path(user) do %>
+		<%= link_to person_path(user) do %>
 			<%= image_avatar(user) %>
 
 			<div class="overlay username">

@@ -69,6 +69,17 @@
 	}
 }
 
+.overlay-hover {
+	display: inline-block;
+	position: relative;
+
+	&:hover {
+		.overlay {
+			display: block;
+		}
+	}
+}
+
 /* ALIGNMENT */
 
 @each $alignment in right, left, center {

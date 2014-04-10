@@ -3,17 +3,19 @@
 
 .home {
 
-	[role="main"]{
-		.actions a {
-			font-weight: bold;
-		}
-	}
-
 	.get-started {
 		text-align: center;
 
-		h2 {
-			font-size: 1.8em;
+		h1 {
+			margin: 1em 0;
+		}
+
+		li {
+			margin-bottom: .5em;
+
+			a {
+				min-width: 50%;
+			}
 		}
 	}
 }

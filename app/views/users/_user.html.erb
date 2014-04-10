@@ -1,10 +1,10 @@
 <div class="current-user">
-	<%= link_to people_path(user) do %>
+	<%= link_to person_path(user) do %>
 		<%= image_avatar(user) %>
 	<% end %>
 	<div class="current-user-info">
 		<h2 class="current-user-name">
-			<%= link_to user.username, people_path(user) %>
+			<%= link_to user.username, person_path(user) %>
 		</h2>
 		<p class="user-level">
 			Career level<br />

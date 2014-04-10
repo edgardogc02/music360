@@ -14,7 +14,7 @@ class UsersController < ApplicationController
 	end
 
 	def show
-		@challenges = Challenge.open.where(owner: @user)
+		@challenges = Challenge.open.where(challenger: @user)
 	end
 
 	def new
