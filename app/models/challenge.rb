@@ -20,6 +20,10 @@ class Challenge < ActiveRecord::Base
 		song.cover_url
 	end
 
+  def desktop_app_uri
+    "ic:ch=#{self.id}"
+  end
+
 	private
 
 	def challenged_and_finished

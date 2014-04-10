@@ -33,6 +33,9 @@ describe "Songs" do
       page.should have_selector "#challenge_#{@song.id}"
       page.should have_selector "#challenge_#{new_free_song.id}"
 
+      page.should have_link "Play", href: @song.desktop_app_uri
+      page.should have_link "Play", href: new_free_song.desktop_app_uri
+
       page.should have_link "Challenge", href: new_challenge_path(song_id: @song.id)
       page.should have_link "Challenge", href: new_challenge_path(song_id: new_free_song.id)
 
@@ -68,8 +71,6 @@ describe "Songs" do
       create(:song_rating, song: unpopular_paid_song, rating: 1)
 
       visit free_songs_path
-
-#      Song.free.by_popularity.should eq([most_popular_free_song, popular_free_song, unpopular_free_song, @song, unrated_free_song])
 
       page.should have_content most_popular_free_song.title
       page.should have_content popular_free_song.title

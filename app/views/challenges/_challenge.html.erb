@@ -1,6 +1,6 @@
 <div class="challenge-cover">
   <%= image_tag challenge.cover_url, class: "song-cover" %>
-  <%= link_to "#", title: "Start challenge", class: "overlay challenge-start" do %>
+  <%= link_to challenge.desktop_app_uri, title: "Start challenge", class: "overlay challenge-start", id: "challenge_start_#{challenge.id}" do %>
     <i class="icon-play"></i>
   <% end %>
 </div>

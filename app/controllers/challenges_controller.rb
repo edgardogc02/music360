@@ -18,13 +18,17 @@ class ChallengesController < ApplicationController
 
   def yours
     @challenges = current_user.challenges
+
+    if params[:autostart_challenge_id]
+      @autostart_challenge = Challenge.find(params[:autostart_challenge_id])
+    end
   end
 
 	def create
 	  @challenge = current_user.challenges.build(challenge_params)
 
 	  if @challenge.save
-	    redirect_to yours_challenges_path
+	    redirect_to yours_challenges_path(autostart_challenge_id: @challenge.id)
 	  else
 	    render 'new'
 	  end

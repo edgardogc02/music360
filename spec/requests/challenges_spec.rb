@@ -40,6 +40,8 @@ describe "Challenges" do
       click_on "Start Challenge"
 
       current_path.should eq(yours_challenges_path)
+
+      page.should have_xpath("//meta")
       page.should have_content("Your challenges")
       page.should have_content(@song.title)
       page.should have_content("by")
@@ -93,6 +95,24 @@ describe "Challenges" do
       page.should have_content(@user.username)
       page.should have_content("Challenged")
       page.should have_content(challenged_user.username)
+    end
+
+    it "Your challenges should have a start challenge link" do
+      private_challenge = create(:challenge, public: false, challenger: @user)
+      visit yours_challenges_path
+      page.should have_content private_challenge.song.title
+      page.should have_link "challenge_start_#{private_challenge.id}", href: private_challenge.desktop_app_uri
+    end
+
+    it "your challenges should not list challenges from others" do
+      your_private_challenge = create(:challenge, public: false, challenger: @user)
+      other_private_challenge = create(:challenge, public: false)
+
+      visit yours_challenges_path
+      page.should have_content your_private_challenge.song.title
+      page.should have_link "challenge_start_#{your_private_challenge.id}", href: your_private_challenge.desktop_app_uri
+
+      page.should_not have_content other_private_challenge.song.title
     end
   end
 

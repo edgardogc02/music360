@@ -79,4 +79,11 @@ describe Song do
     end
   end
 
+  context "Methods" do
+    it "should return a url for the desktop app" do
+      song = create(:song)
+      song.desktop_app_uri.should == "ic:song=#{URI::escape(song.title)}.mid"
+    end
+  end
+
 end

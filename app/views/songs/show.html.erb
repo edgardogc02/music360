@@ -1,7 +1,7 @@
 <h1><%= @song.title %></h1>
 
 <div class="actions">
-	<a href="<%= @song.song_uri %>" class="btn large">Quick start song</a>
+	<a href="<%= @song.desktop_app_uri %>" class="btn large">Quick start song</a>
 	<%= link_to "Create challenge", new_challenge_path(song: @song.id), class: "btn large" %>
 </div>
 

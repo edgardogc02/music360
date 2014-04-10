@@ -25,7 +25,7 @@ class Song < ActiveRecord::Base
 	  cover.blank? ? "http://placehold.it/300x300" : cover
 	end
 
-	def song_uri
+	def desktop_app_uri
 		# Format: "ic:song=Amazing%20grace.mid"
 		"ic:song=#{URI::escape(title)}.mid"
 	end

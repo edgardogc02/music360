@@ -1,3 +1,7 @@
+<% if @autostart_challenge %>
+  <META HTTP-EQUIV="Refresh" CONTENT="1; URL=<%= @autostart_challenge.desktop_app_uri %>">
+<% end %>
+
 <h1><i class="icon-challenge"></i> Your challenges</h1>
 
 <p class="detail">
