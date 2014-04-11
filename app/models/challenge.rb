@@ -21,7 +21,7 @@ class Challenge < ActiveRecord::Base
 	end
 
   def desktop_app_uri
-    "ic:ch=#{self.id}"
+    "ic:challenge=#{self.id}"
   end
 
 	private
