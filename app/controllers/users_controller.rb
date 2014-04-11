@@ -10,7 +10,7 @@ class UsersController < ApplicationController
 
     begin
       if current_user.has_facebook_credentials?
-  		  @fb_friends = current_user.facebook.get_connections("me", "friends")
+  		  @fb_top_friends = current_user.facebook_top_friends(10)
   		end
     rescue
     end

@@ -116,7 +116,7 @@ describe Challenge do
   context "Methods" do
     it "should return a url for the desktop app" do
       challenge = create(:challenge)
-      challenge.desktop_app_uri.should == "ic:ch=#{challenge.id}"
+      challenge.desktop_app_uri.should == "ic:challenge=#{challenge.id}"
     end
   end
 

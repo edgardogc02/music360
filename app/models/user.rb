@@ -75,6 +75,10 @@ class User < ActiveRecord::Base
     self.user_omniauth_credentials.find_by(provider: 'facebook')
   end
 
+  def facebook_top_friends(limit)
+    self.facebook.fql_query("SELECT uid, name FROM user WHERE uid IN (SELECT uid2 FROM friend WHERE uid1 = me()) ORDER BY mutual_friend_count DESC LIMIT #{limit}")
+  end
+
   def has_facebook_credentials?
     !facebook_credentials.nil?
   end

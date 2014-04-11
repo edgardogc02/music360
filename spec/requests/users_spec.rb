@@ -62,4 +62,18 @@ describe "Users" do
     page.should_not have_selector('#new_user')
   end
 
+  it "should display top facebook friends on the people section" do
+    visit login_path
+
+    mock_facebook_auth_hash
+    click_link "facebook_signin"
+
+    # update the oauth token so it can perform a facebook call
+    user_fb_credentials = User.first.facebook_credentials
+    user_fb_credentials.oauth_token = "CAAIAxgRfsqEBAFosZASVUxqsyvfMmCpQoHyHPbtCCYnqDVY0JHERbkKd4teib6PmoQ1biuyTTHQsshDIBePHFW7MPRRs66THGyvqNQN5ggBrkvDjunghHdv0DT1mwlG5QMM53WrPLtjbpyZBYLexjdLgmr7aTix5n321A2nwHH7Q0LEzJK"
+    user_fb_credentials.save
+
+    visit people_path
+    page.should have_content "Lars Willner"
+  end
 end

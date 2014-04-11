@@ -12,16 +12,17 @@
 
 <% unless @users.blank? %>
 
-<% if @fb_friends %>
+<% if @fb_top_friends %>
 
   <ul class="block-grid">
 
-  <% @fb_friends.each do |fb_friend| %>
+  <% @fb_top_friends.each do |fb_friend| %>
 
     <li>
-      <%= image_tag "https://graph.facebook.com/" + fb_friend['id'] + "/picture?type=large" %>
+      <%= image_tag "https://graph.facebook.com/" + fb_friend['uid'].to_s + "/picture?type=large" %>
       <div class="overlay username">
         <%= fb_friend['name'] %>
+        <%= fb_friend['mutual_friend_count'] %>
       </div>
       <ul class="overlay-actions list">
         <li><%= link_to "Follow", "http://www.facebook.com/dialog/send?app_id=563800430326433&to=#{fb_friend['id']}&name=Music360%20Dialogs&link=https://music360-prototype.herokuapp.com/login&redirect_uri=#{people_url}", {class: "follow_fb_user"} %></li>
