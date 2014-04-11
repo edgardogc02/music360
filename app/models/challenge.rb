@@ -1,8 +1,8 @@
 class Challenge < ActiveRecord::Base
 
-  validates :challenger, presence: true
-  validates :challenged, presence: true
-  validates :song, presence: true
+  validates :challenger_id, presence: true
+  validates :challenged_id, presence: true
+  validates :song_id, presence: true
   validates :instrument, presence: true
   validates :public, inclusion: {in: [true, false]}
   validates :finished, inclusion: {in: [true, false]}
