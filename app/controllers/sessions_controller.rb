@@ -1,6 +1,6 @@
 class SessionsController < ApplicationController
 
-  skip_before_action :verify_authenticity_token
+  skip_before_action :verify_authenticity_token, if: :json_request?
 
 	layout "sessions"
 
@@ -49,4 +49,10 @@ class SessionsController < ApplicationController
 			redirect_to session[:redirect], notice: "You have been signed out"
 		end
 	end
+
+  protected
+
+  def json_request?
+    request.format.json?
+  end
 end
