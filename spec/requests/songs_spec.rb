@@ -8,6 +8,16 @@ describe "Songs" do
       @user = login
     end
 
+    it "should display song view" do
+      new_song = create(:song)
+      visit songs_path
+      click_on new_song.title
+      page.should have_content new_song.title
+      page.should have_content new_song.artist.title
+      page.should have_link "Quick start song", href: new_song.desktop_app_uri
+      page.should have_link "Create challenge", href: new_challenge_path(song_id: new_song.id)
+    end
+
     it "should display free songs" do
       new_free_song = create(:song, cost: 0)
       paid_song = create(:song, cost: 1)
@@ -87,6 +97,17 @@ describe "Songs" do
       page.body.index(popular_free_song.title).should < page.body.index(unpopular_free_song.title)
       page.body.index(unpopular_free_song.title).should < page.body.index(@song.title)
       page.body.index(@song.title).should < page.body.index(unrated_free_song.title)
+    end
+
+    it "should open the challenge page when clicking challenge from a song view" do
+      new_song = create(:song)
+      visit songs_path
+      page.should have_link new_song.title, href: artist_song_path(new_song.artist, new_song)
+      click_on new_song.title
+
+      current_path.should eq(artist_song_path(new_song.artist, new_song))
+      click_on "Create challenge"
+      URI.parse(current_url).request_uri.should eq(new_challenge_path(song_id: new_song.id))
     end
   end
 

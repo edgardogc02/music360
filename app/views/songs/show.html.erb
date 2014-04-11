@@ -7,7 +7,7 @@
 
 <div class="list actions">
 	<li><a href="<%= @song.desktop_app_uri %>" class="btn-accent large">Quick start song</a></li>
-	<li><%= link_to "Create challenge", new_challenge_path(song: @song.id), class: "btn-confirm large" %></li>
+	<li><%= link_to "Create challenge", new_challenge_path(song_id: @song.id), class: "btn-confirm large" %></li>
 </div>
 
 <p>
