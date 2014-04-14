@@ -16,7 +16,7 @@ describe "Sessions" do
       fill_in 'password', with: '12345'
     end
 
-    click_on 'Sign in'
+    click_on 'sign_in'
 
     current_path.should eq(root_path)
     page.should have_content("testuser")
@@ -30,7 +30,7 @@ describe "Sessions" do
       fill_in 'password', with: ''
     end
 
-    click_on 'Sign in'
+    click_on 'sign_in'
 
     current_path.should eq(login_path)
     page.should have_selector('#login-form')

@@ -6,7 +6,7 @@ module LoginMacros
       fill_in 'username', with: user.username
       fill_in 'password', with: user.password
     end
-    click_on 'Sign in'
+    click_on 'sign_in'
     current_path.should eq(root_path)
     user
   end

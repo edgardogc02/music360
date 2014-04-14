@@ -4,7 +4,7 @@
       <a class="navbar-brand" href="#page-top">Instrument <strong>Champ</strong></a>
     </div>
     <div class="navbar-right">
-      <a href="#page-top" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Sing in</a>
+      <a href="#page-top" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Sign in</a>
     </div>
   </div>
 </nav>
@@ -37,14 +37,14 @@
         </button>
         <h3 class="modal-title" id="myModalLabel">Sign in</h3>
       </div>
-      <div class="modal-body">        
+      <div class="modal-body">
         <%= form_tag sessions_path, id: "login-form" do %>
-        <p>       
+        <p>
             <%= text_field_tag :username, "", placeholder: "Username", class: "form-control input-lg", required: true, autofocus: true %>
             <%= password_field_tag :password, "", placeholder: "Password", class: "form-control input-lg", required: true %>
         </p>
         <p>
-          	<%= submit_tag "Sign in", class: "btn btn-primary btn-lg" %>
+          	<%= submit_tag "Sign in", {class: "btn btn-primary btn-lg", id: "sign_in"} %>
         </p>
         <% end %>
       </div>
@@ -58,9 +58,9 @@
       <div class="row">
         <div class="col-md-8 col-md-offset-2">
         	<%= image_tag('/assets/landing/play-logo.png') %>
-        	
+
           <h1 class="brand-heading">Learn to play music with a real music game</h1>
-          <br /><br />      
+          <br /><br />
           <%= link_to facebook_signin_path, id: "facebook_signin", class: 'fb_button' do %>
           	<div class="Spinner"></div>
 					  <span class="separator"></span>
@@ -73,19 +73,19 @@
     </div>
   </div>
 </section>
-	
-<div id="sections-container">	
-	
+
+<div id="sections-container">
+
 	<section id="what-it-is" class="content-section text-left">
 		<div class="container">
 		  <div class="row">
 	  		<div class="col-lg-6">
 		      <h2>A real music game</h2>
 		      <p>
-		        InstrumentChamp is a music game service for learning to play and play music with your friends online. You play with real instruments like acoustic guitar, piano and drums but you also sing  along. 
+		        InstrumentChamp is a music game service for learning to play and play music with your friends online. You play with real instruments like acoustic guitar, piano and drums but you also sing  along.
 		      </p>
-		      <br /><br />      
-          <%= link_to facebook_signin_path, id: "facebook_signin", class: 'fb_button' do %>
+		      <br /><br />
+          <%= link_to facebook_signin_path, id: "facebook_signin_1", class: 'fb_button' do %>
           	<div class="Spinner"></div>
 					  <span class="separator"></span>
 					  <span class="text">Continue</span>
@@ -96,20 +96,20 @@
 		  </div>
 	  </div>
 	</section>
-	
+
 	<section id="how-it-works" class="content-section text-center">
 		<div class="container">
 		  <div class="row">
 	      <div class="col-lg-8 col-lg-offset-2">
 	        <h2>Wireless sound recognition</h2>
 	        <p>
-	          InstrumentChamp is a new music innovation enabled by music sound recognition. It turns your computer in to a digital music teacher that listen, analyse and give real-time feedback on how you play. 
+	          InstrumentChamp is a new music innovation enabled by music sound recognition. It turns your computer in to a digital music teacher that listen, analyse and give real-time feedback on how you play.
 					</p>
 					<p>
-						InstrumentChamp also introduce a new graphic interface that makes it possible for anyone to learn to play a song without reading sheet music. 
+						InstrumentChamp also introduce a new graphic interface that makes it possible for anyone to learn to play a song without reading sheet music.
 	        </p>
-	        <br /><br />      
-          <%= link_to facebook_signin_path, id: "facebook_signin", class: 'fb_button' do %>
+	        <br /><br />
+          <%= link_to facebook_signin_path, id: "facebook_signin_2", class: 'fb_button' do %>
           	<div class="Spinner"></div>
 					  <span class="separator"></span>
 					  <span class="text">Continue</span>
@@ -120,14 +120,14 @@
 		  </div>
 	  </div>
 	</section>
-	
+
 	<section id="what-it-costs" class="content-section text-right">
 		<div class="container">
 		  <div class="row">
 		    <div class="col-lg-6 col-lg-offset-6">
 		      <h2>Forever Free</h2>
 		      <p>
-		        InstrumentChamp offer a free service to everyone, where you can learn basic music skills and songs. This is powered by ads from our partners.
+		        InstrumentChamp offer a free service to everyone, where you can learn basic music skills and songs. This is powered by ads from our partners.
 		      </p>
 		      <p>
 		      	You can choose to upgrade to premium, that will give you a multiplayer game to play with family and friends. No-ads.
@@ -135,8 +135,8 @@
 		      <p>
 		      	More and more songs will become available on InstrumentChamp.com and they can be purchased on demand.
 		      </p>
-		      <br /><br />      
-          <%= link_to facebook_signin_path, id: "facebook_signin", class: 'fb_button' do %>
+		      <br /><br />
+          <%= link_to facebook_signin_path, id: "facebook_signin_3", class: 'fb_button' do %>
           	<div class="Spinner"></div>
 					  <span class="separator"></span>
 					  <span class="text">Continue</span>
