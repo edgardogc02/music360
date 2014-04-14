@@ -28,6 +28,6 @@ module InstrumentchampPrototype
       'X-Content-Type-Options' => 'nosniff'
     }
 
-    config.assets.precompile += ['login.css', 'application.css']
+    config.assets.precompile += ['login.css', 'application.css', 'landing.css', 'lib/bootstrap/bootstrap_and_overrides.css', 'lib/bootstrap/_variables.css']
   end
 end
