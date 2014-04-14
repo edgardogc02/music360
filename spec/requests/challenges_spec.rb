@@ -114,6 +114,49 @@ describe "Challenges" do
 
       page.should_not have_content other_private_challenge.song.title
     end
+
+    it "should create challenge with out any params (first chose opponent and then song) " do
+      challenged_user = create(:user)
+      visit new_challenge_path
+
+      page.should have_content "1. Chose your song"
+      click_on "Click to choose your opponent"
+      current_path.should eq(people_path)
+      click_on "challenge_#{challenged_user.id}"
+
+      current_path.should eq(new_challenge_path)
+      click_on "Click to choose your song"
+      current_path.should eq(songs_path)
+      click_on "challenge_#{@song.id}"
+      click_on "Start Challenge"
+
+      current_path.should eq(yours_challenges_path)
+      page.should have_content("Your challenges")
+      page.should have_content(@song.title)
+      page.should have_content(challenged_user.username)
+    end
+
+    it "should create challenge with out any params (first chose song and then opponent) " do
+      challenged_user = create(:user)
+      visit new_challenge_path
+
+      page.should have_content "1. Chose your song"
+      click_on "Click to choose your song"
+      current_path.should eq(songs_path)
+      click_on "challenge_#{@song.id}"
+      current_path.should eq(new_challenge_path)
+
+      click_on "Click to choose your opponent"
+      current_path.should eq(people_path)
+      click_on "challenge_#{challenged_user.id}"
+
+      click_on "Start Challenge"
+
+      current_path.should eq(yours_challenges_path)
+      page.should have_content("Your challenges")
+      page.should have_content(@song.title)
+      page.should have_content(challenged_user.username)
+    end
   end
 
   describe "cant create challenges if not signed in" do

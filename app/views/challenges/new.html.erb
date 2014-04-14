@@ -50,7 +50,11 @@
     <% else %>
       <img src="http://placehold.it/300x300" alt="">
       <div>
-        <%= link_to "Click to choose your opponent", people_path(song_id: @challenge.song.id) %>
+        <% if @challenge.song %>
+          <%= link_to "Click to choose your opponent", people_path(song_id: @challenge.song.id) %>
+        <% else %>
+          <%= link_to "Click to choose your opponent", people_path %>
+        <% end %>
       </div>
       <p>Player 2</p>
     <% end %>
