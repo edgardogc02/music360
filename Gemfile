@@ -76,6 +76,7 @@ end
 group :production do
   gem 'puma'
   gem 'rails3_serve_static_assets', github: 'heroku/rails3_serve_static_assets'
+  gem 'rails_12factor'
 end
 
 group :test do
