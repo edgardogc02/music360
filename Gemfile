@@ -57,6 +57,9 @@ gem 'koala'
 # interact with the echonest api
 gem 'echowrap'
 
+# Bootstrap framework
+gem 'bootstrap-sass', '~> 3.1.1'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false

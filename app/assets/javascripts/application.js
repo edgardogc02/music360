@@ -13,4 +13,8 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require bootstrap/modal
+//= require bootstrap/transition
+//= require bootstrap/collapse
+//= require bootstrap/scrollspy
 //= require_tree .

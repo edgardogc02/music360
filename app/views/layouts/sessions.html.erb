@@ -1,11 +1,16 @@
 <!doctype html>
 <html>
 	<head>
-		<%= render "layouts/head" %>
-		<%= stylesheet_link_tag "login", media: "all", "data-turbolinks-track" => true %>
+		<%= stylesheet_link_tag "landing", media: "all", "data-turbolinks-track" => true %>
+		<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+		
+		<!-- TEMPORALY UNTIL DEFINE FRAMEWORK -->
+		<%= stylesheet_link_tag "lib/bootstrap/_variables", media: "all" %>
+		<%= stylesheet_link_tag "lib/bootstrap/bootstrap_and_overrides", media: "all" %>
+
 	</head>
 
-	<body role="application" class="<%= body_classes %>">
+	<body role="application" class="<%= body_classes %>" data-spy="scroll" data-target=".navbar-custom-links">
 		<%= yield %>
-	</body>
+	</body>	
 </html>
