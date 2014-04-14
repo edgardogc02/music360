@@ -1,4 +1,7 @@
 class ApplicationController < ActionController::Base
+
+  before_filter :autologin_if_needed
+
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
@@ -8,6 +11,15 @@ class ApplicationController < ActionController::Base
   def signin_user(user)
     session[:user_id] = user.id
   end
+
+  def autologin_if_needed
+    if params[:autologin_user_auth_token]
+      user = User.find_by_auth_token params[:autologin_user_auth_token]
+      if user
+        signin_user(user)
+      end
+    end
+  end # autologin_if_needed action
 
   private
 
