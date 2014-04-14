@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
 
   before_action :not_authorized, only: [:create, :new]
-  before_action :authorized, only: [:destroy]
+  before_action :authorize, only: [:destroy]
 
   skip_before_action :verify_authenticity_token, if: :json_request?
 
