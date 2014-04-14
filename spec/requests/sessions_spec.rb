@@ -2,38 +2,65 @@ require 'spec_helper'
 
 describe "Sessions" do
 
-  before(:each) do
-    @song = create(:song)
-  end
-
-  it "Sign in with correct credentials" do
-    user = create(:user, username: "testuser", email: "testuser@test.com", password: "12345")
-
-    visit login_path
-
-    within("#login-form") do
-      fill_in 'username', with: 'testuser'
-      fill_in 'password', with: '12345'
+  describe "sign in" do
+    before(:each) do
+      @song = create(:song)
     end
 
-    click_on 'sign_in'
+    it "Sign in with correct credentials" do
+      user = create(:user, username: "testuser", email: "testuser@test.com", password: "12345")
 
-    current_path.should eq(root_path)
-    page.should have_content("testuser")
-  end
+      visit login_path
 
-  it "Sign in with incorrect credentials" do
-    visit login_path
+      within("#login-form") do
+        fill_in 'username', with: 'testuser'
+        fill_in 'password', with: '12345'
+      end
 
-    within("#login-form") do
-      fill_in 'username', with: 'testuser'
-      fill_in 'password', with: ''
+      click_on 'sign_in'
+
+      current_path.should eq(root_path)
+      page.should have_content("testuser")
     end
 
-    click_on 'sign_in'
+    it "Sign in with incorrect credentials" do
+      visit login_path
 
-    current_path.should eq(login_path)
-    page.should have_selector('#login-form')
+      within("#login-form") do
+        fill_in 'username', with: 'testuser'
+        fill_in 'password', with: ''
+      end
+
+      click_on 'sign_in'
+
+      current_path.should eq(login_path)
+      page.should have_selector('#login-form')
+    end
+
+    it "should not be able to signout" do
+      visit logout_path
+      current_path.should eq(login_path)
+    end
+  end
+
+  describe "user already signed in" do
+    before(:each) do
+      @song = create(:song, cost: 0)
+      @user = login
+    end
+
+    it "should not be able to login" do
+      visit login_path
+
+      current_path.should eq(root_path)
+    end
+
+    it "should sign out successfully" do
+      visit people_path
+
+      click_on 'sign_out'
+      current_path.should eq(login_path)
+    end
   end
 
 end

@@ -80,16 +80,6 @@ describe "Users" do
   end
 
   describe "user signed in" do
-    before(:each) do
-      @song = create(:song, cost: 0)
-      @user = login
-    end
-
-    it "should not be able to login" do
-      visit login_path
-
-      current_path.should eq(root_path)
-    end
   end
 
 end

@@ -9,7 +9,7 @@
 			<h1 class="medium-3 columns"><%= link_to :root, class: "logo" do %><i class="icon-music"></i></%>InstrumentChamp<% end %></h1>
 			<div class="medium-2 columns">
 				<div class="header-controls">
-					<%= link_to logout_path, class: "btn small" do %>
+					<%= link_to logout_path, {class: "btn small", id: "sign_out"} do %>
             <i class="icon-logout"></i> Sign out
           <% end %>
 				</div>
