@@ -63,7 +63,7 @@ body, html {
     padding: 100px 0;
     text-align: center;
     color: #fff;
-    background: url('/assets/landing/bg1.jpg') no-repeat bottom center scroll;
+    background: image-url('landing/bg1.jpg') no-repeat bottom center scroll;
     background-color: #000;
     -webkit-background-size: cover;
     -moz-background-size: cover;
@@ -109,17 +109,17 @@ body, html {
 }
 
 #what-it-is {
-  background: url('/assets/landing/bg2.jpg') no-repeat center center scroll;
+  background: image-url('landing/bg2.jpg') no-repeat center center scroll;
   background-attachment: fixed;
 }
 
 #how-it-works {
-  background: url('/assets/landing/bg3.jpg') no-repeat center center scroll;
+  background: image-url('landing/bg3.jpg') no-repeat center center scroll;
   background-attachment: fixed;
 }
 
 #what-it-costs {
-  background: url('/assets/landing/bg4.jpg') no-repeat center center scroll;
+  background: image-url('landing/bg4.jpg') no-repeat center center scroll;
   background-attachment: fixed;
   padding: 200px 0px 100px 0px;
 }
@@ -199,7 +199,7 @@ body, html {
 }
 
 .fb_button {
-  background: url('/assets/landing/fb_icon.png');
+  background: image-url('landing/fb_icon.png');
   background-size: 24px 24px;
   border-radius: 7px;
   -webkit-border-radius: 7px;
