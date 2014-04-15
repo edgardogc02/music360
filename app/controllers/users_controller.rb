@@ -5,7 +5,7 @@ class UsersController < ApplicationController
 
 	def index
 		@categories = PeopleCategory.all
-		@users = User.page params[:page]
+		@users = User.not_deleted.page params[:page]
 		@users = @users.where(people_category_id: params[:type]) if params[:type].present?
 
     begin
@@ -41,6 +41,11 @@ class UsersController < ApplicationController
     else
       render "edit"
     end
+	end
+
+	def destroy
+	  @user.destroy
+	  redirect_to logout_path
 	end
 
 	private

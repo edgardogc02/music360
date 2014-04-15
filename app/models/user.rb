@@ -32,6 +32,8 @@ class User < ActiveRecord::Base
 
   after_create :send_confirmation_email
 
+  scope :not_deleted, -> { where('deleted IS NULL OR deleted = 0') }
+
 	def to_s
 		username
 	end
@@ -81,6 +83,16 @@ class User < ActiveRecord::Base
 
   def has_facebook_credentials?
     !facebook_credentials.nil?
+  end
+
+  def destroy
+    self.deleted = true
+    self.deleted_at = Time.now
+    save!
+  end
+
+  def deleted?
+    self.deleted == true
   end
 
 	private

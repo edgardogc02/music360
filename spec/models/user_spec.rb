@@ -47,6 +47,18 @@ describe User do
     end
   end
 
+  context "Scopes" do
+    it "should list not deleted users" do
+      user = create(:user)
+      user_2 = create(:user)
+      user_3 = create(:user)
+      user_4 = create(:user)
+      user_3.destroy
+
+      User.not_deleted.should eq([user, user_2, user_4])
+    end
+  end
+
   context "Methods" do
     it "should create new user from omniauth facebook credentials" do
       expect { User.from_omniauth(mock_facebook_auth_hash) }.to change{User.count}.by(1)
@@ -90,6 +102,12 @@ describe User do
       expect { user.follow(user) }.to change{UserFollower.count}.by(0)
 
       user.should_not be_following(user)
+    end
+
+    it "should mark a user as deleted" do
+      user = create(:user)
+      user.destroy
+      user.should be_deleted
     end
   end
 

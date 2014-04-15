@@ -1,8 +1,9 @@
 class UserOmniauthCredentialsController < ApplicationController
 
   def create
-    if @user = User.from_omniauth(request.env["omniauth.auth"])
-      signin_user(@user)
+    user = User.from_omniauth(request.env["omniauth.auth"])
+    if user and !user.deleted?
+      signin_user(user)
       redirect_to root_path
     else
       redirect_to login_path

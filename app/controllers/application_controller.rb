@@ -12,6 +12,11 @@ class ApplicationController < ActionController::Base
     session[:user_id] = user.id
   end
 
+  def signout_user
+    session[:user_id] = nil
+    reset_session
+  end
+
   def autologin_if_needed
     if params[:autologin_user_auth_token]
       user = User.find_by_auth_token params[:autologin_user_auth_token]

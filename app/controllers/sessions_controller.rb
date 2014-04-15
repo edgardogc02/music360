@@ -14,7 +14,7 @@ class SessionsController < ApplicationController
 		user = User.find_by_username(params[:username])
 
 		respond_to do |format|
-			if user and user.authenticate(params[:password])
+			if user and user.authenticate(params[:password]) and !user.deleted?
 			  format.json do
 			    render :json => {
 			      request: request.url,
@@ -44,7 +44,7 @@ class SessionsController < ApplicationController
 	end
 
 	def destroy
-		session[:user_id] = nil
+	  signout_user
 
 		if session[:redirect].blank?
 			redirect_to login_path, notice: "You have been signed out"

@@ -71,11 +71,17 @@ describe "Users" do
 
       # update the oauth token so it can perform a facebook call
       user_fb_credentials = User.first.facebook_credentials
-      user_fb_credentials.oauth_token = "CAAIAxgRfsqEBAFosZASVUxqsyvfMmCpQoHyHPbtCCYnqDVY0JHERbkKd4teib6PmoQ1biuyTTHQsshDIBePHFW7MPRRs66THGyvqNQN5ggBrkvDjunghHdv0DT1mwlG5QMM53WrPLtjbpyZBYLexjdLgmr7aTix5n321A2nwHH7Q0LEzJK"
+      user_fb_credentials.oauth_token = "CAAIAxgRfsqEBAKkFgrg2FxjCOC2lkzN56frpMSD1wTw3OSmSyhcy00GQb39z3ZCtZCzLebotv2IjTupk0vfzbFsYYzHk5WamPHWxguDEpvkGkZCJlMyH7C9wYUiZBd5PRZC5vZAR2VQgD0nr2PnkgpKj5VWYBkPRdNGbZCdwcJf09S2mZAKVyvRu"
       user_fb_credentials.save
 
       visit people_path
       page.should have_content "Lars Willner"
+    end
+
+    it "should not be able to perform a delete request" do
+      user = create(:user)
+      page.driver.submit :delete, person_path(user), {}
+      user.should_not be_deleted
     end
   end
 
@@ -83,6 +89,36 @@ describe "Users" do
     before(:each) do
       @song = create(:song)
       @user = login
+    end
+
+    it "should list all users in the people section" do
+      user = create(:user)
+      new_user = create(:user)
+
+      visit people_path
+      page.should have_content @user.username
+      page.should have_content user.username
+      page.should have_content new_user.username
+      page.should have_link "challenge_#{@user.id}", href: new_challenge_path(challenged_id: @user.id)
+      page.should have_link "challenge_#{user.id}", href: new_challenge_path(challenged_id: user.id)
+      page.should have_link "challenge_#{new_user.id}", href: new_challenge_path(challenged_id: new_user.id)
+      page.should have_link "follow_user_#{@user.id}", href: "#"
+      page.should have_link "follow_user_#{user.id}", href: "#"
+      page.should have_link "follow_user_#{new_user.id}", href: "#"
+    end
+
+    it "should not list the deleted users in the people section" do
+      user = create(:user)
+      deleted_user = create(:user)
+      deleted_user.destroy
+
+      visit people_path
+      page.should have_content @user.username
+      page.should have_content user.username
+      page.should_not have_content deleted_user.username
+      page.should have_link "challenge_#{@user.id}", href: new_challenge_path(challenged_id: @user.id)
+      page.should have_link "challenge_#{user.id}", href: new_challenge_path(challenged_id: user.id)
+      page.should_not have_link "challenge_#{deleted_user.id}", href: new_challenge_path(challenged_id: deleted_user.id)
     end
 
     it "should have a linked username in the left side bar" do
@@ -105,6 +141,25 @@ describe "Users" do
       current_path.should eq(person_path("new_username"))
       page.should have_content "new_username"
       page.should have_content "new_username@test.com"
+    end
+
+    it "should display a delete profile link" do
+      visit person_path(@user.username)
+      page.should have_link "Delete profile", href: person_path(@user.username)
+    end
+
+    it "should delete a user" do
+      visit person_path(@user.username)
+      click_on "Delete profile"
+      current_path.should eq(login_path)
+
+      visit login_path
+      within("#login-form") do
+        fill_in 'username', with: @user.username
+        fill_in 'password', with: @user.password
+      end
+      click_on 'sign_in'
+      current_path.should eq(login_path)
     end
   end
 

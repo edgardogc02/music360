@@ -6,7 +6,7 @@ describe "UserOmniauthCredentials" do
     @song = create(:song)
   end
 
-  it "can sign in user with facebook account" do
+  it "should sign in user with facebook account" do
     visit login_path
 
     page.should have_selector('#facebook_signin')
@@ -18,12 +18,25 @@ describe "UserOmniauthCredentials" do
     page.should have_content("Test User") # user name from facebook
   end
 
-  it "can handle authentication error" do
+  it "should handle authentication error" do
     OmniAuth.config.mock_auth[:facebook] = :invalid_credentials
     visit login_path
     page.should have_selector('#facebook_signin')
     click_link "facebook_signin"
     current_path.should eq(login_path) # redirected to login path
+  end
+
+  it "should not sign in if user is deleted" do
+    visit login_path
+    mock_facebook_auth_hash
+    click_link "facebook_signin"
+    current_path.should eq(root_path)
+    click_link "Sign out"
+    current_path.should eq(login_path)
+    user = User.find_by_username "Test User"
+    user.destroy
+    click_link "facebook_signin"
+    current_path.should eq(login_path)
   end
 
 end
