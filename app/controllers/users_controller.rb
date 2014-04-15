@@ -35,6 +35,14 @@ class UsersController < ApplicationController
 	  end
 	end
 
+	def update
+	  if @user.update_attributes(user_params)
+      redirect_to person_path(@user)
+    else
+      render "edit"
+    end
+	end
+
 	private
 
 	def set_user

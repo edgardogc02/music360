@@ -80,6 +80,32 @@ describe "Users" do
   end
 
   describe "user signed in" do
+    before(:each) do
+      @song = create(:song)
+      @user = login
+    end
+
+    it "should have a linked username in the left side bar" do
+      visit root_path
+      page.should have_link @user.username, href: person_path(@user.username)
+    end
+
+    it "should have a edit profile button user show page" do
+      visit person_path(@user.username)
+      page.should have_link "Edit profile", href: edit_person_path(@user.username)
+    end
+
+    it "should update a user profile" do
+      visit edit_person_path(@user.username)
+
+      fill_in 'user[username]', with: 'new_username'
+      fill_in 'user[email]', with: 'new_username@test.com'
+
+      click_on "Save"
+      current_path.should eq(person_path("new_username"))
+      page.should have_content "new_username"
+      page.should have_content "new_username@test.com"
+    end
   end
 
 end
