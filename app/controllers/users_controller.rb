@@ -4,16 +4,16 @@ class UsersController < ApplicationController
 	before_action :set_user, only: [:show, :edit, :update, :destroy]
 
 	def index
-		@categories = PeopleCategory.all
-		@users = User.not_deleted.page params[:page]
-		@users = @users.where(people_category_id: params[:type]) if params[:type].present?
-
     begin
       if current_user.has_facebook_credentials?
-  		  @fb_top_friends = current_user.facebook_top_friends(10)
+        @fb_top_friends = current_user.facebook_top_friends(10)
 
         FacebookFriend.create_all(@fb_top_friends)
-  		end
+      end
+
+  		@categories = PeopleCategory.all
+  		@users = User.not_deleted.page params[:page]
+  		@users = @users.where(people_category_id: params[:type]) if params[:type].present?
     rescue
     end
 	end
