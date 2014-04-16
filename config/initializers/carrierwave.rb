@@ -5,9 +5,9 @@ CarrierWave.configure do |config|
   config.ftp_port = 21
   config.ftp_user = "inst1063"
   config.ftp_passwd = "LarsMagnus1!"
-#  config.ftp_folder = "/"
-#  config.ftp_url = "ftp://instrumentchamp.com/"
-#  config.passive = false # false by default
+  config.ftp_folder = ""
+  config.ftp_url = "ftp://ftp.instrumentchamp.com"
+  config.ftp_passive = true # false by default
 end
 
 if Rails.env.test? or Rails.env.cucumber?
