@@ -11,6 +11,8 @@ class UsersController < ApplicationController
     begin
       if current_user.has_facebook_credentials?
   		  @fb_top_friends = current_user.facebook_top_friends(10)
+
+        FacebookFriend.create_all(@fb_top_friends)
   		end
     rescue
     end
@@ -55,6 +57,6 @@ class UsersController < ApplicationController
 	end
 
 	def user_params
-	  params.require(:user).permit(:username, :email, :password, :password_confirmation)
+	  params.require(:user).permit(:username, :email, :password, :password_confirmation, :remote_imagename_url)
 	end
 end

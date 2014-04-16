@@ -1,9 +1,9 @@
 FactoryGirl.define do
   factory :user, aliases: [:followed, :follower, :challenger, :challenged] do
-    sequence(:username) { |n| "testuser#{n}"}
+    sequence(:username) { |n| "testuser#{n}" }
     password "12345"
     password_confirmation { "#{password}" }
-    sequence(:email) { |n| "user#{n}@test.com"}
+    sequence(:email) { |n| "user#{n}@test.com" }
   end
 
   factory :user_follower do
@@ -11,12 +11,21 @@ FactoryGirl.define do
     follower
   end
 
+  factory :user_omniauth_credential do
+    user
+    provider "facebook"
+    sequence(:oauth_uid) { |n| "1234567890#{n}" }
+    sequence(:username) { |n| "testuser#{n}" }
+    sequence(:email) { |n| "user#{n}@test.com" }
+    oauth_token "dhashdajkdhjashdajdhakdhahdsai"
+  end
+
   factory :category do
-    sequence(:title) { |n| "category#{n}"}
+    sequence(:title) { |n| "category#{n}" }
   end
 
   factory :artist do
-    sequence(:title) { |n| "title#{n}"}
+    sequence(:title) { |n| "title#{n}" }
     bio "This is the artist bio"
     country "USA"
     slug {"#{title}-slug"}
@@ -25,7 +34,7 @@ FactoryGirl.define do
   factory :song do
     category
     artist
-    sequence(:title) { |n| "song#{n}"}
+    sequence(:title) { |n| "song#{n}" }
     cover "song-cover"
     writer "song-writer"
     length "5"
@@ -51,5 +60,4 @@ FactoryGirl.define do
     finished false
     instrument "Guitar"
   end
-
 end

@@ -109,6 +109,42 @@ describe User do
       user.destroy
       user.should be_deleted
     end
+
+    it "should register all fb friends in our database" do
+      fb_friends = [{"uid"=>1009508620, "name"=>"Ashutosh Morwal"},
+                    {"uid"=>712450435, "name"=>"Lars Willner"},
+                    {"uid"=>708414150, "name"=>"Magnus Willner"}]
+
+      expect { FacebookFriend.create_all(fb_friends) }.to change{User.count}.by(3)
+    end
+
+    it "should not register fb friends if already created with username" do
+      fb_friends = [{"uid"=>1009508620, "name"=>"Ashutosh Morwal"},
+                    {"uid"=>712450435, "name"=>"Lars Willner"},
+                    {"uid"=>708414150, "name"=>"Magnus Willner"}]
+
+      user = create(:user, username: "Lars Willner")
+      expect { FacebookFriend.create_all(fb_friends) }.to change{User.count}.by(2)
+    end
+
+    it "should not register fb friends if already created with email" do
+      fb_friends = [{"uid"=>1009508620, "name"=>"Ashutosh Morwal"},
+                    {"uid"=>712450435, "name"=>"Lars Willner"},
+                    {"uid"=>708414150, "name"=>"Magnus Willner"}]
+
+      user = create(:user, email: FacebookFriend.new({"uid"=>712450435, "name"=>"Lars Willner"}).new_fake_email)
+      expect { FacebookFriend.create_all(fb_friends) }.to change{User.count}.by(2)
+    end
+
+    it "should not register fb friends if user already signed in using facebook" do
+      fb_friends = [{"uid"=>1009508620, "name"=>"Ashutosh Morwal"},
+                    {"uid"=>712450435, "name"=>"Lars Willner"},
+                    {"uid"=>708414150, "name"=>"Magnus Willner"}]
+
+      user = create(:user)
+      create(:user_omniauth_credential, user: user, oauth_uid: "712450435")
+      expect { FacebookFriend.create_all(fb_friends) }.to change{User.count}.by(2)
+    end
   end
 
 end

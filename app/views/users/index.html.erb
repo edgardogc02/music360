@@ -22,7 +22,6 @@
       <%= image_tag "https://graph.facebook.com/" + fb_friend['uid'].to_s + "/picture?type=large" %>
       <div class="overlay username">
         <%= fb_friend['name'] %>
-        <%= fb_friend['mutual_friend_count'] %>
       </div>
       <ul class="overlay-actions list">
         <li><%= link_to "Follow", "https://graph.facebook.com/me/og.follows?start_time=#{Time.now}&end_time=#{Time.now}&access_token=#{current_user.facebook.access_token}&profile=#{fb_friend['uid'].to_s}", {method: :post} %></li>
