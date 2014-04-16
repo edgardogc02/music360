@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140415133713) do
+ActiveRecord::Schema.define(version: 20140416113741) do
 
   create_table "apps", force: true do |t|
     t.datetime "created_at"
@@ -134,7 +134,6 @@ ActiveRecord::Schema.define(version: 20140415133713) do
   end
 
   create_table "users", primary_key: "id_user", force: true do |t|
-    t.string   "avatar_url"
     t.string   "level"
     t.string   "password_digest"
     t.integer  "people_category_id"
