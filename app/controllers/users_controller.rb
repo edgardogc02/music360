@@ -2,6 +2,7 @@ class UsersController < ApplicationController
 	before_action :authorize, except: [:create, :new]
 	before_action :not_authorized, only: [:create, :new]
 	before_action :set_user, only: [:show, :edit, :update, :destroy, :upload_profile_image]
+  before_filter :check_security, only: [:edit, :update, :destroy, :upload_profile_image]
 
 	def index
     begin
@@ -59,4 +60,8 @@ class UsersController < ApplicationController
 	def user_params
 	  params.require(:user).permit(:username, :email, :password, :password_confirmation, :imagename, :remote_imagename_url)
 	end
+
+  def check_security
+    redirect_to root_path unless current_user == @user
+  end
 end

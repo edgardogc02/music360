@@ -132,11 +132,10 @@ describe "Users" do
     end
 
     it "should update a user profile" do
-      visit edit_person_path(@user.username)
+      visit edit_person_path(@user)
 
-      fill_in 'user[username]', with: 'new_username'
-      fill_in 'user[email]', with: 'new_username@test.com'
-
+      fill_in 'user_username', with: 'new_username'
+      fill_in 'user_email', with: 'new_username@test.com'
       click_on "Save"
       current_path.should eq(person_path("new_username"))
       page.should have_content "new_username"
@@ -161,6 +160,53 @@ describe "Users" do
       click_on 'sign_in'
       current_path.should eq(login_path)
     end
+
+    it "should see upload profile image button only in his person url" do
+      visit person_path(@user)
+      page.should have_link "Upload profile image", upload_profile_image_person_path(@user)
+
+      user = create(:user)
+      visit person_path(user)
+      page.should_not have_link "Upload profile image", upload_profile_image_person_path(user)
+    end
+
+    it "should see upload edit profile button only in his person url" do
+      visit person_path(@user)
+      page.should have_link "Edit profile", edit_person_path(@user)
+
+      user = create(:user)
+      visit person_path(user)
+      page.should_not have_link "Edit profile", edit_person_path(user)
+    end
+
+    it "should see upload delete profile button only in his person url" do
+      visit person_path(@user)
+      page.should have_link "Delete profile", person_path(@user)
+
+      user = create(:user)
+      visit person_path(user)
+      page.should_not have_link "Delete profile", person_path(user)
+    end
+
+    it "should not be able to edit other user profile" do
+      user = create(:user)
+      visit edit_person_path(user)
+      current_path.should eq(root_path)
+    end
+
+    it "should not be able to delete other user profile" do
+      user = create(:user)
+      page.driver.submit :delete, person_path(user), {}
+      current_path.should eq(root_path)
+      user.should_not be_deleted
+    end
+
+    it "should not be able to visit upload profile image for other user" do
+      user = create(:user)
+      visit upload_profile_image_person_path(user)
+      current_path.should eq(root_path)
+    end
+
   end
 
 end
