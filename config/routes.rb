@@ -15,7 +15,9 @@ InstrumentchampPrototype::Application.routes.draw do
     get 'yours', on: :collection
   end
 
-  resources :users, as: :people, path: "people"
+  resources :users, as: :people, path: "people" do
+    get 'upload_profile_image', on: :member
+  end
 
   resources :songs do
     get 'free', on: :collection

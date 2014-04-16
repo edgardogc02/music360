@@ -1,6 +1,6 @@
 <header class="row">
 	<div class="columns medium-4">
-		<%= image_avatar(@user)%>
+		<%= image_tag @user.imagename_url %>
 	</div>
 
 	<div class="medium-12 columns">
@@ -14,6 +14,9 @@
 
 		<% if is_current_user?(@user) %>
 		<div class="user-controls">
+      <p>
+        <%= link_to "Upload profile image", upload_profile_image_person_path(@user), class: "btn" %>
+      </p>
 			<p>
 				<%= link_to "Edit profile", edit_person_path(@user), class: "btn" %>
         <%= link_to "Delete profile", person_path(@user), :method => 'delete', class: "btn" %>

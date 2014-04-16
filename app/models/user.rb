@@ -1,5 +1,7 @@
 class User < ActiveRecord::Base
 
+  mount_uploader :imagename, UserImagenameUploader
+
   paginates_per 20
 
 	extend FriendlyId
@@ -7,6 +9,11 @@ class User < ActiveRecord::Base
 	alias_attribute :id, :id_user
 
 	friendly_id :username
+
+# validates :username, presence: true, uniqueness: true
+  validates :email, presence: true, uniqueness: true, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
+  validates :password, presence: true, on: :create
+  validates :password_confirmation, presence: true, confirmation: true, on: :create
 
 	has_many :challenges, foreign_key: "challenger_id"
   has_many :proposed_challenges, class_name: "Challenge", foreign_key: "challenged_id"
@@ -22,11 +29,6 @@ class User < ActiveRecord::Base
 
   has_many :followers, through: :user_followers, source: :follower
   has_many :followed_users, through: :inverse_user_followers, source: :followed
-
-#	validates :username, presence: true, uniqueness: true
-  validates :email, presence: true, uniqueness: true, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
-	validates :password, presence: true, on: :create
-	validates :password_confirmation, presence: true, confirmation: true, on: :create
 
   before_create { generate_token(:auth_token) }
 
