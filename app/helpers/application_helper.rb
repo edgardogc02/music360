@@ -1,13 +1,11 @@
 module ApplicationHelper
 
 	def nav_link(link_text, link_path, options)
-	  class_name = current_page?(link_path) ? 'current' : 'inactive'
+	  class_name = current_page?(link_path) ? 'active' : ''
 
-	  content_tag(:li, class: class_name) do
-	    link_to link_path do
-	    	raw("<i class='icon-#{options[:icon]}'></i>") + link_text
+	    link_to link_path, {class: class_name +' list-group-item' } do
+	    	raw("<i class='glyphicon glyphicon-#{options[:icon]}'></i>") + link_text
 	    end
-	  end
 	end
 
 	def body_classes(classes=nil)

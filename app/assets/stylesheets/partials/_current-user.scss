@@ -2,41 +2,19 @@
 ------------------------------- */
 
 .current-user {
-	@include clearfix;
-	font-size: .9em;
-
-	.current-user-name {
-		font-size: to_em(15);
-		font-weight: 600;
-		margin: 0;
-
-		a {
-			color: $text-color;
-		}
-	}
-	.current-user-info,
-	.avatar {
-		float: left;
-	}
+  margin-bottom: 20px;
+  @include clearfix;
 
 	.current-user-info {
-		line-height: 1.25;
 		margin-top: 5px;
 	}
 
 	.avatar {
 		margin-right: 10px;
-		max-width: 48px;
+		max-width: 80px;
 	}
 
 	.user-level {
-		margin-top: .5em;
-		font-size: .8em;
-		color: $gray-light;
-	}
-
-	.current-user-level {
-		color: $gray;
-		font-weight: 600;
+		font-size: 11px;
 	}
 }

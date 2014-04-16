@@ -43,9 +43,9 @@
 }
 
 .actions {
-	margin: $lineheight / 2 0;
-	padding: $lineheight / 2;
-	background-color: $body-background;
+	margin: $line-height-base / 2 0;
+	padding: $line-height-base / 2;
+	background-color: $body-bg;
 	@include border-radius(4px);
 }
 
@@ -80,10 +80,3 @@
 	}
 }
 
-/* ALIGNMENT */
-
-@each $alignment in right, left, center {
-	.#{$alignment} {
-		text-align: $alignment;
-	}
-}

@@ -2,28 +2,44 @@
 ----------------------------------------------------------------------*/
 
 html {
-	background-color: $body-background;
+	background-color: $body-bg;
+	width: 100%;
+  height: 100%;
 }
 
 body {
 	-webkit-tap-highlight-color: #fff;
-	font: normal #{$fontsize}/#{($leading/$base-size)} $sans;
+	font: normal $font-size-base/$line-height-base $font-family-sans-serif;
 	color: $text-color;
+	width: 100%;
+  height: 100%;
 }
 
-.page-wrap {
-	@include grid-row;
-	margin-top: $lineheight / 2;
+[class^="glyphicon"] {
+  margin-right: 5px;
+}
+
+[role="application"] {
+  padding-top: 70px;
 }
 
 [role="main"] {
-	@include grid-row;
+	//@include grid-row;
+}
+
+/* Wrapper for page content to push down footer */
+#page-wrap {
+  min-height: 100%;
+  height: auto;
+  margin: 0 auto -60px;
+  padding: 0 0 60px;
 }
 
 // ELEMENTS
 // Include stuff like headings, links, buttons, forms, element styling ..
 
-@import "common/*";
+@import "common/buttons";
+@import "common/listings";
 
 
 // PARTIALS
@@ -38,5 +54,5 @@ body {
 
 // RESPONSIVE STYLES
 
-@import "viewports/medium";
-@import "viewports/small";
+//@import "viewports/medium";
+//@import "viewports/small";

@@ -4,57 +4,61 @@
   <%= render "layouts/head" %>
 </head>
 <body role="application" class="<%= body_classes %>">
-	<header role="banner">
-		<div class="container">
-			<div class="row">
-				<h1 class="medium-3 columns"><%= link_to :root, class: "logo" do %><i class="icon-music"></i></%>InstrumentChamp<% end %></h1>
-				<div class="medium-2 columns">
-					<div class="header-controls">
-						<%= link_to logout_path, {class: "btn small", id: "sign_out"} do %>
-	            <i class="icon-logout"></i> Sign out
-	          <% end %>
+	<header>
+		<nav class="navbar navbar-default navbar-fixed-top" role="navbar">
+			<div class="container">
+				<div class="row">
+					<div class="col-md-12">
+				    <div class="navbar-header pull-left">
+				      <i class="glyphicon glyphicon-music"></i><%= link_to :root, class: "logo" do %>Instrument Champ<% end %>
+				    </div>
+				    <div class="navbar-header pull-right">
+				      <%= link_to logout_path, {class: "btn", id: "sign_out"} do %>
+			          <i class="glyphicon glyphicon-log-out"></i> Sign out
+			        <% end %>
+				    </div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</header>
 
-	<div class="page-wrap">
-
-	  <% if signed_in? %>
-  		<div class="medium-4 columns">
-  			<section class="side-panel">
-  				<%= render current_user, locals: {user: current_user} %>
-
-          <%= render "shared/left_menu" %>
-  			</section>
-  		</div>
-    <% end %>
-
-		<div class="medium-12 columns">
-			<main role="main" class="row">
-				<%= yield %>
-			</main>
-		</div>
+	<div id="page-wrap">
+		<div class="container">
+			<div class="row">
+			  <% if signed_in? %>
+		  		<div class="col-md-3 col-sm-3">
+		  			<section class="side-panel">
+		  				<%= render current_user, locals: {user: current_user} %>
+		
+		          <%= render "shared/left_menu" %>
+		  			</section>
+		  		</div>
+		    <% end %>
+		
+				<div class="col-md-9 col-sm-9">
+					<main role="main">
+						<%= yield %>
+					</main>
+				</div>
+			</div>
+		</div>	
 	</div>
 
-  <footer role="contentinfo" class="container">
-    <div class="row">
-      <div class="medium-4 columns">
-        <p>
-           © <%= link_to "Music360", :root %>
-        </p>
-      </div>
-
-      <div class="medium-9 columns">
-        <p>
-          <%= link_to "Privacy policy", privacy_policy_path %> |
+  <footer>
+  	<div class="container">
+  		<div class="row">
+  			<div class="col-md-4 col-sm-4 col-xs-4">
+  				© <%= link_to "Music360", :root %>
+  			</div>
+  			<div class="col-md-4 col-sm-4 col-xs-8 text-center">
+  				<%= link_to "Privacy policy", privacy_policy_path %> |
           <%= link_to "Terms of service", terms_of_service_path %>
-        </p>
-        <p>
-           Prototype
-        </p>
-      </div>
+  			</div>
+  			<div class="col-md-4 col-sm-4 hidden-xs text-right">
+  				<strong>Prototype</strong>
+  			</div>
+  		</div>
     </div>
   </footer>
 

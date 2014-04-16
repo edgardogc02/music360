@@ -12,16 +12,16 @@
 
 // Foundation grid
 
-@import "lib/foundation/functions";
-@import "lib/foundation/components/global";
-@import "lib/foundation/components/grid";
+//@import "lib/foundation/functions";
+//@import "lib/foundation/components/global";
+//@import "lib/foundation/components/grid";
 
 // Lib files
 
 @import "lib/reset";
-@import "lib/fonts";
+//@import "lib/fonts";
 @import "lib/mixins";
-@import "lib/helpers";
+//@import "lib/helpers";
 
 // Main site styles
 
@@ -29,7 +29,7 @@
 
 // Bootstrap
 
-@import "landing";
-@import "lib/bootstrap/_variables";
+//@import "landing";
+//@import "lib/bootstrap/_variables";
 @import "lib/bootstrap/bootstrap_and_overrides";
 

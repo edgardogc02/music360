@@ -1,61 +1,22 @@
 /*	=HEADER
 ----------------------------------------------------------------------*/
 
-.page-wrap {
-	margin-top: 50px + 10px;
-}
-
-[role="banner"] {
-	background-color: #fff;
-	background-color: rgba(#fff, .9);
-	z-index: 999;
-	padding: 5px 0;
-	height: 50px;
-	border-bottom: 1px solid #ccc;
-	position: fixed;
-	left: 0;
-	top: 0;
-	right: 0;
-	@include box-shadow(rgba(#000, .1) 0 1px 3px);
-
-	h1 {
-		margin: 0;
-		font-size: to_em(18);
-		letter-spacing: -1px;
-	}
-
+[role="navbar"] {
+	padding-top: 10px;
+	@include box-shadow(0, 1px, 3px, rgba(#000, .1));
+	
 	.logo {
-		font-weight: bold;
-		color: $comp;
-		text-decoration: none;
-		@include transition(opacity .2s ease-out);
+    font-weight: bold;
+    color: $comp;
+    text-decoration: none;
+    @include transition(opacity, 0.2s, ease-out);
+    line-height: 28px;
+    font-size: 1.2em;
 
-		&:hover {
-			opacity: .8;
-		}
-
-		[class^="icon-"] {
-			color: #666;
-			margin-right: 4px;
-		}
-	}
-
-	& > * {
-		margin-top: 8px;
-	}
-
-	[role="search"] {
-		position: relative;
-		top: -3px;
-
-		input {
-			width: 100%;
-			border: 0;
-			@include box-shadow(none);
-		}
-	}
-
-	.columns:last-child {
-		text-align: right;
-	}
+    &:hover {
+      opacity: .8;
+    }
+  }
 }
+
+

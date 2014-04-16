@@ -1,13 +1,10 @@
 /*	=FOOTER
 ----------------------------------------------------------------------*/
 
-[role="contentinfo"] {
-	margin-top: $lineheight;
-	background-color: $accent-light;
-	background-color: rgba($accent-light, .5);
-	border-top: 1px solid $accent-light;
-	padding: $lineheight 0;
-
-	font-size: .8em;
-	color: $gray;
+footer {
+	background-color: rgba($accent-light, 1);
+	color: $gray;	
+	height: 40px;
+	padding: $box-inset;
+	margin-top: 20px;
 }

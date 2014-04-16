@@ -1,21 +1,11 @@
-body, html {
-    width: 100%;
-    height: 100%;
-}
-
-.navbar {
-    margin-bottom: 0;
-    border-bottom: 1px solid rgba(255,255,255,.5);
-    text-transform: uppercase;
-    background-color: #000;
-}
+/* Navbar top */
 
 .navbar.navbar-custom {
-  //background: url('/assets/black80.png');
   background-color:rgba(0, 0, 0, 0.8);
   min-height: 0;
   padding: 15px 0px;
   border-bottom: 1px solid rgba(255,255,255,.3);
+  margin-bottom: 0;
   
   .navbar-brand {
     height: auto;
@@ -50,11 +40,86 @@ body, html {
   }
 }
 
-.navbar-custom-links.top-nav-collapse {
+
+/* Navbar links */
+
+.navbar.navbar-custom-links {  
+  background-color:rgba(0, 0, 0, 0.8);
+  min-height: 0;
+  padding: 15px 0px;
+  border-bottom: 1px solid rgba(255,255,255,.3);
+  margin-bottom: 0;
+  
+  .navbar-nav {
+    display: inline-block;
+    float: none;
+    width: 100%;
+    
+    li {
+      width: 33%;
+    }
+    
+    a {
+      padding-top: 5px;
+      padding-bottom: 5px;
+    }
+  }
+  
+  .container {
+    text-align: center;
+  }
+  
+  .page-scroll .icon-bar {
+    background: #FFF;
+  }
+  
+  .page-scroll.active a {
+    position: relative;
+    background: #88b7d5;
+    color: #FFF;
+  }
+  
+  .page-scroll.active a:after {
+    top: 100%;
+    left: 50%;
+    border: solid transparent;
+    content: " ";
+    height: 0;
+    width: 0;
+    position: absolute;
+    pointer-events: none;
+    border-color: rgba(136, 183, 213, 0);
+    border-top-color: #88b7d5;
+    border-width: 10px;
+    margin-left: -10px;
+  }
+  
+  .page-scroll.active a:hover, .page-scroll.active a:focus {
+    position: relative;
+    background: #88b7d5 !important;
+  }
+  
+  .page-scroll a {
+    -webkit-transition: background 300ms ease-in 100ms; /* property duration timing-function delay */
+    -moz-transition: background 300ms ease-in 100ms;
+    -o-transition: background 300ms ease-in 100ms;
+    transition: background 300ms ease-in 100ms;
+    font-size: 16px;
+  }
+  
+  .page-scroll a:hover, .page-scroll a:focus {
+    background: none !important;
+  }
+  
+  &.top-nav-collapse {
     border-top: 1px solid rgba(255,255,255,.3);
     top: 60px;
     bottom: auto;
+  }
 }
+
+
+/* Content */
 
 .intro {
     display: table;
@@ -124,79 +189,20 @@ body, html {
   padding: 200px 0px 100px 0px;
 }
 
-.page-scroll .icon-bar {
-    background: #FFF;
-}
-
-.page-scroll.active a {
-  position: relative;
-  background: #88b7d5;
-  color: #FFF;
-}
-
-.page-scroll.active a:after {
-  top: 100%;
-  left: 50%;
-  border: solid transparent;
-  content: " ";
-  height: 0;
-  width: 0;
-  position: absolute;
-  pointer-events: none;
-  border-color: rgba(136, 183, 213, 0);
-  border-top-color: #88b7d5;
-  border-width: 10px;
-  margin-left: -10px;
-}
-
-.page-scroll.active a:hover, .page-scroll.active a:focus {
-  position: relative;
-  background: #88b7d5 !important;
-}
-
-.page-scroll a {
-  -webkit-transition: background 300ms ease-in 100ms; /* property duration timing-function delay */
-  -moz-transition: background 300ms ease-in 100ms;
-  -o-transition: background 300ms ease-in 100ms;
-  transition: background 300ms ease-in 100ms;
-}
-
-.page-scroll a:hover, .page-scroll a:focus {
-  background: none !important;
-}
-
-.navbar.navbar-custom-links {  
-  //background: url('/assets/black80.png');
-  background-color:rgba(0, 0, 0, 0.8);
-  min-height: 0;
-  padding: 15px 0px;
-  border-bottom: 1px solid rgba(255,255,255,.3);
-  
-  .navbar-nav {
-    display: inline-block;
-    float: none;
-    width: 100%;
-    
-    li {
-      width: 33%;
-    }
-    
-    a {
-      padding-top: 5px;
-      padding-bottom: 5px;
-    }
+#sections-container {
+  h2 {
+    font-size: 38px;
+    padding-bottom: 20px;
+    text-shadow: 2px 2px 10px #000;
   }
-  
-  .container {
-    text-align: center;
+  p {
+    font-size: 22px;
+    text-shadow: 2px 2px 10px #000;
   }
 }
 
-#login-form {
-  .btn-primary {
-    width: 100%;
-  }
-}
+
+/* FB - Button */
 
 .fb_button {
   background: image-url('landing/fb_icon.png');
@@ -247,17 +253,17 @@ body, html {
   }
 }
 
-#sections-container {
-  h2 {
-    font-size: 38px;
-    padding-bottom: 20px;
-    text-shadow: 2px 2px 10px #000;
-  }
-  p {
-    font-size: 22px;
-    text-shadow: 2px 2px 10px #000;
+
+/* Sign in form */
+
+#login-form {
+  .btn-primary {
+    width: 100%;
   }
 }
+
+
+/* Parallax effect */
 
 #parallax-bg {  
   z-index: 0;

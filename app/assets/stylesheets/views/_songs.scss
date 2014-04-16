@@ -7,11 +7,11 @@
 
 .songs.index {
 	.category-menu {
-		margin-bottom: $lineheight;
+		margin-bottom: $line-height-base;
 	}
 
 	main > section {
-		margin-bottom: $lineheight*2;
+		margin-bottom: $line-height-base*2;
 
 		.no-content {
 			text-align: center;
@@ -21,7 +21,7 @@
 	.songs-list {
 
 		li {
-			@include grid-column(5);
+			//@include grid-column(5);
 		}
 
 		.cover-controls,
@@ -38,7 +38,7 @@
 }
 
 .songs-list {
-	@extend %list;
+	//@extend %list;
 	display: table;
 	width: 100%;
 	font-size: .9em;
@@ -99,7 +99,7 @@
 
 	[role="main"] {
 		text-align: center;
-		padding-right: $column-gutter*15;
+		//padding-right: $column-gutter*15;
 	}
 
 	.song-cover {
