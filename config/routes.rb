@@ -39,6 +39,9 @@ InstrumentchampPrototype::Application.routes.draw do
 
   match 'user_sent_facebook_invitations/accept_invitation' => "user_sent_facebook_invitations#accept_invitation", via: [:get, :post]
 
+  get 'privacy-policy', to: "statics#privacy_policy", as: :privacy_policy
+  get 'terms-of-service', to: "statics#terms_of_service", as: :terms_of_service
+
   get ':action' => 'pages'
 
 end
