@@ -201,6 +201,12 @@ describe "Users" do
       user.should_not be_deleted
     end
 
+    it "should not be able to update other user profile" do
+      user = create(:user)
+      page.driver.submit :patch, person_path(user), {}
+      current_path.should eq(root_path)
+    end
+
     it "should not be able to visit upload profile image for other user" do
       user = create(:user)
       visit upload_profile_image_person_path(user)
