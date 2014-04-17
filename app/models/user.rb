@@ -132,6 +132,8 @@ class User < ActiveRecord::Base
 
 	def self.create_from_omniauth(auth)
     user = User.new
+    user.first_name = auth.info.first_name
+    user.last_name = auth.info.last_name
     user.username = auth.info.name
     user.email = auth.info.email
     user.password = User.generate_random_password(5)
