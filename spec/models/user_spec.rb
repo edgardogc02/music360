@@ -40,7 +40,7 @@ describe User do
       should have_many(:followed_users).through(:inverse_user_followers).source(:followed)
     end
 
-    [:user_omniauth_credentials, :user_sent_facebook_invitations, :user_facebook_friends].each do |assoc|
+    [:user_omniauth_credentials, :user_facebook_friends].each do |assoc|
       it "should have has many #{assoc} with dependent destroy" do
         should have_many(assoc).dependent(:destroy)
       end

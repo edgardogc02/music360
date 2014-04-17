@@ -22,8 +22,6 @@ class User < ActiveRecord::Base
 	has_secure_password
 	has_many :user_omniauth_credentials, dependent: :destroy
 
-  has_many :user_sent_facebook_invitations, dependent: :destroy
-
   has_many :user_followers, dependent: :destroy
   has_many :inverse_user_followers, class_name: "UserFollower", foreign_key: "follower_id"
 
