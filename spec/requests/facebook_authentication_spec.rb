@@ -18,6 +18,10 @@ describe "UserOmniauthCredentials" do
     page.should have_content("Test User") # user name from facebook
 
     user = User.find_by_username 'Test User'
+    user.username.should eq("Test User")
+    user.email.should eq("test@test.com")
+    user.first_name.should eq("Test")
+    user.last_name.should eq("User")
     user.confirmed.should_not be_blank
   end
 
