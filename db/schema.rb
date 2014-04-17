@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140416113741) do
+ActiveRecord::Schema.define(version: 20140417083000) do
 
   create_table "apps", force: true do |t|
     t.datetime "created_at"
@@ -100,6 +100,16 @@ ActiveRecord::Schema.define(version: 20140416113741) do
   end
 
   add_index "songs", ["slug"], name: "index_songs_on_slug", using: :btree
+
+  create_table "user_facebook_friends", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "user_facebook_friend_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "user_facebook_friends", ["user_facebook_friend_id"], name: "index_user_facebook_friends_on_user_facebook_friend_id", using: :btree
+  add_index "user_facebook_friends", ["user_id"], name: "index_user_facebook_friends_on_user_id", using: :btree
 
   create_table "user_followers", force: true do |t|
     t.integer  "user_id",     null: false

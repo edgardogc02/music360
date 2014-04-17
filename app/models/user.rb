@@ -30,6 +30,8 @@ class User < ActiveRecord::Base
   has_many :followers, through: :user_followers, source: :follower
   has_many :followed_users, through: :inverse_user_followers, source: :followed
 
+  has_many :user_facebook_friends, dependent: :destroy
+
   before_create { generate_token(:auth_token) }
 
   after_create :send_confirmation_email
@@ -95,6 +97,25 @@ class User < ActiveRecord::Base
 
   def deleted?
     self.deleted == true
+  end
+
+  def save_facebook_friends(fb_friends)
+    fb_friends.each do |fb_friend|
+      facebook_friend = FacebookFriend.new(fb_friend)
+      if !facebook_friend.already_signin?
+        user = User.new
+        user.username = facebook_friend.username
+        user.password = User.generate_random_password(5)
+        user.password_confirmation = user.password
+        user.email = facebook_friend.new_fake_email
+        user.remote_imagename_url = facebook_friend.remote_image
+        user.save!
+
+        user_facebook_friend = self.user_facebook_friends.build
+        user_facebook_friend.facebook_friend = user
+        user_facebook_friend.save!
+      end
+    end
   end
 
 	private

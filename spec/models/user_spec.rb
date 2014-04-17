@@ -40,7 +40,7 @@ describe User do
       should have_many(:followed_users).through(:inverse_user_followers).source(:followed)
     end
 
-    [:user_omniauth_credentials, :user_sent_facebook_invitations].each do |assoc|
+    [:user_omniauth_credentials, :user_sent_facebook_invitations, :user_facebook_friends].each do |assoc|
       it "should have has many #{assoc} with dependent destroy" do
         should have_many(assoc).dependent(:destroy)
       end
@@ -115,7 +115,8 @@ describe User do
                     {"uid"=>712450435, "name"=>"Lars Willner"},
                     {"uid"=>708414150, "name"=>"Magnus Willner"}]
 
-      expect { FacebookFriend.create_all(fb_friends) }.to change{User.count}.by(3)
+      user = create(:user)
+      expect { expect { user.save_facebook_friends(fb_friends) }.to change{User.count}.by(3) }.to change{UserFacebookFriend.count}.by(3)
     end
 
     it "should not register fb friends if already created with username" do
@@ -123,8 +124,9 @@ describe User do
                     {"uid"=>712450435, "name"=>"Lars Willner"},
                     {"uid"=>708414150, "name"=>"Magnus Willner"}]
 
-      user = create(:user, username: "Lars Willner")
-      expect { FacebookFriend.create_all(fb_friends) }.to change{User.count}.by(2)
+      user = create(:user)
+      fb_user = create(:user, username: "Lars Willner")
+      expect { expect { user.save_facebook_friends(fb_friends) }.to change{User.count}.by(2) }.to change{UserFacebookFriend.count}.by(2)
     end
 
     it "should not register fb friends if already created with email" do
@@ -132,8 +134,9 @@ describe User do
                     {"uid"=>712450435, "name"=>"Lars Willner"},
                     {"uid"=>708414150, "name"=>"Magnus Willner"}]
 
-      user = create(:user, email: FacebookFriend.new({"uid"=>712450435, "name"=>"Lars Willner"}).new_fake_email)
-      expect { FacebookFriend.create_all(fb_friends) }.to change{User.count}.by(2)
+      user = create(:user)
+      fb_user = create(:user, email: FacebookFriend.new({"uid"=>712450435, "name"=>"Lars Willner"}).new_fake_email)
+      expect { expect { user.save_facebook_friends(fb_friends) }.to change{User.count}.by(2) }.to change{UserFacebookFriend.count}.by(2)
     end
 
     it "should not register fb friends if user already signed in using facebook" do
@@ -142,8 +145,9 @@ describe User do
                     {"uid"=>708414150, "name"=>"Magnus Willner"}]
 
       user = create(:user)
-      create(:user_omniauth_credential, user: user, oauth_uid: "712450435")
-      expect { FacebookFriend.create_all(fb_friends) }.to change{User.count}.by(2)
+      fb_user = create(:user)
+      create(:user_omniauth_credential, user: fb_user, oauth_uid: "712450435")
+      expect { expect { user.save_facebook_friends(fb_friends) }.to change{User.count}.by(2) }.to change{UserFacebookFriend.count}.by(2)
     end
   end
 
