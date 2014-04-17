@@ -1,19 +1,25 @@
-<h1><i class="icon-star"></i> Artists</h1>
+<h1 class="page-header"><small><i class="glyphicon glyphicon-star"></i></small> Artists</h1>
 
-<%= link_to "Most popular artists", most_popular_artists_path %>
+<div class="spacer-lg">
+	<%= link_to "Most popular artists", most_popular_artists_path, {class: 'btn btn-primary'} %>
+</div>
 
 <% unless @artists.blank?%>
 
-<ul class="block-grid">
-<% @artists.each do |artist| %>
-	<li>
-		<%= link_to artist_path(artist) do %>
-			<img src="http://placehold.it/300x300" alt="<%= artist.title %>">
+<div class="thumbnail-grid row">
+	
+	<% @artists.each do |artist| %>
+		<div class="col-xs-4 col-s-4 col-md-3">
+			<div class="thumbnail">
+				<img src="http://placehold.it/300x300" alt="<%= artist.title %>">
+				<div class="overlay-actions">
+					<h4><strong><%= link_to artist.title, artist_path(artist) %></strong></h4>		      
+				</div>
+				
+			</div>
+		</div>
+	<% end %>
 
-			<span class="artist-title"><%= artist.title%></span>
-		<% end %>
-	</li>
-<% end %>
-</ul>
+</div>
 
 <% end %>

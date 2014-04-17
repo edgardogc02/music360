@@ -12,11 +12,13 @@
 				    <div class="navbar-header pull-left">
 				      <i class="glyphicon glyphicon-music"></i><%= link_to :root, class: "logo" do %>Instrument Champ<% end %>
 				    </div>
-				    <div class="navbar-header pull-right">
-				      <%= link_to logout_path, {class: "btn", id: "sign_out"} do %>
-			          <i class="glyphicon glyphicon-log-out"></i> Sign out
-			        <% end %>
-				    </div>
+				    <% if signed_in? %>
+					    <div class="navbar-header pull-right">
+					      <%= link_to logout_path, {class: "btn", id: "sign_out"} do %>
+				          <i class="glyphicon glyphicon-log-out"></i> Sign out
+				        <% end %>
+					    </div>
+				    <% end %>
 					</div>
 				</div>
 			</div>
