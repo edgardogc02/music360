@@ -5,6 +5,9 @@
 <%= simple_form_for @user, url: person_path(@user) do |f| %>
 
   <p>
+    <%= f.input :first_name, label_html: { class: 'large' } %>
+    <%= f.input :last_name, label_html: { class: 'large' } %>
+    <%= f.input :phone_number, label_html: { class: 'large' } %>
     <%= f.input :username, label_html: { class: 'large' } %>
     <%= f.input :email, label_html: { class: 'large' } %>
   </p>

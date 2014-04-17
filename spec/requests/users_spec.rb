@@ -134,12 +134,22 @@ describe "Users" do
     it "should update a user profile" do
       visit edit_person_path(@user)
 
+      fill_in 'user_first_name', with: 'firstname'
+      fill_in 'user_last_name', with: 'lastname'
+      fill_in 'user_phone_number', with: '1234567890'
       fill_in 'user_username', with: 'new_username'
       fill_in 'user_email', with: 'new_username@test.com'
       click_on "Save"
       current_path.should eq(person_path("new_username"))
       page.should have_content "new_username"
       page.should have_content "new_username@test.com"
+
+      @user.reload
+      @user.username.should eq("new_username")
+      @user.email.should eq("new_username@test.com")
+      @user.first_name.should eq("firstname")
+      @user.last_name.should eq("lastname")
+      @user.phone_number.should eq("1234567890")
     end
 
     it "should display a delete profile link" do
