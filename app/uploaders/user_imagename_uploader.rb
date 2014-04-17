@@ -7,8 +7,7 @@ class UserImagenameUploader < CarrierWave::Uploader::Base
   # include CarrierWave::MiniMagick
 
   # Choose what kind of storage to use for this uploader:
-#  storage :file
-  storage :ftp
+  # storage :ftp # this is setup in the carrierwave.rb initializer file
   # storage :fog
 
   # Override the directory where uploaded files will be stored.
