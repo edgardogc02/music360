@@ -1,19 +1,22 @@
-<h1><i class="icon-star"></i> Most popular 50 artists</h1>
+<h1 class="page-header"><small><i class="glyphicon glyphicon-star"></i></small> Most popular 50 artists</h1>
 
-
-<ul class="block-grid">
+<div class="thumbnail-grid fixed-grid">
 
   <% @artists.each do |artist| %>
-    <li>
+
+		<div class="thumbnail">
       <%= image_tag artist.images.first.url %>
-      <div class="overlay username">
-        <%= artist.name %>
-      </div>
-      <ul class="overlay-actions list">
-        <li><%= link_to "Follow", "#" %></li>
-        <li><%= link_to "Challenge", "#" %></li>
-      </ul>
-    </li>
+            
+      <div class="overlay-actions">
+				<p><strong><%= artist.name %></strong></p>
+	
+	      <div class="btn-group-vertical">
+	        <%= link_to "Follow", "#", {class: 'btn btn-sm btn-primary'} %>
+	        <%= link_to "Challenge", "#", {class: 'btn btn-sm btn-success'} %>
+				</div>
+  		</div>
+  	</div>
+  	
   <% end %>
 
-</ul>
+</div>

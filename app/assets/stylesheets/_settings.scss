@@ -15,7 +15,7 @@ $gray-darker:            lighten(#000, 13.5%) !default; // #222
 $gray-dark:              lighten(#000, 20%) !default;   // #333
 $gray:                   lighten(#000, 33.5%) !default; // #555
 $gray-light:             lighten(#000, 60%) !default;   // #999
-$gray-lighter:           lighten(#000, 93.5%) !default; // #eee
+$gray-lighter:           lighten(#000, 90%) !default; // #e6e6e6
 
 $brand-primary:         #428bca !default;
 $brand-success:         #5cb85c !default;
@@ -619,7 +619,7 @@ $page-header-border-color:    $gray-lighter !default;
 //##
 
 //** Horizontal line color.
-$hr-border:                   $gray-lighter !default;
+$hr-border:                   $gray-light !default;
 
 //** Horizontal offset for forms and lists.
 $component-offset-horizontal: 180px !default;

@@ -1,16 +1,15 @@
-<h1 class="huge light">Edit profile</h1>
+<h1 class="page-header"><small><i class="glyphicon glyphicon-cog"></i></small> Edit profile</h1>
 
 <%= flash.alert %>
 
 <%= simple_form_for @user, url: person_path(@user) do |f| %>
 
-  <div>
+  <p>
     <%= f.input :username, label_html: { class: 'large' } %>
     <%= f.input :email, label_html: { class: 'large' } %>
-  </div>
+  </p>
 
-  <div>
-    <%= f.submit "Save", {class: "btn-accent large block"} %>
-  </div>
+  <br />
+  <%= f.submit "Save", {class: "btn btn-primary"} %>
 
 <% end %>

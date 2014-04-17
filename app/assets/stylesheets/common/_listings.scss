@@ -6,7 +6,7 @@
     position: relative;
     
     .overlay-actions {
-      background-color: rgba(255,255,255,.4);
+      background-color: rgba(255,255,255,.8);
       display: none;
       position: absolute;
       z-index: 999;
@@ -24,5 +24,11 @@
   .btn-group-vertical {
     width: 100%;
   }
+}
+
+.fixed-grid .thumbnail {
+  width: 150px;
+  margin: 8px;
+  min-height: 100px;
 }
 
