@@ -22,6 +22,9 @@ describe "Users" do
       current_path.should eq(root_path)
   #    last_email.to.should include('testuser@test.com')
       page.should have_content('testuser')
+
+      user = User.find_by_username 'testuser'
+      user.confirmed.should_not be_blank
     end
 
     it "should sign up with incorrect credentials" do

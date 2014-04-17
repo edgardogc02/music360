@@ -16,6 +16,9 @@ describe "UserOmniauthCredentials" do
 
     current_path.should eq(root_path) # successfully signed in
     page.should have_content("Test User") # user name from facebook
+
+    user = User.find_by_username 'Test User'
+    user.confirmed.should_not be_blank
   end
 
   it "should handle authentication error" do

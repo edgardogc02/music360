@@ -34,6 +34,8 @@ class User < ActiveRecord::Base
 
   before_create { generate_token(:auth_token) }
 
+  before_create :fill_in_extra_fields
+
   after_create :send_confirmation_email
 
   scope :not_deleted, -> { where('deleted IS NULL OR deleted = 0') }
@@ -119,6 +121,10 @@ class User < ActiveRecord::Base
   end
 
 	private
+
+  def fill_in_extra_fields
+    self.confirmed = Time.now
+  end
 
 	def send_confirmation_email
 #    EmailNotifier.send_user_confirmation(self).deliver
