@@ -1,5 +1,7 @@
 class Song < ActiveRecord::Base
 
+  mount_uploader :cover, SongCoverUploader
+
   extend FriendlyId
 
   friendly_id :title, use: :slugged
@@ -20,10 +22,6 @@ class Song < ActiveRecord::Base
 
   scope :free, -> { where('cost IS NULL OR cost = 0') }
   scope :by_popularity, -> { joins('LEFT JOIN songratings ON songratings.song_id = songs.id').group('case when songratings.song_id is null then songs.id else songratings.song_id end').order('AVG(songratings.rating) DESC, songs.id') }
-
-	def cover_url
-	  cover.blank? ? "http://placehold.it/300x300" : cover
-	end
 
 	def desktop_app_uri
 		# Format: "ic:song=Amazing%20grace.mid"

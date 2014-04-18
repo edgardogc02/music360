@@ -14,11 +14,26 @@ class SongsController < ApplicationController
 
 	end
 
+  def edit
+  end
+
+  def update
+    if @song.update_attributes(song_params)
+      redirect_to song_path(@song)
+    else
+      render "edit"
+    end
+  end
+
   def free
     @songs = Song.free.by_popularity.page params[:page]
   end
 
 	private
+
+  def song_params
+    params.require(:song).permit(:cover)
+  end
 
 	def set_song
 		@song = Song.friendly.find(params[:id])
