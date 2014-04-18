@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140417104726) do
+ActiveRecord::Schema.define(version: 20140417135454) do
 
   create_table "apps", force: true do |t|
     t.datetime "created_at"
@@ -137,7 +137,6 @@ ActiveRecord::Schema.define(version: 20140417104726) do
   end
 
   create_table "users", primary_key: "id_user", force: true do |t|
-    t.string   "level"
     t.string   "password_digest"
     t.integer  "people_category_id"
     t.string   "name",               limit: 128
@@ -163,6 +162,7 @@ ActiveRecord::Schema.define(version: 20140417104726) do
     t.datetime "deleted_at"
     t.string   "first_name"
     t.string   "last_name"
+    t.integer  "careerpoints"
   end
 
   add_index "users", ["auth_token"], name: "index_users_on_auth_token", unique: true, using: :btree

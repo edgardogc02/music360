@@ -2,7 +2,7 @@ class UsersController < ApplicationController
 	before_action :authorize, except: [:create, :new]
 	before_action :not_authorized, only: [:create, :new]
 	before_action :set_user, only: [:show, :edit, :update, :destroy, :upload_profile_image]
-  before_filter :check_security, only: [:edit, :update, :destroy, :upload_profile_image]
+  before_action :check_security, only: [:edit, :update, :destroy, :upload_profile_image]
 
 	def index
     begin

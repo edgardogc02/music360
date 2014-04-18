@@ -1,0 +1,14 @@
+<h1 class="page-header">Change password</h1>
+
+<%= simple_form_for @user, url: user_password_path(@user) do |f| %>
+
+  <div>
+    <%= f.input :password, label_html: { class: 'large required' } %>
+    <%= f.input :password_confirmation, label_html: { class: 'large required' } %>
+  </div>
+	<br />
+  <div>
+    <%= f.submit "Save", {class: "btn btn-primary"} %>
+  </div>
+
+<% end %>

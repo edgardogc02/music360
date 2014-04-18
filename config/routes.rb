@@ -33,6 +33,8 @@ InstrumentchampPrototype::Application.routes.draw do
   get 'login' => "sessions#new", :as => :login
   get 'logout' => "sessions#destroy", :as => :logout
 
+  resources :user_passwords
+
   match '/auth/facebook', via: [:get, :post], as: :facebook_signin
   match 'auth/:provider/callback' => "user_omniauth_credentials#create", via: [:get, :post]
   match 'auth/failure' => "user_omniauth_credentials#failure", via: [:get, :post]
