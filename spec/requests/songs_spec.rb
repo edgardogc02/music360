@@ -18,12 +18,12 @@ describe "Songs" do
       page.should have_link "Create challenge", href: new_challenge_path(song_id: new_song.id)
     end
 
-    it "should display free songs" do
+    it "should display songs" do
       new_free_song = create(:song, cost: 0)
       paid_song = create(:song, cost: 1)
 
-      page.should have_content "Free songs"
-      click_on "Free songs"
+      page.should have_content "Songs"
+      click_on "Songs"
 
       page.should have_content @song.title
       page.should have_content @song.artist.title

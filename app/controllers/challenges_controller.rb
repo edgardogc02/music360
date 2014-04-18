@@ -2,7 +2,7 @@ class ChallengesController < ApplicationController
 	before_action :authorize
 
 	def index
-		@challenges = Challenge.public.open
+		@challenges = Challenge.all
 	end
 
 	def new

@@ -8,9 +8,8 @@ describe "Challenges" do
       @user = login
     end
 
-    it "Create new challenge from free songs" do
-      page.should have_content("Free songs")
-      click_on "Free songs"
+    it "Create new challenge from songs" do
+      click_on "Songs"
       click_on "challenge_#{@song.id}"
       current_path.should eq(new_challenge_path)
 
@@ -55,8 +54,8 @@ describe "Challenges" do
     it "Create new challenge from people section" do
       challenged_user = create(:user)
 
-      page.should have_content("People")
-      click_on "People"
+      page.should have_content("Friends")
+      click_on "Friends"
       click_on "challenge_#{challenged_user.id}"
       current_path.should eq(new_challenge_path)
 

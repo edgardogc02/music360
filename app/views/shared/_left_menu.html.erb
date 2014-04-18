@@ -2,22 +2,32 @@
 	<div class="list-group">
     <%= nav_link "Home", :root, icon: "home" %>
 
+    <!--
     <%= nav_link "People", people_path, icon: "user"%>
-    <%= nav_link "Friends", "#", icon: "user"%>
+    -->
+    <%= nav_link "Friends", people_path, icon: "user"%>
+    <!--
     <%= nav_link "Artists", artists_path, icon: "star"%>
     <%= nav_link "Teachers", "#", icon: "user"%>
+    -->
 
-    <%= nav_link "Music", songs_path, icon: "music"%>
+    <%= nav_link "Songs", songs_path, icon: "music"%>
+    <!--
     <%= nav_link "Popular songs", "#", icon: "music"%>
     <%= nav_link "Free songs", free_songs_path, icon: "music"%>
     <%= nav_link "Your library", "#", icon: "music"%>
+    -->
 
     <%= nav_link "Challenges", challenges_path, icon: "certificate"%>
+    <!--
     <%= nav_link "Yours", yours_challenges_path, icon: "certificate"%>
     <%= nav_link "Friends", "#", icon: "certificate"%>
     <%= nav_link "Artists", "#", icon: "certificate"%>
+    -->
 
-    <%= nav_link "Instruments", apps_path, icon: "wrench"%>
+    <!--
+    <%= nav_link "Instruments", "#", icon: "wrench"%>
+    -->
     <%= nav_link "Apps", apps_path, icon: "wrench"%>
     <%= nav_link "Premium", "#", icon: "wrench"%>
   </div>
