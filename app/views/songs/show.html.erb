@@ -1,10 +1,7 @@
 <h1 class="page-header"><small><i class="glyphicon glyphicon-music"></i></small> <%= @song.title %> – <%= @song.artist.title%></h1>
 
 <p>
-<%= link_to @song.desktop_app_uri, class: "overlay-hover song-cover" do %>
-	<span class="overlay"><i class="glyphicon glyphicon-play"></i></span>
-	<%= image_tag @song.cover_url, alt: @song.title %>
-<% end %>
+	<%= image_tag @song.cover_url, alt: @song.title, class: "thumbnail" %>
 </p>
 
 <p>

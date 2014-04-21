@@ -1,10 +1,33 @@
+$fontOpenSansEotPath: asset-url("OpenSans/OpenSans-Regular-webfont.eot");
+$fontOpenSansEotPath_iefix: asset-url("OpenSans/OpenSans-Regular-webfont.eot#iefix");
+$fontOpenSansWoffPath: asset-url("OpenSans/OpenSans-Regular-webfont.woff");
+$fontOpenSansTtfPath: asset-url("OpenSans/OpenSans-Regular-webfont.ttf");
+$fontOpenSansSvgPath: asset-url("OpenSans/OpenSans-Regular-webfont.svg#open_sansregular");
+
+$fontOpenSansSemiboldEotPath: asset-url("OpenSans/OpenSans-Semibold-webfont.eot");
+$fontOpenSansSemiboldEotPath_iefix: asset-url("OpenSans/OpenSans-Semibold-webfont.eot#iefix");
+$fontOpenSansSemiboldWoffPath: asset-url("OpenSans/OpenSans-Semibold-webfont.woff");
+$fontOpenSansSemiboldTtfPath: asset-url("OpenSans/OpenSans-Semibold-webfont.ttf");
+$fontOpenSansSemiboldSvgPath: asset-url("OpenSans/OpenSans-Semibold-webfont.svg#open_sansregular");
+
 @font-face {
-	font-family: 'music360';
-	src:font-url('music360.eot?-kvdwfx');
-	src:font-url('music360.eot?#iefix-kvdwfx') format('embedded-opentype'),
-		font-url('music360.woff?-kvdwfx') format('woff'),
-		font-url('music360.ttf?-kvdwfx') format('truetype'),
-		font-url('music360.svg?-kvdwfx#music360') format('svg');
-	font-weight: normal;
-	font-style: normal;
+  font-family: 'Open Sans';
+  src: $fontOpenSansEotPath;
+  src: $fontOpenSansEotPath_iefix format('embedded-opentype'),
+       $fontOpenSansWoffPath format('woff'),
+       $fontOpenSansTtfPath format('truetype'),
+       $fontOpenSansSvgPath format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Open Sans';
+  src: $fontOpenSansSemiboldEotPath;
+  src: $fontOpenSansSemiboldEotPath_iefix format('embedded-opentype'),
+       $fontOpenSansSemiboldWoffPath format('woff'),
+       $fontOpenSansSemiboldTtfPath format('truetype'),
+       $fontOpenSansSemiboldSvgPath format('svg');
+  font-weight: bold;
+  font-style: normal;
 }
