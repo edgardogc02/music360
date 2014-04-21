@@ -1,17 +1,16 @@
-<div class="challenge-cover">
-  <%= image_tag challenge.cover_url, class: "song-cover" %>
-  <%= link_to challenge.desktop_app_uri, title: "Start challenge", class: "overlay challenge-start", id: "challenge_start_#{challenge.id}" do %>
-    <i class="icon-play"></i>
-  <% end %>
-</div>
-
-<div class="challenge-info">
-
-  <p class="challenge-song"><%= link_to challenge.song.title, song_path(challenge.song) %>
-    by <%= link_to challenge.song.artist.title, artist_path(challenge.song.artist)%></p>
-  <p class="challenge-owner">
-    Created by <%= link_to challenge.challenger.username, person_path(challenge.challenger)%>
-    <time datetime="<%= challenge.created_at%>" pubdate><%= time_ago_in_words(challenge.created_at)%> ago</time>
-    (Challenged: <%= link_to challenge.challenged.username, person_path(challenge.challenged)%>)
-  </p>
-</div>
+<li class="media media-item">
+    <%= link_to challenge.desktop_app_uri, title: "Start challenge", class: "pull-left", id: "challenge_start_#{challenge.id}" do %>
+	    <%= image_tag challenge.cover_url, class: "song-cover" %>
+	  <% end %>
+  <div class="media-body">
+    <p class="spacer-sm">
+    	<%= link_to challenge.song.title, song_path(challenge.song) %> 
+    	by <%= link_to challenge.song.artist.title, artist_path(challenge.song.artist)%>
+		</p>
+		<p class="spacer-sm">
+	    Created by <%= link_to challenge.challenger.username, person_path(challenge.challenger)%>
+	    <time datetime="<%= challenge.created_at%>" pubdate><%= time_ago_in_words(challenge.created_at)%> ago</time>
+	    (Challenged: <%= link_to challenge.challenged.username, person_path(challenge.challenged)%>)
+	  </p>
+  </div>
+</li>

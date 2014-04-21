@@ -1,15 +1,19 @@
-<h1 class="huge light"><%= @song.title %> – <%= @song.artist.title%></h1>
-
-<%= link_to @song.desktop_app_uri, class: "overlay-hover song-cover" do %>
-	<span class="overlay"><i class="icon-play"></i></span>
-	<%= image_tag @song.cover_url, alt: @song.title %>
-<% end %>
-
-<div class="list actions">
-	<li><a href="<%= @song.desktop_app_uri %>" class="btn-accent large">Quick start song</a></li>
-	<li><%= link_to "Create challenge", new_challenge_path(song_id: @song.id), class: "btn-confirm large" %></li>
-</div>
+<h1 class="page-header"><small><i class="glyphicon glyphicon-music"></i></small> <%= @song.title %> – <%= @song.artist.title%></h1>
 
 <p>
-	<%= link_to "Back to songs", songs_path %>
+<%= link_to @song.desktop_app_uri, class: "overlay-hover song-cover" do %>
+	<span class="overlay"><i class="glyphicon glyphicon-play"></i></span>
+	<%= image_tag @song.cover_url, alt: @song.title %>
+<% end %>
+</p>
+
+<p>
+	<%= link_to "Quick start song", @song.desktop_app_uri, class: "btn btn-primary" %>
+	<%= link_to "Create challenge", new_challenge_path(song_id: @song.id), class: "btn btn-primary" %>
+</p>
+
+<br /><br />
+
+<p>
+	<%= link_to "Back to songs", songs_path, class: "btn btn-default" %>
 </p>

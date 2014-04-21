@@ -2,23 +2,24 @@
 
 <% if @categories.blank? and !@songs.blank? %>
 
-<ul class="block-grid">
-	<%= render partial: "song", collection: @songs, layout: "layouts/list_layout" %>
-</ul>
+<div class="thumbnail-grid row">
+	<%= render partial: "song", collection: @songs %>
+</div>
 
 <% else %>
 
 <% @categories.each do |category| %>
 	<section>
-		<h2><%= category.title%> <small><%= link_to "View all", songs_path(category: category.id)%></small></h2>
+		<h3 class="clearfix"><%= category.title%> <small><%= link_to "View all", songs_path(category: category.id), {class: 'btn'}%></small></h3>
 
 		<% unless category.songs.blank? %>
-		<ul class="block-grid">
-			<%= render partial: "song", collection: category.songs.limit(3), layout: "layouts/list_layout" %>
-		</ul>
+		<div class="thumbnail-grid row">
+			<%= render partial: "song", collection: category.songs.limit(3) %>
+		</div>
 		<% else %>
 		<p class="no-content">No songs</p>
 		<% end %>
+		<hr />
 	</section>
 <% end %>
 

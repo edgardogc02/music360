@@ -1,20 +1,22 @@
 <h1 class="page-header"><small><i class="glyphicon glyphicon-star"></i></small> Most popular 50 artists</h1>
 
-<div class="thumbnail-grid fixed-grid">
+<div class="thumbnail-grid row">
 
   <% @artists.each do |artist| %>
 
-		<div class="thumbnail">
-      <%= image_tag artist.images.first.url %>
-            
-      <div class="overlay-actions">
-				<p><strong><%= artist.name %></strong></p>
-	
-	      <div class="btn-group-vertical">
-	        <%= link_to "Follow", "#", {class: 'btn btn-sm btn-primary'} %>
-	        <%= link_to "Challenge", "#", {class: 'btn btn-sm btn-success'} %>
-				</div>
-  		</div>
+		<div class="masonry-img col-md-3 col-sm-6 col-xs-6">
+			<div class="thumbnail">
+	      <%= image_tag artist.images.first.url %>    
+	      <div class="overlay-actions">
+		      <div class="thumb-info">
+						<h4><%= artist.name %></h4>
+					</div>
+		      <div class="btn-group-vertical">
+		        <%= link_to "Follow", "#", {class: 'btn btn-sm btn-default'} %>
+		        <%= link_to "Challenge", "#", {class: 'btn btn-sm btn-default'} %>
+					</div>
+	  		</div>
+	  	</div>
   	</div>
   	
   <% end %>

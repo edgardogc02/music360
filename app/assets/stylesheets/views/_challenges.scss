@@ -1,98 +1,11 @@
 /* =CHALLENGES
 -------------------------------- */
 
-.challenges-list {
-	//@extend %list;
-	display: table;
-	width: 100%;
-
-	li {
-		display: table-row;
-
-		&:nth-child(even) {
-			background-color: #f9f9f9;
-		}
-
-		&:hover {
-			background-color: rgba($accent-light, .4);
-
-			.challenge-start {
-				display: inherit;
-			}
-		}
-	}
-
-	.challenge-cover,
-	.challenge-info {
-		display: table-cell;
-		vertical-align: middle;
-	}
-
-	.challenge-info {
-		font-size: .9em;
-		position: relative;
-
-		p {
-			margin: 0;
-			line-height: 1.618;
-		}
-	}
-
-	.challenge-owner {
-		font-size: .8em;
-		color: $gray;
-	}
-
-	.challenge-cover {
-		width: 50px;
-		height: 50px;
-		position: relative;
-
-		& + * {
-			padding-left: 1em;
-		}
-
-		&:hover .overlay {
-			display: block;
-		}
-	}
-
-	.overlay {
-		line-height: 50px;
-		font-size: 2em;
-	}
-
-	.challenge-start {
-		text-decoration: none;
-	}
-
-	.song-cover {
-		display: block;
-	}
-}
-
-.challenges.new {
-
-	.opponents {
-		text-align: center;
-		display: table;
-		width: 100%;
-		table-layout: fixed;
-
-		.vs {
-			vertical-align: middle;
-			display: table-cell;
-			width: 30px;
-		}
-
-		img {
-			max-width: 10em;
-			margin: 0 auto;
-			display: block;
-		}
-
-		& > div {
-			display: table-cell;
-		}
-	}
+.media-item {
+  border-bottom: 1px solid $gray-lighter;
+  padding: 10px 0px; 
+  
+  .song-cover {
+    max-width: 100px;
+  }
 }

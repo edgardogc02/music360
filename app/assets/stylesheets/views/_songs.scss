@@ -1,11 +1,7 @@
 /* =SONGS
 ---------------------------- */
 
-.songs {
-
-}
-
-.songs.index {
+.songss.index {
 	.category-menu {
 		margin-bottom: $line-height-base;
 	}
@@ -37,7 +33,7 @@
 	}
 }
 
-.songs-list {
+.songss-list {
 	//@extend %list;
 	display: table;
 	width: 100%;
@@ -91,37 +87,3 @@
 	}
 }
 
-
-/* =SONG SINGLE
---------------------------------------------- */
-
-.songs.show {
-
-	[role="main"] {
-		text-align: center;
-		//padding-right: $column-gutter*15;
-	}
-
-	.song-cover {
-
-		.overlay {
-			background-color: rgba(#000, .2);
-			font-size: 4em;
-			line-height: 300px;
-			color: #fff;
-		}
-	}
-
-	.actions {
-		max-width: 50%;
-		margin: .5em auto;
-
-		li {
-			margin-bottom: .5em;
-		}
-
-		a {
-			width: 100%;
-		}
-	}
-}
