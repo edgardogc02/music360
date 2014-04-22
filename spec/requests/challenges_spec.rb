@@ -23,7 +23,6 @@ describe "Challenges" do
       page.should have_content("2. Choose friend to challenge")
       page.should have_content(@user.username)
       page.should have_content("Click to choose your opponent")
-      page.should have_content("Player 2")
       page.should have_content("VS")
 
       challenged_user = create(:user)

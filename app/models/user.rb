@@ -15,6 +15,8 @@ class User < ActiveRecord::Base
   validates :password, presence: true, on: :create
   validates :password_confirmation, presence: true, confirmation: true, on: :create
 
+  validate :validate_maximum_image_size
+
 	has_many :challenges, foreign_key: "challenger_id"
   has_many :proposed_challenges, class_name: "Challenge", foreign_key: "challenged_id"
 
@@ -152,6 +154,15 @@ class User < ActiveRecord::Base
     begin
       self[column] = SecureRandom.urlsafe_base64
     end while User.exists?(column => self[column])
+  end
+
+  def validate_maximum_image_size
+    if !self.imagename.blank?
+      image = Magick::Image::read(self.imagename.path).first
+      if image.rows > 1024 or image.columns > 1024
+        errors.add :imagename, "should be 1024x1024px maximum!"
+      end
+    end
   end
 
 end
