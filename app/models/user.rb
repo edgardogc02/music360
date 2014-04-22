@@ -139,6 +139,7 @@ class User < ActiveRecord::Base
     user.email = auth.info.email
     user.password = User.generate_random_password(5)
     user.password_confirmation = user.password
+    user.oauth_uid = auth.uid
     user.save!
 
     user.user_omniauth_credentials.create_from_omniauth(auth)

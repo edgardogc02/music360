@@ -23,6 +23,8 @@ describe "UserOmniauthCredentials" do
     user.first_name.should eq("Test")
     user.last_name.should eq("User")
     user.confirmed.should_not be_blank
+    user.oauth_uid.should_not be_blank
+    user.oauth_uid.should eq(user.facebook_credentials.oauth_uid)
   end
 
   it "should handle authentication error" do

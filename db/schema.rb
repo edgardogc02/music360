@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140417135454) do
+ActiveRecord::Schema.define(version: 20140422102319) do
 
   create_table "apps", force: true do |t|
     t.datetime "created_at"
@@ -163,6 +163,7 @@ ActiveRecord::Schema.define(version: 20140417135454) do
     t.string   "first_name"
     t.string   "last_name"
     t.integer  "careerpoints"
+    t.string   "oauth_uid"
   end
 
   add_index "users", ["auth_token"], name: "index_users_on_auth_token", unique: true, using: :btree
