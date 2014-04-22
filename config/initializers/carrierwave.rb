@@ -6,7 +6,7 @@ CarrierWave.configure do |config|
   config.ftp_user = "inst1063"
   config.ftp_passwd = "LarsMagnus1!"
   config.ftp_folder = ""
-  config.ftp_url = "ftp://ftp.instrumentchamp.com"
+  config.ftp_url = "instrumentchamp.com"
   config.ftp_passive = true # false by default
 end
 
