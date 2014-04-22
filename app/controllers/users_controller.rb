@@ -30,7 +30,7 @@ class UsersController < ApplicationController
 	def create
 	  @user = User.new(user_params)
 
-	  if @user.save
+	  if @user.sign_up(request.remote_ip)
 	    signin_user(@user)
       redirect_to root_path
 	  else

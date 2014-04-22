@@ -40,6 +40,11 @@ class User < ActiveRecord::Base
 
   scope :not_deleted, -> { where('deleted IS NULL OR deleted = 0') }
 
+  def sign_up(ip)
+    self.ip = ip
+    save
+  end
+
 	def to_s
 		username
 	end
@@ -52,11 +57,13 @@ class User < ActiveRecord::Base
 		"http://placehold.it/300x300"
 	end
 
-  def self.from_omniauth(auth)
+  def self.from_omniauth(auth, ip)
     user = User.where(email: auth.info.email).first
 
     if user.nil?
       user = User.create_from_omniauth(auth)
+      user.ip = ip
+      user.save
     else
       user.user_omniauth_credentials.create_or_update_from_omniauth(auth)
     end

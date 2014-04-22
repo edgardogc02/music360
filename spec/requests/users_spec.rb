@@ -25,6 +25,7 @@ describe "Users" do
 
       user = User.find_by_username 'testuser'
       user.confirmed.should_not be_blank
+      user.ip.should_not be_blank
     end
 
     it "should sign up with incorrect credentials" do

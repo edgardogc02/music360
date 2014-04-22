@@ -7,15 +7,11 @@ describe "UserOmniauthCredentials" do
   end
 
   it "should sign in user with facebook account" do
-    visit login_path
+    signin_with_facebook
+  end
 
-    page.should have_selector('#facebook_signin')
-
-    mock_facebook_auth_hash
-    click_link "facebook_signin"
-
-    current_path.should eq(root_path) # successfully signed in
-    page.should have_content("Test User") # user name from facebook
+  it "should have the correct values in the users table" do
+    signin_with_facebook
 
     user = User.find_by_username 'Test User'
     user.username.should eq("Test User")
@@ -25,6 +21,7 @@ describe "UserOmniauthCredentials" do
     user.confirmed.should_not be_blank
     user.oauth_uid.should_not be_blank
     user.oauth_uid.should eq(user.facebook_credentials.oauth_uid)
+    user.ip.should_not be_blank
   end
 
   it "should handle authentication error" do
@@ -46,6 +43,18 @@ describe "UserOmniauthCredentials" do
     user.destroy
     click_link "facebook_signin"
     current_path.should eq(login_path)
+  end
+
+  def signin_with_facebook
+    visit login_path
+
+    page.should have_selector('#facebook_signin')
+
+    mock_facebook_auth_hash
+    click_link "facebook_signin"
+
+    current_path.should eq(root_path) # successfully signed in
+    page.should have_content("Test User") # user name from facebook
   end
 
 end

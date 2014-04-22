@@ -158,11 +158,6 @@ describe "Challenges" do
   end
 
   describe "cant create challenges if not signed in" do
-    it "should not display challenges index if not signed in" do
-      visit challenges_path
-      current_path.should eq(login_path)
-    end
-
     it "should not display challenges new if not signed in" do
       visit new_challenge_path
       current_path.should eq(login_path)
