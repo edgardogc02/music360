@@ -61,12 +61,12 @@ describe User do
 
   context "Methods" do
     it "should create new user from omniauth facebook credentials" do
-      expect { User.from_omniauth(mock_facebook_auth_hash) }.to change{User.count}.by(1)
+      expect { User.from_omniauth(mock_facebook_auth_hash, "127.0.0.1") }.to change{User.count}.by(1)
     end
 
     it "should not create new user from omniauth facebook credentials" do
       create(:user, email: "test@test.com") # email from facebook
-      expect { User.from_omniauth(mock_facebook_auth_hash) }.to change{User.count}.by(0)
+      expect { User.from_omniauth(mock_facebook_auth_hash, "127.0.0.1") }.to change{User.count}.by(0)
     end
 
     it "should verify following method" do
