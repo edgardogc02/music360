@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140422102319) do
+ActiveRecord::Schema.define(version: 20140422145512) do
 
   create_table "apps", force: true do |t|
     t.datetime "created_at"
@@ -62,12 +62,6 @@ ActiveRecord::Schema.define(version: 20140422102319) do
   add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
 
-  create_table "people_categories", force: true do |t|
-    t.string   "title"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "songratings", force: true do |t|
     t.integer  "song_id",    null: false
     t.integer  "user_id",    null: false
@@ -100,6 +94,12 @@ ActiveRecord::Schema.define(version: 20140422102319) do
   end
 
   add_index "songs", ["slug"], name: "index_songs_on_slug", using: :btree
+
+  create_table "user_categories", force: true do |t|
+    t.string   "title"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "user_facebook_friends", force: true do |t|
     t.integer  "user_id"
@@ -138,18 +138,17 @@ ActiveRecord::Schema.define(version: 20140422102319) do
 
   create_table "users", primary_key: "id_user", force: true do |t|
     t.string   "password_digest"
-    t.integer  "people_category_id"
-    t.string   "name",               limit: 128
-    t.string   "email",              limit: 164
-    t.string   "phone_number",       limit: 16
-    t.string   "username",           limit: 164
-    t.string   "password",           limit: 32
-    t.string   "city",               limit: 50
-    t.string   "countrycode",        limit: 3
-    t.string   "macaddress",         limit: 40
-    t.string   "productkey",         limit: 36
-    t.string   "confirmcode",        limit: 100
-    t.string   "invitebyuser",       limit: 80
+    t.string   "name",             limit: 128
+    t.string   "email",            limit: 164
+    t.string   "phone_number",     limit: 16
+    t.string   "username",         limit: 164
+    t.string   "password",         limit: 32
+    t.string   "city",             limit: 50
+    t.string   "countrycode",      limit: 3
+    t.string   "macaddress",       limit: 40
+    t.string   "productkey",       limit: 36
+    t.string   "confirmcode",      limit: 100
+    t.string   "invitebyuser",     limit: 80
     t.datetime "confirmed"
     t.datetime "converted"
     t.string   "imagename"
@@ -163,6 +162,7 @@ ActiveRecord::Schema.define(version: 20140422102319) do
     t.string   "first_name"
     t.string   "last_name"
     t.integer  "careerpoints"
+    t.integer  "user_category_id"
     t.string   "oauth_uid"
   end
 

@@ -20,7 +20,7 @@ class User < ActiveRecord::Base
 	has_many :challenges, foreign_key: "challenger_id"
   has_many :proposed_challenges, class_name: "Challenge", foreign_key: "challenged_id"
 
-	belongs_to :people_category
+	belongs_to :user_category
 	has_secure_password
 	has_many :user_omniauth_credentials, dependent: :destroy
 
