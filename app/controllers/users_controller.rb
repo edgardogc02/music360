@@ -12,7 +12,7 @@ class UsersController < ApplicationController
         current_user.save_facebook_friends(@fb_top_friends)
       end
 
-  		@categories = PeopleCategory.all
+  		@categories = UserCategory.all
   		@users = User.not_deleted.page params[:page]
   		@users = @users.where(people_category_id: params[:type]) if params[:type].present?
     rescue

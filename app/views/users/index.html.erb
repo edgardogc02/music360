@@ -9,7 +9,7 @@
 </ul>
 <% end %>-->
 
-<!--
+
 <% if @fb_top_friends %>
 
   <div class="row">
@@ -25,7 +25,8 @@
           </div>
           <ul class="overlay-actions list">
             <li><%= link_to "Follow", "https://graph.facebook.com/me/og.follows?start_time=#{Time.now}&end_time=#{Time.now}&access_token=#{current_user.facebook.access_token}&profile=#{fb_friend['uid'].to_s}", {method: :post} %></li>
-            <li><%= link_to "Challenge", "https://graph.facebook.com/me/instrumentchamp:challenge?start_time=#{Time.now}&end_time=#{Time.now}&access_token=#{current_user.facebook.access_token}&profile=#{fb_friend['uid'].to_s}&tags=#{fb_friend['uid'].to_s}", {method: :post} %></li>
+            <li><%= link_to "Challenge", "https://graph.facebook.com/me/instrumentchamp:challenge?start_time=#{Time.now}&end_time=#{Time.now}&access_token=#{current_user.facebook.access_token}&profile=#{fb_friend['uid'].to_s}&tags=#{fb_friend['uid'].to_s}&message=You should really try this challenge @[#{fb_friend['uid'].to_s}] on https://music360-prototype.herokuapp.com", {method: :post} %></li>
+            <li><%= link_to "Challenge 2", "https://graph.facebook.com/me/instrumentchamp:create?start_time=#{Time.now}&end_time=#{Time.now}&access_token=#{current_user.facebook.access_token}&challenge=https://music360-prototype.herokuapp.com/challenges/10&tags=#{fb_friend['uid'].to_s}", {method: :post} %></li>
           </ul>
 
         </div>
@@ -36,7 +37,7 @@
   </div>
 
 <% end %>
--->
+
 
 <% unless @users.blank? %>
 
@@ -70,6 +71,6 @@
 
   </div>
 
-<% end %>
+  <%= paginate @users %>
 
-<%= paginate @users %>
+<% end %>

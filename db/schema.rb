@@ -162,8 +162,8 @@ ActiveRecord::Schema.define(version: 20140422145512) do
     t.string   "first_name"
     t.string   "last_name"
     t.integer  "careerpoints"
-    t.integer  "user_category_id"
     t.string   "oauth_uid"
+    t.integer  "user_category_id"
   end
 
   add_index "users", ["auth_token"], name: "index_users_on_auth_token", unique: true, using: :btree
