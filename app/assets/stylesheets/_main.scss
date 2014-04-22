@@ -27,6 +27,7 @@ body {
 	//@include grid-row;
 }
 
+
 /* Wrapper for page content to push down footer */
 #page-wrap {
   min-height: 100%;
@@ -42,6 +43,7 @@ body {
 @import "common/listings";
 @import "common/forms";
 @import "common/thumbnails";
+@import "common/headings";
 
 
 // PARTIALS

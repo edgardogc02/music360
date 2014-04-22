@@ -6,6 +6,9 @@ $bootstrap-sass-asset-helper: (twbs-font-path("") != unquote('twbs-font-path("")
 // Variables
 // --------------------------------------------------
 
+$default-user-avatar:         image-url('default_user.png');
+$default-song-avatar:         image-url('default_song.png');
+$default-artist-avatar:       image-url('default_artist.png');
 
 //== Colors
 //
@@ -17,7 +20,8 @@ $gray:                   lighten(#000, 33.5%) !default; // #555
 $gray-light:             lighten(#000, 60%) !default;   // #999
 $gray-lighter:           lighten(#000, 90%) !default; // #e6e6e6
 
-$brand-primary:         #428bca !default;
+$brand-primary:         #45B9B6 !default;
+$brand-secondary:       #E83E3A !default;
 $brand-success:         #5cb85c !default;
 $brand-info:            #5bc0de !default;
 $brand-warning:         #f0ad4e !default;
@@ -27,7 +31,7 @@ $brand-danger:          #d9534f !default;
 
 $accent:              #426385;     // greyish blue
 $accent-light:        desaturate(lighten($accent, 50%), 10%);
-$comp:                #398AE6;     // bright blue
+$comp:                $brand-primary; //#398AE6;     // bright blue
 $active-color:        $comp;
 
 $box-inset:           10px;
@@ -37,7 +41,7 @@ $box-inset:           10px;
 // ## Settings for some of the most global styles.
 
 //** Background color for `<body>`.
-$body-bg:               #fdfdfd !default;
+$body-bg:               #FFF !default;
 //** Global text color on `<body>`.
 $text-color:            $gray-dark !default;
 
@@ -52,7 +56,6 @@ $link-hover-color:      darken($link-color, 15%) !default;
 //## Height, Width, and more.
 
 $thumb-max-width:    200px;
-
 
 
 //== Typography
@@ -122,7 +125,7 @@ $border-radius-small:       3px !default;
 //** Global color for active items (e.g., navs or dropdowns).
 $component-active-color:    #fff !default;
 //** Global background color for active items (e.g., navs or dropdowns).
-$component-active-bg:       $brand-primary !default;
+$component-active-bg:       $comp !default; //$brand-primary;
 
 //** Width of the `border` for generating carets that indicator dropdowns.
 $caret-width-base:          4px !default;

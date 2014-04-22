@@ -2,9 +2,13 @@
 ----------------------------------------------------------------------*/
 
 footer {
-	background-color: rgba($accent-light, 1);
-	color: $gray;	
+	background-color: $brand-primary;
+	color: white;	
 	height: 40px;
 	padding: $box-inset;
 	margin-top: 20px;
+	
+	a {
+	  color: white;
+	}
 }
