@@ -37,4 +37,10 @@ module ApplicationHelper
     end
   end
 
+  def facebook_og_meta
+    if content_for?(:facebook_og_meta)
+      content_for(:facebook_og_meta)
+    end
+  end
+
 end

@@ -1,4 +1,9 @@
-<meta property="og:type" content="challenge" />
+<% content_for(:facebook_og_meta) do %>
+  <meta property="og:title" content="Challenge" />
+  <meta property="og:type" content="challenge" />
+  <meta property="og:image" content="<%= asset_url(@challenge.cover_url) %>" />
+  <meta property="og:description" content="<%= @challenge.challenger.username %> challenged <%= @challenge.challenged.username %>" />
+<% end %>
 
 <h1 class="page-header"><small><i class="glyphicon glyphicon-flag"></i></small> Challenge</h1>
 
