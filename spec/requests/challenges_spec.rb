@@ -95,6 +95,24 @@ describe "Challenges" do
       page.should have_content(challenged_user.username)
     end
 
+    it "should create challenge with correct data" do
+      challenged_user = create(:user)
+
+      click_on "Friends"
+      click_on "challenge_#{challenged_user.id}"
+      click_on "Click to choose your song"
+      click_on "challenge_#{@song.id}"
+      click_on "Start Challenge"
+
+      challenge = Challenge.last
+      challenge.challenger.should eq(@user)
+      challenge.challenged.should eq(challenged_user)
+      challenge.song.should eq(@song)
+      challenge.instrument.should eq(0)
+      challenge.score_u1.should eq(0)
+      challenge.score_u2.should eq(0)
+    end
+
     it "Your challenges should have a start challenge link" do
       private_challenge = create(:challenge, public: false, challenger: @user)
       visit yours_challenges_path

@@ -13,6 +13,8 @@ class Challenge < ActiveRecord::Base
 	belongs_to :challenged, class_name: "User", foreign_key: "challenged_id"
 	belongs_to :song
 
+  before_create :fill_in_extra_fields
+
   scope :public, -> { where(public: true) }
 	scope :open, -> { where(finished: false) }
 
@@ -29,5 +31,10 @@ class Challenge < ActiveRecord::Base
 	def challenged_and_finished
     errors.add(:finished, "You already have an open challenge for that song with that user") if Challenge.where(challenged_id: self.challenged_id, song_id: self.song_id, finished: false).count > 0
 	end
+
+  def fill_in_extra_fields
+    self.score_u1 = 0
+    self.score_u2 = 0
+  end
 
 end
