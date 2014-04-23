@@ -2,7 +2,7 @@ class ChallengesController < ApplicationController
 	before_action :authorize, except: [:index, :show]
 
 	def index
-		@challenges = Challenge.all
+		@challenges = Challenge.order('created_at DESC').all
 	end
 
 	def new
