@@ -128,20 +128,26 @@ describe User do
     it "should not register fb friends if already created with username" do
       user = create(:user)
       fb_user = create(:user, username: "Lars Willner")
-      check_facebook_friends_changes(user, 2, 2)
+      check_facebook_friends_changes(user, 2, 3)
     end
 
     it "should not register fb friends if already created with email" do
       user = create(:user)
       fb_user = create(:user, email: FacebookFriend.new({"uid"=>712450435, "name"=>"Lars Willner"}).new_fake_email)
-      check_facebook_friends_changes(user, 2, 2)
+      check_facebook_friends_changes(user, 2, 3)
     end
 
     it "should not register fb friends if user already signed in using facebook" do
       user = create(:user)
       fb_user = create(:user)
       create(:user_omniauth_credential, user: fb_user, oauth_uid: "712450435")
-      check_facebook_friends_changes(user, 2, 2)
+      check_facebook_friends_changes(user, 2, 3)
+    end
+
+    it "should not create fb friends twice" do
+      user = create(:user)
+      check_facebook_friends_changes(user, 3, 3)
+      check_facebook_friends_changes(user, 0, 0)
     end
 
     def check_facebook_friends_changes(user, user_count_change, user_facebook_friends_count_change)
@@ -154,6 +160,16 @@ describe User do
 
       user_facebook_friend_ids = user.user_facebook_friends.pluck(:user_facebook_friend_id)
       user.groupies_to_connect_with.should eq(User.find(user_facebook_friend_ids))
+    end
+
+    it "should return groupies to connect with even if they already exist in the db" do
+      user = create(:user)
+      new_user = create(:user, username: "Ashutosh Morwal")
+      user.save_facebook_friends(facebook_friends)
+
+      user_facebook_friend_ids = user.user_facebook_friends.pluck(:user_facebook_friend_id)
+      user.groupies_to_connect_with.should eq(User.find(user_facebook_friend_ids))
+
     end
   end
 

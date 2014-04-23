@@ -9,10 +9,18 @@ class FacebookFriend
     @username
   end
 
+  def signin_user
+    user = User.find_by_email(self.new_fake_email)
+    user = User.find_by_username(@username) unless user
+    unless user
+      c = UserOmniauthCredential.find_by(provider: 'facebook', oauth_uid: @id)
+      user = c.user if c
+    end
+    user
+  end
+
   def already_signin?
-    User.find_by_email(self.new_fake_email) or
-    User.find_by_username(@username) or
-    UserOmniauthCredential.find_by(provider: 'facebook', oauth_uid: @id)
+    !signin_user.blank?
   end
 
   def new_fake_email
