@@ -2,7 +2,7 @@ class UserGroupiesController < ApplicationController
 	before_action :authorize
 
 	def index
-    begin
+#    begin
       if current_user.has_facebook_credentials?
         fb_top_friends = current_user.facebook_top_friends(10)
 
@@ -10,8 +10,8 @@ class UserGroupiesController < ApplicationController
 
         @user_groupies = current_user.groupies_to_connect_with
       end
-    rescue
-    end
+#    rescue
+#    end
 	end
 
 end
