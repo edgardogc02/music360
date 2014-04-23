@@ -26,6 +26,7 @@ InstrumentchampPrototype::Application.routes.draw do
   resources :categories
 
   resources :user_followers, only: [:create, :destroy]
+  resources :user_instruments
 
   get 'signup' => "users#new", as: :signup
 

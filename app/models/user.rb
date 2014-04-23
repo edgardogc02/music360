@@ -32,6 +32,8 @@ class User < ActiveRecord::Base
 
   has_many :user_facebook_friends, dependent: :destroy
 
+  belongs_to :instrument
+
   before_create { generate_token(:auth_token) }
 
   before_create :fill_in_extra_fields

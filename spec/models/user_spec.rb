@@ -45,6 +45,12 @@ describe User do
         should have_many(assoc).dependent(:destroy)
       end
     end
+
+    [:user_category, :instrument].each do |assoc|
+      it "should belongs to #{assoc}" do
+        should belong_to(assoc)
+      end
+    end
   end
 
   context "Scopes" do

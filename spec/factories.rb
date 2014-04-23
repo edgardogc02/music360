@@ -60,4 +60,9 @@ FactoryGirl.define do
     finished false
     instrument "Guitar"
   end
+
+  factory :instrument do
+    sequence(:name) { |n| "instrument#{n}" }
+  end
+
 end

@@ -6,11 +6,21 @@
 
 <p>
 	<div>Email: <strong><%= @user.email %></strong></div>
-	<div>Career level: <strong><%= @user.level%></strong></div>
+	<div>Career level: <strong><%= @user.level %></strong></div>
+	<div>Instrument:
+	  <strong>
+      <% if @user.instrument %>
+        <%= @user.instrument.name %>
+      <% else %>
+        No instrument chosen
+      <% end %>
+    </strong>
+	</div>
 </p>
 
 <% if is_current_user?(@user) %>
 	<p>
+    <%= link_to "Choose your instrument", edit_user_instrument_path(@user.id), class: "btn btn-primary" %>
     <%= link_to "Upload profile image", upload_profile_image_person_path(@user), class: "btn btn-primary" %>
 		<%= link_to "Edit profile", edit_person_path(@user), class: "btn btn-primary" %>
     <%= link_to "Change password", edit_user_password_path(@user), class: "btn btn-primary" %>

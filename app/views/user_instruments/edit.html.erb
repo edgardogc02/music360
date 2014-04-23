@@ -1,0 +1,13 @@
+<h1 class="page-header">Choose your instrument</h1>
+
+<%= simple_form_for current_user, url: user_instrument_path(current_user.id) do |f| %>
+
+  <div>
+    <%= f.association :instrument, label_html: { class: 'large required' } %>
+  </div>
+  <br />
+  <div>
+    <%= f.submit "Save", {class: "btn btn-primary"} %>
+  </div>
+
+<% end %>
