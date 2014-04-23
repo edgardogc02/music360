@@ -31,6 +31,7 @@ class User < ActiveRecord::Base
   has_many :followed_users, through: :inverse_user_followers, source: :followed
 
   has_many :user_facebook_friends, dependent: :destroy
+  has_many :facebook_friends, through: :user_facebook_friends, source: :facebook_friend
 
   belongs_to :instrument
 
@@ -128,6 +129,10 @@ class User < ActiveRecord::Base
         user_facebook_friend.save!
       end
     end
+  end
+
+  def groupies_to_connect_with
+    self.facebook_friends
   end
 
 	private

@@ -1,0 +1,38 @@
+<h1 class="page-header">Connect with your groupies</h1>
+
+<% if @user_groupies %>
+
+  <div class="thumbnail-grid row">
+
+    <% @user_groupies.each do |user_groupie| %>
+
+      <div class="masonry-img col-md-3 col-sm-6 col-xs-6">
+        <div class="thumbnail">
+          <%= link_to person_path(user_groupie) do %>
+            <%= image_avatar(user_groupie) %>
+          <% end %>
+
+          <div class="overlay-actions">
+            <div class="thumb-info">
+              <h4><%= link_to user_groupie.username, person_path(user_groupie) %></h4>
+            </div>
+            <div class="btn-group-vertical">
+              <% if current_user.following?(user_groupie) %>
+                <%= render 'users/unfollow', user: user_groupie %>
+              <% else %>
+                <%= render 'users/follow', user: user_groupie %>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    <% end %>
+
+  </div>
+
+<% else %>
+
+  Connect your account to facebook and find your groupies
+
+<% end %>

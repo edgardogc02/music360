@@ -46,6 +46,10 @@ describe User do
       end
     end
 
+    it "should have many facebook friends" do
+      should have_many(:facebook_friends).through(:user_facebook_friends).source(:facebook_friend)
+    end
+
     [:user_category, :instrument].each do |assoc|
       it "should belongs to #{assoc}" do
         should belong_to(assoc)
@@ -117,43 +121,39 @@ describe User do
     end
 
     it "should register all fb friends in our database" do
-      fb_friends = [{"uid"=>1009508620, "name"=>"Ashutosh Morwal"},
-                    {"uid"=>712450435, "name"=>"Lars Willner"},
-                    {"uid"=>708414150, "name"=>"Magnus Willner"}]
-
       user = create(:user)
-      expect { expect { user.save_facebook_friends(fb_friends) }.to change{User.count}.by(3) }.to change{UserFacebookFriend.count}.by(3)
+      check_facebook_friends_changes(user, 3, 3)
     end
 
     it "should not register fb friends if already created with username" do
-      fb_friends = [{"uid"=>1009508620, "name"=>"Ashutosh Morwal"},
-                    {"uid"=>712450435, "name"=>"Lars Willner"},
-                    {"uid"=>708414150, "name"=>"Magnus Willner"}]
-
       user = create(:user)
       fb_user = create(:user, username: "Lars Willner")
-      expect { expect { user.save_facebook_friends(fb_friends) }.to change{User.count}.by(2) }.to change{UserFacebookFriend.count}.by(2)
+      check_facebook_friends_changes(user, 2, 2)
     end
 
     it "should not register fb friends if already created with email" do
-      fb_friends = [{"uid"=>1009508620, "name"=>"Ashutosh Morwal"},
-                    {"uid"=>712450435, "name"=>"Lars Willner"},
-                    {"uid"=>708414150, "name"=>"Magnus Willner"}]
-
       user = create(:user)
       fb_user = create(:user, email: FacebookFriend.new({"uid"=>712450435, "name"=>"Lars Willner"}).new_fake_email)
-      expect { expect { user.save_facebook_friends(fb_friends) }.to change{User.count}.by(2) }.to change{UserFacebookFriend.count}.by(2)
+      check_facebook_friends_changes(user, 2, 2)
     end
 
     it "should not register fb friends if user already signed in using facebook" do
-      fb_friends = [{"uid"=>1009508620, "name"=>"Ashutosh Morwal"},
-                    {"uid"=>712450435, "name"=>"Lars Willner"},
-                    {"uid"=>708414150, "name"=>"Magnus Willner"}]
-
       user = create(:user)
       fb_user = create(:user)
       create(:user_omniauth_credential, user: fb_user, oauth_uid: "712450435")
-      expect { expect { user.save_facebook_friends(fb_friends) }.to change{User.count}.by(2) }.to change{UserFacebookFriend.count}.by(2)
+      check_facebook_friends_changes(user, 2, 2)
+    end
+
+    def check_facebook_friends_changes(user, user_count_change, user_facebook_friends_count_change)
+      expect { expect { user.save_facebook_friends(facebook_friends) }.to change{User.count}.by(user_count_change) }.to change{UserFacebookFriend.count}.by(user_facebook_friends_count_change)
+    end
+
+    it "should return groupies to connect with" do
+      user = create(:user)
+      user.save_facebook_friends(facebook_friends)
+
+      user_facebook_friend_ids = user.user_facebook_friends.pluck(:user_facebook_friend_id)
+      user.groupies_to_connect_with.should eq(User.find(user_facebook_friend_ids))
     end
   end
 

@@ -73,10 +73,7 @@ describe "Users" do
       mock_facebook_auth_hash
       click_link "facebook_signin"
 
-      # update the oauth token so it can perform a facebook call
-      user_fb_credentials = User.first.facebook_credentials
-      user_fb_credentials.oauth_token = "CAAIAxgRfsqEBAKkFgrg2FxjCOC2lkzN56frpMSD1wTw3OSmSyhcy00GQb39z3ZCtZCzLebotv2IjTupk0vfzbFsYYzHk5WamPHWxguDEpvkGkZCJlMyH7C9wYUiZBd5PRZC5vZAR2VQgD0nr2PnkgpKj5VWYBkPRdNGbZCdwcJf09S2mZAKVyvRu"
-      user_fb_credentials.save
+      create_facebook_omniauth_credentials(User.first)
 
       visit people_path
       page.should have_content "Lars Willner"
