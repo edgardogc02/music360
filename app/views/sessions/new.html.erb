@@ -146,9 +146,6 @@
 	        <p>
 	          InstrumentChamp is a new music innovation enabled by music sound recognition. It turns your computer in to a digital music teacher that listen, analyse and give real-time feedback on how you play.
 					</p>
-					<p>
-						InstrumentChamp is a new music innovation enabled by music sound recognition. It turns your computer into a digital music teacher that listens, analyzes, and gives real-time feedback on how you play.			
-	        </p>
 	        <p>
 	        	InstrumentChamp also introduces a new graphic interface that makes it possible for anyone to learn to play songs without reading sheet music.
 	        </p>
@@ -215,8 +212,79 @@
 		  </div>
 	  </div>
 	</section>
-
 </div>
+<footer class="footer-landing">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-2 col-sm-4 col-xs-4">
+				© <%= link_to "InstrumentChamp", :root %>
+			</div>
+			<div class="col-md-8 col-sm-4 col-xs-4 text-center">
+				<a href="#" data-toggle="modal" data-target="#about_us">About us</a> |
+				<a href="#" data-toggle="modal" data-target="#privacy_policy">Privacy Policy</a> |
+				<a href="#" data-toggle="modal" data-target="#terms_of_service">Terms of Service</a> |
+				<a href="#" data-toggle="modal" data-target="#contact_us">Contact us</a> |
+				<a href="#" data-toggle="modal" data-target="#press">Press</a>
+			</div>
+			<div class="col-md-2 col-sm-4 col-xs-4 clearfix">
+				<div class="pull-right">
+					<a class="twitter-btn" href="https://twitter.com/instrumentchamp" target="_blank"></a>
+					<a class="fb-btn" href="https://www.facebook.com/InstrumentChamp?ref=ts&fref=ts" target="_blank"></a>
+				</div>
+			</div>
+		</div>
+	</div>
+</footer>
+
+<div class="modal fade" id="privacy_policy" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-body">
+        <%= render "statics/privacy_policy" %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="terms_of_service" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-body">
+        <%= render "statics/terms_of_service" %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="about_us" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-body">
+        <%= render "statics/about_us" %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="press" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <%= render "statics/press" %>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal fade" id="contact_us" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <%= render "statics/contact_us" %>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
 <!--
 <div id="parallax-bg">
 	<img id="bg3-2" src="http://placehold.it/400x425" />

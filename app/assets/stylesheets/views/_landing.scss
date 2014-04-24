@@ -338,6 +338,29 @@
     left: 0px;
     }
 
+
+.footer-landing {
+  background-color: $brand-primary;
+  color: white; 
+  padding: $box-inset;  
+  a {
+    color: white;
+  }
+}
+
+.twitter-btn, .fb-btn {
+    background: image-url('social_links_icons.png') no-repeat;
+    display: inline-block;
+    width: 32px;
+    height: 22px;
+  }
+  .twitter-btn {
+    background-position: 0px 0px;
+  } 
+  .fb-btn {
+    background-position: -32px 0px;
+  } 
+
 //Media query
 
 @media (max-width: $screen-xs-max) {
@@ -360,4 +383,12 @@
 @media (min-width: $screen-md-min) and (max-width: $screen-md-max) {}
 @media (min-width: $screen-lg-min) {}
 
+ul.no-style {
+  list-style: none;
+  padding-left: 0px;
+  
+  li {
+    margin-left: 0px;
+  }
+}
 
