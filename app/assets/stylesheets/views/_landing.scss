@@ -1,17 +1,19 @@
 /* Navbar top */
 
 .navbar.navbar-custom {
-  background-color:rgba(0, 0, 0, 0.8);
+  background-color: #f8f8f8;
+  border-color: #e7e7e7;
   min-height: 0;
   padding: 15px 0px;
-  border-bottom: 1px solid rgba(255,255,255,.3);
   margin-bottom: 0;
+  @include box-shadow(0, 1px, 3px, rgba(#000, .1));
   
   .navbar-brand {
     height: auto;
-    padding: 0px;
-    margin-left: 0px !important;
-    line-height: 30px;
+    padding-top: 0px;
+    padding-bottom: 0px;
+    //margin-left: 0px !important;
+    //line-height: 30px;
   }
   
   .navbar-brand:focus {
@@ -38,8 +40,50 @@
       outline: 0;
       background-color: rgba(255,255,255,.2);
   }
+  
+  .navbar-toggle {
+    float: none;
+    margin: 0px 15px 10px 0px;
+  }
+  
+  .sign-in-btn {
+    vertical-align: top;
+  }
+  
+  .navbar-collapse .page-scroll{
+    a {
+      text-align: center;
+      font-weight: bold;
+    }
+  }
 }
 
+.video-container {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 30px; height: 0; overflow: hidden;
+}
+ 
+.video-container iframe,
+.video-container object,
+.video-container embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+#video-btn {
+  transition: all 0.5s ease;
+  -webkit-filter: drop-shadow(0px 0px 0px #FFF);
+    filter:         drop-shadow(0px 0px 0px #FFF); 
+}
+
+#video-btn:hover {
+    -webkit-filter: drop-shadow(0px 0px 10px #FFF);
+    filter:         drop-shadow(0px 0px 10px #FFF); 
+}
 
 /* Navbar links */
 
@@ -56,7 +100,7 @@
     width: 100%;
     
     li {
-      width: 33%;
+      width: 25%;
     }
     
     a {
@@ -75,7 +119,7 @@
   
   .page-scroll.active a {
     position: relative;
-    background: #88b7d5;
+    background: $comp;
     color: #FFF;
   }
   
@@ -89,14 +133,14 @@
     position: absolute;
     pointer-events: none;
     border-color: rgba(136, 183, 213, 0);
-    border-top-color: #88b7d5;
+    border-top-color: $comp;
     border-width: 10px;
     margin-left: -10px;
   }
   
   .page-scroll.active a:hover, .page-scroll.active a:focus {
     position: relative;
-    background: #88b7d5 !important;
+    background: $comp !important;
   }
   
   .page-scroll a {
@@ -124,7 +168,7 @@
 .intro {
     display: table;
     width: 100%;
-    height: auto;
+    height: 100%;
     padding: 100px 0;
     text-align: center;
     color: #fff;
@@ -147,7 +191,6 @@
 
 @media(min-width:767px) {
     .intro {
-        height: 100%;
         padding: 0;
     }
 
@@ -161,7 +204,7 @@
     }
 }
 
-#what-it-is, #how-it-works, #what-it-costs {
+#what-it-is, #how-it-works, #what-it-costs, #crowdfunding {
   width: 100%;
   padding: 200px 0px;
   color: #fff;
@@ -185,6 +228,11 @@
 
 #what-it-costs {
   background: image-url('landing/bg4.jpg') no-repeat center center scroll;
+  background-attachment: fixed;
+}
+
+#crowdfunding {
+  background: image-url('landing/bg2.jpg') no-repeat center center scroll;
   background-attachment: fixed;
   padding: 200px 0px 100px 0px;
 }

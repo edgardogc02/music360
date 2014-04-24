@@ -1,17 +1,42 @@
-<nav class="navbar navbar-custom navbar-fixed-top">
-  <div class="container">
-    <div class="navbar-left page-scroll">
-      <a class="navbar-brand" href="#page-top">
-      	<%= image_tag(asset_path('logo.png')) %>
-      </a>
-    </div>
-    <div class="navbar-right">
-      <a href="#page-top" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Sign in</a>
-    </div>
-  </div>
+<nav class="navbar navbar-custom navbar-default navbar-fixed-top">
+	<div class="container">
+		<div class="navbar-header pull-left page-scroll">
+			<a class="navbar-brand" href="#page-top">
+				<%= image_tag(asset_path('logo.png')) %>
+			</a>
+	</div>
+
+	<div class="pull-right">	
+		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+			<span class="sr-only">Toggle navigation</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		</button>
+		<a href="#page-top" class="btn btn-primary sign-in-btn" data-toggle="modal" data-target="#SignIn">Sign in</a>
+	</div>
+	 
+	<div class="collapse navbar-collapse navbar-ex1-collapse navbar-right">
+		<ul class="nav navbar-nav visible-xs">
+			<li class="page-scroll">
+				<a href="#what-it-is">What it is</a>
+			</li>
+			<li class="page-scroll">
+				<a href="#how-it-works">How it works</a>
+			</li>
+			<li class="page-scroll">
+				<a href="#what-it-costs">What it costs</a>
+			</li>
+			<li class="page-scroll">
+				<a href="#crowdfunding">Crowdfunding</a>
+			</li>
+		</ul>
+	</div>
+	
+	</div>
 </nav>
 
-<nav class="navbar navbar-custom-links navbar-fixed-bottom">
+<nav class="navbar navbar-custom-links navbar-fixed-bottom hidden-xs">
 	<div class="container">
     <ul class="nav navbar-nav">
       <li class="page-scroll hidden">
@@ -26,11 +51,14 @@
       <li class="page-scroll">
         <a href="#what-it-costs">What it costs</a>
       </li>
+      <li class="page-scroll">
+        <a href="#crowdfunding">Crowdfunding</a>
+      </li>
     </ul>
 	</div>
 </nav>
 
-<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal fade" id="SignIn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-sm">
     <div class="modal-content">
       <div class="modal-header">
@@ -59,8 +87,9 @@
     <div class="container">
       <div class="row">
         <div class="col-md-8 col-md-offset-2">
-        	<%= image_tag(asset_path('landing/play-logo.png')) %>
-
+        	<a href="#" id="video-btn" data-toggle="modal" data-target="#video">
+        		<%= image_tag(asset_path('landing/play-logo.png')) %>
+					</a>
           <h1 class="brand-heading">Learn to play music with a real music game</h1>
           <br /><br />
           <%= link_to facebook_signin_path, id: "facebook_signin", class: 'fb_button' do %>
@@ -76,6 +105,17 @@
   </div>
 </section>
 
+
+<div class="modal fade" id="video" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body"></div>
+    </div>
+  </div>
+</div>
+
+
+
 <div id="sections-container">
 
 	<section id="what-it-is" class="content-section text-left">
@@ -84,7 +124,7 @@
 	  		<div class="col-lg-6">
 		      <h2>A real music game</h2>
 		      <p>
-		        InstrumentChamp is a music game service for learning to play and play music with your friends online. You play with real instruments like acoustic guitar, piano and drums but you also sing  along.
+		        InstrumentChamp is a music game service for learning to play music and playing with your friends online. Play with real instruments like acoustic guitar, piano, and drums - and you can even sing along.
 		      </p>
 		      <br /><br />
           <%= link_to facebook_signin_path, id: "facebook_signin_1", class: 'fb_button' do %>
@@ -108,7 +148,7 @@
 	          InstrumentChamp is a new music innovation enabled by music sound recognition. It turns your computer in to a digital music teacher that listen, analyse and give real-time feedback on how you play.
 					</p>
 					<p>
-						InstrumentChamp also introduce a new graphic interface that makes it possible for anyone to learn to play a song without reading sheet music.
+						InstrumentChamp is a new music innovation enabled by music sound recognition. It turns your computer into a digital music teacher that listens, analyzes, and gives real-time feedback on how you play.  [space] InstrumentChamp also introduces a new graphic interface that makes it possible for anyone to learn to play songs without reading sheet music.
 	        </p>
 	        <br /><br />
           <%= link_to facebook_signin_path, id: "facebook_signin_2", class: 'fb_button' do %>
@@ -123,11 +163,35 @@
 	  </div>
 	</section>
 
-	<section id="what-it-costs" class="content-section text-right">
+	<section id="what-it-costs" class="content-section text-center">
+		<div class="container">
+		  <div class="row">
+		    <div class="col-lg-8 col-lg-offset-2">
+		      <h2>Forever Free</h2>
+		      <p>
+		        InstrumentChamp offers a free service to everyone, where you can learn basic music skills and songs. This is powered by ads from our partners.
+		      </p>
+		      <p>
+		      	You can choose to upgrade to premium, giving you a multiplayer game to play with family and friends - with no advertising. More and more songs will become available on InstrumentChamp.com and can be purchased on demand.
+		      </p>
+		      <br /><br />
+          <%= link_to facebook_signin_path, id: "facebook_signin_3", class: 'fb_button' do %>
+          	<div class="Spinner"></div>
+					  <span class="separator"></span>
+					  <span class="text">Continue</span>
+          <% end %>
+          <br />
+          Or sign up with your <%= link_to "email", signup_path %>
+		    </div>
+		  </div>
+	  </div>
+	</section>
+	
+	<section id="crowdfunding" class="content-section text-right">
 		<div class="container">
 		  <div class="row">
 		    <div class="col-lg-6 col-lg-offset-6">
-		      <h2>Forever Free</h2>
+		      <h2>Crowdfunding</h2>
 		      <p>
 		        InstrumentChamp offer a free service to everyone, where you can learn basic music skills and songs. This is powered by ads from our partners.
 		      </p>
@@ -151,9 +215,10 @@
 	</section>
 
 </div>
-
+<!--
 <div id="parallax-bg">
 	<img id="bg3-2" src="http://placehold.it/400x425" />
 	<img id="bg3-3" src="http://placehold.it/400x425" />
 	<img id="bg3-4" src="http://placehold.it/400x425" />
 </div>
+-->
