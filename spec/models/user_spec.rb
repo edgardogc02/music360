@@ -151,12 +151,12 @@ describe User do
     end
 
     def check_facebook_friends_changes(user, user_count_change, user_facebook_friends_count_change)
-      expect { expect { user.save_facebook_friends(facebook_friends) }.to change{User.count}.by(user_count_change) }.to change{UserFacebookFriend.count}.by(user_facebook_friends_count_change)
+      expect { expect { UserFacebookFriends.new(user, facebook_friends).save }.to change{User.count}.by(user_count_change) }.to change{UserFacebookFriend.count}.by(user_facebook_friends_count_change)
     end
 
     it "should return groupies to connect with" do
       user = create(:user)
-      user.save_facebook_friends(facebook_friends)
+      UserFacebookFriends.new(user, facebook_friends).save
 
       user_facebook_friend_ids = user.user_facebook_friends.pluck(:user_facebook_friend_id)
       user.groupies_to_connect_with.should eq(User.find(user_facebook_friend_ids))
@@ -165,7 +165,7 @@ describe User do
     it "should return groupies to connect with even if they already exist in the db" do
       user = create(:user)
       new_user = create(:user, username: "Ashutosh Morwal")
-      user.save_facebook_friends(facebook_friends)
+      UserFacebookFriends.new(user, facebook_friends).save
 
       user_facebook_friend_ids = user.user_facebook_friends.pluck(:user_facebook_friend_id)
       user.groupies_to_connect_with.should eq(User.find(user_facebook_friend_ids))

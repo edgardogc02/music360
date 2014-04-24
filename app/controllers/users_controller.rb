@@ -9,7 +9,7 @@ class UsersController < ApplicationController
       if current_user.has_facebook_credentials?
         @fb_top_friends = current_user.facebook_top_friends(10)
 
-        current_user.save_facebook_friends(@fb_top_friends)
+        UserFacebookFriends.new(current_user, @fb_top_friends).save
       end
 
   		@categories = UserCategory.all
