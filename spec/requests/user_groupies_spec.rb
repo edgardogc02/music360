@@ -6,8 +6,7 @@ describe "UserGroupies" do
     @song = create(:song)
   end
 
-  describe "user signed in" do
-
+  context "user signed in" do
     it "should see groupies to connect with" do
       visit login_path
       mock_facebook_auth_hash
@@ -22,10 +21,15 @@ describe "UserGroupies" do
       page.should have_content "Lars Willner"
       page.should have_content "Magnus Willner"
     end
+
+    it "should have a continue button" do
+      login
+      visit user_groupies_path
+      page.should have_link "Continue", href: root_path
+    end
   end
 
-  describe "user not signed in" do
-
+  context "user not signed in" do
     it "should not see groupies to connect with" do
       visit user_groupies_path
       current_path.should eq(login_path)
