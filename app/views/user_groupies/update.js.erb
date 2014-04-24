@@ -1,0 +1,3 @@
+html_response = $("<%= j render 'user_groupies/user_groupie', user_groupie: @followed_user %>").find("#user_<%= @followed_user.id %>")
+$("#user_<%= @followed_user.id %>").replaceWith(html_response)
+listing_hover_effects()
