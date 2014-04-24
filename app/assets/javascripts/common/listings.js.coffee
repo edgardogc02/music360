@@ -20,3 +20,4 @@ root.listing_hover_effects = ->
   return
 
 $(document).ready(listing_hover_effects)
+$(document).on('page:load', listing_hover_effects)
