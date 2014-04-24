@@ -43,6 +43,8 @@ InstrumentchampPrototype::Application.routes.draw do
   match 'auth/:provider/callback' => "user_omniauth_credentials#create", via: [:get, :post]
   match 'auth/failure' => "user_omniauth_credentials#failure", via: [:get, :post]
 
+  match 'facebook_invitations/accept' => "facebook_invitations#accept", via: [:get, :post]
+
   get 'privacy-policy', to: "statics#privacy_policy", as: :privacy_policy
   get 'terms-of-service', to: "statics#terms_of_service", as: :terms_of_service
 
