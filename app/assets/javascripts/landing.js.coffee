@@ -24,11 +24,11 @@ $(window).scroll ->
 
 $ ->
   $("#video").on "hidden.bs.modal", ->
-    $("div.modal-body").html ""
+    $("#video div.modal-body").html ""
     return
 
   $("#video").on "shown.bs.modal", ->
-    $("div.modal-body").html "<div class='video-container'><iframe width='560' height='315' src='//www.youtube.com/embed/pSBiT91e5nk?rel=0' frameborder='0' allowfullscreen></iframe></div>"
+    $("#video div.modal-body").html "<div class='video-container'><iframe width='560' height='315' src='//www.youtube.com/embed/pSBiT91e5nk?rel=0' frameborder='0' allowfullscreen></iframe></div>"
     return
 
   return
