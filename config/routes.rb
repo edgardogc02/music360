@@ -29,6 +29,8 @@ InstrumentchampPrototype::Application.routes.draw do
   resources :user_instruments, only: [:edit, :update]
   resources :user_groupies, only: [:index, :create, :destroy]
 
+  get 'welcome' => "welcome#index", as: :welcome
+
   get 'signup' => "users#new", as: :signup
 
   resources :sessions, :only => [:new, :create, :destroy]
