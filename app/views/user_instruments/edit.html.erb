@@ -1,6 +1,6 @@
 <h1 class="page-header">Choose your instrument</h1>
 
-<%= simple_form_for current_user, url: user_instrument_path(current_user.id) do |f| %>
+<%= simple_form_for current_user, url: user_instrument_path(current_user.id, next: params[:next]) do |f| %>
 
   <div>
     <%= f.association :instrument, label_html: { class: 'large required' } %>
