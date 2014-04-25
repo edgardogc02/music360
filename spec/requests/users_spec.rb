@@ -17,7 +17,7 @@ describe "Users" do
         fill_in 'user[password_confirmation]', with: 'password'
       end
 
-      click_on 'Sign up'
+      click_on 'Sign Up'
 
       current_path.should eq(root_path)
   #    last_email.to.should include('testuser@test.com')
@@ -38,7 +38,7 @@ describe "Users" do
         fill_in 'user[password_confirmation]', with: 'password'
       end
 
-      click_on 'Sign up'
+      click_on 'Sign Up'
 
       current_path.should eq(people_path)
       page.should have_selector('#new_user')

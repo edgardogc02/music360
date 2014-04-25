@@ -12,8 +12,10 @@
   No open challenges right now
 </p>
 
-<p>
-  <%= link_to "New challenge", new_challenge_path, {class: "btn btn-primary"} %>
-</p>
-
 <% end %>
+
+<p>
+  <% if signed_in? %>
+    <%= link_to "New challenge", new_challenge_path, {class: "btn btn-primary"} %>
+  <% end %>
+</p>

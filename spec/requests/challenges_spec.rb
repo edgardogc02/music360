@@ -2,7 +2,7 @@ require 'spec_helper'
 
 describe "Challenges" do
 
-  describe "create challenges successfully" do
+  context "user is sign in" do
     before(:each) do
       @song = create(:song, cost: 0)
       @user = login
@@ -189,12 +189,22 @@ describe "Challenges" do
       page.should have_content(@song.title)
       page.should have_content(challenged_user.username)
     end
+
+    it "should have new challenge button in challenges index" do
+      visit challenges_path
+      page.should have_link "New challenge", new_challenge_path
+    end
   end
 
-  describe "cant create challenges if not signed in" do
+  context "user not signed in" do
     it "should not display challenges new if not signed in" do
       visit new_challenge_path
       current_path.should eq(login_path)
+    end
+
+    it "should not show create new challenge button in challenges index" do
+      visit challenges_path
+      page.should_not have_link "New challenge", new_challenge_path
     end
   end
 
