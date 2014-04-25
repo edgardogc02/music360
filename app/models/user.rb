@@ -67,10 +67,16 @@ class User < ActiveRecord::Base
       user = User.create_from_omniauth(auth)
       user.ip = ip
       user.save
+      user.remote_imagename_url = user.remote_facebook_image if user.facebook_credentials
+      user.save
     else
       user.user_omniauth_credentials.create_or_update_from_omniauth(auth)
     end
     user
+  end
+
+  def remote_facebook_image
+    "https://graph.facebook.com/" + facebook_credentials.oauth_uid.to_s + "/picture?type=large"
   end
 
   def following?(followed_user)
