@@ -1,8 +1,6 @@
-<div>
+<p>
   <%= link_to "Welcome", welcome_path, {class: "btn btn-primary"} %>
   <%= link_to "Choose Instrument", edit_user_instrument_path(current_user.id, next: "user_groupies"), {class: "btn btn-primary"} %>
   <%= link_to "Connect with Groupies", user_groupies_path, {class: "btn btn-primary"} %>
-  <!--
-  <%= link_to "Start the tour", "#", {class: "btn btn-primary"} %>
-  -->
-</div>
+  <%= link_to "Start the tour", start_tour_path, {class: "btn btn-primary"} %>
+</p>

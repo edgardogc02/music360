@@ -48,6 +48,8 @@ InstrumentchampPrototype::Application.routes.draw do
   get 'privacy-policy', to: "statics#privacy_policy", as: :privacy_policy
   get 'terms-of-service', to: "statics#terms_of_service", as: :terms_of_service
 
+  get 'start-tour', to: "pages#start_tour", as: :start_tour
+
   get ':action' => 'pages'
 
 end
