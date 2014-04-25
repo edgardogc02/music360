@@ -1,7 +1,5 @@
 <li class="media media-item">
-    <%= link_to challenge.desktop_app_uri, title: "Start challenge", class: "pull-left", id: "challenge_start_#{challenge.id}" do %>
-	    <%= image_tag challenge.cover_url, class: "song-cover" %>
-	  <% end %>
+  <%= image_tag challenge.cover_url, class: "song-cover pull-left" %>
   <div class="media-body">
     <p class="spacer-sm">
     	<%= link_to challenge.song.title, song_path(challenge.song) %>
@@ -13,7 +11,7 @@
 	    (Challenged: <%= link_to challenge.challenged.username, person_path(challenge.challenged)%>)
 	  </p>
 	  <% if challenge.display_challenge_to_user?(current_user) %>
-      <%= link_to "Start challenge", challenge.desktop_app_uri, class: "btn btn-primary" %>
+      <%= link_to "Start challenge", challenge.desktop_app_uri, {class: "btn btn-primary", id: "challenge_start_#{challenge.id}"} %>
     <% end %>
   </div>
 </li>
