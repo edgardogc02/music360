@@ -26,6 +26,10 @@ class Challenge < ActiveRecord::Base
     "ic:challenge=#{self.id}"
   end
 
+  def display_challenge_to_user?(user)
+    user and (self.challenger == user or self.challenged == user)
+  end
+
 	private
 
 	def challenged_and_finished

@@ -113,11 +113,27 @@ describe "Challenges" do
       challenge.score_u2.should eq(0)
     end
 
-    it "Your challenges should have a start challenge link" do
+    it "should have start challenge links if challenge is private and user is involved" do
       private_challenge = create(:challenge, public: false, challenger: @user)
-      visit yours_challenges_path
-      page.should have_content private_challenge.song.title
+      visit challenges_path
       page.should have_link "challenge_start_#{private_challenge.id}", href: private_challenge.desktop_app_uri
+
+      new_private_challenge = create(:challenge, public: false, challenged: @user)
+      visit challenges_path
+      page.should have_link "challenge_start_#{new_private_challenge.id}", href: new_private_challenge.desktop_app_uri
+    end
+
+    it "should not have start challenge links if challenge is private and user is not involved" do
+      new_private_challenge = create(:challenge, public: false)
+      visit challenges_path
+      page.should_not have_link "challenge_start_#{new_private_challenge.id}", href: new_private_challenge.desktop_app_uri
+    end
+
+    it "should have start challenge links if challenge public" do
+      public_challenge = create(:challenge, public: true, challenger: @user)
+      visit challenges_path
+      page.should have_content public_challenge.song.title
+      page.should have_link "challenge_start_#{public_challenge.id}", href: public_challenge.desktop_app_uri
     end
 
     it "your challenges should not list challenges from others" do
