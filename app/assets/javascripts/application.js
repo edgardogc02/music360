@@ -17,4 +17,7 @@
 //= require bootstrap/transition
 //= require bootstrap/collapse
 //= require bootstrap/scrollspy
+//= require bootstrap/tooltip
+//= require bootstrap/popover
+//= require lib/bootstrap-tour.min
 //= require_tree .
