@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   validates :password, presence: true, on: :create
   validates :password_confirmation, presence: true, confirmation: true, on: :create
 
-  validate :validate_maximum_image_size
+#  validate :validate_maximum_image_size # TODO: sometimes doesn't work with ftp server and throws a read exception
 
 	has_many :challenges, foreign_key: "challenger_id"
   has_many :proposed_challenges, class_name: "Challenge", foreign_key: "challenged_id"
