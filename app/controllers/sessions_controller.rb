@@ -24,6 +24,7 @@ class SessionsController < ApplicationController
 			  end
 			  format.html do
   			  signin_user(user)
+  			  flash[:welcome] = "Hi #{user.username}!"
 				  redirect_to root_path
 				end
 			else

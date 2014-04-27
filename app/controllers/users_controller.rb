@@ -32,7 +32,7 @@ class UsersController < ApplicationController
 
 	  if @user.sign_up(request.remote_ip)
 	    signin_user(@user)
-	    flash[:welcome] = "Hey #{@user.username}!"
+	    flash[:welcome] = "Hi #{@user.username}!"
       redirect_to root_path
 	  else
 	    render "new"
