@@ -1,5 +1,3 @@
-<% if flash[:welcome] %>
-
 	<script>(function(d, s, id) {
 	 var js, fjs = d.getElementsByTagName(s)[0];
 	 if (d.getElementById(id)) return;
@@ -8,28 +6,27 @@
 	 fjs.parentNode.insertBefore(js, fjs);
 	}(document, 'script', 'facebook-jssdk'));</script> 
     
-  
   <div class="modal fade" id="welcomeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	  <div class="modal-dialog">
 	    <div class="modal-content">
-	      <div class="modal-body">
-	      	<div class="text-center">
+	      <div class="modal-body text-center">
+	      	<div>
 		      	<h2>Welcome!</h2>
-		        <p><%= flash[:welcome] %>, thanks for signing up. We are launching in May and will send you a 
+		        <p>Thanks for signing up. We are launching in May and will send you a 
 	        	backstage pass to the alpha test very soon!</p> 
-	        	<p><strong>Signup reward:</strong> We have upgraded you to a 3 months premium account. 
-	        	(Total value: $29.97)</p>        	
+	        	<p><strong>Signup reward:</strong> We have upgraded you to a 3 months premium account.</p>        	
         	</div>
         	<hr />        	
-        	<div style="width: 220px; height: 100px">
+        	<div><a href="http://bit.ly/1nSjX6q" target="_blank">Read about our crowdfunding campaign on FundedByMe</a></div><br />
+        	<div><a href="http://bit.ly/1nSjX6q" target="_blank"><%= image_tag(asset_path('FundedByMeLogo.jpg')) %></div>
+        	<!--<div style="width: 220px; height: 100px">
 						<div class="fb-like-box" data-href="https://www.facebook.com/instrumentchamp" data-width="220" data-height="100" data-colorscheme="light" data-show-faces="false" data-header="true" data-stream="false" data-show-border="true"></div>
-					</div>
+					</div>-->
 	      </div>
 	    </div>
 	  </div>
 	</div>
-  
-<% end %>
+
 
 <section class="get-started">
 	<h1 class="huge">Great, let's get you started!</h1>

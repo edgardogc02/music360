@@ -3,5 +3,9 @@
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
 $(document).ready ->
-  $("#welcomeModal").modal "show"
+  $("#welcomeModal").modal
+    backdrop: "static"
+    keyboard: false
+    show: true
+
   return
