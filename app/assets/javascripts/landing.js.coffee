@@ -1,25 +1,29 @@
-parallaxScroll = ->
-  scrolled = $(window).scrollTop()
-  $("#parallax-bg").css "top", (0 - (scrolled * .75)) + "px"
-  return
 $ ->
   $(".page-scroll a").bind "click", (event) ->
     $anchor = $(this)
     $("html, body").stop().animate
       scrollTop: $($anchor.attr("href")).offset().top
-    , 2000, "easeOutExpo"
+    , 1700, "easeOutExpo"
     event.preventDefault()
     return
-
-  $("body").scrollspy offset: 200
+    
+    #$("body").scrollspy offset: 1000
   return
+
+$(window).resize ->
+  $("[data-spy=\"scroll\"]").each ->
+    console.log("refreh")
+    $spy = $(this).scrollspy("refresh")
+    return
+
+  return
+
 
 $(window).scroll ->
   if $(".navbar").offset().top > 50
     $(".navbar-custom-links").addClass "top-nav-collapse"
   else
     $(".navbar-custom-links").removeClass "top-nav-collapse"
-  #parallaxScroll()
   return
 
 $ ->

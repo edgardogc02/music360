@@ -42,6 +42,16 @@
 	color: $gray-light;
 }
 
+
+ul.no-style {
+  list-style: none;
+  padding-left: 0px;
+  
+  li {
+    margin-left: 0px;
+  }
+}
+
 .actions {
 	margin: $line-height-base / 2 0;
 	padding: $line-height-base / 2;

@@ -2,10 +2,10 @@ root = exports ? this
 
 root.listing_hover_effects = ->
   $(".thumbnail-grid .thumbnail").hover (->
-    $(this).children(".overlay-actions").slideDown(250)
+    $(this).children(".overlay-actions").show()
     return
   ), ->
-    $(this).children(".overlay-actions").slideUp(250)
+    $(this).children(".overlay-actions").hide()
     return
 
   $container = $(".thumbnail-grid")
