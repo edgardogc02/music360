@@ -43,14 +43,21 @@ describe "Songs" do
       page.should have_selector "#challenge_#{@song.id}"
       page.should have_selector "#challenge_#{new_free_song.id}"
 
-      page.should have_link "Play", href: @song.desktop_app_uri
-      page.should have_link "Play", href: new_free_song.desktop_app_uri
-
       page.should have_link "Challenge", href: new_challenge_path(song_id: @song.id)
       page.should have_link "Challenge", href: new_challenge_path(song_id: new_free_song.id)
 
       page.should_not have_content paid_song.title
       page.should_not have_content paid_song.artist.title
+    end
+
+    it "should display play link if user installed the desktop app" do
+      visit songs_path
+      page.should have_link "Play", href: apps_path
+
+      @user.already_installed_desktop_app
+      @user.reload
+      visit songs_path
+      page.should have_link "Play", href: @song.desktop_app_uri
     end
 
     it "should list free songs order by popularity" do
