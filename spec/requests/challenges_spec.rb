@@ -53,8 +53,8 @@ describe "Challenges" do
     it "Create new challenge from people section" do
       challenged_user = create(:user)
 
-      page.should have_content("Friends")
-      click_on "Friends"
+      page.should have_content("People")
+      click_on "People"
       click_on "challenge_#{challenged_user.id}"
       current_path.should eq(new_challenge_path)
 
@@ -98,7 +98,7 @@ describe "Challenges" do
     it "should create challenge with correct data" do
       challenged_user = create(:user)
 
-      click_on "Friends"
+      click_on "People"
       click_on "challenge_#{challenged_user.id}"
       click_on "Click to choose your song"
       click_on "challenge_#{@song.id}"
