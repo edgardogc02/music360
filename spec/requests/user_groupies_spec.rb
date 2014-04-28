@@ -25,7 +25,7 @@ describe "UserGroupies" do
     it "should have a continue button" do
       login
       visit user_groupies_path
-      page.should have_link "Continue", href: root_path
+      page.should have_link "Continue", href: start_tour_path
     end
   end
 

@@ -121,10 +121,16 @@ class User < ActiveRecord::Base
     self.facebook_friends
   end
 
+  def already_installed_desktop_app
+    self.installed_desktop_app = true
+    save
+  end
+
 	private
 
   def fill_in_extra_fields
     self.confirmed = Time.now
+    self.installed_desktop_app = 0
   end
 
 	def send_confirmation_email

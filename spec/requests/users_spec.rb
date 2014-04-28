@@ -8,37 +8,23 @@ describe "Users" do
 
   describe "user not signed in" do
     it "should sign up with correct credentials" do
-      visit signup_path
-
-      within("#new_user") do
-        fill_in 'user[username]', with: 'testuser'
-        fill_in 'user[email]', with: 'testuser@test.com'
-        fill_in 'user[password]', with: 'password'
-        fill_in 'user[password_confirmation]', with: 'password'
-      end
-
-      click_on 'Sign Up'
-
+      signup('testuser', 'testuser@test.com', 'password')
       current_path.should eq(root_path)
   #    last_email.to.should include('testuser@test.com')
       page.should have_content('testuser')
+    end
+
+    it "should save new user with correct data" do
+      signup('testuser', 'testuser@test.com', 'password')
 
       user = User.find_by_username 'testuser'
       user.confirmed.should_not be_blank
       user.ip.should_not be_blank
+      user.installed_desktop_app.should_not be_true
     end
 
     it "should sign up with incorrect credentials" do
-      visit signup_path
-
-      within("#new_user") do
-        fill_in 'user[username]', with: 'testuser'
-        fill_in 'user[email]', with: ''
-        fill_in 'user[password]', with: 'password'
-        fill_in 'user[password_confirmation]', with: 'password'
-      end
-
-      click_on 'Sign Up'
+      signup('testuser', '', 'password')
 
       current_path.should eq(people_path)
       page.should have_selector('#new_user')
@@ -223,7 +209,19 @@ describe "Users" do
       visit upload_profile_image_person_path(user)
       current_path.should eq(root_path)
     end
+  end
 
+  def signup(username, email, password)
+    visit signup_path
+
+    within("#new_user") do
+      fill_in 'user[username]', with: username
+      fill_in 'user[email]', with: email
+      fill_in 'user[password]', with: password
+      fill_in 'user[password_confirmation]', with: password
+    end
+
+    click_on 'Sign Up'
   end
 
 end
