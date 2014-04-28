@@ -13,7 +13,7 @@ describe "Apps" do
       page.should have_link "Download for Windows", href: "http://blog.instrumentchamp.com/thanks-for-download-win/"
     end
 
-    it "should let the user inform us that he already installed the app" do
+    it "should let the user inform us that he already installed the app if he didn't do that before" do
       @user.installed_desktop_app.should_not be_true
       visit apps_path
       page.should have_link "I already installed the app", href: apps_path(installed: true)
@@ -21,6 +21,13 @@ describe "Apps" do
       @user.reload
       current_path.should eq(apps_path)
       @user.installed_desktop_app.should be_true
+    end
+
+    it "should not show link to mark desktop app as installed if user already did this" do
+      @user.already_installed_desktop_app
+      @user.reload
+      visit apps_path
+      page.should_not have_link "I already installed the app", href: apps_path(installed: true)
     end
   end
 
