@@ -12,6 +12,7 @@ describe "UserInstrument" do
     end
 
     it "should be able to select a new instrument" do
+      pending "test with js"
       guitar = create(:instrument, name: "Guitar")
       piano = create(:instrument, name: "Piano")
 
@@ -51,12 +52,14 @@ describe "UserInstrument" do
     end
 
     it "should redirect to next page if next param is given" do
+      pending "test with js"
       visit edit_user_instrument_path(@user, next: "user_groupies")
       click_on "Save"
       current_path.should eq(user_groupies_path)
     end
 
     it "should redirect to user profile if no next param is given" do
+      pending "test with js"
       visit edit_user_instrument_path(@user)
       click_on "Save"
       current_path.should eq(person_path(@user))
