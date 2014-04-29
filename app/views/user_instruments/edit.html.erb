@@ -7,11 +7,13 @@
 <%= simple_form_for current_user, url: user_instrument_path(current_user.id, next: params[:next]) do |f| %>
 
   <div>
-    <%= f.association :instrument, label_html: { class: 'large required' } %>
+    <% Instrument.all.each do |instrument| %>
+      <%= link_to(image_tag(instrument.image_url, class: "thumbnail"), "#", {class: "select_instrument", data: {"instrument-id" => instrument.id}}) %>
+    <% end %>
   </div>
-  <br />
+
   <div>
-    <%= f.submit "Save", {class: "btn btn-primary"} %>
+    <%= f.hidden_field :instrument_id %>
   </div>
 
 <% end %>
