@@ -43,4 +43,14 @@ module ApplicationHelper
     end
   end
 
+  def alert_class(flash_name)
+    if flash_name.to_s == "notice"
+      "alert-success"
+    elsif flash_name.to_s == "warning"
+      "alert-warning"
+    else
+      "alert-warning"
+    end
+  end
+
 end

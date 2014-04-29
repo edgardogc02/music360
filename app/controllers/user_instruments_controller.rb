@@ -6,6 +6,7 @@ class UserInstrumentsController < ApplicationController
 
   def update
     if current_user.update_attributes(user_instrument_params)
+      flash[:notice] = "Your instrument was successfully updated"
       if !params[:next].blank?
         redirect_to [params[:next].to_sym]
       else
