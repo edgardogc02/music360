@@ -5,7 +5,7 @@ class UserOmniauthCredentialsController < ApplicationController
     user = User.from_omniauth(request.env["omniauth.auth"], request.remote_ip)
     if user and !user.deleted?
       signin_user(user)
-      flash[:welcome] = "Hi #{user.username}!"
+      flash[:notice] = "Welcome #{user.username}!"
       redirect_to root_path
     else
       redirect_to login_path
