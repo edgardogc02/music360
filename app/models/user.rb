@@ -133,6 +133,7 @@ class User < ActiveRecord::Base
     self.installed_desktop_app = 0
     self.premium = true
     self.premium_until = 3.months.from_now
+    self.updated_image = 0
   end
 
 	def send_confirmation_email

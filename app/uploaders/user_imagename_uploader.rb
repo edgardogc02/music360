@@ -6,6 +6,13 @@ class UserImagenameUploader < CarrierWave::Uploader::Base
   include CarrierWave::RMagick
   # include CarrierWave::MiniMagick
 
+  after :store, :update_user_record
+
+  def update_user_record(file)
+    model.updated_image = true
+    model.save
+  end
+
   # Choose what kind of storage to use for this uploader:
   # storage :ftp # this is setup in the carrierwave.rb initializer file
   # storage :fog
