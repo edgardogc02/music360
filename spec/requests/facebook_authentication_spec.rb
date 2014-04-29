@@ -13,15 +13,10 @@ describe "UserOmniauthCredentials" do
   it "should have the correct values in the users table" do
     signin_with_facebook
 
-    user = User.find_by_username 'Test User'
-    user.username.should eq("Test User")
-    user.email.should eq("test@test.com")
+    user = User.find_by_username('Test User')
+    check_user_signup_params(user, true)
     user.first_name.should eq("Test")
     user.last_name.should eq("User")
-    user.confirmed.should_not be_blank
-    user.oauth_uid.should_not be_blank
-    user.oauth_uid.should eq(user.facebook_credentials.oauth_uid)
-    user.ip.should_not be_blank
   end
 
   it "should handle authentication error" do

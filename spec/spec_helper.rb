@@ -47,6 +47,7 @@ RSpec.configure do |config|
   config.include(LoginMacros)
   config.include(FacebookFriendsMacros)
   config.include(UserOmniauthCredentialsMacros)
+  config.include(UserMacros)
   config.before(:each) { reset_email }
 
   config.include Capybara::DSL

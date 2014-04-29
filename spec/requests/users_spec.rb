@@ -16,11 +16,7 @@ describe "Users" do
 
     it "should save new user with correct data" do
       signup('testuser', 'testuser@test.com', 'password')
-
-      user = User.find_by_username 'testuser'
-      user.confirmed.should_not be_blank
-      user.ip.should_not be_blank
-      user.installed_desktop_app.should_not be_true
+      check_user_signup_params(User.find_by_username 'testuser')
     end
 
     it "should sign up with incorrect credentials" do

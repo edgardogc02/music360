@@ -131,6 +131,8 @@ class User < ActiveRecord::Base
   def fill_in_extra_fields
     self.confirmed = Time.now
     self.installed_desktop_app = 0
+    self.premium = true
+    self.premium_until = 3.months.from_now
   end
 
 	def send_confirmation_email
