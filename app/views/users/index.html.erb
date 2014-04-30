@@ -9,12 +9,15 @@
 </ul>
 <% end %>-->
 
-<%= form_tag params.merge( :controller => "users", :action => "index" ), method: :get do %>
-  <%= label_tag "Username or email" %>
-  <%= text_field_tag "Username or email", params[:username_or_email], {name: "username_or_email"} %>
+<%= form_tag params.merge( :controller => "users", :action => "index"), {class: 'form-inline', method: :get} do %>
+	<div class="form-group">
+  	<%= text_field_tag "Username or email", params[:username_or_email], {name: "username_or_email", placeholder: "Username or email", class: "form-control"} %>
+  </div>
   <%= hidden_field_tag "song_id", params[:song_id] %>
-  <%= submit_tag "Search" %>
+  <%= submit_tag "Search", {class: "btn btn-primary"} %>
 <% end %>
+
+<hr />
 
 <%= render "users_list", users: @users_search, title: "Search results", show_view_more: false, view_more_link: "" %>
 <% if @users_search %>
