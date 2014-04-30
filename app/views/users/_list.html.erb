@@ -1,0 +1,23 @@
+<div class="masonry-img col-md-3 col-sm-6 col-xs-6">
+	<div class="thumbnail">
+		<%= link_to person_path(user) do %>
+			<%= image_avatar(user) %>
+		<% end %>
+
+		<div class="overlay-actions">
+			<div class="thumb-info">
+				<h4><%= link_to user.username, person_path(user) %></h4>
+			</div>
+      <div class="btn-group-vertical">
+				<% if current_user.following?(user) %>
+					<%= render 'users/unfollow', user: user %>
+				<% else %>
+					<%= render 'users/follow', user: user %>
+				<% end %>
+
+				<%= link_to "Challenge", new_challenge_path(song_id: params[:song_id], challenged_id: user.id), {id: "challenge_#{user.id}", class: 'btn btn-sm btn-default'} %>
+			</div>
+		</div>
+	</div>
+</div>
+

@@ -1,0 +1,55 @@
+<% if @fb_top_friends %>
+
+	<h3 class="clearfix">
+		Facebook friends on InstrumentChamp		
+		<% if @users_fb_count > 4 %>			
+			<%= link_to facebook_users_path, {class: 'btn btn-primary pull-right'} do %>
+	    	View all
+	    <% end %>
+    <% end %>
+	</h3>
+	
+	<div class="thumbnail-grid row">
+		<%= render :partial => 'users/list', :collection => @fb_top_friends, :as => :user %>
+	</div>
+
+	<hr />
+
+<% end %>
+
+
+<% unless @users.blank? %>
+	
+	<h3 class="clearfix">
+		InstrumentChamp Friends
+		<% if @users_count > 4 %>			
+			<%= link_to instrument_champ_users_path, {class: 'btn btn-primary pull-right'} do %>
+	    	View all
+	    <% end %>
+    <% end %>
+	</h3>
+
+  <div class="thumbnail-grid row">
+  	<%= render :partial => 'users/list', :collection => @users, :as => :user %>
+  </div>
+
+<% end %>
+
+<script>
+	$(document).ready(function(){
+		//listing_hover_effects
+		
+		$(".thumbnail-grid .thumbnail").hover((function() {
+		  $(this).children(".overlay-actions").show();
+		}), function() {
+		  $(this).children(".overlay-actions").hide();
+		});
+	});		
+</script>
+
+
+
+
+
+
+

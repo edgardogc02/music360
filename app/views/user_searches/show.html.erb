@@ -1,0 +1,10 @@
+<h1 class="page-header"><small><i class="glyphicon glyphicon-user"></i></small> <%= @title %></h1>	
+		
+<div class="thumbnail-grid row">
+	<%= render :partial => 'users/list', :collection => @users, :as => :user %>
+</div>
+
+<%= paginate @users %>
+
+
+

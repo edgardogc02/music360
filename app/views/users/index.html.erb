@@ -9,68 +9,40 @@
 </ul>
 <% end %>-->
 
-<!--
+
 <% if @fb_top_friends %>
 
-  <div class="row">
-    <div class="col-xs-6 col-md-3">
-
-      <% @fb_top_friends.each do |fb_friend| %>
-
-        <div class="thumbnail">
-
-          <%= image_tag "https://graph.facebook.com/" + fb_friend['uid'].to_s + "/picture?type=large" %>
-          <div class="overlay username">
-            <%= fb_friend['name'] %>
-          </div>
-          <ul class="overlay-actions list">
-            <li><%= link_to "Follow", "https://graph.facebook.com/me/og.follows?start_time=#{Time.now}&end_time=#{Time.now}&access_token=#{current_user.facebook.access_token}&profile=#{fb_friend['uid'].to_s}", {method: :post} %></li>
-            <li><%= link_to "Challenge", "https://graph.facebook.com/me/instrumentchamp:challenge?start_time=#{Time.now}&end_time=#{Time.now}&access_token=#{current_user.facebook.access_token}&profile=#{fb_friend['uid'].to_s}&tags=#{fb_friend['uid'].to_s}&message=You should really try this challenge @[#{fb_friend['uid'].to_s}] on https://music360-prototype.herokuapp.com", {method: :post} %></li>
-            <li><%= link_to "Challenge 2", "https://graph.facebook.com/me/instrumentchamp:create?start_time=#{Time.now}&end_time=#{Time.now}&access_token=#{current_user.facebook.access_token}&challenge=https://music360-prototype.herokuapp.com/challenges/10&tags=#{fb_friend['uid'].to_s}&message=You should really try this challenge @[#{fb_friend['uid'].to_s}]", {method: :post} %></li>
-          </ul>
-
-        </div>
-
-      <% end %>
-
-    </div>
-  </div>
-
-<% end %>
--->
-
-<% unless @users.blank? %>
+	<h3 class="clearfix">
+		Facebook friends on InstrumentChamp	
+		<% if @users_fb_count > 4 %>			
+			<%= link_to facebook_users_path, {class: 'btn btn-primary pull-right'} do %>
+	    	View more
+	    <% end %>
+    <% end %>
+	</h3>
 
   <div class="thumbnail-grid row">
-
-  	<% @users.each do |user| %>
-
-  		<div class="masonry-img col-md-3 col-sm-6 col-xs-6">
-  			<div class="thumbnail">
-  				<%= link_to person_path(user) do %>
-  					<%= image_avatar(user) %>
-  				<% end %>
-
-  				<div class="overlay-actions">
-  					<div class="thumb-info">
-  						<h4><%= link_to user.username, person_path(user) %></h4>
-  					</div>
-  		      <div class="btn-group-vertical">
-  		        <% if current_user.following?(user) %>
-  		          <%= render 'unfollow', user: user %>
-  		        <% else %>
-  		          <%= render 'follow', user: user %>
-  		        <% end %>
-  						<%= link_to "Challenge", new_challenge_path(song_id: params[:song_id], challenged_id: user.id), {id: "challenge_#{user.id}", class: 'btn btn-sm btn-default'} %>
-  					</div>
-  				</div>
-  			</div>
-  		</div>
-
-  	<% end %>
-
+  	<%= render :partial => 'list', :collection => @fb_top_friends, :as => :user %>
   </div>
 
-  <%= paginate @users %>
+	<hr />
+
+<% end %>
+
+
+<% unless @users.blank? %>
+	
+	<h3 class="clearfix">
+		InstrumentChamp Friends
+		<% if @users_count > 4 %>			
+			<%= link_to instrument_champ_users_path, {class: 'btn btn-primary pull-right'} do %>
+	    	View more
+	    <% end %>
+    <% end %>
+	</h3>
+
+  <div class="thumbnail-grid row">
+  	<%= render :partial => 'list', :collection => @users, :as => :user %>
+  </div>
 
 <% end %>

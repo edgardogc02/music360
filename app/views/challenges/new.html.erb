@@ -1,4 +1,4 @@
-<h1 class="page-header"><small><i class="glyphicon glyphicon-flag"></i></small> Create a new challenge</h1>
+<h1 class="page-header"><small><i class="glyphicon glyphicon-flag"></i></small> Choose your challenge</h1>
 
 <% if @challenge.song %>
 
@@ -17,6 +17,8 @@
 		  		<div>Publisher: <strong><%= @challenge.song.publisher %></strong></div>
 		  	</p>
 			</div>
+			
+			<div><%= link_to "Change your song", modal_view_songs_path(challenged_id: @challenge.challenged_id), {class: 'btn btn-link', data: { toggle: "modal", target: "#selectSong" }} %></div>
 		</div>
   </section>
 
@@ -25,7 +27,7 @@
   <section>
     <h3>1. Chose your song</h3>
     <p>
-      <%= link_to "Click to choose your song", songs_path(challenged_id: @challenge.challenged_id), class: 'btn btn-primary' %>
+      <%= link_to "Choose your song", modal_view_songs_path(challenged_id: @challenge.challenged_id), {class: 'btn btn-primary', data: { toggle: "modal", target: "#selectSong" }} %>
     </p>
   </section>
 
@@ -49,19 +51,47 @@
 			<% if @challenge.challenged %>
 	      <%= image_tag @challenge.challenged.imagename_url, class: "thumbnail" %>
 	      <h4><%= @challenge.challenged.username %></h4>
+	      <div>
+	        <% if @challenge.song %>
+	        	<%= link_to "Change your opponent", modal_view_users_path(song_id: @challenge.song.id), {class: 'btn btn-link', data: { toggle: "modal", target: "#selectUser"}} %>
+	        <% else %>
+	          <%= link_to "Change your opponent", modal_view_users_path, {class: 'btn btn-link', data: { toggle: "modal", target: "#selectUser" }} %>
+	        <% end %>
+	      </div>
 	    <% else %>
 	      <img src="http://placehold.it/300x300" class="thumbnail">
 	      <div>
 	        <% if @challenge.song %>
-	          <%= link_to "Click to choose your opponent", people_path(song_id: @challenge.song.id) %>
+	        	<%= link_to "Choose your opponent", modal_view_users_path(song_id: @challenge.song.id), {class: 'btn btn-link', data: { toggle: "modal", target: "#selectUser" }} %>
 	        <% else %>
-	          <%= link_to "Click to choose your opponent", people_path %>
+	          <%= link_to "Choose your opponent", modal_view_users_path, {class: 'btn btn-link', data: { toggle: "modal", target: "#selectUser" }} %>
 	        <% end %>
 	      </div>
 	    <% end %>
+	    <br />	    
 		</div>
 	</div>
 </section>
+
+<div class="modal fade" id="selectUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content spacer">
+      <div class="modal-body">
+				Loading...
+      </div>
+    </div>
+  </div>
+</div>		
+
+<div class="modal fade" id="selectSong" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content spacer">
+      <div class="modal-body">
+				Loading...
+      </div>
+    </div>
+  </div>
+</div>			
 
 <hr />
 
