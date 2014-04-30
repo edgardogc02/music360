@@ -1,5 +1,6 @@
 class InstrumentsController < ApplicationController
 	before_action :authorize
+  before_action :admin_only
 
   def index
     @instruments = Instrument.all
@@ -24,4 +25,7 @@ class InstrumentsController < ApplicationController
     params.require(:instrument).permit(:image, :remote_image_url)
   end
 
+  def admin_only
+    redirect_to root_path unless current_user.admin?
+  end
 end
