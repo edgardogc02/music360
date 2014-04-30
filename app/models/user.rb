@@ -42,7 +42,7 @@ class User < ActiveRecord::Base
   after_create :send_confirmation_email
 
   scope :not_deleted, -> { where('deleted IS NULL OR deleted = 0') }
-  scope :by_username_or_email, -> (username_or_email) { where("username LIKE ? OR email LIKE ?", "%"+username_or_email+"%", "%"+username_or_email+"%") }
+  scope :by_username_or_email, ->(username_or_email) { where('username LIKE ? OR email LIKE ?', '%'+username_or_email+'%', '%'+username_or_email+'%') }
   scope :not_connected_via_facebook, -> { where('oauth_uid IS NULL') }
 
   def sign_up(ip)
