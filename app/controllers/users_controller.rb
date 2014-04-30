@@ -6,23 +6,20 @@ class UsersController < ApplicationController
 
 	def index
     begin
-      if current_user.has_facebook_credentials?
-        @fb_top_friends = current_user.facebook_top_friends(10)
+      if params[:username_or_email]
+        @users_search = User.by_username_or_email(params[:username_or_email]).page params[:page]
+      else
+        if current_user.has_facebook_credentials?
+          fb_top_friends = current_user.facebook_top_friends(10)
 
-        UserFacebookFriends.new(current_user, @fb_top_friends).save
-        
-        @fb_top_friends = current_user.groupies_to_connect_with
-        
-        @users_fb_count = @fb_top_friends.size
-        @fb_top_friends = @fb_top_friends.limit(4)
+          UserFacebookFriends.new(current_user, fb_top_friends).save
+
+          @fb_top_friends = current_user.groupies_to_connect_with
+
+          @facebook_friends = current_user.facebook_friends.limit(4)
+        end
+    		@regular_users = User.not_deleted.limit(4)
       end
-
-  		@categories = UserCategory.all
-  		@users = User.not_deleted
-  		@users = @users.where(people_category_id: params[:type]) if params[:type].present?
-  		
-  		@users_count = @users.size
-      @users = @users.limit(4)
     rescue
     end
 	end

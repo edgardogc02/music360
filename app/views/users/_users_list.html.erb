@@ -1,0 +1,18 @@
+<% if users %>
+
+	<h3 class="clearfix">
+	  <%= title %>
+	  <% if show_view_more %>
+  		<%= link_to view_more_link, {class: 'btn btn-primary pull-right'} do %>
+      	View more
+      <% end %>
+    <% end %>
+	</h3>
+
+  <div class="thumbnail-grid row">
+  	<%= render :partial => 'list', :collection => users, :as => :user %>
+  </div>
+
+	<hr />
+
+<% end %>

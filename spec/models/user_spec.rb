@@ -67,6 +67,24 @@ describe User do
 
       User.not_deleted.should eq([user, user_2, user_4])
     end
+
+    it "should search users by username or email" do
+      user = create(:user, username: "testuser")
+      user_2 = create(:user, username: "testuser2")
+      user_3 = create(:user, username: "lalala", email: "asda@sdas.com")
+      user_4 = create(:user, username: "lalal", email: "testuser@adas.com")
+      user_5 = create(:user, username: "lal", email: "ad@adas.com")
+
+      User.by_username_or_email("test").should eq([user, user_2, user_4])
+    end
+
+    it "should return all users that are not connected via facebook" do
+      user = create(:user)
+      user1 = create(:user)
+      user2 = create(:user, oauth_uid: "123456")
+
+      User.not_connected_via_facebook.should eq([user, user1])
+    end
   end
 
   context "Methods" do

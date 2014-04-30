@@ -9,40 +9,19 @@
 </ul>
 <% end %>-->
 
-
-<% if @fb_top_friends %>
-
-	<h3 class="clearfix">
-		Facebook friends on InstrumentChamp	
-		<% if @users_fb_count > 4 %>			
-			<%= link_to facebook_users_path, {class: 'btn btn-primary pull-right'} do %>
-	    	View more
-	    <% end %>
-    <% end %>
-	</h3>
-
-  <div class="thumbnail-grid row">
-  	<%= render :partial => 'list', :collection => @fb_top_friends, :as => :user %>
-  </div>
-
-	<hr />
-
+<%= form_tag params.merge( :controller => "users", :action => "index" ), method: :get do %>
+  <%= label_tag "Username or email" %>
+  <%= text_field_tag "Username or email", params[:username_or_email], {name: "username_or_email"} %>
+  <%= hidden_field_tag "song_id", params[:song_id] %>
+  <%= submit_tag "Search" %>
 <% end %>
 
-
-<% unless @users.blank? %>
-	
-	<h3 class="clearfix">
-		InstrumentChamp Friends
-		<% if @users_count > 4 %>			
-			<%= link_to instrument_champ_users_path, {class: 'btn btn-primary pull-right'} do %>
-	    	View more
-	    <% end %>
-    <% end %>
-	</h3>
-
-  <div class="thumbnail-grid row">
-  	<%= render :partial => 'list', :collection => @users, :as => :user %>
-  </div>
-
+<%= render "users_list", users: @users_search, title: "Search results", show_view_more: false, view_more_link: "" %>
+<% if @users_search %>
+  <%= paginate @users_search %>
 <% end %>
+
+<%= render "users_list", users: @fb_top_friends, title: "Facebook friends on InstrumentChamp", show_view_more: true, view_more_link: facebook_users_path %>
+
+<%= render "users_list", users: @regular_users, title: "InstrumentChamp Friends", show_view_more: true, view_more_link: instrument_champ_users_path %>
+

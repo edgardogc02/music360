@@ -76,23 +76,36 @@ describe "Users" do
       @user = login
     end
 
-    it "should list all users in the people section" do
-      user = create(:user)
-      new_user = create(:user)
-
-      visit people_path
-      page.should have_content @user.username
-      page.should have_content user.username
-      page.should have_content new_user.username
-      page.should have_link "challenge_#{@user.id}", href: new_challenge_path(challenged_id: @user.id)
-      page.should have_link "challenge_#{user.id}", href: new_challenge_path(challenged_id: user.id)
-      page.should have_link "challenge_#{new_user.id}", href: new_challenge_path(challenged_id: new_user.id)
-      page.should have_link "follow_user_#{@user.id}", href: "#"
-      page.should have_link "follow_user_#{user.id}", href: "#"
-      page.should have_link "follow_user_#{new_user.id}", href: "#"
+    it "should 4 facebook friends in the users index" do
+      pending
     end
 
-    it "should not list the deleted users in the people section" do
+    it "should 4 followers not connected via facebook in the users index" do
+      pending
+    end
+
+    it "should display a search user form in the users index" do
+      visit people_path
+      page.should have_xpath("//input[@name='username_or_email']")
+    end
+
+    it "should be able to search for a username or email in the users index" do
+      user = create(:user, username: "ronnie")
+      user_1 = create(:user)
+      user_2 = create(:user, email: "ronnie@adsa.com")
+
+      visit people_path
+      fill_in "username_or_email", with: "ronnie"
+      click_on "Search"
+
+      current_path.should eq(people_path)
+      page.should have_content user.username
+      page.should have_content user_2.username
+      page.should_not have_content user_1.username
+    end
+
+    it "should not list the deleted users in the people page" do
+      pending
       user = create(:user)
       deleted_user = create(:user)
       deleted_user.destroy
