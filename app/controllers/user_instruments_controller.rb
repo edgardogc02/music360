@@ -13,6 +13,7 @@ class UserInstrumentsController < ApplicationController
         redirect_to person_path(current_user)
       end
     else
+      flash.now[:warning] = "Something went wrong and your instrument was not updated. Please try again."
       render "edit"
     end
   end

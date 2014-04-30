@@ -21,6 +21,7 @@ describe "UserInstrument" do
       select "#{guitar.name}", from: "user_instrument_id"
       click_on "Save"
 
+      page.find('.alert-notice').should have_content('Your instrument was successfully updated')
       @user.reload
       @user.instrument.should eq(guitar)
     end

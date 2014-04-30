@@ -35,21 +35,23 @@ class UsersController < ApplicationController
 	    flash[:notice] = "Hi #{@user.username}!"
       redirect_to root_path
 	  else
+	    flash.now[:warning] = "Check the errors below and try again"
 	    render "new"
 	  end
 	end
 
 	def update
 	  if @user.update_attributes(user_params)
-      redirect_to person_path(@user)
+      redirect_to person_path(@user), notice: "Your profile was successfully updated"
     else
+      flash.now[:warning] = "Check the errors below and try again"
       render "edit"
     end
 	end
 
 	def destroy
 	  @user.destroy
-	  redirect_to logout_path
+	  redirect_to logout_path, notice: "Your profile was successfully deleted"
 	end
 
 	private

@@ -8,6 +8,7 @@ describe "UserOmniauthCredentials" do
 
   it "should sign in user with facebook account" do
     signin_with_facebook
+    page.find('.alert-notice').should have_content('Welcome Test User!')
   end
 
   it "should have the correct values in the users table" do

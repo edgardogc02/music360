@@ -10,6 +10,7 @@ describe "Users" do
     it "should sign up with correct credentials" do
       signup('testuser', 'testuser@test.com', 'password')
       current_path.should eq(root_path)
+      page.find('.alert-notice').should have_content('Hi testuser!')
   #    last_email.to.should include('testuser@test.com')
       page.should have_content('testuser')
     end
@@ -24,6 +25,7 @@ describe "Users" do
 
       current_path.should eq(people_path)
       page.should have_selector('#new_user')
+      page.find('.alert-warning').should have_content('Check the errors below and try again')
     end
 
     it "should display sign up form if user is not signed in" do
@@ -123,6 +125,9 @@ describe "Users" do
       fill_in 'user_username', with: 'new_username'
       fill_in 'user_email', with: 'new_username@test.com'
       click_on "Save"
+
+      page.find('.alert-notice').should have_content('Your profile was successfully updated')
+
       current_path.should eq(person_path("new_username"))
       page.should have_content "new_username"
       page.should have_content "new_username@test.com"
@@ -152,6 +157,7 @@ describe "Users" do
       end
       click_on 'sign_in'
       current_path.should eq(login_path)
+#      page.find('.alert-notice').should have_content('Your profile was successfully deleted') # TODO
     end
 
     it "should see upload profile image button only in his person url" do

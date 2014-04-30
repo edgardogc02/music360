@@ -10,8 +10,9 @@ class UserPasswordsController < ApplicationController
 
   def update
     if @user.update_attributes(user_password_params)
-      redirect_to person_path(@user)
+      redirect_to person_path(@user), notice: "Your password was successfully updated"
     else
+      flash.now[:warning] = "Something went wrong. Please try again."
       render "edit"
     end
   end

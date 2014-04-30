@@ -19,6 +19,7 @@ describe "Sessions" do
 
       click_on 'sign_in'
 
+      page.find('.alert-notice').should have_content('Welcome back, testuser!')
       current_path.should eq(root_path)
       page.should have_content("testuser")
     end
@@ -33,6 +34,7 @@ describe "Sessions" do
 
       click_on 'sign_in'
 
+#      page.find('.alert-warning').should have_content('Invalid username or password') # TODO
       current_path.should eq(login_path)
       page.should have_selector('#login-form')
     end

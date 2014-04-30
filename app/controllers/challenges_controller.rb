@@ -32,8 +32,10 @@ class ChallengesController < ApplicationController
 	  @challenge = current_user.challenges.build(challenge_params)
 
 	  if @challenge.save
+	    flash[:notice] = "The challenge was successfully created"
 	    redirect_to yours_challenges_path(autostart_challenge_id: @challenge.id)
 	  else
+	    flash.now[:warning] = ("There was an error when creating the challenge" + "<br/>" + @challenge.errors.full_messages.join(', ') + "<br/>" + "Please try again").html_safe
 	    render 'new'
 	  end
 	end

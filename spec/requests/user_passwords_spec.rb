@@ -29,6 +29,8 @@ describe "UserPassword" do
       click_on "Save"
       current_path.should eq(person_path(@user))
 
+      page.find('.alert-notice').should have_content('Your password was successfully updated')
+
       @user.reload
       @user.authenticate('new password').should be_true
     end

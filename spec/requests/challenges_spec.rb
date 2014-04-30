@@ -37,6 +37,7 @@ describe "Challenges" do
       page.should have_content(challenged_user.username)
       click_on "Start Challenge"
 
+      page.find('.alert-notice').should have_content('The challenge was successfully created')
       current_path.should eq(yours_challenges_path)
 
       page.should have_xpath("//meta")
@@ -84,6 +85,7 @@ describe "Challenges" do
 
       click_on "Start Challenge"
 
+      page.find('.alert-notice').should have_content('The challenge was successfully created')
       current_path.should eq(yours_challenges_path)
       page.should have_content("Your challenges")
       page.should have_content(@song.title)
@@ -183,6 +185,7 @@ describe "Challenges" do
       click_on "challenge_#{@song.id}"
       click_on "Start Challenge"
 
+      page.find('.alert-notice').should have_content('The challenge was successfully created')
       current_path.should eq(yours_challenges_path)
       page.should have_content("Your challenges")
       page.should have_content(@song.title)
@@ -205,6 +208,7 @@ describe "Challenges" do
 
       click_on "Start Challenge"
 
+      page.find('.alert-notice').should have_content('The challenge was successfully created')
       current_path.should eq(yours_challenges_path)
       page.should have_content("Your challenges")
       page.should have_content(@song.title)

@@ -1,4 +1,18 @@
 en:
+  errors:
+    format: "%{message}"
   email_notifier:
     send_user_confirmation:
       subject: Confirm your registration
+  activerecord:
+    errors:
+      models:
+        challenge:
+          attributes:
+            song_id:
+              blank: "You must select a song"
+            challenged_id:
+              blank: "You must select your opponent"
+            challenger_id:
+              blank: "Someone must be the challenger"
+
