@@ -25,11 +25,8 @@
 -->
 
 <section class="get-started">
-	<h1 class="huge">Great, let's get you started!</h1>
-
 	<div><%= link_to "Quick start song", @song.desktop_app_uri, {class: 'btn btn-primary btn-huge'} %></div><br/>
 	<div><%= link_to "Quick start challenge", new_challenge_path, {class: 'btn btn-danger btn-huge'} %></div>
-
 </section>
 
 <% if params[:take_tour] %>
