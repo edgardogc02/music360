@@ -53,4 +53,8 @@ module ApplicationHelper
     end
   end
 
+  def display_google_analytics_tracking?
+    Rails.env.production? and !test_domain_name? and (!signed_in? or (signed_in? and !current_user.admin?))
+  end
+
 end

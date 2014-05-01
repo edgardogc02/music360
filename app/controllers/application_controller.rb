@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  helper_method :current_user, :signed_in?
+  helper_method :current_user, :signed_in?, :test_domain_name?
 
   def signin_user(user)
     session[:user_id] = user.id
@@ -24,7 +24,11 @@ class ApplicationController < ActionController::Base
         signin_user(user)
       end
     end
-  end # autologin_if_needed action
+  end
+
+  def test_domain_name?
+    request.host.include?('test-instrumentchamp')
+  end
 
   private
 
