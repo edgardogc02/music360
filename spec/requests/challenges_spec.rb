@@ -179,16 +179,10 @@ describe "Challenges" do
 
       page.should have_content "1. Chose your song"
       click_on "Choose your opponent"
-      current_path.should eq(people_path)
-      fill_in "username_or_email", with: challenged_user.username
-      click_on "Search"
-      current_path.should eq(people_path)
-
       click_on "challenge_#{challenged_user.id}"
 
       current_path.should eq(new_challenge_path)
       click_on "Choose your song"
-      current_path.should eq(songs_path)
       click_on "challenge_#{@song.id}"
       click_on "Start Challenge"
 
@@ -205,15 +199,10 @@ describe "Challenges" do
 
       page.should have_content "1. Chose your song"
       click_on "Choose your song"
-      current_path.should eq(songs_path)
       click_on "challenge_#{@song.id}"
       current_path.should eq(new_challenge_path)
 
       click_on "Choose your opponent"
-      current_path.should eq(people_path)
-      fill_in "username_or_email", with: challenged_user.username
-      click_on "Search"
-      current_path.should eq(people_path)
       click_on "challenge_#{challenged_user.id}"
 
       click_on "Start Challenge"

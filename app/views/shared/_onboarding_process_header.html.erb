@@ -1,23 +1,13 @@
 <div class="row">
 	<div class="col-md-10">
 		<div class="wizard-steps clearfix">
-			<% if id == 'welcome' %>
-				<%= content_tag(:div, class: "active-step") do %><%= link_to "Welcome", welcome_path %><% end %>
-				<%= content_tag(:div) do %><%= link_to "Choose Instrument", edit_user_instrument_path(current_user.id, next: "user_groupies")%><% end %>
-				<%= content_tag(:div) do %><%= link_to "Connect with Groupies", user_groupies_path %><% end %>
-			<% elsif id == 'instrument_selection' %>
-				<%= content_tag(:div, class: "completed-step") do %><%= link_to "Welcome", welcome_path %><% end %>
-				<%= content_tag(:div, class: "active-step") do %><%= link_to "Choose Instrument", edit_user_instrument_path(current_user.id, next: "user_groupies")%><% end %>
-				<%= content_tag(:div) do %><%= link_to "Connect with Groupies", user_groupies_path %><% end %>
-			<% else %>
-				<%= content_tag(:div, class: "completed-step") do %><%= link_to "Welcome", welcome_path %><% end %>
-				<%= content_tag(:div, class: "completed-step") do %><%= link_to "Choose Instrument", edit_user_instrument_path(current_user.id, next: "user_groupies")%><% end %>
-				<%= content_tag(:div, class: "active-step") do %><%= link_to "Connect with Groupies", user_groupies_path %><% end %>
-			<% end %>
+		  <% @steps.steps.each do |step| %>
+        <%= content_tag(:div, class: step.css_class) do %><%= link_to step.name, step.link %><% end %>
+		  <% end %>
 		</div>
 	</div>
 	<div class="col-md-2">
-		<%= link_to next_link, {class: "btn btn-danger"} do %>
+		<%= link_to @steps.current_step.next_link, {class: "btn btn-danger"} do %>
 			Next
 			<i class="glyphicon glyphicon-chevron-right"></i>
 		<% end %>

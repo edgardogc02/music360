@@ -11,8 +11,12 @@ describe "Users" do
       signup('testuser', 'testuser@test.com', 'password')
       current_path.should eq(root_path)
       page.find('.alert-notice').should have_content('Hi testuser!')
-  #    last_email.to.should include('testuser@test.com')
       page.should have_content('testuser')
+    end
+
+    it "should send an email to a new registered user" do
+      signup('testuser', 'testuser@test.com', 'password')
+      last_email.to.should include('testuser@test.com')
     end
 
     it "should save new user with correct data" do

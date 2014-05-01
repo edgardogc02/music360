@@ -30,6 +30,14 @@ class ApplicationController < ActionController::Base
     request.host.include?('test-instrumentchamp')
   end
 
+  def create_onboarding_steps(current_step_name)
+    welcome_step = OnboardingProcessStep.new("Welcome", welcome_path, current_step_name == "Welcome")
+    instrument_step = OnboardingProcessStep.new("Instrument", edit_user_instrument_path(current_user.id, next: "user_groupies"), current_step_name == "Instrument")
+    groupies_step = OnboardingProcessStep.new("Groupies", user_groupies_path, current_step_name == "Groupies")
+
+    @steps = OnboardingProcessSteps.new([welcome_step, instrument_step, groupies_step])
+  end
+
   private
 
   def current_user

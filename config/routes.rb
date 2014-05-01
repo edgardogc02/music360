@@ -66,8 +66,6 @@ InstrumentchampPrototype::Application.routes.draw do
   get 'terms-of-service', to: "statics#terms_of_service", as: :terms_of_service
   get 'help', to: "statics#help", as: :help
 
-  get 'start-tour', to: "pages#start_tour", as: :start_tour
-
   get 'modal-view-friends', to: 'user_searches#modal_view_users', as: :modal_view_users
   get 'instrument-champ-friends', to: 'user_searches#list_instrument_champ_users', as: :instrument_champ_users
   get 'facebook-friends', to: 'user_searches#list_facebook_users', as: :facebook_users

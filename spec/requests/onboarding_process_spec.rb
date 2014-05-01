@@ -28,8 +28,8 @@ describe "OnboardingProcess" do
 
     def has_header_with_links
       page.should have_link "Welcome", href: welcome_path
-      page.should have_link "Choose Instrument", href: edit_user_instrument_path(@user.id, next: "user_groupies")
-      page.should have_link "Connect with Groupies", href: user_groupies_path
+      page.should have_link "Instrument", href: edit_user_instrument_path(@user.id, next: "user_groupies")
+      page.should have_link "Groupies", href: user_groupies_path
     end
   end
 

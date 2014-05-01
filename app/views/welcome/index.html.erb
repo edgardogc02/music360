@@ -1,4 +1,4 @@
-<%= render "shared/onboarding_process_header", next_link: edit_user_instrument_path(current_user.id, next: "user_groupies"), id: 'welcome' %>
+<%= render "shared/onboarding_process_header", next_link: edit_user_instrument_path(current_user.id, next: "user_groupies"), css_classes: {welcome: "active-step", instrument: "", groupies: ""} %>
 
 <h1 class="page-header">Welcome <%= current_user.username %></h1>
 

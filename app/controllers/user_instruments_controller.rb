@@ -2,6 +2,9 @@ class UserInstrumentsController < ApplicationController
 	before_action :authorize
 
 	def edit
+	  if !params[:next].blank?
+	    @steps = create_onboarding_steps("Instrument")
+	  end
 	end
 
   def update

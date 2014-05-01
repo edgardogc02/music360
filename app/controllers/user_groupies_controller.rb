@@ -2,6 +2,7 @@ class UserGroupiesController < ApplicationController
 	before_action :authorize
 
 	def index
+    @steps = @steps = create_onboarding_steps("Groupies")
     begin
       if current_user.has_facebook_credentials?
         fb_top_friends = current_user.facebook_top_friends(10)

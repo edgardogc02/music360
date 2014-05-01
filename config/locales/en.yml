@@ -2,8 +2,8 @@ en:
   errors:
     format: "%{message}"
   email_notifier:
-    send_user_confirmation:
-      subject: Confirm your registration
+    welcome_message:
+      subject: Welcome to instrumentchamp.com
   activerecord:
     errors:
       models:

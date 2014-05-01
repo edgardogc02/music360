@@ -22,10 +22,10 @@ describe "UserGroupies" do
       page.should have_content "Magnus Willner"
     end
 
-    it "should have a continue button" do
+    it "should have a next button" do
       login
       visit user_groupies_path
-      page.should have_link "Continue", href: start_tour_path
+      page.should have_link "Next", href: root_path(take_tour: 1)
     end
   end
 

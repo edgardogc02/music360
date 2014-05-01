@@ -18,7 +18,7 @@ describe "Users" do
 
     it "should have a continue button to select the user instrument" do
       visit welcome_path
-      page.should have_link "Continue", href: edit_user_instrument_path(@user.id, next: "user_groupies")
+      page.should have_link "Next", href: edit_user_instrument_path(@user.id, next: "user_groupies")
     end
   end
 
