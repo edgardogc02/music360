@@ -1,0 +1,102 @@
+$normal: #f0f7fd;
+$completed: $comp; 
+$active: $comp; 
+$hover: #86D2D0;
+
+
+
+/* = STEPS CONTAINER
+----------------------------*/
+.wizard-steps {
+    position: relative;
+    clear:both;
+}
+.wizard-steps div {
+    position:relative;
+}
+/* = DEFAULT STEPS
+----------------------------*/
+.wizard-steps a {
+    position:relative;
+    display:block;
+    width:auto;
+    height:32px;
+    margin-right: 22px;
+    padding:0px 10px 0px 10px;
+    float: left;
+    font-size:14px;
+    line-height:30px;
+    color: #456968;
+    background: $normal;
+    text-decoration:none;
+    //text-shadow:1px 1px 1px rgba(255,255,255, 0.8);
+}
+.wizard-steps a:before {
+    width:0px;
+    height:0px;
+    border-top: 16px solid $normal;
+    border-bottom: 16px solid $normal;
+    border-left:16px solid transparent;
+    position: absolute;
+    content: "";
+    top: 0px;
+    left: -16px;
+}
+.wizard-steps a:after {
+    width: 0;
+    height: 0;
+    border-top: 16px solid transparent;
+    border-bottom: 16px solid transparent;
+    border-left:16px solid $normal;
+    position: absolute;
+    content: "";
+    top: 0px;
+    right: -16px;
+}
+ 
+/* = COMPLETED STEPS
+----------------------------*/
+ 
+.wizard-steps .completed-step a {
+    color: white;
+    background: $completed;
+}
+.wizard-steps .completed-step a:before {
+    border-top: 16px solid $completed;
+    border-bottom: 16px solid $completed;
+}
+.wizard-steps .completed-step a:after {
+    border-left: 16px solid $completed;
+}
+/* = ACTIVE STEPS
+----------------------------*/
+.wizard-steps .active-step a {
+    color: white;
+    background: $active;
+}
+.wizard-steps .active-step a:before {
+    border-top: 16px solid $active;
+    border-bottom: 16px solid $active;
+}
+.wizard-steps .active-step a:after {
+    border-left: 16px solid $active;
+}
+/* = HOVER STATES
+----------------------------*/
+.wizard-steps div:hover a {
+    color: white;
+    background: $hover;
+    text-decoration: none;
+}
+.wizard-steps div:hover a:before {
+    border-top: 16px solid $hover;
+    border-bottom: 16px solid $hover;
+}
+.wizard-steps div:hover a:after {
+    border-left: 16px solid $hover;
+}
+
+
+.wizard-steps div:first-child > a:before {
+  display: none;
+}

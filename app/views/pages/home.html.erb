@@ -23,6 +23,7 @@
 	  </div>
 	</div>
 -->
+<br /><br />
 
 <section class="get-started">
 	<div><%= link_to "Quick start song", @song.desktop_app_uri, {class: 'btn btn-primary btn-huge'} %></div><br/>
@@ -43,6 +44,11 @@
         reflex: true,
         steps: [
         {
+          element: "#start_tour",
+          title: "Start Tour",
+          content: "<iframe width='560' height='315' src='//www.youtube.com/embed/pSBiT91e5nk?rel=0' frameborder='0' allowfullscreen></iframe>"
+        },
+        {
           element: "#friends",
           title: "People",
           content: "<p>Follow and challenge people.</p><p>Connect with your friends, favorite artists and teachers</p>"
@@ -59,9 +65,19 @@
         },
         {
           element: "#apps",
-          title: "App Store",
+          title: "Apps",
           content: "<p>Download the game to your PC & MAC</p>"
-        }
+        },        
+        {
+          element: "#help",
+          title: "Help",
+          content: "<p>Help text............................................................................</p>"
+        },
+        {
+          element: "#premium",
+          title: "Premium",
+          content: "<p>Premium text.........................................................................</p>"
+        }        
       ]});
 
       $(document).ready(function() {

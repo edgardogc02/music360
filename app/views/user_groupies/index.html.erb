@@ -1,6 +1,6 @@
-<%= render "shared/onboarding_process_header" %>
+<%= render "shared/onboarding_process_header", next_link: root_path(take_tour: 1), id: 'fb_friends_selection' %>
 
-<h1 class="page-header">Connect with your groupies</h1>
+<h1 class="page-header">Connect with your facebook friends</h1>
 
 <% if @user_groupies %>
 
@@ -14,10 +14,6 @@
 
 <% else %>
 
-  Connect your account to facebook and find your groupies
+  <p>Connect your account to facebook and find new friends</p>
 
 <% end %>
-
-<p>
-  <%= link_to "Continue", start_tour_path, {class: "btn btn-primary"} %>
-</p>

@@ -1,6 +1,29 @@
-<p>
-  <%= link_to "Welcome", welcome_path, {class: "btn btn-primary"} %>
-  <%= link_to "Choose Instrument", edit_user_instrument_path(current_user.id, next: "user_groupies"), {class: "btn btn-primary"} %>
-  <%= link_to "Connect with Groupies", user_groupies_path, {class: "btn btn-primary"} %>
-  <%= link_to "Start the tour", start_tour_path, {class: "btn btn-primary"} %>
-</p>
+<div class="row">
+	<div class="col-md-10">
+		<div class="wizard-steps clearfix">
+			<% if id == 'welcome' %>
+				<%= content_tag(:div, class: "active-step") do %><%= link_to "Welcome", welcome_path %><% end %>
+				<%= content_tag(:div) do %><%= link_to "Choose Instrument", edit_user_instrument_path(current_user.id, next: "user_groupies")%><% end %>
+				<%= content_tag(:div) do %><%= link_to "Connect with Groupies", user_groupies_path %><% end %>
+			<% elsif id == 'instrument_selection' %>
+				<%= content_tag(:div, class: "completed-step") do %><%= link_to "Welcome", welcome_path %><% end %>
+				<%= content_tag(:div, class: "active-step") do %><%= link_to "Choose Instrument", edit_user_instrument_path(current_user.id, next: "user_groupies")%><% end %>
+				<%= content_tag(:div) do %><%= link_to "Connect with Groupies", user_groupies_path %><% end %>
+			<% else %>
+				<%= content_tag(:div, class: "completed-step") do %><%= link_to "Welcome", welcome_path %><% end %>
+				<%= content_tag(:div, class: "completed-step") do %><%= link_to "Choose Instrument", edit_user_instrument_path(current_user.id, next: "user_groupies")%><% end %>
+				<%= content_tag(:div, class: "active-step") do %><%= link_to "Connect with Groupies", user_groupies_path %><% end %>
+			<% end %>
+		</div>
+	</div>
+	<div class="col-md-2">
+		<%= link_to next_link, {class: "btn btn-danger"} do %>
+			Next
+			<i class="glyphicon glyphicon-chevron-right"></i>
+		<% end %>
+	</div>
+</div>
+<br />
+
+
+

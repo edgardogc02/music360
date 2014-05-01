@@ -1,6 +1,6 @@
-<%= render "shared/onboarding_process_header" %>
+<%= render "shared/onboarding_process_header", next_link: edit_user_instrument_path(current_user.id, next: "user_groupies"), id: 'welcome' %>
 
-<h1>Welcome <%= current_user.username %></h1>
+<h1 class="page-header">Welcome <%= current_user.username %></h1>
 
 <p>
   You are the first of your friends to sign up.
@@ -8,14 +8,8 @@
   InstrumentChamp is a music game platform where you can learn to play music and challenge your friends in music
 </p>
 
-<h2>
-  Signup Bonus
-</h2>
+<div class="bs-callout bs-callout-info">
+	<h4>Signup Bonus</h4>
+	<p>We have upgraded you to a 3 months premium account. (Total value: $29.97)</p>
+</div>
 
-<p>
-  We have upgraded you to a 3 months premium account. (Total value: $29.97)
-</p>
-
-<p>
-  <%= link_to "Continue", edit_user_instrument_path(current_user.id, next: "user_groupies"), {class: "btn btn-primary"} %>
-</p>

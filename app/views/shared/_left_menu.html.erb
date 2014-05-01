@@ -1,6 +1,6 @@
 <nav role="navigation">
 	<div class="list-group">
-    <%= nav_link "Home", :root, icon: "home" %>
+    <%= nav_link "Home", :root, {icon: "home", ignore_params: true} %>
 
     <!--
     <%= nav_link "People", people_path, icon: "user"%>
@@ -28,6 +28,9 @@
     <!--
     <%= nav_link "Instruments", "#", icon: "wrench"%>
     -->
+    <%= nav_link "Help", help_path, {id: "help", icon: "info-sign"} %>
+    <%= nav_link "Take the tour", root_path(take_tour: 1), {id: "start_tour", icon: "send"} %>
+    
     <%= nav_link "Apps", apps_path, {id: "apps", icon: "th"} %>
     <%= nav_link "Premium", "#", {id: "premium", icon: "plus"} %>
   </div>
