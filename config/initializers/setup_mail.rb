@@ -1,20 +1,9 @@
-# ActionMailer::Base.smtp_settings = {
-#  :address  => "",
-#  :port  => 25,
-#  :domain  => "",
-#  :user_name  => "",
-#  :password  => "",
-#  :authentication  => :plain,
-#  :enable_starttls_auto => true,
-#  :openssl_verify_mode  => 'none'
-#  :tls  => true
-
-#  :address              => "smtp.gmail.com",
-#  :port                 => 587,
-#  :domain               => "asciicasts.com",
-#  :user_name            => "asciicasts",
-#  :password             => "secret",
-#  :authentication       => "plain",
-#  :enable_starttls_auto => true
-
-# }
+ActionMailer::Base.smtp_settings = {
+    :port =>           '587',
+    :address =>        'smtp.mandrillapp.com',
+    :user_name =>      ENV['MANDRILL_USERNAME'],
+    :password =>       ENV['MANDRILL_APIKEY'],
+    :domain =>         'heroku.com',
+    :authentication => :plain
+}
+ActionMailer::Base.delivery_method = :smtp

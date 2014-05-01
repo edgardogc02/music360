@@ -10,12 +10,14 @@ class User < ActiveRecord::Base
 
 	friendly_id :username
 
-# validates :username, presence: true, uniqueness: true
+  validates :username, presence: true, uniqueness: true
   validates :email, presence: true, uniqueness: true, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
   validates :password, presence: true, on: :create
   validates :password_confirmation, presence: true, confirmation: true, on: :create
 
 #  validate :validate_maximum_image_size # TODO: sometimes doesn't work with ftp server and throws a read exception
+
+  attr_accessor :skip_emails
 
 	has_many :challenges, foreign_key: "challenger_id"
   has_many :proposed_challenges, class_name: "Challenge", foreign_key: "challenged_id"
@@ -39,8 +41,6 @@ class User < ActiveRecord::Base
 
   before_create :fill_in_extra_fields
 
-  after_create :send_confirmation_email
-
   scope :not_deleted, -> { where('deleted IS NULL OR deleted = 0') }
   scope :by_username_or_email, ->(username_or_email) { where('username LIKE ? OR email LIKE ?', '%'+username_or_email+'%', '%'+username_or_email+'%') }
   scope :not_connected_via_facebook, -> { where('oauth_uid IS NULL') }
@@ -48,6 +48,7 @@ class User < ActiveRecord::Base
   def sign_up(ip)
     self.ip = ip
     save
+    send_welcome_email
   end
 
 	def to_s
@@ -71,6 +72,8 @@ class User < ActiveRecord::Base
       user.save
       user.remote_imagename_url = user.remote_facebook_image if user.facebook_credentials
       user.save
+
+      user.send_welcome_email
     else
       user.user_omniauth_credentials.create_or_update_from_omniauth(auth)
     end
@@ -128,6 +131,12 @@ class User < ActiveRecord::Base
     save
   end
 
+  def send_welcome_email
+    if !self.new_record? and !self.skip_emails # avoid callbacks otherwise the tests and fake facebook users will send emails
+      EmailNotifier.welcome_message(self).deliver
+    end
+  end
+
 	private
 
   def fill_in_extra_fields
@@ -137,10 +146,6 @@ class User < ActiveRecord::Base
     self.premium_until = 3.months.from_now
     self.updated_image = 0
   end
-
-	def send_confirmation_email
-#    EmailNotifier.send_user_confirmation(self).deliver
-	end
 
 	def self.create_from_omniauth(auth)
     user = User.new

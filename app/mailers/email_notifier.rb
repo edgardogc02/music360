@@ -1,6 +1,6 @@
 class EmailNotifier < ActionMailer::Base
 
-  default from: "from@example.com"
+  default from: "InstrumentChamp <no-reply@instrumentchamp.com>"
 
   def welcome_message(user)
     @user = user

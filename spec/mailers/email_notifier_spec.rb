@@ -9,12 +9,14 @@ describe EmailNotifier do
     it "sends user confirmation email" do
       mail.subject.should eq("Welcome to instrumentchamp.com")
       mail.to.should eq([user.email])
-      mail.from.should eq(["from@example.com"])
+      mail.from.should eq(["no_reply@instrumentchamp.com"])
     end
 
     it "renders the body" do
-      pending
-      mail.body.encoded.should match(confirm_user_email_path(user.confirmation_code))
+      mail.body.encoded.should have_content("Welcome to instrumentchamp")
+      mail.body.encoded.should have_content("Hi #{user.username}")
+      mail.body.encoded.should have_content("Username: #{user.username}")
+      mail.body.encoded.should have_content("Password: #{user.password}")
     end
   end
 

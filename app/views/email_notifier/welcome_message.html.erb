@@ -1,7 +1,21 @@
-<div>
-  Hi <%= @user.username %>,
+<div class="email_container">
+
+  <%= render 'header' %>
+
+  <div>
+    Welcome to instrumentchamp!
+  </div>
+
+  <div>
+    Hi <%= @user.username %>,
+  </div>
+
+  <div>this are your authentication credentials:</div>
+  <div>Username: <%= @user.username %></div>
+  <div>Password: <%= @user.password %></div>
+
+  <div>Kind regards,</div>
+  <div>The instrumentchamp team.</div>
 </div>
 
-<div>
-  Welcome to instrumentchamp.
-</div>
+<%= render 'footer' %>
