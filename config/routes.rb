@@ -2,6 +2,21 @@ InstrumentchampPrototype::Application.routes.draw do
 
   root to: "pages#home"
 
+  # redirect old pages cached from google
+
+  get 'contact', to: redirect("https://www.instrumentchamp.com")
+  get 'instruments/drum-edition', to: redirect("https://www.instrumentchamp.com")
+  get 'systemrequirements', to: redirect("https://www.instrumentchamp.com")
+  get 'us/the-willner-brothers/', to: redirect("https://www.instrumentchamp.com")
+  get 'general-terms', to: redirect("https://www.instrumentchamp.com")
+  get 'category/blog/page/3', to: redirect("https://www.instrumentchamp.com")
+  get 're-launch-of-instrumentchamp-com', to: redirect("https://www.instrumentchamp.com")
+  get 'instrumentchamp-band-edition-a-real-music-game-official-teaser-trailer-hd', to: redirect("https://www.instrumentchamp.com")
+  get 'instrumentchamp-roskilde-festival-2013', to: redirect("https://www.instrumentchamp.com")
+  get 'thanks-for-download-win/', to: redirect("https://www.instrumentchamp.com")
+  get 'GameManual.pdf', to: redirect("https://www.instrumentchamp.com")
+  get 'launchsong', to: redirect("https://www.instrumentchamp.com")
+
   resources :artists do
     resources :songs do
       get 'free', on: :collection
@@ -52,11 +67,11 @@ InstrumentchampPrototype::Application.routes.draw do
   get 'help', to: "statics#help", as: :help
 
   get 'start-tour', to: "pages#start_tour", as: :start_tour
-  
+
   get 'modal-view-friends', to: 'user_searches#modal_view_users', as: :modal_view_users
   get 'instrument-champ-friends', to: 'user_searches#list_instrument_champ_users', as: :instrument_champ_users
   get 'facebook-friends', to: 'user_searches#list_facebook_users', as: :facebook_users
-  
+
   get 'modal-view-songs', to: 'song_searches#modal_view_songs', as: :modal_view_songs
 
   get ':action' => 'pages'
