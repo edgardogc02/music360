@@ -9,7 +9,7 @@ describe EmailNotifier do
     it "sends user confirmation email" do
       mail.subject.should eq("Welcome to instrumentchamp.com")
       mail.to.should eq([user.email])
-      mail.from.should eq(["no_reply@instrumentchamp.com"])
+      mail.from.should eq(["no-reply@instrumentchamp.com"])
     end
 
     it "renders the body" do

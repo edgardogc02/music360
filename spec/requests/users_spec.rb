@@ -108,6 +108,18 @@ describe "Users" do
       page.should_not have_content user_1.username
     end
 
+    it "should have a link to followers in the profile page" do
+      visit person_path(@user.username)
+      page.should have_content "Followers"
+      page.should have_link @user.followers.count, user_follower_path(@user)
+    end
+
+    it "should have a link to following in the profile page" do
+      visit person_path(@user.username)
+      page.should have_content "Following"
+      page.should have_link @user.followed_users.count, following_path(@user)
+    end
+
     it "should not list the deleted users in the people page" do
       pending
       user = create(:user)

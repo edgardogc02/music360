@@ -74,7 +74,6 @@ class User < ActiveRecord::Base
       user.remote_imagename_url = user.remote_facebook_image if user.facebook_credentials
       user.save
 
-      user.skip_emails = true if Rails.env.test? # don't send emails from tests
       user.send_welcome_email
     else
       user.user_omniauth_credentials.create_or_update_from_omniauth(auth)

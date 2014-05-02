@@ -16,7 +16,14 @@
       <% end %>
     </strong>
 	</div>
+  <div>
+    Following: <strong><%= link_to @user.followed_users.count, following_path(@user) %></strong>
+  </div>
+	<div>
+	  Followers: <strong><%= link_to @user.followers.count, user_follower_path(@user) %></strong>
+	</div>
 </p>
+
 
 <% if is_current_user?(@user) %>
 	<p>
