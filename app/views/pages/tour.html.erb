@@ -1,0 +1,65 @@
+<%= content_for(:js_scripts) do %>
+
+  <script type="text/javascript">
+    // Instance the tour
+    var tour = new Tour({
+      name: "tour",
+      container: "body",
+      keyboard: true,
+      storage: false,
+      backdrop: true,
+      reflex: true,
+      onEnd: function (tour) {
+      	var url = "/";    
+				$(location).attr('href',url);
+      },
+      steps: [
+      {
+        element: "#tour",
+        title: "Take the tour",
+        content: "<p>Welcome to the InstrumentChamp Tour</p><iframe width='560' height='315' src='//www.youtube.com/embed/pSBiT91e5nk?rel=0' frameborder='0' allowfullscreen></iframe>"
+      },
+      {
+        element: "#home",
+        title: "Home",
+        content: "<p>Quick start a song or a challenge</p>"
+      },
+      {
+        element: "#people",
+        title: "People",
+        content: "<p>Connect and challenge your friends</p>"
+      },
+      {
+        element: "#music",
+        title: "Songs",
+        content: "<p>Surf songs and start a challenge</p>"
+      },
+      {
+        element: "#challenges",
+        title: "Challenges",
+        content: "<p>Create a new challenge, accept a challenge or see the results from your previous challenges</p>"
+      },
+      {
+        element: "#apps",
+        title: "App Store",
+        content: "<p>Download the latest applications</p>"
+      },
+      {
+        element: "#help",
+        title: "Help",
+        content: "<p>Need help to get started? Click here</p>"
+      },
+      {
+        element: "#premium",
+        title: "Premium",
+        content: "<p>Upgrade to premium to play multiplayer without ads</p>"
+      }
+    ]});
+
+    $(document).ready(function() {
+      tour.init();
+      tour.start();
+    });
+  </script>
+
+<% end %>

@@ -66,6 +66,7 @@ InstrumentchampPrototype::Application.routes.draw do
   get 'privacy-policy', to: "statics#privacy_policy", as: :privacy_policy
   get 'terms-of-service', to: "statics#terms_of_service", as: :terms_of_service
   get 'help', to: "statics#help", as: :help
+  get 'tour', to: "pages#tour", as: :tour
 
   get 'modal-view-friends', to: 'user_searches#modal_view_users', as: :modal_view_users
   get 'instrument-champ-friends', to: 'user_searches#list_instrument_champ_users', as: :instrument_champ_users

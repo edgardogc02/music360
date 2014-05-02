@@ -33,6 +33,10 @@ strong {
   max-width: none;
 }
 
+a.list-group-item.active.tour-tour-element, a.list-group-item.active.tour-tour-element:hover, a.list-group-item.active.tour-tour-element:focus {
+  z-index: 1101;
+}
+
 /* Side notes for calling out things
 -------------------------------------------------- */
  
