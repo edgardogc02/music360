@@ -18,7 +18,7 @@ class SongCoverUploader < CarrierWave::Uploader::Base
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   def default_url
-    "http://placehold.it/300x300"
+    "default_song.png"
   end
 
   # Process files as they are uploaded:
