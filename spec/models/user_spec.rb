@@ -85,6 +85,13 @@ describe User do
 
       User.not_connected_via_facebook.should eq([user, user1])
     end
+
+    it "should exclude user from users list" do
+      user = create(:user)
+      user1 = create(:user)
+
+      User.exclude(user.id).should eq([user])
+    end
   end
 
   context "Methods" do
