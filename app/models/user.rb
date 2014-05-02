@@ -44,6 +44,7 @@ class User < ActiveRecord::Base
   scope :not_deleted, -> { where('deleted IS NULL OR deleted = 0') }
   scope :by_username_or_email, ->(username_or_email) { where('username LIKE ? OR email LIKE ?', '%'+username_or_email+'%', '%'+username_or_email+'%') }
   scope :not_connected_via_facebook, -> { where('oauth_uid IS NULL') }
+  scope :exclude, ->(user_id) { where('users.id_user != ?', user_id) }
 
   def sign_up(ip)
     self.ip = ip
@@ -73,6 +74,7 @@ class User < ActiveRecord::Base
       user.remote_imagename_url = user.remote_facebook_image if user.facebook_credentials
       user.save
 
+      user.skip_emails = true if Rails.env.test? # don't send emails from tests
       user.send_welcome_email
     else
       user.user_omniauth_credentials.create_or_update_from_omniauth(auth)

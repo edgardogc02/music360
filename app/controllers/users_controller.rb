@@ -18,7 +18,7 @@ class UsersController < ApplicationController
 
           @facebook_friends = current_user.facebook_friends.limit(4)
         end
-    		@regular_users = User.not_deleted.limit(4)
+    		@regular_users = User.not_deleted.exclude(current_user.id).limit(4)
       end
     rescue
     end
