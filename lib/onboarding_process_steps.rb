@@ -48,7 +48,7 @@ class OnboardingProcessSteps
       if next_index < steps.size
         step.next_link!(steps.fetch(next_index).link)
       else
-        step.next_link!(root_path(take_tour: 1))
+        step.next_link!(tour_path)
       end
     end
   end
