@@ -90,7 +90,7 @@ describe User do
       user = create(:user)
       user1 = create(:user)
 
-      User.exclude(user.id).should eq([user])
+      User.exclude(user.id).should eq([user1])
     end
   end
 
