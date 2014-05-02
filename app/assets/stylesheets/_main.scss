@@ -15,10 +15,6 @@ body {
   height: 100%;
 }
 
-[class^="glyphicon"] {
-  margin-right: 5px;
-}
-
 [role="application"] {
   padding-top: 70px;
 }
@@ -44,6 +40,7 @@ body {
 @import "common/forms";
 @import "common/thumbnails";
 @import "common/headings";
+@import "common/navigation";
 
 
 // PARTIALS

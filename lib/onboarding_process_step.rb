@@ -1,8 +1,9 @@
 class OnboardingProcessStep
-  def initialize(name, link, current=false, css_class="inactive-step")
+  def initialize(name, link, current=false, next_link_visible=true, css_class="inactive-step")
     @name = name
     @link = link
     @current = current
+    @next_link_visible = next_link_visible
   end
 
   def name
@@ -11,6 +12,10 @@ class OnboardingProcessStep
 
   def current?
     @current
+  end
+  
+  def next_link_visible?
+    @next_link_visible
   end
 
   def css_class

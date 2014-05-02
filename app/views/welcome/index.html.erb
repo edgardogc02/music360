@@ -1,15 +1,22 @@
-<%= render "shared/onboarding_process_header", next_link: edit_user_instrument_path(current_user.id, next: "user_groupies"), css_classes: {welcome: "active-step", instrument: "", groupies: ""} %>
+<%= render "shared/onboarding_process_header" %>
 
 <h1 class="page-header">Welcome <%= current_user.username %></h1>
 
 <p>
-  You are the first of your friends to sign up.
-  <br />
-  InstrumentChamp is a music game platform where you can learn to play music and challenge your friends in music
+   Let's get you started, first choose your instrument and then connect with your friends.
 </p>
 
 <div class="bs-callout bs-callout-info">
 	<h4>Signup Bonus</h4>
-	<p>We have upgraded you to a 3 months premium account. (Total value: $29.97)</p>
+	<p>We have upgraded you to a Premium account for 3 months.</p>
 </div>
+
+<br />
+
+<p>
+	<%= link_to @steps.current_step.next_link, {class: "btn btn-danger btn-lg"} do %>
+		Get started
+		<i class="glyphicon glyphicon-chevron-right"></i>
+	<% end %>
+</p>
 
