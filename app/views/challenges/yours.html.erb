@@ -2,14 +2,13 @@
   <META HTTP-EQUIV="Refresh" CONTENT="1; URL=<%= @autostart_challenge.desktop_app_uri %>">
 <% end %>
 
-<h1><i class="icon-challenge"></i> Your challenges</h1>
+<h1 class="page-header"><small><i class="glyphicon glyphicon-flag"></i></small> Your challenges</h1>
 
-<% unless @challenges.blank? %>
-<ol class="challenges-list">
-  <%= render partial: "challenge", collection: @challenges, layout: "layouts/list_layout" %>
-</ol>
-
-<% else %>
+<ul class="media-list">
+	<% unless @challenges.blank? %>
+		<%= render partial: "challenge", collection: @challenges %>
+	<% else %>
+</ul>
 
 <p class="no-content">
   No open challenges right now

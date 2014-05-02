@@ -103,8 +103,6 @@
     <%= f.input :public, as: :hidden %>
     <%= f.input :finished, as: :hidden %>
     <%= f.input :instrument, as: :hidden, input_html: { value: 'Guitar' } %>
-    <p>
-      <%= f.submit "Start Challenge", {class: "btn btn-primary submit-left"} %>
-    </p>
+    <%= f.button :submit, "Start Challenge" %>
   <% end %>
 </section>

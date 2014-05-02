@@ -1,16 +1,13 @@
 <h1 class="page-header"><small><i class="glyphicon glyphicon-cog"></i></small> Edit profile</h1>
 
-<%= simple_form_for @user, url: person_path(@user) do |f| %>
-
-  <p>
-    <%= f.input :first_name, label_html: { class: 'large' } %>
-    <%= f.input :last_name, label_html: { class: 'large' } %>
-    <%= f.input :phone_number, label_html: { class: 'large' } %>
-    <%= f.input :username, label_html: { class: 'large' } %>
-    <%= f.input :email, label_html: { class: 'large' } %>
-  </p>
-
-  <br />
-  <%= f.submit "Save", {class: "btn btn-primary"} %>
-
-<% end %>
+<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+	<%= simple_form_for @user, url: person_path(@user) do |f| %>
+	  <%= f.input :first_name %>
+	  <%= f.input :last_name %>
+	  <%= f.input :phone_number %>
+	  <%= f.input :username %>
+	  <%= f.input :email %>
+	  
+	  <%= f.button :submit, "Save" %>
+	<% end %>
+</div>

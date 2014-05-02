@@ -39,12 +39,13 @@
 
 <section>
 	<h2>Open challenges</h2>
-
-	<% unless @challenges.blank? %>
-		<ol class="challenges-list">
-			<%= render partial: "challenges/challenge", collection: @challenges, layout: "layouts/list_layout" %>
-		</ol>
-	<% else %>
+	
+	<ul class="media-list">
+		<% unless @challenges.blank? %>
+			<%= render partial: "challenges/challenge", collection: @challenges %>
+		<% else %>
+	</ul>	
+	
 	<p class="no-content">
 		<%= @user.username%> has no open challenges right now
 	</p>

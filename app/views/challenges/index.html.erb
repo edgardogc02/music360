@@ -4,7 +4,7 @@
 
 <ul class="media-list">
 	<% unless @challenges.blank? %>
-		<%= render partial: "challenge", collection: @challenges, layout: "layouts/list_layout" %>
+		<%= render partial: "challenge", collection: @challenges %>
 	<% else %>
 </ul>
 

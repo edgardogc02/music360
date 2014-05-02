@@ -1,16 +1,11 @@
 <h1 class="page-header"><small><i class="glyphicon glyphicon-user"></i></small> Sign Up</h1>
 
-<%= simple_form_for @user, url: "/people" do |f| %>
-
-  <div>
-    <%= f.input :username, label_html: { class: 'large required' } %>
-    <%= f.input :email, label_html: { class: 'large required' } %>
-    <%= f.input :password, label_html: { class: 'large required' } %>
-    <%= f.input :password_confirmation, label_html: { class: 'large required' } %>
-  </div>
-	<br />
-  <div>
-    <%= f.submit "Sign Up", {class: "btn btn-primary"} %>
-  </div>
-
-<% end %>
+<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+	<%= simple_form_for @user, url: "/people" do |f| %>
+	  <%= f.input :username %>
+	  <%= f.input :email %>
+	  <%= f.input :password %>
+	  <%= f.input :password_confirmation %>
+	  <%= f.button :submit, "Sign Up" %>
+	<% end %>
+</div>

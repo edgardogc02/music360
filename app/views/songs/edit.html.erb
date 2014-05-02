@@ -2,23 +2,21 @@
 
 <p><h2><%= @song.title %></h2></p>
 
-<%= simple_form_for @song do |f| %>
+<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
 
-  <div>
-    <%= f.input :title %>
-    <%= f.input :writer %>
-    <%= f.input :length %>
-    <%= f.input :difficulty %>
-    <%= f.input :arranger_userid %>
-    <%= f.input :comment %>
-    <%= f.input :status %>
-    <%= f.input :onclient %>
-    <%= f.input :published_at %>
-    <%= f.input :cover, label: false, hint: "Upload a cover image" %>
-  </div>
+	<%= simple_form_for @song do |f| %>
+	  <%= f.input :title %>
+	  <%= f.input :writer %>
+	  <%= f.input :length %>
+	  <%= f.input :difficulty %>
+	  <%= f.input :arranger_userid %>
+	  <%= f.input :comment %>
+	  <%= f.input :status %>
+	  <%= f.input :onclient %>
+	  <%= f.input :published_at %>
+	  <%= f.input :cover, label: false, hint: "Upload a cover image" %>
+	  
+	  <%= f.button :submit, 'Save' %>
+	<% end %>
 
-  <div>
-    <%= f.submit "Save", {class: "btn btn-primary"} %>
-  </div>
-
-<% end %>
+</div>
