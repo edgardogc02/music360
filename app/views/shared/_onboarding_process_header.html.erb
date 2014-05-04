@@ -6,15 +6,19 @@
 		  <% end %>
 		</div>
 	</div>
-	<div class="col-md-2">
+	<div class="col-md-2 text-right">
 		<% if @steps.current_step.next_link_visible? %>
-			<%= link_to @steps.current_step.next_link, {class: "btn btn-danger"} do %>
-				Next
-				<i class="glyphicon glyphicon-chevron-right"></i>
-			<% end %>
+			<div class="spacer-sm">
+				<%= link_to @steps.current_step.next_link, {class: "btn btn-danger"} do %>
+					Next
+					<i class="glyphicon glyphicon-chevron-right"></i>
+				<% end %>
+			</div>
+			<div class="text-right"><%= link_to 'Skip the tour', root_path %></div>
 		<% end %>
 	</div>
 </div>
+
 <br />
 
 

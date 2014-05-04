@@ -67,13 +67,13 @@ class UsersController < ApplicationController
 	
 	def all_regular_users
     @users = User.not_deleted.exclude(current_user.id).limit(50).page params[:page]
-    @title = "Facebook friends on InstrumentChamp"
+    @title = "Challenge your Facebook Friends"
     render 'complete_list'
   end
 
   def all_facebook_users
     @users = current_user.facebook_friends.page params[:page]
-    @title = "InstrumentChamp Friends"
+    @title = "Challenge your InstrumentChamp Friends"
     render 'complete_list'
   end
 
