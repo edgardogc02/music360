@@ -22,6 +22,12 @@ class UsersController < ApplicationController
       end
     rescue
     end
+    
+    if params[:view] == 'modal'
+      render 'modal', layout: false
+    else
+      render 'index'
+    end
 	end
 
 	def show
@@ -58,6 +64,18 @@ class UsersController < ApplicationController
 	  @user.destroy
 	  redirect_to logout_path, notice: "Your profile was successfully deleted"
 	end
+	
+	def all_regular_users
+    @users = User.not_deleted.exclude(current_user.id).limit(50).page params[:page]
+    @title = "Facebook friends on InstrumentChamp"
+    render 'complete_list'
+  end
+
+  def all_facebook_users
+    @users = current_user.facebook_friends.page params[:page]
+    @title = "InstrumentChamp Friends"
+    render 'complete_list'
+  end
 
 	private
 

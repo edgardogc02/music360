@@ -1,0 +1,20 @@
+<%= render "users_list", users: @fb_top_friends, title: "Facebook friends on InstrumentChamp", show_view_more: true, view_more_link: facebook_users_path %>
+
+<%= render "users_list", users: @regular_users, title: "InstrumentChamp Friends", show_view_more: true, view_more_link: instrument_champ_users_path %>
+
+<script>
+	$(document).ready(function(){
+		$(".thumbnail-grid .thumbnail").hover((function() {
+		  $(this).children(".overlay-actions").show();
+		}), function() {
+		  $(this).children(".overlay-actions").hide();
+		});
+	});		
+</script>
+
+
+
+
+
+
+

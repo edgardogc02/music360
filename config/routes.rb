@@ -68,11 +68,8 @@ InstrumentchampPrototype::Application.routes.draw do
   get 'help', to: "statics#help", as: :help
   get 'tour', to: "pages#tour", as: :tour
 
-  get 'modal-view-friends', to: 'user_searches#modal_view_users', as: :modal_view_users
-  get 'instrument-champ-friends', to: 'user_searches#list_instrument_champ_users', as: :instrument_champ_users
-  get 'facebook-friends', to: 'user_searches#list_facebook_users', as: :facebook_users
-
-  get 'modal-view-songs', to: 'song_searches#modal_view_songs', as: :modal_view_songs
+  get 'instrument-champ-friends', to: 'users#all_regular_users', as: :instrument_champ_users
+  get 'facebook-friends', to: 'users#all_facebook_users', as: :facebook_users
 
   get ':action' => 'pages'
 

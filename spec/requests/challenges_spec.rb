@@ -28,7 +28,7 @@ describe "Challenges" do
       challenged_user = create(:user)
 
       click_on "Choose your opponent"
-      current_path.should eq(modal_view_users_path)
+      current_path.should eq(people_path)
 
       click_on "challenge_#{challenged_user.id}"
 
@@ -70,7 +70,7 @@ describe "Challenges" do
       page.should have_content(challenged_user.username)
       click_on "Choose your song"
 
-      current_path.should eq(modal_view_songs_path)
+      current_path.should eq(songs_path)
       click_on "challenge_#{@song.id}"
 
       current_path.should eq(new_challenge_path)

@@ -17,8 +17,7 @@
 		  		<div>Publisher: <strong><%= @challenge.song.publisher %></strong></div>
 		  	</p>
 			</div>
-			
-			<div><%= link_to "Change your song", modal_view_songs_path(challenged_id: @challenge.challenged_id), {class: 'btn btn-link', data: { toggle: "modal", target: "#selectSong" }} %></div>
+			<div><%= link_to "Change your song", songs_path(view: 'modal', challenged_id: @challenge.challenged_id), {class: 'btn btn-link', data: { toggle: "modal", target: "#selectSong" }} %></div>
 		</div>
   </section>
 
@@ -27,7 +26,7 @@
   <section>
     <h3>1. Chose your song</h3>
     <p>
-      <%= link_to "Choose your song", modal_view_songs_path(challenged_id: @challenge.challenged_id), {class: 'btn btn-primary', data: { toggle: "modal", target: "#selectSong" }} %>
+      <%= link_to "Choose your song", songs_path(view: 'modal', challenged_id: @challenge.challenged_id), {class: 'btn btn-primary', data: { toggle: "modal", target: "#selectSong" }} %>
     </p>
   </section>
 
@@ -53,18 +52,18 @@
 	      <h4><%= @challenge.challenged.username %></h4>
 	      <div>
 	        <% if @challenge.song %>
-	        	<%= link_to "Change your opponent", modal_view_users_path(song_id: @challenge.song.id), {class: 'btn btn-link', data: { toggle: "modal", target: "#selectUser"}} %>
+	        	<%= link_to "Change your opponent", people_path(view: 'modal', song_id: @challenge.song.id), {class: 'btn btn-link', data: { toggle: "modal", target: "#selectUser"}} %>
 	        <% else %>
-	          <%= link_to "Change your opponent", modal_view_users_path, {class: 'btn btn-link', data: { toggle: "modal", target: "#selectUser" }} %>
+	          <%= link_to "Change your opponent", people_path(view: 'modal'), {class: 'btn btn-link', data: { toggle: "modal", target: "#selectUser" }} %>
 	        <% end %>
 	      </div>
 	    <% else %>
 	      <img src="http://placehold.it/300x300" class="thumbnail">
 	      <div>
 	        <% if @challenge.song %>
-	        	<%= link_to "Choose your opponent", modal_view_users_path(song_id: @challenge.song.id), {class: 'btn btn-link', data: { toggle: "modal", target: "#selectUser" }} %>
+	        	<%= link_to "Choose your opponent", people_path(view: 'modal', song_id: @challenge.song.id), {class: 'btn btn-link', data: { toggle: "modal", target: "#selectUser" }} %>
 	        <% else %>
-	          <%= link_to "Choose your opponent", modal_view_users_path, {class: 'btn btn-link', data: { toggle: "modal", target: "#selectUser" }} %>
+	          <%= link_to "Choose your opponent", people_path(view: 'modal'), {class: 'btn btn-link', data: { toggle: "modal", target: "#selectUser" }} %>
 	        <% end %>
 	      </div>
 	    <% end %>

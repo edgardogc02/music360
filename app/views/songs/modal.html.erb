@@ -1,0 +1,47 @@
+<h3 class="clearfix">
+		Songs		
+			<%= link_to songs_path, {class: 'btn btn-primary pull-right'} do %>
+	    	View all
+    <% end %>
+	</h3>
+
+	<div class="thumbnail-grid row">
+		
+		<% @songs.each do |song| %>
+		
+		<div class="masonry-img col-md-3 col-sm-6 col-xs-6">
+			<div class="thumbnail">
+				<%= image_tag song.cover_url, class: "song-cover" %>
+				<div class="overlay-actions">
+					<div class="thumb-info">
+						<strong><%= link_to song.title, artist_song_path(song.artist, song), class: "song-title" %></strong>
+				  	<p class="spacer-sm"><%= link_to song.artist.title, artist_path(song.artist), class: "song-artist" %></p>
+					</div>		
+				  <div class="btn-group-vertical">
+				  	<%= link_to "Play", song.desktop_app_uri, {class: 'btn btn-sm btn-default'} %>
+		  			<%= link_to "Challenge", new_challenge_path(song_id: song.id, challenged_id: params[:challenged_id]), {id: "challenge_#{song.id}", class: 'btn btn-sm btn-default'} %>	
+				  </div>		      
+				</div>
+			</div>
+		</div>
+		
+		<% end %>	
+
+	</div>
+
+<script>
+	$(document).ready(function(){		
+		$(".thumbnail-grid .thumbnail").hover((function() {
+		  $(this).children(".overlay-actions").show();
+		}), function() {
+		  $(this).children(".overlay-actions").hide();
+		});
+	});		
+</script>
+
+
+
+
+
+
+
