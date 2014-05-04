@@ -265,6 +265,16 @@
     background-color: #334E84;
     color: #FFF;
   }
+  
+  &.sm {
+    width: 100%;
+    font-size: 15px;
+    padding: 0px;
+    
+    .text {
+      margin: 0px;
+    }
+  }
 }
 
 
