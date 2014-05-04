@@ -1,21 +1,51 @@
-<div class="email_container">
-
-  <%= render 'header' %>
-
-  <div>
-    Welcome to instrumentchamp!
-  </div>
-
-  <div>
-    Hi <%= @user.username %>,
-  </div>
-
-  <div>this are your authentication credentials:</div>
-  <div>Username: <%= @user.username %></div>
-  <div>Password: <%= @user.password %></div>
-
-  <div>Kind regards,</div>
-  <div>The instrumentchamp team.</div>
-</div>
-
-<%= render 'footer' %>
+<table class="email_container" width="600px;">
+	<tr>
+		<td>
+			<%= render 'email_notifier/header' %>
+		</td>
+	</tr>
+</table>
+<table class="email_container">
+	<tr>
+		<td>
+			<div class="email_content" style="font-family: arial; font-size: 12px; color: #333; padding-left: 20px;">
+				<p style="font-size: 16px;">
+			    Hi <strong><%= @user.username %></strong>, welcome to InstrumentChamp!
+			  </p>
+			
+				<p>We want to help you learn to play music and challenge friends in music competitions.</p> 
+				
+				<!--
+				<p>This is your account information:</p>
+				
+				<p>
+				  <strong>Username:</strong> <%= @user.username %></br>
+				  <strong>Password:</strong> <%= @user.password %>			  	
+				</p>
+				-->
+				
+				<p>Here is some information and links to get you started:</p> 
+				
+				<ul style="list-style: none; padding: 0px 0px 20px 0px;">	
+					<li style="margin: 0px"><%= link_to "Challenge a friend", people_path, {style: "color: #45B9B6"} %></li>		
+					<li style="margin: 0px"><%= link_to "Learn to play a song", songs_path, {style: "color: #45B9B6"} %></li>
+					<li style="margin: 0px"><%= link_to "Take the tour", tour_path, {style: "color: #45B9B6"} %></li>
+					<li style="margin: 0px"><%= link_to "Download the game", apps_path, {style: "color: #45B9B6"} %></li>
+					<li style="margin: 0px"><%= link_to "Get help", help_path, {style: "color: #45B9B6"} %></li>
+				</ul>			  
+				
+				<p>			
+				  Kind regards, <br />
+				  The instrumentchamp team.
+			  </p>
+			</div>
+		</td>
+	</tr>
+</table>
+<table class="email_container">
+	<tr>
+		<td class="email_footer">
+			<%= render 'email_notifier/footer' %>
+		</td>
+	</tr>
+</table>
