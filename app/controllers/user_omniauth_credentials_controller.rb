@@ -6,7 +6,7 @@ class UserOmniauthCredentialsController < ApplicationController
     if user and !user.deleted?
       signin_user(user)
       flash[:notice] = "Welcome #{user.username}!"
-      redirect_to root_path
+      redirect_to welcome_path
     else
       redirect_to login_path
     end

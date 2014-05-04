@@ -1,31 +1,57 @@
-<h1 class="page-header"><small><i class="glyphicon glyphicon-th"></i></small> Apps</h1>
+<h1 class="page-header"><small><i class="glyphicon glyphicon-th"></i></small> Download</h1>
 
-<section>
-	<h2>InstrumentChamp for Mac</h2>
-	<p class="spacer-md">
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis, maxime esse dolor veniam pariatur molestias blanditiis qui nemo commodi deserunt doloremque rem suscipit ducimus in magni temporibus non illum. Mollitia.
+<p>To play songs and challenges you need to download and install the InstrumentChamp desktop application to your computer.</p>
+
+<br />
+<p id="btn-download"></p>
+<br />
+
+<script>
+	var node = document.getElementById("btn-download");
+	
+	if (navigator.appVersion.indexOf("Mac")!=-1){
+	  node.innerHTML = '<a href="http://blog.instrumentchamp.com/thanks-for-download-osx/"><img src="http://blog.instrumentchamp.com/wp-content/uploads/2014/01/download_ic_osx.png" alt="Download InstrumentChamp for OSX 10.7+" class="downloadbutton"/></a>';
+	
+	/* insert this to show also PC download link small for Mac. 
+	</br>
+	<a href="http://blog.instrumentchamp.com/thanks-for-download-win/"><img src="http://blog.instrumentchamp.com/wp-content/uploads/2014/01/win_icon.png" alt="Download InstrumentChamp for Windows"/>&nbsp;&nbsp;<span style="color:black;">Download InstrumentChamp for Windows</span></a> */
+	} 
+	else {
+	  node.innerHTML = '<a href="http://blog.instrumentchamp.com/thanks-for-download-win/"><img src="http://blog.instrumentchamp.com/wp-content/uploads/2014/01/download_ic_win.png" alt="Download InstrumentChamp for Windows" class="downloadbutton"/></a>';
+	
+	/* </br><a href="http://blog.instrumentchamp.com/thanks-for-download-osx/"><img src="http://blog.instrumentchamp.com/wp-content/uploads/2014/01/apple_icon.png" alt="Download InstrumentChamp for OSX"/>&nbsp;&nbsp;<span style="color:black;">Download InstrumentChamp for Mac OSX 10.7+</span></a>*/
+	} 
+</script>
+
+<h3>Step by step instructions:</h3>
+<ol>
+	<li>Download the InstrumentChamp software for PC or MAC.</li>
+	<li>Install InstrumentChamp on your computer.</li>
+	<li>Connect your keyboard or digital drumset. Make sure your microphone is activated on your computer to play with acoustic instruments.</li>
+	<li>Start InstrumentChamp.</li>
+</ol> 
+
+<div class="bs-callout bs-callout-info">
+	<h4>System requirements</h4>
+	<p>
+		<ul class="no-style">
+			<li>Operating system: Windows XP/Vista/7. OSX</li>
+			<li>Operating system version (bit/SP): SP 3 (XP)</li>
+			<li>Memory: 1 GB</li>
+			<li>Hard drive (GB): 0,5</li>
+			<li>Sound Card.</li> 
+			<li>Microphone.</li>
+		</ul>
 	</p>
 	<p>
-		<a class="btn btn-primary" href="http://blog.instrumentchamp.com/thanks-for-download-osx/"><i class="glyphicon glyphicon-circle-arrow-down"></i> Download for Mac</a>
+		<ul class="no-style">
+			<li>Guitar requirements: Any acoustic or electric guitar.</li>
+			<li>Piano requirements: Any acoustic or electric piano.</li>
+			<li>Drums: Digital drumset with usb-port</li>
+		</ul>
 	</p>
-</section>
+</div>
 
-<hr class="spacer-md" />
+<p>You can get help to install and get started with InstrumentChamp on our <a href="#">Zendesk</a> or by sending an email to the <a href="#">support team</a>.</p>
 
-<section>
-	<h2>InstrumentChamp for Windows</h2>
-	<p class="spacer-md">
-		Lorem ipsum dolor sit amet, consectetur adipisicing elit. Omnis, maxime esse dolor veniam pariatur molestias blanditiis qui nemo commodi deserunt doloremque rem suscipit ducimus in magni temporibus non illum. Mollitia.
-	</p>
-	<p>
-		<a class="btn btn-primary" href="http://blog.instrumentchamp.com/thanks-for-download-win/"><i class="glyphicon glyphicon-circle-arrow-down"></i> Download for Windows</a>
-	</p>
-</section>
 
-<hr class="spacer-md" />
-
-<% if !current_user.installed_desktop_app? %>
-  <section>
-    <%= link_to "I already installed the app", apps_path(installed: true) %>
-  </section>
-<% end %>

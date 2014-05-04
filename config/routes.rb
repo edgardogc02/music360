@@ -67,6 +67,7 @@ InstrumentchampPrototype::Application.routes.draw do
   get 'terms-of-service', to: "statics#terms_of_service", as: :terms_of_service
   get 'help', to: "statics#help", as: :help
   get 'tour', to: "pages#tour", as: :tour
+  get 'premium', to: "statics#premium", as: :premium
 
   get 'instrument-champ-friends', to: 'users#all_regular_users', as: :instrument_champ_users
   get 'facebook-friends', to: 'users#all_facebook_users', as: :facebook_users

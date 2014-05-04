@@ -44,7 +44,7 @@ class UsersController < ApplicationController
 	  if @user.sign_up(request.remote_ip)
 	    signin_user(@user)
 	    flash[:notice] = "Hi #{@user.username}!"
-      redirect_to root_path
+      redirect_to welcome_path
 	  else
 	    flash.now[:warning] = "Check the errors below and try again"
 	    render "new"
