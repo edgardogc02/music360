@@ -5,24 +5,15 @@ class UsersController < ApplicationController
   before_action :check_security, only: [:edit, :update, :destroy, :upload_profile_image]
 
 	def index
-    begin
-      if params[:username_or_email]
-        @users_search = User.by_username_or_email(params[:username_or_email]).page params[:page]
-      else
-        if current_user.has_facebook_credentials?
-          fb_top_friends = current_user.facebook_top_friends(10)
-
-          UserFacebookFriends.new(current_user, fb_top_friends).save
-
-          @fb_top_friends = current_user.groupies_to_connect_with
-
-          @facebook_friends = current_user.facebook_friends.limit(4)
-        end
-    		@regular_users = User.not_deleted.exclude(current_user.id).limit(4)
+    if params[:username_or_email]
+      @users_search = User.by_username_or_email(params[:username_or_email]).page params[:page]
+    else
+      if current_user.has_facebook_credentials?
+        @fb_top_friends = current_user.facebook_friends.limit(4)
       end
-    rescue
+  		@regular_users = User.not_deleted.exclude(current_user.id).limit(4)
     end
-    
+
     if params[:view] == 'modal'
       render 'modal', layout: false
     else
@@ -64,7 +55,7 @@ class UsersController < ApplicationController
 	  @user.destroy
 	  redirect_to logout_path, notice: "Your profile was successfully deleted"
 	end
-	
+
 	def all_regular_users
     @users = User.not_deleted.exclude(current_user.id).limit(50).page params[:page]
     @title = "Challenge your Facebook Friends"

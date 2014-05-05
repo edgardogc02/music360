@@ -5,11 +5,7 @@ class UserGroupiesController < ApplicationController
     @steps = @steps = create_onboarding_steps("Groupies")
     begin
       if current_user.has_facebook_credentials?
-        fb_top_friends = current_user.facebook_top_friends(10)
-
-        UserFacebookFriends.new(current_user, fb_top_friends).save
-
-        @user_groupies = current_user.groupies_to_connect_with
+        @user_groupies = current_user.groupies_to_connect_with.limit(4)
       end
     rescue
     end

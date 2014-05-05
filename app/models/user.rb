@@ -75,6 +75,10 @@ class User < ActiveRecord::Base
       user.save
 
       user.send_welcome_email
+
+      if user.has_facebook_credentials?
+        FacebookFriendsWorker.perform_async(user.id)
+      end
     else
       user.user_omniauth_credentials.create_or_update_from_omniauth(auth)
     end
@@ -105,8 +109,12 @@ class User < ActiveRecord::Base
     self.user_omniauth_credentials.find_by(provider: 'facebook')
   end
 
-  def facebook_top_friends(limit)
-    self.facebook.fql_query("SELECT uid, name FROM user WHERE uid IN (SELECT uid2 FROM friend WHERE uid1 = me()) ORDER BY mutual_friend_count DESC LIMIT #{limit}")
+  def facebook_top_friends(limit=0)
+    sql = "SELECT uid, name FROM user WHERE uid IN (SELECT uid2 FROM friend WHERE uid1 = me()) ORDER BY mutual_friend_count DESC"
+    if limit
+      sql = sql + " LIMIT #{limit}"
+    end
+    self.facebook.fql_query(sql)
   end
 
   def has_facebook_credentials?

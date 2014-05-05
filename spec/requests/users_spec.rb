@@ -9,7 +9,7 @@ describe "Users" do
   describe "user not signed in" do
     it "should sign up with correct credentials" do
       signup('testuser', 'testuser@test.com', 'password')
-      current_path.should eq(root_path)
+      current_path.should eq(welcome_path)
       page.find('.alert-notice').should have_content('Hi testuser!')
       page.should have_content('testuser')
     end

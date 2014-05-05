@@ -25,7 +25,7 @@ describe "UserGroupies" do
     it "should have a next button" do
       login
       visit user_groupies_path
-      page.should have_link "Next", href: root_path(take_tour: 1)
+      page.should have_link "Next", href: tour_path
     end
   end
 

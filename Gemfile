@@ -73,6 +73,9 @@ gem "rack-timeout"
 # css classes in emails
 gem 'roadie'
 
+# background jobs
+gem 'sidekiq'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false

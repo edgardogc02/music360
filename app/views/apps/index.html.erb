@@ -8,19 +8,19 @@
 
 <script>
 	var node = document.getElementById("btn-download");
-	
+
 	if (navigator.appVersion.indexOf("Mac")!=-1){
 	  node.innerHTML = '<a href="http://blog.instrumentchamp.com/thanks-for-download-osx/"><img src="http://blog.instrumentchamp.com/wp-content/uploads/2014/01/download_ic_osx.png" alt="Download InstrumentChamp for OSX 10.7+" class="downloadbutton"/></a>';
-	
-	/* insert this to show also PC download link small for Mac. 
+
+	/* insert this to show also PC download link small for Mac.
 	</br>
 	<a href="http://blog.instrumentchamp.com/thanks-for-download-win/"><img src="http://blog.instrumentchamp.com/wp-content/uploads/2014/01/win_icon.png" alt="Download InstrumentChamp for Windows"/>&nbsp;&nbsp;<span style="color:black;">Download InstrumentChamp for Windows</span></a> */
-	} 
+	}
 	else {
 	  node.innerHTML = '<a href="http://blog.instrumentchamp.com/thanks-for-download-win/"><img src="http://blog.instrumentchamp.com/wp-content/uploads/2014/01/download_ic_win.png" alt="Download InstrumentChamp for Windows" class="downloadbutton"/></a>';
-	
+
 	/* </br><a href="http://blog.instrumentchamp.com/thanks-for-download-osx/"><img src="http://blog.instrumentchamp.com/wp-content/uploads/2014/01/apple_icon.png" alt="Download InstrumentChamp for OSX"/>&nbsp;&nbsp;<span style="color:black;">Download InstrumentChamp for Mac OSX 10.7+</span></a>*/
-	} 
+	}
 </script>
 
 <h3>Step by step instructions:</h3>
@@ -29,7 +29,7 @@
 	<li>Install InstrumentChamp on your computer.</li>
 	<li>Connect your keyboard or digital drumset. Make sure your microphone is activated on your computer to play with acoustic instruments.</li>
 	<li>Start InstrumentChamp.</li>
-</ol> 
+</ol>
 
 <div class="bs-callout bs-callout-info">
 	<h4>System requirements</h4>
@@ -39,7 +39,7 @@
 			<li>Operating system version (bit/SP): SP 3 (XP)</li>
 			<li>Memory: 1 GB</li>
 			<li>Hard drive (GB): 0,5</li>
-			<li>Sound Card.</li> 
+			<li>Sound Card.</li>
 			<li>Microphone.</li>
 		</ul>
 	</p>
@@ -54,4 +54,8 @@
 
 <p>You can get help to install and get started with InstrumentChamp on our <a href="#">Zendesk</a> or by sending an email to the <a href="#">support team</a>.</p>
 
-
+<% if !current_user.installed_desktop_app? %>
+  <section>
+    <%= link_to "I already installed the app", apps_path(installed: true) %>
+  </section>
+<% end %>
