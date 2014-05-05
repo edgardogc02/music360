@@ -111,7 +111,7 @@ class User < ActiveRecord::Base
 
   def facebook_top_friends(limit=0)
     sql = "SELECT uid, name FROM user WHERE uid IN (SELECT uid2 FROM friend WHERE uid1 = me()) ORDER BY mutual_friend_count DESC"
-    if limit
+    if limit > 0
       sql = sql + " LIMIT #{limit}"
     end
     self.facebook.fql_query(sql)
