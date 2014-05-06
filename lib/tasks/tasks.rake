@@ -10,4 +10,11 @@ namespace :users do
     end
   end
 
+  task :import_facebook_friends, [:user_id] => :environment do |t, args|
+    user = User.find(args[:user_id])
+
+    if user.has_facebook_credentials?
+      FacebookFriendsWorker.perform_async(user.id)
+    end
+  end
 end
