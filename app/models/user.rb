@@ -56,7 +56,7 @@ class User < ActiveRecord::Base
 	end
 
 	def level
-		"Test"
+		"Beginner"
 	end
 
 	def avatar_url

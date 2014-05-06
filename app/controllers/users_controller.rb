@@ -65,7 +65,7 @@ class UsersController < ApplicationController
 
   def all_facebook_users
     @users = current_user.facebook_friends.page params[:page]
-    @title = "Challenge your InstrumentChamp Friends"
+    @title = "Challenge people on InstrumentChamp"
     render 'complete_list'
   end
 
