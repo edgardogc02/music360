@@ -3,7 +3,7 @@ module UserMacros
     user.username.should eq(user.username)
     user.email.should eq(user.email)
 
-    user.confirmed.should_not be_blank
+    user.createdtime.should_not be_blank
     user.ip.should_not be_blank
     user.installed_desktop_app.should_not be_true
     user.premium.should be_true

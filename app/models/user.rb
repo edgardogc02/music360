@@ -149,7 +149,7 @@ class User < ActiveRecord::Base
 	private
 
   def fill_in_extra_fields
-    self.confirmed = Time.now
+    self.createdtime = Time.now
     self.installed_desktop_app = 0
     self.premium = true
     self.premium_until = 3.months.from_now
