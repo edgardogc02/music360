@@ -21,9 +21,9 @@ class UserFacebookFriends
       user.password = User.generate_random_password(5)
       user.password_confirmation = user.password
       user.email = facebook_friend.new_fake_email
-      user.save!
+      user.save
       user.remote_imagename_url = facebook_friend.remote_image
-      user.save!
+      user.save
       user
     end
     user
@@ -35,7 +35,7 @@ class UserFacebookFriends
     if !user_fb_friend
       user_fb_friend = @user.user_facebook_friends.build
       user_fb_friend.facebook_friend = fb_friend_user
-      user_fb_friend.save!
+      user_fb_friend.save
     end
   end
 
