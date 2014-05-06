@@ -33,20 +33,7 @@
 	
 <br /><br />
 
-<h3>Quick start song</h3>
-
-<div class="thumbnail-grid row">
-	<%= render partial: "songs/song", collection: @songs %>
-</div>
-
-<h3>Quick start challenge</h3>
-<%= debug @songs %>
-
-<%= render "users/users_list", users: @users, title: "Challenge your InstrumentChamp Friends", show_view_more: false, view_more_link: instrument_champ_users_path %>
-
-<!--
 <section class="get-started">
 	<div><%= link_to "Quick start song", @song.desktop_app_uri, {class: 'btn btn-primary btn-huge'} %></div><br/>
 	<div><%= link_to "Quick start challenge", new_challenge_path, {class: 'btn btn-danger btn-huge'} %></div>
 </section>
--->
