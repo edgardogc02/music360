@@ -10,17 +10,9 @@
 	var node = document.getElementById("btn-download");
 
 	if (navigator.appVersion.indexOf("Mac")!=-1){
-	  node.innerHTML = '<a href="http://blog.instrumentchamp.com/thanks-for-download-osx/"><img src="http://blog.instrumentchamp.com/wp-content/uploads/2014/01/download_ic_osx.png" alt="Download InstrumentChamp for OSX 10.7+" class="downloadbutton"/></a>';
-
-	/* insert this to show also PC download link small for Mac.
-	</br>
-	<a href="http://blog.instrumentchamp.com/thanks-for-download-win/"><img src="http://blog.instrumentchamp.com/wp-content/uploads/2014/01/win_icon.png" alt="Download InstrumentChamp for Windows"/>&nbsp;&nbsp;<span style="color:black;">Download InstrumentChamp for Windows</span></a> */
-	}
+	  node.innerHTML = '<a href="http://uploads.instrumentchamp.com/versions/InstrumentChamp_Band_Edition.dmg"><img src="http://blog.instrumentchamp.com/wp-content/uploads/2014/01/download_ic_osx.png" alt="Download InstrumentChamp for OSX 10.7+" class="downloadbutton"/></a>';
 	else {
-	  node.innerHTML = '<a href="http://blog.instrumentchamp.com/thanks-for-download-win/"><img src="http://blog.instrumentchamp.com/wp-content/uploads/2014/01/download_ic_win.png" alt="Download InstrumentChamp for Windows" class="downloadbutton"/></a>';
-
-	/* </br><a href="http://blog.instrumentchamp.com/thanks-for-download-osx/"><img src="http://blog.instrumentchamp.com/wp-content/uploads/2014/01/apple_icon.png" alt="Download InstrumentChamp for OSX"/>&nbsp;&nbsp;<span style="color:black;">Download InstrumentChamp for Mac OSX 10.7+</span></a>*/
-	}
+	  node.innerHTML = '<a href="http://uploads.instrumentchamp.com/versions/InstrumentChamp.msi"><img src="http://blog.instrumentchamp.com/wp-content/uploads/2014/01/download_ic_win.png" alt="Download InstrumentChamp for Windows" class="downloadbutton"/></a>';
 </script>
 
 <h3>Step by step instructions:</h3>
@@ -52,7 +44,7 @@
 	</p>
 </div>
 
-<p>You can get help to install and get started with InstrumentChamp on our <a href="#">Zendesk</a> or by sending an email to the <a href="#">support team</a>.</p>
+<p>You can get help to install and get started with InstrumentChamp on our <a href="https://instrumentchamp.zendesk.com" target="_blank">Zendesk</a> or by sending an email to the <a href="mailto: support@instrumentchamp.com">support team</a>.</p>
 
 <% if !current_user.installed_desktop_app? %>
   <section>
