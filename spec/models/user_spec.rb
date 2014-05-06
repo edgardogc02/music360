@@ -98,12 +98,12 @@ describe User do
 
   context "Methods" do
     it "should create new user from omniauth facebook credentials" do
-      expect { User.from_omniauth(mock_facebook_auth_hash, "127.0.0.1") }.to change{User.count}.by(1)
+      expect { User.from_omniauth(build_request) }.to change{User.count}.by(1)
     end
 
     it "should not create new user from omniauth facebook credentials" do
       create(:user, email: "test@test.com") # email from facebook
-      expect { User.from_omniauth(mock_facebook_auth_hash, "127.0.0.1") }.to change{User.count}.by(0)
+      expect { User.from_omniauth(build_request) }.to change{User.count}.by(0)
     end
 
     it "should verify following method" do
@@ -198,6 +198,10 @@ describe User do
       user.groupies_to_connect_with.should eq(User.find(user_facebook_friend_ids))
 
     end
+  end
+
+  def build_request
+    OpenStruct.new({env: {"omniauth.auth" => mock_facebook_auth_hash}, location: OpenStruct.new({city: "Cordoba", country_code: "AR"})})
   end
 
 end

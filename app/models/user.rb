@@ -17,7 +17,7 @@ class User < ActiveRecord::Base
 
 #  validate :validate_maximum_image_size # TODO: sometimes doesn't work with ftp server and throws a read exception
 
-  attr_accessor :skip_emails
+  attr_accessor :skip_emails, :request
 
 	has_many :challenges, foreign_key: "challenger_id"
   has_many :proposed_challenges, class_name: "Challenge", foreign_key: "challenged_id"
@@ -46,8 +46,7 @@ class User < ActiveRecord::Base
   scope :not_connected_via_facebook, -> { where('oauth_uid IS NULL') }
   scope :exclude, ->(user_id) { where('users.id_user != ?', user_id) }
 
-  def sign_up(ip)
-    self.ip = ip
+  def sign_up
     save
     send_welcome_email
   end
@@ -64,12 +63,14 @@ class User < ActiveRecord::Base
 		"http://placehold.it/300x300"
 	end
 
-  def self.from_omniauth(auth, ip)
+  def self.from_omniauth(request)
+    auth = request.env["omniauth.auth"]
+
     user = User.where(email: auth.info.email).first
+    user = User.where(username: auth.info.name).first if user.nil?
 
     if user.nil?
-      user = User.create_from_omniauth(auth)
-      user.ip = ip
+      user = User.create_from_omniauth(request)
       user.save
       user.remote_imagename_url = user.remote_facebook_image if user.facebook_credentials
       user.save
@@ -149,6 +150,11 @@ class User < ActiveRecord::Base
 	private
 
   def fill_in_extra_fields
+    if self.request
+      self.ip = self.request.remote_ip
+      self.countrycode = self.request.location.country_code
+      self.city = self.request.location.city
+    end
     self.createdtime = Time.now
     self.installed_desktop_app = 0
     self.premium = true
@@ -156,8 +162,10 @@ class User < ActiveRecord::Base
     self.updated_image = 0
   end
 
-	def self.create_from_omniauth(auth)
+	def self.create_from_omniauth(request)
+	  auth = request.env["omniauth.auth"]
     user = User.new
+    user.request = request
     user.first_name = auth.info.first_name
     user.last_name = auth.info.last_name
     user.username = auth.info.name

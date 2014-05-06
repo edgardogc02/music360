@@ -2,7 +2,8 @@
 class UserOmniauthCredentialsController < ApplicationController
 
   def create
-    user = User.from_omniauth(request.env["omniauth.auth"], request.remote_ip)
+    user = User.from_omniauth(request)
+
     if user and !user.deleted?
       signin_user(user)
       flash[:notice] = "Welcome #{user.username}!"

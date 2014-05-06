@@ -114,6 +114,7 @@ GEM
     friendly_id (5.0.3)
       activerecord (>= 4.0.0)
     fssm (0.2.10)
+    geocoder (1.1.9)
     guard (2.6.0)
       formatador (>= 0.2.4)
       listen (~> 2.7)
@@ -325,6 +326,7 @@ DEPENDENCIES
   echowrap
   factory_girl_rails
   friendly_id (~> 5.0.0)
+  geocoder
   guard-rspec
   jbuilder (~> 1.2)
   jquery-rails

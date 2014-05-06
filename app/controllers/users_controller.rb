@@ -31,8 +31,9 @@ class UsersController < ApplicationController
 
 	def create
 	  @user = User.new(user_params)
+    @user.request = request
 
-	  if @user.sign_up(request.remote_ip)
+	  if @user.sign_up
 	    signin_user(@user)
 	    flash[:notice] = "Hi #{@user.username}!"
       redirect_to welcome_path
