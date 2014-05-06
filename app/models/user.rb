@@ -10,7 +10,7 @@ class User < ActiveRecord::Base
 
 	friendly_id :username
 
-  validates :username, presence: true, uniqueness: true, format: { with: /\A[a-zA-Z0-9@.-_\s]+\Z/ }
+  validates :username, presence: true, uniqueness: true, format: { with: /\A[a-zA-Z0-9@.\-\_\s]+\Z/ }
   validates :email, presence: true, uniqueness: true, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\z/i }
   validates :password, presence: true, on: :create
   validates :password_confirmation, presence: true, confirmation: true, on: :create

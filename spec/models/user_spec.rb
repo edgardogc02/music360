@@ -9,7 +9,7 @@ describe User do
       pending "check if we'll use useranme or not"
       should validate_presence_of(:username)
       validate_uniqueness_of(:username)
-      should allow_value('test', 'test User2', 'test@test.com', 'test@test.com.ar').for(:username)
+      should allow_value('test', 'test User2-2_1', 'test@test.com', 'test@test.com.ar').for(:username)
       should_not allow_value('test#user', 'test úser').for(:username)
     end
 

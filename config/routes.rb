@@ -30,7 +30,7 @@ InstrumentchampPrototype::Application.routes.draw do
     get 'yours', on: :collection
   end
 
-  constraints id: /[a-zA-Z0-9@.-_\s]+/ do
+  constraints id: /[\w\W*]+/ do
     resources :users, as: :people, path: "people" do
       get 'upload_profile_image', on: :member
     end
