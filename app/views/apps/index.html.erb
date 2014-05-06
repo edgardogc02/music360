@@ -3,7 +3,7 @@
 <p>To play songs and challenges you need to download and install the InstrumentChamp desktop application to your computer.</p>
 
 <br />
-<p id="btn-download"></p>
+<div id="btn-download"></div>
 <br />
 
 <script>
@@ -11,8 +11,10 @@
 
 	if (navigator.appVersion.indexOf("Mac")!=-1){
 	  node.innerHTML = '<a href="http://uploads.instrumentchamp.com/versions/InstrumentChamp_Band_Edition.dmg"><img src="http://blog.instrumentchamp.com/wp-content/uploads/2014/01/download_ic_osx.png" alt="Download InstrumentChamp for OSX 10.7+" class="downloadbutton"/></a>';
+	}
 	else {
 	  node.innerHTML = '<a href="http://uploads.instrumentchamp.com/versions/InstrumentChamp.msi"><img src="http://blog.instrumentchamp.com/wp-content/uploads/2014/01/download_ic_win.png" alt="Download InstrumentChamp for Windows" class="downloadbutton"/></a>';
+	}
 </script>
 
 <h3>Step by step instructions:</h3>
