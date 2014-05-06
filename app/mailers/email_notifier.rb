@@ -4,6 +4,7 @@ class EmailNotifier < ActionMailer::Base
 
   def welcome_message(user)
     @user = user
+    @host = "https://test-instrumentchamp.herokuapp.com"
     mail to: @user.email
   end
 

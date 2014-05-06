@@ -27,11 +27,11 @@
 				<p>Here is some information and links to get you started:</p> 
 				
 				<ul style="list-style: none; padding: 0px 0px 20px 0px;">	
-					<li style="margin: 0px"><%= link_to "Challenge a friend", people_path, {style: "color: #45B9B6"} %></li>		
-					<li style="margin: 0px"><%= link_to "Learn to play a song", songs_path, {style: "color: #45B9B6"} %></li>
-					<li style="margin: 0px"><%= link_to "Take the tour", tour_path, {style: "color: #45B9B6"} %></li>
-					<li style="margin: 0px"><%= link_to "Download the game", apps_path, {style: "color: #45B9B6"} %></li>
-					<li style="margin: 0px"><%= link_to "Get help", help_path, {style: "color: #45B9B6"} %></li>
+					<li style="margin: 0px"><%= link_to "Challenge a friend", people_url(host: @host), {style: "color: #45B9B6"} %></li>		
+					<li style="margin: 0px"><%= link_to "Learn to play a song", songs_url(host: @host), {style: "color: #45B9B6"} %></li>
+					<li style="margin: 0px"><%= link_to "Take the tour", tour_url(host: @host), {style: "color: #45B9B6"} %></li>
+					<li style="margin: 0px"><%= link_to "Download the game", apps_url(host: @host), {style: "color: #45B9B6"} %></li>
+					<li style="margin: 0px"><%= link_to "Get help", help_url(host: @host), {style: "color: #45B9B6"} %></li>
 				</ul>			  
 				
 				<p>			
