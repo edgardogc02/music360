@@ -30,8 +30,12 @@ InstrumentchampPrototype::Application.routes.draw do
     get 'yours', on: :collection
   end
 
-  resources :users, as: :people, path: "people", constraints: {id: /[\w\W*]+/} do
-    get 'upload_profile_image', on: :member
+  constraints id: /[a-zA-Z0-9@.-_\s]+/ do
+    resources :users, as: :people, path: "people" do
+      get 'upload_profile_image', on: :member
+    end
+    resources :user_followers, only: [:show, :create, :destroy]
+    resources :following, only: [:show]
   end
 
   resources :songs do
@@ -40,8 +44,6 @@ InstrumentchampPrototype::Application.routes.draw do
 
   resources :categories
 
-  resources :user_followers, only: [:show, :create, :destroy], constraints: {id: /[\w\W*]+/}
-  resources :following, only: [:show], constraints: {id: /[\w\W*]+/}
   resources :user_instruments, only: [:edit, :update]
   resources :user_groupies, only: [:index, :create, :destroy]
 
