@@ -11,6 +11,7 @@ class Challenge < ActiveRecord::Base
 
 	belongs_to :challenger, class_name: "User", foreign_key: "challenger_id"
 	belongs_to :challenged, class_name: "User", foreign_key: "challenged_id"
+  belongs_to :winner, class_name: "User", foreign_key: "winner"
 	belongs_to :song
 
   before_create :fill_in_extra_fields
@@ -26,8 +27,16 @@ class Challenge < ActiveRecord::Base
     "ic:challenge=#{self.id}"
   end
 
-  def display_challenge_to_user?(user)
-    user and (self.challenger == user or self.challenged == user)
+  def display_start_challenge_to_user?(user)
+    user and (self.challenger == user or self.challenged == user) and !self.finished
+  end
+
+  def display_points?
+    self.finished
+  end
+
+  def display_winner?
+    self.finished and !self.winner.blank?
   end
 
 	private
