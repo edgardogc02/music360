@@ -2,9 +2,11 @@
 
 <% if @categories.blank? and !@songs.blank? %>
 
-<div class="thumbnail-grid row">
-	<%= render partial: "song", collection: @songs %>
-</div>
+  <div class="thumbnail-grid row">
+  	<%= render partial: "song", collection: @songs %>
+  </div>
+
+  <%= paginate @songs %>
 
 <% else %>
 

@@ -89,6 +89,7 @@ describe "Songs" do
 
       visit free_songs_path
 
+      save_and_open_page
       page.should have_content most_popular_free_song.title
       page.should have_content popular_free_song.title
       page.should have_content unpopular_free_song.title

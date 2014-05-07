@@ -7,7 +7,9 @@
 		  	<p class="spacer-sm"><%= link_to song.artist.title, artist_path(song.artist), class: "song-artist" %></p>
 			</div>
 		  <div class="btn-group-vertical">
-		  	<%= link_to "Play", song.desktop_app_uri, {class: 'btn btn-sm btn-default'} %>
+		    <% if song.display_play_button? %>
+          <%= link_to "Play", song.desktop_app_uri, {class: 'btn btn-sm btn-default'} %>
+		  	<% end %>
   			<%= link_to "Challenge", new_challenge_path(song_id: song.id, challenged_id: params[:challenged_id]), {id: "challenge_#{song.id}", class: 'btn btn-sm btn-default'} %>
   			<% if current_user.admin? %>
           <%= link_to "Edit", edit_song_path(song), {class: 'btn btn-sm btn-default'} %>
