@@ -19,12 +19,15 @@
 
 <hr />
 
-<%= render "users_list", users: @users_search, title: "Search results", show_view_more: false, view_more_link: "" %>
 <% if @users_search %>
+	<%= render "users_list", users: @users_search, title: "Search results", show_view_more: false, view_more_link: "" %>
   <%= paginate @users_search %>
 <% end %>
 
-<%= render "users_list", users: @fb_top_friends, title: "Challenge your Facebook Friends", show_view_more: true, view_more_link: facebook_users_path %>
+<%= render "users_list", users: @fb_top_friends, title: "Challenge your Facebook friends", show_view_more: true, view_more_link: facebook_users_path %>
 
-<%= render "users_list", users: @regular_users, title: "Challenge your InstrumentChamp Friends", show_view_more: true, view_more_link: instrument_champ_users_path %>
+<%= render "users_list", users: @regular_users, title: "Challenge people on InstrumentChamp", show_view_more: true, view_more_link: instrument_champ_users_path %>
+
+<%= render "users_list", users: @followed_users, title: "Challenge followed friends", show_view_more: true, view_more_link: followed_users_path %>
+
 

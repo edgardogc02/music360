@@ -74,6 +74,7 @@ InstrumentchampPrototype::Application.routes.draw do
 
   get 'instrument-champ-friends', to: 'users#all_regular_users', as: :instrument_champ_users
   get 'facebook-friends', to: 'users#all_facebook_users', as: :facebook_users
+  get 'followed-friends', to: 'users#all_followed_users', as: :followed_users
 
   get ':action' => 'pages'
 

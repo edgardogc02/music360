@@ -12,6 +12,7 @@ class UsersController < ApplicationController
         @fb_top_friends = current_user.facebook_friends.limit(4)
       end
   		@regular_users = User.not_deleted.exclude(current_user.id).limit(4)
+  		@followed_users = current_user.followed_users.limit(4) 
     end
 
     if params[:view] == 'modal'
@@ -59,13 +60,19 @@ class UsersController < ApplicationController
 
 	def all_regular_users
     @users = User.not_deleted.exclude(current_user.id).limit(50).page params[:page]
-    @title = "Challenge your Facebook Friends"
+    @title = "Challenge people on InstrumentChamp"
     render 'complete_list'
   end
 
   def all_facebook_users
     @users = current_user.facebook_friends.page params[:page]
-    @title = "Challenge people on InstrumentChamp"
+    @title = "Challenge your Facebook friends"
+    render 'complete_list'
+  end
+  
+  def all_followed_users
+    @users = current_user.followed_users.page params[:page]
+    @title = "Challenge followed friends"
     render 'complete_list'
   end
 
