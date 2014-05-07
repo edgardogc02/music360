@@ -1,23 +1,19 @@
-<h1 class="page-header"><small><i class="glyphicon glyphicon-flag"></i></small> Challenges</h1>
+<h1 class="page-header clearfix"><small><i class="glyphicon glyphicon-flag"></i></small> Challenges
+  <% if signed_in? %>
+    <%= link_to "New challenge", new_challenge_path, {class: "btn btn-primary pull-right"} %>
+  <% end %>
+</h1>
 
 <h3>Latest, open challenges right now.</h3>
 
-<ul class="media-list">
-	<% unless @challenges.blank? %>
+<% unless @challenges.blank? %>
+	<ul class="media-list">
 		<%= render partial: "challenge", collection: @challenges %>
-	<% else %>
-</ul>
+	</ul>
+<% else %>
 
 <p class="no-content">
   <p>No open challenges right now</p>
 </p>
 
 <% end %>
-
-<br />
-
-<p>
-  <% if signed_in? %>
-    <%= link_to "New challenge", new_challenge_path, {class: "btn btn-primary"} %>
-  <% end %>
-</p>
