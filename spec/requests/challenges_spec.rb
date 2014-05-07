@@ -29,7 +29,6 @@ describe "Challenges" do
 
       click_on "Choose your opponent"
       current_path.should eq(people_path)
-
       click_on "challenge_#{challenged_user.id}"
 
       current_path.should eq(new_challenge_path)
@@ -43,7 +42,7 @@ describe "Challenges" do
       page.find('.alert-notice').should have_content('The challenge was successfully created')
       current_path.should eq(yours_challenges_path)
 
-      page.should have_xpath("//meta")
+      #page.should have_xpath("//meta")
       page.should have_content("Your challenges")
       page.should have_content(@song.title)
       page.should have_content("by")
@@ -98,6 +97,12 @@ describe "Challenges" do
       page.should have_content(@user.username)
       page.should have_content("Challenged")
       page.should have_content(challenged_user.username)
+    end
+
+    it "should not contain play when selecting a song" do
+      visit new_challenge_path
+      click_on "Choose your song"
+      page.should_not have_link "Play", @song.desktop_app_uri
     end
 
     it "should create challenge with correct data" do
