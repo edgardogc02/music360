@@ -69,7 +69,7 @@ describe "Challenges" do
       page.should have_content(challenged_user.username)
       click_on "Choose your song"
 
-      current_path.should eq(songs_path)
+      current_path.should eq(for_challenge_songs_path)
       click_on "challenge_#{@song.id}"
 
       current_path.should eq(new_challenge_path)

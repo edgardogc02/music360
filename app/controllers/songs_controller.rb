@@ -3,20 +3,12 @@ class SongsController < ApplicationController
 	before_action :set_song, only: [:show, :edit, :update, :destroy]
 
 	def index
+    @songs = SongDecorator.decorate_collection(Song.free.by_popularity.page params[:page])
+	end
 
-#		unless params[:category].present?
-#			@categories = Category.all
-#		else
-#			@songs = Song.where(category_id: params[:category])
-#		end
-
-    if params[:view] == 'modal'
-      @songs = SongChallengeDecorator.decorate_collection(Song.free.by_popularity.limit(8))
-      render 'modal', layout: false
-    else
-      @songs = SongDecorator.decorate_collection(Song.free.by_popularity.page params[:page])
-      render 'index'
-    end
+	def for_challenge
+    @songs = SongChallengeDecorator.decorate_collection(Song.free.by_popularity.limit(8))
+    render layout: false
 	end
 
 	def show

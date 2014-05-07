@@ -40,6 +40,7 @@ InstrumentchampPrototype::Application.routes.draw do
 
   resources :songs do
     get 'free', on: :collection
+    get 'for_challenge', on: :collection
   end
 
   resources :categories

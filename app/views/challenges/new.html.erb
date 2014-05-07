@@ -8,7 +8,7 @@
 			<div class="col-md-3 col-sm-4">
 				<%= image_tag @challenge.song.cover_url, class: 'thumbnail' %>
 			</div>
-			
+
 			<div class="col-md-9 col-sm-8">
 				<p>
 		  		<h3><%= @challenge.song.title%></h3>
@@ -17,7 +17,7 @@
 		  		<div>Publisher: <strong><%= @challenge.song.publisher %></strong></div>
 		  	</p>
 			</div>
-			<div><%= link_to "Change your song", songs_path(view: 'modal', challenged_id: @challenge.challenged_id), {class: 'btn btn-link', data: { toggle: "modal", target: "#selectSong" }} %></div>
+			<div><%= link_to "Change your song", for_challenge_songs_path(challenged_id: @challenge.challenged_id), {class: 'btn btn-link', data: { toggle: "modal", target: "#selectSong" }} %></div>
 		</div>
   </section>
 
@@ -26,7 +26,7 @@
   <section>
     <h3>1. Chose your song</h3>
     <p>
-      <%= link_to "Choose your song", songs_path(view: 'modal', challenged_id: @challenge.challenged_id), {class: 'btn btn-primary', data: { toggle: "modal", target: "#selectSong" }} %>
+      <%= link_to "Choose your song", for_challenge_songs_path(challenged_id: @challenge.challenged_id), {class: 'btn btn-primary', data: { toggle: "modal", target: "#selectSong" }} %>
     </p>
   </section>
 
@@ -36,7 +36,7 @@
 
 <section>
 	<h3>2. Choose friend to challenge</h3>
-	
+
 	<div class="row">
 		<div class="col-md-3 col-sm-5 col-xs-5 text-center">
 			<%= image_tag @challenge.challenger.imagename_url, class: "thumbnail" %>
@@ -67,7 +67,7 @@
 	        <% end %>
 	      </div>
 	    <% end %>
-	    <br />	    
+	    <br />
 		</div>
 	</div>
 </section>
@@ -80,7 +80,7 @@
       </div>
     </div>
   </div>
-</div>		
+</div>
 
 <div class="modal fade" id="selectSong" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
   <div class="modal-dialog">
@@ -90,7 +90,7 @@
       </div>
     </div>
   </div>
-</div>			
+</div>
 
 <hr />
 
