@@ -132,6 +132,18 @@ describe "Challenges" do
       end
     end
 
+    it "should display points and winner if the challenge is finished" do
+      challenge = create(:challenge, public: true, finished: true, challenged: @user, winner: @user)
+      challenge.score_u1 = 100
+      challenge.score_u2 = 500
+      challenge.save
+
+      visit challenges_path
+      page.should have_content "#{challenge.challenger.username}: 100 points"
+      page.should have_content "#{challenge.challenged.username}: 500 points"
+      page.should have_content "Winner: #{challenge.winner.username}"
+    end
+
     context "user installed the desktop app" do
       before(:each) do
         @user.already_installed_desktop_app
@@ -168,7 +180,7 @@ describe "Challenges" do
 
       visit yours_challenges_path
       page.should have_content your_private_challenge.song.title
-      page.should have_link "challenge_start_#{your_private_challenge.id}", href: your_private_challenge.desktop_app_uri
+      page.should have_link "challenge_start_#{your_private_challenge.id}", href: your_private_challenge.decorate.desktop_app_uri
 
       page.should_not have_content other_private_challenge.song.title
     end

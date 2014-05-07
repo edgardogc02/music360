@@ -2,7 +2,7 @@ class ChallengesController < ApplicationController
 	before_action :authorize, except: [:index, :show]
 
 	def index
-		@challenges = ChallengeDecorator.decorate_collection(Challenge.order('created_at DESC'))
+		@challenges = ChallengeDecorator.decorate_collection(Challenge.order('created_at DESC')) # TODO: ADD public
 	end
 
 	def new
@@ -21,7 +21,7 @@ class ChallengesController < ApplicationController
   end
 
   def yours
-    @challenges = current_user.challenges
+    @challenges = ChallengeDecorator.decorate_collection(current_user.challenges)
 
     if params[:autostart_challenge_id]
       @autostart_challenge = Challenge.find(params[:autostart_challenge_id])
