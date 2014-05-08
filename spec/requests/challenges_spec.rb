@@ -28,7 +28,7 @@ describe "Challenges" do
       challenged_user = create(:user)
 
       click_on "Choose your opponent"
-      current_path.should eq(people_path)
+      current_path.should eq(for_challenge_people_path)
       click_on "challenge_#{challenged_user.id}"
 
       current_path.should eq(new_challenge_path)
