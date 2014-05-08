@@ -61,10 +61,15 @@ describe "Users" do
       mock_facebook_auth_hash
       click_link "facebook_signin"
 
-      create_facebook_omniauth_credentials(User.first)
+      user = User.first
+      create_facebook_omniauth_credentials(user)
+      UserFacebookFriends.new(user, user.facebook_top_friends).save
 
       visit people_path
       page.should have_content "Lars Willner"
+      page.should have_content "Magnus Willner"
+      page.should have_content "Ashutosh Morwal"
+      page.should have_link "View more", list_people_path(view: "facebook")
     end
 
     it "should not be able to perform a delete request" do
@@ -80,12 +85,38 @@ describe "Users" do
       @user = login
     end
 
-    it "should 4 facebook friends in the users index" do
-      pending
+    it "should display users index page" do
+      user_1 = create(:user)
+      user_2 = create(:user)
+      user_3 = create(:user)
+      user_4 = create(:user)
+      followed_user = create(:user)
+      @user.follow(followed_user)
+
+      visit people_path
+      page.should have_content user_1.username
+      page.should have_link "Challenge", new_challenge_path(challenged_id: user_1.id)
+      page.should have_content user_2.username
+      page.should have_link "Challenge", new_challenge_path(challenged_id: user_2.id)
+      page.should have_content user_3.username
+      page.should have_link "Challenge", new_challenge_path(challenged_id: user_3.id)
+      page.should have_content user_4.username
+      page.should have_link "Challenge", new_challenge_path(challenged_id: user_4.id)
+      page.should have_link "View more", list_people_path(view: "users")
+      page.should have_link "Follow", "#"
+
+      page.should have_content followed_user.username
+      page.should have_link "Challenge", new_challenge_path(challenged_id: followed_user.id)
+      page.should have_link "View more", list_people_path(view: "following")
+      page.should have_link "Unfollow", "#"
     end
 
-    it "should 4 followers not connected via facebook in the users index" do
-      pending
+    it "should not display follow button in for_challenge page" do
+      user_1 = create(:user)
+
+      visit for_challenge_people_path
+      page.should have_content user_1.username
+      page.should_not have_link "Follow", "#"
     end
 
     it "should display a search user form in the users index" do
