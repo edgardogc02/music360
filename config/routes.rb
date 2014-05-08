@@ -33,6 +33,8 @@ InstrumentchampPrototype::Application.routes.draw do
   constraints id: /[\w\W*]+/ do
     resources :users, as: :people, path: "people" do
       get 'upload_profile_image', on: :member
+      get 'list', on: :collection, as: :list
+      get 'for_challenge', on: :collection
     end
     resources :user_followers, only: [:show, :create, :destroy]
     resources :following, only: [:show]
@@ -71,10 +73,6 @@ InstrumentchampPrototype::Application.routes.draw do
   get 'help', to: "statics#help", as: :help
   get 'tour', to: "pages#tour", as: :tour
   get 'premium', to: "statics#premium", as: :premium
-
-  get 'instrument-champ-friends', to: 'users#all_regular_users', as: :instrument_champ_users
-  get 'facebook-friends', to: 'users#all_facebook_users', as: :facebook_users
-  get 'followed-friends', to: 'users#all_followed_users', as: :followed_users
 
   get ':action' => 'pages'
 

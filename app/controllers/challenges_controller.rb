@@ -6,7 +6,7 @@ class ChallengesController < ApplicationController
 	end
 
 	def new
-	  @challenge = current_user.challenges.build(public: false, finished: false)
+	  @challenge = ChallengeDecorator.decorate(current_user.challenges.build(public: false, finished: false))
 
 		if params[:challenged_id].present?
 			@challenge.challenged = User.find(params[:challenged_id])

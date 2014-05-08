@@ -6,24 +6,28 @@ class UsersController < ApplicationController
 
 	def index
     if params[:username_or_email]
-      @users_search = User.by_username_or_email(params[:username_or_email]).page params[:page]
+      @users_search = SearchUsersList.new(params[:username_or_email], params[:page])
     else
       if current_user.has_facebook_credentials?
-        @fb_top_friends = current_user.facebook_friends.limit(4)
+        @fb_top_friends = ResumedFacebookFriendsList.new(current_user)
       end
-  		@regular_users = User.not_deleted.exclude(current_user.id).limit(4)
-  		@followed_users = current_user.followed_users.limit(4) 
+  		@regular_users = ResumedPopularUsersList.new(current_user)
+  		@followed_users = ResumedFollowedUsersList.new(current_user) if params[:view] != 'modal'
     end
+  end
 
-    if params[:view] == 'modal'
-      render 'modal', layout: false
-    else
-      render 'index'
-    end
+  def for_challenge
+    @fb_top_friends = FacebookFriendsChallengeList.new(current_user)
+    @regular_users = ResumedPopularUsersChallengeList.new(current_user)
+    render layout: false
 	end
 
+  def list
+    @users = UsersListFactory.new(params[:view], current_user, params[:page]).users_list
+  end
+
 	def show
-		@challenges = Challenge.open.where(challenger: @user)
+		@challenges = ChallengeDecorator.decorate_collection(Challenge.open.where(challenger: @user))
 	end
 
 	def new
@@ -57,24 +61,6 @@ class UsersController < ApplicationController
 	  @user.destroy
 	  redirect_to logout_path, notice: "Your profile was successfully deleted"
 	end
-
-	def all_regular_users
-    @users = User.not_deleted.exclude(current_user.id).limit(50).page params[:page]
-    @title = "Challenge people on InstrumentChamp"
-    render 'complete_list'
-  end
-
-  def all_facebook_users
-    @users = current_user.facebook_friends.page params[:page]
-    @title = "Challenge your Facebook friends"
-    render 'complete_list'
-  end
-  
-  def all_followed_users
-    @users = current_user.followed_users.page params[:page]
-    @title = "Challenge followed friends"
-    render 'complete_list'
-  end
 
 	private
 

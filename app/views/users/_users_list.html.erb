@@ -1,18 +1,21 @@
-<% unless users.blank? %>
-	
+<% if users_list and !users_list.users.blank? %>
+
 	<h3 class="clearfix">
-	  <%= title %>
-	  <% if show_view_more %>
-  		<%= link_to view_more_link, {class: 'btn btn-primary pull-right'} do %>
+	  <%= users_list.title %>
+	  <% if users_list.display_more? %>
+  		<%= link_to users_list.display_more_link, {class: 'btn btn-primary pull-right'} do %>
       	View more
       <% end %>
     <% end %>
 	</h3>
 
   <div class="thumbnail-grid row">
-  	<%= render :partial => 'list', :collection => users, :as => :user %>
+  	<%= render :partial => 'list', :collection => users_list.users, :as => :user %>
   </div>
 
 	<hr />
+  <% if users_list.paginate? %>
+    <%= paginate users_list.users %>
+  <% end %>
 
 <% end %>

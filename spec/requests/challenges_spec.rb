@@ -146,7 +146,7 @@ describe "Challenges" do
       visit challenges_path
       page.should have_content "#{challenge.challenger.username}: 100 points"
       page.should have_content "#{challenge.challenged.username}: 500 points"
-      page.should have_content "Winner: #{challenge.winner.username}"
+      page.should have_content "Winner"
     end
 
     context "user installed the desktop app" do

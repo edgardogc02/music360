@@ -3,7 +3,7 @@ class FollowingController < ApplicationController
   before_action :set_user, only: [:show]
 
   def show
-    @users = @user.followed_users.page params[:page]
+    @users = UserDecorator.decorate_collection(@user.followed_users.page params[:page])
   end
 
   private

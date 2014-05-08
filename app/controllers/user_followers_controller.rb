@@ -3,7 +3,7 @@ class UserFollowersController < ApplicationController
   before_action :set_user, only: [:show]
 
   def show
-    @user_followers = @user.followers.page params[:page]
+    @user_followers = UserDecorator.decorate_collection(@user.followers.page params[:page])
   end
 
   def create

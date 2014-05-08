@@ -26,4 +26,12 @@ class ChallengeDecorator < Draper::Decorator
       h.content_tag :div, "Winner: " + winner.username
     end
   end
+
+  def select_opponent_link_name
+    if model.challenged
+      "Change your opponent"
+    else
+      "Choose your opponent"
+    end
+  end
 end

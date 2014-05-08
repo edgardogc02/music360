@@ -1,0 +1,7 @@
+<div>
+  <% if challenge.song %>
+  	<%= link_to challenge.select_opponent_link_name, for_challenge_people_path(song_id: @challenge.song.id), {class: 'btn btn-link', data: { toggle: "modal", target: "#selectUser"}} %>
+  <% else %>
+    <%= link_to challenge.select_opponent_link_name, for_challenge_people_path, {class: 'btn btn-link', data: { toggle: "modal", target: "#selectUser" }} %>
+  <% end %>
+</div>
