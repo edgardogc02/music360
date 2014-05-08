@@ -5,6 +5,11 @@
 </head>
 <body role="application" class="<%= body_classes %>">
 	<header>
+		
+		<% if signed_in? %>
+			<!--<%= render "shared/welcome_modal" %>-->
+		<% end %>
+		
 		<nav class="navbar navbar-default navbar-fixed-top" role="navbar">
 			<div class="container">
 				<div class="row">

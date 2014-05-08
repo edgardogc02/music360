@@ -1,0 +1,23 @@
+<div class="modal fade" id="welcomeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body text-center">
+      	<div>
+	      	<h2>Welcome!</h2>
+	        <p>Thanks for signing up. We are launching in May and will send you a
+        	backstage pass to the alpha test very soon!</p>
+        	<p><strong>Signup reward:</strong> We have upgraded you to a Premium account for 3 months.</p>
+      	</div>
+      	<hr />
+      	<div><a href="http://bit.ly/1nSjX6q" target="_blank">Read about our crowdfunding campaign on FundedByMe</a></div><br />
+      	<div><a href="http://bit.ly/1nSjX6q" target="_blank"><%= image_tag(asset_path('FundedByMeLogo.jpg')) %></div>
+				<br />
+				<div class="text-right">
+					<%= link_to logout_path, {class: "btn", id: "sign_out"} do %>
+	          <i class="glyphicon glyphicon-log-out"></i> Sign out
+	        <% end %>
+				</div>
+      </div>
+    </div>
+  </div>
+</div>
