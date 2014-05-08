@@ -1,26 +1,35 @@
-<div class="modal fade" id="welcomeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-body text-center">
-      	<div>
-	      	<h2>Welcome!</h2>
-	        <p>Thanks for signing up. We are launching in May and will send you a
-        	backstage pass to the alpha test very soon!</p>
-        	<p><strong>Signup reward:</strong> We have upgraded you to a Premium account for 3 months.</p>
-      	</div>
-      	<hr />
-      	<div><a href="http://bit.ly/1nSjX6q" target="_blank">Read about our crowdfunding campaign on FundedByMe</a></div><br />
-      	<div><a href="http://bit.ly/1nSjX6q" target="_blank"><%= image_tag(asset_path('FundedByMeLogo.jpg')) %></div>
-				<br />
-				<div class="text-right">
-					<%= link_to logout_path, {class: "btn", id: "sign_out"} do %>
-	          <i class="glyphicon glyphicon-log-out"></i> Sign out
-	        <% end %>
-				</div>
-      </div>
-    </div>
-  </div>
-</div>
+<% if params[:m] %>
+  <div class="modal fade welcome-modal" id="welcomeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-body text-center">
+	      	<div>
+		      	<h2>Welcome <%= current_user.username %>!</h2>
+		      	<br />
+		        <p>Thanks for signing up. We are launching in May and will send you a
+	        	backstage pass to the alpha test very soon!</p>
+	        	<p class="alert alert-success"><strong>Signup Bonus:</strong> We have upgraded you to a Premium account for 3 months.</p>
+        	</div>
+        	<hr />
+        	<h3>Click the instrument you want to play to start the tour</h3><br />
+        	<div class="row">
+        		<div class="col-md-1 col-sm-1"></div>
+				    <% Instrument.all.each do |instrument| %>
+				    	<div class="col-md-2 col-sm-2 col-xs-4">
+				      	<%= link_to(image_tag(instrument.image_url), tour_path, {class: "thumbnail", title: instrument.name, data: {"toogle" => "tooltip", "placement" => "top"}}) %>
+				  		</div>
+				    <% end %>
+				  </div>
+					<div class="text-right">
+						<%= link_to root_path, {class: "btn"} do %>
+		          <i class="glyphicon glyphicon-log-out"></i> Skip the tour
+		        <% end %>
+					</div>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+<% end %>
 
 <h1 class="page-header clearfix"><small><i class="glyphicon glyphicon-music"></i></small> Quick start song
 	<%= link_to songs_path, {class: 'btn btn-primary pull-right'} do %>
