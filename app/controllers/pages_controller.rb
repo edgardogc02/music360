@@ -2,8 +2,8 @@ class PagesController < ApplicationController
   before_action :authorize
 
   def home
-    @regular_users = User.not_deleted.exclude(current_user.id).limit(4)
-    @songs = SongDecorator.decorate_collection(Song.free.by_popularity.limit(4))
+    @users = UserChallengeDecorator.decorate_collection(User.not_deleted.exclude(current_user.id).limit(4))
+    @songs = SongQuickStartDecorator.decorate_collection(Song.free.by_popularity.limit(4))
   end
 
   def download

@@ -29,7 +29,7 @@ class ChallengesController < ApplicationController
   end
 
 	def create
-	  @challenge = current_user.challenges.build(challenge_params)
+	  @challenge = current_user.challenges.build(challenge_params).decorate
 
 	  if @challenge.save
 	    flash[:notice] = "The challenge was successfully created"
