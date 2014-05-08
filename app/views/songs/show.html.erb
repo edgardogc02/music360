@@ -5,7 +5,7 @@
 </p>
 
 <p>
-	<%= link_to "Quick start song", @song.desktop_app_uri, class: "btn btn-primary" %>
+	<%= link_to "Quick start song", @song.play_url, class: "btn btn-primary" %>
 	<%= link_to "Create challenge", new_challenge_path(song_id: @song.id), class: "btn btn-primary" %>
 </p>
 

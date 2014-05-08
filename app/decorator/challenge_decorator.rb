@@ -1,9 +1,9 @@
 class ChallengeDecorator < Draper::Decorator
   delegate_all
 
-  def desktop_app_uri
+  def start_challenge_url
     if h.signed_in? and h.current_user.installed_desktop_app?
-      super
+      model.desktop_app_uri
     else
       h.apps_path
     end
@@ -11,7 +11,7 @@ class ChallengeDecorator < Draper::Decorator
 
   def start_challenge_button
     if model.display_start_challenge_to_user?(h.current_user)
-      h.link_to "Start challenge", desktop_app_uri, {class: "btn btn-primary", id: "challenge_start_#{model.id}"}
+      h.link_to "Start challenge", start_challenge_url, {class: "btn btn-primary", id: "challenge_start_#{model.id}"}
     end
   end
 

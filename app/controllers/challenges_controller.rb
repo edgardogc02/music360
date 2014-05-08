@@ -21,7 +21,7 @@ class ChallengesController < ApplicationController
   end
 
   def yours
-    @challenges = ChallengeDecorator.decorate_collection(current_user.challenges)
+    @challenges = ChallengeDecorator.decorate_collection(current_user.challenges.order('created_at DESC'))
 
     if params[:autostart_challenge_id]
       @autostart_challenge = Challenge.find(params[:autostart_challenge_id])

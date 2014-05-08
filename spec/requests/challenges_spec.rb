@@ -102,7 +102,7 @@ describe "Challenges" do
     it "should not contain play when selecting a song" do
       visit new_challenge_path
       click_on "Choose your song"
-      page.should_not have_link "Play", @song.desktop_app_uri
+      page.should_not have_link "Play", @song.decorate.play_url
     end
 
     it "should create challenge with correct data" do
@@ -158,25 +158,25 @@ describe "Challenges" do
       it "should have start challenge links if challenge is private and user is involved" do
         private_challenge = create(:challenge, public: false, challenger: @user)
         visit challenges_path
-        page.should have_link "challenge_start_#{private_challenge.id}", href: private_challenge.desktop_app_uri
+        page.should have_link "challenge_start_#{private_challenge.id}", href: private_challenge.decorate.start_challenge_url
 
         new_private_challenge = create(:challenge, public: false, challenged: @user)
         visit challenges_path
-        page.should have_link "challenge_start_#{new_private_challenge.id}", href: new_private_challenge.desktop_app_uri
+        page.should have_link "challenge_start_#{new_private_challenge.id}", href: new_private_challenge.decorate.start_challenge_url
       end
 
       it "should have start challenge links if challenge public" do
         public_challenge = create(:challenge, public: true, challenger: @user)
         visit challenges_path
         page.should have_content public_challenge.song.title
-        page.should have_link "challenge_start_#{public_challenge.id}", href: public_challenge.desktop_app_uri
+        page.should have_link "challenge_start_#{public_challenge.id}", href: public_challenge.decorate.start_challenge_url
       end
     end
 
     it "should not have start challenge links if challenge is private and user is not involved" do
       new_private_challenge = create(:challenge, public: false)
       visit challenges_path
-      page.should_not have_link "challenge_start_#{new_private_challenge.id}", href: new_private_challenge.desktop_app_uri
+      page.should_not have_link "challenge_start_#{new_private_challenge.id}", href: new_private_challenge.decorate.start_challenge_url
     end
 
     it "your challenges should not list challenges from others" do
@@ -185,7 +185,7 @@ describe "Challenges" do
 
       visit yours_challenges_path
       page.should have_content your_private_challenge.song.title
-      page.should have_link "challenge_start_#{your_private_challenge.id}", href: your_private_challenge.decorate.desktop_app_uri
+      page.should have_link "challenge_start_#{your_private_challenge.id}", href: your_private_challenge.decorate.start_challenge_url
 
       page.should_not have_content other_private_challenge.song.title
     end

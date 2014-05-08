@@ -12,6 +12,7 @@ class SongsController < ApplicationController
 	end
 
 	def show
+	  @song = SongDecorator.decorate(@song)
 	end
 
   def edit
