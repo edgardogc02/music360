@@ -2,7 +2,7 @@
 
 <% if !users.empty? %>
   <div class="thumbnail-grid row">
-    <%= render :partial => 'users/list', :collection => users, :as => :user %>
+    <%= render users %>
   </div>
   <%= paginate users %>
 <% else %>
