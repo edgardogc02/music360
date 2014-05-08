@@ -50,11 +50,12 @@
 			<% if @challenge.challenged %>
 	      <%= image_tag @challenge.challenged.imagename_url, class: "thumbnail" %>
 	      <h4><%= @challenge.challenged.username %></h4>
-	      <%= render "select_opponent_link", challenge: @challenge %>
-	    <% else %>
-	      <img src="http://placehold.it/300x300" class="thumbnail">
-        <%= render "select_opponent_link", challenge: @challenge %>
+      <% else %>
+        <img src="http://placehold.it/300x300" class="thumbnail">
 	    <% end %>
+      <div>
+        <%= @challenge.select_opponent_link %>
+      </div>
 	    <br />
 		</div>
 	</div>

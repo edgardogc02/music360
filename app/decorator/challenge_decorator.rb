@@ -27,6 +27,16 @@ class ChallengeDecorator < Draper::Decorator
     end
   end
 
+  def select_opponent_link
+    if model.song
+      h.link_to select_opponent_link_name, h.for_challenge_people_path(song_id: model.song.id), {class: 'btn btn-link', data: { toggle: "modal", target: "#selectUser"}}
+    else
+      h.link_to select_opponent_link_name, h.for_challenge_people_path, {class: 'btn btn-link', data: { toggle: "modal", target: "#selectUser" }}
+    end
+  end
+
+  private
+
   def select_opponent_link_name
     if model.challenged
       "Change your opponent"
@@ -34,4 +44,5 @@ class ChallengeDecorator < Draper::Decorator
       "Choose your opponent"
     end
   end
+
 end
