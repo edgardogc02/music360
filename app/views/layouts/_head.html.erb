@@ -1,3 +1,19 @@
+<% if display_google_analytics_tracking? %>
+  <script type="text/javascript">var _kmq = _kmq || [];
+  var _kmk = _kmk || 'e9d5b2513ccea9cc9b343179d81c7f5882eebf1c';
+  function _kms(u){
+    setTimeout(function(){
+      var d = document, f = d.getElementsByTagName('script')[0],
+      s = d.createElement('script');
+      s.type = 'text/javascript'; s.async = true; s.src = u;
+      f.parentNode.insertBefore(s, f);
+    }, 1);
+  }
+  _kms('//i.kissmetrics.com/i.js');
+  _kms('//doug1izaerwt3.cloudfront.net/' + _kmk + '.1.js');
+  </script>
+<% end %>
+
 <title>InstrumentChamp - Learn to play guitar, learn to play piano, learn to play drums</title>
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
