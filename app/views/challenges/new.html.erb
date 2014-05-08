@@ -3,7 +3,7 @@
 <% if @challenge.song %>
 
   <section>
-  	<h3>1. Song chosen</h3>
+  	<h3>1. Challenge chosen</h3>
 		<div class="row">
 			<div class="col-md-3 col-sm-4">
 				<%= image_tag @challenge.song.cover_url, class: 'thumbnail' %>
@@ -24,7 +24,7 @@
 <% else %>
 
   <section>
-    <h3>1. Chose your song</h3>
+    <h3>1. Choose the challenge</h3>
     <p>
       <%= link_to "Choose your song", for_challenge_songs_path(challenged_id: @challenge.challenged_id), {class: 'btn btn-primary', data: { toggle: "modal", target: "#selectSong" }} %>
     </p>

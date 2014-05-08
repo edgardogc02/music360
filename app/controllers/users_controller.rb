@@ -17,8 +17,8 @@ class UsersController < ApplicationController
   end
 
   def for_challenge
-    @fb_top_friends = FacebookFriendsChallengeList.new(current_user)
-    @regular_users = ResumedPopularUsersChallengeList.new(current_user)
+    @fb_top_friends = FacebookFriendsChallengeList.new(current_user, params[:song_id])
+    @regular_users = ResumedPopularUsersChallengeList.new(current_user, params[:song_id])
     render layout: false
 	end
 

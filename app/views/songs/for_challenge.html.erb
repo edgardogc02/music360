@@ -1,6 +1,6 @@
 <h3 class="clearfix">
-		Songs
-			<%= link_to songs_path, {class: 'btn btn-primary pull-right'} do %>
+		Choose a song to start challenge
+			<%= link_to songs_path(challenged_id: params[:challenged_id]), {class: 'btn btn-primary pull-right'} do %>
 	    	View all
     <% end %>
 	</h3>
