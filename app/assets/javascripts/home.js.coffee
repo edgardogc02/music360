@@ -4,8 +4,8 @@
 
 $(document).ready ->
   $("#welcomeModal").modal
-    #backdrop: "static"
-    #keyboard: false
+    backdrop: "static"
+    keyboard: false
     show: true
 
   return
