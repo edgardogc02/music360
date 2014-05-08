@@ -50,6 +50,12 @@ describe "Songs" do
       page.should_not have_content paid_song.artist.title
     end
 
+    it "should not display play button in for_challenge page" do
+      visit for_challenge_songs_path
+      page.should have_link "Challenge", new_challenge_path(song_id: @song.id)
+      page.should_not have_link "Play", @song.desktop_app_uri
+    end
+
     it "should display play link if user installed the desktop app" do
       visit songs_path
       page.should have_link "Play", href: apps_path
