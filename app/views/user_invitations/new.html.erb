@@ -1,0 +1,31 @@
+<h1 class="page-header"><small><i class="glyphicon glyphicon-user"></i></small> Invitations</h1>
+
+<%= link_to "Invite facebook friends", "#", {class: "btn btn-primary"} %>
+
+<div id="fb-root"></div>
+
+<%= content_for(:js_scripts) do %>
+
+  <script src="https://connect.facebook.net/en_US/all.js">
+  </script>
+  <script>
+    $(document).ready(function(){
+      FB.init({
+        appId: '563800430326433',
+        cookie: true,
+        status: true,
+        xfbml: true
+      });
+
+      FB.ui({
+        method: 'apprequests',
+        message: 'Here is a new Requests dialog...'
+      });
+    });
+  </script>
+
+<% end %>
+
+<hr />
+
+
