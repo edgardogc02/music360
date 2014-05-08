@@ -51,7 +51,7 @@
 	      <%= image_tag @challenge.challenged.imagename_url, class: "thumbnail" %>
 	      <h4><%= @challenge.challenged.username %></h4>
       <% else %>
-        <img src="http://placehold.it/300x300" class="thumbnail">
+      	<%= image_tag(asset_path('default_user.png'), class: "thumbnail") %>
 	    <% end %>
       <div>
         <%= @challenge.select_opponent_link %>

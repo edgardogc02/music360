@@ -12,7 +12,7 @@ class FacebookFriendsChallengeList < ResumedFacebookFriendsList
   end
   
   def display_more_link
-    list_people_path(view: "users", song_id: @song)
+    list_people_path(view: "facebook", song_id: @song)
   end
 
 end
