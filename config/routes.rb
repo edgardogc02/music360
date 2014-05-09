@@ -51,6 +51,10 @@ InstrumentchampPrototype::Application.routes.draw do
   resources :user_groupies, only: [:index, :create, :destroy]
   resources :user_invitations, only: [:new, :create]
 
+  resources :user_facebook_invitations do
+    post "accept", on: :collection
+  end
+
   get 'welcome' => "welcome#index", as: :welcome
 
   get 'signup' => "users#new", as: :signup
@@ -66,8 +70,6 @@ InstrumentchampPrototype::Application.routes.draw do
   match '/auth/facebook', via: [:get, :post], as: :facebook_signin
   match 'auth/:provider/callback' => "user_omniauth_credentials#create", via: [:get, :post]
   match 'auth/failure' => "user_omniauth_credentials#failure", via: [:get, :post]
-
-  match 'facebook_invitations/accept' => "facebook_invitations#accept", via: [:get, :post]
 
   get 'privacy-policy', to: "statics#privacy_policy", as: :privacy_policy
   get 'terms-of-service', to: "statics#terms_of_service", as: :terms_of_service

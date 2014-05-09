@@ -1,6 +1,6 @@
 <h1 class="page-header"><small><i class="glyphicon glyphicon-user"></i></small> Invitations</h1>
 
-<%= link_to "Invite facebook friends", "#", {class: "btn btn-primary"} %>
+<%= link_to "Invite facebook friends", "#", {class: "btn btn-primary", id: "invite_fb_friends"} %>
 
 <div id="fb-root"></div>
 
@@ -10,17 +10,27 @@
   </script>
   <script>
     $(document).ready(function(){
-      FB.init({
-        appId: '563800430326433',
-        cookie: true,
-        status: true,
-        xfbml: true
+      $("#invite_fb_friends").click(function(e) {
+        FB.init({
+          appId: '563800430326433',
+          cookie: true,
+          status: true,
+          xfbml: true
+        });
+
+        FB.ui({
+          method: 'apprequests',
+          action_type: 'turn',
+          message: 'Join InstrumentChamp...'
+        }, requestCallback);
+
+        e.preventDefault();
       });
 
-      FB.ui({
-        method: 'apprequests',
-        message: 'Here is a new Requests dialog...'
-      });
+      function requestCallback(response) {
+        $.post("<%= user_facebook_invitations_path %>", {user_facebook_invitations: {facebook_user_ids: response.to}});
+        alert(response.to);
+      }
     });
   </script>
 
@@ -28,4 +38,9 @@
 
 <hr />
 
+<%= simple_form_for @user_invitation do |f| %>
+    <%= f.input :friend_email, label: "Invite a friend via email" %>
+    <%= f.button :submit, "Invite!" %>
+<% end %>
 
+<hr />

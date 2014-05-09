@@ -1,6 +1,24 @@
 class UserInvitationsController < ApplicationController
-	before_action :authorize, except: [:create, :new]
+	before_action :authorize
 
 	def new
+	  @user_invitation = current_user.user_invitations.build
+  end
+
+  def create
+    @user_invitation = current_user.user_invitations.build(user_invitation_params)
+    if @user_invitation.save
+      flash[:notice] = "An invitation to #{params[:user_invitation][:friend_email]} was successfully sent. Invite more friends right away!"
+      redirect_to new_user_invitation_path
+    else
+      flash.now[:warning] = "Some data were incorrect. Please try again."
+      render "new"
+    end
+  end
+
+  private
+
+  def user_invitation_params
+    params.require(:user_invitation).permit(:friend_email)
   end
 end
