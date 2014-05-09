@@ -29,7 +29,6 @@
 
       function requestCallback(response) {
         $.post("<%= user_facebook_invitations_path %>", {user_facebook_invitations: {facebook_user_ids: response.to}});
-        alert(response.to);
       }
     });
   </script>

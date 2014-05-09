@@ -4,6 +4,8 @@ en:
   email_notifier:
     welcome_message:
       subject: Welcome to instrumentchamp.com
+    user_invitation_message:
+      subject: Join InstrumentChamp
   activerecord:
     errors:
       models:

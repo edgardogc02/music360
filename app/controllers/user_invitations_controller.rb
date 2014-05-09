@@ -7,7 +7,7 @@ class UserInvitationsController < ApplicationController
 
   def create
     @user_invitation = current_user.user_invitations.build(user_invitation_params)
-    if @user_invitation.save
+    if @user_invitation.invite
       flash[:notice] = "An invitation to #{params[:user_invitation][:friend_email]} was successfully sent. Invite more friends right away!"
       redirect_to new_user_invitation_path
     else

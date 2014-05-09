@@ -68,4 +68,9 @@ FactoryGirl.define do
     visible 1
   end
 
+  factory :user_invitation do
+    user
+    friend_email "test@test.com"
+  end
+
 end

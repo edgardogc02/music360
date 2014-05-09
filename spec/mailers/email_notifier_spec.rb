@@ -24,4 +24,20 @@ describe EmailNotifier do
     end
   end
 
+  describe "send user invitation email" do
+    let(:user_invitation) { create(:user_invitation) }
+    let(:mail) { EmailNotifier.user_invitation_message(user_invitation) }
+
+    it "sends user invitation email" do
+      mail.subject.should eq("Join InstrumentChamp")
+      mail.to.should eq([user_invitation.friend_email])
+      mail.from.should eq(["no-reply@instrumentchamp.com"])
+    end
+
+    it "renders the body" do
+      mail.body.encoded.should have_content "Hi,"
+      mail.body.encoded.should have_content "#{user_invitation.user.username} invited you to join InstrumentChamp."
+    end
+  end
+
 end

@@ -16,6 +16,13 @@ describe "UserInvitations" do
       current_path.should eq(new_user_invitation_path)
       @user.user_invitations.pluck(:friend_email).should include('lala@lala.com')
     end
+
+    it "should send an email to the invited user" do
+      visit new_user_invitation_path
+      fill_in "user_invitation_friend_email", with: 'invited_user@test.com'
+      click_on 'Invite!'
+      last_email.to.should include("invited_user@test.com")
+    end
   end
 
   context "user not signed in" do

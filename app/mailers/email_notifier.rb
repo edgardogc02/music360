@@ -8,4 +8,10 @@ class EmailNotifier < ActionMailer::Base
     mail to: @user.email
   end
 
+  def user_invitation_message(user_invitation)
+    @user_invitation = user_invitation
+    @host = "https://www.instrumentchamp.com"
+    mail to: @user_invitation.friend_email
+  end
+
 end
