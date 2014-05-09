@@ -1,4 +1,16 @@
-<h1 class="page-header"><small><i class="glyphicon glyphicon-flag"></i></small> Create Challenge</h1>
+<h1 class="page-header clearfix"><small><i class="glyphicon glyphicon-flag"></i></small> Create Challenge
+	<section class="pull-right">
+	  <%= simple_form_for @challenge do |f| %>
+	    <%= f.association :challenger, as: :hidden %>
+	    <%= f.association :challenged, as: :hidden %>
+	    <%= f.association :song, as: :hidden %>
+	    <%= f.input :public, as: :hidden %>
+	    <%= f.input :finished, as: :hidden %>
+	    <%= f.input :instrument, as: :hidden, input_html: { value: 'Guitar' } %>
+	    <%= f.button :submit, "Start Challenge" %>
+	  <% end %>
+	</section>	
+</h1>
 
 <% if @challenge.song %>
 
@@ -82,15 +94,3 @@
 </div>
 
 <hr />
-
-<section>
-  <%= simple_form_for @challenge do |f| %>
-    <%= f.association :challenger, as: :hidden %>
-    <%= f.association :challenged, as: :hidden %>
-    <%= f.association :song, as: :hidden %>
-    <%= f.input :public, as: :hidden %>
-    <%= f.input :finished, as: :hidden %>
-    <%= f.input :instrument, as: :hidden, input_html: { value: 'Guitar' } %>
-    <%= f.button :submit, "Start Challenge" %>
-  <% end %>
-</section>

@@ -18,6 +18,7 @@ class Challenge < ActiveRecord::Base
 
   scope :public, -> { where(public: true) }
 	scope :open, -> { where(finished: false) }
+	scope :has_result, -> { where.not(winner: nil) }
 
 	def cover_url
 		song.cover_url
