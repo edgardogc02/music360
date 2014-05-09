@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  before_action :authorize
+  before_action :authorize, except: [:help]
 
   def home
     @users = UserChallengeDecorator.decorate_collection(User.not_deleted.exclude(current_user.id).limit(4))
