@@ -16,7 +16,7 @@ class SongDecorator < Draper::Decorator
 
   def play_button
     if display_play_button?
-      h.link_to "Play", play_url, {class: 'btn btn-sm btn-default'}
+      h.link_to "Play", play_url, {class: 'btn btn-sm btn-default song_'+ model.title.squish.downcase.tr(" ","_"), id: 'play_song_'+ model.title.squish.downcase.tr(" ","_")}
     end
   end
 

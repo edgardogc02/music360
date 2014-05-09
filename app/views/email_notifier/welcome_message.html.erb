@@ -27,11 +27,11 @@
 				<p>Here is some information and links to get you started:</p> 
 				
 				<ul style="list-style: none; padding: 0px 0px 20px 0px;">	
-					<li style="margin: 0px"><%= link_to "Challenge a friend", people_url(host: @host), {style: "color: #45B9B6"} %></li>		
-					<li style="margin: 0px"><%= link_to "Learn to play a song", songs_url(host: @host), {style: "color: #45B9B6"} %></li>
-					<li style="margin: 0px"><%= link_to "Take the tour", tour_url(host: @host), {style: "color: #45B9B6"} %></li>
-					<li style="margin: 0px"><%= link_to "Download the game", apps_url(host: @host), {style: "color: #45B9B6"} %></li>
-					<li style="margin: 0px"><%= link_to "Get help", help_url(host: @host), {style: "color: #45B9B6"} %></li>
+					<li style="margin: 0px"><%= link_to "Challenge a friend", people_url(host: @host), {style: "color: #45B9B6", class: "email_link_challenge_a_friend", id: "email_link_challenge_a_friend"} %></li>		
+					<li style="margin: 0px"><%= link_to "Learn to play a song", songs_url(host: @host), {style: "color: #45B9B6", class: "email_link_learn_to_play_a_song", id: "email_link_learn_to_play_a_song"} %></li>
+					<li style="margin: 0px"><%= link_to "Take the tour", tour_url(host: @host), {style: "color: #45B9B6", class: "email_link_take_the_tour", id: "email_link_take_the_tour"} %></li>
+					<li style="margin: 0px"><%= link_to "Download the game", apps_url(host: @host), {style: "color: #45B9B6", class: "email_link_download_the_game", id: "email_link_download_the_game"} %></li>
+					<li style="margin: 0px"><%= link_to "Get help", help_url(host: @host), {style: "color: #45B9B6", class: "email_link_get_help", id: "email_link_get_help"} %></li>
 				</ul>			  
 				
 				<p>			
