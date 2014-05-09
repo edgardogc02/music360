@@ -15,7 +15,7 @@ describe "LeftMenu" do
       page.should have_link "People", people_path
       page.should have_link "Songs", songs_path
       page.should have_link "Challenges", challenges_path
-      page.should have_link "Help", "https://instrumentchamp.zendesk.com"
+      page.should have_link "Help", help_path
       page.should have_link "Take the tour", tour_path
       page.should have_link "Download", apps_path
       page.should have_link "Premium", premium_path

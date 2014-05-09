@@ -15,6 +15,7 @@ module UserMacros
       user.oauth_uid.should_not be_blank
       user.oauth_uid.should eq(user.facebook_credentials.oauth_uid)
       user.updated_image.should be_true
+      user.locale.should_not be_blank
     else
       user.updated_image.should_not be_true
     end

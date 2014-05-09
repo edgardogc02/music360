@@ -74,6 +74,8 @@ InstrumentchampPrototype::Application.routes.draw do
   get 'tour', to: "pages#tour", as: :tour
   get 'premium', to: "statics#premium", as: :premium
 
+  get 'help', to: redirect("https://instrumentchamp.zendesk.com"), as: :help
+
   get ':action' => 'pages'
 
 end

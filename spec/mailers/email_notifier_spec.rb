@@ -13,11 +13,14 @@ describe EmailNotifier do
     end
 
     it "renders the body" do
-      pending "check content"
-      mail.body.encoded.should have_content("Welcome to instrumentchamp")
-      mail.body.encoded.should have_content("Hi #{user.username}")
-      mail.body.encoded.should have_content("Username: #{user.username}")
-      mail.body.encoded.should have_content("Password: #{user.password}")
+      mail.body.encoded.should have_content "Hi #{user.username}, welcome to InstrumentChamp!"
+      mail.body.encoded.should have_link "Challenge a friend", people_path
+      mail.body.encoded.should have_link "Learn to play a song", songs_path
+      mail.body.encoded.should have_link "Take the tour", tour_path
+      mail.body.encoded.should have_link "Download the game", apps_path
+      mail.body.encoded.should have_link "Get help", help_path
+      mail.body.encoded.should have_content "Kind regards"
+      mail.body.encoded.should have_content "The instrumentchamp team."
     end
   end
 
