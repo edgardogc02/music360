@@ -68,6 +68,7 @@ class User < ActiveRecord::Base
 
     user = User.where(email: auth.info.email).first
     user = User.where(username: auth.info.name).first if user.nil?
+    # TODO: Check if there is a facebook credential that matches auth and return user?
 
     if user.nil?
       user = User.create_from_omniauth(request)
@@ -81,9 +82,16 @@ class User < ActiveRecord::Base
         FacebookFriendsWorker.perform_async(user.id)
       end
     else
+      user.update_from_omniauth(auth)
       user.user_omniauth_credentials.create_or_update_from_omniauth(auth)
     end
     user
+  end
+
+  def update_from_omniauth(auth)
+    self.email = auth.info.email
+    self.oauth_uid = auth.uid
+    save
   end
 
   def remote_facebook_image

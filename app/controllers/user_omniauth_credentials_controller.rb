@@ -14,7 +14,7 @@ class UserOmniauthCredentialsController < ApplicationController
   end
 
   def failure
-    redirect_to login_path, warning: "Unfortunately, you haven’t authorized Music360 to access your facebook’s information. Please try again or sign up with your email."
+    redirect_to login_path, warning: "Unfortunately, you haven’t authorized InstrumentChamp to access your facebook’s information. Please try again or sign up with your email."
   end
 
 end

@@ -9,12 +9,12 @@ describe "Songs" do
     end
 
     it "should display song view" do
-      new_song = create(:song)
+      new_song = create(:song).decorate
       visit songs_path
       click_on new_song.title
       page.should have_content new_song.title
       page.should have_content new_song.artist.title
-      page.should have_link "Quick start song", href: new_song.desktop_app_uri
+      page.should have_link "Quick start song", href: new_song.play_url
       page.should have_link "Create challenge", href: new_challenge_path(song_id: new_song.id)
     end
 
@@ -53,7 +53,7 @@ describe "Songs" do
     it "should not display play button in for_challenge page" do
       visit for_challenge_songs_path
       page.should have_link "Challenge", new_challenge_path(song_id: @song.id)
-      page.should_not have_link "Play", @song.desktop_app_uri
+      page.should_not have_link "Play", @song.decorate.play_url
     end
 
     it "should display play link if user installed the desktop app" do
@@ -63,7 +63,7 @@ describe "Songs" do
       @user.already_installed_desktop_app
       @user.reload
       visit songs_path
-      page.should have_link "Play", href: @song.desktop_app_uri
+      page.should have_link "Play", href: @song.decorate.play_url
     end
 
     it "should list free songs order by popularity" do
