@@ -6,6 +6,7 @@ module OmniauthMacros
                                                          :name   => "Test User",
                                                          :first_name  => "Test",
                                                          :last_name   => "User"},
+                                          :extra    => { :raw_info => { :locale => "en_US" }},
                                           :credentials => { :token      => "lk2j3lkjasldkjflk3ljsdf",
                                                             :expires_at => 10.days.from_now} })
   end

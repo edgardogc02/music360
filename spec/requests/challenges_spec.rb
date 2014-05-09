@@ -13,7 +13,7 @@ describe "Challenges" do
       click_on "challenge_#{@song.id}"
       current_path.should eq(new_challenge_path)
 
-      page.should have_content("1. Song chosen")
+      page.should have_content("1. Challenge chosen")
       page.should have_content(@song.title)
       page.should have_content(@song.artist.title)
       page.should have_content("Writer")
@@ -61,7 +61,7 @@ describe "Challenges" do
       click_on "challenge_#{challenged_user.id}"
       current_path.should eq(new_challenge_path)
 
-      page.should have_content("1. Chose your song")
+      page.should have_content("1. Choose the challenge")
       page.should have_content("Choose your song")
       page.should have_content("2. Choose friend to challenge")
       page.should have_content(@user.username)
@@ -73,7 +73,7 @@ describe "Challenges" do
       click_on "challenge_#{@song.id}"
 
       current_path.should eq(new_challenge_path)
-      page.should have_content("1. Song chosen")
+      page.should have_content("1. Challenge chosen")
       page.should have_content(@song.title)
       page.should have_content(@song.artist.title)
       page.should have_content("Writer")
@@ -194,7 +194,7 @@ describe "Challenges" do
       challenged_user = create(:user)
       visit new_challenge_path
 
-      page.should have_content "1. Chose your song"
+      page.should have_content "1. Choose the challenge"
       click_on "Choose your opponent"
       click_on "challenge_#{challenged_user.id}"
 
@@ -214,7 +214,7 @@ describe "Challenges" do
       challenged_user = create(:user)
       visit new_challenge_path
 
-      page.should have_content "1. Chose your song"
+      page.should have_content "1. Choose the challenge"
       click_on "Choose your song"
       click_on "challenge_#{@song.id}"
       current_path.should eq(new_challenge_path)

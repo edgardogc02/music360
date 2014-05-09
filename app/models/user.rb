@@ -91,6 +91,7 @@ class User < ActiveRecord::Base
   def update_from_omniauth(auth)
     self.email = auth.info.email
     self.oauth_uid = auth.uid
+    self.locale = auth.extra.raw_info.locale
     save
   end
 
@@ -181,6 +182,7 @@ class User < ActiveRecord::Base
     user.password = User.generate_random_password(5)
     user.password_confirmation = user.password
     user.oauth_uid = auth.uid
+    user.locale = auth.extra.raw_info.locale
     user.save!
 
     user.user_omniauth_credentials.create_from_omniauth(auth)
