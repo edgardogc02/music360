@@ -14,4 +14,14 @@ describe Instrument do
     end
   end
 
+  context "Scope" do
+    it "should display visible instruments only" do
+      guitar = create(:instrument, name: "guitar", visible: true)
+      drums = create(:instrument, name: "drums", visible: true)
+      saxo = create(:instrument, name: "saxo", visible: false)
+
+      Instrument.visible.should eq([guitar, drums])
+    end
+  end
+
 end

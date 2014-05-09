@@ -28,7 +28,7 @@ class SongDecorator < Draper::Decorator
 
   def edit_button
     if h.signed_in? and h.current_user.admin?
-      h.link_to "Edit", edit_song_path(model), {class: 'btn btn-sm btn-default'}
+      h.link_to "Edit", h.edit_song_path(model), {class: 'btn btn-sm btn-default'}
     end
   end
 

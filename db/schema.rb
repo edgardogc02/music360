@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140509092205) do
+ActiveRecord::Schema.define(version: 20140509105259) do
 
   create_table "apps", force: true do |t|
     t.datetime "created_at"
@@ -67,6 +67,7 @@ ActiveRecord::Schema.define(version: 20140509092205) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "image"
+    t.boolean  "visible"
   end
 
   create_table "songratings", force: true do |t|

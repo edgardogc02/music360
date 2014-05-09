@@ -65,6 +65,7 @@ FactoryGirl.define do
 
   factory :instrument do
     sequence(:name) { |n| "instrument#{n}" }
+    visible 1
   end
 
 end

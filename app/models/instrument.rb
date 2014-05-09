@@ -6,4 +6,6 @@ class Instrument < ActiveRecord::Base
 
   has_many :users
 
+  scope :visible, -> { where(visible: true) }
+
 end

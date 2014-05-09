@@ -22,7 +22,7 @@ class InstrumentsController < ApplicationController
   private
 
   def instrument_params
-    params.require(:instrument).permit(:image, :remote_image_url)
+    params.require(:instrument).permit(:image, :remote_image_url, :visible)
   end
 
   def admin_only

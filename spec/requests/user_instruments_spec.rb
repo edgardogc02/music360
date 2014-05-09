@@ -26,6 +26,17 @@ describe "UserInstrument" do
       @user.instrument.should eq(guitar)
     end
 
+    it "should only show visible instruments on the user_instrument page" do
+      guitar = create(:instrument, name: "Guitar", visible: true)
+      saxo = create(:instrument, name: "Saxo", visible: false)
+
+      visit edit_user_instrument_path(@user)
+
+      page.should have_xpath("//a[@data-instrument-id=#{guitar.id}]")
+      page.should_not have_xpath("//a[@data-instrument-id=#{saxo.id}]")
+
+    end
+
     it "should have a select instrument button in the profile page" do
       visit person_path(@user)
       page.should have_link "Choose your instrument", href: edit_user_instrument_path(@user.id)
