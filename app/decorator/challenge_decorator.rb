@@ -11,7 +11,7 @@ class ChallengeDecorator < Draper::Decorator
 
   def start_challenge_button
     if model.display_start_challenge_to_user?(h.current_user)
-      h.link_to "Start challenge", start_challenge_url, {class: "btn btn-primary", id: "challenge_start_#{model.id}"}
+      h.render 'actions', challenge: model.decorate
     end
   end
 

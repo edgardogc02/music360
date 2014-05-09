@@ -62,6 +62,16 @@ class ChallengesController < ApplicationController
 	    render 'new'
 	  end
 	end
+	
+	def update
+	  @challenge = Challenge.find(params[:id])
+    if @challenge.update_attributes(challenge_params)
+      redirect_to challenges_path, notice: "Your profile was successfully updated"
+    else
+      flash.now[:warning] = "Check the errors below and try again"
+      redirect_to challenges_path
+    end
+  end
 
   def challenge_params
     params.require(:challenge).permit(:song_id, :challenged_id, :instrument, :public, :finished)
