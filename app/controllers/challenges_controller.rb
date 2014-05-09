@@ -2,7 +2,10 @@ class ChallengesController < ApplicationController
 	before_action :authorize, except: [:index, :show]
 
 	def index
-		@challenges = ChallengeDecorator.decorate_collection(Challenge.order('created_at DESC')) # TODO: ADD public
+		@my_challenges = @challenges = ChallengeDecorator.decorate_collection(current_user.challenges.order('created_at DESC').limit(3))
+		@open_challenges = ChallengeDecorator.decorate_collection(Challenge.open.order('created_at DESC').limit(3))
+		@challenges = ChallengeDecorator.decorate_collection(Challenge.order('created_at DESC').limit(3)) # TODO: ADD public
+		@challenges_results = ChallengeDecorator.decorate_collection(Challenge.has_result.order('created_at DESC').limit(3))
 	end
 
 	def new
@@ -25,6 +28,26 @@ class ChallengesController < ApplicationController
 
     if params[:autostart_challenge_id]
       @autostart_challenge = Challenge.find(params[:autostart_challenge_id])
+    end
+  end
+  
+  def list
+    if params[:view] == "my_challenges"
+      @challenges = ChallengeDecorator.decorate_collection(current_user.challenges.order('created_at DESC'))
+      @title = "My challenges"
+      
+      if params[:autostart_challenge_id]
+        @autostart_challenge = Challenge.find(params[:autostart_challenge_id])
+      end
+    elsif params[:view] == "open"
+      @challenges = ChallengeDecorator.decorate_collection(Challenge.open.order('created_at DESC'))
+      @title = "Open challenges"
+    elsif params[:view] == "all"
+      @challenges = ChallengeDecorator.decorate_collection(Challenge.order('created_at DESC'))
+      @title = "All challenges"
+    elsif params[:view] == "results"
+      @challenges = ChallengeDecorator.decorate_collection(Challenge.has_result.order('created_at DESC'))
+      @title = "Results"
     end
   end
 

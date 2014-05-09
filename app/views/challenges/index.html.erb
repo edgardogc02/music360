@@ -4,16 +4,91 @@
   <% end %>
 </h1>
 
-<h3>Latest, open challenges right now.</h3>
+<ul class="nav nav-tabs">
+  <li class="active"><a href="#my_challenges" data-toggle="tab">My challenges</a></li>
+  <li><a href="#open" data-toggle="tab">Open challenges</a></li>
+  <li><a href="#all" data-toggle="tab">All challenges</a></li>
+  <li><a href="#results" data-toggle="tab">Results</a></li>
+</ul>
 
-<% unless @challenges.blank? %>
-	<ul class="media-list">
-		<%= render partial: "challenge", collection: @challenges %>
-	</ul>
-<% else %>
+<!-- Tab panes -->
+<div class="tab-content">
+  <div class="tab-pane active" id="my_challenges">
+  	<h3 class="page-header clearfix">My challenges <%= link_to "View all", list_challenges_path(view: "my_challenges"), {class: "btn btn-primary pull-right btn-sm"} %></h3>
+		
+		<% unless @my_challenges.blank? %>
+			<ul class="media-list">
+				<%= render partial: "challenge", collection: @my_challenges %>
+			</ul>
+		<% else %>
+			<p class="no-content hide">
+			  <p>You don't have challenges right now</p>
+			</p>	
+		<% end %>  	
+  </div>
+  <div class="tab-pane" id="open">
+  	<h3 class="page-header clearfix">Open challenges <%= link_to "View all", list_challenges_path(view: "open"), {class: "btn btn-primary pull-right btn-sm"} %></h3>
 
-<p class="no-content">
-  <p>No open challenges right now</p>
-</p>
+		<% unless @open_challenges.blank? %>
+			<ul class="media-list">
+				<%= render partial: "challenge", collection: @open_challenges %>
+			</ul>
+		<% else %>
+			<p class="no-content hide">
+			  <p>No open challenges right now</p>
+			</p>	
+		<% end %>
+  </div>
+  <div class="tab-pane" id="all">
+  	<h3 class="page-header clearfix">All challenges <%= link_to "View all", list_challenges_path(view: "all"), {class: "btn btn-primary pull-right btn-sm"} %></h3>
+		
+		<% unless @challenges.blank? %>
+			<ul class="media-list">
+				<%= render partial: "challenge", collection: @challenges %>
+			</ul>
+		<% else %>
+			<p class="no-content hide">
+			  <p>No challenges right now</p>
+			</p>	
+		<% end %>
+  </div>
+  <div class="tab-pane" id="results">
+  	<h3 class="page-header clearfix">Results <%= link_to "View all", list_challenges_path(view: "results"), {class: "btn btn-primary pull-right btn-sm"} %></h3>
 
-<% end %>
+		<% unless @challenges_results.blank? %>
+			<ul class="media-list">
+				<%= render partial: "challenge", collection: @challenges_results %>
+			</ul>
+		<% else %>
+			<p class="no-content hide">
+			  <p>No challenges right now</p>
+			</p>	
+		<% end %>
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

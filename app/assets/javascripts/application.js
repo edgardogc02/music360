@@ -20,5 +20,6 @@
 //= require bootstrap/scrollspy
 //= require bootstrap/tooltip
 //= require bootstrap/popover
+//= require bootstrap/tab
 //= require lib/bootstrap-tour.min
 //= require_tree .
