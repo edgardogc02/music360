@@ -1,11 +1,13 @@
 module ApplicationHelper
 
-	def nav_link(link_text, link_path, options)
+	def nav_link(link_text, link_path, options={})
 	  class_name = current_page?(link_path) ? 'active' : ''
+    options.merge!({class: class_name +' list-group-item'})
+    icon = options.delete(:icon)
 
-	    link_to link_path, {class: class_name +' list-group-item', id: options[:id]} do
-	    	raw("<i class='glyphicon glyphicon-#{options[:icon]}'></i>") + link_text
-	    end
+    link_to link_path, options do
+    	raw("<i class='glyphicon glyphicon-#{icon}'></i>") + link_text
+    end
 	end
 
 	def body_classes(classes=nil)
