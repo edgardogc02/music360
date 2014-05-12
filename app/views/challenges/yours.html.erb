@@ -2,6 +2,32 @@
   <META HTTP-EQUIV="Refresh" CONTENT="1; URL=<%= @autostart_challenge.desktop_app_uri %>">
 <% end %>
 
+<div id="fb-root"></div>
+
+<% if @open_fb_notification_popup %>
+
+  <%= content_for(:js_scripts) do %>
+    <script src="https://connect.facebook.net/en_US/all.js"></script>
+    <script type="text/javascript">
+      $(document).ready(function(){
+        FB.init({
+          appId: '563800430326433',
+          cookie: true,
+          status: true,
+          xfbml: true
+        });
+
+        FB.ui({
+          method: 'send',
+          to: "<%= @autostart_challenge.challenged.facebook_uid %>",
+          link: "<%= challenge_url(@autostart_challenge) %>",
+        });
+      });
+    </script>
+  <% end %>
+
+<% end %>
+
 <h1 class="page-header"><small><i class="glyphicon glyphicon-flag"></i></small> Your challenges</h1>
 
 <ul class="media-list">

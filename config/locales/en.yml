@@ -6,6 +6,8 @@ en:
       subject: Welcome to instrumentchamp.com
     user_invitation_message:
       subject: Join InstrumentChamp
+    challenged_user_message:
+      subject: You have a new challenge on InstrumentChamp
   activerecord:
     errors:
       models:

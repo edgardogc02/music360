@@ -8,7 +8,7 @@ class Challenge < ActiveRecord::Base
   validates :finished, inclusion: {in: [true, false]}
 
   #validate :challenged_and_finished
-  validate :challenged_and_finished, :on => :create 
+  validate :challenged_and_finished, :on => :create
 
 	belongs_to :challenger, class_name: "User", foreign_key: "challenger_id"
 	belongs_to :challenged, class_name: "User", foreign_key: "challenged_id"
@@ -41,11 +41,27 @@ class Challenge < ActiveRecord::Base
     self.finished and !self.winner.blank?
   end
 
+  def save_and_follow_challenged
+    if save
+      self.challenger.follow(self.challenged) if !self.challenger.following?(self.challenged)
+      notify_challenged_user
+      true
+    else
+      false
+    end
+  end
+
 	private
 
 	def challenged_and_finished
     errors.add(:finished, "You already have an open challenge for that song with that user") if Challenge.where(challenger_id: self.challenger_id, challenged_id: self.challenged_id, song_id: self.song_id, finished: false).count > 0
 	end
+
+  def notify_challenged_user
+    if self.challenged.can_receive_messages?
+      EmailNotifier.challenged_user_message(self).deliver
+    end
+  end
 
   def fill_in_extra_fields
     self.score_u1 = 0

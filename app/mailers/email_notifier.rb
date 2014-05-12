@@ -4,7 +4,7 @@ class EmailNotifier < ActionMailer::Base
 
   def welcome_message(user)
     @user = user
-    @host = "https://www.instrumentchamp.com"
+    @host = "https://www.instrumentchamp.com" # TODO:
     mail to: @user.email
   end
 
@@ -12,6 +12,12 @@ class EmailNotifier < ActionMailer::Base
     @user_invitation = user_invitation
     @host = "https://www.instrumentchamp.com"
     mail to: @user_invitation.friend_email
+  end
+
+  def challenged_user_message(challenge)
+    @challenge = challenge
+    @host = "https://www.instrumentchamp.com"
+    mail to: @challenge.challenged.email
   end
 
 end

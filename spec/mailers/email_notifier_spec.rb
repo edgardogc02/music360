@@ -2,6 +2,8 @@ require "spec_helper"
 
 describe EmailNotifier do
 
+  let(:host) { "https://www.instrumentchamp.com" }
+
   describe "send confirmation email" do
     let(:user) { create(:user) }
     let(:mail) { EmailNotifier.welcome_message(user) }
@@ -40,4 +42,21 @@ describe EmailNotifier do
     end
   end
 
+  describe "send email to challenged user" do
+    let(:challenge) { create(:challenge) }
+    let(:mail) { EmailNotifier.challenged_user_message(challenge) }
+
+    it "sends email to challenged user" do
+      mail.subject.should eq("You have a new challenge on InstrumentChamp")
+      mail.to.should eq([challenge.challenged.email])
+      mail.from.should eq(["no-reply@instrumentchamp.com"])
+    end
+
+    it "renders the body" do
+      mail.body.encoded.should have_content "Hi #{challenge.challenged.username},"
+      mail.body.encoded.should have_content "#{challenge.challenger.username} has challenged you on InstrumentChamp."
+      mail.body.encoded.should have_content "To view the challenge, you can click on the following link:"
+      mail.body.encoded.should have_link challenge_url(challenge, host: host), challenge_url(challenge, host: host)
+    end
+  end
 end

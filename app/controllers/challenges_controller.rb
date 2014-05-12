@@ -28,6 +28,10 @@ class ChallengesController < ApplicationController
 
     if params[:autostart_challenge_id]
       @autostart_challenge = Challenge.find(params[:autostart_challenge_id])
+
+      if params[:send_fb_notification] and @autostart_challenge.challenged.fake_facebook_user?
+        @open_fb_notification_popup = true
+      end
     end
   end
 
@@ -54,9 +58,9 @@ class ChallengesController < ApplicationController
 	def create
 	  @challenge = current_user.challenges.build(challenge_params).decorate
 
-	  if @challenge.save
+	  if @challenge.save_and_follow_challenged
 	    flash[:notice] = "The challenge was successfully created"
-	    redirect_to yours_challenges_path(autostart_challenge_id: @challenge.id)
+	    redirect_to yours_challenges_path(autostart_challenge_id: @challenge.id, send_fb_notification: 1)
 	  else
 	    flash.now[:warning] = ("There was an error when creating the challenge" + "<br/>" + @challenge.errors.full_messages.join(', ') + "<br/>" + "Please try again").html_safe
 	    render 'new'

@@ -99,6 +99,23 @@ describe "Challenges" do
       page.should have_content(challenged_user.username)
     end
 
+    it "should create a new challenge and follow the user" do
+      challenge = create_challenge
+      @user.following?(challenge.challenged).should be_true
+    end
+
+    context "email notification" do
+      it "should send an email to the challenged user" do
+        challenge = create_challenge
+        last_email.to.should include(challenge.challenged.email)
+      end
+
+      it "should not send an email to the challenged user if it's a fake facebook user" do
+        challenge = create_challenge(create(:user, email: "1234123@fakeuser.com")) # the challenged user should be a fake facebook user
+        last_email.should be_nil
+      end
+    end
+
     it "should not contain play when selecting a song" do
       visit new_challenge_path
       click_on "Choose your song"
@@ -247,6 +264,16 @@ describe "Challenges" do
       visit challenges_path
       page.should_not have_link "New challenge", new_challenge_path
     end
+  end
+
+  def create_challenge(challenged_user=nil)
+    challenged_user = create(:user) if challenged_user.nil?
+    visit people_path
+    click_on "challenge_#{challenged_user.id}"
+    click_on "Choose your song"
+    click_on "challenge_#{@song.id}"
+    click_on "Start Challenge"
+    Challenge.last
   end
 
 end

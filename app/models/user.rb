@@ -102,6 +102,16 @@ class User < ActiveRecord::Base
     "https://graph.facebook.com/" + facebook_credentials.oauth_uid.to_s + "/picture?type=large"
   end
 
+  def facebook_uid
+    if self.facebook_credentials
+      facebook_credentials.oauth_uid
+    elsif fake_facebook_user?
+      self.email[0, self.email.index("@")]
+    else
+      ""
+    end
+  end
+
   def following?(followed_user)
     self.inverse_user_followers.find_by(user_id: followed_user.id)
   end
@@ -157,6 +167,14 @@ class User < ActiveRecord::Base
     if !self.new_record? and !self.skip_emails # avoid callbacks otherwise the tests and fake facebook users will send emails
       EmailNotifier.welcome_message(self).deliver
     end
+  end
+
+  def can_receive_messages?
+    !fake_facebook_user?
+  end
+
+  def fake_facebook_user?
+    self.email.include? "@fakeuser.com"
   end
 
 	private
