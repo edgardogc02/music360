@@ -7,7 +7,7 @@ class UserDecorator < Draper::Decorator
   end
 
   def display_follow_button?
-    true
+    false
   end
 
   def display_follow_button
