@@ -1,4 +1,4 @@
-<% if display_google_analytics_tracking? %>
+<% if include_kissmetrics? %>
   <script type="text/javascript">var _kmq = _kmq || [];
   var _kmk = _kmk || 'e9d5b2513ccea9cc9b343179d81c7f5882eebf1c';
   function _kms(u){
@@ -11,6 +11,10 @@
   }
   _kms('//i.kissmetrics.com/i.js');
   _kms('//doug1izaerwt3.cloudfront.net/' + _kmk + '.1.js');
+
+  <% if signed_in? %>
+    _kmq.push(['identify', "<%= current_user.email %>"]);
+  <% end %>
   </script>
 <% end %>
 

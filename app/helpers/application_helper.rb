@@ -55,7 +55,17 @@ module ApplicationHelper
     end
   end
 
-  def display_google_analytics_tracking?
+  def include_google_analytics?
+    include_tracking_scripts?
+  end
+
+  def include_kissmetrics?
+    include_tracking_scripts?
+  end
+
+  private
+
+  def include_tracking_scripts?
     Rails.env.production? and !test_domain_name? and (!signed_in? or (signed_in? and !current_user.admin?))
   end
 

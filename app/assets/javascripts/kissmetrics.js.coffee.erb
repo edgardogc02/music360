@@ -1,0 +1,28 @@
+<% environment.context_class.instance_eval { include ApplicationHelper } %>
+
+<% if include_kissmetrics? %>
+  $(document).on 'page:load', ->
+    _kmq.push ['trackClick', 'facebook_signin', 'First facebook continue button']
+    _kmq.push ['trackClick', 'facebook_signin_1', 'Second facebook continue button']
+    _kmq.push ['trackClick', 'facebook_signin_2', 'Third facebook continue button']
+    _kmq.push ['trackClick', 'facebook_signin_3', 'Fourth facebook continue button']
+    _kmq.push ['trackClick', 'facebook_signin_4', 'Facebook login button']
+    _kmq.push ['trackClick', '.sign-in-btn', 'Top Sign in Button']
+    _kmq.push ['trackClick', 'sign_in', 'Sign in button']
+    _kmq.push ['trackClick', '.privacy_policy', 'Privacy policy link']
+    _kmq.push ['trackClick', '.terms_of_service', 'Terms of service link']
+    _kmq.push ['trackClick', '.about_us', 'About us link']
+    _kmq.push ['trackClick', '.contact_us', 'Contact us link']
+    _kmq.push ['trackClick', '.press', 'Press link']
+    _kmq.push ['trackClick', '.twitter-btn', 'Twitter page button']
+    _kmq.push ['trackClick', '.fb-btn', 'Facebook page button']
+    _kmq.push ['trackClick', 'sign_out', 'Sign out button']
+    _kmq.push ['trackClick', 'video-btn', 'Homepage video button']
+    _kmq.push ['trackClick', 'btn_email_signup', 'Sign up with email link']
+    _kmq.push ['trackClick', 'btn_email_signup_top_slide', 'First sign up with email link']
+    _kmq.push ['trackClick', 'btn_email_signup_what_it_is_slide', 'Second sign up with email link']
+    _kmq.push ['trackClick', 'btn_email_signup_how_it_works_slide', 'Third sign up with email link']
+    _kmq.push ['trackClick', 'btn_email_signup_what_it_costs_slide', 'Fourth sign up with email link']
+    _kmq.push ['trackClick', 'btn_crowdfunding_campaign_landing', 'Crowdfunding link']
+    return
+<% end %>
