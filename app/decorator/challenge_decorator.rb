@@ -11,13 +11,13 @@ class ChallengeDecorator < Draper::Decorator
 
   def start_challenge_button
     if model.display_start_challenge_to_user?(h.current_user)
-      h.render 'actions', challenge: model.decorate
+      h.render 'challenges/actions', challenge: model.decorate
     end
   end
 
   def display_points
     if model.display_points?
-      h.render "points", challenge: model
+      h.render "challenges/points", challenge: model
     end
   end
 
