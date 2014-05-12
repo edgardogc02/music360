@@ -76,6 +76,8 @@ InstrumentchampPrototype::Application.routes.draw do
   get 'terms-of-service', to: "statics#terms_of_service", as: :terms_of_service
   get 'tour', to: "pages#tour", as: :tour
   get 'premium', to: "statics#premium", as: :premium
+  get 'get-premium', to: "statics#get_premium", as: :get_premium
+  get 'get-free', to: "statics#get_free", as: :get_free
 
   get 'help', to: redirect("https://instrumentchamp.zendesk.com"), as: :help
 
