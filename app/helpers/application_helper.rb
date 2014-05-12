@@ -55,6 +55,10 @@ module ApplicationHelper
     end
   end
 
+  def test_domain_name?
+    request.host.include?('test-instrumentchamp')
+  end
+
   def include_google_analytics?
     include_tracking_scripts?
   end
