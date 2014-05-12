@@ -7,7 +7,7 @@ class ResumedPopularUsersList < UsersList
   end
 
   def title
-    "Challenge people on InstrumentChamp"
+    "Challenge your InstrumentChamp Friends"
   end
 
   def display_more_link
