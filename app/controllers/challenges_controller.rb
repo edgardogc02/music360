@@ -1,5 +1,5 @@
 class ChallengesController < ApplicationController
-	before_action :authorize, except: [:index, :show]
+	before_action :authorize, except: [:show]
 
 	def index
 		@my_challenges = @challenges = ChallengeDecorator.decorate_collection(current_user.challenges.order('created_at DESC').limit(3))
@@ -20,7 +20,7 @@ class ChallengesController < ApplicationController
 	end
 
   def show
-    @challenge = Challenge.find(params[:id])
+    @challenge = Challenge.find(params[:id]).decorate
   end
 
   def yours
@@ -30,12 +30,12 @@ class ChallengesController < ApplicationController
       @autostart_challenge = Challenge.find(params[:autostart_challenge_id])
     end
   end
-  
+
   def list
     if params[:view] == "my_challenges"
       @challenges = ChallengeDecorator.decorate_collection(current_user.challenges.order('created_at DESC'))
       @title = "My challenges"
-      
+
       if params[:autostart_challenge_id]
         @autostart_challenge = Challenge.find(params[:autostart_challenge_id])
       end
@@ -62,7 +62,7 @@ class ChallengesController < ApplicationController
 	    render 'new'
 	  end
 	end
-	
+
 	def update
 	  @challenge = Challenge.find(params[:id])
     if @challenge.update_attributes(challenge_params)
