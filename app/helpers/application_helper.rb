@@ -55,22 +55,12 @@ module ApplicationHelper
     end
   end
 
-  def test_domain_name?
-    request.host.include?('test-instrumentchamp')
-  end
-
   def include_google_analytics?
-    include_tracking_scripts?
+    Rails.env.production? and !test_domain_name? and (!signed_in? or (signed_in? and !current_user.admin?))
   end
 
   def include_kissmetrics?
-    include_tracking_scripts?
-  end
-
-  private
-
-  def include_tracking_scripts?
-    Rails.env.production? and !test_domain_name? and (!signed_in? or (signed_in? and !current_user.admin?))
+    Rails.env.production? and !test_domain_name?
   end
 
 end

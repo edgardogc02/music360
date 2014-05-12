@@ -1,6 +1,4 @@
-<% environment.context_class.instance_eval { include ApplicationHelper } %>
-
-<% if include_kissmetrics? %>
+<% if Rails.env.production? %>
   $(document).on 'page:load', ->
     _kmq.push ['trackClick', 'facebook_signin', 'First facebook continue button']
     _kmq.push ['trackClick', 'facebook_signin_1', 'Second facebook continue button']
