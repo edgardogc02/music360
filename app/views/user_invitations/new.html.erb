@@ -37,9 +37,11 @@
 
 <hr />
 
-<%= simple_form_for @user_invitation do |f| %>
-    <%= f.input :friend_email, label: "Invite a friend via email" %>
-    <%= f.button :submit, "Invite!" %>
-<% end %>
-
-<hr />
+<div class="row">
+	<div class="col-md-6">
+		<%= simple_form_for @user_invitation do |f| %>
+	    <%= f.input :friend_email, label: "Invite a friend via email" %>
+	    <%= f.button :submit, "Invite!" %>
+		<% end %>
+	</div>
+</div>

@@ -7,7 +7,8 @@ class Challenge < ActiveRecord::Base
   validates :public, inclusion: {in: [true, false]}
   validates :finished, inclusion: {in: [true, false]}
 
-  validate :challenged_and_finished
+  #validate :challenged_and_finished
+  validate :challenged_and_finished, :on => :create 
 
 	belongs_to :challenger, class_name: "User", foreign_key: "challenger_id"
 	belongs_to :challenged, class_name: "User", foreign_key: "challenged_id"
@@ -33,7 +34,7 @@ class Challenge < ActiveRecord::Base
   end
 
   def display_points?
-    self.finished
+    self.finished and !self.winner.blank?
   end
 
   def display_winner?

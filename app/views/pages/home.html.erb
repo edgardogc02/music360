@@ -13,9 +13,8 @@
         	<hr />
         	<h3>Click the instrument you want to play to start the tour</h3><br />
         	<div class="row">
-        		<div class="col-md-1 col-sm-1"></div>
 				    <% Instrument.all.each do |instrument| %>
-				    	<div class="col-md-2 col-sm-2 col-xs-4">
+				    	<div class="col-md-4 col-sm-4 col-xs-4">
 				      	<%= link_to(image_tag(instrument.image_url), tour_path, {class: "thumbnail", title: instrument.name, data: {"toogle" => "tooltip", "placement" => "top"}}) %>
 				  		</div>
 				    <% end %>

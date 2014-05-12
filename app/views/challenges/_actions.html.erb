@@ -1,9 +1,13 @@
+<% if challenge.challenger == current_user %>
+	<%= link_to "Start challenge", challenge.start_challenge_url, {class: "btn btn-primary", id: "challenge_start_#{challenge.id}"} %>
+<% else %>
 <div class="clearfix">
-	<div class="pull-left"><%= link_to "Accept challenge", challenge.start_challenge_url, {class: "btn btn-primary", id: "challenge_start_#{challenge.id}"} %></div>	
+	<div class="pull-left margin-right"><%= link_to "Accept challenge", challenge.start_challenge_url, {class: "btn btn-primary", id: "challenge_start_#{challenge.id}"} %></div>	
 	<div class="pull-left">
 		<%= simple_form_for challenge do |f| %>
-		  <%= f.input :finished, as: :hidden, input_html: { value: true } %>
+		  <%= f.input :finished, as: :hidden, input_html: {checked: false, value: true} %>
 		  <%= f.button :submit, "Decline", {class: "btn btn-danger"} %>
 		<% end %>
 	</div>
 </div>
+<% end %>
