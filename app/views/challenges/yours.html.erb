@@ -19,9 +19,9 @@
         });
 
         FB.ui({
-          method: 'share',
+          method: 'feed',
           to: "<%= @autostart_challenge.challenged.facebook_uid %>",
-          href: "<%= challenges_url(@autostart_challenge) %>",
+          link: "<%= challenges_url(@autostart_challenge) %>",
           picture: "<%= asset_url(@autostart_challenge.song.cover.url) %>",
           description: "<%= @autostart_challenge.challenger.username %> challenged <%= @autostart_challenge.challenged.username %> on InstrumentChamp"
         });
