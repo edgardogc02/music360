@@ -275,6 +275,20 @@
       margin: 0px;
     }
   }
+  
+  &.xs {
+    background-position: 8px center;
+    font-size: 14px;
+    padding: 0 16px 0 50px;
+    
+    .separator {
+      left: 38px;
+    }
+    
+    .text {
+      margin: 0px;
+    }
+  }
 }
 
 
