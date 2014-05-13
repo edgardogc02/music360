@@ -23,7 +23,7 @@ class Challenge < ActiveRecord::Base
   scope :pending_by_challenged, -> { where('score_u2 = 0') }
 	scope :pending_only_by_challenged, -> { where('score_u1 > 0 and score_u2 = 0') }
   scope :pending_only_by_challenger, -> { where('score_u1 = 0 and score_u2 > 0') }
-	scope :results, -> { where('score_u1 > 0 and score_u2 > 0') }
+	scope :finished, -> { where('score_u1 > 0 and score_u2 > 0') }
   scope :default_order, -> { order('created_at DESC') }
   scope :default_limit, -> { limit(3) }
 
@@ -66,6 +66,16 @@ class Challenge < ActiveRecord::Base
 
   def self.not_played_for_user(user, opts={})
     sql = user.challenges.pending_by_challenger.to_sql + " UNION " + user.proposed_challenges.pending_by_challenged.to_sql
+
+    sql = "SELECT * FROM (#{sql}) a "
+    sql << " ORDER BY #{opts[:order].to_sentence} " if opts[:order]
+    sql << " LIMIT #{opts[:limit]} " if opts[:limit]
+
+    Challenge.find_by_sql(sql)
+  end
+
+  def self.results_for_user(user, opts={})
+    sql = user.challenges.finished.to_sql + " UNION " + user.proposed_challenges.finished.to_sql
 
     sql = "SELECT * FROM (#{sql}) a "
     sql << " ORDER BY #{opts[:order].to_sentence} " if opts[:order]

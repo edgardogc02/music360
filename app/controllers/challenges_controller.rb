@@ -4,7 +4,7 @@ class ChallengesController < ApplicationController
 	def index
 		@my_challenges = TabMyChallengesDecorator.decorate(Challenge.not_played_for_user(current_user, Challenge.default_order.default_limit.values))
     @pending_challenges = TabPendingChallengesDecorator.decorate(Challenge.pending_for_user(current_user, Challenge.default_order.default_limit.values))
-		@challenges_results = TabResultChallengesDecorator.decorate(Challenge.results.default_order.default_limit)
+		@challenges_results = TabResultChallengesDecorator.decorate(Challenge.results_for_user(current_user, Challenge.default_order.default_limit.values))
 	end
 
 	def new
@@ -44,7 +44,7 @@ class ChallengesController < ApplicationController
       @challenges = TabPendingChallengesDecorator.decorate(Challenge.pending_for_user(current_user, Challenge.default_order.values))
       @title = "Open challenges"
     elsif params[:view] == "results"
-      @challenges = TabResultChallengesDecorator.decorate(Challenge.results.default_order)
+      @challenges = TabResultChallengesDecorator.decorate(Challenge.results_for_user(current_user, Challenge.default_order.values))
       @title = "Results"
     end
   end
