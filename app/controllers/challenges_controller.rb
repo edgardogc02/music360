@@ -17,6 +17,8 @@ class ChallengesController < ApplicationController
 		if params[:song_id].present?
 		  @challenge.song = Song.find(params[:song_id])
 		end
+		
+		@songs = SongChallengeDecorator.decorate_collection(Song.free.by_popularity.limit(4))
 	end
 
   def show
