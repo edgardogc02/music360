@@ -1,9 +1,9 @@
 <div>
   <%= challenge.challenger.username %>: <strong><%= challenge.score_u1 %></strong> points
-  <%= content_tag :span, 'Winner', class: 'label label-success' if challenge.challenger == challenge.winner %>
+  <%= content_tag :span, 'Winner', class: 'label label-success' if challenge.challenger_won? %>
 </div>
 
 <div>
   <%= challenge.challenged.username %>: <strong><%= challenge.score_u2 %></strong> points
-	<%= content_tag :span, 'Winner', class: 'label label-success' if challenge.challenged == challenge.winner %>
+	<%= content_tag :span, 'Winner', class: 'label label-success' if challenge.challenged_won? %>
 </div>

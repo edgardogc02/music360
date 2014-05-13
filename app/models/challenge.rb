@@ -23,7 +23,7 @@ class Challenge < ActiveRecord::Base
   scope :pending_by_challenged, -> { where('score_u2 = 0') }
 	scope :pending_only_by_challenged, -> { where('score_u1 > 0 and score_u2 = 0') }
   scope :pending_only_by_challenger, -> { where('score_u1 = 0 and score_u2 > 0') }
-	scope :results, -> { where.not(winner: nil) }
+	scope :results, -> { where('score_u1 > 0 and score_u2 > 0') }
   scope :default_order, -> { order('created_at DESC') }
   scope :default_limit, -> { limit(3) }
 
@@ -33,18 +33,6 @@ class Challenge < ActiveRecord::Base
 
   def desktop_app_uri
     "ic:challenge=#{self.id}"
-  end
-
-  def has_winner?
-    !self.winner.blank?
-  end
-
-  def challenger_won?
-    has_winner? and self.challenger == self.winner
-  end
-
-  def challenged_won?
-    has_winner? and self.challenged == self.winner
   end
 
   def has_challenger_played?
@@ -84,6 +72,14 @@ class Challenge < ActiveRecord::Base
     sql << " LIMIT #{opts[:limit]} " if opts[:limit]
 
     Challenge.find_by_sql(sql)
+  end
+
+  def challenger_won?
+    has_challenger_played? and has_challenged_played? and score_u1 > score_u2
+  end
+
+  def challenged_won?
+    has_challenger_played? and has_challenged_played? and score_u1 < score_u2
   end
 
 	private
