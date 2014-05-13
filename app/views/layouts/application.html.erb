@@ -25,7 +25,8 @@
 				          <i class="glyphicon glyphicon-log-out"></i> Sign out
 				        <% end %>
 				      <% else %>
-					    	<a href="#page-top" class="btn btn-primary sign-in-btn" data-toggle="modal" data-target="#SignIn">Sign in</a>					    		    	
+				      	<%= link_to 'Sign up', signup_path, class: 'btn btn-link' %> 
+					    	<a href="#" class="btn btn-primary sign-in-btn" data-toggle="modal" data-target="#SignIn">Sign in</a>	
 					    <% end %>
 				    </div>
 					</div>
