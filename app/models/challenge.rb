@@ -41,16 +41,6 @@ class Challenge < ActiveRecord::Base
     self.finished and !self.winner.blank?
   end
 
-  def save_and_follow_challenged
-    if save
-      self.challenger.follow(self.challenged) if !self.challenger.following?(self.challenged)
-      notify_challenged_user
-      true
-    else
-      false
-    end
-  end
-
 	private
 
 	def challenged_and_finished
@@ -59,12 +49,6 @@ class Challenge < ActiveRecord::Base
 
   def no_own_challenge
     errors.add(:finished, "You can't challenge your self") if self.challenger and self.challenged and self.challenger == self.challenged
-  end
-
-  def notify_challenged_user
-    if self.challenged.can_receive_messages?
-      EmailNotifier.challenged_user_message(self).deliver
-    end
   end
 
   def fill_in_extra_fields

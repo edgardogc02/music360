@@ -59,8 +59,9 @@ class ChallengesController < ApplicationController
 
 	def create
 	  @challenge = current_user.challenges.build(challenge_params).decorate
+	  challenge_completition = ChallengeCreation.new(@challenge)
 
-	  if @challenge.save_and_follow_challenged
+	  if challenge_completition.save
 	    flash[:notice] = "The challenge was successfully created"
 	    redirect_to yours_challenges_path(autostart_challenge_id: @challenge.id, send_fb_notification: 1)
 	  else

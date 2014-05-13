@@ -5,10 +5,6 @@ class UserFollowerCompletion
     @user_follower = user_follower
   end
 
-  def user_follower
-    @user_follower
-  end
-
   def save
     if user_follower.save
       send_followed_user_message
