@@ -172,7 +172,7 @@ describe "Users" do
       click_on "Search"
 
       current_path.should eq(people_path)
-      page.should_not have_content @user.username
+      page.should_not have_link "Challenge", href: "challenge_#{@user.id}"
     end
 
     it "should have a link to followers in the profile page" do
