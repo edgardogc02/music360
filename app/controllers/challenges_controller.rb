@@ -31,7 +31,7 @@ class ChallengesController < ApplicationController
     if params[:autostart_challenge_id]
       @autostart_challenge = Challenge.find(params[:autostart_challenge_id])
 
-      if params[:send_fb_notification] and @autostart_challenge.challenged.connected_with_facebook?
+      if display_fb_popup?
         @open_fb_notification_popup = true
       end
     end
@@ -79,8 +79,13 @@ class ChallengesController < ApplicationController
     end
   end
 
+  private
+
   def challenge_params
     params.require(:challenge).permit(:song_id, :challenged_id, :instrument, :public, :finished)
   end
 
+  def display_fb_popup?
+    params[:send_fb_notification] and @autostart_challenge.challenged.connected_with_facebook? and current_user.has_facebook_credentials?
+  end
 end
