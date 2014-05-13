@@ -62,14 +62,11 @@ describe "Challenges" do
       current_path.should eq(new_challenge_path)
 
       page.should have_content("1. Choose the challenge")
-      page.should have_content("Choose your song")
       page.should have_content("2. Choose friend to challenge")
       page.should have_content(@user.username)
       page.should have_content("VS")
       page.should have_content(challenged_user.username)
-      click_on "Choose your song"
 
-      current_path.should eq(for_challenge_songs_path)
       click_on "challenge_#{@song.id}"
 
       current_path.should eq(new_challenge_path)
@@ -118,7 +115,6 @@ describe "Challenges" do
 
     it "should not contain play when selecting a song" do
       visit new_challenge_path
-      click_on "Choose your song"
       page.should_not have_link "Play", @song.decorate.play_url
     end
 
@@ -127,7 +123,6 @@ describe "Challenges" do
 
       click_on "People"
       click_on "challenge_#{challenged_user.id}"
-      click_on "Choose your song"
       click_on "challenge_#{@song.id}"
       click_on "Start Challenge"
 
@@ -216,7 +211,6 @@ describe "Challenges" do
       click_on "challenge_#{challenged_user.id}"
 
       current_path.should eq(new_challenge_path)
-      click_on "Choose your song"
       click_on "challenge_#{@song.id}"
       click_on "Start Challenge"
 
@@ -232,7 +226,6 @@ describe "Challenges" do
       visit new_challenge_path
 
       page.should have_content "1. Choose the challenge"
-      click_on "Choose your song"
       click_on "challenge_#{@song.id}"
       current_path.should eq(new_challenge_path)
 
@@ -270,7 +263,6 @@ describe "Challenges" do
     challenged_user = create(:user) if challenged_user.nil?
     visit people_path
     click_on "challenge_#{challenged_user.id}"
-    click_on "Choose your song"
     click_on "challenge_#{@song.id}"
     click_on "Start Challenge"
     Challenge.last

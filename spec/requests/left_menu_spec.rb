@@ -18,7 +18,7 @@ describe "LeftMenu" do
       page.should have_link "Help", help_path
       page.should have_link "Take the tour", tour_path
       page.should have_link "Download", apps_path
-      page.should have_link "Premium", premium_path
+#      page.should have_link "Premium", premium_path
     end
   end
 
