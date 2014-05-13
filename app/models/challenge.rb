@@ -7,8 +7,8 @@ class Challenge < ActiveRecord::Base
   validates :public, inclusion: {in: [true, false]}
   validates :finished, inclusion: {in: [true, false]}
 
-  #validate :challenged_and_finished
   validate :challenged_and_finished, :on => :create
+  validate :no_own_challenge, :on => :create
 
 	belongs_to :challenger, class_name: "User", foreign_key: "challenger_id"
 	belongs_to :challenged, class_name: "User", foreign_key: "challenged_id"
@@ -56,6 +56,10 @@ class Challenge < ActiveRecord::Base
 	def challenged_and_finished
     errors.add(:finished, "You already have an open challenge for that song with that user") if Challenge.where(challenger_id: self.challenger_id, challenged_id: self.challenged_id, song_id: self.song_id, finished: false).count > 0
 	end
+
+  def no_own_challenge
+    errors.add(:finished, "You can't challenge your self") if self.challenger and self.challenged and self.challenger == self.challenged
+  end
 
   def notify_challenged_user
     if self.challenged.can_receive_messages?

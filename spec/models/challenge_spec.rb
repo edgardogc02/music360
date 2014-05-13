@@ -14,6 +14,20 @@ describe Challenge do
         should allow_value(true, false).for(attr)
       end
     end
+
+    it "should not be able to create a challenge for the same challenger and song twice if it's still open" do
+      challenge = create(:challenge, finished: false)
+      new_challenge = build(:challenge, challenger: challenge.challenger, challenged: challenge.challenged, song: challenge.song, finished: false)
+      new_challenge.save
+      new_challenge.should_not be_persisted
+    end
+
+    it "should not be able to challenge himself" do
+      user = create(:user)
+      challenge = build(:challenge, challenger: user, challenged: user)
+      challenge.save
+      challenge.should_not be_persisted
+    end
   end
 
   context "Associations" do
