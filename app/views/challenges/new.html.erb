@@ -36,9 +36,13 @@
 <% else %>
 
   <section>
-    <h3>1. Choose the challenge</h3>
+    <h3 class="clearfix">1. Choose the challenge
+    	<div class="pull-right"><%= link_to "View more", for_challenge_songs_path(challenged_id: @challenge.challenged_id), {class: 'btn btn-primary', data: { toggle: "modal", target: "#selectSong" }} %></div>
+    </h3>
     <p>
-      <%= link_to "Choose your song", for_challenge_songs_path(challenged_id: @challenge.challenged_id), {class: 'btn btn-primary', data: { toggle: "modal", target: "#selectSong" }} %>
+			<div class="thumbnail-grid row">
+				<%= render partial: "songs/song", collection: @songs %>
+			</div>
     </p>
   </section>
 
