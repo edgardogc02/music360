@@ -9,7 +9,7 @@ describe EmailNotifier do
     let(:mail) { EmailNotifier.welcome_message(user) }
 
     it "sends user confirmation email" do
-      mail.subject.should eq("Welcome to instrumentchamp.com")
+      mail.subject.should eq("Welcome to InstrumentChamp")
       mail.to.should eq([user.email])
       mail.from.should eq(["no-reply@instrumentchamp.com"])
     end
@@ -57,6 +57,22 @@ describe EmailNotifier do
       mail.body.encoded.should have_content "#{challenge.challenger.username} has challenged you on InstrumentChamp."
       mail.body.encoded.should have_content "To view the challenge, you can click on the following link:"
       mail.body.encoded.should have_link challenge_url(challenge, host: host), challenge_url(challenge, host: host)
+    end
+  end
+
+  describe "send email to followed user" do
+    let(:user_follower) { create(:user_follower) }
+    let(:mail) { EmailNotifier.followed_user_message(user_follower) }
+
+    it "sends email to the followed user" do
+      mail.subject.should eq("You have a new follower on InstrumentChamp")
+      mail.to.should eq([user_follower.followed.email])
+      mail.from.should eq(["no-reply@instrumentchamp.com"])
+    end
+
+    it "renders the body" do
+      mail.body.encoded.should have_content "Hi #{user_follower.followed.username},"
+      mail.body.encoded.should have_content "#{user_follower.follower.username} is following you on InstrumentChamp."
     end
   end
 end

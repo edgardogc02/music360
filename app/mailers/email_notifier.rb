@@ -20,4 +20,10 @@ class EmailNotifier < ActionMailer::Base
     mail to: @challenge.challenged.email
   end
 
+  def followed_user_message(user_follower)
+    @user_follower = user_follower
+    @host = "https://www.instrumentchamp.com"
+    mail to: @user_follower.followed.email
+  end
+
 end

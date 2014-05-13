@@ -117,7 +117,8 @@ class User < ActiveRecord::Base
   end
 
   def follow(followed_user)
-    self.inverse_user_followers.create(user_id: followed_user.id)
+    user_follower = self.inverse_user_followers.build(user_id: followed_user.id)
+    UserFollowerCompletion.new(user_follower).save
   end
 
   def unfollow(followed_user)

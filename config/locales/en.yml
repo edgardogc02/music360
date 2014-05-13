@@ -3,11 +3,13 @@ en:
     format: "%{message}"
   email_notifier:
     welcome_message:
-      subject: Welcome to instrumentchamp.com
+      subject: Welcome to InstrumentChamp
     user_invitation_message:
       subject: Join InstrumentChamp
     challenged_user_message:
       subject: You have a new challenge on InstrumentChamp
+    followed_user_message:
+      subject: You have a new follower on InstrumentChamp
   activerecord:
     errors:
       models:
