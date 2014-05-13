@@ -1,0 +1,30 @@
+<div class="modal fade" id="SignIn" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-sm">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+          &times;
+        </button>
+        <h3 class="modal-title" id="myModalLabel">Sign in</h3>
+      </div>
+      <div class="modal-body">
+        <%= form_tag sessions_path, id: "login-form" do %>
+	        <p>
+	            <%= text_field_tag :username, "", placeholder: "Username", class: "form-control input-lg", required: true, autofocus: true %>
+	            <%= password_field_tag :password, "", placeholder: "Password", class: "form-control input-lg", required: true %>
+	        </p>
+	        <%= submit_tag "Sign in", {class: "btn btn-primary btn-lg", id: "sign_in"} %>
+        <% end %>
+        
+        <div class="text-center">or</div>
+        
+        <%= link_to facebook_signin_path, id: "facebook_signin_4", class: 'fb_button sm' do %>
+        	<div class="Spinner"></div>
+				  <span class="separator"></span>
+				  <span class="text">Continue</span>
+        <% end %>
+        
+      </div>
+    </div>
+  </div>
+</div>
