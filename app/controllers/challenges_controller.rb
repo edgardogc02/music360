@@ -17,7 +17,7 @@ class ChallengesController < ApplicationController
 		if params[:song_id].present?
 		  @challenge.song = Song.find(params[:song_id])
 		end
-		
+
 		@songs = SongChallengeDecorator.decorate_collection(Song.free.by_popularity.limit(4))
 	end
 
@@ -31,7 +31,7 @@ class ChallengesController < ApplicationController
     if params[:autostart_challenge_id]
       @autostart_challenge = Challenge.find(params[:autostart_challenge_id])
 
-      if params[:send_fb_notification] and @autostart_challenge.challenged.fake_facebook_user?
+      if params[:send_fb_notification] and @autostart_challenge.challenged.connected_with_facebook?
         @open_fb_notification_popup = true
       end
     end

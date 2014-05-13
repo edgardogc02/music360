@@ -177,6 +177,10 @@ class User < ActiveRecord::Base
     self.email.include? "@fakeuser.com"
   end
 
+  def connected_with_facebook?
+    fake_facebook_user? || has_facebook_credentials?
+  end
+
 	private
 
   def fill_in_extra_fields
