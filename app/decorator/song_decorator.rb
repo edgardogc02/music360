@@ -16,13 +16,13 @@ class SongDecorator < Draper::Decorator
 
   def play_button
     if display_play_button?
-      h.link_to "Play", play_url, {class: 'btn btn-sm btn-default song_'+ model.title.squish.downcase.tr(" ","_"), id: 'play_song_'+ model.title.squish.downcase.tr(" ","_")}
+      h.link_to "Play", play_url, {class: 'btn btn-sm btn-default Activation2 Activation2_Play song_'+ model.title.squish.downcase.tr(" ","_"), id: 'play_song_'+ model.title.squish.downcase.tr(" ","_")}
     end
   end
 
   def challenge_button(challenged_id="")
     if display_challenge_button?
-      h.link_to "Challenge", h.new_challenge_path(song_id: model.id, challenged_id: challenged_id), {id: "challenge_#{model.id}", class: 'btn btn-sm btn-default'}
+      h.link_to "Challenge", h.new_challenge_path(song_id: model.id, challenged_id: challenged_id), {id: "challenge_#{model.id}", class: 'btn btn-sm btn-default Activation2 Activation2_Challenge Activation2_Challenge_Songs'}
     end
   end
 
