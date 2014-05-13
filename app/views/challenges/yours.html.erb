@@ -21,7 +21,7 @@
         FB.ui({
           method: 'feed',
           to: "<%= @autostart_challenge.challenged.facebook_uid %>",
-          link: "<%= challenges_url(@autostart_challenge) %>",
+          link: "<%= challenge_url(@autostart_challenge) %>",
           picture: "<%= asset_url(@autostart_challenge.song.cover.url) %>",
           description: "<%= @autostart_challenge.challenger.username %> challenged <%= @autostart_challenge.challenged.username %> on InstrumentChamp"
         });
