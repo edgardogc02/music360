@@ -10,8 +10,10 @@
 	    <time datetime="<%= challenge.created_at%>" pubdate><%= time_ago_in_words(challenge.created_at)%> ago</time>
 	    (Challenged: <%= link_to challenge.challenged.username, person_path(challenge.challenged)%>)
 	  </p>
-	  <%= challenge.start_challenge_button %>
-    <%= challenge.display_points %>
-    <!--<%= challenge.display_winner %>-->
+	  <div class="clearfix">
+      <%= challenge.display_start_challenge_button %>
+      <%= challenge.display_decline_challenge_button %>
+    </div>
+    <%= challenge.display_results %>
   </div>
 </li>

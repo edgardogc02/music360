@@ -2,10 +2,9 @@ class ChallengesController < ApplicationController
 	before_action :authorize, except: [:show]
 
 	def index
-		@my_challenges = @challenges = ChallengeDecorator.decorate_collection(current_user.challenges.order('created_at DESC').limit(3))
-		@open_challenges = ChallengeDecorator.decorate_collection(Challenge.open.order('created_at DESC').limit(3))
-		@challenges = ChallengeDecorator.decorate_collection(Challenge.order('created_at DESC').limit(3)) # TODO: ADD public
-		@challenges_results = ChallengeDecorator.decorate_collection(Challenge.has_result.order('created_at DESC').limit(3))
+		@my_challenges = TabMyChallengesDecorator.decorate(Challenge.not_played_for_user(current_user, Challenge.default_order.default_limit.values))
+    @pending_challenges = TabPendingChallengesDecorator.decorate(Challenge.pending_for_user(current_user, Challenge.default_order.default_limit.values))
+		@challenges_results = TabResultChallengesDecorator.decorate(Challenge.results.default_order.default_limit)
 	end
 
 	def new
@@ -26,7 +25,7 @@ class ChallengesController < ApplicationController
   end
 
   def yours
-    @challenges = ChallengeDecorator.decorate_collection(current_user.challenges.order('created_at DESC'))
+    @challenges = ChallengeDecorator.decorate_collection(current_user.challenges.default_order)
 
     if params[:autostart_challenge_id]
       @autostart_challenge = Challenge.find(params[:autostart_challenge_id])
@@ -39,20 +38,13 @@ class ChallengesController < ApplicationController
 
   def list
     if params[:view] == "my_challenges"
-      @challenges = ChallengeDecorator.decorate_collection(current_user.challenges.order('created_at DESC'))
+      @challenges = TabMyChallengesDecorator.decorate(Challenge.not_played_for_user(current_user, Challenge.default_order.values))
       @title = "My challenges"
-
-      if params[:autostart_challenge_id]
-        @autostart_challenge = Challenge.find(params[:autostart_challenge_id])
-      end
-    elsif params[:view] == "open"
-      @challenges = ChallengeDecorator.decorate_collection(Challenge.open.order('created_at DESC'))
+    elsif params[:view] == "pending"
+      @challenges = TabPendingChallengesDecorator.decorate(Challenge.pending_for_user(current_user, Challenge.default_order.values))
       @title = "Open challenges"
-    elsif params[:view] == "all"
-      @challenges = ChallengeDecorator.decorate_collection(Challenge.order('created_at DESC'))
-      @title = "All challenges"
     elsif params[:view] == "results"
-      @challenges = ChallengeDecorator.decorate_collection(Challenge.has_result.order('created_at DESC'))
+      @challenges = TabResultChallengesDecorator.decorate(Challenge.results.default_order)
       @title = "Results"
     end
   end
@@ -78,6 +70,16 @@ class ChallengesController < ApplicationController
       flash.now[:warning] = "Check the errors below and try again"
       redirect_to challenges_path
     end
+  end
+
+  def destroy
+    @challenge = Challenge.find(params[:id])
+    if @challenge.destroy
+      flash[:notice] = "The challenge was declined"
+    else
+      flash[:notice] = "The challenge could not be declined. Please try again later."
+    end
+    redirect_to challenges_path
   end
 
   private

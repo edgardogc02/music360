@@ -9,21 +9,21 @@ class ChallengeDecorator < Draper::Decorator
     end
   end
 
-  def start_challenge_button
-    if model.display_start_challenge_to_user?(h.current_user)
-      h.render 'challenges/actions', challenge: model.decorate
+  def display_start_challenge_button
+    if display_start_challenge_to_user?(h.current_user)
+      h.link_to "Start challenge", start_challenge_url, {class: "btn btn-primary pull-left margin-right", id: "challenge_start_#{model.id}"}
     end
   end
 
-  def display_points
-    if model.display_points?
-      h.render "challenges/points", challenge: model
+  def display_decline_challenge_button
+    if display_decline_challenge_to_user?(h.current_user)
+      h.link_to "Decline", h.challenge_path(model), {confirm: "Are you sure?", method: :delete, class: "btn btn-danger pull-left"}
     end
   end
 
-  def display_winner
-    if model.display_winner?
-      h.content_tag :div, "Winner: " + winner.username
+  def display_results
+    if display_results?
+      h.render "challenges/results", challenge: self
     end
   end
 
@@ -45,4 +45,15 @@ class ChallengeDecorator < Draper::Decorator
     end
   end
 
+  def display_start_challenge_to_user?(user)
+    user and !model.has_user_played?(user)
+  end
+
+  def display_decline_challenge_to_user?(user)
+    user and !model.has_user_played?(user) and model.is_user_challenged?(user)
+  end
+
+  def display_results?
+    model.has_challenger_played? or model.has_challenged_played?
+  end
 end

@@ -125,6 +125,19 @@ describe Challenge do
 
       Challenge.open.should eq([open_challenge_1, open_challenge_2])
     end
+
+    it "should restrict the results to the default limit" do
+      pending
+    end
+
+    it "should order the results by default order" do
+      pending
+    end
+
+    it "has_result" do
+      pending
+    end
+
   end
 
   context "Methods" do

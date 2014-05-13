@@ -19,7 +19,13 @@ class Challenge < ActiveRecord::Base
 
   scope :public, -> { where(public: true) }
 	scope :open, -> { where(finished: false) }
-	scope :has_result, -> { where.not(winner: nil) }
+  scope :pending_by_challenger, -> { where('score_u1 = 0') }
+  scope :pending_by_challenged, -> { where('score_u2 = 0') }
+	scope :pending_only_by_challenged, -> { where('score_u1 > 0 and score_u2 = 0') }
+  scope :pending_only_by_challenger, -> { where('score_u1 = 0 and score_u2 > 0') }
+	scope :results, -> { where.not(winner: nil) }
+  scope :default_order, -> { order('created_at DESC') }
+  scope :default_limit, -> { limit(3) }
 
 	def cover_url
 		song.cover_url
@@ -29,16 +35,55 @@ class Challenge < ActiveRecord::Base
     "ic:challenge=#{self.id}"
   end
 
-  def display_start_challenge_to_user?(user)
-    user and (self.challenger == user or self.challenged == user) and !self.finished
+  def has_winner?
+    !self.winner.blank?
   end
 
-  def display_points?
-    self.finished and !self.winner.blank?
+  def challenger_won?
+    has_winner? and self.challenger == self.winner
   end
 
-  def display_winner?
-    self.finished and !self.winner.blank?
+  def challenged_won?
+    has_winner? and self.challenged == self.winner
+  end
+
+  def has_challenger_played?
+    !self.score_u1.nil? and !self.score_u1.zero?
+  end
+
+  def has_challenged_played?
+    !self.score_u2.nil? and !self.score_u2.zero?
+  end
+
+  def has_user_played?(user)
+    (is_user_challenger?(user) and has_challenger_played?) or (is_user_challenged?(user) and has_challenged_played?)
+  end
+
+  def is_user_challenger?(user)
+    user == self.challenger
+  end
+
+  def is_user_challenged?(user)
+    user == self.challenged
+  end
+
+  def self.pending_for_user(user, opts={})
+    sql = user.challenges.pending_only_by_challenged.to_sql + " UNION " + user.proposed_challenges.pending_only_by_challenger.to_sql
+    sql = "SELECT * FROM (#{sql}) a "
+    sql << " ORDER BY #{opts[:order].to_sentence} " if opts[:order]
+    sql << " LIMIT #{opts[:limit]} " if opts[:limit]
+
+    Challenge.find_by_sql(sql)
+  end
+
+  def self.not_played_for_user(user, opts={})
+    sql = user.challenges.pending_by_challenger.to_sql + " UNION " + user.proposed_challenges.pending_by_challenged.to_sql
+
+    sql = "SELECT * FROM (#{sql}) a "
+    sql << " ORDER BY #{opts[:order].to_sentence} " if opts[:order]
+    sql << " LIMIT #{opts[:limit]} " if opts[:limit]
+
+    Challenge.find_by_sql(sql)
   end
 
 	private

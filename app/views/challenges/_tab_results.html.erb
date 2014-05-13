@@ -1,0 +1,13 @@
+<%= content_tag :div, {class: challenges.tab_class, id: challenges.tab_id} do %>
+	<h3 class="page-header clearfix"><%= challenges.title %> <%= challenges.view_all_link %></h3>
+
+	<% unless challenges.blank? %>
+		<ul class="media-list">
+			<%= render challenges %>
+		</ul>
+	<% else %>
+		<p class="no-content hide">
+		  <p><%= challenges.no_challenges_message %></p>
+		</p>
+	<% end %>
+<% end %>
