@@ -1,23 +1,27 @@
-<h1 class="page-header"><small><i class="glyphicon glyphicon-user"></i></small> Invitations</h1>
+<h1 class="page-header"><small><i class="glyphicon glyphicon-bullhorn"></i></small> Invitations</h1>
 
-<%= link_to "Invite facebook friends", "#", {class: "btn btn-primary", id: "invite_fb_friends"} %>
+<h3 class="page-header"><span class="margin-right"><i class="glyphicon glyphicon-user text-muted"></i></span> Facebook</h3>
+<a class="fb_button xs" href="#" id="invite_fb_friends">
+  <span class="separator"></span>
+  <span class="text">Invite facebook friends</span>
+</a>
+
+<a class="fb_button xs" href="#" id="share_on_facebook">
+  <span class="separator"></span>
+  <span class="text">Share on facebook</span>
+</a>
 
 <div id="fb-root"></div>
 
-<hr />
-
+<h3 class="page-header"><span class="margin-right"><i class="glyphicon glyphicon-envelope text-muted"></i></span> Email</h3>
 <div class="row">
 	<div class="col-md-6">
 		<%= simple_form_for @user_invitation do |f| %>
 	    <%= f.input :friend_email, label: "Invite a friend via email" %>
-	    <%= f.button :submit, "Invite!" %>
+	    <%= f.button :submit, "Invite", class: 'btn-lg' %>
 		<% end %>
 	</div>
 </div>
-
-<hr />
-
-<%= link_to "Share on facebook", "#", {class: "btn btn-primary", id: "share_on_facebook"} %>
 
 <%= content_for(:js_scripts) do %>
 
