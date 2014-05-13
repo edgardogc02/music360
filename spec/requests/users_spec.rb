@@ -106,8 +106,6 @@ describe "Users" do
       user_2 = create(:user)
       user_3 = create(:user)
       user_4 = create(:user)
-      followed_user = create(:user)
-      @user.follow(followed_user)
 
       visit people_path
       page.should have_content user_1.username
@@ -119,12 +117,6 @@ describe "Users" do
       page.should have_content user_4.username
       page.should have_link "Challenge", new_challenge_path(challenged_id: user_4.id)
       page.should have_link "View more", list_people_path(view: "users")
-      page.should have_link "Follow", "#"
-
-      page.should have_content followed_user.username
-      page.should have_link "Challenge", new_challenge_path(challenged_id: followed_user.id)
-      page.should have_link "View more", list_people_path(view: "following")
-      page.should have_link "Unfollow", "#"
     end
 
     it "should list users on lists page" do
@@ -136,14 +128,12 @@ describe "Users" do
       visit list_people_path(view: "users")
       page.should have_content user_1.username
       page.should have_link "Challenge", new_challenge_path(challenged_id: user_1.id)
-      page.should have_link "Follow", "#"
       page.should have_content user_2.username
       page.should have_link "Challenge", new_challenge_path(challenged_id: user_2.id)
 
       visit list_people_path(view: "following")
       page.should have_content followed_user.username
       page.should have_link "Challenge", new_challenge_path(challenged_id: followed_user.id)
-      page.should have_link "Unfollow", "#"
     end
 
     it "should not display follow button in for_challenge page" do
@@ -172,6 +162,17 @@ describe "Users" do
       page.should have_content user.username
       page.should have_content user_2.username
       page.should_not have_content user_1.username
+    end
+
+    it "should not see signed in user in the search results" do
+      user = create(:user, username: "ronnie")
+
+      visit people_path
+      fill_in "username_or_email", with: @user.username
+      click_on "Search"
+
+      current_path.should eq(people_path)
+      page.should_not have_content @user.username
     end
 
     it "should have a link to followers in the profile page" do
