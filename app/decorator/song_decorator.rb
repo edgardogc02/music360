@@ -22,7 +22,7 @@ class SongDecorator < Draper::Decorator
 
   def challenge_button(challenged_id="")
     if display_challenge_button?
-      h.link_to "Challenge", h.new_challenge_path(song_id: model.id, challenged_id: challenged_id), {id: "challenge_#{model.id}", class: 'btn btn-sm btn-default Activation2 Activation2_Challenge_Songs'}
+      h.link_to "Challenge", h.new_challenge_path(song_id: model.id, challenged_id: challenged_id), {id: "challenge_#{model.id}", class: 'btn btn-sm btn-default Activation2 Activation2_Challenge Activation2_Challenge_Songs'}
     end
   end
 

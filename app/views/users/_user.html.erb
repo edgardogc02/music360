@@ -10,7 +10,7 @@
 			</div>
       <div class="btn-group-vertical">
         <%= user.display_follow_button %>
-				<%= link_to "Challenge", new_challenge_path(song_id: params[:song_id], challenged_id: user.id), {id: "challenge_#{user.id}", class: 'btn btn-sm btn-default Activation2 Activation2_Challenge_Users'} %>
+				<%= link_to "Challenge", new_challenge_path(song_id: params[:song_id], challenged_id: user.id), {id: "challenge_#{user.id}", class: 'btn btn-sm btn-default Activation2 Activation2_Challenge Activation2_Challenge_Users'} %>
 			</div>
 		</div>
 	</div>
