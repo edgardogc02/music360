@@ -14,13 +14,15 @@
           appId: '563800430326433',
           cookie: true,
           status: true,
-          xfbml: true
+          xfbml: true,
+          display: 'popup'
         });
 
         FB.ui({
-          method: 'send',
+          method: 'feed',
           to: "<%= @autostart_challenge.challenged.facebook_uid %>",
-          link: "<%= challenge_url(@autostart_challenge) %>",
+          link: "<%= challenges_url(@autostart_challenge) %>",
+          picture: "<%= asset_url(@autostart_challenge.song.cover.url) %>"
         });
       });
     </script>
