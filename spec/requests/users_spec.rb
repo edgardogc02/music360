@@ -9,7 +9,7 @@ describe "Users" do
   describe "user not signed in" do
     it "should sign up with correct credentials" do
       signup('testuser', 'testuser@test.com', 'password')
-      current_path.should eq(welcome_path)
+      current_path.should eq(root_path)
       page.find('.alert-notice').should have_content('Hi testuser!')
       page.should have_content('testuser')
     end
@@ -149,6 +149,24 @@ describe "Users" do
       page.should have_xpath("//input[@name='username_or_email']")
     end
 
+    context "open challenges on user page" do
+      it "should display no open challenges right now" do
+        visit person_path(@user.username)
+        page.should have_content "Open challenges"
+        page.should have_content "#{@user.username} has no open challenges right now"
+      end
+
+      it "should display open challenges in the user show page" do
+        challenge = create(:challenge, challenger: @user).decorate
+        new_challenge = create(:challenge, challenged: @user).decorate
+
+        visit person_path(@user.username)
+        page.should have_content "Open challenges"
+        page.should have_link "Start challenge", challenge.start_challenge_url
+        page.should have_link "Start challenge", new_challenge.start_challenge_url
+      end
+    end
+
     it "should be able to search for a username or email in the users index" do
       user = create(:user, username: "ronnie")
       user_1 = create(:user)
@@ -187,19 +205,23 @@ describe "Users" do
       page.should have_link @user.followed_users.count, following_path(@user)
     end
 
-    it "should not list the deleted users in the people page" do
-      pending
-      user = create(:user)
-      deleted_user = create(:user)
-      deleted_user.destroy
+    context "deleted users" do
+      it "should not list the deleted users in the people page" do
+        user = create(:user)
+        deleted_user = create(:user)
+        deleted_user.destroy
 
-      visit people_path
-      page.should have_content @user.username
-      page.should have_content user.username
-      page.should_not have_content deleted_user.username
-      page.should have_link "challenge_#{@user.id}", href: new_challenge_path(challenged_id: @user.id)
-      page.should have_link "challenge_#{user.id}", href: new_challenge_path(challenged_id: user.id)
-      page.should_not have_link "challenge_#{deleted_user.id}", href: new_challenge_path(challenged_id: deleted_user.id)
+        visit people_path
+        page.should have_content @user.username
+        page.should have_content user.username
+        page.should_not have_content deleted_user.username
+        page.should have_link "Challenge", href: new_challenge_path(challenged_id: user.id)
+        page.should_not have_link "challenge_#{deleted_user.id}", href: new_challenge_path(challenged_id: deleted_user.id)
+      end
+
+      it "should not show deleted users in search results" do
+        pending
+      end
     end
 
     it "should have a linked username in the left side bar" do

@@ -5,7 +5,6 @@
 	    <%= f.association :challenged, as: :hidden %>
 	    <%= f.association :song, as: :hidden %>
 	    <%= f.input :public, as: :hidden %>
-	    <%= f.input :finished, as: :hidden %>
 	    <%= f.input :instrument, as: :hidden, input_html: { value: 'Guitar' } %>
 	    <%= f.button :submit, "Start Challenge" %>
 	  <% end %>

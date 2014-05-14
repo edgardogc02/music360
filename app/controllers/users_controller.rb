@@ -27,7 +27,7 @@ class UsersController < ApplicationController
   end
 
 	def show
-		@challenges = ChallengeDecorator.decorate_collection(Challenge.open.where(challenger: @user))
+		@challenges = ChallengesDecorator.decorate(Challenge.not_played_by_user(current_user, Challenge.default_order.values))
 	end
 
 	def new

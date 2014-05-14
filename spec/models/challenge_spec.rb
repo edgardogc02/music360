@@ -9,17 +9,37 @@ describe Challenge do
       end
     end
 
-    [:public, :finished].each do |attr|
+    [:public].each do |attr|
       it "should validate #{attr}" do
         should allow_value(true, false).for(attr)
       end
     end
 
-    it "should not be able to create a challenge for the same challenger and song twice if it's still open" do
-      challenge = create(:challenge, finished: false)
-      new_challenge = build(:challenge, challenger: challenge.challenger, challenged: challenge.challenged, song: challenge.song, finished: false)
+    it "should not be able to create a challenge for the same challenged and song twice if it's still open" do
+      challenge = create(:challenge)
+      new_challenge = build(:challenge, challenger: challenge.challenger, challenged: challenge.challenged, song: challenge.song)
       new_challenge.save
       new_challenge.should_not be_persisted
+
+      # challenger played
+      challenge.score_u1 = 100
+      challenge.save
+      new_challenge.save
+      new_challenge.should_not be_persisted
+
+      # challenged played
+      challenge.score_u1 = 0
+      challenge.score_u2 = 100
+      challenge.save
+      new_challenge.save
+      new_challenge.should_not be_persisted
+    end
+
+    it "should be able to create a new challenge for the same challenged and song it it's already played by both" do
+      challenge = create(:challenge, score_u1: 100, score_u2: 200)
+      new_challenge = build(:challenge, challenger: challenge.challenger, challenged: challenge.challenged, song: challenge.song)
+      new_challenge.save
+      new_challenge.should be_persisted
     end
 
     it "should not be able to challenge himself" do
@@ -48,11 +68,11 @@ describe Challenge do
       challenged = create(:user)
       song = create(:song)
 
-      challenge = build(:challenge, finished: false, song: song, challenger: challenger, challenged: challenged)
+      challenge = build(:challenge, song: song, challenger: challenger, challenged: challenged)
       challenge.save
       challenge.should_not be_new_record
 
-      same_challenge = build(:challenge, finished: false, song: song, challenger: challenger, challenged: challenged)
+      same_challenge = build(:challenge, song: song, challenger: challenger, challenged: challenged)
       same_challenge.save
       same_challenge.should be_new_record
     end
@@ -85,26 +105,6 @@ describe Challenge do
 
       second_challenge.should_not be_new_record
     end
-
-    it "should be able to create a new challenge with the same user for the same song if the challenge is already finished" do
-      challenger = create(:user)
-      challenged = create(:user)
-      song = create(:song)
-      first_challenge = build(:challenge, finished: true, song: song, challenger: challenger, challenged: challenged)
-      first_challenge.save
-      first_challenge.should_not be_new_record
-
-      second_challenge = build(:challenge, finished: false, song: song, challenger: challenger, challenged: challenged)
-      second_challenge.save
-
-      second_challenge.should_not be_new_record
-
-      third_challenge = build(:challenge, finished: false, song: song, challenger: challenger, challenged: challenged)
-      third_challenge.save
-
-      third_challenge.should be_new_record
-    end
-
   end
 
   context "Scopes" do
@@ -117,33 +117,150 @@ describe Challenge do
       Challenge.public.should eq([public_challenge_1, public_challenge_2])
     end
 
-    it "should retrieve only open challenges" do
-      open_challenge_1 = create(:challenge, finished: false)
-      open_challenge_2 = create(:challenge, finished: false)
-      finished_challenge_2 = create(:challenge, finished: true)
-      finished_challenge_2 = create(:challenge, finished: true)
-
-      Challenge.open.should eq([open_challenge_1, open_challenge_2])
-    end
-
     it "should restrict the results to the default limit" do
-      pending
+      challenge1 = create(:challenge)
+      challenge2 = create(:challenge)
+      challenge3 = create(:challenge)
+      challenge4 = create(:challenge)
+
+      Challenge.default_limit.should eq([challenge1, challenge2, challenge3])
     end
 
     it "should order the results by default order" do
-      pending
+      challenge1 = create(:challenge, created_at: 3.hours.ago)
+      challenge2 = create(:challenge, created_at: 2.hours.ago)
+      challenge3 = create(:challenge, created_at: 1.hours.ago)
+
+      Challenge.default_order.should eq([challenge3, challenge2, challenge1])
     end
 
-    it "has_result" do
-      pending
+    it "should return only the finished challenges" do
+      challenge1 = create(:challenge)
+      challenge2 = create(:challenge, score_u1: 100)
+      challenge3 = create(:challenge, score_u2: 200)
+      challenge4 = create(:challenge, score_u1: 4, score_u2: 20)
+      challenge5 = create(:challenge, score_u1: 40, score_u2: 25)
+
+      Challenge.finished.should eq([challenge4, challenge5])
     end
 
+    it "should return pending challenges" do
+      challenge1 = create(:challenge)
+      challenge2 = create(:challenge, score_u2: 100)
+      challenge3 = create(:challenge, score_u1: 100)
+      challenge4 = create(:challenge, score_u1: 100, score_u2: 200)
+
+      Challenge.pending_by_challenger.should eq([challenge1, challenge2])
+      Challenge.pending_by_challenged.should eq([challenge1, challenge3])
+      Challenge.pending_only_by_challenged.should eq([challenge3])
+      Challenge.pending_only_by_challenger.should eq([challenge2])
+    end
+  end
+
+  context "Callbacks" do
+    it "should create challenge with zero scores if none is specified" do
+      challenge = create(:challenge)
+      challenge.should be_persisted
+      challenge.score_u1.should be_zero
+      challenge.score_u2.should be_zero
+    end
   end
 
   context "Methods" do
+    before(:each) do
+      @challenge = create(:challenge)
+    end
+
     it "should return a url for the desktop app" do
+      @challenge.desktop_app_uri.should == "ic:challenge=#{@challenge.id}"
+    end
+
+    it "has_challenger_played?" do
+      @challenge.has_challenger_played?.should be_false
+      @challenge.score_u1 = 100
+      @challenge.save
+      @challenge.has_challenger_played?.should be_true
+    end
+
+    it "has_challenged_played?" do
+      @challenge.has_challenged_played?.should be_false
+      @challenge.score_u2 = 100
+      @challenge.save
+      @challenge.has_challenged_played?.should be_true
+    end
+
+    it "has_user_played?" do
+      @challenge.has_user_played?(@challenge.challenged).should be_false
+      @challenge.has_user_played?(@challenge.challenger).should be_false
+
+      @challenge.score_u2 = 100
+      @challenge.save
+      @challenge.has_user_played?(@challenge.challenged).should be_true
+      @challenge.score_u1 = 100
+      @challenge.save
+      @challenge.has_user_played?(@challenge.challenger).should be_true
+    end
+
+    it "is_user_challenger?" do
+      @challenge.is_user_challenger?(@challenge.challenger).should be_true
+      @challenge.is_user_challenger?(@challenge.challenged).should be_false
+    end
+
+    it "is_user_challenged?" do
+      @challenge.is_user_challenged?(@challenge.challenger).should be_false
+      @challenge.is_user_challenged?(@challenge.challenged).should be_true
+    end
+
+    it "should test union queries order by created_at desc" do
+      challenger = create(:user)
+      challenged = create(:user)
+      challenge1 = create(:challenge, challenger: challenger, challenged: challenged, created_at: 16.hours.ago)
+      challenge2 = create(:challenge, challenger: challenged, challenged: challenger, created_at: 15.hours.ago)
+      challenge3 = create(:challenge, challenger: challenger, challenged: challenged, created_at: 14.hours.ago)
+      challenge4 = create(:challenge, challenger: challenged, challenged: challenger, created_at: 13.hours.ago)
+      challenge5 = create(:challenge, challenger: challenger, challenged: challenged, score_u1: 10, created_at: 12.hours.ago)
+      challenge6 = create(:challenge, challenger: challenged, challenged: challenger, score_u1: 20, created_at: 11.hours.ago)
+      challenge7 = create(:challenge, challenger: challenger, challenged: challenged, score_u1: 30, created_at: 10.hours.ago)
+      challenge8 = create(:challenge, challenger: challenged, challenged: challenger, score_u1: 40, created_at: 9.hours.ago)
+      challenge9 = create(:challenge, challenger: challenger, challenged: challenged, score_u2: 50, created_at: 8.hours.ago)
+      challenge10 = create(:challenge, challenger: challenged, challenged: challenger, score_u2: 60, created_at: 7.hours.ago)
+      challenge11 = create(:challenge, challenger: challenger, challenged: challenged, score_u2: 70, created_at: 6.hours.ago)
+      challenge12 = create(:challenge, challenger: challenged, challenged: challenger, score_u2: 80, created_at: 5.hours.ago)
+      challenge13 = create(:challenge, challenger: challenger, challenged: challenged, score_u1: 90, score_u2: 200, created_at: 4.hours.ago)
+      challenge14 = create(:challenge, challenger: challenged, challenged: challenger, score_u1: 100, score_u2: 210, created_at: 3.hours.ago)
+      challenge15 = create(:challenge, challenger: challenger, challenged: challenged, score_u1: 110, score_u2: 220, created_at: 2.hours.ago)
+      challenge16 = create(:challenge, challenger: challenged, challenged: challenger, score_u1: 120, score_u2: 230, created_at: 1.hours.ago)
+
+      # challenges for challenger
+      Challenge.pending_for_user(challenger, Challenge.default_order.values).should eq([challenge12, challenge10, challenge7, challenge5])
+      Challenge.not_played_by_user(challenger, Challenge.default_order.values).should eq([challenge11, challenge9, challenge8, challenge6, challenge4, challenge3, challenge2, challenge1])
+      Challenge.results_for_user(challenger, Challenge.default_order.values).should eq([challenge16, challenge15, challenge14, challenge13])
+
+      # challenges for challenged
+      Challenge.pending_for_user(challenged, Challenge.default_order.values).should eq([challenge11, challenge9, challenge8, challenge6])
+      Challenge.not_played_by_user(challenged, Challenge.default_order.values).should eq([challenge12, challenge10, challenge7, challenge5, challenge4, challenge3, challenge2, challenge1])
+      Challenge.results_for_user(challenged, Challenge.default_order.values).should eq([challenge16, challenge15, challenge14, challenge13])
+    end
+
+    it "should test who won the challenge" do
       challenge = create(:challenge)
-      challenge.desktop_app_uri.should == "ic:challenge=#{challenge.id}"
+      challenge.challenger_won?.should be_false
+      challenge.challenged_won?.should be_false
+
+      challenge.score_u2 = 10
+      challenge.save
+      challenge.challenger_won?.should be_false
+      challenge.challenged_won?.should be_false # the challenger still didn't play
+
+      challenge.score_u1 = 9
+      challenge.save
+      challenge.challenger_won?.should be_false
+      challenge.challenged_won?.should be_true
+
+      challenge.score_u1 = 11
+      challenge.save
+      challenge.challenger_won?.should be_true
+      challenge.challenged_won?.should be_false
     end
   end
 

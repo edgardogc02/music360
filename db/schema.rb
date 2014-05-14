@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140509135511) do
+ActiveRecord::Schema.define(version: 20140514081126) do
 
   create_table "apps", force: true do |t|
     t.datetime "created_at"
@@ -38,13 +38,11 @@ ActiveRecord::Schema.define(version: 20140509135511) do
   create_table "challenges", primary_key: "challenge_id", force: true do |t|
     t.integer  "song_id",                       null: false
     t.boolean  "public",        default: false, null: false
-    t.boolean  "finished",      default: false, null: false
     t.string   "challenger_id",                 null: false
     t.string   "challenged_id"
     t.integer  "instrument",                    null: false
     t.integer  "score_u1"
     t.integer  "score_u2"
-    t.integer  "winner"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

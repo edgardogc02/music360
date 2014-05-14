@@ -96,6 +96,23 @@ describe "Challenges" do
       page.should have_content(challenged_user.username)
     end
 
+    it "should create a challenge with correct values" do
+      challenged_user = create(:user)
+      click_on "People"
+      click_on "challenge_#{challenged_user.id}"
+      click_on "challenge_#{@song.id}"
+      click_on "Start Challenge"
+
+      challenge = Challenge.last
+      challenge.challenger.should eq(@user)
+      challenge.challenged.should eq(challenged_user)
+      challenge.song.should eq(@song)
+      challenge.instrument.should be_zero
+      challenge.public.should_not be_true
+      challenge.score_u1.should be_zero
+      challenge.score_u2.should be_zero
+    end
+
     it "should create a new challenge and follow the user" do
       challenge = create_challenge
       @user.following?(challenge.challenged).should be_true
@@ -149,8 +166,8 @@ describe "Challenges" do
       end
     end
 
-    it "should display points and winner if the challenge is finished" do
-      challenge = create(:challenge, public: true, finished: true, challenged: @user, winner: @user)
+    it "should display points and winner if both players have played" do
+      challenge = create(:challenge, public: true, challenged: @user)
       challenge.score_u1 = 100
       challenge.score_u2 = 500
       challenge.save
@@ -221,7 +238,7 @@ describe "Challenges" do
       page.should have_content(challenged_user.username)
     end
 
-    it "should create challenge with out any params (first chose song and then opponent) " do
+    it "should create challenge from the challenge new page" do
       challenged_user = create(:user)
       visit new_challenge_path
 
@@ -244,6 +261,28 @@ describe "Challenges" do
     it "should have new challenge button in challenges index" do
       visit challenges_path
       page.should have_link "New challenge", new_challenge_path
+    end
+
+    it "should display 3 challenges categories in the index page" do
+      my_challenge = create(:challenge, challenger: @user)
+      pending_challenge = create(:challenge, challenger: @user, score_u1: 25)
+      result_challenge = create(:challenge, challenger: @user, score_u1: 10, score_u2: 20)
+
+      visit challenges_path
+      page.should have_content "My challenges"
+      page.should have_content "Pending"
+      page.should have_content "Results"
+
+      page.should have_link "View all", href: list_challenges_path(view: "my_challenges")
+      page.should have_link "View all", href: list_challenges_path(view: "pending")
+      page.should have_link "View all", href: list_challenges_path(view: "results")
+
+      page.should have_link "Start challenge", href: my_challenge.decorate.start_challenge_url
+      page.should have_content "#{pending_challenge.challenger.username}: #{pending_challenge.score_u1} points"
+      page.should have_content "#{pending_challenge.challenged.username}: #{pending_challenge.score_u2} points"
+
+      page.should have_content "#{result_challenge.challenger.username}: #{result_challenge.score_u1} points"
+      page.should have_content "#{result_challenge.challenged.username}: #{result_challenge.score_u2} points Winner"
     end
   end
 

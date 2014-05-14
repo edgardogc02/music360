@@ -6,7 +6,6 @@ describe User do
     it { should have_secure_password }
 
     it "should validate username" do
-      pending "check if we'll use useranme or not"
       should validate_presence_of(:username)
       validate_uniqueness_of(:username)
       should allow_value('test', 'test User2-2_1', 'test@test.com', 'test@test.com.ar').for(:username)

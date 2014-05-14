@@ -37,7 +37,7 @@ describe "UserOmniauthCredentials" do
     visit login_path
     mock_facebook_auth_hash
     click_link "facebook_signin"
-    current_path.should eq(welcome_path)
+    current_path.should eq(root_path)
     click_link "Sign out"
     current_path.should eq(login_path)
     user = User.find_by_username "Test User"
@@ -54,7 +54,7 @@ describe "UserOmniauthCredentials" do
     mock_facebook_auth_hash
     click_link "facebook_signin"
 
-    current_path.should eq(welcome_path) # successfully signed in
+    current_path.should eq(root_path) # successfully signed in
     page.should have_content("Test User") # user name from facebook
   end
 

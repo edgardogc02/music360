@@ -18,7 +18,7 @@ describe UserOmniauthCredentialsController do
     end
 
     it "create new user when username is already taken" do
-      pending "just remove me if username should not be unique or if username should be removed"
+      pending "TODO"
       create(:user, username: "Test User", email: "test1@test.com") # that user with the email already exists in our db
       check_conditions(1, 1) # check just user omniauth credentials are created
     end
