@@ -1,3 +1,13 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+close_loading = ->
+  setTimeout (->
+    $("#loadingDesktopApp").modal "hide"
+    return
+  ), 10000
+  return
+$(document).ready ->
+  $("a[href^='ic:'").click ->
+    $("#loadingDesktopApp").modal "show"
+    close_loading()
+    return
+
+  return
