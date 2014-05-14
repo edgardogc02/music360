@@ -31,7 +31,7 @@
     $(document).ready(function(){
       $("#invite_fb_friends").click(function(e) {
         FB.init({
-          appId: '563800430326433',
+          appId: "<%= FACEBOOK_APP_ID %>",
           cookie: true,
           status: true,
           xfbml: true
@@ -52,7 +52,7 @@
 
       $("#share_on_facebook").click(function(e) {
         FB.init({
-          appId: '563800430326433',
+          appId: "<%= FACEBOOK_APP_ID %>",
           cookie: true,
           status: true,
           xfbml: true
