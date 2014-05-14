@@ -41,7 +41,7 @@ class UsersController < ApplicationController
 	  if @user.sign_up
 	    signin_user(@user)
 	    flash[:notice] = "Hi #{@user.username}!"
-      redirect_to welcome_path
+	    redirect_to root_path welcome_tour: true
 	  else
 	    flash.now[:warning] = "Check the errors below and try again"
 	    render "new"
