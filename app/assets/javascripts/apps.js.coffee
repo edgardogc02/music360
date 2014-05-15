@@ -1,3 +1,4 @@
+###
 close_loading = ->
   setTimeout (->
     $("#loadingDesktopApp").modal "hide"
@@ -11,3 +12,4 @@ $(document).ready ->
     return
 
   return
+###
