@@ -28,7 +28,7 @@ production:
   adapter: mysql2
   pool: 5
   timeout: 5000
-  database: <%= ENV["FACEBOOK_APP_ID"] %>
+  database: <%= ENV["DATABASE_DATABASE_NAME"] %>
   host: <%= ENV["DATABASE_HOST"] %>
   username: <%= ENV["DATABASE_USERNAME"] %>
   password: <%= ENV["DATABASE_PASSWORD"] %>
