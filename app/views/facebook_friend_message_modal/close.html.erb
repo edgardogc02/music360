@@ -1,7 +1,15 @@
-<%= content_for(:js_scripts) do %>
+<!doctype html>
+<html>
+<head>
+  <%= render "layouts/head" %>
+</head>
+<body role="application">
+
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <script type="text/javascript">
     $(document).ready(function() {
       window.parent.document.getElementById("facebook_send_message_modal").click();
     });
   </script>
-<% end %>
+</body>
+</html>
