@@ -32,3 +32,9 @@ footer {
 .fb-btn {
   background-position: -32px 0px;
 } 
+
+@media (max-width: $screen-sm-max) {
+  #logo-footer {
+    padding: 5px 0px;
+  } 
+}

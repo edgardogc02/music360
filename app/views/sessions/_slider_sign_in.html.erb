@@ -1,0 +1,10 @@
+<br /><br />
+<div>
+  <%= link_to facebook_signin_path, id: btn_fb_id, class: 'fb_button' do %>
+  	<div class="Spinner"></div>
+	  <span class="separator"></span>
+	  <span class="text">Continue</span>
+  <% end %>
+  <br />
+  Or sign up with your <%= link_to "email", signup_path, {id: btn_email_id, class: "btn_email_signup"} %>
+</div>
