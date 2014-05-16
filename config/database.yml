@@ -28,7 +28,7 @@ production:
   adapter: mysql2
   pool: 5
   timeout: 5000
-  database: inst1063
-  host: inst1063.db.7554315.hostedresource.com
-  username: inst1063
-  password: LarsMagnus1!
+  database: <%= ENV["FACEBOOK_APP_ID"] %>
+  host: <%= ENV["DATABASE_HOST"] %>
+  username: <%= ENV["DATABASE_USERNAME"] %>
+  password: <%= ENV["DATABASE_PASSWORD"] %>
