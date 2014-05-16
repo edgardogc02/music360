@@ -284,6 +284,10 @@ describe "Challenges" do
       page.should have_content "#{result_challenge.challenger.username}: #{result_challenge.score_u1} points"
       page.should have_content "#{result_challenge.challenged.username}: #{result_challenge.score_u2} points Winner"
     end
+
+    it "should display start challenge only to the involved users" do
+      pending
+    end
   end
 
   context "user not signed in" do
@@ -295,6 +299,10 @@ describe "Challenges" do
     it "should not show create new challenge button in challenges index" do
       visit challenges_path
       page.should_not have_link "New challenge", new_challenge_path
+    end
+
+    it "should not display start challenge button in challenge show page" do
+      pending
     end
   end
 

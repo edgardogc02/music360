@@ -52,6 +52,10 @@ class Challenge < ActiveRecord::Base
     user == self.challenged
   end
 
+  def is_user_involved?(user)
+    is_user_challenged?(user) or is_user_challenger?(user)
+  end
+
   # TODO: refactor the following 3 methods
   def self.pending_for_user(user, opts={})
     sql = user.challenges.pending_only_by_challenged.to_sql + " UNION " + user.proposed_challenges.pending_only_by_challenger.to_sql

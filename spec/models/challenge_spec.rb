@@ -211,6 +211,13 @@ describe Challenge do
       @challenge.is_user_challenged?(@challenge.challenged).should be_true
     end
 
+    it "is_user_involved?" do
+      user = create(:user)
+      @challenge.is_user_involved?(@challenge.challenger).should be_true
+      @challenge.is_user_involved?(@challenge.challenged).should be_true
+      @challenge.is_user_involved?(user).should_not be_true
+    end
+
     it "should test union queries order by created_at desc" do
       challenger = create(:user)
       challenged = create(:user)

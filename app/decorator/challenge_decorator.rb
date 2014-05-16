@@ -34,7 +34,7 @@ class ChallengeDecorator < Draper::Decorator
       h.link_to select_opponent_link_name, h.for_challenge_people_path, {class: 'btn btn-link', data: { toggle: "modal", target: "#selectUser" }}
     end
   end
-  
+
   def start_challenge_class_attr
     value = 'btn btn-primary pull-left margin-right'
     if h.signed_in? and h.current_user.installed_desktop_app?
@@ -54,7 +54,7 @@ class ChallengeDecorator < Draper::Decorator
   end
 
   def display_start_challenge_to_user?(user)
-    user and !model.has_user_played?(user)
+    user and is_user_involved?(user) and !model.has_user_played?(user)
   end
 
   def display_decline_challenge_to_user?(user)
