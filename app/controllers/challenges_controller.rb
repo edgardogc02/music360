@@ -49,10 +49,6 @@ class ChallengesController < ApplicationController
     end
   end
 
-  def sent_facebook_friend_message
-#    render layout: false
-  end
-
 	def create
 	  @challenge = current_user.challenges.build(challenge_params).decorate
 	  challenge_completition = ChallengeCreation.new(@challenge)

@@ -1,0 +1,7 @@
+<%= content_for(:js_scripts) do %>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      window.parent.document.getElementById("facebook_send_message_modal").click();
+    });
+  </script>
+<% end %>
