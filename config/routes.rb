@@ -29,6 +29,7 @@ InstrumentchampPrototype::Application.routes.draw do
   resources :challenges do
     get 'yours', on: :collection
     get 'list', on: :collection, as: :list
+    get 'sent_facebook_friend_message', on: :collection
   end
 
   constraints id: /[\w\W*]+/ do

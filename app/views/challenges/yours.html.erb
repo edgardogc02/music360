@@ -58,7 +58,7 @@
           <h4 class="modal-title" id="myModalLabel">Send a message to your facebook friend</h4>
         </div>
         <div class="modal-body">
-          <iframe height="400" width="550" frameBorder="0" src="https://www.facebook.com/dialog/feed?app_id=<%= FACEBOOK_APP_ID %>&link=<%= challenge_url(@autostart_challenge) %>&redirect_uri=<%= challenges_url %>&display=iframe&access_token=<%= current_user.facebook_credentials.oauth_token %>&to=<%= @autostart_challenge.challenged.facebook_uid %>&picture=<%= asset_url(@autostart_challenge.song.cover.url) %>&description=<%= @autostart_challenge.challenger.username %> challenged <%= @autostart_challenge.challenged.username %> on InstrumentChamp">
+          <iframe height="400" width="550" frameBorder="0" src="https://www.facebook.com/dialog/feed?app_id=<%= FACEBOOK_APP_ID %>&link=<%= challenge_url(@autostart_challenge) %>&redirect_uri=<%= sent_facebook_friend_message_challenges_url %>&display=iframe&access_token=<%= current_user.facebook_credentials.oauth_token %>&to=<%= @autostart_challenge.challenged.facebook_uid %>&picture=<%= asset_url(@autostart_challenge.song.cover.url) %>&description=<%= @autostart_challenge.challenger.username %> challenged <%= @autostart_challenge.challenged.username %> on InstrumentChamp">
           </iframe>
         </div>
       </div>
