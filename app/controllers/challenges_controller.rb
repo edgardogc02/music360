@@ -50,7 +50,7 @@ class ChallengesController < ApplicationController
   end
 
   def sent_facebook_friend_message
-    render layout: false
+#    render layout: false
   end
 
 	def create

@@ -1,7 +1,9 @@
 Great! You can close this popup and start the challenge now.
 
+<%= content_for(:js_scripts) do %>
   <script type="text/javascript">
     $(document).ready(function() {
       $('#facebook_send_message_modal').modal('toggle');
     });
   </script>
+<% end %>
