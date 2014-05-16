@@ -29,7 +29,7 @@ InstrumentchampPrototype::Application.routes.draw do
   resources :challenges do
     get 'yours', on: :collection
     get 'list', on: :collection, as: :list
-    get 'sent_facebook_friend_message', on: :collection
+    get 'close_facebook_friend_message_modal', on: :collection
   end
 
   constraints id: /[\w\W*]+/ do
@@ -60,6 +60,8 @@ InstrumentchampPrototype::Application.routes.draw do
   get 'welcome' => "welcome#index", as: :welcome
 
   get 'signup' => "users#new", as: :signup
+
+  get 'close_facebook_friend_message_modal', to: "facebook_friend_message_modal#close", as: :close_facebook_friend_message_modal
 
   resources :sessions, :only => [:new, :create, :destroy]
   get 'login' => "sessions#new", :as => :login
