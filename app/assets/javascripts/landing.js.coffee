@@ -12,7 +12,6 @@ $ ->
 
 $(window).resize ->
   $("[data-spy=\"scroll\"]").each ->
-    console.log("refreh")
     $spy = $(this).scrollspy("refresh")
     return
 

@@ -168,8 +168,8 @@
 /* Content */
 
 .landing-section {
-  height: 100%;
-  padding-top: 150px;
+  min-height: 100%;
+  //padding-top: 150px;
   color: #fff;
   background-color: #000;
   background-attachment: fixed;
@@ -302,13 +302,19 @@
 
 //Media query
 
-@media(min-width:767px) {
-    
+$header-height: 75px;
+
+@media (max-width: $screen-md-max) {
+  .landing-section {
+    padding-top: 12%;
+    padding-bottom: 5%;
+  }  
 }
 
 @media (max-width: $screen-xs-max) {
   .landing-section {
-    padding-top: 100px;
+    padding-top: 26%;
+    padding-bottom: 7%;
     
     p {
       font-size: 14px;
@@ -321,6 +327,10 @@
 @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {}
 @media (min-width: $screen-md-min) and (max-width: $screen-md-max) {}
 @media (min-width: $screen-lg-min) {
+  .landing-section {
+    padding-top: 15%;
+    padding-bottom: 5%;
+  }  
   .intro {
     padding: 0;
   }  
