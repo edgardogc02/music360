@@ -302,18 +302,23 @@
 
 //Media query
 
-$header-height: 75px;
-
 @media (max-width: $screen-md-max) {
   .landing-section {
-    padding-top: 12%;
+    padding-top: 14%;
     padding-bottom: 5%;
+  }  
+}
+
+@media (max-width: $screen-sm-max) {
+  .landing-section {
+    padding-top: 22%;
+    padding-bottom: 6%;
   }  
 }
 
 @media (max-width: $screen-xs-max) {
   .landing-section {
-    padding-top: 26%;
+    padding-top: 28%;
     padding-bottom: 7%;
     
     p {
