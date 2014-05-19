@@ -17,10 +17,15 @@ class ChallengesController < ApplicationController
 		  @challenge.song = Song.find(params[:song_id])
 		end
 
+		prepopulate_challenge_if_needed
+
 		@songs = SongChallengeDecorator.decorate_collection(Song.free.by_popularity.limit(4))
 	end
 
   def show
+    if !signed_in?
+      session[:prepopulate_with_challenge_id] = params[:id]
+    end
     @challenge = Challenge.find(params[:id]).decorate
   end
 
@@ -91,4 +96,16 @@ class ChallengesController < ApplicationController
   def display_fb_popup?
     params[:send_fb_notification] and @autostart_challenge.challenged.connected_with_facebook? and current_user.has_facebook_credentials?
   end
+
+  def prepopulate_challenge_if_needed
+    if session[:prepopulate_with_challenge_id]
+      challenge = Challenge.find(session[:prepopulate_with_challenge_id])
+      if !challenge.is_user_involved?(current_user)
+        @challenge.challenged = challenge.challenged
+        @challenge.song = challenge.song
+      end
+      session[:prepopulate_with_challenge_id] = nil
+    end
+  end
+
 end

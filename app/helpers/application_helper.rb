@@ -63,4 +63,12 @@ module ApplicationHelper
     Rails.env.production? and !test_domain_name?
   end
 
+  def skip_tour_link
+    if redirect_to_new_challenge?
+      new_challenge_path
+    else
+      root_path
+    end
+  end
+
 end

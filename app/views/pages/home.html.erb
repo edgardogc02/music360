@@ -12,7 +12,7 @@
         	</div>
         	<hr />
         	<h3>Click the instrument you want to play to start the tour</h3><br />
-        	
+
       		<%= simple_form_for current_user, url: user_instrument_path(current_user.id, next: 'instrument') do |f| %>
 					  <div class="row">
 					    <% @instruments.each do |instrument| %>
@@ -20,12 +20,12 @@
 					      	<%= link_to(image_tag(instrument.image_url, class: "thumbnail"), "#", {class: "select_instrument", data: {"instrument-id" => instrument.id}}) %>
 					  		</div>
 					    <% end %>
-					    <%= f.hidden_field :instrument_id %>				
-					  </div>					
+					    <%= f.hidden_field :instrument_id %>
+					  </div>
 					<% end %>
-					
+
 					<div class="text-right">
-						<%= link_to root_path, {class: "btn"} do %>
+						<%= link_to skip_tour_link, {class: "btn"} do %>
 		          <i class="glyphicon glyphicon-log-out"></i> Skip the tour
 		        <% end %>
 					</div>

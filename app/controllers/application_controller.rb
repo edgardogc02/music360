@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  helper_method :current_user, :signed_in?, :test_domain_name?
+  helper_method :current_user, :signed_in?, :test_domain_name?, :redirect_to_new_challenge?
 
   def signin_user(user)
     session[:user_id] = user.id
@@ -57,6 +57,10 @@ class ApplicationController < ActionController::Base
     if signed_in?
       redirect_to root_path
     end
+  end
+
+  def redirect_to_new_challenge?
+    !session[:prepopulate_with_challenge_id].blank? and signed_in? and !Challenge.find(session[:prepopulate_with_challenge_id]).is_user_involved?(current_user)
   end
 
 end

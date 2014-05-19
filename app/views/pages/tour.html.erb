@@ -10,7 +10,11 @@
       backdrop: true,
       reflex: true,
       onEnd: function (tour) {
-      	var url = "/";    
+        <% if redirect_to_new_challenge? %>
+          var url = "<%= new_challenge_path %>";
+        <% else %>
+          var url = "/";
+        <% end %>
 				$(location).attr('href',url);
       },
       steps: [
@@ -33,7 +37,7 @@
         element: "#music",
         title: "Songs",
         content: "<p>Surf songs and start a challenge</p>"
-      },      
+      },
       {
         element: "#challenges",
         title: "Challenges",
@@ -43,12 +47,12 @@
         element: "#help",
         title: "Help",
         content: "<p>Need help to get started? Click here</p>"
-      },      
+      },
       {
         element: "#apps",
         title: "Download",
         content: "<p>Download the latest applications</p>"
-      }/*,      
+      }/*,
      {
         element: "#premium",
         title: "Premium",
