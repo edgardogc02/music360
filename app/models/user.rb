@@ -8,6 +8,8 @@ class User < ActiveRecord::Base
 
 	alias_attribute :id, :id_user
 
+  attr_accessor :just_signup
+
 	friendly_id :username
 
   validates :username, presence: true, uniqueness: true, format: { with: /\A[a-zA-Z0-9@.\-\_\s]+\Z/ }
@@ -66,6 +68,10 @@ class User < ActiveRecord::Base
 		"http://placehold.it/300x300"
 	end
 
+	def just_signup?
+	  !self.just_signup.blank?
+	end
+
   def self.from_omniauth(request)
     auth = request.env["omniauth.auth"]
 
@@ -84,7 +90,11 @@ class User < ActiveRecord::Base
       if user.has_facebook_credentials?
         FacebookFriendsWorker.perform_async(user.id)
       end
+      user.just_signup = true
     else
+      if user.fake_facebook_user?
+        user.just_signup = true
+      end
       user.update_from_omniauth(auth)
       user.user_omniauth_credentials.create_or_update_from_omniauth(auth)
     end

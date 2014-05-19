@@ -6,9 +6,18 @@ describe "UserOmniauthCredentials" do
     @song = create(:song)
   end
 
-  it "should sign in user with facebook account" do
+  it "should sign up user for first time with facebook account" do
     signin_with_facebook
     page.find('.alert-notice').should have_content('Welcome Test User!')
+    URI.parse(current_url).request_uri.should eq(root_path(welcome_tour: true))
+  end
+
+  it "should login (already signed up user) user with facebook account" do
+    signin_with_facebook
+    click_on "Sign out"
+    signin_with_facebook
+    page.find('.alert-notice').should have_content('Welcome back Test User!')
+    URI.parse(current_url).request_uri.should eq(root_path)
   end
 
   it "should have the correct values in the users table" do
@@ -18,6 +27,24 @@ describe "UserOmniauthCredentials" do
     check_user_signup_params(user, true)
     user.first_name.should eq("Test")
     user.last_name.should eq("User")
+  end
+
+  it "should show welcome popup to facebook user if it signed up and had a fake user in the db" do
+    signin_with_facebook
+    user = User.last
+    create_facebook_omniauth_credentials(user)
+    UserFacebookFriends.new(user, user.facebook_top_friends).save
+    click_on "People"
+    click_on "Sign out"
+    visit login_path
+
+    page.should have_selector('#facebook_signin')
+
+    mock_facebook_friend_auth_hash
+    click_link "facebook_signin"
+
+    page.find('.alert-notice').should have_content('Welcome Lars Willner!')
+    URI.parse(current_url).request_uri.should eq(root_path(welcome_tour: true))
   end
 
   it "should save all facebook friends when a user signs up" do
