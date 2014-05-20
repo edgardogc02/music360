@@ -172,7 +172,6 @@
   //padding-top: 150px;
   color: #fff;
   background-color: #000;
-  background-attachment: fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   background-size: cover;
@@ -191,28 +190,28 @@
 }
 
 #page-top {
-  background: image-url('landing/slide0.jpg') no-repeat center center scroll;
-  background-attachment: fixed;
+  background: image-url('landing/slide0.jpg') no-repeat center center;
+  //background-attachment: fixed;
 }
 
 #what-it-is {
-  background: image-url('landing/slide1.jpg') no-repeat center center scroll;
-  background-attachment: fixed;
+  background: image-url('landing/slide1.jpg') no-repeat center center;
+  //background-attachment: fixed;
 }
 
 #how-it-works {
-  background: image-url('landing/slide2.jpg') no-repeat center center scroll;
-  background-attachment: fixed;
+  background: image-url('landing/slide2.jpg') no-repeat center center;
+  //background-attachment: fixed;
 }
 
 #what-it-costs {
-  background: image-url('landing/slide3.jpg') no-repeat center center scroll;
-  background-attachment: fixed;
+  background: image-url('landing/slide3.jpg') no-repeat center center;
+  //background-attachment: fixed;
 }
 
 #crowdfunding {
-  background: image-url('landing/slide4.jpg') no-repeat top center scroll;
-  background-attachment: fixed;
+  background: image-url('landing/slide4.jpg') no-repeat top center;
+  //background-attachment: fixed;
 }
 
 

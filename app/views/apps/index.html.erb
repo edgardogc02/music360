@@ -57,11 +57,11 @@
 
 <%= content_for(:js_scripts) do %>
   <script type="text/javascript">
-    $(document).ready(function() {
+    //$(document).ready(function() {
 	    if(jQuery.browser.mobile)
 	    {
 	      window.location.replace("<%= mobile_landing_path %>");	    	
 	    }
-    });
+    //});
   </script>
 <% end %>
