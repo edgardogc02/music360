@@ -2,10 +2,14 @@ class ChallengeDecorator < Draper::Decorator
   delegate_all
 
   def start_challenge_url
-    if h.signed_in? and h.current_user.installed_desktop_app? and !h.is_mobile?
-      model.desktop_app_uri
+    if !h.is_mobile?
+      if h.signed_in? and h.current_user.installed_desktop_app?
+        model.desktop_app_uri
+      else
+        h.apps_path
+      end
     else
-      h.apps_path
+      h.mobile_landing_path
     end
   end
 
@@ -37,7 +41,7 @@ class ChallengeDecorator < Draper::Decorator
 
   def start_challenge_class_attr
     value = 'btn btn-primary pull-left margin-right'
-    if h.signed_in? and h.current_user.installed_desktop_app?
+    if h.signed_in? and h.current_user.installed_desktop_app? and !h.is_mobile?
       value << ' app-play'
     end
     value
