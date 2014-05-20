@@ -8,17 +8,64 @@ class UserOmniauthCredential < ActiveRecord::Base
     if user_omniauth_credential.nil?
       self.create_from_omniauth(auth)
     else
-      user_omniauth_credential.username = auth.info.name
-      user_omniauth_credential.first_name = auth.info.first_name
-      user_omniauth_credential.last_name = auth.info.last_name
-      user_omniauth_credential.oauth_token = auth.credentials.token
-      user_omniauth_credential.oauth_expires_at = Time.at(auth.credentials.expires_at)
-      user_omniauth_credential.save!
+      user_omniauth_credential.update_from_auth(auth)
     end
   end
 
+  def update_from_auth(auth)
+    if auth.provider == 'facebook'
+      update_from_facebook_auth(auth)
+    elsif auth.provider == 'twitter'
+      update_from_twitter_auth(auth)
+    end
+  end
+
+  def update_from_facebook_auth(auth)
+    self.username = auth.info.name
+    self.first_name = auth.info.first_name
+    self.last_name = auth.info.last_name
+    self.oauth_token = auth.credentials.token
+    self.oauth_expires_at = Time.at(auth.credentials.expires_at)
+    self.save!
+  end
+
+  def update_from_twitter_auth(auth)
+    self.username = auth.info.nickname
+    self.first_name = auth.info.name.split(" ").first
+    self.last_name = auth.info.name.split(" ").second
+    self.oauth_token = auth.credentials.token
+    self.oauth_token_secret = auth.credentials.secret
+    self.save!
+  end
+
   def self.create_from_omniauth(auth)
-    self.create!(provider: auth.provider, oauth_uid: auth.uid, username: auth.info.name, first_name: auth.info.first_name, last_name: auth.info.last_name, email: auth.info.email, oauth_token: auth.credentials.token, oauth_expires_at: Time.at(auth.credentials.expires_at))
+    if auth.provider == 'facebook'
+      self.create_from_facebook_omniauth(auth)
+    elsif auth.provider == 'twitter'
+      self.create_from_twitter_omniauth(auth)
+    end
+  end
+
+  def self.create_from_facebook_omniauth(auth)
+    self.create!(provider: auth.provider,
+                  oauth_uid: auth.uid,
+                  username: auth.info.name,
+                  first_name: auth.info.first_name,
+                  last_name: auth.info.last_name,
+                  email: auth.info.email,
+                  oauth_token: auth.credentials.token,
+                  oauth_expires_at: Time.at(auth.credentials.expires_at))
+  end
+
+  def self.create_from_twitter_omniauth(auth)
+    self.create!(provider: auth.provider,
+                  oauth_uid: auth.uid,
+                  username: auth.info.nickname,
+                  first_name: auth.info.name.split(" ").first,
+                  last_name: auth.info.name.split(" ").second,
+                  # email: auth.info.email,
+                  oauth_token: auth.credentials.token,
+                  oauth_token_secret: auth.credentials.secret)
   end
 
 end

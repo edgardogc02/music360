@@ -44,9 +44,13 @@ gem 'friendly_id', '~> 5.0.0'
 # simple forms
 gem 'simple_form'
 
-# aomniauth and facebook authentication
+# omniauth authentication
 gem 'omniauth'
 gem 'omniauth-facebook', '1.4.0'
+gem 'omniauth-twitter'
+
+# handle twitter
+gem 'twitter'
 
 # paginator
 gem 'kaminari'

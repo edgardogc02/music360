@@ -4,17 +4,21 @@ class UserOmniauthCredentialsController < ApplicationController
   def create
     user = User.from_omniauth(request)
 
-    if user and !user.deleted?
-      signin_user(user)
-      if user.just_signup?
-        flash[:notice] = "Welcome #{user.username}!"
-        redirect_to root_path welcome_tour: true
-      else
-        flash[:notice] = "Welcome back #{user.username}!"
-        redirect_to root_path root_path
-      end
+    if params[:tweet]
+      redirect_to new_user_invitation_path(tweet: params[:tweet], tweet_text: params[:tweet_text])
     else
-      redirect_to login_path
+      if user and !user.deleted?
+        signin_user(user)
+        if user.just_signup?
+          flash[:notice] = "Welcome #{user.username}!"
+          redirect_to root_path welcome_tour: true
+        else
+          flash[:notice] = "Welcome back #{user.username}!"
+          redirect_to root_path root_path
+        end
+      else
+        redirect_to login_path
+      end
     end
   end
 

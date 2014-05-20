@@ -13,6 +13,46 @@
 
 <div id="fb-root"></div>
 
+<h3 class="page-header"><span class="margin-right"><i class="glyphicon glyphicon-user text-muted"></i></span> Twitter</h3>
+
+<%= form_tag "/auth/twitter", method: :get do %>
+  <div>
+    <%= text_area_tag "tweet_text", "Accept my invitation and start playing InstrumentChamp!" %>
+  </div>
+  <div>
+    <%= hidden_field_tag "tweet", 'true' %>
+  </div>
+  <div>
+    <%= submit_tag "Share on Twitter", {class: "btn btn-primary"} %>
+  </div>
+<% end %>
+
+<% if @tweet %>
+  <!-- Modal -->
+  <div class="modal fade" id="tweet_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="myModalLabel">This is the tweet</h4>
+        </div>
+        <div class="modal-body">
+          <iframe border=0 frameborder=0 height=250 width=600 src="https://twitframe.com/show?url=https://twitter.com/<%= current_user.twitter_credentials.username %>/status/<%= @tweet.id %>">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <%= content_for(:js_scripts) do %>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        $('#tweet_modal').modal('toggle');
+      });
+    </script>
+  <% end %>
+<% end %>
+
 <h3 class="page-header"><span class="margin-right"><i class="glyphicon glyphicon-envelope text-muted"></i></span> Email</h3>
 <div class="row">
 	<div class="col-md-6">

@@ -83,7 +83,7 @@ InstrumentchampPrototype::Application.routes.draw do
   get 'get-free', to: "statics#get_free", as: :get_free
 
   get 'help', to: redirect("https://instrumentchamp.zendesk.com"), as: :help
-  
+
   get 'mobile-landing', to: "pages#mobile_landing", as: :mobile_landing
 
   get ':action' => 'pages'

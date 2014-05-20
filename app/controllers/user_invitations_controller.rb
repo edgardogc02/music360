@@ -3,6 +3,10 @@ class UserInvitationsController < ApplicationController
 
 	def new
 	  @user_invitation = current_user.user_invitations.build
+
+    if params[:tweet] and params[:tweet_text]
+      @tweet = UserTwitterAccount.new(current_user).tweet("#{params[:tweet_text][0..95]} #{root_url} #InstrumentChamp")
+    end
   end
 
   def create

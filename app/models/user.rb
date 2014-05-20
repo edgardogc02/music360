@@ -75,12 +75,39 @@ class User < ActiveRecord::Base
   def self.from_omniauth(request)
     auth = request.env["omniauth.auth"]
 
-    user = User.where(email: auth.info.email).first
-    user = User.where(username: auth.info.name).first if user.nil?
-    # TODO: Check if there is a facebook credential that matches auth and return user?
+    if auth["provider"] == "facebook"
+      User.from_facebook_omniauth(request)
+    elsif auth["provider"] == "twitter"
+      User.from_twitter_omniauth(request)
+    end
+  end
+
+  def self.from_twitter_omniauth(request)
+    auth = request.env["omniauth.auth"]
+
+    user = User.where(username: auth.info.nickname).first if user.nil?
+    # TODO: Check if there is a twitter credential that matches auth and return user? check also the uid
 
     if user.nil?
-      user = User.create_from_omniauth(request)
+      user = User.create_from_twitter_omniauth(request)
+
+      user.send_welcome_email
+    else
+      user.update_from_omniauth(auth)
+      user.user_omniauth_credentials.create_or_update_from_omniauth(auth)
+    end
+    user
+  end
+
+  def self.from_facebook_omniauth(request)
+    auth = request.env["omniauth.auth"]
+
+    user = User.where(email: auth.info.email).first
+    user = User.where(username: auth.info.name).first if user.nil?
+    # TODO: Check if there is a facebook credential that matches auth and return user? check also the uid
+
+    if user.nil?
+      user = User.create_from_facebook_omniauth(request)
       user.save
       user.remote_imagename_url = user.remote_facebook_image if user.facebook_credentials
       user.save
@@ -141,6 +168,10 @@ class User < ActiveRecord::Base
 
   def facebook_credentials
     self.user_omniauth_credentials.find_by(provider: 'facebook')
+  end
+
+  def twitter_credentials
+    self.user_omniauth_credentials.find_by(provider: 'twitter')
   end
 
   def facebook_top_friends(limit=0)
@@ -207,7 +238,7 @@ class User < ActiveRecord::Base
     self.updated_image = 0
   end
 
-	def self.create_from_omniauth(request)
+	def self.create_from_facebook_omniauth(request)
 	  auth = request.env["omniauth.auth"]
     user = User.new
     user.request = request
@@ -225,6 +256,25 @@ class User < ActiveRecord::Base
 
     user
 	end
+
+  def self.create_from_twitter_omniauth(request)
+    auth = request.env["omniauth.auth"]
+    user = User.new
+    user.request = request
+    user.first_name = auth.info.name.split(" ").first
+    user.last_name = auth.info.name.split(" ").second
+    user.username = auth.info.nickname
+    user.email = User.generate_random_password(5) + "@lalala.com" # TODO
+    user.password = User.generate_random_password(5)
+    user.password_confirmation = user.password
+    user.oauth_uid = auth.uid
+    user.locale = auth.extra.raw_info.locale
+    user.save!
+
+    user.user_omniauth_credentials.create_from_omniauth(auth)
+
+    user
+  end
 
 	def self.generate_random_password(length)
     (Digest::SHA1.hexdigest("--#{Time.now.to_s}--"))[0..length]
