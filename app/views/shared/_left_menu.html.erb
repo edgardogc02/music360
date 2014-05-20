@@ -38,8 +38,9 @@
 	    -->
 	    <%= nav_link "Help", help_path , {id: "help", icon: "info-sign", target: "_blank"} %>
 	    <%= nav_link "Take the tour", tour_path, {id: "tour", icon: "send"} %>
-	
-	    <%= nav_link "Download", apps_path, {id: "apps", icon: "th"} %>
+			
+			<%= nav_link "Download", is_mobile? ? mobile_landing_path : apps_path, {id: "apps", icon: "th"} %>
+			
 	    <!--<%= nav_link "Premium", premium_path, {id: "premium", icon: "plus"} %>-->
 	  </div>
 	</nav>
