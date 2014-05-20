@@ -8,7 +8,7 @@ class Uploader < CarrierWave::Uploader::Base
 
   def store_dir
     if model.created_by and model.created_by.include?("test-instrumentchamp")
-      "test/" + store_dir_folder
+      "test-instrumentchamp/" + store_dir_folder
     else
       store_dir_folder
     end
