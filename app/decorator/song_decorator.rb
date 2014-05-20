@@ -33,7 +33,7 @@ class SongDecorator < Draper::Decorator
   end
 
   def play_url
-    if h.signed_in? and h.current_user.installed_desktop_app?
+    if h.signed_in? and h.current_user.installed_desktop_app? and !h.is_mobile?
       model.desktop_app_uri
     else
       h.apps_path
