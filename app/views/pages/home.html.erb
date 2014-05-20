@@ -8,6 +8,11 @@
 		      	<br />
 		        <p>Thanks for signing up <!--We are launching in May and will send you a
 	        	backstage pass to the alpha test very soon!--></p>
+	        	
+	        	<% if is_mobile? %>
+	        		<p class="alert alert-info"><strong>Mobile version:</strong> Please use Windows or Mac OS to download and install InstrumentChamp software.</p>
+	        	<% end %>     	
+	        	
 	        	<p class="alert alert-success"><strong>Signup Bonus:</strong> We have upgraded you to a Premium account for 3 months.</p>
         	</div>
         	<hr />
@@ -35,10 +40,13 @@
 	</div>
 <% end %>
 
-<h1 class="page-header clearfix"><small><i class="glyphicon glyphicon-music"></i></small> Quick start song
-	<%= link_to songs_path, {class: 'btn btn-primary pull-right'} do %>
-  	View more
-  <% end %>
+<h1 class="page-header clearfix"><small><i class="glyphicon glyphicon-music"></i></small> 
+	<div class="pull-left">Quick start song</div>
+	<div class="pull-left">
+		<%= link_to songs_path, {class: 'btn btn-primary pull-right'} do %>
+	  	View more
+	  <% end %>
+  </div>
 </h1>
 
 <div class="thumbnail-grid row">
