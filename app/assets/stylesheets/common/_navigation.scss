@@ -6,3 +6,40 @@
 		margin-right: 5px;
 	}
 }
+
+.navbar-collapse.navbar-main {
+  padding-left: 0px;
+  padding-right: 0px;
+}
+
+.navbar-toggle.navbar-toggle-main {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  border: 1px solid #CCC;
+  
+  .icon-bar {
+    background: #CCC;
+  }
+  
+  &:hover {
+    background: #efefef;
+  }
+}
+
+@media (max-width: $screen-xs-max) {
+  .side-panel {
+    .current-user {
+      margin-bottom: 0px;
+    }
+    .navbar-main {
+      a {
+        float: left;
+        width: 50%;
+      }
+      
+      margin-bottom: 30px;
+    } 
+  }  
+}
+

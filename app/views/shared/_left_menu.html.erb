@@ -1,37 +1,47 @@
-<nav role="navigation">
-	<div class="list-group">
-    <%= nav_link "Home", :root, {id: "home", icon: "home"} %>
+<button type="button" class="navbar-toggle navbar-toggle-main" data-toggle="collapse" data-target=".navbar-ex2-collapse">
+	<span class="sr-only">Toggle navigation</span>
+	<span class="icon-bar"></span>
+	<span class="icon-bar"></span>
+	<span class="icon-bar"></span>
+</button>
 
-    <!--
-    <%= nav_link "People", people_path, icon: "user"%>
-    -->
-    <%= nav_link "People", people_path, {id: "people", icon: "user"} %>
-    <!--
-    <%= nav_link "Artists", artists_path, icon: "star"%>
-    <%= nav_link "Teachers", "#", icon: "user"%>
-    -->
+<div class="collapse navbar-collapse navbar-ex2-collapse navbar-main clearfix">
+  <nav role="navigation">
+		<div class="list-group">
+	    <%= nav_link "Home", :root, {id: "home", icon: "home"} %>
+	
+	    <!--
+	    <%= nav_link "People", people_path, icon: "user"%>
+	    -->
+	    <%= nav_link "People", people_path, {id: "people", icon: "user"} %>
+	    <!--
+	    <%= nav_link "Artists", artists_path, icon: "star"%>
+	    <%= nav_link "Teachers", "#", icon: "user"%>
+	    -->
+	
+	    <%= nav_link "Songs", songs_path, {id: "music", icon: "music" } %>
+	    <!--
+	    <%= nav_link "Popular songs", "#", icon: "music"%>
+	    <%= nav_link "Free songs", free_songs_path, icon: "music"%>
+	    <%= nav_link "Your library", "#", icon: "music"%>
+	    -->
+	
+	    <%= nav_link "Challenges", challenges_path, {id: "challenges", icon: "flag"} %>
+	    <!--
+	    <%= nav_link "Yours", yours_challenges_path, icon: "certificate"%>
+	    <%= nav_link "Friends", "#", icon: "certificate"%>
+	    <%= nav_link "Artists", "#", icon: "certificate"%>
+	    -->
+	
+	    <!--
+	    <%= nav_link "Instruments", "#", icon: "wrench"%>
+	    -->
+	    <%= nav_link "Help", help_path , {id: "help", icon: "info-sign", target: "_blank"} %>
+	    <%= nav_link "Take the tour", tour_path, {id: "tour", icon: "send"} %>
+	
+	    <%= nav_link "Download", apps_path, {id: "apps", icon: "th"} %>
+	    <!--<%= nav_link "Premium", premium_path, {id: "premium", icon: "plus"} %>-->
+	  </div>
+	</nav>
+</div>
 
-    <%= nav_link "Songs", songs_path, {id: "music", icon: "music" } %>
-    <!--
-    <%= nav_link "Popular songs", "#", icon: "music"%>
-    <%= nav_link "Free songs", free_songs_path, icon: "music"%>
-    <%= nav_link "Your library", "#", icon: "music"%>
-    -->
-
-    <%= nav_link "Challenges", challenges_path, {id: "challenges", icon: "flag"} %>
-    <!--
-    <%= nav_link "Yours", yours_challenges_path, icon: "certificate"%>
-    <%= nav_link "Friends", "#", icon: "certificate"%>
-    <%= nav_link "Artists", "#", icon: "certificate"%>
-    -->
-
-    <!--
-    <%= nav_link "Instruments", "#", icon: "wrench"%>
-    -->
-    <%= nav_link "Help", help_path , {id: "help", icon: "info-sign", target: "_blank"} %>
-    <%= nav_link "Take the tour", tour_path, {id: "tour", icon: "send"} %>
-
-    <%= nav_link "Download", apps_path, {id: "apps", icon: "th"} %>
-    <!--<%= nav_link "Premium", premium_path, {id: "premium", icon: "plus"} %>-->
-  </div>
-</nav>

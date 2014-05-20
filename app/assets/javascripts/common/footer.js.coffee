@@ -1,6 +1,6 @@
 $ ->
   unless $("body").hasClass("sessions")
-    console.log 'no es landing';
+    #console.log 'no es landing';
     stickyfooter = undefined
     stickyfooter = ->
       footerHeight = undefined
