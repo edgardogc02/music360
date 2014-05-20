@@ -9,7 +9,7 @@
 <div class="thumbnail-grid row">
 	
 	<% @artists.each do |artist| %>
-		<div class="masonry-img col-md-3 col-sm-6 col-xs-6">
+		<div class="masonry-img col-md-3 col-sm-4 col-xs-6">
 			<div class="thumbnail">
 				<%= image_tag(asset_path('default_user.png'), {alt: artist.title}) %>
 				<div class="overlay-actions">

@@ -3,7 +3,7 @@
 
 .thumbnail-grid {
   .masonry-img .thumbnail {
-    min-height: 150px;
+    //min-height: 150px;
     position: relative;
     
     .overlay-actions {
@@ -24,6 +24,24 @@
         color: white
       }
     }
+    
+    /*
+    img {
+       -webkit-transition: all 0.2s linear;
+       -moz-transition: all 0.2s linear;
+       -o-transition: all 0.2s linear;
+       -ms-transition: all 0.2s linear;
+       transition: all 0.2s linear;
+    }
+    
+    &:hover img {
+       -webkit-transform: scale(1.1,1.1);
+       -moz-transform: scale(1.1,1.1);
+       -o-transform: scale(1.1,1.1);
+       -ms-transform: scale(1.1,1.1);
+       transform: scale(1.1,1.1);
+    }
+    */
   }
   
   .btn-group-vertical {

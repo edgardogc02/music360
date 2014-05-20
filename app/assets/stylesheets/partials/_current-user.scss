@@ -4,6 +4,10 @@
 .current-user {
   margin-bottom: 20px;
   @include clearfix;
+  
+  .thumbnail {
+    margin-bottom: 0px;
+  }
 
 	.current-user-info {
 		margin-top: 5px;
@@ -17,4 +21,20 @@
 	.user-level {
 		font-size: 11px;
 	}
+}
+
+@media (max-width: $screen-xs-max) {
+  .side-panel {
+    margin-bottom: 20px;
+    
+    .current-user {
+      margin-bottom: 0px;
+    }
+    .navbar-main {
+      a {
+        float: left;
+        width: 50%;
+      }
+    } 
+  }  
 }

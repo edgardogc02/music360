@@ -23,7 +23,7 @@ class ChallengesDecorator < Draper::CollectionDecorator
   end
 
   def view_all_link
-    h.link_to "View all", all_challenges_link, {class: "btn btn-primary pull-right btn-sm"}
+    h.link_to "View all", all_challenges_link, {class: "btn btn-primary btn-sm"}
   end
 
   def all_challenges_link

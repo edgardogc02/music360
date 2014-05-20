@@ -40,21 +40,23 @@
 	</div>
 <% end %>
 
-<h1 class="page-header clearfix"><small><i class="glyphicon glyphicon-music"></i></small> Quick start song
-	<%= link_to songs_path, {class: 'btn btn-primary pull-right'} do %>
-  	View more
-  <% end %>
-</h1>
+<div class="page-header">
+	<h1><i class="glyphicon glyphicon-music"></i> Quick start song</h1>
+	<%= content_tag 'div', class: 'btn-content' do %>
+		<%= link_to 'View more', songs_path, {class: 'btn btn-primary'} %>
+	<% end %>
+</div>
 
 <div class="thumbnail-grid row">
   <%= render @songs %>
 </div>
 
-<h1 class="page-header clearfix"><small><i class="glyphicon glyphicon-user"></i></small> Quick start challenge
-	<%= link_to people_path, {class: 'btn btn-primary pull-right'} do %>
-  	View more
-  <% end %>
-</h1>
+<div class="page-header">
+	<h1><i class="glyphicon glyphicon-user"></i> Quick start challenge</h1>
+	<%= content_tag 'div', class: 'btn-content' do %>
+		<%= link_to 'View more', people_path, {class: 'btn btn-primary'} %>
+	<% end %>
+</div>
 
 <div class="thumbnail-grid row">
   <%= render @users %>

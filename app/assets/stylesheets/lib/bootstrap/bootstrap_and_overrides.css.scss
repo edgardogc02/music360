@@ -18,13 +18,21 @@ h3 {
   padding: 15px;
 }
 
-h1.page-header {
+.page-header {
   margin: 10px 0px 30px;
 }
 
-h3.page-header i {
-  margin: 10px 0px 10px;
+.page-header {
+  margin: 10px 0px 30px;
 }
+
+h3.page-header {
+  margin: 34px 0 17px;
+  
+  i {
+    margin: 10px 0px 10px;
+  }
+} 
 
 p {
   margin-bottom: 20px;
@@ -48,6 +56,15 @@ a.list-group-item.active.tour-tour-element, a.list-group-item.active.tour-tour-e
 .well h2 {
   margin-top: 0px;
   margin-bottom: 15px;
+}
+
+.form-inline-xs {
+  margin-bottom: 5px;
+  .form-group {
+    display: inline-block;
+    margin-bottom: 0;
+    vertical-align: middle;
+  } 
 }
 
 /* Side notes for calling out things

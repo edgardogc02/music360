@@ -1,9 +1,9 @@
-<h3 class="clearfix">
-		Choose a song to start challenge
-			<%= link_to songs_path(challenged_id: params[:challenged_id]), {class: 'btn btn-primary pull-right'} do %>
-	    	View all
-    <% end %>
-	</h3>
+<div class="page-header">
+	<h3>Choose a song to start challenge</h3>
+	<%= content_tag 'div', class: 'btn-content' do %>
+		<%= link_to 'View all', songs_path(challenged_id: params[:challenged_id]), {class: 'btn btn-primary'} %>
+	<% end %>
+</div>
 
   <div class="thumbnail-grid row">
     <%= render partial: "song", collection: @songs %>

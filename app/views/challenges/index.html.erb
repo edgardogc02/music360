@@ -1,8 +1,11 @@
-<h1 class="page-header clearfix"><small><i class="glyphicon glyphicon-flag"></i></small> Challenges
-  <% if signed_in? %>
-    <%= link_to "New challenge", new_challenge_path, {class: "btn btn-primary pull-right"} %>
-  <% end %>
-</h1>
+<div class="page-header">
+	<h1><i class="glyphicon glyphicon-flag"></i> Challenges</h1>
+	<% if signed_in? %>
+		<%= content_tag 'div', class: 'btn-content' do %>
+			<%= link_to 'New challenge', new_challenge_path, {class: 'btn btn-primary'} %>
+		<% end %>
+	<% end %>
+</div>
 
 <ul class="nav nav-tabs">
   <li class="active"><a href="#<%= @my_challenges.tab_id %>" data-toggle="tab"><%= @my_challenges.tab_text %></a></li>

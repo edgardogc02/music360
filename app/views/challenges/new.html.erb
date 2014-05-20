@@ -1,15 +1,18 @@
-<h1 class="page-header clearfix"><small><i class="glyphicon glyphicon-flag"></i></small> Create Challenge
-	<section class="pull-right">
-	  <%= simple_form_for @challenge do |f| %>
-	    <%= f.association :challenger, as: :hidden %>
-	    <%= f.association :challenged, as: :hidden %>
-	    <%= f.association :song, as: :hidden %>
-	    <%= f.input :public, as: :hidden %>
-	    <%= f.input :instrument, as: :hidden, input_html: { value: 'Guitar' } %>
-	    <%= f.button :submit, "Start Challenge" %>
-	  <% end %>
-	</section>
-</h1>
+<div class="page-header">
+	<h1><i class="glyphicon glyphicon-flag"></i> Create Challenge</h1>
+	<%= content_tag 'div', class: 'btn-content' do %>
+		<section>
+		  <%= simple_form_for @challenge do |f| %>
+		    <%= f.association :challenger, as: :hidden %>
+		    <%= f.association :challenged, as: :hidden %>
+		    <%= f.association :song, as: :hidden %>
+		    <%= f.input :public, as: :hidden %>
+		    <%= f.input :instrument, as: :hidden, input_html: { value: 'Guitar' } %>
+		    <%= f.button :submit, "Start Challenge" %>
+		  <% end %>
+		</section>
+	<% end %>
+</div>
 
 <% if @challenge.song %>
 
@@ -36,7 +39,7 @@
 
   <section>
     <h3 class="clearfix">1. Choose the challenge
-    	<div class="pull-right"><%= link_to "View more", for_challenge_songs_path(challenged_id: @challenge.challenged_id), {class: 'btn btn-primary', data: { toggle: "modal", target: "#selectSong" }} %></div>
+    	<%= link_to "View more", for_challenge_songs_path(challenged_id: @challenge.challenged_id), {class: 'btn btn-primary pull-right', data: { toggle: "modal", target: "#selectSong" }} %>
     </h3>
     <p>
 			<div class="thumbnail-grid row">

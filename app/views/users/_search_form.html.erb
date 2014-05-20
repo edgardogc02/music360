@@ -1,6 +1,6 @@
 <div class="clearfix">
 	<div class="pull-left margin-right">
-		<%= form_tag params.merge( :controller => "users", :action => "index"), {class: 'form-inline', method: :get} do %>
+		<%= form_tag params.merge( :controller => "users", :action => "index"), {class: 'form-inline form-inline-xs', method: :get} do %>
 			<div class="form-group">
 		  	<%= text_field_tag "Username or email", params[:username_or_email], {name: "username_or_email", placeholder: "Username or email", class: "form-control"} %>
 		  </div>

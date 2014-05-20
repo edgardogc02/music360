@@ -1,7 +1,7 @@
 <div class="current-user">
 	<div class="pull-left">
-		<%= link_to person_path(user) do %>
-			<%= image_tag user.imagename_url, alt: user.username, class: "avatar thumbnail" %>
+		<%= link_to person_path(user), class: 'avatar thumbnail' do %>
+			<%= image_tag user.imagename_url, alt: user.username, class: "" %>
 		<% end %>
 	</div>
 	<div class="pull-left">

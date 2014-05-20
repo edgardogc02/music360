@@ -3,7 +3,7 @@
 
 [role="navigation"] {
 	[class^="glyphicon"] {
-		margin-right: 5px;
+		margin-right: 12px;
 	}
 }
 
@@ -25,21 +25,5 @@
   &:hover {
     background: #efefef;
   }
-}
-
-@media (max-width: $screen-xs-max) {
-  .side-panel {
-    .current-user {
-      margin-bottom: 0px;
-    }
-    .navbar-main {
-      a {
-        float: left;
-        width: 50%;
-      }
-      
-      margin-bottom: 30px;
-    } 
-  }  
 }
 
