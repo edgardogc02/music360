@@ -14,18 +14,17 @@
 <div id="fb-root"></div>
 
 <h3 class="page-header"><span class="margin-right"><i class="glyphicon glyphicon-user text-muted"></i></span> Twitter</h3>
-
-<%= form_tag "/auth/twitter", method: :get do %>
-  <div>
-    <%= text_area_tag "tweet_text", "Accept my invitation and start playing InstrumentChamp!" %>
-  </div>
-  <div>
-    <%= hidden_field_tag "tweet", 'true' %>
-  </div>
-  <div>
-    <%= submit_tag "Share on Twitter", {class: "btn btn-primary"} %>
-  </div>
-<% end %>
+<div class="row">
+	<div class="col-md-6">
+		<%= form_tag "/auth/twitter", {method: :get} do %>
+		  <div class="form-group">
+		    <%= text_area_tag "tweet_text", "Accept my invitation and start playing InstrumentChamp!", {class: 'form-control', rows: 3} %>
+		    <%= hidden_field_tag "tweet", 'true' %>
+		  </div>
+		    <%= submit_tag "Share on Twitter", {class: "btn btn-primary"} %>
+		<% end %>
+	</div>
+</div>
 
 <% if @tweet %>
   <!-- Modal -->
@@ -58,7 +57,7 @@
 	<div class="col-md-6">
 		<%= simple_form_for @user_invitation do |f| %>
 	    <%= f.input :friend_email, label: "Invite a friend via email" %>
-	    <%= f.button :submit, "Invite", class: 'btn-lg' %>
+	    <%= f.button :submit, "Invite" %>
 		<% end %>
 	</div>
 </div>
