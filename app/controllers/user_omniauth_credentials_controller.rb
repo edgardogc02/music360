@@ -14,7 +14,7 @@ class UserOmniauthCredentialsController < ApplicationController
           redirect_to root_path welcome_tour: true
         else
           flash[:notice] = "Welcome back #{user.username}!"
-          redirect_to root_path root_path
+          redirect_to root_path
         end
       else
         redirect_to login_path
