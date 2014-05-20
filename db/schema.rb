@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140520095159) do
+ActiveRecord::Schema.define(version: 20140520143219) do
 
   create_table "apps", force: true do |t|
     t.datetime "created_at"
@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 20140520095159) do
     t.datetime "updated_at"
     t.string   "image"
     t.boolean  "visible"
+    t.string   "created_by"
   end
 
   create_table "songratings", force: true do |t|
@@ -97,6 +98,7 @@ ActiveRecord::Schema.define(version: 20140520095159) do
     t.string   "publisher"
     t.float    "cost"
     t.string   "slug"
+    t.string   "created_by"
   end
 
   add_index "songs", ["slug"], name: "index_songs_on_slug", using: :btree
@@ -194,6 +196,7 @@ ActiveRecord::Schema.define(version: 20140520095159) do
     t.boolean  "admin"
     t.datetime "createdtime"
     t.string   "locale"
+    t.string   "created_by"
   end
 
   add_index "users", ["auth_token"], name: "index_users_on_auth_token", unique: true, using: :btree

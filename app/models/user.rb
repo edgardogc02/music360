@@ -52,6 +52,7 @@ class User < ActiveRecord::Base
   scope :exclude, ->(user_id) { where('users.id_user != ?', user_id) }
 
   def sign_up
+    self.created_by = request.host
     save
     send_welcome_email
   end
@@ -250,6 +251,7 @@ class User < ActiveRecord::Base
     user.password_confirmation = user.password
     user.oauth_uid = auth.uid
     user.locale = auth.extra.raw_info.locale
+    user.created_by = request.host
     user.save!
 
     user.user_omniauth_credentials.create_from_omniauth(auth)
@@ -269,6 +271,7 @@ class User < ActiveRecord::Base
     user.password_confirmation = user.password
     user.oauth_uid = auth.uid
     user.locale = auth.extra.raw_info.locale
+    user.created_by = request.host
     user.save!
 
     user.user_omniauth_credentials.create_from_omniauth(auth)
