@@ -68,7 +68,7 @@ module ApplicationHelper
   end
 
   def include_facebook_conversion_code?
-    Rails.env.production? and !test_domain_name? and signed_in? and current_user.has_facebook_credentials? and current_page?(root_path)
+    Rails.env.production? and !test_domain_name? and signed_in? and current_user.has_facebook_credentials? and current_page?(root_path) and current_user.just_signup?
   end
 
   def skip_tour_link
