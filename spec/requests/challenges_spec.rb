@@ -286,7 +286,34 @@ describe "Challenges" do
     end
 
     it "should display start challenge only to the involved users" do
-      pending
+      challenged = create(:user, username: "challenged_user", password: "12345")
+      my_challenge = create(:challenge, challenger: @user, challenged: challenged)
+
+      visit challenge_path(my_challenge)
+      page.should have_link "Start challenge", href: my_challenge.decorate.start_challenge_url
+
+      click_on "Sign out"
+
+      within("#login-form") do
+        fill_in "username", with: 'challenged_user'
+        fill_in "password", with: '12345'
+      end
+      click_on 'sign_in'
+
+      visit challenge_path(my_challenge)
+      page.should have_link "Start challenge", href: my_challenge.decorate.start_challenge_url
+
+      click_on "Sign out"
+
+      signin_with_facebook
+      visit challenge_path(my_challenge)
+      page.should_not have_link "Start challenge", href: my_challenge.decorate.start_challenge_url
+    end
+
+    it "should include the user auth_token in the start challenge link" do
+      my_challenge = create(:challenge, challenger: @user)
+      visit challenge_path(my_challenge)
+      page.should_not have_link "Start challenge", href: my_challenge.desktop_app_uri + "&user_auth_token=" + @user.auth_token
     end
   end
 

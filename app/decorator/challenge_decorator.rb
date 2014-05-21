@@ -4,7 +4,7 @@ class ChallengeDecorator < Draper::Decorator
   def start_challenge_url
     if !h.is_mobile?
       if h.signed_in? and h.current_user.installed_desktop_app?
-        model.desktop_app_uri
+        model.desktop_app_uri + "&user_auth_token=" + h.current_user.auth_token
       else
         h.apps_path
       end
