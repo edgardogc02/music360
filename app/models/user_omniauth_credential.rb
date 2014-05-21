@@ -21,9 +21,11 @@ class UserOmniauthCredential < ActiveRecord::Base
   end
 
   def update_from_facebook_auth(auth)
+    self.oauth_uid = auth.uid
     self.username = auth.info.name
     self.first_name = auth.info.first_name
     self.last_name = auth.info.last_name
+    self.email = auth.info.email
     self.oauth_token = auth.credentials.token
     self.oauth_expires_at = Time.at(auth.credentials.expires_at)
     self.save!

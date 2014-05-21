@@ -45,6 +45,7 @@ RSpec.configure do |config|
   config.include(MailerMacros)
   config.include(OmniauthMacros)
   config.include(LoginMacros)
+  config.include(FacebookLoginMacros)
   config.include(FacebookFriendsMacros)
   config.include(UserOmniauthCredentialsMacros)
   config.include(UserMacros)
