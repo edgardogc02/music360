@@ -67,6 +67,10 @@ module ApplicationHelper
     Rails.env.production? and !test_domain_name?
   end
 
+  def include_facebook_conversion_code?
+    Rails.env.production? and !test_domain_name? and current_page?(root_path)
+  end
+
   def skip_tour_link
     if redirect_to_new_challenge?
       new_challenge_path
