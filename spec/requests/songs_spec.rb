@@ -50,20 +50,46 @@ describe "Songs" do
       page.should_not have_content paid_song.artist.title
     end
 
-    it "should not display play button in for_challenge page" do
-      visit for_challenge_songs_path
-      page.should have_link "Challenge", new_challenge_path(song_id: @song.id)
-      page.should_not have_link "Play", @song.decorate.play_url
-    end
+    context "play button" do
+      it "should not display play button in for_challenge page" do
+        visit for_challenge_songs_path
+        page.should have_link "Challenge", new_challenge_path(song_id: @song.id)
+        page.should_not have_link "Play", @song.decorate.play_url
+      end
 
-    it "should display play link if user installed the desktop app" do
-      visit songs_path
-      page.should have_link "Play", href: apps_path
+      it "should display play link if user installed the desktop app" do
+        visit songs_path
+        page.should have_link "Play", href: apps_path
 
-      @user.already_installed_desktop_app
-      @user.reload
-      visit songs_path
-      page.should have_link "Play", href: @song.decorate.play_url
+        @user.already_installed_desktop_app
+        @user.reload
+        visit songs_path
+        page.should have_link "Play", href: @song.decorate.play_url
+      end
+
+      it "should display link to apps in the play button" do
+        visit songs_path
+        page.should have_link "Play", href: apps_path
+      end
+
+      it "should display link to song in desktop app in play button" do
+        visit apps_path
+        click_on "I already installed the app"
+        visit songs_path
+        page.should have_link "Play", href: @song.desktop_app_uri
+      end
+
+      it "should display link to song in desktop app with user instrument in play button" do
+        guitar = create(:instrument)
+        @user.instrument_id = guitar.id
+        @user.save
+        @user.reload
+
+        visit apps_path
+        click_on "I already installed the app"
+        visit songs_path
+        page.should have_link "Play", href: @song.desktop_app_uri + "&instrument_id=" + guitar.id.to_s
+      end
     end
 
     it "should list free songs order by popularity" do

@@ -35,7 +35,11 @@ class SongDecorator < Draper::Decorator
   def play_url
     if !h.is_mobile?
       if h.signed_in? and h.current_user.installed_desktop_app?
-        model.desktop_app_uri
+        if h.current_user.has_instrument_selected?
+          model.desktop_app_uri + "&instrument_id=" + h.current_user.instrument_id.to_s
+        else
+          model.desktop_app_uri
+        end
       else
         h.apps_path
       end
@@ -43,15 +47,15 @@ class SongDecorator < Draper::Decorator
       h.mobile_landing_path
     end
   end
-  
+
   def play_class_attr
     value = 'btn btn-sm btn-default Activation2 Activation2_Play song_'+ model.title.squish.downcase.tr(" ","_")
     if h.signed_in? and h.current_user.installed_desktop_app? and !h.is_mobile?
       value << ' app-play'
     end
-    value    
+    value
   end
-  
+
   def challenge_class_attr
     'btn btn-sm btn-default Activation2 Activation2_Challenge Activation2_Challenge_Songs'
   end

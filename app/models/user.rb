@@ -73,6 +73,10 @@ class User < ActiveRecord::Base
 	  !self.just_signup.blank?
 	end
 
+  def has_instrument_selected?
+    !self.instrument_id.blank?
+  end
+
   def self.from_omniauth(request)
     auth = request.env["omniauth.auth"]
 
