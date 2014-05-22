@@ -84,10 +84,6 @@ class User < ActiveRecord::Base
     self.inverse_user_followers.find_by(user_id: followed_user.id).destroy
   end
 
-  def twitter_credentials
-    self.user_omniauth_credentials.find_by(provider: 'twitter')
-  end
-
   def destroy
     self.deleted = true
     self.deleted_at = Time.now

@@ -62,13 +62,14 @@ describe "UserOmniauthCredentials" do
 
         user = User.first
         User.count.should eq(1)
+        user_twitter_account = UserTwitterAccount.new(user)
         user.user_omniauth_credentials.count.should eq(2)
-        user.twitter_credentials.oauth_uid.should eq("123456")
-        user.twitter_credentials.username.should eq("john_doe")
-        user.twitter_credentials.first_name.should eq("John")
-        user.twitter_credentials.last_name.should eq("Doe")
-        user.twitter_credentials.oauth_token.should eq("a1b2c3d4weqwe812")
-        user.twitter_credentials.oauth_token_secret.should eq("abcdef1234")
+        user_twitter_account.uid.should eq("123456")
+        user_twitter_account.username.should eq("john_doe")
+        user_twitter_account.first_name.should eq("John")
+        user_twitter_account.last_name.should eq("Doe")
+        user_twitter_account.token.should eq("a1b2c3d4weqwe812")
+        user_twitter_account.token_secret.should eq("abcdef1234")
       end
     end
   end

@@ -36,7 +36,7 @@
           <h4 class="modal-title" id="myModalLabel">This is the tweet</h4>
         </div>
         <div class="modal-body">
-          <iframe border=0 frameborder=0 height=250 width=600 src="https://twitframe.com/show?url=https://twitter.com/<%= current_user.twitter_credentials.username %>/status/<%= @tweet.id %>">
+          <iframe border=0 frameborder=0 height=250 width=600 src="https://twitframe.com/show?url=https://twitter.com/<%= @user_twitter_account.username %>/status/<%= @tweet.id %>">
           </iframe>
         </div>
       </div>
