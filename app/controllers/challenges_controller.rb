@@ -94,7 +94,7 @@ class ChallengesController < ApplicationController
   end
 
   def display_fb_popup?
-    params[:send_fb_notification] and @autostart_challenge.challenged.connected_with_facebook? and current_user.has_facebook_credentials?
+    params[:send_fb_notification] and @autostart_challenge.challenged.connected_with_facebook? and UserFacebookAccount.new(current_user).connected?
   end
 
   def prepopulate_challenge_if_needed

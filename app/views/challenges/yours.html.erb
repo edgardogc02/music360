@@ -2,37 +2,6 @@
   <META HTTP-EQUIV="Refresh" CONTENT="1; URL=<%= @autostart_challenge.desktop_app_uri %>">
 <% end %>
 
-<div id="fb-root"></div>
-
-<% if @open_fb_notification_popup %>
-
-  <%= content_for(:js_scripts) do %>
-    <!--
-    <script src="https://connect.facebook.net/en_US/all.js"></script>
-    <script type="text/javascript">
-      $(document).ready(function(){
-        FB.init({
-          appId: "<%= FACEBOOK_APP_ID %>",
-          cookie: true,
-          status: true,
-          xfbml: true,
-          display: 'popup'
-        });
-
-        FB.ui({
-          method: 'feed',
-          to: "<%= @autostart_challenge.challenged.facebook_uid %>",
-          link: "<%= challenge_url(@autostart_challenge) %>",
-          picture: "<%= asset_url(@autostart_challenge.song.cover.url) %>",
-          description: "<%= @autostart_challenge.challenger.username %> challenged <%= @autostart_challenge.challenged.username %> on InstrumentChamp"
-        }, function(response) { alert(response) });
-      });
-    </script>
-    -->
-  <% end %>
-
-<% end %>
-
 <h1 class="page-header"><small><i class="glyphicon glyphicon-flag"></i></small> Your challenges</h1>
 
 <ul class="media-list">
@@ -58,7 +27,7 @@
           <h4 class="modal-title" id="myModalLabel">Send a message to your facebook friend</h4>
         </div>
         <div class="modal-body">
-          <iframe height="400" width="550" frameBorder="0" src="https://www.facebook.com/dialog/feed?app_id=<%= FACEBOOK_APP_ID %>&link=<%= challenge_url(@autostart_challenge) %>&redirect_uri=<%= close_facebook_friend_message_modal_url %>&display=iframe&access_token=<%= current_user.facebook_credentials.oauth_token %>&to=<%= @autostart_challenge.challenged.facebook_uid %>&picture=<%= asset_url(@autostart_challenge.song.cover.url) %>&description=<%= @autostart_challenge.challenger.username %> challenged <%= @autostart_challenge.challenged.username %> on InstrumentChamp">
+          <iframe height="400" width="550" frameBorder="0" src="https://www.facebook.com/dialog/feed?app_id=<%= FACEBOOK_APP_ID %>&link=<%= challenge_url(@autostart_challenge) %>&redirect_uri=<%= close_facebook_friend_message_modal_url %>&display=iframe&access_token=<%= UserFacebookAccount.new(current_user).credentials.oauth_token %>&to=<%= UserFacebookAccount.new(@autostart_challenge.challenged).uid %>&picture=<%= asset_url(@autostart_challenge.song.cover.url) %>&description=<%= @autostart_challenge.challenger.username %> challenged <%= @autostart_challenge.challenged.username %> on InstrumentChamp">
           </iframe>
         </div>
       </div>

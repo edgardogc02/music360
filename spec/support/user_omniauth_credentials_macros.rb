@@ -1,7 +1,7 @@
 module UserOmniauthCredentialsMacros
   def create_facebook_omniauth_credentials(user)
     # update the oauth token so it can perform a facebook call.
-    user_fb_credentials = user.facebook_credentials
+    user_fb_credentials = UserFacebookAccount.new(user).credentials
 
     unless user_fb_credentials
       user_fb_credentials = create(:user_omniauth_credential, provider: "facebook")

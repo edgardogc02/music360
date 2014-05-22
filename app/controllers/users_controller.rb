@@ -8,7 +8,7 @@ class UsersController < ApplicationController
     if params[:username_or_email]
       @users_search = SearchUsersList.new(params[:username_or_email], current_user, params[:page])
     else
-      if current_user.has_facebook_credentials?
+      if UserFacebookAccount.new(current_user).connected?
         @fb_top_friends = ResumedFacebookFriendsList.new(current_user)
       end
   		@regular_users = ResumedPopularUsersList.new(current_user)

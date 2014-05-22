@@ -72,7 +72,7 @@ class UserAuthentication
 
     user.user_omniauth_credentials.create_from_omniauth(auth) # save omniauth credentials
 
-    user.remote_imagename_url = user.remote_facebook_image # upload facebook profile image
+    user.remote_imagename_url = UserFacebookAccount.new(user).remote_image # upload facebook profile image
     user.save
 
     send_welcome_email(user) # send welcome email
@@ -86,7 +86,7 @@ class UserAuthentication
   def update_from_facebook_omniauth(user)
     auth = @request.env["omniauth.auth"]
 
-    if user.fake_facebook_user?
+    if UserFacebookAccount.new(user).fake_account?
       user.just_signup = true
     end
 

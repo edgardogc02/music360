@@ -185,7 +185,7 @@ describe User do
       UserFacebookFriends.new(user, facebook_friends).save
 
       user_facebook_friend_ids = user.user_facebook_friends.pluck(:user_facebook_friend_id)
-      user.groupies_to_connect_with.should eq(User.find(user_facebook_friend_ids))
+      UserFacebookAccount.new(user).groupies_to_connect_with.should eq(User.find(user_facebook_friend_ids))
     end
 
     it "should return groupies to connect with even if they already exist in the db" do
@@ -194,8 +194,7 @@ describe User do
       UserFacebookFriends.new(user, facebook_friends).save
 
       user_facebook_friend_ids = user.user_facebook_friends.pluck(:user_facebook_friend_id)
-      user.groupies_to_connect_with.should eq(User.find(user_facebook_friend_ids))
-
+      UserFacebookAccount.new(user).groupies_to_connect_with.should eq(User.find(user_facebook_friend_ids))
     end
   end
 

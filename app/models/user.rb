@@ -19,7 +19,7 @@ class User < ActiveRecord::Base
 
 #  validate :validate_maximum_image_size # TODO: sometimes doesn't work with ftp server and throws a read exception
 
-  attr_accessor :skip_emails, :request
+  attr_accessor :skip_emails
 
 	has_many :challenges, foreign_key: "challenger_id"
   has_many :proposed_challenges, class_name: "Challenge", foreign_key: "challenged_id"
@@ -71,20 +71,6 @@ class User < ActiveRecord::Base
     !self.instrument_id.blank?
   end
 
-  def remote_facebook_image
-    "https://graph.facebook.com/" + facebook_credentials.oauth_uid.to_s + "/picture?type=large"
-  end
-
-  def facebook_uid
-    if self.facebook_credentials
-      facebook_credentials.oauth_uid
-    elsif fake_facebook_user?
-      self.email[0, self.email.index("@")]
-    else
-      ""
-    end
-  end
-
   def following?(followed_user)
     self.inverse_user_followers.find_by(user_id: followed_user.id)
   end
@@ -98,28 +84,8 @@ class User < ActiveRecord::Base
     self.inverse_user_followers.find_by(user_id: followed_user.id).destroy
   end
 
-  def facebook
-    @facebook ||= Koala::Facebook::API.new(facebook_credentials.oauth_token)
-  end
-
-  def facebook_credentials
-    self.user_omniauth_credentials.find_by(provider: 'facebook')
-  end
-
   def twitter_credentials
     self.user_omniauth_credentials.find_by(provider: 'twitter')
-  end
-
-  def facebook_top_friends(limit=0)
-    sql = "SELECT uid, name FROM user WHERE uid IN (SELECT uid2 FROM friend WHERE uid1 = me()) ORDER BY mutual_friend_count DESC"
-    if limit > 0
-      sql = sql + " LIMIT #{limit}"
-    end
-    self.facebook.fql_query(sql)
-  end
-
-  def has_facebook_credentials?
-    !facebook_credentials.nil?
   end
 
   def destroy
@@ -132,25 +98,18 @@ class User < ActiveRecord::Base
     self.deleted == true
   end
 
-  def groupies_to_connect_with
-    self.facebook_friends
-  end
-
   def already_installed_desktop_app
     self.installed_desktop_app = true
     save
   end
 
   def can_receive_messages?
-    !fake_facebook_user?
-  end
-
-  def fake_facebook_user?
-    self.email.include? "@fakeuser.com"
+    !UserFacebookAccount.new(self).fake_account?
   end
 
   def connected_with_facebook?
-    fake_facebook_user? || has_facebook_credentials?
+    user_facebook_account = UserFacebookAccount.new(self)
+    user_facebook_account.fake_account? || user_facebook_account.connected?
   end
 
 	private

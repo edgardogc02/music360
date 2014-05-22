@@ -63,7 +63,7 @@ describe "Users" do
 
       user = User.first
       create_facebook_omniauth_credentials(user)
-      UserFacebookFriends.new(user, user.facebook_top_friends).save
+      UserFacebookFriends.new(user, UserFacebookAccount.new(user).top_friends).save
 
       visit people_path
       page.should have_content "Lars Willner"
@@ -80,7 +80,7 @@ describe "Users" do
 
       user = User.first
       create_facebook_omniauth_credentials(user)
-      UserFacebookFriends.new(user, user.facebook_top_friends).save
+      UserFacebookFriends.new(user, UserFacebookAccount.new(user).top_friends).save
 
       visit list_people_path(view: "facebook")
       page.should have_content "Lars Willner"

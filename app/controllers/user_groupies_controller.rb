@@ -4,8 +4,9 @@ class UserGroupiesController < ApplicationController
 	def index
     @steps = @steps = create_onboarding_steps("Groupies")
     begin
-      if current_user.has_facebook_credentials?
-        @user_groupies = current_user.groupies_to_connect_with.limit(4)
+      user_facebook_account = UserFacebookAccount.new(current_user)
+      if user_facebook_account.connected?
+        @user_groupies = user_facebook_account.groupies_to_connect_with.limit(4)
       end
     rescue
     end

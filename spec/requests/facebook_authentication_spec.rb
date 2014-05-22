@@ -33,7 +33,7 @@ describe "UserOmniauthCredentials" do
     signin_with_facebook
     user = User.last
     create_facebook_omniauth_credentials(user)
-    UserFacebookFriends.new(user, user.facebook_top_friends).save
+    UserFacebookFriends.new(user, UserFacebookAccount.new(user).top_friends).save
     click_on "People"
     click_on "Sign out"
     visit login_path

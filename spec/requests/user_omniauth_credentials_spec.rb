@@ -15,7 +15,7 @@ describe "UserOmniauthCredentials" do
         facebook_user = User.find_by(username: "Test User")
         User.count.should eq(2)
         facebook_user.should_not be_blank
-        facebook_user.facebook_credentials.should_not be_blank
+        UserFacebookAccount.new(facebook_user).credentials.should_not be_blank
       end
     end
 
@@ -34,11 +34,13 @@ describe "UserOmniauthCredentials" do
         User.count.should eq(1)
         UserOmniauthCredential.count.should eq(1)
 
-        user.facebook_credentials.oauth_uid.should eq("12345678901")
-        user.facebook_credentials.user_id.should eq(user.id)
-        user.facebook_credentials.email.should eq("ladasd@lala.com")
-        user.facebook_credentials.username.should eq("New Test User")
-        user.facebook_credentials.oauth_token.should eq("lk2adsadasdasj3lkjasldkjflk3ljsdf")
+        user_facebook_account = UserFacebookAccount.new(user)
+
+        user_facebook_account.credentials.oauth_uid.should eq("12345678901")
+        user_facebook_account.credentials.user_id.should eq(user.id)
+        user_facebook_account.credentials.email.should eq("ladasd@lala.com")
+        user_facebook_account.credentials.username.should eq("New Test User")
+        user_facebook_account.credentials.oauth_token.should eq("lk2adsadasdasj3lkjasldkjflk3ljsdf")
       end
     end
   end
