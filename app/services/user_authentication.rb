@@ -43,13 +43,16 @@ class UserAuthentication
 
   def find_user_from_facebook_omniauth
     auth = @request.env["omniauth.auth"]
-    user = nil
-    user = User.where(email: auth.info.email).first
-    user = User.where(username: auth.info.name).first if user.nil?
-    user_omniauth_credential = UserOmniauthCredential.where(oauth_uid: auth.uid).first
-    user = user_omniauth_credential.user if !user_omniauth_credential.nil?
+    existing_user = nil
+    existing_user = User.where(email: auth.info.email).first
+    existing_user = User.where(username: auth.info.name).first if existing_user.nil?
 
-    user
+    if !existing_user
+      user_omniauth_credential = UserOmniauthCredential.where(oauth_uid: auth.uid).first
+      existing_user = user_omniauth_credential.user if !user_omniauth_credential.nil?
+    end
+
+    existing_user
   end
 
   def create_from_facebook_omniauth
@@ -116,12 +119,15 @@ class UserAuthentication
   end
 
   def find_user_from_twitter_omniauth
-    user = nil
-    user = User.where(username: auth.info.nickname).first if user.nil?
-    user_omniauth_credential = UserOmniauthCredential.where(oauth_uid: auth.uid).first
-    user = user_omniauth_credential.user if !user_omniauth_credential.nil?
+    existing_user = nil
+    existing_user = User.where(username: auth.info.nickname).first if existing_user.nil?
 
-    user
+    if !existing_user
+      user_omniauth_credential = UserOmniauthCredential.where(oauth_uid: auth.uid).first
+      existing_user = user_omniauth_credential.user if !user_omniauth_credential.nil?
+    end
+
+    existing_user
   end
 
   def create_from_twitter_omniauth
