@@ -199,7 +199,7 @@ describe User do
   end
 
   def build_request
-    OpenStruct.new({env: {"omniauth.auth" => mock_facebook_auth_hash}, location: OpenStruct.new({city: "Cordoba", country_code: "AR"})})
+    OpenStruct.new({host: "localhost", env: {"omniauth.auth" => mock_facebook_auth_hash}, location: OpenStruct.new({city: "Cordoba", country_code: "AR"})})
   end
 
 end
