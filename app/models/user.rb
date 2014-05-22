@@ -103,11 +103,6 @@ class User < ActiveRecord::Base
     !UserFacebookAccount.new(self).fake_account?
   end
 
-  def connected_with_facebook?
-    user_facebook_account = UserFacebookAccount.new(self)
-    user_facebook_account.fake_account? || user_facebook_account.connected?
-  end
-
 	private
 
 	def self.generate_random_password(length)
