@@ -16,6 +16,7 @@ InstrumentchampPrototype::Application.routes.draw do
   get 'thanks-for-download-win/', to: redirect("https://www.instrumentchamp.com")
   get 'GameManual.pdf', to: redirect("https://www.instrumentchamp.com")
   get 'launchsong', to: redirect("https://www.instrumentchamp.com")
+  get 'index.html', to: redirect("https://www.instrumentchamp.com")
 
   resources :artists do
     resources :songs do

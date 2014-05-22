@@ -34,12 +34,10 @@ class UserAuthentication
   def from_facebook_omniauth
     auth = @request.env["omniauth.auth"]
 
-    user = find_user_from_facebook_omniauth
-
-    if user.nil?
-      user = create_from_facebook_omniauth
+    if existing_user = find_user_from_facebook_omniauth
+      user = update_from_facebook_omniauth(existing_user)
     else
-      user = update_from_facebook_omniauth(user)
+      user = create_from_facebook_omniauth
     end
   end
 
