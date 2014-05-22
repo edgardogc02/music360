@@ -35,10 +35,10 @@ class UsersController < ApplicationController
 	end
 
 	def create
-	  @user = User.new(user_params)
-    @user.request = request
+	  user_authentication = UserAuthentication.new(request, user_params)
+    @user = user_authentication.user
 
-	  if @user.sign_up
+	  if user_authentication.authenticated?
 	    signin_user(@user)
 	    flash[:notice] = "Hi #{@user.username}!"
 	    redirect_to root_path welcome_tour: true

@@ -5,9 +5,10 @@ class UserOmniauthCredentialsController < ApplicationController
     if signed_in?
       update_current_user
     else
-      user = User.from_omniauth(request)
+      user_authentication = UserAuthentication.new(request)
+      user = user_authentication.user
 
-      if user and !user.deleted?
+      if user_authentication.authenticated?
         signin_user(user)
         if user.just_signup?
           flash[:notice] = "Welcome #{user.username}!"
