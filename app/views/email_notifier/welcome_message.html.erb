@@ -12,29 +12,29 @@
 				<p style="font-size: 16px;">
 			    Hi <strong><%= @user.username %></strong>, welcome to InstrumentChamp!
 			  </p>
-			
-				<p>We want to help you learn to play music and challenge friends in music competitions.</p> 
-				
+
+				<p>We want to help you learn to play music and challenge friends in music competitions.</p>
+
 				<!--
 				<p>This is your account information:</p>
-				
+
 				<p>
 				  <strong>Username:</strong> <%= @user.username %></br>
-				  <strong>Password:</strong> <%= @user.password %>			  	
+				  <strong>Password:</strong> <%= @user.password %>
 				</p>
 				-->
-				
-				<p>Here is some information and links to get you started:</p> 
-				
-				<ul style="list-style: none; padding: 0px 0px 20px 0px;">	
-					<li style="margin: 0px"><%= link_to "Challenge a friend", people_url(host: @host), {style: "color: #45B9B6", class: "email_link_challenge_a_friend", id: "email_link_challenge_a_friend"} %></li>		
-					<li style="margin: 0px"><%= link_to "Learn to play a song", songs_url(host: @host), {style: "color: #45B9B6", class: "email_link_learn_to_play_a_song", id: "email_link_learn_to_play_a_song"} %></li>
-					<li style="margin: 0px"><%= link_to "Take the tour", tour_url(host: @host), {style: "color: #45B9B6", class: "email_link_take_the_tour", id: "email_link_take_the_tour"} %></li>
-					<li style="margin: 0px"><%= link_to "Download the game", apps_url(host: @host), {style: "color: #45B9B6", class: "email_link_download_the_game", id: "email_link_download_the_game"} %></li>
-					<li style="margin: 0px"><%= link_to "Get help", help_url(host: @host), {style: "color: #45B9B6", class: "email_link_get_help", id: "email_link_get_help"} %></li>
-				</ul>			  
-				
-				<p>			
+
+				<p>Here is some information and links to get you started:</p>
+
+				<ul style="list-style: none; padding: 0px 0px 20px 0px;">
+					<li style="margin: 0px"><%= link_to "Challenge a friend", people_url(host: @user.created_by), {style: "color: #45B9B6", class: "email_link_challenge_a_friend", id: "email_link_challenge_a_friend"} %></li>
+					<li style="margin: 0px"><%= link_to "Learn to play a song", songs_url(host: @user.created_by), {style: "color: #45B9B6", class: "email_link_learn_to_play_a_song", id: "email_link_learn_to_play_a_song"} %></li>
+					<li style="margin: 0px"><%= link_to "Take the tour", tour_url(host: @user.created_by), {style: "color: #45B9B6", class: "email_link_take_the_tour", id: "email_link_take_the_tour"} %></li>
+					<li style="margin: 0px"><%= link_to "Download the game", apps_url(host: @user.created_by), {style: "color: #45B9B6", class: "email_link_download_the_game", id: "email_link_download_the_game"} %></li>
+					<li style="margin: 0px"><%= link_to "Get help", help_url(host: @user.created_by), {style: "color: #45B9B6", class: "email_link_get_help", id: "email_link_get_help"} %></li>
+				</ul>
+
+				<p>
 				  Kind regards, <br />
 				  The instrumentchamp team.
 			  </p>

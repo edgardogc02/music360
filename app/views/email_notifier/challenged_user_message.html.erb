@@ -20,7 +20,7 @@
           To view the challenge, you can click on the following link:
           <br />
 
-          <%= link_to challenge_url(@challenge, host: @host), challenge_url(@challenge, host: @host) %>
+          <%= link_to challenge_url(@challenge, host: @challenge.challenger.created_by), challenge_url(@challenge, host: @challenge.challenger.created_by) %>
         </p>
 
 				<p>

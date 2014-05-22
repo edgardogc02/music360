@@ -21,6 +21,7 @@ describe "UserInvitations" do
       visit new_user_invitation_path
       fill_in "user_invitation_friend_email", with: 'invited_user@test.com'
       click_on 'Invite'
+      save_and_open_page
       last_email.to.should include("invited_user@test.com")
     end
   end

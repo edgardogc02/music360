@@ -56,7 +56,7 @@ describe EmailNotifier do
       mail.body.encoded.should have_content "Hi #{challenge.challenged.username},"
       mail.body.encoded.should have_content "#{challenge.challenger.username} has challenged you on InstrumentChamp."
       mail.body.encoded.should have_content "To view the challenge, you can click on the following link:"
-      mail.body.encoded.should have_link challenge_url(challenge, host: host), challenge_url(challenge, host: host)
+      mail.body.encoded.should have_link challenge_url(challenge, host: challenge.challenger.created_by), challenge_url(challenge, host: challenge.challenger.created_by)
     end
   end
 

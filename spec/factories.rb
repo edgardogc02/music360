@@ -5,6 +5,7 @@ FactoryGirl.define do
     password_confirmation { "#{password}" }
     sequence(:email) { |n| "user#{n}@test.com" }
     skip_emails true
+    created_by "localhost"
   end
 
   factory :user_follower do
