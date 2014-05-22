@@ -22,6 +22,7 @@ class UserAuthentication
   end
 
   def from_omniauth
+    remove_non_ascii_chars
     auth = @request.env["omniauth.auth"]
 
     if auth["provider"] == "facebook"
@@ -177,4 +178,10 @@ class UserAuthentication
     user
   end
 
+  def remove_non_ascii_chars
+    @request.env["omniauth.auth"].info.first_name = I18n.transliterate(@request.env["omniauth.auth"].info.first_name).strip if @request.env["omniauth.auth"].info.first_name
+    @request.env["omniauth.auth"].info.last_name = I18n.transliterate(@request.env["omniauth.auth"].info.last_name).strip if @request.env["omniauth.auth"].info.last_name
+    @request.env["omniauth.auth"].info.name = I18n.transliterate(@request.env["omniauth.auth"].info.name).strip if @request.env["omniauth.auth"].info.name
+    @request.env["omniauth.auth"].info.nickname = I18n.transliterate(@request.env["omniauth.auth"].info.nickname).strip if @request.env["omniauth.auth"].info.nickname
+  end
 end
