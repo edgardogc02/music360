@@ -25,6 +25,12 @@ class ChallengeDecorator < Draper::Decorator
     end
   end
 
+  def display_remind_button
+    if display_remind_button?
+      h.link_to "Remind on facebook", h.new_facebook_friend_message_modal_path(challenge_id: model.id), {remote: true, class: "btn btn-warning"}
+    end
+  end
+
   def display_results
     if display_results?
       h.render "challenges/results", challenge: self
@@ -63,6 +69,15 @@ class ChallengeDecorator < Draper::Decorator
 
   def display_decline_challenge_to_user?(user)
     user and !model.has_user_played?(user) and model.is_user_challenged?(user)
+  end
+
+  def display_remind_button?
+    has_challenger_played? and
+    !has_challenged_played? and
+    challenge.created_at <= 1.days.ago and
+    h.signed_in? and
+    UserFacebookAccount.new(h.current_user).connected? and
+    UserFacebookFriend.friends?(model.challenger, model.challenged)
   end
 
   def display_results?

@@ -1,0 +1,22 @@
+<div class="modal fade" id="facebook_send_message_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true" id="close_facebook_send_message_modal">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">Send a message to your facebook friend</h4>
+      </div>
+      <div class="modal-body">
+        <iframe height="400" width="550" frameBorder="0" src="https://www.facebook.com/dialog/feed?app_id=<%= FACEBOOK_APP_ID %>&link=<%= challenge_url(challenge) %>&redirect_uri=<%= close_facebook_friend_message_modal_url %>&display=iframe&access_token=<%= UserFacebookAccount.new(current_user).credentials.oauth_token %>&to=<%= UserFacebookAccount.new(challenge.challenged).uid %>&picture=<%= asset_url(challenge.song.cover.url) %>&description=<%= challenge.challenger.username %> challenged <%= challenge.challenged.username %> on InstrumentChamp">
+        </iframe>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%= content_for(:js_scripts) do %>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('#facebook_send_message_modal').modal('toggle');
+    });
+  </script>
+<% end %>
