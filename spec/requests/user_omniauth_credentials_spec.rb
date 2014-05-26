@@ -21,7 +21,7 @@ describe "UserOmniauthCredentials" do
 
     context "user already signed in" do
       before(:each) do
-        @user = create(:song)
+        @song = create(:song)
         signin_with_facebook
       end
 
@@ -51,7 +51,7 @@ describe "UserOmniauthCredentials" do
     end
     context "user signed in" do
       before(:each) do
-        @user = create(:song)
+        @song = create(:song)
         signin_with_facebook
       end
 

@@ -168,6 +168,7 @@ describe "Users" do
     end
 
     it "should be able to search for a username or email in the users index" do
+      pending "extract this to a new spec and check new search functionalities"
       user = create(:user, username: "ronnie")
       user_1 = create(:user)
       user_2 = create(:user, email: "ronnie@adsa.com")
