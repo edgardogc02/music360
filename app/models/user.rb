@@ -49,11 +49,11 @@ class User < ActiveRecord::Base
   scope :not_deleted, -> { where('deleted IS NULL OR deleted = 0') }
   scope :by_username_or_email, ->(username_or_email) { where('username LIKE ? OR email LIKE ?', '%'+username_or_email+'%', '%'+username_or_email+'%') }
   scope :not_connected_via_facebook, -> { where('oauth_uid IS NULL') }
+  
+  scope :exclude, ->(user_id) { where('users.id_user != ?', user_id) }
    
-  scope :exclude, ->(user_ids) { where('users.id_user NOT IN (?)', user_ids) }
-  scope :exclude_facebook_friends, ->(user) { exclude(user.facebook_friends.pluck(:id_user)) }
-  scope :exclude_followers_and_following_users, ->(user) { exclude(user.followers.pluck(:id_user) + user.followed_users.pluck(:id_user)) }
-  scope :exclude_challenges_users, ->(user) { exclude(user.challenges.pluck(:challenged_id) + user.proposed_challenges.pluck(:challenger_id)) }
+  scope :include, ->(user_ids) { where('users.id_user IN (?)', user_ids) }
+  scope :search_user_relationships, ->(user) { include(user.user_facebook_friends.pluck(:user_facebook_friend_id) + user.user_followers.pluck(:follower_id) + user.inverse_user_followers.pluck(:user_id) + user.challenges.pluck(:challenged_id) + user.proposed_challenges.pluck(:challenger_id)) }
   
 	def to_s
 		username
