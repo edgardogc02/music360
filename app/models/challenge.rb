@@ -23,6 +23,8 @@ class Challenge < ActiveRecord::Base
 	scope :finished, -> { where('score_u1 > 0 and score_u2 > 0') }
   scope :default_order, -> { order('created_at DESC') }
   scope :default_limit, -> { limit(3) }
+  scope :challenged_users_to_remind, -> { pending_only_by_challenged.where("created_at <= ? AND created_at >= ?", 1.days.ago, 2.days.ago) }
+  scope :challenger_users_to_remind, -> { pending_by_challenger.where("created_at <= ? AND created_at >= ?", 1.days.ago, 2.days.ago) }
 
 	def cover_url
 		song.cover_url

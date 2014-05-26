@@ -22,4 +22,14 @@ class EmailNotifier < ActionMailer::Base
     mail to: @user_follower.followed.email
   end
 
+  def remind_challenged_user(challenge)
+    @challenge = challenge
+    mail to: @challenge.challenged.email
+  end
+
+  def remind_challenger_user(challenge)
+    @challenge = challenge
+    mail to: @challenge.challenger.email
+  end
+
 end

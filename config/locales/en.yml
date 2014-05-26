@@ -10,6 +10,10 @@ en:
       subject: You have a new challenge on InstrumentChamp
     followed_user_message:
       subject: You have a new follower on InstrumentChamp
+    remind_challenged_user:
+      subject: Challenge reminder on InstrumentChamp
+    remind_challenger_user:
+      subject: Challenge reminder on InstrumentChamp
   activerecord:
     errors:
       models:

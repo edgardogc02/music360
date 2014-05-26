@@ -155,6 +155,24 @@ describe Challenge do
       Challenge.pending_only_by_challenged.should eq([challenge3])
       Challenge.pending_only_by_challenger.should eq([challenge2])
     end
+
+    it "should return challenges to be reminded" do
+      challenge1 = create(:challenge)
+      challenge2 = create(:challenge, score_u1: 10)
+      challenge3 = create(:challenge, score_u2: 20)
+      challenge4 = create(:challenge, score_u1: 30, score_u2: 40)
+      challenge5 = create(:challenge, created_at: 25.hours.ago)
+      challenge6 = create(:challenge, score_u1: 50, created_at: 25.hours.ago)
+      challenge7 = create(:challenge, score_u2: 60, created_at: 25.hours.ago)
+      challenge8 = create(:challenge, score_u1: 70, score_u2: 80, created_at: 25.hours.ago)
+      challenge9 = create(:challenge, created_at: 3.days.ago)
+      challenge10 = create(:challenge, score_u1: 50, created_at: 3.days.ago)
+      challenge11 = create(:challenge, score_u2: 60, created_at: 3.days.ago)
+      challenge12 = create(:challenge, score_u1: 70, score_u2: 80, created_at: 3.days.ago)
+
+      Challenge.challenged_users_to_remind.should eq([challenge6])
+      Challenge.challenger_users_to_remind.should eq([challenge5, challenge7])
+    end
   end
 
   context "Callbacks" do

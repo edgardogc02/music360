@@ -75,4 +75,41 @@ describe EmailNotifier do
       mail.body.encoded.should have_content "#{user_follower.follower.username} is following you on InstrumentChamp."
     end
   end
+
+  describe "send reminder email to challenged user" do
+    let(:challenge) { create(:challenge) }
+    let(:mail) { EmailNotifier.remind_challenged_user(challenge) }
+
+    it "sends reminder email to challenged user" do
+      mail.subject.should eq("Challenge reminder on InstrumentChamp")
+      mail.to.should eq([challenge.challenged.email])
+      mail.from.should eq(["no-reply@instrumentchamp.com"])
+    end
+
+    it "renders the body" do
+      mail.body.encoded.should have_content "Hi #{challenge.challenged.username},"
+      mail.body.encoded.should have_content "we remind you that #{challenge.challenger.username} has challenged you on InstrumentChamp."
+      mail.body.encoded.should have_content "To play the challenge, you can click on the following link:"
+      mail.body.encoded.should have_link challenge_url(challenge, host: challenge.challenged.created_by), challenge_url(challenge, host: challenge.challenged.created_by)
+    end
+  end
+
+  describe "send reminder email to challenger user" do
+    let(:challenge) { create(:challenge) }
+    let(:mail) { EmailNotifier.remind_challenger_user(challenge) }
+
+    it "sends reminder email to challenger user" do
+      mail.subject.should eq("Challenge reminder on InstrumentChamp")
+      mail.to.should eq([challenge.challenger.email])
+      mail.from.should eq(["no-reply@instrumentchamp.com"])
+    end
+
+    it "renders the body" do
+      mail.body.encoded.should have_content "Hi #{challenge.challenger.username},"
+      mail.body.encoded.should have_content "you challenged #{challenge.challenged.username} on InstrumentChamp, but you haven't played it yet."
+      mail.body.encoded.should have_content "To play the challenge, you can click on the following link:"
+      mail.body.encoded.should have_link challenge_url(challenge, host: challenge.challenger.created_by), challenge_url(challenge, host: challenge.challenger.created_by)
+    end
+  end
+
 end
