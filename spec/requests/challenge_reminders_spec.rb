@@ -130,7 +130,7 @@ describe "ChallengeReminders" do
 
             context "challenge is older than one day" do
               before(:each) do
-                @challenge.created_at = 2.days.ago
+                @challenge.created_at = 25.hours.ago
                 @challenge.save
               end
 

@@ -151,10 +151,10 @@ describe User do
       check_facebook_friends_changes(user, 3, 3)
     end
 
-    it "should not register fb friends if already created with username" do
+    it "should create users with other username if username is already taken" do
       user = create(:user)
       fb_user = create(:user, username: "Lars Willner")
-      check_facebook_friends_changes(user, 2, 3)
+      check_facebook_friends_changes(user, 3, 3)
     end
 
     it "should not register fb friends if already created with email" do

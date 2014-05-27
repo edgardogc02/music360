@@ -9,9 +9,13 @@ class FacebookFriend
     @username
   end
 
+  def id
+    @id
+  end
+
   def signin_user
     user = User.find_by_email(self.new_fake_email)
-    user = User.find_by_username(@username) unless user
+
     unless user
       c = UserOmniauthCredential.find_by(provider: 'facebook', oauth_uid: @id)
       user = c.user if c

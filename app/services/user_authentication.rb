@@ -46,7 +46,6 @@ class UserAuthentication
     auth = @request.env["omniauth.auth"]
     existing_user = nil
     existing_user = User.where(email: auth.info.email).first
-    existing_user = User.where(username: auth.info.name).first if existing_user.nil?
 
     if !existing_user
       user_omniauth_credential = UserOmniauthCredential.where(oauth_uid: auth.uid).first
@@ -61,7 +60,7 @@ class UserAuthentication
     user = User.new
     user.first_name = auth.info.first_name
     user.last_name = auth.info.last_name
-    user.username = auth.info.name
+    user.username = User.generate_new_username_from_string(auth.info.name)
     user.email = auth.info.email
     user.password = User.generate_random_password(5)
     user.password_confirmation = user.password
@@ -74,8 +73,10 @@ class UserAuthentication
 
     user.user_omniauth_credentials.create_from_omniauth(auth) # save omniauth credentials
 
-    user.remote_imagename_url = UserFacebookAccount.new(user).remote_image # upload facebook profile image
-    user.save
+    if !Rails.env.test?
+      user.remote_imagename_url = UserFacebookAccount.new(user).remote_image # upload facebook profile image
+      user.save
+    end
 
     send_welcome_email(user) # send welcome email
     FacebookFriendsWorker.perform_async(user.id) # save facebook friends in the db

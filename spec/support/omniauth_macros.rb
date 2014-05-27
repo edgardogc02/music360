@@ -13,7 +13,7 @@ module OmniauthMacros
 
   def mock_facebook_friend_auth_hash
     OmniAuth.config.add_mock(:facebook, {:provider  => "facebook",
-                                          :uid      => "1234567890",
+                                          :uid      => "712450435",
                                           :info     => { :email  => "lars@willner.com",
                                                          :name   => "Lars Willner",
                                                          :first_name  => "Lars",

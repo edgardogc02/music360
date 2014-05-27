@@ -42,7 +42,6 @@ describe "UserOmniauthCredentials" do
 
     mock_facebook_friend_auth_hash
     click_link "facebook_signin"
-
     page.find('.alert-notice').should have_content('Welcome Lars Willner!')
     URI.parse(current_url).request_uri.should eq(root_path(welcome_tour: true))
   end

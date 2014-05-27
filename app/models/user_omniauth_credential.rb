@@ -2,6 +2,26 @@ class UserOmniauthCredential < ActiveRecord::Base
 
   belongs_to :user
 
+  def self.create_or_update_for_facebook_friend(facebook_friend)
+    user_omniauth_credential = UserOmniauthCredential.where(provider: "facebook", oauth_uid: facebook_friend.id).first
+
+    if user_omniauth_credential.nil?
+      self.create_for_facebook_friend(facebook_friend)
+    else
+      user_omniauth_credential.update_for_facebook_friend(facebook_friend)
+    end
+  end
+
+  def self.create_for_facebook_friend(facebook_friend)
+    self.create!(provider: "facebook", oauth_uid: facebook_friend.id, username: facebook_friend.username)
+  end
+
+  def update_for_facebook_friend(facebook_friend)
+    self.oauth_uid = facebook_friend.id
+    self.username = facebook_friend.username
+    save
+  end
+
   def self.create_or_update_from_omniauth(auth)
     user_omniauth_credential = UserOmniauthCredential.where(auth.slice(:provider, :oauth_uid)).first
 
