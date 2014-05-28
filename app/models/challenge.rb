@@ -12,6 +12,8 @@ class Challenge < ActiveRecord::Base
 	belongs_to :challenger, class_name: "User", foreign_key: "challenger_id"
 	belongs_to :challenged, class_name: "User", foreign_key: "challenged_id"
 	belongs_to :song
+  belongs_to :challenger_instrument, class_name: "Instrument", foreign_key: "instrument_u1"
+  belongs_to :challenged_instrument, class_name: "Instrument", foreign_key: "instrument_u2"
 
   before_create :fill_in_extra_fields
 

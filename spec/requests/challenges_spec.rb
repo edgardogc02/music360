@@ -315,6 +315,25 @@ describe "Challenges" do
       visit challenge_path(my_challenge)
       page.should_not have_link "Start challenge", href: my_challenge.desktop_app_uri + "&user_auth_token=" + @user.auth_token
     end
+
+    it "should display the instrument the user used in the challenge" do
+      guitar = create(:instrument, name: "guitar")
+      piano = create(:instrument, name: "piano")
+      challenge1 = create(:challenge, challenger: @user, score_u1: 10, instrument_u1: guitar.id)
+      challenge2 = create(:challenge, challenger: @user, score_u2: 20, instrument_u2: piano.id)
+      challenge3 = create(:challenge, challenger: @user, score_u1: 30, score_u2: 40, instrument_u1: guitar.id, instrument_u2: piano.id)
+
+      visit challenge_path(challenge1)
+      page.should have_content("#{@user.username}: 10 points on guitar")
+
+      visit challenge_path(challenge2)
+      page.should have_content("#{@user.username}: 0 points")
+      page.should have_content("#{challenge2.challenged.username}: 20 points on piano")
+
+      visit challenge_path(challenge3)
+      page.should have_content("#{@user.username}: 30 points on guitar")
+      page.should have_content("#{challenge3.challenged.username}: 40 points on piano")
+    end
   end
 
   context "user not signed in" do

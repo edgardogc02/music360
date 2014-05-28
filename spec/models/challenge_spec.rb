@@ -63,6 +63,14 @@ describe Challenge do
       should belong_to(:challenged).class_name('User').with_foreign_key('challenged_id')
     end
 
+    it "should belongs to challenger_instrument" do
+      should belong_to(:challenger_instrument).class_name('Instrument').with_foreign_key('instrument_u1')
+    end
+
+    it "should belongs to challenged_instrument" do
+      should belong_to(:challenged_instrument).class_name('Instrument').with_foreign_key('instrument_u2')
+    end
+
     it "should not be able to create more than one open challenge with the same user and the same song" do
       challenger = create(:user)
       challenged = create(:user)
