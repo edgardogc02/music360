@@ -20,7 +20,7 @@ describe "Songs" do
 
     it "should display songs" do
       new_free_song = create(:song, cost: 0)
-      paid_song = create(:song, cost: 1)
+#      paid_song = create(:song, cost: 1)
 
       page.should have_content "Songs"
       click_on "Songs"
@@ -46,8 +46,8 @@ describe "Songs" do
       page.should have_link "Challenge", href: new_challenge_path(song_id: @song.id)
       page.should have_link "Challenge", href: new_challenge_path(song_id: new_free_song.id)
 
-      page.should_not have_content paid_song.title
-      page.should_not have_content paid_song.artist.title
+#      page.should_not have_content paid_song.title
+#      page.should_not have_content paid_song.artist.title
     end
 
     context "play button" do
@@ -147,6 +147,22 @@ describe "Songs" do
       current_path.should eq(artist_song_path(new_song.artist, new_song))
       click_on "Create challenge"
       URI.parse(current_url).request_uri.should eq(new_challenge_path(song_id: new_song.id))
+    end
+
+    context "buy button" do
+      it "should not display buy button for free songs" do
+        song = create(:song)
+        visit songs_path
+        page.should_not have_link "Buy", href: buy_user_paid_song_path(song)
+      end
+
+      it "should display buy button for paid songs" do
+        @user.admin = 1 # TODO REMOVE THIS WHEN ALSO REGULAR USERS CAN VIEW THE BUY BUTTON
+        @user.save
+        paid_song = create(:paid_song)
+        visit songs_path
+        page.should have_link "Buy", href: buy_user_paid_song_path(paid_song)
+      end
     end
   end
 

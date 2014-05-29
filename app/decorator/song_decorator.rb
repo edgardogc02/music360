@@ -32,6 +32,12 @@ class SongDecorator < Draper::Decorator
     end
   end
 
+  def buy_button
+    if h.signed_in? and h.current_user.admin? and h.current_user.can_buy_song?(model) and model.cost?
+      h.link_to "Buy", h.buy_user_paid_song_path(model), {class: 'btn btn-sm btn-default'}
+    end
+  end
+
   def play_url
     if !h.is_mobile?
       if h.signed_in? and h.current_user.installed_desktop_app?
