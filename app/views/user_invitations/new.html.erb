@@ -18,7 +18,7 @@
 	<div class="col-md-6">
 		<%= form_tag "/auth/twitter", {method: :get} do %>
 		  <div class="form-group">
-		    <%= text_area_tag "tweet_text", "Accept my invitation and start playing InstrumentChamp!", {class: 'form-control', rows: 3} %>
+		    <%= text_area_tag "tweet_text", "You're invited to play InstrumentChamp (@instrumentchamp) - the new game that teaches you to play music!", {class: 'form-control', rows: 3} %>
 		    <%= hidden_field_tag "tweet", 'true' %>
 		  </div>
 		    <%= submit_tag "Share on Twitter", {class: "btn btn-primary"} %>
@@ -79,7 +79,7 @@
         FB.ui({
           method: 'apprequests',
           action_type: 'turn',
-          message: 'Join InstrumentChamp...'
+          message: "You're invited to start playing InstrumentChamp - the new game that teaches you to play music!"
         }, requestCallback);
 
         e.preventDefault();
@@ -99,7 +99,7 @@
 
         FB.ui({
           method: 'share',
-          href: 'https://www.instrumentchamp.com',
+          href: 'https://www.instrumentchamp.com'
         }, function(response){});
 
         e.preventDefault();
