@@ -3,7 +3,11 @@ class SongsController < ApplicationController
 	before_action :set_song, only: [:show, :edit, :update, :destroy]
 
 	def index
-    @songs = SongDecorator.decorate_collection(Song.free.by_popularity.page params[:page])
+	  if params[:title]
+      @songs = SongDecorator.decorate_collection(Song.by_title(params[:title]).page params[:page])
+    else
+      @songs = SongDecorator.decorate_collection(Song.free.by_popularity.page params[:page])
+    end
 	end
 
 	def for_challenge

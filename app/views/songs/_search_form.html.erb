@@ -1,0 +1,12 @@
+<div class="clearfix">
+	<div class="pull-left margin-right">
+		<%= form_tag params.merge( :controller => "songs", :action => "index"), {class: 'form-inline form-inline-xs', method: :get} do %>
+			<div class="form-group">
+		  	<%= text_field_tag "Username or email", params[:title], {name: "title", placeholder: "Title", class: "form-control"} %>
+		  </div>
+		  <%= hidden_field_tag "challenged_id", params[:challenged_id] %>
+		  <%= submit_tag "Search", {class: "btn btn-primary"} %>
+		<% end %>
+	</div>
+</div>
+<hr />
