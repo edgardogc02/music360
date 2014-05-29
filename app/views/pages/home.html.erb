@@ -1,3 +1,11 @@
+<% content_for(:facebook_og_meta) do %>
+  <meta property="og:url" content="<%= request.original_url %>" />
+  <meta property="og:title" content="InstrumentChamp - Learn to play guitar, learn to play piano, learn to play drums" />
+  <meta property="og:type" content="instrumentchamp:challenge" />
+  <meta property="og:image" content="<%= asset_url('logo_alpha.png') %>" />
+  <meta property="og:description" content="You're invited to start playing InstrumentChamp - the new game that teaches you to play music!" />
+<% end %>
+
 <% if params[:welcome_tour] %>
   <div class="modal fade welcome-modal" id="welcomeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
 	  <div class="modal-dialog">
