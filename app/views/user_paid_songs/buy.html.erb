@@ -1,0 +1,19 @@
+<h1 class="page-header"><small><i class="glyphicon glyphicon-music"></i></small> Buy Song</h1>
+
+<h2> Buy <%= @user_paid_song.song.title %> from <%= @user_paid_song.song.artist.title %> </h2>
+
+<p>
+  <%= image_tag @user_paid_song.song.cover_url %>
+</p>
+
+<%= simple_form_for @user_paid_song do |f| %>
+
+  <%= f.input :song_id, as: :hidden %>
+
+  <% PaymentType.default_order.each do |payment_type| %>
+    <%= link_to payment_type.name, "#", {class: "btn btn-warning"} %>
+  <% end %>
+
+  <%= f.button :submit, "Buy Now", {class: "btn btn-success"} %>
+
+<% end %>

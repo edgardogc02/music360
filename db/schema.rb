@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140528082803) do
+ActiveRecord::Schema.define(version: 20140529141925) do
 
   create_table "apps", force: true do |t|
     t.datetime "created_at"
@@ -69,6 +69,13 @@ ActiveRecord::Schema.define(version: 20140528082803) do
     t.string   "image"
     t.boolean  "visible"
     t.string   "created_by"
+  end
+
+  create_table "payment_types", force: true do |t|
+    t.string   "name"
+    t.integer  "display_position"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "songratings", force: true do |t|
@@ -159,6 +166,14 @@ ActiveRecord::Schema.define(version: 20140528082803) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "oauth_token_secret"
+  end
+
+  create_table "user_paid_songs", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "song_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "token"
   end
 
   create_table "users", primary_key: "id_user", force: true do |t|

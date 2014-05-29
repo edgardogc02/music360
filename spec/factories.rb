@@ -45,7 +45,12 @@ FactoryGirl.define do
     comment "comment"
     status "status"
     onclient 1
+    cost 0
     published_at Date.today
+
+    factory :paid_song do
+      cost 10
+    end
   end
 
   factory :song_rating do
@@ -74,4 +79,13 @@ FactoryGirl.define do
     friend_email "test@test.com"
   end
 
+  factory :user_paid_song do
+    user
+    song
+  end
+
+  factory :payment_type do
+    sequence(:name) { |n| "payment_type#{n}" }
+    display_position 1
+  end
 end

@@ -40,6 +40,9 @@ class User < ActiveRecord::Base
   has_many :user_invitations, dependent: :destroy
   has_many :user_facebook_invitations, dependent: :destroy
 
+  has_many :user_paid_songs, dependent: :destroy
+  has_many :paid_songs, through: :user_paid_songs, source: :song
+
   belongs_to :instrument
 
   before_create { generate_token(:auth_token) }
@@ -120,6 +123,10 @@ class User < ActiveRecord::Base
       i = i + 1
     end while User.exists?(username: new_username)
     new_username
+  end
+
+  def can_buy_song?(song)
+    song.cost? and !self.paid_songs.include?(song)
   end
 
 	private

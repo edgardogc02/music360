@@ -41,10 +41,14 @@ describe User do
       should have_many(:followed_users).through(:inverse_user_followers).source(:followed)
     end
 
-    [:user_omniauth_credentials, :user_facebook_friends, :user_facebook_invitations, :user_invitations].each do |assoc|
+    [:user_omniauth_credentials, :user_facebook_friends, :user_facebook_invitations, :user_invitations, :user_paid_songs].each do |assoc|
       it "should have has many #{assoc} with dependent destroy" do
         should have_many(assoc).dependent(:destroy)
       end
+    end
+
+    it "should have many paid songs through user_paid_songs" do
+      should have_many(:paid_songs).through(:user_paid_songs)
     end
 
     it "should have many facebook friends" do
@@ -195,6 +199,27 @@ describe User do
 
       user_facebook_friend_ids = user.user_facebook_friends.pluck(:user_facebook_friend_id)
       UserFacebookAccount.new(user).groupies_to_connect_with.should eq(User.find(user_facebook_friend_ids))
+    end
+
+    context "paid songs" do
+      it "should not be able to buy free songs" do
+        user = create(:user)
+        song = create(:song)
+        user.can_buy_song?(song).should_not be_true
+      end
+
+      it "should be able to buy a song twice" do
+        user = create(:user)
+        paid_song = create(:paid_song)
+        user_paid_song = create(:user_paid_song, user: user, song: paid_song)
+        user.can_buy_song?(paid_song).should_not be_true
+      end
+
+      it "should be able to but a paid song" do
+        user = create(:user)
+        paid_song = create(:paid_song)
+        user.can_buy_song?(paid_song).should be_true
+      end
     end
   end
 
