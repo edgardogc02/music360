@@ -8,12 +8,18 @@ class ApplicationController < ActionController::Base
 
   helper_method :current_user, :signed_in?, :test_domain_name?, :redirect_to_new_challenge?
 
-  def signin_user(user)
-    session[:user_id] = user.id
+  def signin_user(user, permanent=false)
+    #session[:user_id] = user.id
+    if permanent
+      cookies.permanent[:auth_token] = user.auth_token
+    else
+      cookies[:auth_token] = user.auth_token
+    end
   end
 
   def signout_user
-    session[:user_id] = nil
+    #session[:user_id] = nil
+    cookies.delete(:auth_token)
     reset_session
   end
 
@@ -41,7 +47,8 @@ class ApplicationController < ActionController::Base
   private
 
   def current_user
-    @current_user ||= User.find(session[:user_id]) if session[:user_id]
+    #@current_user ||= User.find(session[:user_id]) if session[:user_id]
+    @current_user ||= User.find_by_auth_token!(cookies[:auth_token]) if cookies[:auth_token]
   end
 
   def signed_in?

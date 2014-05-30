@@ -9,10 +9,11 @@
       </div>
       <div class="modal-body">
         <%= form_tag sessions_path, id: "login-form" do %>
-	        <p>
-	            <%= text_field_tag :username, "", placeholder: "Username", class: "form-control input-lg", required: true, autofocus: true %>
-	            <%= password_field_tag :password, "", placeholder: "Password", class: "form-control input-lg", required: true %>
-	        </p>
+            <%= text_field_tag :username, "", placeholder: "Username", class: "form-control input-lg", required: true, autofocus: true %>
+            <%= password_field_tag :password, "", placeholder: "Password", class: "form-control input-lg", required: true %>			      
+	        	<div class="pull-right remember_check">
+				        <%= check_box_tag :remember_me, 1, false %> Remember me?
+			      </div>	        
 	        <%= submit_tag "Sign in", {class: "btn btn-primary btn-lg", id: "sign_in"} %>
         <% end %>
         
