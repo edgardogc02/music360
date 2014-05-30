@@ -3,11 +3,11 @@ class SongsController < ApplicationController
 	before_action :set_song, only: [:show, :edit, :update, :destroy]
 
 	def index
-    @songs = SongDecorator.decorate_collection(Song.free.by_popularity.page params[:page])
+    @songs = SongDecorator.decorate_collection(Song.visible.by_popularity.page params[:page])
 	end
 
 	def for_challenge
-    @songs = SongChallengeDecorator.decorate_collection(Song.free.by_popularity.limit(12))
+    @songs = SongChallengeDecorator.decorate_collection(Song.visible.free.by_popularity.limit(12))
     render layout: false
 	end
 
@@ -27,13 +27,13 @@ class SongsController < ApplicationController
   end
 
   def free
-    @songs = SongDecorator.decorate_collection(Song.free.by_popularity.page params[:page])
+    @songs = SongDecorator.decorate_collection(Song.visible.free.by_popularity.page params[:page])
   end
 
 	private
 
   def song_params
-    params.require(:song).permit(:title, :writer, :length, :difficulty, :arranger_userid, :comment, :status, :onclient, :published_at, :cover)
+    params.require(:song).permit(:title, :writer, :length, :difficulty, :arranger_userid, :comment, :status, :onclient, :published_at, :cover, :cost, :visible)
   end
 
 	def set_song
