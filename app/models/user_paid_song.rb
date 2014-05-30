@@ -1,5 +1,7 @@
 class UserPaidSong < ActiveRecord::Base
 
+  attr_accessor :card_holdername, :card_number, :card_cvc, :card_expiry_date
+
   validates :user_id, presence: true
   validates :song_id, presence: true, uniqueness: {scope: :user_id}
 
