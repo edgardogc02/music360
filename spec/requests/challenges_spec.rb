@@ -334,6 +334,14 @@ describe "Challenges" do
       page.should have_content("#{@user.username}: 30 points on guitar")
       page.should have_content("#{challenge3.challenged.username}: 40 points on piano")
     end
+
+    it "should not show hidden songs in the new challenge page" do
+      hidden_song = create(:song, visible: 0)
+
+      visit new_challenge_path
+      page.should have_content(@song.title)
+      page.should_not have_content(hidden_song.title)
+    end
   end
 
   context "user not signed in" do

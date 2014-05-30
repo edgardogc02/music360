@@ -164,6 +164,22 @@ describe "Songs" do
         page.should have_link "Buy", href: buy_user_paid_song_path(paid_song)
       end
     end
+
+    it "should show only visible songs in the index page" do
+      hidden_song = create(:song, visible: 0)
+
+      visit songs_path
+      page.should have_content(@song.title)
+      page.should_not have_content(hidden_song.title)
+    end
+
+    it "should show only visible songs in the for_challenge page" do
+      hidden_song = create(:song, visible: 0)
+
+      visit for_challenge_songs_path
+      page.should have_content(@song.title)
+      page.should_not have_content(hidden_song.title)
+    end
   end
 
   describe "user is not signed in" do

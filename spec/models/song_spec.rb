@@ -77,6 +77,13 @@ describe Song do
 
       Song.free.by_popularity.should eq([most_popular_free_song, popular_free_song, unpopular_free_song, unrated_free_song])
     end
+
+    it "should display only the visible songs" do
+      song = create(:song)
+      hidden_song = create(:song, visible: 0)
+
+      Song.visible.should eq([song])
+    end
   end
 
   context "Methods" do
