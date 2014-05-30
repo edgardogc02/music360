@@ -1,5 +1,7 @@
 <h1 class="page-header"><small><i class="glyphicon glyphicon-music"></i></small> Songs</h1>
 
+<%= render 'search_form' %>
+
 <% if @categories.blank? and !@songs.blank? %>
 
   <div class="thumbnail-grid row">
@@ -10,19 +12,19 @@
 
 <% else %>
 
-<% @categories.each do |category| %>
-	<section>
-		<h3 class="clearfix"><%= category.title%> <small><%= link_to "View all", songs_path(category: category.id), {class: 'btn'}%></small></h3>
-
-		<% unless category.songs.blank? %>
-		<div class="thumbnail-grid row">
-			<%= render partial: "song", collection: category.songs.limit(3) %>
-		</div>
-		<% else %>
-		<p class="no-content">No songs</p>
-		<% end %>
-		<hr />
-	</section>
-<% end %>
+	<% @categories.each do |category| %>
+		<section>
+			<h3 class="clearfix"><%= category.title%> <small><%= link_to "View all", songs_path(category: category.id), {class: 'btn'}%></small></h3>
+	
+			<% unless category.songs.blank? %>
+			<div class="thumbnail-grid row">
+				<%= render partial: "song", collection: category.songs.limit(3) %>
+			</div>
+			<% else %>
+			<p class="no-content">No songs</p>
+			<% end %>
+			<hr />
+		</section>
+	<% end %>
 
 <% end %>

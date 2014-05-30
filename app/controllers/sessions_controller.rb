@@ -23,8 +23,12 @@ class SessionsController < ApplicationController
 			    }
 			  end
 			  format.html do
-  			  signin_user(user)
-  			  flash[:notice] = "Welcome back, #{user.username}!"
+  			  if params[:remember_me]
+            signin_user(user, true)
+          else
+            signin_user(user)
+          end
+          flash[:notice] = "Welcome back, #{user.username}!"
 				  redirect_to root_path
 				end
 			else
