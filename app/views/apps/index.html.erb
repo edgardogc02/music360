@@ -10,12 +10,23 @@
 	var node = document.getElementById("btn-download");
 
   if (navigator.appVersion.indexOf("Mac")!=-1){
-    node.innerHTML = '<a href="https://s3-us-west-2.amazonaws.com/instrumentchamp/InstrumentChamp_Band_Edition.dmg" target="_blank"><img src="http://blog.instrumentchamp.com/wp-content/uploads/2014/01/download_ic_osx.png" alt="Download InstrumentChamp for OSX 10.7+" class="downloadbutton"/></a>';
+    node.innerHTML = '<a class="download_btn" href="https://s3-us-west-2.amazonaws.com/instrumentchamp/InstrumentChamp_Band_Edition.dmg" target="_blank"><img src="http://blog.instrumentchamp.com/wp-content/uploads/2014/01/download_ic_osx.png" alt="Download InstrumentChamp for OSX 10.7+" class="downloadbutton"/></a>';
   }
   else {
-    node.innerHTML = '<a href="https://s3-us-west-2.amazonaws.com/instrumentchamp/InstrumentChamp.msi" target="_blank"><img src="http://blog.instrumentchamp.com/wp-content/uploads/2014/01/download_ic_win.png" alt="Download InstrumentChamp for Windows" class="downloadbutton"/></a>';
+    node.innerHTML = '<a class="download_btn" href="https://s3-us-west-2.amazonaws.com/instrumentchamp/InstrumentChamp.msi" target="_blank"><img src="http://blog.instrumentchamp.com/wp-content/uploads/2014/01/download_ic_win.png" alt="Download InstrumentChamp for Windows" class="downloadbutton"/></a>';
   }
+  
 </script>
+
+<div class="modal fade" id="getReady" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <h3 class="text-center">Install InstrumentChamp and get your <%= current_user.instrument.name %> ready</h3>
+      </div>
+    </div>
+  </div>
+</div>
 
 <h3>Step by step instructions:</h3>
 <ol>
