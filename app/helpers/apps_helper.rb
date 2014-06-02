@@ -8,5 +8,13 @@ module AppsHelper
       return "current"
     end
   end
-
+  
+  def display_instrument
+    if current_user.has_instrument_selected?
+      current_user.instrument.name
+    else
+      "instrument"
+    end
+  end
+  
 end
