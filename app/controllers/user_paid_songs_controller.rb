@@ -3,7 +3,7 @@ class UserPaidSongsController < ApplicationController
 
   def buy
     song = Song.friendly.find(params[:id])
-    @user_paid_song = current_user.user_paid_songs.build(song: song)
+    @user_paid_song_form = UserPaidSongForm.new(current_user.user_paid_songs.build(song: song), current_user.payments.build)
   end
 
   def show
@@ -11,21 +11,15 @@ class UserPaidSongsController < ApplicationController
   end
 
   def create
-    @user_paid_song = current_user.user_paid_songs.build(user_paid_song_params)
+    @user_paid_song_form = UserPaidSongForm.new(current_user.user_paid_songs.build, current_user.payments.build)
 
-    if @user_paid_song.save
+    if @user_paid_song_form.save(params[:user_paid_song_form])
       flash[:notice] = "You have successfully bought this song."
-      redirect_to @user_paid_song
+      redirect_to @user_paid_song_form.user_paid_song
     else
       flash.now[:warning] = "Something went wrong. Please try again."
       render "buy"
     end
-  end
-
-  private
-
-  def user_paid_song_params
-    params.require(:user_paid_song).permit(:song_id)
   end
 
 end

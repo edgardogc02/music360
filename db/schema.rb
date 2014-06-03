@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140530113514) do
+ActiveRecord::Schema.define(version: 20140602142045) do
 
   create_table "apps", force: true do |t|
     t.datetime "created_at"
@@ -76,6 +76,24 @@ ActiveRecord::Schema.define(version: 20140530113514) do
     t.integer  "display_position"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "html_id"
+  end
+
+  create_table "payments", force: true do |t|
+    t.string   "txnid"
+    t.float    "payment_amount"
+    t.string   "payment_status"
+    t.string   "item_name"
+    t.string   "receiver_email"
+    t.string   "payer_email"
+    t.string   "custom"
+    t.string   "itemid"
+    t.datetime "createdtime"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+    t.integer  "payment_type_id"
+    t.string   "paymill_token"
   end
 
   create_table "songratings", force: true do |t|

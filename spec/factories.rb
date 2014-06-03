@@ -88,5 +88,6 @@ FactoryGirl.define do
   factory :payment_type do
     sequence(:name) { |n| "payment_type#{n}" }
     display_position 1
+    sequence(:html_id) { |n| "select_payment_type_#{n}" }
   end
 end

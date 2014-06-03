@@ -51,6 +51,12 @@ describe User do
       should have_many(:paid_songs).through(:user_paid_songs)
     end
 
+    [:payments].each do |assoc|
+      it "should have many #{assoc}" do
+        should have_many(assoc)
+      end
+    end
+
     it "should have many facebook friends" do
       should have_many(:facebook_friends).through(:user_facebook_friends).source(:facebook_friend)
     end

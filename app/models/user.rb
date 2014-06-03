@@ -43,6 +43,8 @@ class User < ActiveRecord::Base
   has_many :user_paid_songs, dependent: :destroy
   has_many :paid_songs, through: :user_paid_songs, source: :song
 
+  has_many :payments
+
   belongs_to :instrument
 
   before_create { generate_token(:auth_token) }
@@ -64,10 +66,6 @@ class User < ActiveRecord::Base
 
 	def level
 		"Beginner"
-	end
-
-	def avatar_url
-		"http://placehold.it/300x300"
 	end
 
 	def just_signup?

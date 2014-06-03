@@ -6,12 +6,12 @@ class SongsController < ApplicationController
 	  if params[:title]
       @songs = SongDecorator.decorate_collection(Song.visible.by_title(params[:title]).page params[:page])
     else
-      @songs = SongDecorator.decorate_collection(Song.visible.free.by_popularity.page params[:page])
+      @songs = SongDecorator.decorate_collection(Song.visible.by_popularity.page params[:page])
     end
 	end
 
 	def for_challenge
-    @songs = SongChallengeDecorator.decorate_collection(Song.free.by_popularity.limit(12))
+    @songs = SongChallengeDecorator.decorate_collection(Song.free.visible.by_popularity.limit(12))
     render layout: false
 	end
 
