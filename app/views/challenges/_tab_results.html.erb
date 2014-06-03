@@ -1,10 +1,12 @@
 <%= content_tag :div, {class: challenges.tab_class, id: challenges.tab_id} do %>
 	<div class="page-header">
-		<h3><%= challenges.title %></h3>
+		<h2><%= challenges.title %></h2>
 		<%= content_tag 'div', class: 'btn-content' do %>
 			<%= challenges.view_all_link %>
 		<% end %>
 	</div>
+	
+	<!--<%= render 'shared/header_page', title: challenges.title, sub_header: true, view_more: 'View more', view_more_path: 'asds' %>-->
 
 	<% unless challenges.blank? %>
 		<ul class="media-list">

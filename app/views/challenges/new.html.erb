@@ -1,23 +1,10 @@
-<div class="page-header">
-	<h1><i class="glyphicon glyphicon-flag"></i> Create Challenge</h1>
-	<%= content_tag 'div', class: 'btn-content' do %>
-		<section>
-		  <%= simple_form_for @challenge do |f| %>
-		    <%= f.association :challenger, as: :hidden %>
-		    <%= f.association :challenged, as: :hidden %>
-		    <%= f.association :song, as: :hidden %>
-		    <%= f.input :public, as: :hidden %>
-		    <%= f.input :instrument, as: :hidden, input_html: { value: 'Guitar' } %>
-		    <%= f.button :submit, "Start Challenge" %>
-		  <% end %>
-		</section>
-	<% end %>
-</div>
+<%= render 'shared/header_page', title: 'Create Challenge' %>
 
 <% if @challenge.song %>
 
   <section>
   	<h3>1. Challenge chosen</h3>
+  	<%= render 'shared/header_page', title: '1. Challenge chosen', sub_header: true %>
 		<div class="row">
 			<div class="col-md-3 col-sm-4">
 				<%= image_tag @challenge.song.cover_url, class: 'thumbnail' %>
@@ -38,9 +25,7 @@
 <% else %>
 
   <section>
-    <h3 class="clearfix">1. Choose the challenge
-    	<%= link_to "View more", for_challenge_songs_path(challenged_id: @challenge.challenged_id), {class: 'btn btn-primary pull-right', data: { toggle: "modal", target: "#selectSong" }} %>
-    </h3>
+  	<%= render 'shared/header_page', title: '1. Choose the challenge', sub_header: true, view_more: 'View more', view_more_path: for_challenge_songs_path(challenged_id: @challenge.challenged_id) %>
     <p>
 			<div class="thumbnail-grid row">
 				<%= render partial: "songs/song", collection: @songs %>
@@ -53,8 +38,7 @@
 <hr />
 
 <section>
-	<h3>2. Choose friend to challenge</h3>
-
+	<%= render 'shared/header_page', title: '2. Choose friend to challenge', sub_header: true %>
 	<div class="row">
 		<div class="col-md-3 col-sm-5 col-xs-5 text-center">
 			<%= image_tag @challenge.challenger.imagename_url, class: "thumbnail" %>
@@ -80,6 +64,19 @@
 		</div>
 	</div>
 </section>
+
+<%= content_tag 'div', class: 'btn-content' do %>
+	<section>
+	  <%= simple_form_for @challenge do |f| %>
+	    <%= f.association :challenger, as: :hidden %>
+	    <%= f.association :challenged, as: :hidden %>
+	    <%= f.association :song, as: :hidden %>
+	    <%= f.input :public, as: :hidden %>
+	    <%= f.input :instrument, as: :hidden, input_html: { value: 'Guitar' } %>
+	    <%= f.button :submit, "Start Challenge", class: 'btn btn-danger btn-lg' %>
+	  <% end %>
+	</section>
+<% end %>
 
 <div class="modal fade" id="selectUser" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
   <div class="modal-dialog">

@@ -1,21 +1,48 @@
-<h1 class="page-header"><small><i class="glyphicon glyphicon-star"></i></small> <%= @artist.title %></h1>
+<%= render 'shared/header_page', title: @artist.title, image: asset_path('default_artist.png')  %>
 
-<p><img src="http://placehold.it/300x300" class="thumbnail"></p>
-
-<% if @artist.bio %>
-<section>
-	<h2>Bio</h2>
-	<p><%= @artist.bio %></p>
-</section>
-<% end %>
-
-<% if @artist.country%><p class="subtitle"><%= @artist.country%></p><% end %>
-
-<% unless @songs.blank? %>
-<section>
-	<p><h2><%= pluralize @songs.count, "song"%></h2></p>
-	<div class="thumbnail-grid row">
-		<%= render partial: "songs/song", collection: @songs %>
+<div class="row">
+	<div class="col-lg-4">
+		<p><img src="http://placehold.it/300x300" class="thumbnail"></p>
 	</div>
-</section>
-<% end %>
+	<div class="col-lg-8">
+		<ul class="nav nav-tabs">
+		  <li class="active"><a href="#info" data-toggle="tab">Info</a></li>
+		  <li><a href="#songs" data-toggle="tab">Songs</a></li>
+		  <li><a href="#challenges_tab" data-toggle="tab">Challenges</a></li>
+		  <li><a href="#fans" data-toggle="tab">Top fans</a></li>
+		</ul>
+		<br />
+		<div class="tab-content">
+		  <div class="tab-pane active" id="info">
+		  	<h2>Information</h2>
+		  	<% if @artist.bio %>
+					<section>
+						<h2>Bio</h2>
+						<p><%= @artist.bio %></p>
+					</section>
+				<% end %>
+		  </div>
+		  <div class="tab-pane" id="songs">
+		  	<h2>Songs</h2>
+		  	<% if !@songs.blank? %>
+					<section>
+						<p><h2><%= pluralize @songs.count, "song"%></h2></p>
+						<div class="thumbnail-grid row">
+							<%= render partial: "songs/song", collection: @songs %>
+						</div>
+					</section>
+				<% else %>
+					<p>No songs</p>
+				<% end %>
+		  </div>
+		  <div class="tab-pane" id="challenges_tab">Challenges</div>
+		  <div class="tab-pane" id="fans">Top fans</div>
+		</div>
+	</div>
+</div>
+
+
+
+<% if @artist.country%><p><%= @artist.country%></p><% end %>
+
+

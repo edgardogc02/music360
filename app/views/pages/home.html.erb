@@ -48,23 +48,15 @@
 	</div>
 <% end %>
 
-<div class="page-header">
-	<h1><i class="glyphicon glyphicon-music"></i> Quick start song</h1>
-	<%= content_tag 'div', class: 'btn-content' do %>
-		<%= link_to 'View more', songs_path, {class: 'btn btn-primary'} %>
-	<% end %>
-</div>
+<%= render 'shared/header_page', title: 'Quick start song', view_more: 'View more', view_more_path: songs_path %>
 
 <div class="thumbnail-grid row">
   <%= render @songs %>
 </div>
 
-<div class="page-header">
-	<h1><i class="glyphicon glyphicon-user"></i> Quick start challenge</h1>
-	<%= content_tag 'div', class: 'btn-content' do %>
-		<%= link_to 'View more', people_path, {class: 'btn btn-primary'} %>
-	<% end %>
-</div>
+<br /><br />
+
+<%= render 'shared/header_page', title: 'Quick start challenge', view_more: 'View more', view_more_path: people_path %>
 
 <div class="thumbnail-grid row">
   <%= render @users %>

@@ -1,13 +1,10 @@
 <% if users_list and !users_list.users.blank? %>
 
-	<h3 class="clearfix">
-	  <%= users_list.title %>
-	  <% if users_list.display_more? %>
-  		<%= link_to users_list.display_more_link, {class: 'btn btn-primary pull-right'} do %>
-      	View more
-      <% end %>
-    <% end %>
-	</h3>
+	<% if users_list.display_more? %>
+		<%= render 'shared/header_page', title: users_list.title, sub_header: true, view_more: 'View more', view_more_path: users_list.display_more_link %>
+  <% else %>
+  	<%= render 'shared/header_page', title: users_list.title, sub_header: true %>
+  <% end %>
 
   <div class="thumbnail-grid row">
   	<%= render users_list.users %>

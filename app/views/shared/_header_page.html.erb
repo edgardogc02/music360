@@ -1,0 +1,27 @@
+<div class="header-page <%= 'sub-header' if defined? sub_header %>">
+	<% if defined? image %>
+		<%= image_tag(image, class: 'header-page-title') %>
+	<% end %>
+	
+	<% if !defined? sub_header %>
+		<%= content_tag :h1 do %>
+			<%= title %>
+			<% if defined? link_path %>
+				<%= link_to link_text, link_path, class: 'header-page-link' %>
+			<% end %>
+		<% end %>
+	<% else %>
+		<%= content_tag :h2 do %>
+			<%= title %>
+			<% if defined? link_path %>
+				<%= link_to link_text, link_path, class: 'header-page-link' %>
+			<% end %>
+		<% end %>
+	<% end %>
+	
+	<% if defined? view_more %>
+		<%= content_tag 'div', class: 'header-page-btn' do %>
+			<%= link_to view_more, view_more_path %>
+		<% end %>
+	<% end %>
+</div>

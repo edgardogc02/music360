@@ -19,15 +19,17 @@
   }
 }
 
-.link_header {
+.link_header, .link_subheader {
+  a { @extend .btn-secondary-color }
   margin: 0px;
   padding: 0px;
+}
+
+.link_header {
   font-size: 14px;
   font-weight: bold;
 }
 .link_subheader {
-  margin: 0px;
-  padding: 0px;
   font-size: 12px;
 }
 

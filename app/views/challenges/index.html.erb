@@ -1,11 +1,10 @@
-<div class="page-header">
-	<h1><i class="glyphicon glyphicon-flag"></i> Challenges</h1>
-	<% if signed_in? %>
-		<%= content_tag 'div', class: 'btn-content' do %>
-			<%= link_to 'New challenge', new_challenge_path, {class: 'btn btn-primary'} %>
-		<% end %>
-	<% end %>
-</div>
+<%= render 'shared/header_page', title: 'Challenges' %>
+
+<%= content_tag 'div', class: 'btn-content' do %>
+	<%= link_to 'Create a new challenge', new_challenge_path, {class: 'btn btn-danger btn-lg'} %>
+<% end %>
+
+<br /><br />
 
 <ul class="nav nav-tabs">
   <li class="active"><a href="#<%= @my_challenges.tab_id %>" data-toggle="tab"><%= @my_challenges.tab_text %></a></li>

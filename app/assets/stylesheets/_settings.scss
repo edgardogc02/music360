@@ -21,7 +21,7 @@ $gray-light:             lighten(#000, 60%) !default;   // #999
 $gray-lighter:           lighten(#000, 90%) !default; // #e6e6e6
 
 $brand-primary:         #45B9B6 !default;
-$brand-secondary:       #E83E3A !default;
+$brand-secondary:       #E73E39 !default; //#E73E39
 $brand-success:         #5cb85c !default;
 $brand-info:            #5bc0de !default;
 $brand-warning:         #f0ad4e !default;
@@ -72,8 +72,8 @@ $font-size-base:          12px !default;
 $font-size-large:         ceil(($font-size-base * 1.25)) !default; // ~18px
 $font-size-small:         ceil(($font-size-base * 0.85)) !default; // ~12px
 
-$font-size-h1:            floor(($font-size-base * 2.6)) !default; // ~36px
-$font-size-h2:            floor(($font-size-base * 2.15)) !default; // ~30px
+$font-size-h1:            24px; //floor(($font-size-base * 2.6)) !default; // ~36px
+$font-size-h2:            18px;//floor(($font-size-base * 2.15)) !default; // ~30px
 $font-size-h3:            ceil(($font-size-base * 1.5)) !default; // ~24px
 $font-size-h4:            ceil(($font-size-base * 1.25)) !default; // ~18px
 $font-size-h5:            $font-size-base !default;
@@ -86,9 +86,9 @@ $line-height-computed:    floor(($font-size-base * $line-height-base)) !default;
 
 //** By default, this inherits from the `<body>`.
 $headings-font-family:    inherit !default;
-$headings-font-weight:    400 !default;
+$headings-font-weight:    bold !default;
 $headings-line-height:    1.1 !default;
-$headings-color:          inherit !default;
+$headings-color:          darken($brand-primary, 10%) !default;
 
 
 //-- Iconography
@@ -118,9 +118,9 @@ $padding-xs-horizontal:     5px !default;
 $line-height-large:         1.33 !default;
 $line-height-small:         1.5 !default;
 
-$border-radius-base:        4px !default;
-$border-radius-large:       6px !default;
-$border-radius-small:       3px !default;
+$border-radius-base:        0px !default;
+$border-radius-large:       2px !default;
+$border-radius-small:       0px !default;
 
 //** Global color for active items (e.g., navs or dropdowns).
 $component-active-color:    #fff !default;
