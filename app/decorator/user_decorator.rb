@@ -19,5 +19,9 @@ class UserDecorator < Draper::Decorator
       end
     end
   end
+  
+  def challenge_button(song_id="")
+    h.action_button(h.new_challenge_path(song_id: song_id, challenged_id: user.id), 'Challenge', {class: 'Activation2 Activation2_Challenge Activation2_Challenge_Users', id: "challenge_#{user.id}"})
+  end
 
 end

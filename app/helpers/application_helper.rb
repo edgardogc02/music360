@@ -78,5 +78,21 @@ module ApplicationHelper
       root_path
     end
   end
+  
+  def action_button(url, text, options={}, icon=false)
+    extra_class = ' btn btn-sm btn-primary action_button'
+    if options[:class]
+      options[:class] << extra_class
+    else
+      options[:class] = extra_class
+    end
+    link_to url, options do
+      if icon
+        content_tag(:i, '', class: icon) + content_tag(:span, text)
+      else
+        content_tag(:span, text)
+      end      
+    end
+  end
 
 end
