@@ -11,11 +11,11 @@
 
 <% if @artist.country%><p class="subtitle"><%= @artist.country%></p><% end %>
 
-<% unless @artist.songs.blank? %>
+<% unless @songs.blank? %>
 <section>
-	<p><h2><%= pluralize @artist.songs.count, "song"%></h2></p>
+	<p><h2><%= pluralize @songs.count, "song"%></h2></p>
 	<div class="thumbnail-grid row">
-		<%= render partial: "songs/song", collection: @artist.songs %>
+		<%= render partial: "songs/song", collection: @songs %>
 	</div>
 </section>
 <% end %>

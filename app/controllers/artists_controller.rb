@@ -7,6 +7,7 @@ class ArtistsController < ApplicationController
 	end
 
 	def show
+	  @songs = SongDecorator.decorate_collection(@artist.songs)
 	end
 
   def most_popular
