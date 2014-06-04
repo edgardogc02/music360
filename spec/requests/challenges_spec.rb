@@ -260,7 +260,7 @@ describe "Challenges" do
 
     it "should have new challenge button in challenges index" do
       visit challenges_path
-      page.should have_link "New challenge", new_challenge_path
+      page.should have_link "Create a new challenge", new_challenge_path
     end
 
     it "should display 3 challenges categories in the index page" do
@@ -335,12 +335,12 @@ describe "Challenges" do
       page.should have_content("#{challenge3.challenged.username}: 40 points on piano")
     end
 
-    it "should not show hidden songs in the new challenge page" do
-      hidden_song = create(:song, visible: 0)
+    it "should not show the user created songs in the new challenge page" do
+      user_created_song = create(:song, user_created: 1)
 
       visit new_challenge_path
       page.should have_content(@song.title)
-      page.should_not have_content(hidden_song.title)
+      page.should_not have_content(user_created_song.title)
     end
   end
 

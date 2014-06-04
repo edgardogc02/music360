@@ -1,6 +1,7 @@
 class Song < ActiveRecord::Base
 
   mount_uploader :cover, SongCoverUploader
+  mount_uploader :midi, MidiUploader
 
   paginates_per 20
 
