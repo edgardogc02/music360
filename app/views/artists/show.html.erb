@@ -2,7 +2,7 @@
 
 <div class="row">
 	<div class="col-lg-4">
-		<p><img src="http://placehold.it/300x300" class="thumbnail"></p>
+		<p><img src="<%= asset_path('default_artist.png') %>" class="thumbnail"></p>
 	</div>
 	<div class="col-lg-8">
 		<ul class="nav nav-tabs">
@@ -17,32 +17,83 @@
 		  	<h2>Information</h2>
 		  	<% if @artist.bio %>
 					<section>
-						<h2>Bio</h2>
 						<p><%= @artist.bio %></p>
 					</section>
 				<% end %>
 		  </div>
 		  <div class="tab-pane" id="songs">
-		  	<h2>Songs</h2>
 		  	<% if !@songs.blank? %>
 					<section>
-						<p><h2><%= pluralize @songs.count, "song"%></h2></p>
-						<div class="thumbnail-grid row">
-							<%= render partial: "songs/song", collection: @songs %>
-						</div>
+						<!--<p><h2><%= pluralize @songs.count, "song"%></h2></p>-->
+						<%= render 'shared/header_page', title: 'Songs', sub_header: true, view_more: 'View more', view_more_path: songs_path %>
+		
+						<table width="100%" class="datagrid-scores">
+							<% @songs.each do |song| %>
+								<tr class="<%= cycle("odd", "even") %>">
+									<td><%= link_to song.title, song_path(song), class: 'btn-secondary-color' %></td>
+									<td>
+										<i class="glyphicon glyphicon-star primary-text-color"></i>
+										<i class="glyphicon glyphicon-star primary-text-color"></i>
+										<i class="glyphicon glyphicon-star primary-text-color"></i>
+										<i class="glyphicon glyphicon-star primary-text-color"></i>
+										<i class="glyphicon glyphicon-star primary-text-color"></i>
+									</td>
+									<td align="right">
+										<%= link_to song.play_url, class: "btn btn-primary btn-sm" do %>
+											<i class="glyphicon glyphicon-play"></i> Play
+										<% end %>			
+										<%= link_to "Challenge", new_challenge_path(song_id: song.id), class: "btn btn-primary btn-sm" %>
+									</td>
+								</tr>
+							<% end %>
+						</table>
+						
 					</section>
 				<% else %>
 					<p>No songs</p>
 				<% end %>
 		  </div>
-		  <div class="tab-pane" id="challenges_tab">Challenges</div>
-		  <div class="tab-pane" id="fans">Top fans</div>
+		  <div class="tab-pane" id="challenges_tab">
+		  	<%= render 'shared/header_page', title: 'Challenges', sub_header: true, view_more: 'View more', view_more_path: challenges_path %>
+		
+				<table width="100%" class="datagrid-scores">
+					<% @challenges.each do |challenge| %>
+						<tr class="<%= cycle("odd", "even") %>">
+							<td><%= image_tag challenge.cover_url, class: "avatar-xs" %></td>
+							<td><%= link_to challenge.song.title, song_path(challenge.song) %>
+				    	by <%= link_to challenge.song.artist.title, artist_path(challenge.song.artist)%></td>
+							<td><%= challenge.display_results %></td>
+						</tr>
+					<% end %>
+				</table>
+				
+		  </div>
+		  <div class="tab-pane" id="fans">
+		  	<%= render 'shared/header_page', title: 'Top Fans', sub_header: true, view_more: 'View more', view_more_path: people_path %>
+		
+				<table width="100%" class="datagrid-scores">
+					<% @users.each do |user| %>
+						<tr class="<%= cycle("odd", "even") %>">
+							<td><%= image_tag(user.imagename_url, class: 'avatar-xs') %></td>
+							<td><%= link_to user.username, person_path(user), class: 'btn-secondary-color' %></td>
+							<td><%= user.level %></td>
+							<td align="right"><%= link_to 'Challenge', new_challenge_path(challenged_id: user.id), class: 'btn btn-primary btn-sm' %></td>
+						</tr>
+					<% end %>
+				</table>
+		  </div>
 		</div>
 	</div>
 </div>
 
+<br /><br />
 
+<%= render 'shared/header_page', title: 'More songs', sub_header:true, view_more: 'View more', view_more_path: songs_path %>
 
-<% if @artist.country%><p><%= @artist.country%></p><% end %>
+<div class="thumbnail-grid row">
+  <%= render @more_songs %>
+</div>
+
+<%= render 'shared/banner_ad' %>
 
 
