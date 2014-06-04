@@ -3,7 +3,6 @@
 <% if @challenge.song %>
 
   <section>
-  	<h3>1. Challenge chosen</h3>
   	<%= render 'shared/header_page', title: '1. Challenge chosen', sub_header: true %>
 		<div class="row">
 			<div class="col-md-3 col-sm-4">
@@ -24,8 +23,16 @@
 
 <% else %>
 
-  <section>
-  	<%= render 'shared/header_page', title: '1. Choose the challenge', sub_header: true, view_more: 'View more', view_more_path: for_challenge_songs_path(challenged_id: @challenge.challenged_id) %>
+  <section>    
+    <div class="header-page sub-header">			
+			<%= content_tag :h2 do %>
+				1. Choose the challenge
+			<% end %>
+
+			<%= content_tag 'div', class: 'header-page-btn' do %>
+				<%= link_to "View more", for_challenge_songs_path(challenged_id: @challenge.challenged_id), {class: '', data: { toggle: "modal", target: "#selectSong" }} %>
+			<% end %>
+		</div>
     <p>
 			<div class="thumbnail-grid row">
 				<%= render partial: "songs/song", collection: @songs %>
@@ -35,7 +42,7 @@
 
 <% end %>
 
-<hr />
+<br />
 
 <section>
 	<%= render 'shared/header_page', title: '2. Choose friend to challenge', sub_header: true %>
@@ -64,6 +71,8 @@
 		</div>
 	</div>
 </section>
+
+<hr />
 
 <%= content_tag 'div', class: 'btn-content' do %>
 	<section>
@@ -98,4 +107,3 @@
   </div>
 </div>
 
-<hr />

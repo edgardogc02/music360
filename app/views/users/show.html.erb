@@ -1,29 +1,29 @@
-<h1 class="page-header"><small><i class="glyphicon glyphicon-user"></i></small> <%= @user.username%></h1>
+<%= render 'shared/header_page', title: @user.username %>
 
-<p>
-	<%= image_tag @user.imagename_url, class: "thumbnail" %>
-</p>
-
-<p>
-	<div>Email: <strong><%= @user.email %></strong></div>
-	<div>Career level: <strong><%= @user.level %></strong></div>
-	<div>Instrument:
-	  <strong>
-      <% if @user.instrument %>
-        <%= @user.instrument.name %>
-      <% else %>
-        No instrument chosen
-      <% end %>
-    </strong>
+<div class="row">
+	<div class="col-lg-3 col-md-3">
+		<%= image_tag @user.imagename_url, class: "thumbnail" %>
 	</div>
-  <div>
-    Following: <strong><%= link_to @user.followed_users.count, following_path(@user) %></strong>
-  </div>
-	<div>
-	  Followers: <strong><%= link_to @user.followers.count, user_follower_path(@user) %></strong>
+	<div class="col-lg-9 col-md-9">
+		<div>Email: <strong><%= @user.email %></strong></div>
+		<div>Career level: <strong><%= @user.level %></strong></div>
+		<div>Instrument:
+		  <strong>
+	      <% if @user.instrument %>
+	        <%= @user.instrument.name %>
+	      <% else %>
+	        No instrument chosen
+	      <% end %>
+	    </strong>
+		</div>
+	  <div>
+	    Following: <strong><%= link_to @user.followed_users.count, following_path(@user) %></strong>
+	  </div>
+		<div>
+		  Followers: <strong><%= link_to @user.followers.count, user_follower_path(@user) %></strong>
+		</div>
 	</div>
-</p>
-
+</div>
 
 <% if is_current_user?(@user) %>
 	<p>
@@ -31,14 +31,14 @@
     <%= link_to "Upload profile image", upload_profile_image_person_path(@user), class: "btn btn-primary" %>
 		<%= link_to "Edit profile", edit_person_path(@user), class: "btn btn-primary" %>
     <%= link_to "Change password", edit_user_password_path(@user), class: "btn btn-primary" %>
-    <%= link_to "Delete profile", person_path(@user), :method => 'delete', class: "btn btn-primary" %>
+    <%= link_to "Delete profile", person_path(@user), :method => 'delete', class: "btn btn-danger" %>
   </p>
 <% end %>
 
-<hr />
+<br />
 
 <section>
-	<h2>Open challenges</h2>
+	<%= render 'shared/header_page', title: 'Open challenges', sub_header: true %>
 	
 	<ul class="media-list">
 		<% unless @challenges.blank? %>

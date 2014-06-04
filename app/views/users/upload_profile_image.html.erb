@@ -1,4 +1,4 @@
-<h1 class="page-header"><small><i class="glyphicon glyphicon-user"></i></small> <%= @user.username%></h1>
+<%= render 'shared/header_page', title: @user.username %>
 
 <%= form_for @user, url: person_path(@user), html: {multipart: true} do |f| %>
   <p>
