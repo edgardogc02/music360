@@ -46,7 +46,7 @@ class ChallengeDecorator < Draper::Decorator
   end
   
   def select_opponent_link
-    h.link_to select_opponent_link_name, select_opponent_path, {class: 'btn btn-link', data: { toggle: "modal", target: "#selectUser"}}
+    h.link_to select_opponent_link_name, select_opponent_path, {class: 'btn btn-primary', data: { toggle: "modal", target: "#selectUser"}}
   end
 
   def start_challenge_class_attr

@@ -1,10 +1,12 @@
-<h1 class="page-header"><small><i class="glyphicon glyphicon-cog"></i></small> Change password</h1>
+<%= render 'shared/header_page', title: "Change password" %>
 
-<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
-	<%= simple_form_for @user, url: user_password_path(@user) do |f| %>
-	  <%= f.input :password %>
-	  <%= f.input :password_confirmation %>
-	  
-	  <%= f.button :submit, "Save" %>
-	<% end %>
+<div class="row">
+	<div class="col-xs-12 col-sm-6 col-md-4 col-lg-4">
+		<%= simple_form_for @user, url: user_password_path(@user) do |f| %>
+		  <%= f.input :password %>
+		  <%= f.input :password_confirmation %>
+		  
+		  <%= f.button :submit, "Save" %>
+		<% end %>
+	</div>
 </div>
