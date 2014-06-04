@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  
+
   before_action :autologin_if_needed
 
   # Prevent CSRF attacks by raising an exception.
@@ -66,5 +66,11 @@ class ApplicationController < ActionController::Base
   def redirect_to_new_challenge?
     !session[:prepopulate_with_challenge_id].blank? and signed_in? and !Challenge.find(session[:prepopulate_with_challenge_id]).is_user_involved?(current_user)
   end
+
+  def authenticate_admin_user!
+    if !signed_in? or !current_user.admin?
+      redirect_to root_path
+    end
+  end # end authenticate_admin_user! action
 
 end

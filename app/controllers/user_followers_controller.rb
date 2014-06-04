@@ -27,7 +27,7 @@ class UserFollowersController < ApplicationController
   private
 
   def set_user
-    @user = User.friendly.find(params[:id])
+    @user = User.find(params[:id])
   end
 
 end

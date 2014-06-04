@@ -28,7 +28,7 @@ class SongDecorator < Draper::Decorator
 
   def edit_button
     if h.signed_in? and h.current_user.admin?
-      h.action_button(h.edit_song_path(model), 'Edit', {class: play_class_attr, id: play_id_attr})
+      h.action_button(h.edit_admin_song_path(model), 'Edit', {class: play_class_attr, id: play_id_attr})
     end
   end
 

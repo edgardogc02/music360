@@ -1,5 +1,6 @@
 InstrumentchampPrototype::Application.routes.draw do
 
+  ActiveAdmin.routes(self)
   root to: "pages#home"
 
   # redirect old pages cached from google

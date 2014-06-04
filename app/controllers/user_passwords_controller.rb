@@ -24,7 +24,7 @@ class UserPasswordsController < ApplicationController
   end
 
   def set_user
-    @user = User.friendly.find(params[:id])
+    @user = User.find(params[:id])
   end
 
   def check_security

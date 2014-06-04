@@ -24,6 +24,7 @@ class Song < ActiveRecord::Base
 
   scope :by_title, ->(title) { where('title LIKE ?', '%'+title+'%') }
   scope :free, -> { where('cost IS NULL OR cost = 0') }
+  scope :paid, -> { where('cost > 0') }
   scope :by_popularity, -> { joins('LEFT JOIN songratings ON songratings.song_id = songs.id').group('case when songratings.song_id is null then songs.id else songratings.song_id end').order('AVG(songratings.rating) DESC, songs.id') }
   scope :not_user_created, -> { where('user_created IS NULL OR user_created = 0') }
 
@@ -31,4 +32,5 @@ class Song < ActiveRecord::Base
 		# Format: "ic:song=Amazing%20grace.mid"
 		"ic:song=#{URI::escape(title)}.mid"
 	end
+
 end

@@ -21,6 +21,11 @@
 				    </div>
 				    <div class="navbar-header pull-right">
 				    	<% if signed_in? %>
+                <% if current_user.admin? %>
+                  <%= link_to admin_dashboard_path, {class: "btn", target: "_blank"} do %>
+                    <i class="glyphicon glyphicon-eye-open"></i> Admin
+                  <% end %>
+                <% end %>
 					      <%= link_to logout_path, {class: "btn", id: "sign_out"} do %>
 				          <i class="glyphicon glyphicon-log-out"></i> Sign out
 				        <% end %>
