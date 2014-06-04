@@ -1,6 +1,7 @@
-<h1 class="page-header"><small><i class="glyphicon glyphicon-bullhorn"></i></small> Invitations</h1>
+<%= render 'shared/header_page', title: 'Invitations' %>
 
-<h3 class="page-header"><span class="margin-right"><i class="glyphicon glyphicon-user text-muted"></i></span> Facebook</h3>
+<%= render 'shared/header_page', title: 'Facebook', sub_header: true %>
+
 <a class="fb_button xs" href="#" id="invite_fb_friends">
   <span class="separator"></span>
   <span class="text">Invite facebook friends</span>
@@ -13,7 +14,9 @@
 
 <div id="fb-root"></div>
 
-<h3 class="page-header"><span class="margin-right"><i class="glyphicon glyphicon-user text-muted"></i></span> Twitter</h3>
+<br /><br />
+<%= render 'shared/header_page', title: 'Twitter', sub_header: true %>
+
 <div class="row">
 	<div class="col-md-6">
 		<%= form_tag "/auth/twitter", {method: :get} do %>
@@ -52,7 +55,9 @@
   <% end %>
 <% end %>
 
-<h3 class="page-header"><span class="margin-right"><i class="glyphicon glyphicon-envelope text-muted"></i></span> Email</h3>
+<br /><br />
+<%= render 'shared/header_page', title: 'Email', sub_header: true %>
+
 <div class="row">
 	<div class="col-md-6">
 		<%= simple_form_for @user_invitation do |f| %>

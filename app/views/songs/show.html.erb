@@ -1,10 +1,40 @@
-<h1 class="page-header"><small><i class="glyphicon glyphicon-music"></i></small> <%= @song.title %> – <%= @song.artist.title%></h1>
+<%= render 'shared/header_page', title: @song.title, link_text: @song.artist.title, link_path: artist_path(@song.artist) %>
 
-<p>
-	<%= image_tag @song.cover_url, alt: @song.title, class: "thumbnail" %>
-</p>
+<!--<iframe width="300" height="380"  scrolling="no" frameborder="0" allowtransparency="true" style="border:none; overflow:hidden; height:380px;" src="http://www.musicnodes.com/widget/public/view?wid=2105&id=538dbb91f51e46ff6f0008ce&services=spotify,youtube,deezer"></iframe>-->
 
-<p>
-	<%= link_to "Quick start song", @song.play_url, class: "btn btn-primary" %>
-	<%= link_to "Create challenge", new_challenge_path(song_id: @song.id), class: "btn btn-primary" %>
-</p>
+<div class="row">
+	<div class="col-lg-4">
+		<p>
+			<%= image_tag @song.cover_url, alt: @song.title, class: "thumbnail" %>
+		</p>
+		<p>
+			<%= link_to "Play", @song.play_url, class: "btn btn-primary" %>
+			<%= link_to "Create challenge", new_challenge_path(song_id: @song.id), class: "btn btn-primary" %>
+		</p>
+	</div>
+	<div class="col-lg-8">
+		<%= render 'shared/header_page', title: 'Top Scores', sub_header: true, view_more: 'View more', view_more_path: people_path %>
+		
+		<table width="100%" class="datagrid-scores">
+			<% @users.each do |user| %>
+				<tr class="<%= cycle("odd", "even") %>">
+					<td><%= image_tag(user.imagename_url, class: 'avatar-xs') %></td>
+					<td><%= link_to user.username, person_path(user), class: 'btn-secondary-color' %></td>
+					<td><%= user.level %></td>
+					<td>1000pts</td>
+					<td align="right"><%= link_to 'Challenge', new_challenge_path(song_id: @song.id, challenged_id: user.id), class: 'btn btn-primary btn-sm' %></td>
+				</tr>
+			<% end %>
+		</table>
+	</div>
+</div>
+
+<br /><br />
+
+<%= render 'shared/header_page', title: 'More songs', sub_header:true, view_more: 'View more', view_more_path: 'songs_path' %>
+
+<div class="thumbnail-grid row">
+  <%= render @more_songs %>
+</div>
+
+<%= render 'shared/banner_ad' %>

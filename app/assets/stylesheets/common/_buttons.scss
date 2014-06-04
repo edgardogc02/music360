@@ -14,3 +14,12 @@
     margin-right: 5px;
   }
 }
+
+.btn-secondary-color {
+  color: $brand-secondary !important;
+  
+  &.hover {
+    color: darken($brand-secondary, 15%) !important;
+  }
+}
+
