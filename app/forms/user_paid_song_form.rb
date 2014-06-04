@@ -12,9 +12,9 @@ class UserPaidSongForm
 
   # payment validations
 
-  validate :payment_type_id, presence: true
-  validate :payment_amount, presence: true
-  validate :payment_status, presence: true
+  validates :payment_type_id, presence: true
+  validates :payment_amount, presence: true
+  validates :payment_status, presence: true
   validate :paymill_token_if_credit_card
 
   delegate :song_id, :user_id, to: :user_paid_song
@@ -47,17 +47,23 @@ class UserPaidSongForm
   end
 
   def save(params)
-    user_paid_song.song_id = params[:song_id]
-    payment.payment_amount = params[:payment_amount]
-    payment.payment_type_id = params[:payment_type_id]
-    payment.paymill_token = params[:paymill_token] if params[:paymill_token]
+    user_paid_song.attributes = params.slice(:song_id)
+    payment.attributes = params.slice(:payment_amount, :payment_type_id, :paymill_token)
+
+#    user_paid_song.song_id = params[:song_id]
+#    payment.payment_amount = params[:payment_amount]
+#    payment.payment_type_id = params[:payment_type_id]
+#    payment.paymill_token = params[:paymill_token]
     payment.payment_status = "Confirmed"
 
     if valid?
-      generate_token
-      if user_paid_song.save and payment.save
+      ActiveRecord::Base.transaction do
+        generate_token
+        user_paid_song.save
+        payment.save
         Paymill::Payment.create(token: payment.paymill_token) if payment.paymill_token
       end
+      true
     else
       false
     end

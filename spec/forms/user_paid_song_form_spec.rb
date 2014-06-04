@@ -2,6 +2,15 @@ require 'spec_helper'
 
 describe "UserPaidSongForm" do
 
+  context "validations" do
+    [:user_id, :song_id].each do |attr|
+      it "should have validate presence of #{attr}" do
+        pending "check why is not working"
+        should validate_presence_of(attr)
+      end
+    end
+  end
+
   context "non credit card payment" do
     it "should save a user_paid_song and payment record" do
       non_credit_card_song_purchase

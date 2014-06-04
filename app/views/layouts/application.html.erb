@@ -5,11 +5,11 @@
 </head>
 <body role="application" class="<%= body_classes %>">
 	<header>
-		
+
 		<% if signed_in? %>
 			<%= render "shared/welcome_modal" %>
 		<% end %>
-		
+
 		<nav class="navbar navbar-default navbar-fixed-top" role="navbar">
 			<div class="container">
 				<div class="row">
@@ -25,8 +25,8 @@
 				          <i class="glyphicon glyphicon-log-out"></i> Sign out
 				        <% end %>
 				      <% else %>
-				      	<%= link_to 'Sign up', signup_path, class: 'btn btn-link' %> 
-					    	<a href="#" class="btn btn-primary sign-in-btn" data-toggle="modal" data-target="#SignIn">Sign in</a>	
+				      	<%= link_to 'Sign up', signup_path, class: 'btn btn-link' %>
+					    	<a href="#" class="btn btn-primary sign-in-btn" data-toggle="modal" data-target="#SignIn" id="sign_in_btn">Sign in</a>
 					    <% end %>
 				    </div>
 					</div>
@@ -34,10 +34,10 @@
 			</div>
 		</div>
 	</header>
-	
+
 	<%= render 'sessions/sign_in' %>
 	<%= render 'shared/loading_modal' %>
-	
+
 	<div id="page-wrap">
 		<div class="container">
 			<div class="row">

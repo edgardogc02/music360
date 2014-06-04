@@ -7,6 +7,20 @@ require 'rspec/rails'
 require 'capybara/rails'
 require 'capybara/rspec'
 
+require 'capybara/poltergeist'
+Capybara.register_driver :poltergeist_debug do |app|
+  Capybara::Poltergeist::Driver.new(app, inspector: true)
+end
+
+Capybara.configure do |config|
+#  config.default_driver = :poltergeist
+  config.javascript_driver = :poltergeist
+  config.run_server = false
+  config.app_host = ENV['APP'] || 'https://instrumentchamp-local.lvh.me:3000'
+  Capybara.server_port = 3000
+  config.default_wait_time = 10
+end
+
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.
 Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }

@@ -108,6 +108,7 @@ end
 group :test do
   gem 'factory_girl_rails'
   gem 'capybara'
+  gem 'poltergeist'
   gem 'selenium-webdriver'
   gem 'launchy'
   gem 'guard-rspec'

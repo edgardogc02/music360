@@ -13,7 +13,7 @@ class SongDecorator < Draper::Decorator
   def display_challenge_button?
     true
   end
-  
+
   def play_button
     if display_play_button?
       h.action_button(play_url, 'Play', {class: play_class_attr, id: play_id_attr}, 'glyphicon glyphicon-play')
@@ -34,7 +34,7 @@ class SongDecorator < Draper::Decorator
 
   def buy_button
     if h.signed_in? and h.current_user.admin? and h.current_user.can_buy_song?(model) and model.cost?
-      h.action_button(h.buy_user_paid_song_path(model), 'Buy')
+      h.action_button(h.buy_user_paid_song_path(model), 'Buy', {id: "buy_song_#{model.id}"})
     end
   end
 
