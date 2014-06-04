@@ -1,7 +1,7 @@
 <%= content_tag :div, {class: challenges.tab_class, id: challenges.tab_id} do %>
-	<div class="page-header">
-		<h2><%= challenges.title %></h2>
-		<%= content_tag 'div', class: 'btn-content' do %>
+	<div class="page-header clearfix">
+		<h2 class="pull-left" style="margin-top: 0px"><%= challenges.title %></h2>
+		<%= content_tag 'div', class: 'btn-content pull-right' do %>
 			<%= challenges.view_all_link %>
 		<% end %>
 	</div>

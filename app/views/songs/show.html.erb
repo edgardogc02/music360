@@ -8,7 +8,9 @@
 			<%= image_tag @song.cover_url, alt: @song.title, class: "thumbnail" %>
 		</p>
 		<p>
-			<%= link_to "Play", @song.play_url, class: "btn btn-primary" %>
+			<%= link_to @song.play_url, class: "btn btn-primary" do %>
+				<i class="glyphicon glyphicon-play"></i> Play
+			<% end %>			
 			<%= link_to "Create challenge", new_challenge_path(song_id: @song.id), class: "btn btn-primary" %>
 		</p>
 	</div>
@@ -31,7 +33,7 @@
 
 <br /><br />
 
-<%= render 'shared/header_page', title: 'More songs', sub_header:true, view_more: 'View more', view_more_path: 'songs_path' %>
+<%= render 'shared/header_page', title: 'More songs', sub_header:true, view_more: 'View more', view_more_path: songs_path %>
 
 <div class="thumbnail-grid row">
   <%= render @more_songs %>
