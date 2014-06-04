@@ -21,11 +21,11 @@ class Song < ActiveRecord::Base
 	belongs_to :category
 
   has_many :song_ratings, dependent: :destroy
-  
+
   scope :by_title, ->(title) { where('title LIKE ?', '%'+title+'%') }
   scope :free, -> { where('cost IS NULL OR cost = 0') }
   scope :by_popularity, -> { joins('LEFT JOIN songratings ON songratings.song_id = songs.id').group('case when songratings.song_id is null then songs.id else songratings.song_id end').order('AVG(songratings.rating) DESC, songs.id') }
-  scope :visible, -> { where(visible: true) }
+  scope :not_user_created, -> { where('user_created IS NULL OR user_created = 0') }
 
 	def desktop_app_uri
 		# Format: "ic:song=Amazing%20grace.mid"

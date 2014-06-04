@@ -47,7 +47,6 @@ FactoryGirl.define do
     onclient 1
     cost 0
     published_at Date.today
-    visible 1
 
     factory :paid_song do
       cost 10

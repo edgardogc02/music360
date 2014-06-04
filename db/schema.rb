@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140604075156) do
+ActiveRecord::Schema.define(version: 20140604082606) do
 
   create_table "apps", force: true do |t|
     t.datetime "created_at"
@@ -119,7 +119,7 @@ ActiveRecord::Schema.define(version: 20140604075156) do
     t.float    "cost"
     t.string   "slug"
     t.string   "created_by"
-    t.boolean  "visible"
+    t.boolean  "user_created"
   end
 
   add_index "songs", ["slug"], name: "index_songs_on_slug", using: :btree
