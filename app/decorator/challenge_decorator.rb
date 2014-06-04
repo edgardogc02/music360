@@ -21,7 +21,7 @@ class ChallengeDecorator < Draper::Decorator
 
   def display_decline_challenge_button
     if display_decline_challenge_to_user?(h.current_user)
-      h.link_to "Decline", h.challenge_path(model), {data: {confirm: "Are you sure?"}, method: :delete, class: "btn btn-danger pull-left"}
+      h.link_to "Decline", h.challenge_path(model), {data: {confirm: "Are you sure?"}, method: :delete, class: "btn btn-primary pull-left"}
     end
   end
 

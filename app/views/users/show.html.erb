@@ -31,7 +31,7 @@
     <%= link_to "Upload profile image", upload_profile_image_person_path(@user), class: "btn btn-primary" %>
 		<%= link_to "Edit profile", edit_person_path(@user), class: "btn btn-primary" %>
     <%= link_to "Change password", edit_user_password_path(@user), class: "btn btn-primary" %>
-    <%= link_to "Delete profile", person_path(@user), :method => 'delete', class: "btn btn-danger" %>
+    <%= link_to "Delete profile", person_path(@user), :method => 'delete', class: "btn btn-primary" %>
   </p>
 <% end %>
 
