@@ -1,0 +1,14 @@
+<%= simple_form_for @song, url: save_new_midi_admin_songs_path do |f| %>
+
+  <h2>
+    Upload a midi for the new song
+  </h2>
+  <br />
+  <p>
+    <%= f.file_field :midi %>
+  </p>
+  <br />
+  <p>
+    <%= f.button :submit, "Save" %>
+  </p>
+<% end %>

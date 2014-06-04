@@ -17,7 +17,7 @@ ActiveAdmin.register Song do
   scope :free
   scope :paid
 
-  permit_params :category_id, :artist_id, :title, :cover, :length, :difficulty, :status, :onclient, :writer, :arranger_userid, :published_at, :publisher, :cost, :on, :model
+  permit_params :category_id, :artist_id, :title, :cover, :length, :difficulty, :status, :onclient, :writer, :arranger_userid, :published_at, :publisher, :cost, :midi, :on, :model
 
   index do
     selectable_column
@@ -39,6 +39,7 @@ ActiveAdmin.register Song do
     column :published_at
     column :slug
     column :user_created
+    column :midi
     column :created_at
     actions
   end
@@ -51,6 +52,7 @@ ActiveAdmin.register Song do
       if !f.object.new_record?
         f.input :cover, as: :file
       end
+      f.input :midi, as: :file
       f.input :length
       f.input :difficulty
       f.input :status
@@ -62,6 +64,37 @@ ActiveAdmin.register Song do
       f.input :cost
     end
     f.actions
+  end
+
+  action_item only: :index do
+    link_to "New mini song", new_midi_admin_songs_path
+  end
+
+  collection_action :new_midi, method: :get  do
+    @song = Song.new
+  end
+
+  collection_action :save_new_midi, method: :post do
+    @song = Song.new
+
+    if params[:song]
+      @song.midi = params[:song][:midi]
+      @song.title = params[:song][:midi].original_filename[0..-5]
+      @song.writer = "default"
+      @song.length = 1
+      @song.difficulty = 1
+      @song.arranger_userid = 1
+      @song.status = "ok"
+      @song.onclient = 1
+      @song.published_at = Time.now
+    end
+
+    if @song.save
+      redirect_to admin_songs_path, notice: "The song was successfully created"
+    else
+      flash.now[:warning] = "Something went wrong, please try again. Don't forget to upload a mid file."
+      render "new_midi"
+    end
   end
 
 end
