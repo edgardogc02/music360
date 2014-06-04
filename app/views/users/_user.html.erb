@@ -2,12 +2,14 @@
 	<%= link_to person_path(user), class: 'thumbnail' do %>
 		<%= image_avatar(user) %>
 	<% end %>
-
-	<div class="spacer-sm">
-		<div class="link_header"><%= link_to user.username, person_path(user) %></div>
-	</div>
 	
-	<%= user.display_follow_button %>
-	<%= user.challenge_button(params[:song_id]) %>
+	<div class="actions-content">
+		<div class="spacer-sm">
+			<div class="link_header"><%= link_to user.username, person_path(user) %></div>
+		</div>
+		
+		<%= user.display_follow_button %>
+		<%= user.challenge_button(params[:song_id]) %>
+	</div>
 </div>
 

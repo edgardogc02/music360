@@ -1,4 +1,4 @@
-<h1 class="page-header"><small><i class="glyphicon glyphicon-flag"></i></small> <%= @title %></h1>
+<%= render 'shared/header_page', title: @title %>
 
 <ul class="media-list">
 	<% unless @challenges.blank? %>

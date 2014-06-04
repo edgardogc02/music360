@@ -8,7 +8,10 @@
     .thumbnail {
       //min-height: 150px;
       position: relative;
-      margin-bottom: 5px;
+      margin-bottom: 0px;
+      border: 0px;
+      padding: 0px;
+      
       
       .overlay-actions {
         background:rgba(69, 185, 182, 0.75);
@@ -28,6 +31,11 @@
           color: white
         }
       }
+    }
+    
+    .actions-content {
+      background: #ECF0F0;
+      padding: 5px 10px;
     }
   }
   
