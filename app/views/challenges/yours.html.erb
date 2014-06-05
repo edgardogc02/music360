@@ -2,7 +2,7 @@
   <META HTTP-EQUIV="Refresh" CONTENT="1; URL=<%= @autostart_challenge.desktop_app_uri %>">
 <% end %>
 
-<h1 class="page-header"><small><i class="glyphicon glyphicon-flag"></i></small> Your challenges</h1>
+<%= render 'shared/header_page', title: 'Your challenges' %>
 
 <ul class="media-list">
 	<% unless @challenges.blank? %>
