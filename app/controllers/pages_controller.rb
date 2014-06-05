@@ -7,6 +7,10 @@ class PagesController < ApplicationController
     @songs = SongQuickStartDecorator.decorate_collection(Song.not_user_created.free.by_popularity.limit(4))
 
     @instruments = Instrument.visible
+    
+    #@top_songs = SongDecorator.decorate_collection(Song.all.limit(4))
+    #@top_users = UserChallengeDecorator.decorate_collection(User.all.limit(4))
+    #@top_artist = Artist.all.limit(4)
   end
 
   def download

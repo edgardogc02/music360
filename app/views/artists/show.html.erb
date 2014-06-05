@@ -5,6 +5,7 @@
 		<p><img src="<%= asset_path('default_artist.png') %>" class="thumbnail"></p>
 	</div>
 	<div class="col-lg-8">
+		<!--
 		<ul class="nav nav-tabs">
 		  <li class="active"><a href="#info" data-toggle="tab">Info</a></li>
 		  <li><a href="#songs" data-toggle="tab">Songs</a></li>
@@ -24,7 +25,6 @@
 		  <div class="tab-pane" id="songs">
 		  	<% if !@songs.blank? %>
 					<section>
-						<!--<p><h2><%= pluralize @songs.count, "song"%></h2></p>-->
 						<%= render 'shared/header_page', title: 'Songs', sub_header: true, view_more: 'View more', view_more_path: songs_path %>
 		
 						<table width="100%" class="datagrid-scores">
@@ -82,7 +82,7 @@
 					<% end %>
 				</table>
 		  </div>
-		</div>
+		</div>-->
 	</div>
 </div>
 
@@ -94,6 +94,6 @@
   <%= render @more_songs %>
 </div>
 
-<%= render 'shared/banner_ad' %>
+<!--<%= render 'shared/banner_ad' %>-->
 
 
