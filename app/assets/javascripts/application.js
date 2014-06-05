@@ -23,4 +23,20 @@
 //= require bootstrap/tab
 //= require lib/bootstrap-tour.min
 
-//= require_tree .
+//= require_tree ./common
+//= require_tree ./lib
+
+//= require analytics
+//= require apps
+//= require artists
+//= require categories
+//= require challenges
+//= require facebook
+//= require home
+//= require kissmetrics
+//= require landing
+//= require pages
+//= require songs
+//= require user_instruments
+//= require user_paid_songs
+//= require users
