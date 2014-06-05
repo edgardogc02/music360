@@ -1,6 +1,17 @@
 <%= render 'shared/header_page', title: @user.username %>
 
+<h3>Your Current Image:</h3>
+<div class="thumbnail-grid row">
+  <div class="masonry-img col-md-3 col-sm-4 col-xs-6">
+    <div class="thumbnail">
+      <%= image_avatar(@user) %>
+    </div>
+  </div>
+</div>
+
+<h3>Upload a new profile image</h3>
 <%= form_for @user, url: person_path(@user), html: {multipart: true} do |f| %>
+  <label>Select a file from your disk:</label>
   <p>
     <%= f.file_field :imagename %>
   </p>
