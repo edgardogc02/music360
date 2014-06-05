@@ -50,7 +50,7 @@ ActiveAdmin.register Song do
       f.input :category
       f.input :artist
       if !f.object.new_record?
-        f.input :cover, as: :file
+        f.input :cover, as: :file, :hint => f.template.image_tag(f.object.cover.url, {height: 100, width: 100})
       end
       f.input :midi, as: :file
       f.input :length
