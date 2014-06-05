@@ -158,6 +158,7 @@ describe "Songs" do
       end
 
       it "should display buy button for paid songs" do
+        pending
         @user.admin = 1 # TODO REMOVE THIS WHEN ALSO REGULAR USERS CAN VIEW THE BUY BUTTON
         @user.save
         paid_song = create(:paid_song)
