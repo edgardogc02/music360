@@ -16,8 +16,8 @@
 		  		<div>Writer: <strong><%= @challenge.song.writer %></strong></div>
 		  		<div>Publisher: <strong><%= @challenge.song.publisher %></strong></div>
 		  	</p>
+		  	<div><%= link_to "Change your song", for_challenge_songs_path(challenged_id: @challenge.challenged_id), {class: 'btn btn-primary', data: { toggle: "modal", target: "#selectSong" }} %></div>
 			</div>
-			<div><%= link_to "Change your song", for_challenge_songs_path(challenged_id: @challenge.challenged_id), {class: 'btn btn-link', data: { toggle: "modal", target: "#selectSong" }} %></div>
 		</div>
   </section>
 

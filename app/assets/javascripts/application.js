@@ -22,4 +22,7 @@
 //= require bootstrap/popover
 //= require bootstrap/tab
 //= require lib/bootstrap-tour.min
-//= require_tree .
+
+//= require_tree ./common
+//= require_tree ./lib
+//= require_self
