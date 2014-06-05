@@ -8,12 +8,7 @@
   <%= render partial: "song", collection: @songs %>
 </div>
 
-<script>
-	$(document).ready(function(){
-		$(".thumbnail-grid .thumbnail").hover((function() {
-		  $(this).children(".overlay-actions").show();
-		}), function() {
-		  $(this).children(".overlay-actions").hide();
-		});
-	});
+<script type="text/javascript">
+  $(document).ready(listing_hover_effects);
+  $(document).on('page:load', listing_hover_effects);
 </script>
