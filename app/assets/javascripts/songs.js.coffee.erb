@@ -1,3 +1,13 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+<% if Rails.env.production? %>
+  click_on_play = ->
+    $('.activation2_play').click ->
+      _kmq.push ['trackClick', '.activation2_play', 'Activation 2 - (Clicking play)', {id: $(this).data('song-id'), name: $(this).data('song-name')}]
+
+  click_on_song_challenge = ->
+    $('.activation2_challenge_songs').click ->
+      _kmq.push ['trackClick', '.activation2_challenge_songs', 'Activation2 - (Challenge Songs)', {id: $(this).data('song-id'), name: $(this).data('song-name')}]
+
+  $(document).ready(click_on_play)
+  $(document).ready(click_on_song_challenge)
+
+<% end %>
