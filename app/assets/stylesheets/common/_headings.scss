@@ -1,37 +1,6 @@
 /*	=HEADINGS
 ----------------------------------------------------------------------*/
-/*
-.page-header {
-  @extend .clearfix;
-  i { 
-    color: $brand-secondary;
-    font-size: 20px;  
-  }  
-  h1, h3 {
-    float: left;  
-    margin-bottom: 0px;
-  }
-  .btn-content {
-    float: right;
-    margin-top: 20px;
-  }
-}
 
-@media (max-width: $screen-xs-max) {
-  .page-header {
-    h1, h3 {
-      float: none;
-    }
-    h1 {
-      font-size: 26px;
-    }
-    .btn-content {
-      float: none;
-      margin-top: 10px;
-    }
-  }
-}
-*/
 .header-page {
   @extend .clearfix;
   background: image-url('page_header_bg.png') repeat-x center bottom;

@@ -15,13 +15,12 @@
 		</p>
 	</div>
 	<div class="col-lg-8">
-		<!--
 		<%= render 'shared/header_page', title: 'Top Scores', sub_header: true, view_more: 'View more', view_more_path: people_path %>
 		
-		<table width="100%" class="datagrid-scores">
+		<table width="100%" class="datagrid">
 			<% @users.each do |user| %>
 				<tr class="<%= cycle("odd", "even") %>">
-					<td><%= image_tag(user.imagename_url, class: 'avatar-xs') %></td>
+					<td class="thumb"><%= image_tag(user.imagename_url, class: 'avatar-xs') %></td>
 					<td><%= link_to user.username, person_path(user), class: 'btn-secondary-color' %></td>
 					<td><%= user.level %></td>
 					<td>1000pts</td>
@@ -29,7 +28,6 @@
 				</tr>
 			<% end %>
 		</table>
-		-->
 	</div>
 </div>
 

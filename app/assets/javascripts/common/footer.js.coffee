@@ -1,11 +1,10 @@
 $ ->
   unless $("body").hasClass("sessions")
-    #console.log 'no es landing';
     stickyfooter = undefined
     stickyfooter = ->
       footerHeight = undefined
       footerHeight = $("footer").outerHeight()
-      $("#page-wrap").css "padding-bottom", footerHeight
+      $("#page-wrap").css "padding-bottom", footerHeight + 30
       $("footer").css "margin-top", -footerHeight
       return
 

@@ -6,7 +6,7 @@
   <meta property="og:description" content="<%= @challenge.challenger.username %> challenged <%= @challenge.challenged.username %>" />
 <% end %>
 
-<h1 class="page-header"><small><i class="glyphicon glyphicon-flag"></i></small> Challenge</h1>
+<%= render 'shared/header_page', title: 'Challenge' %>
 
 <ul class="media-list">
 	<%= render @challenge %>

@@ -61,3 +61,61 @@
 <div class="thumbnail-grid row">
   <%= render @users %>
 </div>
+
+<br />
+
+<div class="row">
+
+	<div class="col-lg-4">
+		<%= render 'shared/header_page', title: 'Top Songs', sub_header: true, view_more: 'View more', view_more_path: songs_path %>
+				
+		<table width="100%" class="datagrid">
+			<% @top_songs.each do |song| %>
+				<tr class="<%= cycle("odd", "even") %>">
+					<td><%= link_to song.title, song_path(song), class: 'btn-secondary-color' %></td>
+					<td>
+						<i class="glyphicon glyphicon-star primary-text-color"></i>
+						<i class="glyphicon glyphicon-star primary-text-color"></i>
+						<i class="glyphicon glyphicon-star primary-text-color"></i>
+						<i class="glyphicon glyphicon-star primary-text-color"></i>
+						<i class="glyphicon glyphicon-star primary-text-color"></i>
+					</td>
+					<td align="right">
+						<%= link_to song.play_url, class: "btn btn-primary btn-sm" do %>
+							<i class="glyphicon glyphicon-play"></i> Play
+						<% end %>
+					</td>
+				</tr>
+			<% end %>
+		</table>
+	</div>
+	
+	<div class="col-lg-4">
+		<%= render 'shared/header_page', title: 'Top Artists', sub_header: true, view_more: 'View more', view_more_path: artists_path %>
+		
+		<table width="100%" class="datagrid">
+			<% @top_artist.each do |artist| %>
+				<tr class="<%= cycle("odd", "even") %>">
+					<!--<td class="thumb"><%= image_tag(asset_path('default_artist.png'), class: 'avatar-xs') %></td>-->
+					<td><%= link_to artist.title, artist_path(artist), class: 'btn-secondary-color' %></td>
+					<!--<td align="right"><%= link_to 'Challenge', "#", class: 'btn btn-primary btn-sm' %></td>-->
+				</tr>
+			<% end %>
+		</table>
+	</div>
+	
+	<div class="col-lg-4">				
+		<%= render 'shared/header_page', title: 'Top Users', sub_header: true, view_more: 'View more', view_more_path: people_path %>
+		
+		<table width="100%" class="datagrid">
+			<% @top_users.each do |user| %>
+				<tr class="<%= cycle("odd", "even") %>">
+					<td><%= link_to user.username, person_path(user), class: 'btn-secondary-color' %></td>
+					<td><%= user.level %></td>
+					<td align="right"><%= link_to 'Challenge', new_challenge_path(challenged_id: user.id), class: 'btn btn-primary btn-sm' %></td>
+				</tr>
+			<% end %>
+		</table>
+	</div>
+
+</div>

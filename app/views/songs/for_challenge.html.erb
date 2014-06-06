@@ -5,8 +5,34 @@
 <%= render 'shared/header_page', title: 'Choose a song to start challenge', sub_header: true, view_more: 'View all', view_more_path: songs_path(challenged_id: params[:challenged_id]) %>
 
 <div class="thumbnail-grid row">
-  <%= render partial: "song", collection: @songs %>
+	<% @songs.each do |song| %>
+	  <div class="masonry-img col-md-3 col-sm-4 col-xs-6">
+			<%= link_to artist_song_path(song.artist, song), class: 'thumbnail' do %>
+				<%= image_tag song.cover_url, class: "song-cover" %>
+			<% end %>
+			
+			<div class="actions-content">
+				<div class="spacer-sm">
+					<div class="link_header"><%= link_to song.title, artist_song_path(song.artist, song), class: "song-title" %></div>
+					<div class="link_subheader"><%= link_to song.artist.title, artist_path(song.artist), class: "song-artist" %></div>
+				</div>
+			
+				<div>
+				  <%= song.play_button %>
+				  <%= song.challenge_button(params[:challenged_id]) %>
+				  <%= song.edit_button %>
+				  <%= song.buy_button %>
+			  </div>
+		  </div>
+		</div>
+	<% end %>
 </div>
+
+	
+
+
+
+
 
 <script type="text/javascript">
   $(document).ready(listing_hover_effects);

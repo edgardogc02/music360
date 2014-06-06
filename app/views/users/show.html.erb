@@ -5,35 +5,39 @@
 		<%= image_tag @user.imagename_url, class: "thumbnail" %>
 	</div>
 	<div class="col-lg-9 col-md-9">
-		<div>Email: <strong><%= @user.email %></strong></div>
-		<div>Career level: <strong><%= @user.level %></strong></div>
-		<div>Instrument:
-		  <strong>
-	      <% if @user.instrument %>
-	        <%= @user.instrument.name %>
-	      <% else %>
-	        No instrument chosen
-	      <% end %>
-	    </strong>
-		</div>
-	  <div>
-	    Following: <strong><%= link_to @user.followed_users.count, following_path(@user) %></strong>
-	  </div>
-		<div>
-		  Followers: <strong><%= link_to @user.followers.count, user_follower_path(@user) %></strong>
-		</div>
+		<p>
+			<div>Email: <strong><%= @user.email %></strong></div>
+			<div>Career level: <strong><%= @user.level %></strong></div>
+			<div>Instrument:
+			  <strong>
+		      <% if @user.instrument %>
+		        <%= @user.instrument.name %>
+		      <% else %>
+		        No instrument chosen
+		      <% end %>
+		    </strong>
+			</div>
+		  <div>
+		    Following: <strong><%= link_to @user.followed_users.count, following_path(@user) %></strong>
+		  </div>
+			<div>
+			  Followers: <strong><%= link_to @user.followers.count, user_follower_path(@user) %></strong>
+			</div>
+		</p>
+		<% if is_current_user?(@user) %>
+			<p>
+		    <%= link_to "Choose your instrument", edit_user_instrument_path(@user.id), class: "btn btn-primary" %>
+		    <%= link_to "Upload profile image", upload_profile_image_person_path(@user), class: "btn btn-primary" %>
+			</p>
+			<p>
+				<%= link_to "Edit profile", edit_person_path(@user), class: "btn btn-primary" %>
+		    <%= link_to "Change password", edit_user_password_path(@user), class: "btn btn-primary" %>
+		    <%= link_to "Delete profile", person_path(@user), :method => 'delete', class: "btn btn-primary" %>
+		  </p>
+		<% end %>
+		
 	</div>
 </div>
-
-<% if is_current_user?(@user) %>
-	<p>
-    <%= link_to "Choose your instrument", edit_user_instrument_path(@user.id), class: "btn btn-primary" %>
-    <%= link_to "Upload profile image", upload_profile_image_person_path(@user), class: "btn btn-primary" %>
-		<%= link_to "Edit profile", edit_person_path(@user), class: "btn btn-primary" %>
-    <%= link_to "Change password", edit_user_password_path(@user), class: "btn btn-primary" %>
-    <%= link_to "Delete profile", person_path(@user), :method => 'delete', class: "btn btn-primary" %>
-  </p>
-<% end %>
 
 <br />
 

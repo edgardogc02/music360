@@ -5,7 +5,7 @@
 		<p><img src="<%= asset_path('default_artist.png') %>" class="thumbnail"></p>
 	</div>
 	<div class="col-lg-8">
-		<!--
+		
 		<ul class="nav nav-tabs">
 		  <li class="active"><a href="#info" data-toggle="tab">Info</a></li>
 		  <li><a href="#songs" data-toggle="tab">Songs</a></li>
@@ -27,7 +27,7 @@
 					<section>
 						<%= render 'shared/header_page', title: 'Songs', sub_header: true, view_more: 'View more', view_more_path: songs_path %>
 		
-						<table width="100%" class="datagrid-scores">
+						<table width="100%" class="datagrid">
 							<% @songs.each do |song| %>
 								<tr class="<%= cycle("odd", "even") %>">
 									<td><%= link_to song.title, song_path(song), class: 'btn-secondary-color' %></td>
@@ -56,10 +56,10 @@
 		  <div class="tab-pane" id="challenges_tab">
 		  	<%= render 'shared/header_page', title: 'Challenges', sub_header: true, view_more: 'View more', view_more_path: challenges_path %>
 		
-				<table width="100%" class="datagrid-scores">
+				<table width="100%" class="datagrid">
 					<% @challenges.each do |challenge| %>
 						<tr class="<%= cycle("odd", "even") %>">
-							<td><%= image_tag challenge.cover_url, class: "avatar-xs" %></td>
+							<td class="thumb"><%= image_tag challenge.cover_url, class: "avatar-xs" %></td>
 							<td><%= link_to challenge.song.title, song_path(challenge.song) %>
 				    	by <%= link_to challenge.song.artist.title, artist_path(challenge.song.artist)%></td>
 							<td><%= challenge.display_results %></td>
@@ -71,7 +71,7 @@
 		  <div class="tab-pane" id="fans">
 		  	<%= render 'shared/header_page', title: 'Top Fans', sub_header: true, view_more: 'View more', view_more_path: people_path %>
 		
-				<table width="100%" class="datagrid-scores">
+				<table width="100%" class="datagrid">
 					<% @users.each do |user| %>
 						<tr class="<%= cycle("odd", "even") %>">
 							<td><%= image_tag(user.imagename_url, class: 'avatar-xs') %></td>
@@ -82,7 +82,8 @@
 					<% end %>
 				</table>
 		  </div>
-		</div>-->
+		</div>
+		
 	</div>
 </div>
 
