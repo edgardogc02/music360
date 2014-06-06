@@ -73,7 +73,7 @@
 			<% @top_songs.each do |song| %>
 				<tr class="<%= cycle("odd", "even") %>">
 					<td><%= link_to song.title, song_path(song), class: 'btn-secondary-color' %></td>
-					<td>
+					<td width="85">
 						<i class="glyphicon glyphicon-star primary-text-color"></i>
 						<i class="glyphicon glyphicon-star primary-text-color"></i>
 						<i class="glyphicon glyphicon-star primary-text-color"></i>

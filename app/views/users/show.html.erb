@@ -25,15 +25,15 @@
 			</div>
 		</p>
 		<% if is_current_user?(@user) %>
-			<p>
+			<div class="spacer-sm">
 		    <%= link_to "Choose your instrument", edit_user_instrument_path(@user.id), class: "btn btn-primary" %>
 		    <%= link_to "Upload profile image", upload_profile_image_person_path(@user), class: "btn btn-primary" %>
-			</p>
-			<p>
+			</div>
+			<div>
 				<%= link_to "Edit profile", edit_person_path(@user), class: "btn btn-primary" %>
 		    <%= link_to "Change password", edit_user_password_path(@user), class: "btn btn-primary" %>
 		    <%= link_to "Delete profile", person_path(@user), :method => 'delete', class: "btn btn-primary" %>
-		  </p>
+		  </div>
 		<% end %>
 		
 	</div>

@@ -1,8 +1,4 @@
-<% if defined? modal %>
-	<div class="masonry-img col-md-3 col-sm-4 col-xs-6">
-<% else %>
-	<div class="masonry-img col-md-2 col-sm-4 col-xs-6">
-<% end %>
+<div class="masonry-img col-md-3 col-sm-4 col-xs-6">
 	<%= link_to person_path(user), class: 'thumbnail' do %>
 		<%= image_avatar(user) %>
 	<% end %>

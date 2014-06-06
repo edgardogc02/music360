@@ -19,7 +19,7 @@ class ChallengesController < ApplicationController
 
 		prepopulate_challenge_if_needed
 
-		@songs = SongChallengeDecorator.decorate_collection(Song.not_user_created.free.by_popularity.limit(6))
+		@songs = SongChallengeDecorator.decorate_collection(Song.not_user_created.free.by_popularity.limit(4))
 	end
 
   def show
