@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140604134639) do
+ActiveRecord::Schema.define(version: 20140605134914) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -242,6 +242,7 @@ ActiveRecord::Schema.define(version: 20140604134639) do
     t.datetime "createdtime"
     t.string   "locale"
     t.string   "created_by"
+    t.integer  "challenges_count"
   end
 
   add_index "users", ["auth_token"], name: "index_users_on_auth_token", unique: true, using: :btree

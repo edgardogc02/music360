@@ -10,6 +10,8 @@ class ChallengeCreation
     if challenge.save
       challenge.challenger.follow(challenge.challenged) if !challenge.challenger.following?(challenge.challenged)
       notify_challenged_user
+      increment_challenger_challenges
+      increment_challenged_challenges
       true
     else
       false
@@ -22,6 +24,14 @@ class ChallengeCreation
     if challenge.challenged.can_receive_messages?
       EmailNotifier.challenged_user_message(challenge).deliver
     end
+  end
+
+  def increment_challenger_challenges
+    challenge.challenger.increment_challenges_count
+  end
+
+  def increment_challenged_challenges
+    challenge.challenged.increment_challenges_count
   end
 
 end

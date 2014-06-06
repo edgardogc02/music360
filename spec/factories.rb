@@ -6,6 +6,7 @@ FactoryGirl.define do
     sequence(:email) { |n| "user#{n}@test.com" }
     skip_emails true
     created_by "localhost"
+    challenges_count 0
 
     factory :admin do
       admin 1

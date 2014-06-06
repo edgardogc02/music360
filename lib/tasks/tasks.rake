@@ -17,4 +17,13 @@ namespace :users do
       FacebookFriendsWorker.perform_async(user.id)
     end
   end
+
+  task :update_challenges_count_column => :environment do
+    User.find_each(batch_size: 1000) do |user|
+      user.challenges_count = user.challenges.count
+      user.challenges_count = user.challenges_count + user.proposed_challenges.count
+      user.save
+    end
+  end
+
 end

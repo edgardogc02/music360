@@ -342,6 +342,25 @@ describe "Challenges" do
       page.should have_content(@song.title)
       page.should_not have_content(user_created_song.title)
     end
+
+    it "should increment the challenges counter for involved users when challenge is created" do
+      challenged_user = create(:user)
+      visit new_challenge_path
+
+      @user.challenges_count.should eq(0)
+      challenged_user.challenges_count.should eq(0)
+
+      click_on "Choose your opponent"
+      click_on "challenge_#{challenged_user.id}"
+      click_on "challenge_#{@song.id}"
+      click_on "Start Challenge"
+
+      @user.reload
+      challenged_user.reload
+
+      @user.challenges_count.should eq(1)
+      challenged_user.challenges_count.should eq(1)
+    end
   end
 
   context "user not signed in" do

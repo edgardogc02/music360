@@ -103,6 +103,14 @@ describe User do
 
       User.exclude(user.id).should eq([user1])
     end
+
+    it "should order the users by challenges_count" do
+      user = create(:user, challenges_count: 9)
+      user1 = create(:user, challenges_count: 0)
+      user2 = create(:user, challenges_count: 10)
+
+      User.order_by_challenges_count.should eq([user2, user, user1])
+    end
   end
 
   context "Methods" do

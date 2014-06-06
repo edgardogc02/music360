@@ -176,6 +176,7 @@ class UserAuthentication
     user.ip = @request.remote_ip
     user.countrycode = @request.location.country_code
     user.city = @request.location.city
+    user.challenges_count = 0
     user
   end
 
