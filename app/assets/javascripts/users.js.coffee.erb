@@ -15,10 +15,9 @@ $(document).ready(follow_user)
 $(document).on('page:load', follow_user)
 
 <% if Rails.env.production? %>
-  click_on_user_challenge = ->
-    $('.activation2_challenge_users').click ->
-      _kmq.push ['trackClick', '.activation2_challenge_users', 'Activation2 - (Challenge Users)', {id: $(this).data('user-id')}]
+click_on_user_challenge = ->
+  $('.activation2_challenge_users').click ->
+    _kmq.push ['trackClick', '.activation2_challenge_users', 'Activation2 - (Challenge Users)', {id: $(this).data('user-id')}]
 
-  $(document).ready(click_on_user_challenge)
-
+$(document).ready(click_on_user_challenge)
 <% end %>
