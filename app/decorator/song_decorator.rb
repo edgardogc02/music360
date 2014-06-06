@@ -16,13 +16,13 @@ class SongDecorator < Draper::Decorator
 
   def play_button
     if display_play_button?
-      h.action_button(play_url, 'Play', {class: play_class_attr, id: play_id_attr}, 'glyphicon glyphicon-play')
+      h.action_button(play_url, 'Play', {class: play_class_attr, id: play_id_attr, data: {song_id: model.id, song_name: model.title}}, 'glyphicon glyphicon-play')
     end
   end
 
   def challenge_button(challenged_id="")
     if display_challenge_button?
-      h.action_button(h.new_challenge_path(song_id: model.id, challenged_id: challenged_id), 'Challenge', {class: challenge_class_attr, id: "challenge_#{model.id}"})
+      h.action_button(h.new_challenge_path(song_id: model.id, challenged_id: challenged_id), 'Challenge', {class: challenge_class_attr, id: "challenge_#{model.id}", data: {song_id: model.id, song_name: model.title}})
     end
   end
 
@@ -59,7 +59,7 @@ class SongDecorator < Draper::Decorator
   end
 
   def play_class_attr
-    value = 'Activation2 Activation2_Play song_'+ model.title.squish.downcase.tr(" ","_")
+    value = 'activation2 activation2_play song_'+ model.title.squish.downcase.tr(" ","_")
     if h.signed_in? and h.current_user.installed_desktop_app? and !h.is_mobile?
       value << ' app-play'
     end
@@ -67,7 +67,7 @@ class SongDecorator < Draper::Decorator
   end
 
   def challenge_class_attr
-    'btn btn-sm btn-primary Activation2 Activation2_Challenge Activation2_Challenge_Songs'
+    'btn btn-sm btn-primary activation2 activation2_challenge_songs'
   end
 
 end

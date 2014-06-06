@@ -4,9 +4,9 @@ class SongsController < ApplicationController
 
 	def index
 	  if params[:title]
-      @songs = SongDecorator.decorate_collection(Song.free.not_user_created.by_title(params[:title]).page params[:page])
+      @songs = SongDecorator.decorate_collection(Song.not_user_created.by_title(params[:title]).page params[:page])
     else
-      @songs = SongDecorator.decorate_collection(Song.free.not_user_created.by_popularity.page params[:page])
+      @songs = SongDecorator.decorate_collection(Song.not_user_created.by_popularity.page params[:page])
     end
 	end
 
