@@ -5,7 +5,7 @@
 <%= render 'shared/header_page', title: 'Choose a song to start challenge', sub_header: true, view_more: 'View all', view_more_path: songs_path(challenged_id: params[:challenged_id]) %>
 
 <div class="thumbnail-grid row">
-  <%= render partial: "song", collection: @songs %>
+  <%= render @songs, modal: true %>
 </div>
 
 <script type="text/javascript">

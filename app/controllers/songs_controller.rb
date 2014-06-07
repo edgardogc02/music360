@@ -11,7 +11,7 @@ class SongsController < ApplicationController
 	end
 
 	def for_challenge
-    @songs = SongChallengeDecorator.decorate_collection(Song.free.not_user_created.by_popularity.limit(12))
+    @songs = SongChallengeDecorator.decorate_collection(Song.free.not_user_created.by_popularity.limit(4))
     render layout: false
 	end
 
