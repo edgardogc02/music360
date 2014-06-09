@@ -102,7 +102,7 @@ class User < ActiveRecord::Base
   end
 
   def increment_challenges_count
-    self.challeges_count = self.challeges_count + 1
+    self.challenges_count = self.challenges_count + 1
     save
   end
 
@@ -133,7 +133,7 @@ class User < ActiveRecord::Base
   def can_buy_song?(song)
     song.cost? and !self.paid_songs.include?(song)
   end
-  
+
   def is_facebook_user?
     !self.oauth_uid.blank?
   end
