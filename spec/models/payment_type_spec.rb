@@ -15,8 +15,10 @@ describe PaymentType do
   end
 
   context "Associations" do
-    it "should have many payments" do
-      should have_many(:payments)
+    [:payments, :user_premium_subscriptions].each do |attr|
+      it "should have many #{attr}" do
+        should have_many(attr)
+      end
     end
   end
 

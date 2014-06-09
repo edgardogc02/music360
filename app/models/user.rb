@@ -44,6 +44,7 @@ class User < ActiveRecord::Base
   has_many :paid_songs, through: :user_paid_songs, source: :song
 
   has_many :payments
+  has_many :user_premium_subscriptions
 
   belongs_to :instrument
 

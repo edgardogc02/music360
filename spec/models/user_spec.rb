@@ -51,7 +51,7 @@ describe User do
       should have_many(:paid_songs).through(:user_paid_songs)
     end
 
-    [:payments].each do |assoc|
+    [:payments, :user_premium_subscriptions].each do |assoc|
       it "should have many #{assoc}" do
         should have_many(assoc)
       end
