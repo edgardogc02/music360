@@ -67,7 +67,7 @@ ActiveAdmin.register Song do
   end
 
   action_item only: :index do
-    link_to "New mini song", new_midi_admin_songs_path
+    link_to "New midi song", new_midi_admin_songs_path
   end
 
   collection_action :new_midi, method: :get  do
