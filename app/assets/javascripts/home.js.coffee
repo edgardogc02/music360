@@ -8,4 +8,11 @@ $(document).ready ->
     keyboard: false
     show: true
 
+  $(".cancel_welcome_modal").click (e) ->
+    e.preventDefault()
+    $("#welcomeModal").modal "hide"
+    return
+
   return
+  
+

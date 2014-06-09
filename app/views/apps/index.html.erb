@@ -2,31 +2,15 @@
 
 <p>To play songs and challenges you need to download and install the InstrumentChamp software to your computer.</p>
 
-<br />
-<div id="btn-download"></div>
-<br />
-
-<script>
-	var node = document.getElementById("btn-download");
-
-  if (navigator.appVersion.indexOf("Mac")!=-1){
-    node.innerHTML = '<a class="download_btn" href="https://s3-us-west-2.amazonaws.com/instrumentchamp/InstrumentChamp_Band_Edition.dmg" target="_blank"><img src="http://blog.instrumentchamp.com/wp-content/uploads/2014/01/download_ic_osx.png" alt="Download InstrumentChamp for OSX 10.7+" class="downloadbutton"/></a>';
-  }
-  else {
-    node.innerHTML = '<a class="download_btn" href="https://s3-us-west-2.amazonaws.com/instrumentchamp/InstrumentChamp.msi" target="_blank"><img src="http://blog.instrumentchamp.com/wp-content/uploads/2014/01/download_ic_win.png" alt="Download InstrumentChamp for Windows" class="downloadbutton"/></a>';
-  }
-  
-</script>
-
-<div class="modal fade" id="getReady" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-body">
-        <h3 class="text-center">Install InstrumentChamp and get your <%= display_instrument %> ready</h3>
-      </div>
-    </div>
-  </div>
+<div class="app-screens">
+	<%= image_tag(asset_path('screen1.jpg')) %>
+	<%= image_tag(asset_path('screen2.jpg')) %>
+	<%= image_tag(asset_path('screen3.jpg')) %>	
 </div>
+
+<br />
+<%= render 'download_button' %>
+<br />
 
 <h3>Step by step instructions:</h3>
 <ol>

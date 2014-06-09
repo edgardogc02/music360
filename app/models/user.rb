@@ -132,6 +132,10 @@ class User < ActiveRecord::Base
   def can_buy_song?(song)
     song.cost? and !self.paid_songs.include?(song)
   end
+  
+  def is_facebook_user?
+    !self.oauth_uid.blank?
+  end
 
 	private
 

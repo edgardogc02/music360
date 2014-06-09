@@ -1,0 +1,71 @@
+<% if params[:welcome_tour] %>
+
+	<%= content_for(:js_scripts) do %>
+		<script type="text/javascript">
+			$(document).ready(function() {			
+				var node = $("#install-btn");
+				if (navigator.appVersion.indexOf("Mac")!=-1){
+					node.html('<a class="install_btn btn btn-primary btn-lg" href="https://s3-us-west-2.amazonaws.com/instrumentchamp/InstrumentChamp_Band_Edition.dmg" target="_blank">Install InstrumentChamp Free</a>');
+				} else {
+			  	node.html('<a class="install_btn btn btn-primary btn-lg" href="https://s3-us-west-2.amazonaws.com/instrumentchamp/InstrumentChamp.msi" target="_blank">Install InstrumentChamp Free</a>');
+			  }
+			  
+			  $(".install_btn").click(function(e) {
+				  e.preventDefault();
+				  action = $(this).attr("href");
+				  
+					$("#welcomeModal").modal("hide").on("hidden.bs.modal", function() {
+				    window.location = action;
+		        window.focus();
+				  });
+				});
+		  });
+	  </script>
+	<% end %>
+
+  <div class="modal fade welcome-modal" id="welcomeModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-body">
+	      	<div class="row">
+	      		<% if current_user.is_facebook_user? %>
+	      			<div class="col-lg-3">
+		      			<br />
+		      			<%= image_tag current_user.imagename_url, {alt: current_user.username, class: 'thumbnail'} %>	
+		      		</div>
+		      		<div class="col-lg-9">
+		      			<h1>Install InstrumentChamp<h1>
+								<h2>Play music with your friends</h2>
+								<p>
+									If you want to play InstrumentChamp you just to make a quick and easy installation of the InstrumentChamp desktop application.
+									<br />Then you can challenge your friends online.
+								</p>
+								<p class="hide">Facebook images</p>
+							</div>				
+	      		<% else %>
+		      		<div class="col-lg-12">
+		      			<h1>Install InstrumentChamp<h1>
+								<h2>Play music with your friends</h2>
+								<p>
+									If you want to play InstrumentChamp you just to make a quick and easy installation of the InstrumentChamp desktop application.
+									<br />Then you can challenge your friends online.
+								</p>
+							</div>				
+						<% end %>
+	      	</div>
+	      </div>
+	      <div class="modal-footer">
+	      	<div class="clearfix">
+						<div class="pull-left">									
+							<span id="install-btn"></span>
+							<%= link_to 'Cancel', root_path, class: "btn btn-link cancel_welcome_modal" %>
+						</div>
+						<div class="pull-right">
+							<%= link_to 'Read more', apps_path, class: "btn btn-link btn-lg" %>
+						</div>
+					</div>		
+	      </div>
+	    </div>
+	  </div>
+	</div>
+<% end %>
