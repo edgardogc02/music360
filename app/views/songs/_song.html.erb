@@ -1,4 +1,8 @@
-<div class="masonry-img col-md-3 col-sm-4 col-xs-6">
+<% if defined? modal %>
+	<div class="masonry-img col-md-3 col-sm-4 col-xs-6">	
+<% else %>
+	<div class="masonry-img col-md-2 col-sm-4 col-xs-6">
+<% end %>
 	<%= link_to artist_song_path(song.artist, song), class: 'thumbnail' do %>
 		<%= image_tag song.cover_url, class: "song-cover" %>
 	<% end %>

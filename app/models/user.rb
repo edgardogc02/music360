@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
 
   mount_uploader :imagename, UserImagenameUploader
 
-  paginates_per 20
+  paginates_per 30
 
 	extend FriendlyId
 

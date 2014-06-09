@@ -47,7 +47,7 @@
 		<div class="container">
 			<div class="row">
 			  <% if signed_in? %>
-		  		<div class="col-md-3 col-sm-3">
+		  		<div class="col-md-2 col-sm-3">
 		  			<section class="side-panel pos-relative">
 		  				<%= render "users/left_menu_header", user: current_user %>
 
@@ -56,7 +56,7 @@
 		  		</div>
 		    <% end %>
 
-				<div class="col-md-9 col-sm-9">
+				<div class="col-md-10 col-sm-9">
 
           <% flash.each do |name, msg| %>
             <%= content_tag :div, class: "alert alert-#{name} #{alert_class(name)} alert-dismissable" do %>
