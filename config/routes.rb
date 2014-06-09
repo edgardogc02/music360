@@ -78,6 +78,8 @@ InstrumentchampPrototype::Application.routes.draw do
 
   resources :instruments
 
+  resources :user_premium_subscriptions
+
   match '/auth/facebook', via: [:get, :post], as: :facebook_signin
   match 'auth/:provider/callback' => "user_omniauth_credentials#create", via: [:get, :post]
   match 'auth/failure' => "user_omniauth_credentials#failure", via: [:get, :post]
@@ -85,8 +87,8 @@ InstrumentchampPrototype::Application.routes.draw do
   get 'privacy-policy', to: "statics#privacy_policy", as: :privacy_policy
   get 'terms-of-service', to: "statics#terms_of_service", as: :terms_of_service
   get 'tour', to: "pages#tour", as: :tour
-  get 'premium', to: "statics#premium", as: :premium
-  get 'get-premium', to: "statics#get_premium", as: :get_premium
+#  get 'premium', to: "statics#premium", as: :premium
+#  get 'get-premium', to: "statics#get_premium", as: :get_premium
   get 'get-free', to: "statics#get_free", as: :get_free
 
   get 'help', to: redirect("https://instrumentchamp.zendesk.com"), as: :help

@@ -19,6 +19,11 @@ ActiveAdmin.register_page "Dashboard" do
           link_to PaymentType.count, admin_payment_types_path
         end
       end
+      column do
+        panel "Premium Plans" do
+          link_to PremiumPlan.count, admin_premium_plans_path
+        end
+      end
     end
   end
 end
