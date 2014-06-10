@@ -12,13 +12,13 @@ class UserPremiumSubscriptionForm
   # payment validations
 
 #  validates :payment_method_id, presence: true
-#  validates :payment_amount, presence: true
-#  validates :payment_status, presence: true
+#  validates :amount, presence: true
+#  validates :status, presence: true
 #  validate :paymill_token_if_credit_card
 
   delegate :user_id, :premium_plan_id, :payment_method_id, to: :user_premium_subscription
 
-#  delegate :payment_amount, :payment_status, :payment_method_id, :paymill_token, to: :payment
+#  delegate :amount, :status, :payment_method_id, :paymill_token, to: :payment
 
   def initialize(user_premium_subscription, payment)
     @user_premium_subscription = user_premium_subscription
@@ -47,9 +47,9 @@ class UserPremiumSubscriptionForm
 
   def save(params)
     user_premium_subscription.attributes = params.slice(:premium_plan_id, :payment_method_id)
-#    payment.attributes = params.slice(:payment_amount, :payment_method_id, :paymill_token)
+#    payment.attributes = params.slice(:amount, :payment_method_id, :paymill_token)
 
-#    payment.payment_status = "Confirmed"
+#    payment.status = "Confirmed"
 
     if valid?
       ActiveRecord::Base.transaction do

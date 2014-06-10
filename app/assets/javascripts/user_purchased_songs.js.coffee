@@ -67,7 +67,7 @@ root.submit_credit_card_payment = ->
       $(".payment-errors").css "display", "inline-block"
       $("#submit_buy_song_form").removeAttr "disabled"
     params =
-      amount_int: parseInt($("#user_purchased_song_form_payment_amount").val() * 100) # E.g. "15" for 0.15 Eur
+      amount_int: parseInt($("#user_purchased_song_form_amount").val() * 100) # E.g. "15" for 0.15 Eur
       currency: "EUR" # ISO 4217 e.g. "EUR"
       number: $("#user_purchased_song_form_card_number").val()
       exp_month: $("#user_purchased_song_form_card_expiry_date_2i").val()

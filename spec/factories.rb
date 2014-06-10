@@ -95,8 +95,8 @@ FactoryGirl.define do
   end
 
   factory :payment do
-    payment_amount 14.50
-    payment_status "Confirmed"
+    amount 14.50
+    status "Confirmed"
     user
     payment_method
   end

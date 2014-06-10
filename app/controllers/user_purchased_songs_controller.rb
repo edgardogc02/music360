@@ -25,7 +25,7 @@ class UserPurchasedSongsController < ApplicationController
   private
 
   def user_purchased_song_form_params
-    params.require(:user_purchased_song_form).permit(:song_id, :payment_amount, :payment_method_id, :paymill_token)
+    params.require(:user_purchased_song_form).permit(:song_id, :amount, :payment_method_id, :paymill_token)
   end
 
 end

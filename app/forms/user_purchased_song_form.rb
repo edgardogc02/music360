@@ -13,13 +13,13 @@ class UserPurchasedSongForm
   # payment validations
 
   validates :payment_method_id, presence: true
-  validates :payment_amount, presence: true
-  validates :payment_status, presence: true
+  validates :amount, presence: true
+  validates :status, presence: true
   validate :paymill_token_if_credit_card
 
   delegate :song_id, :user_id, to: :user_purchased_song
 
-  delegate :payment_amount, :payment_status, :payment_method_id, :paymill_token, to: :payment
+  delegate :amount, :status, :payment_method_id, :paymill_token, to: :payment
 
   def initialize(user_purchased_song, payment)
     @user_purchased_song = user_purchased_song
@@ -48,8 +48,8 @@ class UserPurchasedSongForm
 
   def save(params)
     user_purchased_song.attributes = params.slice(:song_id)
-    payment.attributes = params.slice(:payment_amount, :payment_method_id, :paymill_token)
-    payment.payment_status = "Confirmed"
+    payment.attributes = params.slice(:amount, :payment_method_id, :paymill_token)
+    payment.status = "Confirmed"
 
     if valid?
       ActiveRecord::Base.transaction do

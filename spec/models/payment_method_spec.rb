@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe PaymentType do
+describe PaymentMethod do
 
   context "Validations" do
     [:name, :display_position, :html_id].each do |attr|
@@ -23,12 +23,12 @@ describe PaymentType do
   end
 
   context "scopes" do
-    it "should return the payment types order by display_position" do
-      paypal = create(:payment_type, display_position: 1)
-      mobile = create(:payment_type, display_position: 3)
-      credit_card = create(:payment_type, display_position: 2)
+    it "should return the payment methods order by display_position" do
+      paypal = create(:payment_method, display_position: 1)
+      mobile = create(:payment_method, display_position: 3)
+      credit_card = create(:payment_method, display_position: 2)
 
-      PaymentType.default_order.should eq([paypal, credit_card, mobile])
+      PaymentMethod.default_order.should eq([paypal, credit_card, mobile])
     end
   end
 

@@ -33,7 +33,7 @@
       <p class="payment-errors alert-error span3" style="display:none;"></p>
     </div>
 
-    <%= f.input :payment_amount, input_html: { value: @user_purchased_song_form.song.cost }, as: :hidden %>
+    <%= f.input :amount, input_html: { value: @user_purchased_song_form.song.cost }, as: :hidden %>
     <%= f.input :payment_method_id, as: :hidden %>
 
     <%= f.button :submit, "Buy Now", {class: "btn btn-success hide", id: "submit_buy_song_form"} %>
