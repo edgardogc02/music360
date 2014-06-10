@@ -23,7 +23,10 @@
 			    }), 4000);
 			  });
 			});
-	  
+			
+			<% if params[:auto_download] %>
+				$(".download_btn").trigger("click");
+			<% end %>
 	  });
 	  
   </script>

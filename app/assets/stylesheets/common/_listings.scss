@@ -45,6 +45,23 @@
   }
 }
 
+.song-thumb {
+  .actions-content {
+    .spacer-sm {
+      min-height: 50px;
+    }
+  }
+}
+
+.user-thumb {
+  .actions-content {
+    .spacer-sm {
+      min-height: 34px;
+    }
+  }
+}
+
+
 .modal-content .masonry-img .thumbnail {
   min-height: 0;
 }
