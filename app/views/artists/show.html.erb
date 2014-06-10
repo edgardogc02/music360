@@ -44,19 +44,22 @@
 				<% end %>
 		  </div>
 		  <div class="tab-pane" id="challenges_tab">
-		  	<%= render 'shared/header_page', title: 'Challenges', sub_header: true, view_more: 'View more', view_more_path: challenges_path %>
-		
-				<table width="100%" class="datagrid">
-					<% @challenges.each do |challenge| %>
-						<tr class="<%= cycle("odd", "even") %>">
-							<td class="thumb"><%= image_tag challenge.cover_url, class: "avatar-xs" %></td>
-							<td><%= link_to challenge.song.title, song_path(challenge.song) %>
-				    	by <%= link_to challenge.song.artist.title, artist_path(challenge.song.artist)%></td>
-							<td><%= challenge.display_results %></td>
-						</tr>
-					<% end %>
-				</table>
-				
+		  	<% if !@challenges.blank? %>
+			  	<%= render 'shared/header_page', title: 'Challenges', sub_header: true, view_more: 'View more', view_more_path: challenges_path %>
+			
+					<table width="100%" class="datagrid">
+						<% @challenges.each do |challenge| %>
+							<tr class="<%= cycle("odd", "even") %>">
+								<td class="thumb"><%= image_tag challenge.cover_url, class: "avatar-xs" %></td>
+								<td><%= link_to challenge.song.title, song_path(challenge.song) %>
+					    	by <%= link_to challenge.song.artist.title, artist_path(challenge.song.artist)%></td>
+								<td><%= challenge.display_results %></td>
+							</tr>
+						<% end %>
+					</table>
+				<% else %>
+					<p>No challenges</p>
+				<% end %>
 		  </div>
 		</div>
 		
