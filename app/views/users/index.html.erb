@@ -21,7 +21,16 @@
 
 <%= render "users_list", users_list: @users_search %>
 
-<%= render "users_list", users_list: @fb_top_friends %>
+<% unless @fb_top_friends.blank? %>
+	<%= render "users_list", users_list: @fb_top_friends %>
+<% else %>
+	<%= link_to facebook_signin_path, id: "facebook_signin_people", class: 'fb_button xs' do %>
+  	<div class="Spinner"></div>
+	  <span class="separator"></span>
+	  <span class="text">Challenge your facebook friends</span>
+  <% end %>
+  <br /><br />
+<% end %>
 
 <%= render "users_list", users_list: @regular_users %>
 
