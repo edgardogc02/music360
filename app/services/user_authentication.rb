@@ -174,8 +174,10 @@ class UserAuthentication
     user.updated_image = 0
     user.created_by = @request.host
     user.ip = @request.remote_ip
-#    user.countrycode = @request.location.country_code
-#    user.city = @request.location.city
+    if @request.location
+      user.countrycode = @request.location.country_code
+      user.city = @request.location.city
+    end
     user.challenges_count = 0
     user
   end
