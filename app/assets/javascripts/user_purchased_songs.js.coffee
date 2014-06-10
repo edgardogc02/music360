@@ -7,7 +7,7 @@ select_credit_card_payment = ->
 
 select_payment_type = ->
   $(".select_payment_type").click (e) ->
-    $("#user_paid_song_form_payment_type_id").val($(this).data("payment-type-id"))
+    $("#user_purchased_song_form_payment_type_id").val($(this).data("payment-type-id"))
 
 $(document).ready(select_credit_card_payment)
 $(document).on('page:load', select_credit_card_payment)
@@ -41,9 +41,9 @@ paymill_response_handler = (error, result) ->
   else
     $(".payment-errors").css "display", "none"
     $(".payment-errors").text ""
-    form = $("#new_user_paid_song_form")
+    form = $("#new_user_purchased_song_form")
 
-    form.append "<input type='hidden' name='user_paid_song_form[paymill_token]' value='" + result.token + "'/>"
+    form.append "<input type='hidden' name='user_purchased_song_form[paymill_token]' value='" + result.token + "'/>"
     form.get(0).submit()
   $(".submit-button").removeAttr "disabled"
   return
@@ -51,29 +51,29 @@ paymill_response_handler = (error, result) ->
 root = exports ? this
 
 root.submit_credit_card_payment = ->
-  $("#new_user_paid_song_form").submit (event) ->
+  $("#new_user_purchased_song_form").submit (event) ->
 
     $("#submit_buy_song_form").attr "disabled", "disabled"
-    if false is paymill.validateCardNumber($("#user_paid_song_form_card_number").val())
+    if false is paymill.validateCardNumber($("#user_purchased_song_form_card_number").val())
       $(".payment-errors").text "That card number is invalid"
       $(".payment-errors").css "display", "inline-block"
       $("#submit_buy_song_form").removeAttr "disabled"
-    if false is paymill.validateExpiry($("#user_paid_song_form_card_expiry_date_2i").val(), $("#user_paid_song_form_card_expiry_date_1i").val())
+    if false is paymill.validateExpiry($("#user_purchased_song_form_card_expiry_date_2i").val(), $("#user_purchased_song_form_card_expiry_date_1i").val())
       $(".payment-errors").text "Invalid expiration date"
       $(".payment-errors").css "display", "inline-block"
       $("#submit_buy_song_form").removeAttr "disabled"
-    if $("#user_paid_song_form_card_holdername").val() is ""
+    if $("#user_purchased_song_form_card_holdername").val() is ""
       $(".payment-errors").text "The card holdername is invalid"
       $(".payment-errors").css "display", "inline-block"
       $("#submit_buy_song_form").removeAttr "disabled"
     params =
-      amount_int: parseInt($("#user_paid_song_form_payment_amount").val() * 100) # E.g. "15" for 0.15 Eur
+      amount_int: parseInt($("#user_purchased_song_form_payment_amount").val() * 100) # E.g. "15" for 0.15 Eur
       currency: "EUR" # ISO 4217 e.g. "EUR"
-      number: $("#user_paid_song_form_card_number").val()
-      exp_month: $("#user_paid_song_form_card_expiry_date_2i").val()
-      exp_year: $("#user_paid_song_form_card_expiry_date_1i").val()
-      cvc: $("#user_paid_song_form_card_cvc").val()
-      cardholder: $("#user_paid_song_form_card_holdername").val()
+      number: $("#user_purchased_song_form_card_number").val()
+      exp_month: $("#user_purchased_song_form_card_expiry_date_2i").val()
+      exp_year: $("#user_purchased_song_form_card_expiry_date_1i").val()
+      cvc: $("#user_purchased_song_form_card_cvc").val()
+      cardholder: $("#user_purchased_song_form_card_holdername").val()
 
     paymill.createToken params, paymill_response_handler
     false

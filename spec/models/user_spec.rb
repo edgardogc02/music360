@@ -41,14 +41,14 @@ describe User do
       should have_many(:followed_users).through(:inverse_user_followers).source(:followed)
     end
 
-    [:user_omniauth_credentials, :user_facebook_friends, :user_facebook_invitations, :user_invitations, :user_paid_songs].each do |assoc|
+    [:user_omniauth_credentials, :user_facebook_friends, :user_facebook_invitations, :user_invitations, :user_purchased_songs].each do |assoc|
       it "should have has many #{assoc} with dependent destroy" do
         should have_many(assoc).dependent(:destroy)
       end
     end
 
-    it "should have many paid songs through user_paid_songs" do
-      should have_many(:paid_songs).through(:user_paid_songs)
+    it "should have many paid songs through user_purchased_songs" do
+      should have_many(:purchased_songs).through(:user_purchased_songs)
     end
 
     [:payments, :user_premium_subscriptions].each do |assoc|
@@ -225,7 +225,7 @@ describe User do
       it "should be able to buy a song twice" do
         user = create(:user)
         paid_song = create(:paid_song)
-        user_paid_song = create(:user_paid_song, user: user, song: paid_song)
+        user_purchased_song = create(:user_purchased_song, user: user, song: paid_song)
         user.can_buy_song?(paid_song).should_not be_true
       end
 

@@ -1,0 +1,55 @@
+<table class="email_container" width="600px;">
+	<tr>
+		<td>
+			<%= render 'email_notifier/header' %>
+		</td>
+	</tr>
+</table>
+<table class="email_container">
+	<tr>
+		<td>
+			<div class="email_content" style="font-family: arial; font-size: 12px; color: #333; padding-left: 20px;">
+        <p>
+          Hi <%= @user_purchased_song.user.username %>,
+        </p>
+
+        <p>
+          You have successfully purchased a song on InstrumentChamp. You can see more details below:
+        </p>
+
+        <p>
+          <ul>
+            <li>
+              Song: <%= @user_purchased_song.song.title %> by <%= @user_purchased_song.song.artist.title %>
+            </li>
+            <li>
+              Payment amount: <%= @payment.payment_amount %> EUR
+            </li>
+            <li>
+              Payment method: <%= @payment.payment_type.name %>
+            </li>
+          </ul>
+        </p>
+
+        <p>
+          To play the challenge, you can click on the following link:
+          <br />
+
+          <%= link_to song_url(@user_purchased_song.song, host: @user_purchased_song.user.created_by), song_url(@user_purchased_song.song, host: @user_purchased_song.user.created_by) %>
+        </p>
+
+				<p>
+				  Kind regards, <br />
+				  The instrumentchamp team.
+			  </p>
+			</div>
+		</td>
+	</tr>
+</table>
+<table class="email_container">
+	<tr>
+		<td class="email_footer">
+			<%= render 'email_notifier/footer' %>
+		</td>
+	</tr>
+</table>

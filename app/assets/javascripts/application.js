@@ -38,6 +38,6 @@
 //= require pages
 //= require songs
 //= require user_instruments
-//= require user_paid_songs
+//= require user_purchased_songs
 //= require users
 //= require user_premium_subscriptions

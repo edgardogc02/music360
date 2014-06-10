@@ -4,7 +4,6 @@ class UserPremiumSubscriptionForm
 
   attr_accessor :card_holdername, :card_number, :card_cvc, :card_expiry_date, :paymillToken
 
-  # user_paid_song validations
 
   validates :user_id, presence: true
   validates :premium_plan_id, presence: true

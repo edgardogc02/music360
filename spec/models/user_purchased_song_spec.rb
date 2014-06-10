@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe UserPaidSong do
+describe UserPurchasedSong do
 
   context "Validations" do
     [:user_id, :song_id].each do |attr|

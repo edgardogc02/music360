@@ -154,7 +154,7 @@ describe "Songs" do
       it "should not display buy button for free songs" do
         song = create(:song)
         visit songs_path
-        page.should_not have_link "Buy", href: buy_user_paid_song_path(song)
+        page.should_not have_link "Buy", href: buy_user_purchased_song_path(song)
       end
 
       it "should display buy button for paid songs" do
@@ -163,7 +163,7 @@ describe "Songs" do
         @user.save
         paid_song = create(:paid_song)
         visit songs_path
-        page.should have_link "Buy", href: buy_user_paid_song_path(paid_song)
+        page.should have_link "Buy", href: buy_user_purchased_song_path(paid_song)
       end
     end
 

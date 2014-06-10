@@ -34,7 +34,7 @@ class SongDecorator < Draper::Decorator
 
   def buy_button
     if h.signed_in? and h.current_user.admin? and h.current_user.can_buy_song?(model) and model.cost?
-      h.action_button(h.buy_user_paid_song_path(model), 'Buy', {id: "buy_song_#{model.id}"})
+      h.action_button(h.buy_user_purchased_song_path(model), 'Buy', {id: "buy_song_#{model.id}"})
     end
   end
 

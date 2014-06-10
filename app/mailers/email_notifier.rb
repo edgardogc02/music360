@@ -32,4 +32,10 @@ class EmailNotifier < ActionMailer::Base
     mail to: @challenge.challenger.email
   end
 
+  def purchased_song_message(user_purchased_song, payment)
+    @user_purchased_song = user_purchased_song
+    @payment = payment
+    mail to: @user_purchased_song.user.email
+  end
+
 end

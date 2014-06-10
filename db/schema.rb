@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140609075607) do
+ActiveRecord::Schema.define(version: 20140610082801) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -203,14 +203,6 @@ ActiveRecord::Schema.define(version: 20140609075607) do
     t.string   "oauth_token_secret"
   end
 
-  create_table "user_paid_songs", force: true do |t|
-    t.integer  "user_id"
-    t.integer  "song_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "token"
-  end
-
   create_table "user_premium_subscriptions", force: true do |t|
     t.integer  "user_id"
     t.integer  "premium_plan_id"
@@ -218,6 +210,14 @@ ActiveRecord::Schema.define(version: 20140609075607) do
     t.string   "token"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "user_purchased_songs", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "song_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "token"
   end
 
   create_table "users", primary_key: "id_user", force: true do |t|

@@ -40,8 +40,8 @@ class User < ActiveRecord::Base
   has_many :user_invitations, dependent: :destroy
   has_many :user_facebook_invitations, dependent: :destroy
 
-  has_many :user_paid_songs, dependent: :destroy
-  has_many :paid_songs, through: :user_paid_songs, source: :song
+  has_many :user_purchased_songs, dependent: :destroy
+  has_many :purchased_songs, through: :user_purchased_songs, source: :song
 
   has_many :payments
   has_many :user_premium_subscriptions
@@ -131,7 +131,7 @@ class User < ActiveRecord::Base
   end
 
   def can_buy_song?(song)
-    song.cost? and !self.paid_songs.include?(song)
+    song.cost? and !self.purchased_songs.include?(song)
   end
 
   def is_facebook_user?
