@@ -15,7 +15,7 @@ class ResumedPopularUsersList < UsersList
   end
 
   def users
-    @users ||= UserDecorator.decorate_collection(User.not_deleted.exclude(exclude_user.id).limit(4))
+    @users ||= UserDecorator.decorate_collection(User.not_deleted.exclude(exclude_user.id).limit(6))
   end
 
   def exclude_user

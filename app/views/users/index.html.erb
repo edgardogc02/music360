@@ -19,11 +19,7 @@
 </div>
 <br />
 
-<%= render "users_list", users_list: @users_search %>
-
-<% unless @fb_top_friends.blank? %>
-	<%= render "users_list", users_list: @fb_top_friends %>
-<% else %>
+<% unless current_user.is_facebook_user? %>
 	<%= link_to facebook_signin_path, id: "facebook_signin_people", class: 'fb_button xs' do %>
   	<div class="Spinner"></div>
 	  <span class="separator"></span>
@@ -31,6 +27,10 @@
   <% end %>
   <br /><br />
 <% end %>
+
+<%= render "users_list", users_list: @users_search %>
+	
+<%= render "users_list", users_list: @fb_top_friends %>
 
 <%= render "users_list", users_list: @regular_users %>
 
