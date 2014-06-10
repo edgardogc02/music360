@@ -1,4 +1,4 @@
-ActiveAdmin.register PaymentType do
+ActiveAdmin.register PaymentMethod do
 
   menu false
 
@@ -25,4 +25,5 @@ ActiveAdmin.register PaymentType do
     end
     f.actions
   end
+
 end

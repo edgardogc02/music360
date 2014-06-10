@@ -21,8 +21,8 @@ describe "Dashboard" do
       page.should have_link Song.count, admin_songs_path
     end
 
-    it "should have payment types panel with total payment types" do
-      page.should have_link PaymentType.count, admin_payment_types_path
+    it "should have payment types panel with total payment methods" do
+      page.should have_link PaymentMethod.count, admin_payment_methods_path
     end
 
     it "should have songs link in the header menu" do
@@ -36,7 +36,7 @@ describe "Dashboard" do
     end
 
     it "should not have payment types link in the header menu" do
-      resource = @all_resources[PaymentType]
+      resource = @all_resources[PaymentMethod]
       resource.should_not be_include_in_menu
     end
   end

@@ -1,19 +1,19 @@
 select_credit_card_payment = ->
   $("#select_credit_card_payment").click (e) ->
     $("#credit_card_payment_form_fields").removeClass("hide") # show() is not working
-    $("#select_payment_type").hide()
+    $("#select_payment_method").hide()
     $("#submit_buy_song_form").removeClass("hide")
     e.preventDefault()
 
-select_payment_type = ->
-  $(".select_payment_type").click (e) ->
-    $("#user_purchased_song_form_payment_type_id").val($(this).data("payment-type-id"))
+select_payment_method = ->
+  $(".select_payment_method").click (e) ->
+    $("#user_purchased_song_form_payment_method_id").val($(this).data("payment-method-id"))
 
 $(document).ready(select_credit_card_payment)
 $(document).on('page:load', select_credit_card_payment)
 
-$(document).ready(select_payment_type)
-$(document).on('page:load', select_payment_type)
+$(document).ready(select_payment_method)
+$(document).on('page:load', select_payment_method)
 
 get_error_text = (error_key) ->
   switch error_key

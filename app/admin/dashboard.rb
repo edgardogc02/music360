@@ -15,8 +15,8 @@ ActiveAdmin.register_page "Dashboard" do
         end
       end
       column do
-        panel "Payment Types" do
-          link_to PaymentType.count, admin_payment_types_path
+        panel "Payment Methods" do
+          link_to PaymentMethod.count, admin_payment_methods_path
         end
       end
       column do

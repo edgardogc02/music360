@@ -1,10 +1,10 @@
-class UserPaidSongForm
+class UserPurchasedSongForm
 
   include ActiveModel::Model
 
   attr_accessor :card_holdername, :card_number, :card_cvc, :card_expiry_date, :paymillToken
 
-  # user_paid_song validations
+  # user_purchased_song validations
 
   validates :user_id, presence: true
   validates :song_id, presence: true
@@ -12,17 +12,17 @@ class UserPaidSongForm
 
   # payment validations
 
-  validates :payment_type_id, presence: true
+  validates :payment_method_id, presence: true
   validates :payment_amount, presence: true
   validates :payment_status, presence: true
   validate :paymill_token_if_credit_card
 
-  delegate :song_id, :user_id, to: :user_paid_song
+  delegate :song_id, :user_id, to: :user_purchased_song
 
-  delegate :payment_amount, :payment_status, :payment_type_id, :paymill_token, to: :payment
+  delegate :payment_amount, :payment_status, :payment_method_id, :paymill_token, to: :payment
 
-  def initialize(user_paid_song, payment)
-    @user_paid_song = user_paid_song
+  def initialize(user_purchased_song, payment)
+    @user_purchased_song = user_purchased_song
     @payment = payment
   end
 
@@ -34,8 +34,8 @@ class UserPaidSongForm
     @user ||= User.new
   end
 
-  def user_paid_song
-    @user_paid_song ||= user.user_paid_songs.build
+  def user_purchased_song
+    @user_purchased_song ||= user.user_purchased_songs.build
   end
 
   def payment
@@ -43,25 +43,21 @@ class UserPaidSongForm
   end
 
   def song
-    @song ||= user_paid_song.song
+    @song ||= user_purchased_song.song
   end
 
   def save(params)
-    user_paid_song.attributes = params.slice(:song_id)
-    payment.attributes = params.slice(:payment_amount, :payment_type_id, :paymill_token)
-
-#    user_paid_song.song_id = params[:song_id]
-#    payment.payment_amount = params[:payment_amount]
-#    payment.payment_type_id = params[:payment_type_id]
-#    payment.paymill_token = params[:paymill_token]
+    user_purchased_song.attributes = params.slice(:song_id)
+    payment.attributes = params.slice(:payment_amount, :payment_method_id, :paymill_token)
     payment.payment_status = "Confirmed"
 
     if valid?
       ActiveRecord::Base.transaction do
         generate_token
-        user_paid_song.save
+        user_purchased_song.save
         payment.save
         Paymill::Payment.create(token: payment.paymill_token) if payment.paymill_token
+        purchase_notification
       end
       true
     else
@@ -73,20 +69,24 @@ class UserPaidSongForm
 
   def generate_token
     begin
-      user_paid_song.token = SecureRandom.urlsafe_base64
-    end while UserPaidSong.exists?(token: user_paid_song.token)
+      user_purchased_song.token = SecureRandom.urlsafe_base64
+    end while UserPurchasedSong.exists?(token: user_purchased_song.token)
   end
 
   def user_and_song_must_be_unique
-    if UserPaidSong.where(user_id: user_id, song_id: song_id).first
+    if UserPurchasedSong.where(user_id: user_id, song_id: song_id).first
       errors.add :song_id, "You already bought this song"
     end
   end
 
   def paymill_token_if_credit_card
-    if self.payment_type_id == PaymentType::CREDIT_CARD_ID and self.paymill_token.blank?
-      errors.add :payment_type_id, "Paymill token is missing"
+    if self.payment_method_id == PaymentMethod::CREDIT_CARD_ID and self.paymill_token.blank?
+      errors.add :payment_method_id, "Paymill token is missing"
     end
+  end
+
+  def purchase_notification
+    EmailNotifier.purchased_song_message(user_purchased_song, payment).deliver
   end
 
 end

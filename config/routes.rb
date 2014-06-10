@@ -48,7 +48,7 @@ InstrumentchampPrototype::Application.routes.draw do
     get 'for_challenge', on: :collection
   end
 
-  resources :user_purchased_songs, path: "purchase-songs" do
+  resources :user_purchased_songs, path: "paid-songs" do
     get 'buy', on: :member
   end
 

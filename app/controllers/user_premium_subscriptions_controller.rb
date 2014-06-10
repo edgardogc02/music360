@@ -24,7 +24,7 @@ class UserPremiumSubscriptionsController < ApplicationController
   private
 
   def user_premium_subscription_params
-    params.require(:user_premium_subscription_form).permit(:premium_plan_id, :payment_type_id)
+    params.require(:user_premium_subscription_form).permit(:premium_plan_id, :payment_method_id)
   end
 
 end

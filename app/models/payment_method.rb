@@ -1,4 +1,4 @@
-class PaymentType < ActiveRecord::Base
+class PaymentMethod < ActiveRecord::Base
 
   validates :name, presence: true, uniqueness: true
   validates :display_position, presence: true

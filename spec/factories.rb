@@ -88,16 +88,16 @@ FactoryGirl.define do
     song
   end
 
-  factory :payment_type do
-    sequence(:name) { |n| "payment_type#{n}" }
+  factory :payment_method do
+    sequence(:name) { |n| "payment_method#{n}" }
     display_position 1
-    sequence(:html_id) { |n| "select_payment_type_#{n}" }
+    sequence(:html_id) { |n| "select_payment_method_#{n}" }
   end
 
   factory :payment do
     payment_amount 14.50
     payment_status "Confirmed"
     user
-    payment_type
+    payment_method
   end
 end

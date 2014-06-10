@@ -40,17 +40,17 @@
 		</div>
 	</div>
 
-  <div class="hide" id="select_payment_type">
+  <div class="hide" id="select_payment_method">
     <h4>Select a payment type</h4>
-    <% PaymentType.default_order.each do |payment_type| %>
-      <%= link_to payment_type.name, "#", {class: "btn btn-warning user_premium_subscription_select_payment_type", id: payment_type.html_id, data: {payment_type_id: payment_type.id}} %>
+    <% PaymentMethod.default_order.each do |payment_method| %>
+      <%= link_to payment_method.name, "#", {class: "btn btn-warning user_premium_subscription_select_payment_method", id: payment_method.html_id, data: {payment_method_id: payment_method.id}} %>
     <% end %>
   </div>
 
   <div class="hide" id="user_premium_subscription_form">
     <%= simple_form_for @user_premium_subscription_form, url: user_premium_subscriptions_path do |f| %>
       <%= f.input :premium_plan_id %>
-      <%= f.input :payment_type_id %>
+      <%= f.input :payment_method_id %>
       <%= f.button :submit, "Pay now", class: "btn btn-primary btn-lg" %>
     <% end %>
   </div>
