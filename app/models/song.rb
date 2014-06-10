@@ -21,6 +21,7 @@ class Song < ActiveRecord::Base
 	belongs_to :category
 
   has_many :song_ratings, dependent: :destroy
+  has_many :song_score, dependent: :destroy
 
   scope :by_title, ->(title) { where('title LIKE ?', '%'+title+'%') }
   scope :free, -> { where('cost IS NULL OR cost = 0') }

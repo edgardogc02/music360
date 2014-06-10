@@ -65,7 +65,7 @@
 	</div>
 	
 	<div class="col-lg-4">				
-		<%= render 'shared/header_page', title: 'Top Users', sub_header: true, view_more: 'View more', view_more_path: people_path %>
+		<%= render 'shared/header_page', title: 'Top Users', sub_header: true, view_more: 'View more', view_more_path: list_people_path(view: "top") %>
 		
 		<table width="100%" class="datagrid">
 			<% @top_users.each do |user| %>
