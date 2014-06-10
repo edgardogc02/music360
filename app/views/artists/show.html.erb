@@ -7,22 +7,12 @@
 	<div class="col-lg-8">
 		
 		<ul class="nav nav-tabs">
-		  <li class="active"><a href="#info" data-toggle="tab">Info</a></li>
 		  <li><a href="#songs" data-toggle="tab">Songs</a></li>
 		  <li><a href="#challenges_tab" data-toggle="tab">Challenges</a></li>
-		  <li><a href="#fans" data-toggle="tab">Top fans</a></li>
 		</ul>
 		<br />
 		<div class="tab-content">
-		  <div class="tab-pane active" id="info">
-		  	<h2>Information</h2>
-		  	<% if @artist.bio %>
-					<section>
-						<p><%= @artist.bio %></p>
-					</section>
-				<% end %>
-		  </div>
-		  <div class="tab-pane" id="songs">
+		  <div class="tab-pane active" id="songs">
 		  	<% if !@songs.blank? %>
 					<section>
 						<%= render 'shared/header_page', title: 'Songs', sub_header: true, view_more: 'View more', view_more_path: songs_path %>
@@ -68,25 +58,12 @@
 				</table>
 				
 		  </div>
-		  <div class="tab-pane" id="fans">
-		  	<%= render 'shared/header_page', title: 'Top Fans', sub_header: true, view_more: 'View more', view_more_path: people_path %>
-		
-				<table width="100%" class="datagrid">
-					<% @users.each do |user| %>
-						<tr class="<%= cycle("odd", "even") %>">
-							<td><%= image_tag(user.imagename_url, class: 'avatar-xs') %></td>
-							<td><%= link_to user.username, person_path(user), class: 'btn-secondary-color' %></td>
-							<td><%= user.level %></td>
-							<td align="right"><%= link_to 'Challenge', new_challenge_path(challenged_id: user.id), class: 'btn btn-primary btn-sm' %></td>
-						</tr>
-					<% end %>
-				</table>
-		  </div>
 		</div>
 		
 	</div>
 </div>
 
+<!--
 <br /><br />
 
 <%= render 'shared/header_page', title: 'More songs', sub_header:true, view_more: 'View more', view_more_path: songs_path %>
@@ -95,6 +72,6 @@
   <%= render @more_songs %>
 </div>
 
-<!--<%= render 'shared/banner_ad' %>-->
+<%= render 'shared/banner_ad' %>
 
-
+-->

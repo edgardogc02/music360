@@ -23,14 +23,14 @@
 					<td class="thumb"><%= image_tag(user.imagename_url, class: 'avatar-xs') %></td>
 					<td><%= link_to user.username, person_path(user), class: 'btn-secondary-color' %></td>
 					<!--<td><%= user.level %></td>-->
-					<td>1000pts</td>
+					<!--<td>1000pts</td>-->
 					<td align="right"><%= link_to 'Challenge', new_challenge_path(song_id: @song.id, challenged_id: user.id), class: 'btn btn-primary btn-sm' %></td>
 				</tr>
 			<% end %>
 		</table>
 	</div>
 </div>
-
+<!--
 <br /><br />
 
 <%= render 'shared/header_page', title: 'More songs', sub_header:true, view_more: 'View more', view_more_path: songs_path %>
@@ -39,4 +39,5 @@
   <%= render @more_songs %>
 </div>
 
-<!--<%= render 'shared/banner_ad' %>-->
+<%= render 'shared/banner_ad' %>
+-->
