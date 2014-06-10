@@ -15,7 +15,6 @@ class Song < ActiveRecord::Base
   validates :difficulty, presence: true
   validates :arranger_userid, presence: true
   validates :status, presence: true
-  validates :onclient, presence: true
   validates :published_at, presence: true
 
 	belongs_to :artist

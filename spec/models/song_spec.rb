@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Song do
 
   context "Validations" do
-    [:title, :writer, :length, :difficulty, :arranger_userid, :status, :onclient, :published_at].each do |attr|
+    [:title, :writer, :length, :difficulty, :arranger_userid, :status, :published_at].each do |attr|
       it "should validate presence of #{attr}" do
         should validate_presence_of(attr)
       end

@@ -49,7 +49,6 @@ FactoryGirl.define do
     arranger_userid 1
     comment "comment"
     status "status"
-    onclient 1
     cost 0
     published_at Date.today
 

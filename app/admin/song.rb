@@ -86,7 +86,6 @@ ActiveAdmin.register Song do
       @song.artist_id = 0
       @song.arranger_userid = 1
       @song.status = "ok"
-      @song.onclient = 1
       @song.published_at = Time.now
       @song.user_created = 1
     end
