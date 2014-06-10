@@ -1,0 +1,22 @@
+<% if songs_list and !songs_list.songs.blank? %>
+
+	<% if songs_list.display_more? %>
+		<%= render 'shared/header_page', title: songs_list.title, sub_header: true, view_more: 'View more', view_more_path: songs_list.display_more_link %>
+  <% else %>
+  	<%= render 'shared/header_page', title: songs_list.title, sub_header: true %>
+  <% end %>
+
+  <div class="thumbnail-grid row">
+  	<% if defined? modal %> 
+  		<%= render songs_list.songs, modal: true %>
+  	<% else %>
+  		<%= render songs_list.songs %>
+  	<% end %>
+  </div>
+
+	<hr />
+  <% if songs_list.paginate? %>
+    <%= paginate songs_list.songs %>
+  <% end %>
+
+<% end %>
