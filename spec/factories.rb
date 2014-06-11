@@ -100,4 +100,16 @@ FactoryGirl.define do
     user
     payment_method
   end
+
+  factory :premium_plan do
+    price 9.99
+    sequence(:name) { |n| "plan_#{n}" }
+  end
+
+  factory :user_premium_subscription do
+    user
+    premium_plan
+    payment_method
+  end
+
 end

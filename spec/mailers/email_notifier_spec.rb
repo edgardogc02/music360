@@ -23,6 +23,8 @@ describe EmailNotifier do
       mail.body.encoded.should have_link "Get help", help_path
       mail.body.encoded.should have_content "Kind regards"
       mail.body.encoded.should have_content "The instrumentchamp team."
+      mail.body.encoded.should have_content "Kind regards,"
+      mail.body.encoded.should have_content "The instrumentchamp team."
     end
   end
 
@@ -39,6 +41,8 @@ describe EmailNotifier do
     it "renders the body" do
       mail.body.encoded.should have_content "Hi,"
       mail.body.encoded.should have_content "#{user_invitation.user.username} invited you to join InstrumentChamp."
+      mail.body.encoded.should have_content "Kind regards,"
+      mail.body.encoded.should have_content "The instrumentchamp team."
     end
   end
 
@@ -57,6 +61,8 @@ describe EmailNotifier do
       mail.body.encoded.should have_content "#{challenge.challenger.username} has challenged you on InstrumentChamp."
       mail.body.encoded.should have_content "To view the challenge, you can click on the following link:"
       mail.body.encoded.should have_link challenge_url(challenge, host: challenge.challenger.created_by), challenge_url(challenge, host: challenge.challenger.created_by)
+      mail.body.encoded.should have_content "Kind regards,"
+      mail.body.encoded.should have_content "The instrumentchamp team."
     end
   end
 
@@ -73,6 +79,8 @@ describe EmailNotifier do
     it "renders the body" do
       mail.body.encoded.should have_content "Hi #{user_follower.followed.username},"
       mail.body.encoded.should have_content "#{user_follower.follower.username} is following you on InstrumentChamp."
+      mail.body.encoded.should have_content "Kind regards,"
+      mail.body.encoded.should have_content "The instrumentchamp team."
     end
   end
 
@@ -91,6 +99,8 @@ describe EmailNotifier do
       mail.body.encoded.should have_content "we remind you that #{challenge.challenger.username} has challenged you on InstrumentChamp."
       mail.body.encoded.should have_content "To play the challenge, you can click on the following link:"
       mail.body.encoded.should have_link challenge_url(challenge, host: challenge.challenged.created_by), challenge_url(challenge, host: challenge.challenged.created_by)
+      mail.body.encoded.should have_content "Kind regards,"
+      mail.body.encoded.should have_content "The instrumentchamp team."
     end
   end
 
@@ -109,6 +119,8 @@ describe EmailNotifier do
       mail.body.encoded.should have_content "you challenged #{challenge.challenged.username} on InstrumentChamp, but you haven't played it yet."
       mail.body.encoded.should have_content "To play the challenge, you can click on the following link:"
       mail.body.encoded.should have_link challenge_url(challenge, host: challenge.challenger.created_by), challenge_url(challenge, host: challenge.challenger.created_by)
+      mail.body.encoded.should have_content "Kind regards,"
+      mail.body.encoded.should have_content "The instrumentchamp team."
     end
   end
 
@@ -132,6 +144,31 @@ describe EmailNotifier do
       mail.body.encoded.should have_content "Payment method: #{payment.payment_method.name}"
       mail.body.encoded.should have_content "To play the challenge, you can click on the following link:"
       mail.body.encoded.should have_link song_url(user_purchased_song.song, host: user_purchased_song.user.created_by), song_url(user_purchased_song.song, host: user_purchased_song.user.created_by)
+      mail.body.encoded.should have_content "Kind regards,"
+      mail.body.encoded.should have_content "The instrumentchamp team."
+    end
+  end
+
+  describe "send purchased premium subscription email" do
+    let(:user) { create(:user) }
+    let(:user_premium_subscription) { create(:user_premium_subscription, user: user) }
+    let(:payment) { create(:payment, user: user) }
+    let(:mail) { EmailNotifier.user_premium_subscription_message(user_premium_subscription, payment) }
+
+    it "sends purchased premium subscription email to buyer user" do
+      mail.subject.should eq("Your premium subscription to InstrumentChamp")
+      mail.to.should eq([user.email])
+      mail.from.should eq(["no-reply@instrumentchamp.com"])
+    end
+
+    it "renders the body" do
+      mail.body.encoded.should have_content "Hi #{user.username},"
+      mail.body.encoded.should have_content "You have successfully purchased a premium subscription on InstrumentChamp. You can see more details below:"
+      mail.body.encoded.should have_content "Subscription: #{user_premium_subscription.premium_plan.name}"
+      mail.body.encoded.should have_content "Payment amount: #{payment.amount}"
+      mail.body.encoded.should have_content "Payment method: #{payment.payment_method.name}"
+      mail.body.encoded.should have_content "Kind regards,"
+      mail.body.encoded.should have_content "The instrumentchamp team."
     end
   end
 
