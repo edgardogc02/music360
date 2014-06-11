@@ -9,6 +9,7 @@ class UserPremiumSubscriptionsController < ApplicationController
 
   def show
     @user_premium_subscription = UserPremiumSubscription.find(params[:id])
+    @paymill_payment_details = Paymill::Subscription.find(@user_premium_subscription.paymill_subscription_token).payment if @user_premium_subscription.paymill_subscription_token
   end
 
   def create
@@ -19,6 +20,18 @@ class UserPremiumSubscriptionsController < ApplicationController
     else
       flash.now[:warning] = "Something went wrong. Please try again."
       render "new"
+    end
+  end
+
+  def destroy
+    user_premium_subscription = UserPremiumSubscription.find(params[:id])
+    user_premium_subscription_cancellation = UserPremiumSubscriptionCancellation.new(user_premium_subscription)
+
+    if user_premium_subscription_cancellation.destroy
+      redirect_to root_path, notice: "Your premium subscription was successfully deleted"
+    else
+      flash[:warning] = "Something went wrong. Please try again."
+      redirect_to user_premium_subscription
     end
   end
 
