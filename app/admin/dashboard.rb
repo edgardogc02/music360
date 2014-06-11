@@ -15,6 +15,11 @@ ActiveAdmin.register_page "Dashboard" do
         end
       end
       column do
+        panel "Artists" do
+          link_to Artist.count, admin_artists_path
+        end
+      end
+      column do
         panel "Payment Methods" do
           link_to PaymentMethod.count, admin_payment_methods_path
         end

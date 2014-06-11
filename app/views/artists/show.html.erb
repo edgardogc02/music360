@@ -1,11 +1,11 @@
-<%= render 'shared/header_page', title: @artist.title, image: asset_path('default_artist.png')  %>
+<%= render 'shared/header_page', title: @artist.title %>
 
 <div class="row">
 	<div class="col-lg-4">
-		<p><img src="<%= asset_path('default_artist.png') %>" class="thumbnail"></p>
+		<p><%= image_tag(@artist.imagename_url, {alt: @artist.title, class: 'thumbnail'}) %></p>
+		<p><%= @artist.edit_button %></p>
 	</div>
-	<div class="col-lg-8">
-		
+	<div class="col-lg-8">		
 		<ul class="nav nav-tabs">
 		  <li><a href="#songs" data-toggle="tab">Songs</a></li>
 		  <li><a href="#challenges_tab" data-toggle="tab">Challenges</a></li>
