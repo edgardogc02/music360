@@ -1,0 +1,6 @@
+<div id="select_payment_method">
+  <h4>Select a payment type</h4>
+  <% PaymentMethod.default_order.each do |payment_method| %>
+    <%= link_to payment_method.name, "#", {class: "btn btn-warning select_payment_method", id: payment_method.html_id, data: {payment_method_id: payment_method.id}} %>
+  <% end %>
+</div>
