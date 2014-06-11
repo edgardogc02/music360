@@ -12,6 +12,8 @@ class ArtistsController < ApplicationController
     @users = UserChallengeDecorator.decorate_collection(users.take(4))    
     @challenges = ChallengeDecorator.decorate_collection(Challenge.where("song_id IN (?)", @artist.songs.pluck(:id)).finished.limit(4))
    
+    @artist = ArtistDecorator.decorate(@artist)
+   
     @more_songs = SongChallengeDecorator.decorate_collection(Song.free.not_user_created.by_popularity.limit(4))
 	end
 
