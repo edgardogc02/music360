@@ -5,7 +5,7 @@
 <div class="app-screens">
 	<%= image_tag(asset_path('screen1.jpg')) %>
 	<%= image_tag(asset_path('screen2.jpg')) %>
-	<%= image_tag(asset_path('screen3.jpg')) %>	
+	<%= image_tag(asset_path('screen3.jpg')) %>
 </div>
 
 <br />
@@ -46,6 +46,6 @@
 
 <% if !current_user.installed_desktop_app? %>
   <section>
-    <%= link_to "I already installed the app" %>
+    <%= link_to "I already installed the app", apps_path(installed: true) %>
   </section>
 <% end %>
