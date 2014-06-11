@@ -1,11 +1,11 @@
 module OmniauthMacros
   def mock_facebook_auth_hash
     OmniAuth.config.add_mock(:facebook, {:provider  => "facebook",
-                                          :uid      => "123456789",
-                                          :info     => { :email  => "test@test.com",
-                                                         :name   => "Test User",
-                                                         :first_name  => "Test",
-                                                         :last_name   => "User"},
+                                          :uid      => "100008301499042",
+                                          :info     => { :email  => "facebook_kehfokn_user@tfbnw.net",
+                                                         :name   => "Facebook test user",
+                                                         :first_name  => "Facebook",
+                                                         :last_name   => "test user"},
                                           :extra    => { :raw_info => { :locale => "en_US" }},
                                           :credentials => { :token      => "lk2j3lkjasldkjflk3ljsdf",
                                                             :expires_at => 10.days.from_now} })
@@ -13,11 +13,11 @@ module OmniauthMacros
 
   def mock_facebook_friend_auth_hash
     OmniAuth.config.add_mock(:facebook, {:provider  => "facebook",
-                                          :uid      => "712450435",
-                                          :info     => { :email  => "lars@willner.com",
-                                                         :name   => "Lars Willner",
-                                                         :first_name  => "Lars",
-                                                         :last_name   => "Willner"},
+                                          :uid      => "1375536292736028",
+                                          :info     => { :email  => "dick_cfrqtzm_smithberg@tfbnw.net",
+                                                         :name   => "Dick Smithberg",
+                                                         :first_name  => "Dick",
+                                                         :last_name   => "Smithberg"},
                                           :extra    => { :raw_info => { :locale => "en_US" }},
                                           :credentials => { :token      => "lk2j3lkjasldkjflk3ljsdf",
                                                             :expires_at => 10.days.from_now} })

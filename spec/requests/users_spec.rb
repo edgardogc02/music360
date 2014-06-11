@@ -66,10 +66,11 @@ describe "Users" do
       UserFacebookFriends.new(user, UserFacebookAccount.new(user).top_friends).save
 
       visit people_path
-      page.should have_content "Lars Willner"
-      page.should have_content "Magnus Willner"
-      page.should have_content "Ashutosh Morwal"
-      page.should have_link "View more", list_people_path(view: "facebook")
+      page.should have_content "Dick Smithberg"
+      page.should have_content "Jennifer Yangwitz"
+      page.should have_content "Rick Seligsteinson"
+
+      page.should have_link "View all", list_people_path(view: "facebook")
     end
 
     it "should display facebook friends lists facebook page" do
@@ -83,9 +84,9 @@ describe "Users" do
       UserFacebookFriends.new(user, UserFacebookAccount.new(user).top_friends).save
 
       visit list_people_path(view: "facebook")
-      page.should have_content "Lars Willner"
-      page.should have_content "Magnus Willner"
-      page.should have_content "Ashutosh Morwal"
+      page.should have_content "Dick Smithberg"
+      page.should have_content "Jennifer Yangwitz"
+      page.should have_content "Rick Seligsteinson"
     end
 
     it "should not be able to perform a delete request" do
@@ -116,7 +117,7 @@ describe "Users" do
       page.should have_link "Challenge", new_challenge_path(challenged_id: user_3.id)
       page.should have_content user_4.username
       page.should have_link "Challenge", new_challenge_path(challenged_id: user_4.id)
-      page.should have_link "View more", list_people_path(view: "users")
+      page.should have_link "View all", list_people_path(view: "users")
     end
 
     it "should list users on lists page" do

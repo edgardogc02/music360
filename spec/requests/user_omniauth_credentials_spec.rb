@@ -12,7 +12,7 @@ describe "UserOmniauthCredentials" do
         user = create(:user, username: "First user")
         signin_with_facebook
 
-        facebook_user = User.find_by(username: "Test User")
+        facebook_user = User.find_by(username: "Facebook test user")
         User.count.should eq(2)
         facebook_user.should_not be_blank
         UserFacebookAccount.new(facebook_user).credentials.should_not be_blank

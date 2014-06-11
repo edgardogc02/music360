@@ -8,7 +8,7 @@ describe "UserOmniauthCredentials" do
 
   it "should sign up user for first time with facebook account" do
     signin_with_facebook
-    page.find('.alert-notice').should have_content('Welcome Test User!')
+    page.find('.alert-notice').should have_content('Welcome Facebook test user!')
     URI.parse(current_url).request_uri.should eq(root_path(welcome_tour: true))
   end
 
@@ -16,17 +16,17 @@ describe "UserOmniauthCredentials" do
     signin_with_facebook
     click_on "Sign out"
     signin_with_facebook
-    page.find('.alert-notice').should have_content('Welcome back Test User!')
+    page.find('.alert-notice').should have_content('Welcome back Facebook test user!')
     URI.parse(current_url).request_uri.should eq(root_path)
   end
 
   it "should have the correct values in the users table" do
     signin_with_facebook
 
-    user = User.find_by_username('Test User')
+    user = User.find_by_username('Facebook test user')
     check_user_signup_params(user, true)
-    user.first_name.should eq("Test")
-    user.last_name.should eq("User")
+    user.first_name.should eq("Facebook")
+    user.last_name.should eq("test user")
   end
 
   it "should show welcome popup to facebook user if it signed up and had a fake user in the db" do
@@ -34,7 +34,9 @@ describe "UserOmniauthCredentials" do
     user = User.last
     create_facebook_omniauth_credentials(user)
     UserFacebookFriends.new(user, UserFacebookAccount.new(user).top_friends).save
+
     click_on "People"
+
     click_on "Sign out"
     visit login_path
 
@@ -42,13 +44,14 @@ describe "UserOmniauthCredentials" do
 
     mock_facebook_friend_auth_hash
     click_link "facebook_signin"
-    page.find('.alert-notice').should have_content('Welcome Lars Willner!')
+
+    page.find('.alert-notice').should have_content('Welcome Dick Smithberg!')
     URI.parse(current_url).request_uri.should eq(root_path(welcome_tour: true))
   end
 
   it "should save all facebook friends when a user signs up" do
     signin_with_facebook
-    expect { FacebookFriendsWorker.perform_async(User.find_by_username('Test User').id) }.to change(FacebookFriendsWorker.jobs, :size).by(1)
+    expect { FacebookFriendsWorker.perform_async(User.find_by_username('Facebook test user').id) }.to change(FacebookFriendsWorker.jobs, :size).by(1)
   end
 
   it "should handle authentication error" do
@@ -66,7 +69,7 @@ describe "UserOmniauthCredentials" do
     current_path.should eq(root_path)
     click_link "Sign out"
     current_path.should eq(login_path)
-    user = User.find_by_username "Test User"
+    user = User.find_by_username "Facebook test user"
     user.destroy
     click_link "facebook_signin"
     current_path.should eq(login_path)

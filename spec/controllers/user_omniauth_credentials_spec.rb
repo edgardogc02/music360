@@ -13,13 +13,13 @@ describe UserOmniauthCredentialsController do
     end
 
     it "create only user omniauth credentials from facebook" do
-      create(:user, username: "Test User", email: "test@test.com") # that user with the email already exists in our db
+      create(:user, username: "Facebook test user", email: "facebook_kehfokn_user@tfbnw.net") # that user with the email already exists in our db
       check_conditions(0, 1) # check just user omniauth credentials are created
     end
 
     it "create new user when username is already taken" do
       pending "TODO"
-      create(:user, username: "Test User", email: "test1@test.com") # that user with the email already exists in our db
+      create(:user, username: "Facebook test user", email: "facebook_kehfokn_user@tfbnw.net") # that user with the email already exists in our db
       check_conditions(1, 1) # check just user omniauth credentials are created
     end
 

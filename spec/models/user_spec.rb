@@ -119,7 +119,7 @@ describe User do
     end
 
     it "should not create new user from omniauth facebook credentials" do
-      create(:user, email: "test@test.com") # email from facebook
+      create(:user, email: "facebook_kehfokn_user@tfbnw.net") # email from facebook
       expect { UserAuthentication.new(build_request).authenticated? }.to change{User.count}.by(0)
     end
 
@@ -166,31 +166,31 @@ describe User do
 
     it "should register all fb friends in our database" do
       user = create(:user)
-      check_facebook_friends_changes(user, 3, 3)
+      check_facebook_friends_changes(user, 5, 5)
     end
 
     it "should create users with other username if username is already taken" do
       user = create(:user)
-      fb_user = create(:user, username: "Lars Willner")
-      check_facebook_friends_changes(user, 3, 3)
+      fb_user = create(:user, username: "Bob Sadanwitz")
+      check_facebook_friends_changes(user, 5, 5)
     end
 
     it "should not register fb friends if already created with email" do
       user = create(:user)
-      fb_user = create(:user, email: FacebookFriend.new({"uid"=>712450435, "name"=>"Lars Willner"}).new_fake_email)
-      check_facebook_friends_changes(user, 2, 3)
+      fb_user = create(:user, email: FacebookFriend.new({"uid"=>1375536292736028, "name"=>"Dick Smithberg"}).new_fake_email)
+      check_facebook_friends_changes(user, 4, 5)
     end
 
     it "should not register fb friends if user already signed in using facebook" do
       user = create(:user)
       fb_user = create(:user)
-      create(:user_omniauth_credential, user: fb_user, oauth_uid: "712450435")
-      check_facebook_friends_changes(user, 2, 3)
+      create(:user_omniauth_credential, user: fb_user, oauth_uid: "1375536292736028")
+      check_facebook_friends_changes(user, 4, 5)
     end
 
     it "should not create fb friends twice" do
       user = create(:user)
-      check_facebook_friends_changes(user, 3, 3)
+      check_facebook_friends_changes(user, 5, 5)
       check_facebook_friends_changes(user, 0, 0)
     end
 

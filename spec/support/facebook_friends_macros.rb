@@ -1,7 +1,9 @@
 module FacebookFriendsMacros
   def facebook_friends
-    fb_friends = [{"uid" => "1009508620", "name" => "Ashutosh Morwal"},
-                  {"uid" => "712450435", "name" => "Lars Willner"},
-                  {"uid" => "708414150", "name" => "Magnus Willner"}]
+    fb_friends = [{"uid" => "100004279876572", "name" => "Linda Shepardsen"},
+                  {"uid" => "100008296310079", "name" => "Jennifer Yangwitz"},
+                  {"uid" => "1375536292736028", "name" => "Dick Smithberg"},
+                  {"uid" => "100008370392361", "name" => "Rick Seligsteinson"},
+                  {"uid" => "100008393162186", "name" => "Bob Sadanwitz"}]
   end
 end

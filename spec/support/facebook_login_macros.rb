@@ -8,6 +8,6 @@ module FacebookLoginMacros
     click_link "facebook_signin"
 
     current_path.should eq(root_path) # successfully signed in
-    page.should have_content("Test User") # user name from facebook
+    page.should have_content("Facebook test user") # user name from facebook
   end
 end

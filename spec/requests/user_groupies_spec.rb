@@ -15,11 +15,13 @@ describe "UserGroupies" do
       user = User.first
       create_facebook_omniauth_credentials(user)
 
+      UserFacebookFriends.new(user, facebook_friends).save
+
       visit user_groupies_path
 
-      page.should have_content "Ashutosh Morwal"
-      page.should have_content "Lars Willner"
-      page.should have_content "Magnus Willner"
+      page.should have_content "Jennifer Yangwitz"
+      page.should have_content "Dick Smithberg"
+      page.should have_content "Rick Seligsteinson"
     end
 
     it "should have a next button" do
