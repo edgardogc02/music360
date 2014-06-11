@@ -10,5 +10,8 @@ class ArtistImageUploader < Uploader
   def default_url
     "default_artist.png"
   end
-
+  
+  # Process files as they are uploaded:
+  process :resize_to_fill => [200, 200]
+  
 end
