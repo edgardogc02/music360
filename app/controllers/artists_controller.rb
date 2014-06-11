@@ -18,6 +18,10 @@ class ArtistsController < ApplicationController
   def most_popular
     @artists = Echowrap.artist_top_hottt(results: 50, bucket: ['hotttnesss', 'images'])
   end
+  
+  def top_list
+    @artists = Artist.all.page params[:page]
+  end
 
 	private
 

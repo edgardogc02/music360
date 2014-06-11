@@ -24,6 +24,7 @@ InstrumentchampPrototype::Application.routes.draw do
       get 'free', on: :collection
     end
     get 'most_popular', on: :collection
+    get 'top_list', on: :collection
   end
 
   resources :apps
@@ -46,6 +47,7 @@ InstrumentchampPrototype::Application.routes.draw do
   resources :songs do
     get 'free', on: :collection
     get 'for_challenge', on: :collection
+    get 'list', on: :collection, as: :list
   end
 
   resources :user_purchased_songs, path: "paid-songs" do

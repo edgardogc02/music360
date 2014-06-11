@@ -1,7 +1,7 @@
 <% if users_list and !users_list.users.blank? %>
 
 	<% if users_list.display_more? %>
-		<%= render 'shared/header_page', title: users_list.title, sub_header: true, view_more: 'View more', view_more_path: users_list.display_more_link %>
+		<%= render 'shared/header_page', title: users_list.title, sub_header: true, view_more: "View all", view_more_path: users_list.display_more_link %>
   <% else %>
   	<%= render 'shared/header_page', title: users_list.title, sub_header: true %>
   <% end %>

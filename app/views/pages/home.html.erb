@@ -27,7 +27,7 @@
 <div class="row">
 
 	<div class="col-lg-4">
-		<%= render 'shared/header_page', title: 'Top Songs', sub_header: true, view_more: 'View more', view_more_path: songs_path %>
+		<%= render 'shared/header_page', title: 'Top Songs', sub_header: true, view_more: 'View more', view_more_path: list_songs_path(view: "top") %>
 				
 		<table width="100%" class="datagrid">
 			<% @top_songs.each do |song| %>
@@ -51,7 +51,7 @@
 	</div>
 	
 	<div class="col-lg-4">
-		<%= render 'shared/header_page', title: 'Top Artists', sub_header: true, view_more: 'View more', view_more_path: artists_path %>
+		<%= render 'shared/header_page', title: 'Top Artists', sub_header: true, view_more: 'View more', view_more_path: top_list_artists_path %>
 		
 		<table width="100%" class="datagrid">
 			<% @top_artist.each do |artist| %>

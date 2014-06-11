@@ -15,7 +15,7 @@ class ResumedFacebookFriendsList < UsersList
   end
 
   def users
-    @users ||= UserDecorator.decorate_collection(current_user.facebook_friends.limit(4))
+    @users ||= UserDecorator.decorate_collection(current_user.facebook_friends.limit(6))
   end
 
   def current_user
