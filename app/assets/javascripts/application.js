@@ -41,3 +41,4 @@
 //= require user_purchased_songs
 //= require users
 //= require user_premium_subscriptions
+//= require credit_card_payment_processing

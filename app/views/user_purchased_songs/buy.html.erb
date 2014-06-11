@@ -8,37 +8,21 @@
 
 <% if current_user.can_buy_song?(@user_purchased_song_form.song) %>
 
-  <%= simple_form_for @user_purchased_song_form, url: user_purchased_songs_path do |f| %>
+  <%= render "shared/payment_method_selection" %>
 
-    <%= f.input :song_id, as: :hidden %>
+  <div class="hide" id="user_purchased_songs_form">
+    <%= simple_form_for @user_purchased_song_form, url: user_purchased_songs_path, html: {id: "user_purchase_form"} do |f| %>
 
-    <div id="select_payment_method">
-      <h4>Select a payment type</h4>
-      <% PaymentMethod.default_order.each do |payment_method| %>
-        <%= link_to payment_method.name, "#", {class: "btn btn-warning select_payment_method", id: payment_method.html_id, data: {payment_method_id: payment_method.id}} %>
-      <% end %>
-    </div>
+      <%= render "shared/credit_card_details", f: f %>
 
-    <div class="hide" id="credit_card_payment_form_fields">
-      <h4>Fill in your credit card details</h4>
-      <%= f.input :card_holdername %>
-      <%= f.input :card_number %>
-      <%= f.input :card_cvc %>
-      <%= f.input :card_expiry_date, as: :date, discard_day: true, order: [:month, :year], start_year: Date.today.year, end_year: Date.today.year + 15, prompt: "Select..." %>
+      <%= f.input :song_id, as: :hidden %>
+      <%= f.input :amount, input_html: { value: @user_purchased_song_form.song.cost, id: "amount" }, as: :hidden %>
+      <%= f.input :payment_method_id, as: :hidden %>
 
-      <div id="paymill_error">
-        <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
-      </div>
+      <%= f.button :submit, "Buy Now", {class: "btn btn-success", id: "submit_purchase_form"} %>
 
-      <p class="payment-errors alert-error span3" style="display:none;"></p>
-    </div>
-
-    <%= f.input :amount, input_html: { value: @user_purchased_song_form.song.cost }, as: :hidden %>
-    <%= f.input :payment_method_id, as: :hidden %>
-
-    <%= f.button :submit, "Buy Now", {class: "btn btn-success hide", id: "submit_buy_song_form"} %>
-
-  <% end %>
+    <% end %>
+  </div>
 
   <%= content_for(:js_scripts) do %>
 

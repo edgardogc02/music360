@@ -38,4 +38,11 @@ class EmailNotifier < ActionMailer::Base
     mail to: @user_purchased_song.user.email
   end
 
+  def user_premium_subscription_message(user_premium_subscription, payment)
+    @user_premium_subscription = user_premium_subscription
+    @payment = payment
+
+    mail to: @user_premium_subscription.user.email
+  end
+
 end

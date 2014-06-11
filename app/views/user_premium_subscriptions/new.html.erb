@@ -36,23 +36,58 @@
 				Extended catalogue of free songs
 			</p>
 
-			<%= link_to "Get Premium", "#", {class: "btn btn-primary btn-lg premium_plan_selected", data: {premium_plan_id: 1}} %>
+			<%= link_to "Get Premium", "#", {class: "btn btn-primary btn-lg"} %>
 		</div>
 	</div>
 
-  <div class="hide" id="select_payment_method">
-    <h4>Select a payment type</h4>
-    <% PaymentMethod.default_order.each do |payment_method| %>
-      <%= link_to payment_method.name, "#", {class: "btn btn-warning user_premium_subscription_select_payment_method", id: payment_method.html_id, data: {payment_method_id: payment_method.id}} %>
+  <div class="row">
+    <% PremiumPlan.all.each do |premium_plan| %>
+      <div class="col-md-6 col-sm-6">
+        <div class="well text-center">
+          <h2><%= premium_plan.name %></h2>
+          <p>
+            <p>
+              Just <%= premium_plan.price %> EUR
+            </p>
+            <p>
+              <%= link_to "Get Premium", new_user_premium_subscription_path(premium_plan_id: premium_plan.id), {class: "btn btn-primary btn-lg premium_plan_selected"} %>
+            </p>
+          </p>
+        </div>
+      </div>
     <% end %>
   </div>
+  <% if @user_premium_subscription_form.premium_plan %>
 
-  <div class="hide" id="user_premium_subscription_form">
-    <%= simple_form_for @user_premium_subscription_form, url: user_premium_subscriptions_path do |f| %>
-      <%= f.input :premium_plan_id %>
-      <%= f.input :payment_method_id %>
-      <%= f.button :submit, "Pay now", class: "btn btn-primary btn-lg" %>
+    <%= render "shared/payment_method_selection" %>
+
+    <div class="hide" id="user_premium_subscription_form">
+      <%= simple_form_for @user_premium_subscription_form, url: user_premium_subscriptions_path, html: {id: "user_purchase_form"} do |f| %>
+
+        <%= render "shared/credit_card_details", f: f %>
+
+        <%= f.input :premium_plan_id, as: :hidden %>
+        <%= f.input :payment_method_id, as: :hidden %>
+        <%= f.input :amount, input_html: { value: @user_premium_subscription_form.premium_plan.price, id: "amount" }, as: :hidden %>
+
+        <%= f.button :submit, "Purchase Now", {class: "btn btn-primary btn-lg", id: "submit_purchase_form"} %>
+      <% end %>
+    </div>
+
+    <%= content_for(:js_scripts) do %>
+
+      <script type="text/javascript">
+        var PAYMILL_PUBLIC_KEY = "<%= PAYMILL_PUBLIC_KEY %>";
+      </script>
+      <script type="text/javascript" src="https://bridge.paymill.com/"></script>
+
+      <script type="text/javascript">
+        $(document).ready(function() {
+          submit_credit_card_payment();
+        });
+      </script>
     <% end %>
-  </div>
+
+  <% end %>
 
 </div>

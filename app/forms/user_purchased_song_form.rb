@@ -2,7 +2,7 @@ class UserPurchasedSongForm
 
   include ActiveModel::Model
 
-  attr_accessor :card_holdername, :card_number, :card_cvc, :card_expiry_date, :paymillToken
+  attr_accessor :card_holdername, :card_number, :card_cvc, :card_expiry_date
 
   # user_purchased_song validations
 
@@ -31,7 +31,7 @@ class UserPurchasedSongForm
   end
 
   def user
-    @user ||= User.new
+    @user ||= user_purchased_song.user
   end
 
   def user_purchased_song
@@ -56,13 +56,19 @@ class UserPurchasedSongForm
         generate_token
         user_purchased_song.save
         payment.save
-        Paymill::Payment.create(token: payment.paymill_token) if payment.paymill_token
+        if paymill_token
+          paymill_payment = Paymill::Payment.create(token: paymill_token)
+          paymill_transaction = Paymill::Transaction.create(amount: (amount*100).to_i, currency: "EUR", payment: paymill_payment.id, description: "#{user.email} purchased #{song.title}")
+        end
         purchase_notification
       end
       true
     else
       false
     end
+  rescue Paymill::PaymillError => e
+    errors.add :base, "There was a problem with your credit card. Please try again."
+    false
   end
 
   private

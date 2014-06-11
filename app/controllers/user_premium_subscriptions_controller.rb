@@ -4,6 +4,7 @@ class UserPremiumSubscriptionsController < ApplicationController
 
   def new
     @user_premium_subscription_form = UserPremiumSubscriptionForm.new(current_user.user_premium_subscriptions.build, current_user.payments.build)
+    @user_premium_subscription_form.user_premium_subscription.premium_plan = PremiumPlan.find(params[:premium_plan_id]) if params[:premium_plan_id]
   end
 
   def show
@@ -24,7 +25,7 @@ class UserPremiumSubscriptionsController < ApplicationController
   private
 
   def user_premium_subscription_params
-    params.require(:user_premium_subscription_form).permit(:premium_plan_id, :payment_method_id)
+    params.require(:user_premium_subscription_form).permit(:premium_plan_id, :payment_method_id, :amount, :paymill_token)
   end
 
 end

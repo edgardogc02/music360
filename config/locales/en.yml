@@ -16,6 +16,8 @@ en:
       subject: Challenge reminder on InstrumentChamp
     purchased_song_message:
       subject: Your purchase on InstrumentChamp
+    user_premium_subscription_message:
+      subject: Your premium subscription to InstrumentChamp
   activerecord:
     errors:
       models:

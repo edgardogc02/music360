@@ -1,8 +1,8 @@
 select_credit_card_payment = ->
   $("#select_credit_card_payment").click (e) ->
     $("#credit_card_payment_form_fields").removeClass("hide") # show() is not working
+    $("#user_purchased_songs_form").removeClass("hide")
     $("#select_payment_method").hide()
-    $("#submit_buy_song_form").removeClass("hide")
     e.preventDefault()
 
 select_payment_method = ->
