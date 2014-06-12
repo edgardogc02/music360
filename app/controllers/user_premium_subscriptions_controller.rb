@@ -3,7 +3,7 @@ class UserPremiumSubscriptionsController < ApplicationController
   before_action :authorize
 
   def new
-    @user_premium_subscription_form = UserPremiumSubscriptionForm.new(current_user.user_premium_subscriptions.build, current_user.payments.build)
+    @user_premium_subscription_form = UserPremiumSubscriptionForm.new(current_user.user_premium_subscriptions.build)
     @user_premium_subscription_form.user_premium_subscription.premium_plan = PremiumPlan.find(params[:premium_plan_id]) if params[:premium_plan_id]
   end
 
@@ -13,7 +13,7 @@ class UserPremiumSubscriptionsController < ApplicationController
   end
 
   def create
-    @user_premium_subscription_form = UserPremiumSubscriptionForm.new(current_user.user_premium_subscriptions.build, current_user.payments.build)
+    @user_premium_subscription_form = UserPremiumSubscriptionForm.new(current_user.user_premium_subscriptions.build)
 
     if @user_premium_subscription_form.save(user_premium_subscription_params)
       redirect_to @user_premium_subscription_form.user_premium_subscription, notice: "You have successfully updated your account to premium"

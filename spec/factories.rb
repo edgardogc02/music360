@@ -111,7 +111,7 @@ FactoryGirl.define do
   factory :user_premium_subscription do
     user
     premium_plan
-    payment_method
+    payment
   end
 
 end

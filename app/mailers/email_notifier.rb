@@ -38,9 +38,9 @@ class EmailNotifier < ActionMailer::Base
     mail to: @user_purchased_song.user.email
   end
 
-  def user_premium_subscription_message(user_premium_subscription, payment)
+  def user_premium_subscription_message(user_premium_subscription)
     @user_premium_subscription = user_premium_subscription
-    @payment = payment
+    @payment = user_premium_subscription.payment
 
     mail to: @user_premium_subscription.user.email
   end
@@ -53,6 +53,7 @@ class EmailNotifier < ActionMailer::Base
 
   def user_premium_subscription_renewal_message(user_premium_susbcription)
     @user_premium_subscription = user_premium_subscription
+    @payment = user_premium_subscription.payment
 
     mail to: @user_premium_subscription.user.email
   end

@@ -14,16 +14,15 @@ class UserPremiumSubscriptionForm
   validates :payment_method_id, presence: true
   validates :amount, presence: true
   validates :currency, presence: true
-  validates :status, presence: true
   validate :paymill_token_if_credit_card
 
-  delegate :user_id, :premium_plan_id, :payment_method_id, to: :user_premium_subscription
+  delegate :user_id, :premium_plan_id, :payment_id, to: :user_premium_subscription
 
-  delegate :amount, :status, :payment_method_id, :paymill_token, :currency, to: :payment
+  delegate :amount, :payment_method_id, :paymill_token, :currency, to: :payment
 
-  def initialize(user_premium_subscription, payment)
+  def initialize(user_premium_subscription)
     @user_premium_subscription = user_premium_subscription
-    @payment = payment
+    @payment = @user_premium_subscription.payment || @user_premium_subscription.build_payment(user_id: user_premium_subscription.user.id)
   end
 
   def persisted?
@@ -39,7 +38,7 @@ class UserPremiumSubscriptionForm
   end
 
   def payment
-    @payment ||= user.payments.build
+    @payment ||= user_premium_subscription.payment
   end
 
   def premium_plan
@@ -47,7 +46,7 @@ class UserPremiumSubscriptionForm
   end
 
   def save(params)
-    user_premium_subscription.attributes = params.slice(:premium_plan_id, :payment_method_id)
+    user_premium_subscription.attributes = params.slice(:premium_plan_id)
     payment.attributes = params.slice(:amount, :payment_method_id, :paymill_token, :currency)
     payment.status = "Confirmed"
 
@@ -55,7 +54,6 @@ class UserPremiumSubscriptionForm
       ActiveRecord::Base.transaction do
         generate_token
         user_premium_subscription.save
-        payment.save
         process_payment_with_paymill
         subscription_notification
         update_user_premium_account
@@ -106,7 +104,7 @@ class UserPremiumSubscriptionForm
   end
 
   def subscription_notification
-    EmailNotifier.user_premium_subscription_message(user_premium_subscription, payment).deliver
+    EmailNotifier.user_premium_subscription_message(user_premium_subscription).deliver
   end
 
 end

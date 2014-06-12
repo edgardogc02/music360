@@ -15,7 +15,7 @@ describe PaymentMethod do
   end
 
   context "Associations" do
-    [:payments, :user_premium_subscriptions].each do |attr|
+    [:payments].each do |attr|
       it "should have many #{attr}" do
         should have_many(attr)
       end

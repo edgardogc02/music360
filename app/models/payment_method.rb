@@ -5,7 +5,6 @@ class PaymentMethod < ActiveRecord::Base
   validates :html_id, presence: true
 
   has_many :payments
-  has_many :user_premium_subscriptions
 
   scope :default_order, -> { order(:display_position) }
 

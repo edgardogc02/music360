@@ -48,7 +48,7 @@ describe "UserPremiumSubscriptions" do
 
     def create_subscription
       payment_method = create(:payment_method)
-      @form = UserPremiumSubscriptionForm.new(@user.user_premium_subscriptions.build(premium_plan: @first_plan), @user.payments.build)
+      @form = UserPremiumSubscriptionForm.new(@user.user_premium_subscriptions.build(premium_plan: @first_plan))
 
       params = {user_premium_subscription_form: {amount: @first_plan.price, payment_method_id: payment_method.id, premium_plan_id: @first_plan.id, currency: @first_plan.currency}}
       @form.save(params[:user_premium_subscription_form])

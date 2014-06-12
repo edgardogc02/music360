@@ -14,7 +14,21 @@
         </p>
 
         <p>
-          Your premium subscription on InstrumentChamp has been renewed.
+          Your premium subscription on InstrumentChamp has been renewed. You can see below your payment details:
+        </p>
+
+        <p>
+          <ul>
+            <li>
+              Subscription: <%= @user_premium_subscription.premium_plan.name %>
+            </li>
+            <li>
+              Payment amount: <%= @payment.amount %> EUR
+            </li>
+            <li>
+              Payment method: <%= @payment.payment_method.name %>
+            </li>
+          </ul>
         </p>
 
 				<p>

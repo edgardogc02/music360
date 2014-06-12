@@ -8,6 +8,10 @@ describe Payment do
         should belong_to(assoc)
       end
     end
+
+    it "should have many user_premium_subscriptions" do
+      should have_many(:user_premium_subscriptions)
+    end
   end
 
 end

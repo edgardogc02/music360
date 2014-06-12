@@ -146,8 +146,8 @@ describe EmailNotifier do
   describe "send purchased premium subscription email" do
     let(:user) { create(:user) }
     let(:user_premium_subscription) { create(:user_premium_subscription, user: user) }
-    let(:payment) { create(:payment, user: user) }
-    let(:mail) { EmailNotifier.user_premium_subscription_message(user_premium_subscription, payment) }
+    let(:payment) { user_premium_subscription.payment }
+    let(:mail) { EmailNotifier.user_premium_subscription_message(user_premium_subscription) }
 
     it "sends purchased premium subscription email to buyer user" do
       mail.subject.should eq("Your premium subscription to InstrumentChamp")
@@ -165,12 +165,12 @@ describe EmailNotifier do
     end
   end
 
-  describe "send purchased premium subscription email" do
+  describe "send premium subscription cancellation email" do
     let(:user) { create(:user) }
     let(:user_premium_subscription) { create(:user_premium_subscription, user: user) }
     let(:mail) { EmailNotifier.user_premium_subscription_cancellation_message(user_premium_subscription) }
 
-    it "sends purchased premium subscription email to buyer user" do
+    it "sends premium subscription cancellation email to buyer user" do
       mail.subject.should eq("Premium subscription cancellation")
       mail.to.should eq([user.email])
       mail.from.should eq(["no-reply@instrumentchamp.com"])
@@ -179,6 +179,27 @@ describe EmailNotifier do
     it "renders the body" do
       mail.body.encoded.should have_content "Hi #{user.username},"
       mail.body.encoded.should have_content "You have successfully cancelled your premium subscription on InstrumentChamp"
+      check_greeting_lines
+    end
+  end
+
+  describe "send premium subscription renewal email" do
+    let(:user) { create(:user) }
+    let(:user_premium_subscription) { create(:user_premium_subscription, user: user) }
+    let(:mail) { EmailNotifier.user_premium_subscription_renewal_message(user_premium_subscription) }
+
+    it "sends premium subscription renewal email to buyer user" do
+      mail.subject.should eq("Premium subscription renewal")
+      mail.to.should eq([user.email])
+      mail.from.should eq(["no-reply@instrumentchamp.com"])
+    end
+
+    it "renders the body" do
+      mail.body.encoded.should have_content "Hi #{user.username},"
+      mail.body.encoded.should have_content "Your premium subscription on InstrumentChamp has been renewed. You can see below your payment details:"
+      mail.body.encoded.should have_content "Subscription: #{user_premium_subscription.premium_plan.name}"
+      mail.body.encoded.should have_content "Payment amount: #{payment.amount}"
+      mail.body.encoded.should have_content "Payment method: #{payment.payment_method.name}"
       check_greeting_lines
     end
   end
