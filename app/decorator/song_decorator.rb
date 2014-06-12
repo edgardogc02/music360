@@ -69,5 +69,9 @@ class SongDecorator < Draper::Decorator
   def challenge_class_attr
     'btn btn-sm btn-primary activation2 activation2_challenge_songs'
   end
+  
+  def display_rating
+    h.render 'songs/rating', rating: model.rating
+  end
 
 end

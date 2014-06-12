@@ -33,13 +33,7 @@
 			<% @top_songs.each do |song| %>
 				<tr class="<%= cycle("odd", "even") %>">
 					<td><%= link_to song.title, song_path(song), class: 'btn-secondary-color' %></td>
-					<td width="85">
-						<i class="glyphicon glyphicon-star primary-text-color"></i>
-						<i class="glyphicon glyphicon-star primary-text-color"></i>
-						<i class="glyphicon glyphicon-star primary-text-color"></i>
-						<i class="glyphicon glyphicon-star primary-text-color"></i>
-						<i class="glyphicon glyphicon-star primary-text-color"></i>
-					</td>
+					<td><%= song.display_rating %></td>
 					<td align="right">
 						<%= link_to song.play_url, class: "btn btn-primary btn-sm" do %>
 							<i class="glyphicon glyphicon-play"></i> Play

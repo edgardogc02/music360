@@ -37,5 +37,9 @@ class Song < ActiveRecord::Base
   def top_scores
     self.song_score.order('score DESC')
   end
+  
+  def rating
+    self.song_ratings.average("rating").round
+  end
 
 end
