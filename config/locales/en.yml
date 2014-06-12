@@ -18,6 +18,10 @@ en:
       subject: Your purchase on InstrumentChamp
     user_premium_subscription_message:
       subject: Your premium subscription to InstrumentChamp
+    user_premium_subscription_cancellation_message:
+      subject: Premium subscription cancellation
+    user_premium_subscription_renew_message:
+      subject: Premium subscription renewal
   activerecord:
     errors:
       models:

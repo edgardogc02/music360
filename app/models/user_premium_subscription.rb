@@ -12,4 +12,6 @@ class UserPremiumSubscription < ActiveRecord::Base
 
   friendly_id :token
 
+  scope :about_to_expire_in_hours, ->(hrs) { joins(:user).where('users.premium_until <= ?', hrs.hours.from_now) }
+
 end

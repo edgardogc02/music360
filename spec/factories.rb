@@ -104,6 +104,8 @@ FactoryGirl.define do
   factory :premium_plan do
     price 9.99
     sequence(:name) { |n| "plan_#{n}" }
+    duration_in_months 1
+    currency "EUR"
   end
 
   factory :user_premium_subscription do

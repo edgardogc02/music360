@@ -45,4 +45,15 @@ class EmailNotifier < ActionMailer::Base
     mail to: @user_premium_subscription.user.email
   end
 
+  def user_premium_subscription_cancellation_message(user_premium_subscription)
+    @user_premium_subscription = user_premium_subscription
+
+    mail to: @user_premium_subscription.user.email
+  end
+
+  def user_premium_subscription_renewal_message(user_premium_susbcription)
+    @user_premium_subscription = user_premium_subscription
+
+    mail to: @user_premium_subscription.user.email
+  end
 end

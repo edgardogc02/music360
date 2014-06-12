@@ -8,7 +8,7 @@ namespace :paymill do
 
     offers = Paymill::Offer.all
     offers.each do |offer|
-      PremiumPlan.create paymill_id: offer.id, name: offer.name, price: offer.amount / 100.0
+      PremiumPlan.create paymill_id: offer.id, name: offer.name, price: offer.amount / 100.0, currency: offer.currency
     end
   end
 end

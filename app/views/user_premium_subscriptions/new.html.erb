@@ -1,6 +1,9 @@
 <h1 class="page-header"><small><i class="glyphicon glyphicon-plus"></i></small> Premium</h1>
 
 <div class="row">
+
+<!--
+
 	<div class="col-md-6 col-sm-6">
 		<div class="well text-center">
 			<h2>Free</h2>
@@ -39,15 +42,16 @@
 			<%= link_to "Get Premium", "#", {class: "btn btn-primary btn-lg"} %>
 		</div>
 	</div>
+-->
 
   <div class="row">
-    <% PremiumPlan.all.each do |premium_plan| %>
+    <% PremiumPlan.default_order.each do |premium_plan| %>
       <div class="col-md-6 col-sm-6">
         <div class="well text-center">
           <h2><%= premium_plan.name %></h2>
           <p>
             <p>
-              Just <%= premium_plan.price %> EUR
+              Just <%= premium_plan.price %> <%= premium_plan.currency %>
             </p>
             <p>
               <%= link_to "Get Premium", new_user_premium_subscription_path(premium_plan_id: premium_plan.id), {class: "btn btn-primary btn-lg premium_plan_selected"} %>
@@ -57,6 +61,7 @@
       </div>
     <% end %>
   </div>
+
   <% if @user_premium_subscription_form.premium_plan %>
 
     <%= render "shared/payment_method_selection" %>
@@ -69,7 +74,7 @@
         <%= f.input :premium_plan_id, as: :hidden %>
         <%= f.input :payment_method_id, as: :hidden %>
         <%= f.input :amount, input_html: { value: @user_premium_subscription_form.premium_plan.price, id: "amount" }, as: :hidden %>
-
+        <%= f.input :currency, input_html: { value: @user_premium_subscription_form.premium_plan.currency, id: "currency" }, as: :hidden %>
         <%= f.button :submit, "Purchase Now", {class: "btn btn-primary btn-lg", id: "submit_purchase_form"} %>
       <% end %>
     </div>

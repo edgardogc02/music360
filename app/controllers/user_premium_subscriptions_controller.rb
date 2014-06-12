@@ -25,9 +25,9 @@ class UserPremiumSubscriptionsController < ApplicationController
 
   def destroy
     user_premium_subscription = UserPremiumSubscription.find(params[:id])
-    user_premium_subscription_cancellation = UserPremiumSubscriptionCancellation.new(user_premium_subscription)
+    user_premium_subscription_manager = UserPremiumSubscriptionManager.new(user_premium_subscription)
 
-    if user_premium_subscription_cancellation.destroy
+    if user_premium_subscription_manager.destroy
       redirect_to root_path, notice: "Your premium subscription was successfully deleted"
     else
       flash[:warning] = "Something went wrong. Please try again."
@@ -38,7 +38,7 @@ class UserPremiumSubscriptionsController < ApplicationController
   private
 
   def user_premium_subscription_params
-    params.require(:user_premium_subscription_form).permit(:premium_plan_id, :payment_method_id, :amount, :paymill_token)
+    params.require(:user_premium_subscription_form).permit(:premium_plan_id, :payment_method_id, :amount, :paymill_token, :currency)
   end
 
 end

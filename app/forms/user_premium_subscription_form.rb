@@ -13,12 +13,13 @@ class UserPremiumSubscriptionForm
 
   validates :payment_method_id, presence: true
   validates :amount, presence: true
+  validates :currency, presence: true
   validates :status, presence: true
   validate :paymill_token_if_credit_card
 
   delegate :user_id, :premium_plan_id, :payment_method_id, to: :user_premium_subscription
 
-  delegate :amount, :status, :payment_method_id, :paymill_token, to: :payment
+  delegate :amount, :status, :payment_method_id, :paymill_token, :currency, to: :payment
 
   def initialize(user_premium_subscription, payment)
     @user_premium_subscription = user_premium_subscription
@@ -47,7 +48,7 @@ class UserPremiumSubscriptionForm
 
   def save(params)
     user_premium_subscription.attributes = params.slice(:premium_plan_id, :payment_method_id)
-    payment.attributes = params.slice(:amount, :payment_method_id, :paymill_token)
+    payment.attributes = params.slice(:amount, :payment_method_id, :paymill_token, :currency)
     payment.status = "Confirmed"
 
     if valid?
@@ -57,9 +58,7 @@ class UserPremiumSubscriptionForm
         payment.save
         process_payment_with_paymill
         subscription_notification
-        user.premium = true
-        user.premium_until = 1.months.from_now
-        user.save
+        update_user_premium_account
       end
       true
     else
@@ -68,6 +67,12 @@ class UserPremiumSubscriptionForm
   rescue Paymill::PaymillError => e
     errors.add :base, "There was a problem with your credit card. Please try again."
     false
+  end
+
+  def update_user_premium_account
+    user.premium = true
+    user.premium_until = premium_plan.duration_in_months.to_i.months.from_now
+    user.save
   end
 
   private

@@ -61,6 +61,7 @@ class User < ActiveRecord::Base
   scope :include, ->(user_ids) { where('users.id_user IN (?)', user_ids) }
   scope :search_user_relationships, ->(user) { include(user.user_facebook_friends.pluck(:user_facebook_friend_id) + user.user_followers.pluck(:follower_id) + user.inverse_user_followers.pluck(:user_id) + user.challenges.pluck(:challenged_id) + user.proposed_challenges.pluck(:challenger_id)) }
   scope :order_by_challenges_count, -> { order('challenges_count DESC') }
+  scope :premium, -> { where(premium: true) }
 
 	def to_s
 		username
