@@ -14,4 +14,12 @@ describe UserPurchasedSong do
     end
   end
 
+  context "Associations" do
+    [:user, :song, :payment].each do |rel|
+      it "should belongs to #{rel}" do
+        should belong_to(rel)
+      end
+    end
+  end
+
 end

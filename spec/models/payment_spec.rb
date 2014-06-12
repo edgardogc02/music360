@@ -9,8 +9,10 @@ describe Payment do
       end
     end
 
-    it "should have many user_premium_subscriptions" do
-      should have_many(:user_premium_subscriptions)
+    [:user_premium_subscriptions, :user_purchased_songs].each do |rel|
+      it "should have many #{rel}" do
+        should have_many(rel)
+      end
     end
   end
 

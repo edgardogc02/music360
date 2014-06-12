@@ -3,6 +3,8 @@ class Song < ActiveRecord::Base
   mount_uploader :cover, SongCoverUploader
   mount_uploader :midi, MidiUploader
 
+  attr_accessor :currency
+
   paginates_per 30
 
   extend FriendlyId
@@ -36,6 +38,11 @@ class Song < ActiveRecord::Base
 
   def top_scores
     self.song_score.order('score DESC')
+  end
+
+  # TODO: MOVE THIS TO THE DB. THERE SHOULD BE A NEW TABLE CALLED PREMIUM_SONGS WITH COST AND CURRENCY
+  def currency
+    "EUR"
   end
 
 end

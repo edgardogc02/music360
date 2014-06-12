@@ -23,7 +23,7 @@
               Subscription: <%= @user_premium_subscription.premium_plan.name %>
             </li>
             <li>
-              Payment amount: <%= @payment.amount %> EUR
+              Payment amount: <%= @payment.amount %> <%= @payment.currency %>
             </li>
             <li>
               Payment method: <%= @payment.payment_method.name %>

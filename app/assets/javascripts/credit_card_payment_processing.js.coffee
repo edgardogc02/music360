@@ -50,7 +50,7 @@ root.submit_credit_card_payment = ->
       $("#submit_purchase_form").removeAttr "disabled"
     params =
       amount_int: parseInt($("#amount").val() * 100) # E.g. "15" for 0.15 Eur
-      currency: "EUR" # ISO 4217 e.g. "EUR"
+      currency: $("#currency").val() # ISO 4217 e.g. "EUR"
       number: $("#credit_card_number").val()
       exp_month: $(".credit_card_expiry_date").first().val()
       exp_year: $(".credit_card_expiry_date").last().val()

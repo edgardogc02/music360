@@ -14,16 +14,15 @@ class UserPurchasedSongForm
 
   validates :payment_method_id, presence: true
   validates :amount, presence: true
-  validates :status, presence: true
   validate :paymill_token_if_credit_card
 
   delegate :song_id, :user_id, to: :user_purchased_song
 
-  delegate :amount, :status, :payment_method_id, :paymill_token, to: :payment
+  delegate :amount, :payment_method_id, :paymill_token, to: :payment
 
-  def initialize(user_purchased_song, payment)
+  def initialize(user_purchased_song)
     @user_purchased_song = user_purchased_song
-    @payment = payment
+    @payment = @user_purchased_song.payment || @user_purchased_song.build_payment(user_id: user_purchased_song.user.id)
   end
 
   def persisted?
@@ -39,7 +38,7 @@ class UserPurchasedSongForm
   end
 
   def payment
-    @payment ||= user.payments.build
+    @payment ||= user_purhcased_songs.payment
   end
 
   def song
@@ -48,17 +47,16 @@ class UserPurchasedSongForm
 
   def save(params)
     user_purchased_song.attributes = params.slice(:song_id)
-    payment.attributes = params.slice(:amount, :payment_method_id, :paymill_token)
+    payment.attributes = params.slice(:amount, :payment_method_id, :paymill_token, :currency)
     payment.status = "Confirmed"
 
     if valid?
       ActiveRecord::Base.transaction do
         generate_token
         user_purchased_song.save
-        payment.save
         if paymill_token
           paymill_payment = Paymill::Payment.create(token: paymill_token)
-          paymill_transaction = Paymill::Transaction.create(amount: (amount*100).to_i, currency: "EUR", payment: paymill_payment.id, description: "#{user.email} purchased #{song.title}")
+          paymill_transaction = Paymill::Transaction.create(amount: (amount*100).to_i, currency: payment.currency, payment: paymill_payment.id, description: "#{user.email} purchased #{song.title}")
         end
         purchase_notification
       end

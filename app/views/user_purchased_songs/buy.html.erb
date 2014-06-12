@@ -1,7 +1,7 @@
 <%= render 'shared/header_page', title: 'Buy Song' %>
 
 <h2> Buy <%= @user_purchased_song_form.song.title %> from <%= @user_purchased_song_form.song.artist.title %> </h2>
-<h3> Just <%= @user_purchased_song_form.song.cost %> EUR</h3>
+<h3> Just <%= @user_purchased_song_form.song.cost %> <%= @user_purchased_song_form.song.currency %></h3>
 <p>
   <%= image_tag @user_purchased_song_form.song.cover_url %>
 </p>
@@ -18,7 +18,7 @@
       <%= f.input :song_id, as: :hidden %>
       <%= f.input :amount, input_html: { value: @user_purchased_song_form.song.cost, id: "amount" }, as: :hidden %>
       <%= f.input :payment_method_id, as: :hidden %>
-
+      <%= f.input :currency, input_html: { value: @user_purchased_song_form.song.currency, id: "currency" }, as: :hidden %>
       <%= f.button :submit, "Buy Now", {class: "btn btn-success", id: "submit_purchase_form"} %>
 
     <% end %>

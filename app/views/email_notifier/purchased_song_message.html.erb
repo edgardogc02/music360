@@ -23,7 +23,7 @@
               Song: <%= @user_purchased_song.song.title %> by <%= @user_purchased_song.song.artist.title %>
             </li>
             <li>
-              Payment amount: <%= @payment.amount %> EUR
+              Payment amount: <%= @payment.amount %> <%= @payment.currency %>
             </li>
             <li>
               Payment method: <%= @payment.payment_method.name %>
