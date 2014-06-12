@@ -39,6 +39,10 @@ class Song < ActiveRecord::Base
   def top_scores
     self.song_score.order('score DESC')
   end
+  
+  def rating
+    self.song_ratings.average("rating").round
+  end
 
   # TODO: MOVE THIS TO THE DB. THERE SHOULD BE A NEW TABLE CALLED PREMIUM_SONGS WITH COST AND CURRENCY
   def currency
