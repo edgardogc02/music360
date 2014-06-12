@@ -3,7 +3,7 @@ class UserPurchasedSongsController < ApplicationController
 
   def buy
     song = Song.find(params[:id])
-    @user_purchased_song_form = UserPurchasedSongForm.new(current_user.user_purchased_songs.build(song: song), current_user.payments.build)
+    @user_purchased_song_form = UserPurchasedSongForm.new(current_user.user_purchased_songs.build(song: song))
   end
 
   def show
@@ -11,7 +11,7 @@ class UserPurchasedSongsController < ApplicationController
   end
 
   def create
-    @user_purchased_song_form = UserPurchasedSongForm.new(current_user.user_purchased_songs.build, current_user.payments.build)
+    @user_purchased_song_form = UserPurchasedSongForm.new(current_user.user_purchased_songs.build)
 
     if @user_purchased_song_form.save(user_purchased_song_form_params)
       flash[:notice] = "You have successfully purchased this song."
@@ -25,7 +25,7 @@ class UserPurchasedSongsController < ApplicationController
   private
 
   def user_purchased_song_form_params
-    params.require(:user_purchased_song_form).permit(:song_id, :amount, :payment_method_id, :paymill_token)
+    params.require(:user_purchased_song_form).permit(:song_id, :amount, :payment_method_id, :paymill_token, :currency)
   end
 
 end
