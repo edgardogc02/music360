@@ -1,5 +1,34 @@
 <%= render 'shared/header_page', title: 'Premium' %>
 
 <p>
-  Great! You are now a premium user.
+  Great! You are now a premium user. You can see more details below:
 </p>
+
+<p>
+  <div>
+    Subscription: <%= @user_premium_subscription.premium_plan.name %>
+  </div>
+  <div>
+    Premium until: <%= current_user.premium_until %>
+  </div>
+</p>
+
+<% if @paymill_payment_details %>
+  <p>
+    <h4>Your payment details</h4>
+    <div>
+      Card: <%= @paymill_payment_details["card_type"] %>
+    </div>
+    <div>
+      Card Holder: <%= @paymill_payment_details["card_holder"] %>
+    </div>
+    <div>
+      Card Number: **** **** **** <%= @paymill_payment_details["last4"] %>
+    </div>
+    <div>
+      Exipers on: <%= @paymill_payment_details["expire_month"] %>/<%= @paymill_payment_details["expire_year"] %>
+    </div>
+  </p>
+<% end %>
+
+<%= link_to "Cancel subscription", user_premium_subscription_path, {method: :delete, class: "btn btn-danger"} %>
