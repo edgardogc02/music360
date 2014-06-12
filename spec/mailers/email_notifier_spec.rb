@@ -186,6 +186,7 @@ describe EmailNotifier do
   describe "send premium subscription renewal email" do
     let(:user) { create(:user) }
     let(:user_premium_subscription) { create(:user_premium_subscription, user: user) }
+    let(:payment) { user_premium_subscription.payment }
     let(:mail) { EmailNotifier.user_premium_subscription_renewal_message(user_premium_subscription) }
 
     it "sends premium subscription renewal email to buyer user" do

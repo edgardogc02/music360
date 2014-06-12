@@ -51,7 +51,7 @@ class EmailNotifier < ActionMailer::Base
     mail to: @user_premium_subscription.user.email
   end
 
-  def user_premium_subscription_renewal_message(user_premium_susbcription)
+  def user_premium_subscription_renewal_message(user_premium_subscription)
     @user_premium_subscription = user_premium_subscription
     @payment = user_premium_subscription.payment
 
