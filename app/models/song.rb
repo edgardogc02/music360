@@ -34,4 +34,8 @@ class Song < ActiveRecord::Base
 		"ic:song=#{URI::escape(title)}.mid"
 	end
 
+  def top_scores
+    self.song_score.order('score DESC')
+  end
+
 end

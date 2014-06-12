@@ -14,17 +14,16 @@
 			<%= link_to "Create challenge", new_challenge_path(song_id: @song.id), class: "btn btn-primary" %>
 		</p>
 	</div>
-	<div class="col-lg-8 hide">
+	<div class="col-lg-8">
 		<%= render 'shared/header_page', title: 'Top Scores', sub_header: true, view_more: 'View more', view_more_path: people_path %>
 		
 		<table width="100%" class="datagrid">
-			<% @users.each do |user| %>
+			<% @scores.each do |score| %>
 				<tr class="<%= cycle("odd", "even") %>">
-					<td class="thumb"><%= image_tag(user.imagename_url, class: 'avatar-xs') %></td>
-					<td><%= link_to user.username, person_path(user), class: 'btn-secondary-color' %></td>
-					<!--<td><%= user.level %></td>-->
-					<!--<td>1000pts</td>-->
-					<td align="right"><%= link_to 'Challenge', new_challenge_path(song_id: @song.id, challenged_id: user.id), class: 'btn btn-primary btn-sm' %></td>
+					<td><%= link_to score.user.username, person_path(score.user), class: 'btn-secondary-color' %></td>
+					<td><%= score.score %> pts</td>
+					<td><%= score.instrument.name %></td>
+					<td align="right"><%= link_to 'Challenge', new_challenge_path(song_id: score.song.id, challenged_id: score.user.id), class: 'btn btn-primary btn-sm' %></td>
 				</tr>
 			<% end %>
 		</table>
