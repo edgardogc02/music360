@@ -22,6 +22,8 @@ en:
       subject: Premium subscription cancellation
     user_premium_subscription_renewal_message:
       subject: Premium subscription renewal
+    user_premium_subscription_renewal_alert_message:
+      subject: Premium subscription renewal alert
   activerecord:
     errors:
       models:

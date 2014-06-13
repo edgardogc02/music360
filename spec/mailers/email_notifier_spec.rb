@@ -205,6 +205,28 @@ describe EmailNotifier do
     end
   end
 
+  describe "send premium subscription renewal alert email" do
+    let(:user) { create(:user) }
+    let(:user_premium_subscription) { create(:user_premium_subscription, user: user) }
+    let(:payment) { user_premium_subscription.payment }
+    let(:mail) { EmailNotifier.user_premium_subscription_renewal_alert_message(user_premium_subscription) }
+
+    it "sends premium subscription renewal alert email to buyer user" do
+      mail.subject.should eq("Premium subscription renewal alert")
+      mail.to.should eq([user.email])
+      mail.from.should eq(["no-reply@instrumentchamp.com"])
+    end
+
+    it "renders the body" do
+      mail.body.encoded.should have_content "Hi #{user.username},"
+      mail.body.encoded.should have_content "Your premium subscription on InstrumentChamp is going to be automatically renewed. You can see below your payment details:"
+      mail.body.encoded.should have_content "Subscription: #{user_premium_subscription.premium_plan.name}"
+      mail.body.encoded.should have_content "Payment amount: #{payment.amount} #{payment.currency}"
+      mail.body.encoded.should have_content "Payment method: #{payment.payment_method.name}"
+      check_greeting_lines
+    end
+  end
+
   def check_greeting_lines
     mail.body.encoded.should have_content "Kind regards,"
     mail.body.encoded.should have_content "The instrumentchamp team."

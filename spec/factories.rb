@@ -11,6 +11,11 @@ FactoryGirl.define do
     factory :admin do
       admin 1
     end
+
+    factory :premium_user do
+      premium 1
+      premium_until 1.months.from_now
+    end
   end
 
   factory :user_follower do
