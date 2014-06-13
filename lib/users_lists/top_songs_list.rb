@@ -11,19 +11,15 @@ class TopSongsList < PaginatedSongsList
   end
 
   def display_more?
-    true
-  end
-  
-  def display_more_link
-    songs_path
+    false
   end
 
   def songs
-    @songs ||= SongDecorator.decorate_collection(Song.by_popularity.limit(12))
+    @songs ||= SongDecorator.decorate_collection(Song.by_popularity.page page)
   end
   
   def paginate?
-    false
+    true
   end
 
 end
