@@ -12,15 +12,11 @@ class TopUsersList < PaginatedUsersList
   end
 
   def display_more?
-    true
-  end
-  
-  def display_more_link
-    people_path
+    false
   end
 
   def users
-    @users ||= UserDecorator.decorate_collection(User.not_deleted.exclude(exclude_user.id).order_by_challenges_count.limit(12))
+    @users ||= UserDecorator.decorate_collection(User.not_deleted.exclude(exclude_user.id).order_by_challenges_count.page page)
   end
 
   def exclude_user
@@ -28,7 +24,7 @@ class TopUsersList < PaginatedUsersList
   end
   
   def paginate?
-    false
+    true
   end
 
 end
