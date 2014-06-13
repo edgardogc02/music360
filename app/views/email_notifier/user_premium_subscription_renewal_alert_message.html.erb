@@ -1,0 +1,48 @@
+<table class="email_container" width="600px;">
+	<tr>
+		<td>
+			<%= render 'email_notifier/header' %>
+		</td>
+	</tr>
+</table>
+<table class="email_container">
+	<tr>
+		<td>
+			<div class="email_content" style="font-family: arial; font-size: 12px; color: #333; padding-left: 20px;">
+        <p>
+          Hi <%= @user_premium_subscription.user.username %>,
+        </p>
+
+        <p>
+          Your premium subscription on InstrumentChamp is going to be automatically renewed. You can see below your payment details:
+        </p>
+
+        <p>
+          <ul>
+            <li>
+              Subscription: <%= @user_premium_subscription.premium_plan.name %>
+            </li>
+            <li>
+              Payment amount: <%= @payment.amount %> <%= @payment.currency %>
+            </li>
+            <li>
+              Payment method: <%= @payment.payment_method.name %>
+            </li>
+          </ul>
+        </p>
+
+				<p>
+				  Kind regards, <br />
+				  The instrumentchamp team.
+			  </p>
+			</div>
+		</td>
+	</tr>
+</table>
+<table class="email_container">
+	<tr>
+		<td class="email_footer">
+			<%= render 'email_notifier/footer' %>
+		</td>
+	</tr>
+</table>

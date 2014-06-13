@@ -13,3 +13,10 @@ task :renew_user_premium_subscription => :environment do
     UserPremiumSubscriptionManager.new(user_premium_subscription).renew
   end
 end
+
+task :user_premium_subscription_alert_renewal => :environment do
+  UserPremiumSubscription.about_to_expire(24).find_each(batch_size: 1000) do |user_premium_subscription|
+    UserPremiumSubscriptionManager.new(user_premium_subscription).renewal_alert
+  end
+end
+
