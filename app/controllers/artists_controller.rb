@@ -3,18 +3,18 @@ class ArtistsController < ApplicationController
 	before_action :set_artist, only: [:show, :edit, :update, :destroy]
 
 	def index
-		@artists = Artist.all.page params[:page]
+		@artists = ArtistDecorator.decorate_collection(Artist.all.limit(12))
+		@top_artists = Echowrap.artist_top_hottt(results: 12, bucket: ['hotttnesss', 'images'])
 	end
 
 	def show
-	  @songs = SongDecorator.decorate_collection(@artist.songs.limit(4))    
-    users = User.not_deleted.exclude(current_user).search_user_relationships(current_user).limit(4) | User.not_deleted.exclude(current_user).limit(4)
-    @users = UserChallengeDecorator.decorate_collection(users.take(4))    
-    @challenges = ChallengeDecorator.decorate_collection(Challenge.where("song_id IN (?)", @artist.songs.pluck(:id)).finished.limit(4))
-   
-    @artist = ArtistDecorator.decorate(@artist)
-   
-    @more_songs = SongChallengeDecorator.decorate_collection(Song.free.not_user_created.by_popularity.limit(4))
+	  @artist = ArtistDecorator.decorate(@artist)
+	  if @artist.songs
+	    @songs = SongDecorator.decorate_collection(@artist.songs.limit(4))    
+      @challenges = ChallengeDecorator.decorate_collection(Challenge.where("song_id IN (?)", @artist.songs.pluck(:id)).finished.limit(4))
+    end
+    
+    #@node = Musicnodes.new("createalbumnode", "U2").get_album_node.parsed_response
 	end
 
   def most_popular
@@ -28,7 +28,9 @@ class ArtistsController < ApplicationController
 	private
 
 	def set_artist
-		@artist = Artist.find(params[:id])
+	  @artist = Artist.find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    @artist = EchonestArtist.new(params[:id])
 	end
 
 	def artist_params

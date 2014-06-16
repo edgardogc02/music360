@@ -1,6 +1,10 @@
 class ArtistDecorator < Draper::Decorator
 
   delegate_all
+  
+  def self.collection_decorator_class
+    PaginatingDecorator
+  end
 
   def edit_button
     if h.signed_in? and h.current_user.admin?

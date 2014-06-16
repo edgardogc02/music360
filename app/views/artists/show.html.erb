@@ -1,23 +1,35 @@
 <%= render 'shared/header_page', title: @artist.title %>
 
 <div class="row">
-	<div class="col-lg-4">
-		<p><%= image_tag(@artist.imagename_url, {alt: @artist.title, class: 'thumbnail'}) %></p>
-		<p><%= @artist.edit_button %></p>
+	<div class="col-lg-3">
+		<p><%= image_tag(@artist.public_image_url, {alt: @artist.title, class: 'thumbnail'}) %></p>	
 	</div>
-	<div class="col-lg-8">		
+	<div class="col-lg-9">		
 		<ul class="nav nav-tabs">
+			<li class="active"><a href="#info" data-toggle="tab">Info</a></li>
 		  <li><a href="#songs" data-toggle="tab">Songs</a></li>
 		  <li><a href="#challenges_tab" data-toggle="tab">Challenges</a></li>
 		</ul>
 		<br />
 		<div class="tab-content">
-		  <div class="tab-pane active" id="songs">
+			<div class="tab-pane active" id="info">
+				<% if @artist.bio %>
+					<p><%= truncate(@artist.bio.text, length: 1000, separator: ' ') { link_to "Read more", @artist.bio.url, {class: 'margin-left', target: '_blank'} } %></p>
+				<% else %>
+					<p>No info available</p>
+				<% end %>
+			</div>
+		  <div class="tab-pane" id="songs">
 		  	<% if !@songs.blank? %>
 					<section>
 						<%= render 'shared/header_page', title: 'Songs', sub_header: true, view_more: 'View more', view_more_path: songs_path %>
 		
 						<table width="100%" class="datagrid">
+							<tr class="head">
+								<td>Song</td>
+								<td>Rating</td>
+								<td></td>
+							</tr>
 							<% @songs.each do |song| %>
 								<tr class="<%= cycle("odd", "even") %>">
 									<td><%= link_to song.title, song_path(song), class: 'btn-secondary-color' %></td>
@@ -59,16 +71,3 @@
 		
 	</div>
 </div>
-
-<!--
-<br /><br />
-
-<%= render 'shared/header_page', title: 'More songs', sub_header:true, view_more: 'View more', view_more_path: songs_path %>
-
-<div class="thumbnail-grid row">
-  <%= render @more_songs %>
-</div>
-
-<%= render 'shared/banner_ad' %>
-
--->

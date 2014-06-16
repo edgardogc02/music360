@@ -67,8 +67,19 @@
 }
 
 .datagrid {
+  .head {
+    //background: #A1D6D5;
+    //border-bottom: 8px solid #FFF;
+    color: $brand-primary;
+    font-size: 14px;
+    
+    td {
+      padding-bottom: 15px;
+    }
+  }
   td {
     padding: 8px 5px;
+    text-align: center;
   }
   .odd {
     td {
@@ -81,10 +92,12 @@
   td:first-child
   { 
     padding-left: 10px;
+    text-align: left;
   }
   td:last-child
   { 
     padding-right: 10px;
+    text-align: right;
   }
   td.thumb
   { 

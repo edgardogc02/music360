@@ -1,24 +1,20 @@
 <%= render 'shared/header_page', title: 'Most popular 50 artists' %>
 
 <div class="thumbnail-grid row">
-
-  <% @artists.each do |artist| %>
-
-		<div class="masonry-img col-md-3 col-sm-4 col-xs-6">
+  <% @artists.each do |artist| %>		
+		<div class="masonry-img col-md-2 col-sm-4 col-xs-6">
 			<div class="thumbnail">
-	      <%= image_tag artist.images.first.url %>    
-	      <div class="overlay-actions">
-		      <div class="thumb-info">
-						<h4><%= artist.name %></h4>
-					</div>
-		      <div class="btn-group-vertical">
-		        <%= link_to "Follow", "#", {class: 'btn btn-sm btn-default'} %>
-		        <%= link_to "Challenge", "#", {class: 'btn btn-sm btn-default'} %>
+	      <% if !artist.images.empty? %>
+					<%= image_tag artist.images.first.url %>
+				<% else %>
+					<%= image_tag(asset_path('default_artist.png')) %>
+				<% end %>
+				<div class="actions-content">
+					<div class="spacer-sm">
+						<div class="link_header"><%= link_to artist.name, artist_path(artist.name.parameterize) %></div>
 					</div>
 	  		</div>
 	  	</div>
-  	</div>
-  	
+  	</div>  	
   <% end %>
-
 </div>
