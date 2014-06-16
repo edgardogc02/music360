@@ -27,7 +27,7 @@ InstrumentchampPrototype::Application.routes.draw do
     get 'top_list', on: :collection
   end
 
-  resources :apps
+  resources :apps, path: "download"
 
   resources :challenges do
     get 'yours', on: :collection
