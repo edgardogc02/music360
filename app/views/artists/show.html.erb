@@ -6,7 +6,7 @@
 			<% if @artist.imagename_url %>
 				<% if @artist.imagename_url != @artist.imagename.default_url %>
 					<%= image_tag(@artist.imagename_url, {alt: @artist.title, class: 'thumbnail'}) %>
-				<% elsif %>
+				<% elsif @artist.public_image_url %>
 					<%= image_tag(@artist.public_image_url.url, {alt: @artist.title, class: 'thumbnail'}) %>
 				<% else %>
 					<%= image_tag(@artist.imagename_url, {alt: @artist.title, class: 'thumbnail'}) %>
