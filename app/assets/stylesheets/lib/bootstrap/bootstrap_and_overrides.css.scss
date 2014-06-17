@@ -117,3 +117,15 @@ color: #C09853;
 .bs-callout-info h4 {
 color: #456968;
 }
+
+//SIMPLE FORM
+
+.radio,
+.checkbox {
+  margin-bottom: 20px;
+}
+/* line 200, C:/Ruby193/lib/ruby/gems/1.9.1/gems/bootstrap-sass-3.1.1.0/vendor/assets/stylesheets/bootstrap/_forms.scss */
+.radio label,
+.checkbox label {
+  font-weight: bold;
+}
