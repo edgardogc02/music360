@@ -7,10 +7,12 @@
 			<div class="masonry-img col-md-2 col-sm-4 col-xs-6">	
 				<div class="overflow_thumb">
 					<%= link_to artist_path(artist), class: 'thumbnail' do %>
-						<% if artist.public_image_url.blank? %>
+						<% if artist.imagename_url != artist.imagename.default_url %>
 							<%= image_tag(artist.imagename_url, {alt: artist.title}) %>
-						<% else %>
+						<% elsif %>
 							<%= image_tag(artist.public_image_url.url, {alt: artist.title}) %>
+						<% else %>
+							<%= image_tag(artist.imagename_url, {alt: artist.title}) %>
 						<% end %>
 					<% end %>					
 				</div>

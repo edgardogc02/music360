@@ -2,11 +2,15 @@
 
 <div class="row">
 	<div class="col-lg-3">
-		<% if @artist.public_image_url %>
-			<p><%= image_tag(@artist.public_image_url.url, {alt: @artist.title, class: 'thumbnail'}) %></p>
-		<% else %>
-			<p><%= image_tag(@artist.imagename_url, {alt: @artist.title, class: 'thumbnail'}) %></p>
-		<% end %>	
+		<p>
+			<% if @artist.imagename_url != @artist.imagename.default_url %>
+				<%= image_tag(@artist.imagename_url, {alt: @artist.title, class: 'thumbnail'}) %>
+			<% elsif %>
+				<%= image_tag(@artist.public_image_url.url, {alt: @artist.title, class: 'thumbnail'}) %>
+			<% else %>
+				<%= image_tag(@artist.imagename_url, {alt: @artist.title, class: 'thumbnail'}) %>
+			<% end %>
+		</p>
 	</div>
 	<div class="col-lg-9">		
 		<ul class="nav nav-tabs">
