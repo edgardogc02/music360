@@ -77,7 +77,7 @@ describe "Songs" do
         visit apps_path
         click_on "I already installed the app"
         visit songs_path
-        page.should have_link "Play", href: @song.desktop_app_uri
+        page.should have_link "Play", href: @song.decorate.play_url
       end
 
       it "should display link to song in desktop app with user instrument in play button" do
@@ -89,7 +89,7 @@ describe "Songs" do
         visit apps_path
         click_on "I already installed the app"
         visit songs_path
-        page.should have_link "Play", href: @song.desktop_app_uri + "&instrument_id=" + guitar.id.to_s
+        page.should have_link "Play", href: @song.desktop_app_uri + "&user_auth_token=#{@user.auth_token}&instrument_id=#{guitar.id.to_s}"
       end
     end
 
@@ -181,6 +181,13 @@ describe "Songs" do
       visit for_challenge_songs_path
       page.should have_content(@song.title)
       page.should_not have_content(hidden_song.title)
+    end
+
+    it "should include the user auth token in the play link" do
+      @user.already_installed_desktop_app
+      visit songs_path
+
+      page.should have_link "Play", href: @song.desktop_app_uri + "&user_auth_token=#{@user.auth_token}"
     end
   end
 
