@@ -93,6 +93,10 @@ class UserAuthentication
       user.just_signup = true
     end
 
+    if UserFacebookAccount.new(user).fake_account?
+      FacebookFriendsWorker.perform_async(user.id) # save facebook friends in the db
+    end
+
     user = update_user_from_omniauth(user)
     user.user_omniauth_credentials.create_or_update_from_omniauth(auth)
 

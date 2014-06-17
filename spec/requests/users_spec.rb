@@ -94,6 +94,28 @@ describe "Users" do
       page.driver.submit :delete, person_path(user), {}
       user.should_not be_deleted
     end
+
+    it "should create the user facebook friends if it was a facebook fake user" do
+      visit login_path
+
+      mock_facebook_auth_hash
+      click_link "facebook_signin"
+
+      user = User.first
+      create_facebook_omniauth_credentials(user)
+      UserFacebookFriends.new(user, UserFacebookAccount.new(user).top_friends).save
+
+      click_on "Sign out"
+
+      new_user = User.find "Dick Smithberg"
+      new_user.facebook_friends.should eq([])
+
+      expect do
+        mock_facebook_friend_auth_hash
+        click_link "facebook_signin"
+      end.to change(FacebookFriendsWorker.jobs, :size).by(1)
+    end
+
   end
 
   describe "user signed in" do
