@@ -14,7 +14,7 @@ class Artist < ActiveRecord::Base
 	end
 	
 	def public_image_url
-	  Echowrap.artist_images(name: self.title).first.url if Echowrap.artist_images(name: self.title)
+	  Echowrap.artist_images(name: self.title).first if Echowrap.artist_images(name: self.title)
   end
 	
 end
