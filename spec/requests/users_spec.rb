@@ -116,6 +116,22 @@ describe "Users" do
       end.to change(FacebookFriendsWorker.jobs, :size).by(1)
     end
 
+    it "should create a new user with phone number" do
+      visit signup_path
+
+      within("#new_user") do
+        fill_in 'user[username]', with: "user test with phone"
+        fill_in 'user[email]', with: "test@test.com"
+        fill_in 'user[password]', with: "12345"
+        fill_in 'user[password_confirmation]', with: "12345"
+        fill_in 'user[phone_number]', with: "987654321"
+      end
+
+      click_on 'Sign Up'
+
+      new_user = User.find_by_username("user test with phone")
+      new_user.phone_number.should eq("987654321")
+    end
   end
 
   describe "user signed in" do

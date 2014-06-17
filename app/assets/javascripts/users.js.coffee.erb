@@ -14,6 +14,13 @@ $(document).on('page:load', unfollow_user)
 $(document).ready(follow_user)
 $(document).on('page:load', follow_user)
 
+click_on_feedback_call = ->
+  $(document).on 'click', '#user_feedback_call', (e) ->
+    $('.sign_up_phone_number').toggle()
+
+$(document).ready(click_on_feedback_call)
+$(document).on('page:load', click_on_feedback_call)
+
 <% if Rails.env.production? %>
 click_on_user_challenge = ->
   $('.activation2_challenge_users').click ->
