@@ -28,7 +28,11 @@ class EchonestArtist
   end
   
   def public_image_url
-    @public_image_url ||= Echowrap.artist_images(name: name, results: 1).first.url
+    @public_image_url ||= Echowrap.artist_images(name: name, results: 1).first
+  end
+  
+  def imagename_url
+    false
   end
 
 end

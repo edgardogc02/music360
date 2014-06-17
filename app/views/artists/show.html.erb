@@ -3,12 +3,16 @@
 <div class="row">
 	<div class="col-lg-3">
 		<p>
-			<% if @artist.imagename_url != @artist.imagename.default_url %>
-				<%= image_tag(@artist.imagename_url, {alt: @artist.title, class: 'thumbnail'}) %>
-			<% elsif %>
-				<%= image_tag(@artist.public_image_url.url, {alt: @artist.title, class: 'thumbnail'}) %>
+			<% if @artist.imagename_url %>
+				<% if @artist.imagename_url != @artist.imagename.default_url %>
+					<%= image_tag(@artist.imagename_url, {alt: @artist.title, class: 'thumbnail'}) %>
+				<% elsif %>
+					<%= image_tag(@artist.public_image_url.url, {alt: @artist.title, class: 'thumbnail'}) %>
+				<% else %>
+					<%= image_tag(@artist.imagename_url, {alt: @artist.title, class: 'thumbnail'}) %>
+				<% end %>
 			<% else %>
-				<%= image_tag(@artist.imagename_url, {alt: @artist.title, class: 'thumbnail'}) %>
+				<%= image_tag(@artist.public_image_url.url, {alt: @artist.title, class: 'thumbnail'}) %>
 			<% end %>
 		</p>
 	</div>
