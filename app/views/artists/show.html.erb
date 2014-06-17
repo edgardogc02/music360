@@ -2,7 +2,11 @@
 
 <div class="row">
 	<div class="col-lg-3">
-		<p><%= image_tag(@artist.public_image_url, {alt: @artist.title, class: 'thumbnail'}) %></p>	
+		<% if @artist.public_image_url %>
+			<p><%= image_tag(@artist.public_image_url.url, {alt: @artist.title, class: 'thumbnail'}) %></p>
+		<% else %>
+			<p><%= image_tag(@artist.imagename_url, {alt: @artist.title, class: 'thumbnail'}) %></p>
+		<% end %>	
 	</div>
 	<div class="col-lg-9">		
 		<ul class="nav nav-tabs">
