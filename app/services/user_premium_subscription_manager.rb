@@ -19,6 +19,10 @@ class UserPremiumSubscriptionManager
     send_renew_notification_email
   end
 
+  def renewal_alert
+    EmailNotifier.user_premium_subscription_renewal_alert_message(@user_premium_subscription).deliver
+  end
+
   def destroy
     if @user_premium_subscription.paymill_subscription_token
       Paymill::Subscription.delete(@user_premium_subscription.paymill_subscription_token)

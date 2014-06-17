@@ -41,11 +41,11 @@ class SongDecorator < Draper::Decorator
   def play_url
     if !h.is_mobile?
       if h.signed_in? and h.current_user.installed_desktop_app?
+        url = model.desktop_app_uri + "&user_auth_token=#{h.current_user.auth_token}"
         if h.current_user.has_instrument_selected?
-          model.desktop_app_uri + "&instrument_id=" + h.current_user.instrument_id.to_s
-        else
-          model.desktop_app_uri
+          url = url + "&instrument_id=#{h.current_user.instrument_id.to_s}"
         end
+        url
       else
         h.apps_path
       end
@@ -69,7 +69,7 @@ class SongDecorator < Draper::Decorator
   def challenge_class_attr
     'btn btn-sm btn-primary activation2 activation2_challenge_songs'
   end
-  
+
   def display_rating
     h.render 'songs/rating', rating: model.rating
   end
