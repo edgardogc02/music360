@@ -1,5 +1,7 @@
 ActiveAdmin.register Song do
 
+  menu priority: 2
+
   filter :title
   filter :category
   filter :artist

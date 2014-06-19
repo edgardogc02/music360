@@ -215,6 +215,39 @@ describe User do
       UserFacebookAccount.new(user).groupies_to_connect_with.should eq(User.find(user_facebook_friend_ids))
     end
 
+    it "should return the correct user level" do
+      level1 = create(:level, xp: 0)
+      level2 = create(:level, xp: 107)
+      level3 = create(:level, xp: 314)
+      level4 = create(:level, xp: 621)
+      level5 = create(:level, xp: 1028)
+      level6 = create(:level, xp: 1535)
+      level7 = create(:level, xp: 2142)
+
+      user = create(:user)
+      user.level.should eq(level1.title)
+
+      user.xp = 0
+      user.save
+      user.level.should eq(level1.title)
+
+      user.xp = 20
+      user.save
+      user.level.should eq(level1.title)
+
+      user.xp = 107
+      user.save
+      user.level.should eq(level2.title)
+
+      user.xp = 778
+      user.save
+      user.level.should eq(level4.title)
+
+      user.xp = 18782
+      user.save
+      user.level.should eq(level7.title)
+    end
+
     context "paid songs" do
       it "should not be able to buy free songs" do
         user = create(:user)

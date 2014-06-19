@@ -25,6 +25,10 @@ describe "Dashboard" do
       page.should have_link PaymentMethod.count, admin_payment_methods_path
     end
 
+    it "should have levels panel with total levels" do
+      page.should have_link Level.count, admin_levels_path
+    end
+
     it "should have songs link in the header menu" do
       resource = @all_resources[Song]
       resource.should be_include_in_menu
@@ -32,6 +36,11 @@ describe "Dashboard" do
 
     it "should have users link in the header menu" do
       resource = @all_resources[User]
+      resource.should be_include_in_menu
+    end
+
+    it "should have levels link in the header menu" do
+      resource = @all_resources[Level]
       resource.should be_include_in_menu
     end
 

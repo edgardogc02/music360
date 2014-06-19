@@ -119,4 +119,9 @@ FactoryGirl.define do
     payment
   end
 
+  factory :level do
+    sequence(:title) { |n| "level_#{n}" }
+    xp 0
+  end
+
 end

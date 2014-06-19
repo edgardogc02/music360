@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140619124305) do
+ActiveRecord::Schema.define(version: 20140619135108) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -86,6 +86,13 @@ ActiveRecord::Schema.define(version: 20140619124305) do
     t.string   "image"
     t.boolean  "visible"
     t.string   "created_by"
+  end
+
+  create_table "levels", force: true do |t|
+    t.string   "title"
+    t.integer  "xp"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "payment_methods", force: true do |t|
@@ -284,6 +291,7 @@ ActiveRecord::Schema.define(version: 20140619124305) do
     t.integer  "challenges_count"
     t.integer  "first_song_id"
     t.integer  "first_challenge_id"
+    t.integer  "xp"
   end
 
   add_index "users", ["auth_token"], name: "index_users_on_auth_token", unique: true, using: :btree

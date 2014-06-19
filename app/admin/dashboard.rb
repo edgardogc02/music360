@@ -29,6 +29,11 @@ ActiveAdmin.register_page "Dashboard" do
           link_to PremiumPlan.count, admin_premium_plans_path
         end
       end
+      column do
+        panel "Levels" do
+          link_to Level.count, admin_levels_path
+        end
+      end
     end
   end
 end

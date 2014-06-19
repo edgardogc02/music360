@@ -189,6 +189,7 @@ class UserAuthentication
     #  user.city = @request.location.city
     #end
     user.challenges_count = 0
+    user.xp = 0
     user
   end
 

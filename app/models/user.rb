@@ -74,7 +74,11 @@ class User < ActiveRecord::Base
 	end
 
 	def level
-		"Beginner"
+	  if self.xp.blank?
+	    Level.find_by_xp(0).title
+	  else
+		  Level.where(["xp <= ?", self.xp]).last.title
+		end
 	end
 
 	def just_signup?
