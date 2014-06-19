@@ -30,6 +30,24 @@ describe "Apps" do
       visit apps_path
       page.should_not have_link "I already installed the app", href: apps_path(installed: true)
     end
+
+    it "should save the user selected song" do
+      song = create(:song)
+      visit songs_path
+      click_on "Play"
+
+      @user.reload
+      @user.first_song_id.should eq(song.id)
+    end
+
+    it "should save the user selected song" do
+      challenge = create(:challenge, challenger: @user)
+      visit challenges_path
+      click_on "Start challenge"
+
+      @user.reload
+      @user.first_challenge_id.should eq(challenge.id)
+    end
   end
 
   context "user not signed in" do

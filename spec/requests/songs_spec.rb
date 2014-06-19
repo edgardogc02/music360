@@ -60,7 +60,7 @@ describe "Songs" do
 
       it "should display play link if user installed the desktop app" do
         visit songs_path
-        page.should have_link "Play", href: apps_path
+        page.should have_link "Play", href: apps_path + "?song_id=#{@song.id}"
 
         @user.already_installed_desktop_app
         @user.reload
@@ -70,7 +70,7 @@ describe "Songs" do
 
       it "should display link to apps in the play button" do
         visit songs_path
-        page.should have_link "Play", href: apps_path
+        page.should have_link "Play", href: apps_path + "?song_id=#{@song.id}"
       end
 
       it "should display link to song in desktop app in play button" do

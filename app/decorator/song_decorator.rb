@@ -47,7 +47,7 @@ class SongDecorator < Draper::Decorator
         end
         url
       else
-        h.apps_path
+        h.apps_path + "?song_id=#{model.id}"
       end
     else
       h.mobile_landing_path

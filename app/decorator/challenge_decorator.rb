@@ -6,7 +6,7 @@ class ChallengeDecorator < Draper::Decorator
       if h.signed_in? and h.current_user.installed_desktop_app?
         model.desktop_app_uri + "&user_auth_token=" + h.current_user.auth_token
       else
-        h.apps_path
+        h.apps_path + "?challenge_id=#{model.id}"
       end
     else
       h.mobile_landing_path
@@ -44,7 +44,7 @@ class ChallengeDecorator < Draper::Decorator
       h.for_challenge_people_path
     end
   end
-  
+
   def select_opponent_link
     h.link_to select_opponent_link_name, select_opponent_path, {class: 'btn btn-primary', data: { toggle: "modal", target: "#selectUser"}}
   end

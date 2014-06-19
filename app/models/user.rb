@@ -149,6 +149,16 @@ class User < ActiveRecord::Base
     countrycode == "US"
   end
 
+  def update_first_song(song_id)
+    self.first_song_id = song_id
+    save
+  end
+
+  def update_first_challenge(challenge_id)
+    self.first_challenge_id = challenge_id
+    save
+  end
+
 	private
 
 	def self.generate_random_password(length)

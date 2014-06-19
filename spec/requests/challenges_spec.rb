@@ -156,13 +156,13 @@ describe "Challenges" do
       it "should redirect the user to the app page if they want to start the challenge" do
         private_challenge = create(:challenge, public: false, challenger: @user)
         visit challenges_path
-        page.should have_link "challenge_start_#{private_challenge.id}", href: apps_path
+        page.should have_link "challenge_start_#{private_challenge.id}", href: apps_path + "?challenge_id=#{private_challenge.id}"
       end
 
       it "should be redirected to the apps page if challenge is public and user wants to start the challenge" do
         public_challenge = create(:challenge, public: true, challenger: @user)
         visit challenges_path
-        page.should have_link "challenge_start_#{public_challenge.id}", href: apps_path
+        page.should have_link "challenge_start_#{public_challenge.id}", href: apps_path + "?challenge_id=#{public_challenge.id}"
       end
     end
 
