@@ -27,7 +27,7 @@
 					<td></td>
 				</tr>
 				<% @scores.each do |score| %>
-					<% if score.user %>
+					<% if score.user and score.score > 0 %>
 						<tr class="<%= cycle("odd", "even") %>">
 							<td><%= link_to score.user.username, person_path(score.user), class: 'btn-secondary-color' %></td>
 							<td><%= score.score %></td>

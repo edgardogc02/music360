@@ -1,10 +1,16 @@
 <div class="hide" id="credit_card_payment_form_fields">
-  <h4>Fill in your credit card details</h4>
+  <%= render 'shared/header_page', title: 'Fill in your credit card details', sub_header: true %>
+  
+  <div class="row">
+  	<div class="col-lg-4">
+  
   <%= f.input :paymill_token, input_html: {id: "paymill_token"}, as: :hidden %>
   <%= f.input :card_holdername, input_html: {id: "credit_card_holdername"} %>
   <%= f.input :card_number, input_html: {id: "credit_card_number"} %>
   <%= f.input :card_cvc, input_html: {id: "credit_card_cvc"} %>
   <%= f.input :card_expiry_date, as: :date, discard_day: true, order: [:month, :year], start_year: Date.today.year, end_year: Date.today.year + 15, prompt: "Select...", input_html: {class: "credit_card_expiry_date"} %>
+		</div>
+	</div>
 
   <div id="paymill_error">
     <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>

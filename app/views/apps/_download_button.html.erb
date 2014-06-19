@@ -5,34 +5,28 @@
 		$(document).ready(function() {
 			var node = $("#download-btn");
 			if (navigator.appVersion.indexOf("Mac")!=-1){
-				node.html('<a class="download_btn" href="<%= mac_download_link %>"><img src="http://blog.instrumentchamp.com/wp-content/uploads/2014/01/download_ic_osx.png" alt="Download InstrumentChamp for Windows" class="downloadbutton"/></a>');
+				node.html('<a class="download_btn" href=""><img src="http://blog.instrumentchamp.com/wp-content/uploads/2014/01/download_ic_osx.png" alt="Download InstrumentChamp for Windows" class="downloadbutton"/></a>');
 			} else {
-		  	node.html('<a class="download_btn" href="<%= windows_download_link %>"><img src="http://blog.instrumentchamp.com/wp-content/uploads/2014/01/download_ic_win.png" alt="Download InstrumentChamp for Windows" class="downloadbutton"/></a>');
+		  	node.html('<a class="download_btn" href=""><img src="http://blog.instrumentchamp.com/wp-content/uploads/2014/01/download_ic_win.png" alt="Download InstrumentChamp for Windows" class="downloadbutton"/></a>');
 		  }
 
+			function download_action() {
+				$("#getReady").modal("show");
+			  if (navigator.appVersion.indexOf("Mac")!=-1){
+					window.location = "<%= mac_download_link %>";
+				} else {
+			  	window.location = "<%= windows_download_link %>";
+			  }
+			  window.focus();
+			}
+
 	  	$(".download_btn").click(function(e) {
-			  var action;
-			  e.preventDefault();
-			  action = $(this).attr("href");
-			  $("#getReady").modal("show").on("shown.bs.modal", function() {
-			    window.setTimeout((function() {
-			      $("#getReady").modal("hide").on("hidden.bs.modal", function() {
-			        window.location = action;
-			        window.focus();
-			      });
-			    }), 4000);
-			  });
+			  download_action();
 			});
 
 			<% if params[:auto_download] %>
-				$( window ).load(function() {
-					$("#getReady").modal("show");
-				  if (navigator.appVersion.indexOf("Mac")!=-1){
-						window.location = <%= mac_download_link %>;
-					} else {
-				  	window.location = <%= windows_download_link %>;
-				  }
-				  window.focus();
+				$(window).load(function() {
+					download_action();
 				});
 			<% end %>
 	  });

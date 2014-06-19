@@ -1,6 +1,4 @@
-<h1 class="page-header"><small><i class="glyphicon glyphicon-plus"></i></small> Premium</h1>
-
-<div class="row">
+<%= render 'shared/header_page', title: 'Premium' %>
 
 <!--
 
@@ -44,55 +42,104 @@
 	</div>
 -->
 
-  <div class="row">
-    <% PremiumPlan.default_order.each do |premium_plan| %>
-      <div class="col-md-6 col-sm-6">
-        <div class="well text-center">
-          <h2><%= premium_plan.name %></h2>
-          <p>
-            <p>
-              Just <%= premium_plan.price %> <%= premium_plan.currency %>
-            </p>
-            <p>
-              <%= link_to "Get Premium", new_user_premium_subscription_path(premium_plan_id: premium_plan.id), {class: "btn btn-primary btn-lg premium_plan_selected"} %>
-            </p>
-          </p>
-        </div>
+<div class="row">
+	<div class="col-md-6">
+		<div class="well text-center well-plan">
+    	<div class="plan-title_">
+    		<h2>Free</h2>
+    	</div>
+      <div class="plan-descripction">
+      	<p>
+      		Learn to play your favorite instrument <br />
+      		Challenge your friends online <br />
+					Completely free
+      	</p>
+      	<p>
+      		<%= image_tag(asset_path('plan_free_icons.png')) %>
+				</p>
+				<p>
+      		Play with guitar, piano or drums
+					made possible by ads
+      	</p>
+        <div>
+          <a href="<%= apps_path(auto_download: true) %>" data-no-turbolink='true' class="btn btn-primary btn-lg premium_plan_selected">
+          	Get Free
+          </a>
+        </div>        	
       </div>
+    </div>
+	</div>	
+	<div class="col-md-6">
+		<div class="well text-center well-plan">
+    	<div class="plan-title">
+    		<h2>Premium</h2>
+    	</div>
+      <div class="plan-descripction">
+      	<p>
+      		Play in a band with your friends<br />
+      		Multiplayer game<br />
+      		Ad-free
+      	</p>
+      	<p>
+      		<%= image_tag(asset_path('plan_premium_icons.png')) %>
+				</p>
+				<p>
+					Extended catalogue of free songs
+				</p>
+				<hr />
+				<div class="row">
+				  <% @premium_plans.each do |premium_plan| %>
+				    <div class="col-md-4 col-sm-4">
+			      	<div class="plan-title">
+			      		<h4><%= premium_plan.name %></h4>
+			      	</div>
+			        <div class="plan-descripction">
+			        	<span class="plan-currency"><%= premium_plan.currency %></span>
+			          <span class="plan-price"><%= premium_plan.price %></span>
+			          <span class="plan-per-month">€ <%= number_with_precision(premium_plan.price / premium_plan.duration_in_months, precision: 2) %> per month</span>
+			          <br />
+			          <div>
+			            <%= link_to "Get Premium", new_user_premium_subscription_path(premium_plan_id: premium_plan.id), {class: "btn btn-primary premium_plan_selected"} %>
+			          </div> 
+			        </div>
+				    </div>
+				  <% end %>
+			  </div>
+      </div>
+    </div>
+	</div>
+</div>
+
+<% if @user_premium_subscription_form.premium_plan %>
+
+  <%= render "shared/payment_method_selection" %>
+
+  <div class="hide" id="user_premium_subscription_form">
+    <%= simple_form_for @user_premium_subscription_form, url: user_premium_subscriptions_path, html: {id: "user_purchase_form"} do |f| %>
+
+      <%= render "shared/credit_card_details", f: f %>
+
+      <%= f.input :premium_plan_id, as: :hidden %>
+      <%= f.input :payment_method_id, as: :hidden %>
+      <%= f.input :amount, input_html: { value: @user_premium_subscription_form.premium_plan.price, id: "amount" }, as: :hidden %>
+      <%= f.input :currency, input_html: { value: @user_premium_subscription_form.premium_plan.currency, id: "currency" }, as: :hidden %>
+      <%= f.button :submit, "Purchase Now", {class: "btn btn-primary btn-lg", id: "submit_purchase_form"} %>
     <% end %>
   </div>
 
-  <% if @user_premium_subscription_form.premium_plan %>
+  <%= content_for(:js_scripts) do %>
 
-    <%= render "shared/payment_method_selection" %>
+    <script type="text/javascript">
+      var PAYMILL_PUBLIC_KEY = "<%= PAYMILL_PUBLIC_KEY %>";
+    </script>
+    <script type="text/javascript" src="https://bridge.paymill.com/"></script>
 
-    <div class="hide" id="user_premium_subscription_form">
-      <%= simple_form_for @user_premium_subscription_form, url: user_premium_subscriptions_path, html: {id: "user_purchase_form"} do |f| %>
-
-        <%= render "shared/credit_card_details", f: f %>
-
-        <%= f.input :premium_plan_id, as: :hidden %>
-        <%= f.input :payment_method_id, as: :hidden %>
-        <%= f.input :amount, input_html: { value: @user_premium_subscription_form.premium_plan.price, id: "amount" }, as: :hidden %>
-        <%= f.input :currency, input_html: { value: @user_premium_subscription_form.premium_plan.currency, id: "currency" }, as: :hidden %>
-        <%= f.button :submit, "Purchase Now", {class: "btn btn-primary btn-lg", id: "submit_purchase_form"} %>
-      <% end %>
-    </div>
-
-    <%= content_for(:js_scripts) do %>
-
-      <script type="text/javascript">
-        var PAYMILL_PUBLIC_KEY = "<%= PAYMILL_PUBLIC_KEY %>";
-      </script>
-      <script type="text/javascript" src="https://bridge.paymill.com/"></script>
-
-      <script type="text/javascript">
-        $(document).ready(function() {
-          submit_credit_card_payment();
-        });
-      </script>
-    <% end %>
-
+    <script type="text/javascript">
+      $(document).ready(function() {
+        submit_credit_card_payment();
+      });
+    </script>
   <% end %>
 
-</div>
+<% end %>
+
