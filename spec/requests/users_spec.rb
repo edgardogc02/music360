@@ -132,6 +132,15 @@ describe "Users" do
       new_user = User.find_by_username("user test with phone")
       new_user.phone_number.should eq("987654321")
     end
+
+    it "should create a challenge against lars willner after a user sign up" do
+      challenger_username = "Lars Willner"
+      challenger = create(:user, username: challenger_username)
+      signup('testuser', 'testuser@test.com', 'password')
+      user = User.find_by_username('testuser')
+      user.proposed_challenges.count.should eq(1)
+      user.proposed_challenges.last.challenger.username.should eq(challenger_username)
+    end
   end
 
   describe "user signed in" do

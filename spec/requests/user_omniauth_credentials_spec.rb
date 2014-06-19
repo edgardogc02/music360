@@ -17,6 +17,15 @@ describe "UserOmniauthCredentials" do
         facebook_user.should_not be_blank
         UserFacebookAccount.new(facebook_user).credentials.should_not be_blank
       end
+
+      it "should create a new challenge for the sign up user" do
+        challenger_username = "Lars Willner"
+        challenger = create(:user, username: challenger_username)
+        signin_with_facebook
+        facebook_user = User.find_by(username: "Facebook test user")
+        facebook_user.proposed_challenges.count.should eq(1)
+        facebook_user.proposed_challenges.last.challenger.username.should eq(challenger_username)
+      end
     end
 
     context "user already signed in" do

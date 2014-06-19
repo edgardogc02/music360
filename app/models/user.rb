@@ -69,6 +69,10 @@ class User < ActiveRecord::Base
 		username
 	end
 
+	def self.lars_willner
+	  User.find_by_username("Lars Willner")
+	end
+
 	def level
 		"Beginner"
 	end
