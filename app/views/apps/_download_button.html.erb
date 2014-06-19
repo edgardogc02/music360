@@ -2,14 +2,14 @@
 
 <%= content_for(:js_scripts) do %>
 	<script type="text/javascript">
-		$(document).ready(function() {			
+		$(document).ready(function() {
 			var node = $("#download-btn");
 			if (navigator.appVersion.indexOf("Mac")!=-1){
-				node.html('<a class="download_btn" href="https://s3-us-west-2.amazonaws.com/instrumentchamp/InstrumentChamp_Band_Edition.dmg"><img src="http://blog.instrumentchamp.com/wp-content/uploads/2014/01/download_ic_osx.png" alt="Download InstrumentChamp for Windows" class="downloadbutton"/></a>');
+				node.html('<a class="download_btn" href="<%= mac_download_link %>"><img src="http://blog.instrumentchamp.com/wp-content/uploads/2014/01/download_ic_osx.png" alt="Download InstrumentChamp for Windows" class="downloadbutton"/></a>');
 			} else {
-		  	node.html('<a class="download_btn" href="https://s3-us-west-2.amazonaws.com/instrumentchamp/InstrumentChamp.msi"><img src="http://blog.instrumentchamp.com/wp-content/uploads/2014/01/download_ic_win.png" alt="Download InstrumentChamp for Windows" class="downloadbutton"/></a>');
+		  	node.html('<a class="download_btn" href="<%= windows_download_link %>"><img src="http://blog.instrumentchamp.com/wp-content/uploads/2014/01/download_ic_win.png" alt="Download InstrumentChamp for Windows" class="downloadbutton"/></a>');
 		  }
-	  
+
 	  	$(".download_btn").click(function(e) {
 			  var action;
 			  e.preventDefault();
@@ -23,20 +23,20 @@
 			    }), 4000);
 			  });
 			});
-			
+
 			<% if params[:auto_download] %>
 				$( window ).load(function() {
 					$("#getReady").modal("show");
 				  if (navigator.appVersion.indexOf("Mac")!=-1){
-						window.location = "https://s3-us-west-2.amazonaws.com/instrumentchamp/InstrumentChamp_Band_Edition.dmg";
+						window.location = <%= mac_download_link %>;
 					} else {
-				  	window.location = "https://s3-us-west-2.amazonaws.com/instrumentchamp/InstrumentChamp.msi"
+				  	window.location = <%= windows_download_link %>;
 				  }
 				  window.focus();
-				});				
+				});
 			<% end %>
 	  });
-	  
+
   </script>
 <% end %>
 

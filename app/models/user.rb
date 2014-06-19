@@ -141,6 +141,10 @@ class User < ActiveRecord::Base
     !self.oauth_uid.blank?
   end
 
+  def american?
+    countrycode == "US"
+  end
+
 	private
 
 	def self.generate_random_password(length)
