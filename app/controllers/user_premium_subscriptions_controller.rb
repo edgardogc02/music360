@@ -5,6 +5,7 @@ class UserPremiumSubscriptionsController < ApplicationController
   def new
     @user_premium_subscription_form = UserPremiumSubscriptionForm.new(current_user.user_premium_subscriptions.build)
     @user_premium_subscription_form.user_premium_subscription.premium_plan = PremiumPlan.find(params[:premium_plan_id]) if params[:premium_plan_id]
+    @premium_plans = PremiumPlanDecorator.decorate_collection(PremiumPlan.default_order)
   end
 
   def show

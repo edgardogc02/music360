@@ -6,29 +6,31 @@
 
 <p>
   <div>
-    Subscription: <%= @user_premium_subscription.premium_plan.name %>
+    <b>Subscription:</b> <%= @user_premium_subscription.premium_plan.name %>
   </div>
   <div>
-    Premium until: <%= current_user.premium_until %>
+    <b>Premium until:</b> <%= current_user.premium_until %>
   </div>
 </p>
+<br />
 
 <% if @paymill_payment_details %>
   <p>
-    <h4>Your payment details</h4>
+  	<h2>Your payment details</h2>
     <div>
-      Card: <%= @paymill_payment_details["card_type"] %>
+      <b>Card:</b> <%= @paymill_payment_details["card_type"] %>
     </div>
     <div>
-      Card Holder: <%= @paymill_payment_details["card_holder"] %>
+      <b>Card Holder:</b> <%= @paymill_payment_details["card_holder"] %>
     </div>
     <div>
-      Card Number: **** **** **** <%= @paymill_payment_details["last4"] %>
+      <b>Card Number:</b> **** **** **** <%= @paymill_payment_details["last4"] %>
     </div>
     <div>
-      Exipers on: <%= @paymill_payment_details["expire_month"] %>/<%= @paymill_payment_details["expire_year"] %>
+      <b>Exipers on:</b> <%= @paymill_payment_details["expire_month"] %>/<%= @paymill_payment_details["expire_year"] %>
     </div>
   </p>
 <% end %>
 
+<br />
 <%= link_to "Cancel subscription", user_premium_subscription_path, {method: :delete, class: "btn btn-danger"} %>
