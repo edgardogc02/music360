@@ -1,3 +1,6 @@
+<%= set_meta_description "Challenge #{@artist.title} with InstrumentChamp. The best way to learn to play music." %>
+<%= set_page_title "Challenge #{@artist.title} with InstrumentChamp" %>
+
 <%= render 'shared/header_page', title: @artist.title %>
 
 <div class="row">
@@ -16,7 +19,7 @@
 			<% end %>
 		</p>
 	</div>
-	<div class="col-lg-9">		
+	<div class="col-lg-9">
 		<ul class="nav nav-tabs">
 			<li class="active"><a href="#info" data-toggle="tab">Info</a></li>
 		  <li><a href="#songs" data-toggle="tab">Songs</a></li>
@@ -35,7 +38,7 @@
 		  	<% if !@songs.blank? %>
 					<section>
 						<%= render 'shared/header_page', title: 'Songs', sub_header: true, view_more: 'View more', view_more_path: songs_path %>
-		
+
 						<table width="100%" class="datagrid">
 							<tr class="head">
 								<td>Song</td>
@@ -49,13 +52,13 @@
 									<td align="right">
 										<%= link_to song.play_url, class: "btn btn-primary btn-sm" do %>
 											<i class="glyphicon glyphicon-play"></i> Play
-										<% end %>			
+										<% end %>
 										<%= link_to "Challenge", new_challenge_path(song_id: song.id), class: "btn btn-primary btn-sm" %>
 									</td>
 								</tr>
 							<% end %>
 						</table>
-						
+
 					</section>
 				<% else %>
 					<p>No songs</p>
@@ -64,7 +67,7 @@
 		  <div class="tab-pane" id="challenges_tab">
 		  	<% if !@challenges.blank? %>
 			  	<%= render 'shared/header_page', title: 'Challenges', sub_header: true, view_more: 'View more', view_more_path: challenges_path %>
-			
+
 					<table width="100%" class="datagrid">
 						<% @challenges.each do |challenge| %>
 							<tr class="<%= cycle("odd", "even") %>">
@@ -80,6 +83,6 @@
 				<% end %>
 		  </div>
 		</div>
-		
+
 	</div>
 </div>
