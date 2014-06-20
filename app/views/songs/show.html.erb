@@ -1,3 +1,6 @@
+<%= set_meta_description "Learn to play #{@song.title} with InstrumentChamp. The best way to learn to play music." %>
+<%= set_page_title "Learn to play #{@song.title} with InstrumentChamp" %>
+
 <%= render 'shared/header_page', title: @song.title, link_text: @song.artist.title, link_path: artist_path(@song.artist) %>
 
 <!--<iframe width="300" height="380"  scrolling="no" frameborder="0" allowtransparency="true" style="border:none; overflow:hidden; height:380px;" src="http://www.musicnodes.com/widget/public/view?wid=2105&id=538dbb91f51e46ff6f0008ce&services=spotify,youtube,deezer"></iframe>-->
@@ -10,15 +13,15 @@
 		<p>
 			<%= link_to @song.play_url, class: "btn btn-primary" do %>
 				<i class="glyphicon glyphicon-play"></i> Play
-			<% end %>			
+			<% end %>
 			<%= link_to "Create challenge", new_challenge_path(song_id: @song.id), class: "btn btn-primary" %>
 		</p>
 	</div>
-	
+
 	<% unless @scores.blank? %>
 		<div class="col-lg-9">
 			<%= render 'shared/header_page', title: 'Top Scores', sub_header: true %>
-			
+
 			<table width="100%" class="datagrid">
 				<tr class="head">
 					<td>User</td>
@@ -38,8 +41,8 @@
 				<% end %>
 			</table>
 		</div>
-	<% end %>	
-	
+	<% end %>
+
 </div>
 <!--
 <br /><br />

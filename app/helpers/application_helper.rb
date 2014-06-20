@@ -1,5 +1,29 @@
 module ApplicationHelper
 
+  def page_title
+    if content_for?(:title)
+      "#{content_for(:title)} - InstrumentChamp".html_safe
+    else
+      "Learn to play guitar, learn to play piano, learn to play drums - InstrumentChamp"
+    end
+  end
+
+  def set_page_title(text)
+    content_for(:title){ text }
+  end
+
+  def page_meta_description
+    if content_for?(:meta_description)
+      (content_for(:meta_description).to_s).html_safe
+    else
+      "Learn to play guitar, learn to play piano, learn to play drums and more on InstrumentChamp"
+    end
+  end
+
+  def set_meta_description(text)
+    content_for(:meta_description){ text }
+  end
+
 	def nav_link(link_text, link_path, options={})
 	  class_name = current_page?(link_path) ? 'active' : ''
     options.merge!({class: class_name +' list-group-item'})
@@ -78,7 +102,7 @@ module ApplicationHelper
       root_path
     end
   end
-  
+
   def action_button(url, text, options={}, icon=false)
     extra_class = ' btn btn-sm btn-primary action_button'
     if options[:class]
@@ -91,7 +115,7 @@ module ApplicationHelper
         content_tag(:i, '', class: icon) + content_tag(:span, text)
       else
         content_tag(:span, text)
-      end      
+      end
     end
   end
 
