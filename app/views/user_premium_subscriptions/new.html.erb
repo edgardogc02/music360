@@ -96,7 +96,7 @@
 			        <div class="plan-descripction">
 			        	<span class="plan-currency"><%= premium_plan.currency %></span>
 			          <span class="plan-price"><%= premium_plan.price %></span>
-			          <span class="plan-per-month">€ <%= number_with_precision(premium_plan.price / premium_plan.duration_in_months, precision: 2) %> per month</span>
+			          <%= premium_plan.save_percentage %>
 			          <br />
 			          <div>
 			            <%= link_to "Get Premium", new_user_premium_subscription_path(premium_plan_id: premium_plan.id), {class: "btn btn-primary premium_plan_selected"} %>
@@ -112,15 +112,15 @@
 
 <% if @user_premium_subscription_form.premium_plan %>
 
-  <%= render "shared/payment_method_selection" %>
+  <% render "shared/payment_method_selection" %>
 
-  <div class="hide" id="user_premium_subscription_form">
+	<div id="user_premium_subscription_form">
     <%= simple_form_for @user_premium_subscription_form, url: user_premium_subscriptions_path, html: {id: "user_purchase_form"} do |f| %>
-
+			
       <%= render "shared/credit_card_details", f: f %>
 
       <%= f.input :premium_plan_id, as: :hidden %>
-      <%= f.input :payment_method_id, as: :hidden %>
+      <%= f.input :payment_method_id, input_html: { value: PaymentMethod::CREDIT_CARD_ID }, as: :hidden %>
       <%= f.input :amount, input_html: { value: @user_premium_subscription_form.premium_plan.price, id: "amount" }, as: :hidden %>
       <%= f.input :currency, input_html: { value: @user_premium_subscription_form.premium_plan.currency, id: "currency" }, as: :hidden %>
       <%= f.button :submit, "Purchase Now", {class: "btn btn-primary btn-lg", id: "submit_purchase_form"} %>
