@@ -2,7 +2,7 @@ module ApplicationHelper
 
   def page_title
     if content_for?(:title)
-      "#{content_for(:title)} - InstrumentChamp".html_safe
+      "#{content_for(:title)}".html_safe
     else
       "Learn to play guitar, learn to play piano, learn to play drums - InstrumentChamp"
     end

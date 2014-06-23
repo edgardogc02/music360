@@ -3,7 +3,11 @@ class SongsController < ApplicationController
 	before_action :set_song, only: [:show, :destroy]
 
 	def index
-	  songs = Song.not_user_created
+	  if display_premium?
+      songs = Song.not_user_created
+	  else
+	    songs = Song.free.not_user_created
+	  end
 	  if params[:title]
       songs = songs.by_title(params[:title])
     else

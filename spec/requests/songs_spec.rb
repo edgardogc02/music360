@@ -6,7 +6,6 @@ describe "Songs" do
     before(:each) do
       @song = create(:song, cost: 0)
       @user = login
-      level = create(:level)
     end
 
     it "should display song view" do
@@ -21,8 +20,10 @@ describe "Songs" do
     end
 
     it "should display songs" do
-      new_free_song = create(:song, cost: 0)
+      new_free_song = create(:song, cost: 0)      \
 #      paid_song = create(:song, cost: 1)
+
+      visit root_path
 
       page.should have_content "Songs"
       click_on "Songs"
