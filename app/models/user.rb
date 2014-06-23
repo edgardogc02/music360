@@ -73,6 +73,7 @@ class User < ActiveRecord::Base
 	  User.find_by_username("Lars Willner")
 	end
 
+  # TODO: Refactor me
 	def level
 	  if self.xp.blank?
 	    user_level = Level.where(xp: 0).first
@@ -82,7 +83,12 @@ class User < ActiveRecord::Base
 	      "Beginner"
 	    end
 	  else
-		  Level.where(["xp <= ?", self.xp]).last.title
+		  xp_level = Level.where(["xp <= ?", self.xp]).last
+		  if xp_level
+		    xp_level.title
+		  else
+		    "Beginner"
+		  end
 		end
 	end
 
