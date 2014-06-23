@@ -22,3 +22,17 @@ img.thumbnail {
     }
   } 
 }
+
+@media (max-width: $screen-xs-max) {
+  .thumbnail {
+    &.thumbnail-challenge {
+      width: 100px;
+      margin-bottom: 10px;
+      display: inline-block;
+      
+      img {
+        width: 100px;
+      }
+    } 
+  }
+}

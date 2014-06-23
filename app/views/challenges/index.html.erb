@@ -3,13 +3,13 @@
 <% unless @my_challenges.blank? %>
 
 	<div class="row">
-		<div class="col-md-4 text-center">
+		<div class="col-md-4 text-center col-xs-4">
 			<div class="thumbnail thumbnail-challenge">
 				<%= image_tag current_user.imagename_url %>	
 			</div>
 	  	<div class="link_header"><%= @my_challenges.first.challenger.username %></div>
 		</div>
-		<div class="col-md-4 col-sm-2 col-xs-2 text-center">
+		<div class="col-md-4 text-center col-xs-4">
 			<h3>VS</h3>
 			<br />
 			<div class="thumbnail thumbnail-challenge">
@@ -18,7 +18,7 @@
 			<div class="link_header"><%= link_to @my_challenges.first.song.title, artist_song_path(@my_challenges.first.song.artist, @my_challenges.first.song), class: "song-title" %></div>
 			<div class="link_subheader"><%= link_to @my_challenges.first.song.artist.title, artist_path(@my_challenges.first.song.artist), class: "song-artist" %></div>
 		</div>
-		<div class="col-md-4 text-center">
+		<div class="col-md-4 text-center col-xs-4">
 			<div class="thumbnail thumbnail-challenge">
 				<%= image_tag @my_challenges.first.challenged.imagename_url %>
 			</div>		
