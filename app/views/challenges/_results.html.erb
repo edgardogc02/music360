@@ -1,15 +1,20 @@
-<div>
-  <%= challenge.challenger.username %>: <strong><%= challenge.score_u1 %></strong> points
-  <% if challenge.challenger_instrument %>
-    on <strong><%= challenge.challenger_instrument.name %></strong>
-  <% end %>
-  <%= content_tag :span, 'Winner', class: 'label label-success' if challenge.challenger_won? %>
-</div>
-
-<div>
-  <%= challenge.challenged.username %>: <strong><%= challenge.score_u2 %></strong> points
-  <% if challenge.challenged_instrument %>
-    on <strong><%= challenge.challenged_instrument.name %></strong>
-  <% end %>
-	<%= content_tag :span, 'Winner', class: 'label label-success' if challenge.challenged_won? %>
+<div class="clearfix">
+	<div class="challenger">
+		<%= challenge.display_start_challenge_button %>
+		<strong><%= challenge.score_u1 %></strong> points		
+		<% if challenge.challenger_instrument %>
+	    on <strong><%= challenge.challenger_instrument.name %></strong>
+	  <% end %>
+	  <div><%= content_tag :span, 'Winner', class: 'label label-success' if challenge.challenger_won? %></div>
+	</div>
+	<div class="song no-visible">
+		Song	
+	</div>
+	<div class="challenged">
+		<strong><%= challenge.score_u2 %></strong> points		
+		<% if challenge.challenged_instrument %>
+	    on <strong><%= challenge.challenged_instrument.name %></strong>
+	  <% end %>
+	  <div><%= content_tag :span, 'Winner', class: 'label label-success' if challenge.challenged_won? %></div>
+	</div>		
 </div>
