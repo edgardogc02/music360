@@ -13,14 +13,9 @@ describe "Challenges" do
       click_on "challenge_#{@song.id}"
       current_path.should eq(new_challenge_path)
 
-      page.should have_content("1. Challenge chosen")
       page.should have_content(@song.title)
       page.should have_content(@song.artist.title)
-      page.should have_content("Writer")
-      page.should have_content(@song.writer)
-      page.should have_content("Publisher")
-      page.should have_content(@song.publisher)
-      page.should have_content("2. Choose friend to challenge")
+      page.should have_content("Choose friend to challenge")
       page.should have_content(@user.username)
       page.should have_content("Choose your opponent")
       page.should have_content("VS")
@@ -45,11 +40,11 @@ describe "Challenges" do
       #page.should have_xpath("//meta")
       page.should have_content("Your challenges")
       page.should have_content(@song.title)
-      page.should have_content("by")
+#      page.should have_content("by")
       page.should have_content(@song.artist.title)
-      page.should have_content("Created by")
+#      page.should have_content("Created by")
       page.should have_content(@user.username)
-      page.should have_content("Challenged")
+#      page.should have_content("Challenged")
       page.should have_content(challenged_user.username)
     end
 
@@ -140,6 +135,7 @@ describe "Challenges" do
 
       click_on "People"
       click_on "challenge_#{challenged_user.id}"
+      click_on "Choose your challenge"
       click_on "challenge_#{@song.id}"
       click_on "Start Challenge"
 
@@ -156,13 +152,13 @@ describe "Challenges" do
       it "should redirect the user to the app page if they want to start the challenge" do
         private_challenge = create(:challenge, public: false, challenger: @user)
         visit challenges_path
-        page.should have_link "challenge_start_#{private_challenge.id}", href: apps_path + "?challenge_id=#{private_challenge.id}"
+        page.should have_link "Start first challenge", href: apps_path + "?challenge_id=#{private_challenge.id}"
       end
 
       it "should be redirected to the apps page if challenge is public and user wants to start the challenge" do
         public_challenge = create(:challenge, public: true, challenger: @user)
         visit challenges_path
-        page.should have_link "challenge_start_#{public_challenge.id}", href: apps_path + "?challenge_id=#{public_challenge.id}"
+        page.should have_link "Start first challenge", href: apps_path + "?challenge_id=#{public_challenge.id}"
       end
     end
 
@@ -173,8 +169,11 @@ describe "Challenges" do
       challenge.save
 
       visit challenges_path
-      page.should have_content "#{challenge.challenger.username}: 100 points"
-      page.should have_content "#{challenge.challenged.username}: 500 points"
+
+#      page.should have_content "#{challenge.challenger.username}"
+      page.should have_content "100 points"
+#      page.should have_content "#{challenge.challenged.username}"
+      page.should have_content "500 points"
       page.should have_content "Winner"
     end
 
@@ -187,18 +186,18 @@ describe "Challenges" do
       it "should have start challenge links if challenge is private and user is involved" do
         private_challenge = create(:challenge, public: false, challenger: @user)
         visit challenges_path
-        page.should have_link "challenge_start_#{private_challenge.id}", href: private_challenge.decorate.start_challenge_url
+        page.should have_link "Start first challenge", href: private_challenge.decorate.start_challenge_url
 
         new_private_challenge = create(:challenge, public: false, challenged: @user)
         visit challenges_path
-        page.should have_link "challenge_start_#{new_private_challenge.id}", href: new_private_challenge.decorate.start_challenge_url
+        page.should have_link "Start first challenge", href: new_private_challenge.decorate.start_challenge_url
       end
 
       it "should have start challenge links if challenge public" do
         public_challenge = create(:challenge, public: true, challenger: @user)
         visit challenges_path
         page.should have_content public_challenge.song.title
-        page.should have_link "challenge_start_#{public_challenge.id}", href: public_challenge.decorate.start_challenge_url
+        page.should have_link "Start first challenge", href: public_challenge.decorate.start_challenge_url
       end
     end
 
@@ -383,6 +382,7 @@ describe "Challenges" do
     challenged_user = create(:user) if challenged_user.nil?
     visit people_path
     click_on "challenge_#{challenged_user.id}"
+    click_on "Choose your challenge"
     click_on "challenge_#{@song.id}"
     click_on "Start Challenge"
     Challenge.last

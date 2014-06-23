@@ -75,7 +75,12 @@ class User < ActiveRecord::Base
 
 	def level
 	  if self.xp.blank?
-	    Level.find_by_xp(0).title
+	    user_level = Level.where(xp: 0).first
+	    if user_level
+	      user_level.title
+	    else
+	      "Beginner"
+	    end
 	  else
 		  Level.where(["xp <= ?", self.xp]).last.title
 		end
