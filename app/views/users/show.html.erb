@@ -44,11 +44,11 @@
 <section>
 	<%= render 'shared/header_page', title: 'Open challenges', sub_header: true %>
 	
-	<ul class="media-list">
+	<div class="quick-challenge-container text-center">
 		<% unless @challenges.blank? %>
 			<%= render partial: "challenges/challenge", collection: @challenges %>
 		<% else %>
-	</ul>	
+	</div>	
 	
 	<p class="no-content">
 		<%= @user.username%> has no open challenges right now
