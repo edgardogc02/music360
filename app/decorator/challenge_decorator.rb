@@ -33,8 +33,7 @@ class ChallengeDecorator < Draper::Decorator
 
   def display_results
     if display_results?
-      #h.render "challenges/results", challenge: self
-      true
+      h.render "challenges/results", challenge: self
     end
   end
 
@@ -45,25 +44,13 @@ class ChallengeDecorator < Draper::Decorator
       h.for_challenge_people_path
     end
   end
-  
-  def select_song_path
-    if model.challenged
-      h.for_challenge_songs_path(challenged_id: model.challenged.id)
-    else
-      h.for_challenge_songs_path
-    end
-  end
 
   def select_opponent_link
-    h.link_to select_opponent_link_name, select_opponent_path, {class: 'btn btn-primary btn-sm new-challenge-link', data: { toggle: "modal", target: "#selectUser"}}
-  end
-  
-  def select_song_link
-    h.link_to select_song_link_name, select_song_path, {class: 'btn btn-primary btn-sm new-challenge-link', data: { toggle: "modal", target: "#selectSong"}}
+    h.link_to select_opponent_link_name, select_opponent_path, {class: 'btn btn-primary', data: { toggle: "modal", target: "#selectUser"}}
   end
 
   def start_challenge_class_attr
-    value = 'btn btn-primary btn-sm'
+    value = 'btn btn-primary pull-left margin-right'
     if h.signed_in? and h.current_user.installed_desktop_app? and !h.is_mobile?
       value << ' app-play'
     end
@@ -77,14 +64,6 @@ class ChallengeDecorator < Draper::Decorator
       "Change your opponent"
     else
       "Choose your opponent"
-    end
-  end
-  
-  def select_song_link_name
-    if model.song
-      "Change your challenge"
-    else
-      "Choose your challenge"
     end
   end
 

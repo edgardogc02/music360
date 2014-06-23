@@ -1,10 +1,3 @@
-$(document).ready ->
-  $("#selectUser").on "shown.bs.modal", ->
-    listing_hover_effects()
-    return
-
-  $("#selectSong").on "shown.bs.modal", ->
-    listing_hover_effects()
-    return
-
-  return
+# Place all the behaviors and hooks related to the matching controller here.
+# All this logic will automatically be available in application.js.
+# You can use CoffeeScript in this file: http://coffeescript.org/

@@ -9,7 +9,7 @@ class TabMyChallengesDecorator < ChallengesDecorator
   end
 
   def active?
-    false
+    true
   end
 
   def tab_text

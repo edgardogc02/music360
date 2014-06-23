@@ -1,55 +1,20 @@
-<% if challenge.display_results %>
-	<div class="quick-challenge <%= cycle("even", "odd") %>">
-		<div class="clearfix">
-			<div class="challenger">
-				<%= image_tag current_user.imagename_url %>
-				<div class="link_header"><%= current_user.username %></div>
-				
-				<strong><%= challenge.score_u1 %></strong> points		
-				<% if challenge.challenger_instrument %>
-				  on <strong><%= challenge.challenger_instrument.name %></strong>
-				<% end %>
-				<div><%= content_tag :span, 'Winner', class: 'label label-success' if challenge.challenger_won? %></div>
-						
-			</div>
-			<div class="song">
-				<%= image_tag challenge.song.cover_url %>			
-				<div class="link_header"><%= link_to challenge.song.title, artist_song_path(challenge.song.artist, challenge.song), class: "song-title" %></div>
-				<div class="link_subheader"><%= link_to challenge.song.artist.title, artist_path(challenge.song.artist), class: "song-artist" %></div>	
-			</div>
-			<div class="challenged">				
-				<%= image_tag challenge.challenged.imagename_url %>
-				<div class="link_header"><%= link_to challenge.challenged.username, person_path(challenge.challenged.username) %></div>
-				
-				<strong><%= challenge.score_u2 %></strong> points		
-				<% if challenge.challenged_instrument %>
-			    on <strong><%= challenge.challenged_instrument.name %></strong>
-			  <% end %>
-			  <div><%= content_tag :span, 'Winner', class: 'label label-success' if challenge.challenged_won? %></div>
-			</div>
-		</div>
-	</div>
-<% else %>
-	<div class="quick-challenge <%= cycle("even", "odd") %>">
-		<div class="clearfix">
-			<div class="challenger">
-				<%= image_tag current_user.imagename_url %>
-				<% current_user.username %>
-				<% if challenge.display_start_challenge_button %>
-					<div><%= challenge.display_start_challenge_button %></div>
-				<% else %>
-					<div class="link_header"><%= current_user.username %></div>
-				<% end %>
-			</div>
-			<div class="song">
-				<%= image_tag challenge.song.cover_url %>			
-				<div class="link_header"><%= link_to challenge.song.title, artist_song_path(challenge.song.artist, challenge.song), class: "song-title" %></div>
-				<div class="link_subheader"><%= link_to challenge.song.artist.title, artist_path(challenge.song.artist), class: "song-artist" %></div>	
-			</div>
-			<div class="challenged">				
-				<%= image_tag challenge.challenged.imagename_url %>
-				<div class="link_header"><%= link_to challenge.challenged.username, person_path(challenge.challenged.username) %></div>
-			</div>
-		</div>
-	</div>
-<% end %>
+<li class="media media-item">
+  <%= image_tag challenge.cover_url, class: "song-cover pull-left" %>
+  <div class="media-body">
+    <p class="spacer-sm">
+    	<%= link_to challenge.song.title, song_path(challenge.song) %>
+    	by <%= link_to challenge.song.artist.title, artist_path(challenge.song.artist)%>
+		</p>
+		<p class="spacer-sm">
+	    Created by <%= link_to challenge.challenger.username, person_path(challenge.challenger)%>
+	    <time datetime="<%= challenge.created_at%>" pubdate><%= time_ago_in_words(challenge.created_at)%> ago</time>
+	    (Challenged: <%= link_to challenge.challenged.username, person_path(challenge.challenged)%>)
+	  </p>
+	  <div class="clearfix">
+      <%= challenge.display_start_challenge_button %>
+      <!--<%= challenge.display_decline_challenge_button %>-->
+    </div>
+    <%= challenge.display_results %>
+    <%= challenge.display_remind_button %>
+  </div>
+</li>

@@ -1,10 +1,10 @@
 <%= render 'shared/header_page', title: @title %>
 
-<div class="quick-challenge-container text-center">
+<ul class="media-list">
 	<% unless @challenges.blank? %>
 		<%= render partial: "challenge", collection: @challenges %>
 	<% else %>
-</div>
+</ul>
 
 <p class="no-content">
   No challenges right now

@@ -7,10 +7,6 @@ class TabResultChallengesDecorator < ChallengesDecorator
   def tab_id
     "results"
   end
-  
-  def active?
-    true
-  end
 
   def tab_text
     "Results"
