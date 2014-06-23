@@ -27,53 +27,56 @@
 	</div>
 	<br />
 
-<% end %>
+	<%= content_tag 'div', class: 'btn-content text-center' do %>
+		<%= link_to 'Start first challenge', @my_challenges.first.start_challenge_url, {class: 'btn btn-primary btn-lg activation2'} %>	
+	<% end %>
 
-<%= content_tag 'div', class: 'btn-content text-center' do %>
-	<%= link_to 'Start first challenge', @my_challenges.first.start_challenge_url, {class: 'btn btn-primary btn-lg activation2'} %>	
-<% end %>
-<br />
-<hr />
-
-<div class="quick-challenge-container text-center">
-	<% @my_challenges.drop(1).each do |challenge| %>
-		<div class="quick-challenge <%= cycle("even", "odd") %>">
-			<div class="clearfix">
-				<div class="challenger">
-					<%= image_tag current_user.imagename_url %>
-					<% current_user.username %>
-					<div><%= link_to 'Start challenge', challenge.start_challenge_url, {class: 'btn btn-primary btn-sm'} %></div>
-				</div>
-				<div class="song">
-					<%= image_tag challenge.song.cover_url %>			
-					<div class="link_header"><%= link_to challenge.song.title, artist_song_path(challenge.song.artist, challenge.song), class: "song-title" %></div>
-					<div class="link_subheader"><%= link_to challenge.song.artist.title, artist_path(challenge.song.artist), class: "song-artist" %></div>	
-				</div>
-				<div class="challenged">				
-					<%= image_tag challenge.challenged.imagename_url %>
-					<div class="link_header"><%= link_to challenge.challenged.username, person_path(challenge.challenged.username) %></div>
+	<br />
+	<hr />
+	
+	<div class="quick-challenge-container text-center">
+		<% @my_challenges.drop(1).each do |challenge| %>
+			<div class="quick-challenge <%= cycle("even", "odd") %>">
+				<div class="clearfix">
+					<div class="challenger">
+						<%= image_tag current_user.imagename_url %>
+						<% current_user.username %>
+						<div><%= link_to 'Start challenge', challenge.start_challenge_url, {class: 'btn btn-primary btn-sm'} %></div>
+					</div>
+					<div class="song">
+						<%= image_tag challenge.song.cover_url %>			
+						<div class="link_header"><%= link_to challenge.song.title, artist_song_path(challenge.song.artist, challenge.song), class: "song-title" %></div>
+						<div class="link_subheader"><%= link_to challenge.song.artist.title, artist_path(challenge.song.artist), class: "song-artist" %></div>	
+					</div>
+					<div class="challenged">				
+						<%= image_tag challenge.challenged.imagename_url %>
+						<div class="link_header"><%= link_to challenge.challenged.username, person_path(challenge.challenged.username) %></div>
+					</div>
 				</div>
 			</div>
-		</div>
+		<% end %>
+	</div>
+	
+<% else %>
+
+	<%= content_tag 'div', class: 'btn-content' do %>
+		<%= link_to 'Create a new challenge', new_challenge_path, {class: 'btn btn-primary activation2'} %>
 	<% end %>
-</div>
+	
+<% end %>
 
 <% if @my_challenges_count > 3 %>
 
 	<br />
 	<%= content_tag 'div', class: 'btn-content text-center' do %>
-		<%= link_to 'More challenges', list_challenges_path(view: "my_challenges"), {class: 'btn btn-primary activation2'} %>
+		<%= link_to 'More challenges', list_challenges_path(view: "my_challenges"), {class: 'btn btn-primary'} %>
 	<% end %>
 
 <% end %>
 
 <br /><br />
 
-<div>
-	<%= content_tag 'div', class: 'btn-content hide' do %>
-		<%= link_to 'Create a new challenge', new_challenge_path, {class: 'btn btn-primary activation2'} %>
-	<% end %>
-	
+<div>	
 	<ul class="nav nav-tabs">
 		<li class="active"><a href="#<%= @challenges_results.tab_id %>" data-toggle="tab"><%= @challenges_results.tab_text %></a></li>
 		<li><a href="#<%= @pending_challenges.tab_id %>" data-toggle="tab"><%= @pending_challenges.tab_text %></a></li>
