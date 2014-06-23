@@ -9,9 +9,9 @@
 	<!--<%= render 'shared/header_page', title: challenges.title, sub_header: true, view_more: 'View more', view_more_path: 'asds' %>-->
 
 	<% unless challenges.blank? %>
-		<ul class="media-list">
+		<div class="quick-challenge-container text-center">
 			<%= render challenges %>
-		</ul>
+		</div>
 	<% else %>
 		<p class="no-content hide">
 		  <p><%= challenges.no_challenges_message %></p>

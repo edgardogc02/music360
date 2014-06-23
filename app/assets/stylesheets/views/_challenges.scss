@@ -9,3 +9,46 @@
     max-width: 100px;
   }
 }
+
+.new-challenge-link {
+  margin-top: 10px;
+}
+
+.quick-challenge-container {
+  margin: 0px auto;
+  width: 700px;
+  
+  .quick-challenge {    
+    padding: 20px 25px;
+    background: image-url('challenge_arrows.png') no-repeat center 40px;
+    border-bottom: 1px solid #ececec;
+    
+    &.even {
+      //background-color: #ECF0F0;
+    }
+      
+    img {
+      width: 60px;
+      height: 60px;
+      margin: 0px 8px 5px 8px;
+    }
+    
+    .challenger, .challenged, .song {
+      float: left;
+    }
+    
+    .challenger, .challenged {
+      width: 40%;
+    }
+    
+    .song {
+      width: 20%;
+      
+      img {
+        //width: 60px;
+        //height: 60px;
+        //margin-bottom: 5px;
+      }
+    }
+  }
+}
