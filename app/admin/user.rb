@@ -15,7 +15,7 @@ ActiveAdmin.register User do
   filter :admin
   filter :created_at
 
-  permit_params :username, :email, :first_name, :last_name, :password, :password_confirmation, :imagename, :phone_number, :city, :countrycode, :macaddress, :confirmcode, :invitebyuser, :confirmed, :converted, :deleted, :deleted_at, :careerpoints, :user_category, :ip, :instrument, :installed_desktop_app, :premium, :premium_until, :updated_image, :admin, :locale, :on, :model
+  permit_params :username, :email, :first_name, :last_name, :password, :password_confirmation, :imagename, :phone_number, :city, :countrycode, :macaddress, :confirmcode, :invitebyuser, :confirmed, :converted, :deleted, :deleted_at, :xp, :user_category, :ip, :instrument, :installed_desktop_app, :premium, :premium_until, :updated_image, :admin, :locale, :on, :model
 
   index do
     column :id
@@ -29,7 +29,7 @@ ActiveAdmin.register User do
     column :macaddress
     column :confirmed
     column :deleted
-    column :careerpoints
+    column :xp
     column :ip
     column :installed_desktop_app
     column :premium
@@ -64,7 +64,7 @@ ActiveAdmin.register User do
       f.input :converted
       f.input :deleted
       f.input :deleted_at
-      f.input :careerpoints
+      f.input :xp
       f.input :user_category
       f.input :ip
       f.input :instrument

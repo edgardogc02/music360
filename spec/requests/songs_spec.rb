@@ -6,6 +6,7 @@ describe "Songs" do
     before(:each) do
       @song = create(:song, cost: 0)
       @user = login
+      level = create(:level)
     end
 
     it "should display song view" do
@@ -195,6 +196,16 @@ describe "Songs" do
     it "should not display free songs if user is not signed up" do
       visit free_songs_path
       current_path.should eq(login_path)
+    end
+
+    it "should display the show page" do
+      song = create(:song)
+
+      visit song_path(song)
+
+      page.should have_content(song.title)
+      page.should have_content(song.artist.title)
+      page.should have_link "Play", href: apps_path + "?song_id=#{song.id}"
     end
   end
 
