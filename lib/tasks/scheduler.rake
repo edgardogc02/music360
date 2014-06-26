@@ -20,7 +20,7 @@ task :user_premium_subscription_alert_renewal => :environment do
   end
 end
 
-task :download_artist_images => :environment do
+task :download_artist_bio => :environment do
   Artist.find_each(batch_size: 1000) do |artist|
     bio_from_echonest = artist.bio_from_echonest
     if bio_from_echonest
@@ -32,7 +32,7 @@ task :download_artist_images => :environment do
   end
 end
 
-task :download_artist_bio => :environment do
+task :download_artist_images => :environment do
   Artist.find_each(batch_size: 1000) do |artist|
     artist.download_echonest_image
   end
