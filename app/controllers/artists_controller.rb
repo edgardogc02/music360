@@ -3,7 +3,7 @@ class ArtistsController < ApplicationController
 	before_action :set_artist, only: [:show, :edit, :update, :destroy]
 
 	def index
-		@artists = ArtistDecorator.decorate_collection(Artist.all.limit(6))
+		@artists = ArtistDecorator.decorate_collection(Artist.not_top.limit(12))
 		@top_artists = ArtistDecorator.decorate_collection(Artist.top.limit(12))
 	end
 

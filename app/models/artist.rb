@@ -10,6 +10,7 @@ class Artist < ActiveRecord::Base
 	has_many :songs
 
   scope :top, -> { where(top: 1) }
+  scope :not_top, -> { where('top = 0 OR top IS NULL') }
 
 	def bio_from_echonest
 	  Echowrap.artist_biographies(name: self.title, results: 2, start: 1, license: "cc-by-sa").first if Echowrap.artist_biographies(name: self.title)
