@@ -13,7 +13,7 @@
   <div class="hide" id="user_purchased_songs_form">
     <%= simple_form_for @user_purchased_song_form, url: user_purchased_songs_path, html: {id: "user_purchase_form"} do |f| %>
 
-      <%= render "shared/credit_card_details", f: f %>
+      <%= render "shared/credit_card_details", f: f, form_object: @user_purchased_song_form %>
 
       <%= f.input :song_id, as: :hidden %>
       <%= f.input :amount, input_html: { value: @user_purchased_song_form.song.cost, id: "amount" }, as: :hidden %>

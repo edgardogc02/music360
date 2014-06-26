@@ -9,17 +9,18 @@
 		  <%= f.input :card_cvc, input_html: {id: "credit_card_cvc"} %>
 		  <%= f.input :card_expiry_date, as: :date, discard_day: true, order: [:month, :year], start_year: Date.today.year, end_year: Date.today.year + 15, prompt: "Select...", input_html: {class: "credit_card_expiry_date"} %>
 		</div>
-		<div class="col-md-4 col-md-offset-2">
-			<h2>Plan details</h2>
-			<p>
-				<ul class="no-style">
-					<li><h5><strong>Plan: </strong> Premium</h5></li>
-					<li><h5><strong>Period: </strong><%= @user_purchased_song_form.premium_plan.name %></h5></li>
-					<li><h5><strong>Amount: </strong><%= @user_purchased_song_form.premium_plan.price %> <%= @user_purchased_song_form.premium_plan.currency %></h5></li>
-				</ul>
-				<% debug @user_purchased_song_form %>
-			</p>
-		</div>
+		<% if form_object.respond_to?(:premium_plan) %>
+  		<div class="col-md-4 col-md-offset-2">
+  			<h2>Plan details</h2>
+  			<p>
+  				<ul class="no-style">
+  					<li><h5><strong>Plan: </strong> Premium</h5></li>
+  					<li><h5><strong>Period: </strong><%= form_object.premium_plan.name %></h5></li>
+  					<li><h5><strong>Amount: </strong><%= form_object.premium_plan.price %> <%= form_object.premium_plan.currency %></h5></li>
+  				</ul>
+  			</p>
+  		</div>
+    <% end %>
 	</div>
 
   <div id="paymill_error">

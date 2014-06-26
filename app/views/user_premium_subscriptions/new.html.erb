@@ -65,10 +65,10 @@
           <a href="<%= apps_path(auto_download: true) %>" data-no-turbolink='true' class="btn btn-primary btn-lg premium_plan_selected">
           	Get Free
           </a>
-        </div>        	
+        </div>
       </div>
     </div>
-	</div>	
+	</div>
 	<div class="col-md-6">
 		<div class="well text-center well-plan">
     	<div class="plan-title">
@@ -100,7 +100,7 @@
 			          <br />
 			          <div>
 			            <%= link_to "Get Premium", new_user_premium_subscription_path(premium_plan_id: premium_plan.id), {class: "btn btn-primary premium_plan_selected"} %>
-			          </div> 
+			          </div>
 			        </div>
 				    </div>
 				  <% end %>
@@ -116,8 +116,8 @@
 
 	<div id="user_premium_subscription_form">
     <%= simple_form_for @user_premium_subscription_form, url: user_premium_subscriptions_path, html: {id: "user_purchase_form"} do |f| %>
-			
-      <%= render "shared/credit_card_details", f: f %>
+
+      <%= render "shared/credit_card_details", f: f, form_object: @user_premium_subscription_form %>
 
       <%= f.input :premium_plan_id, as: :hidden %>
       <%= f.input :payment_method_id, input_html: { value: PaymentMethod::CREDIT_CARD_ID }, as: :hidden %>
