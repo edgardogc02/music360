@@ -6,17 +6,7 @@
 <div class="row">
 	<div class="col-lg-3">
 		<p>
-			<% if @artist.imagename_url %>
-				<% if @artist.imagename_url != @artist.imagename.default_url %>
-					<%= image_tag(@artist.imagename_url, {alt: @artist.title, class: 'thumbnail'}) %>
-				<% elsif @artist.public_image_url %>
-					<%= image_tag(@artist.public_image_url.url, {alt: @artist.title, class: 'thumbnail'}) %>
-				<% else %>
-					<%= image_tag(@artist.imagename_url, {alt: @artist.title, class: 'thumbnail'}) %>
-				<% end %>
-			<% else %>
-				<%= image_tag(@artist.public_image_url.url, {alt: @artist.title, class: 'thumbnail'}) %>
-			<% end %>
+		  <%= @artist.image %>
 		</p>
 	</div>
 	<div class="col-lg-9">
@@ -29,7 +19,7 @@
 		<div class="tab-content">
 			<div class="tab-pane active" id="info">
 				<% if @artist.bio %>
-					<p><%= truncate(@artist.bio.text, length: 1000, separator: ' ') { link_to "Read more", @artist.bio.url, {class: 'margin-left', target: '_blank'} } %></p>
+					<p><%= truncate(@artist.bio, length: 1000, separator: ' ') { link_to "Read more", @artist.bio_read_more_link, {class: 'margin-left', target: '_blank'} } %></p>
 				<% else %>
 					<p>No info available</p>
 				<% end %>

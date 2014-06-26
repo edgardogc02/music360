@@ -20,3 +20,29 @@ task :user_premium_subscription_alert_renewal => :environment do
   end
 end
 
+task :download_artist_images => :environment do
+  Artist.find_each(batch_size: 1000) do |artist|
+    artist.download_echonest_image
+  end
+end
+
+task :save_top_artists_from_echonest => :environment do
+  Artist.top_from_echonest(12).each do |echonest_artist|
+    artist = Artist.find_by_title(echonest_artist.name)
+
+    artist = Artist.create(title: echonest_artist.name, top: 1) unless artist
+
+    if !echonest_artist.images.blank?
+      artist.remote_imagename_url = echonest_artist.images.first.url
+    end
+
+    bio_from_echonest = artist.bio_from_echonest
+    if bio_from_echonest
+      artist.bio = artist.bio_from_echonest.text
+      artist.bio_read_more_link = artist.bio_from_echonest.url
+    end
+
+    artist.save
+  end
+end
+
