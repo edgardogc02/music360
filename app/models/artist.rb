@@ -20,18 +20,13 @@ class Artist < ActiveRecord::Base
     Echowrap.artist_top_hottt(results: limit, bucket: ['hotttnesss', 'images'])
   end
 
-	def public_image_url(download=true)
-	  image_url = Echowrap.artist_images(name: self.title).first if Echowrap.artist_images(name: self.title)
-
-    if download and image_url
-      download_remote_image(image_url.url)
-    end
-	  image_url
+	def echonest_image
+	  Echowrap.artist_images(name: self.title).first if Echowrap.artist_images(name: self.title)
   end
 
   def download_echonest_image
-    echonest_image = public_image_url
-    if echonest_image
+    echo_image = echonest_image
+    if echo_image
       download_remote_image(echonest_image.url)
     end
   end

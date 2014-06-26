@@ -10,8 +10,8 @@ class ArtistDecorator < Draper::Decorator
     h.link_to h.artist_path(model), class: 'thumbnail' do
       if model.imagename_url != model.imagename.default_url
         h.image_tag(model.imagename_url, {alt: model.title})
-      elsif model.public_image_url
-        h.image_tag(model.public_image_url.url, {alt: model.title})
+      elsif model.echonest_image
+        h.image_tag(model.echonest_image.url, {alt: model.title})
       else
         h.image_tag(model.imagename_url, {alt: model.title})
       end

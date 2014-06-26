@@ -22,6 +22,18 @@ end
 
 task :download_artist_images => :environment do
   Artist.find_each(batch_size: 1000) do |artist|
+    bio_from_echonest = artist.bio_from_echonest
+    if bio_from_echonest
+      artist.bio = artist.bio_from_echonest.text
+      artist.bio_read_more_link = artist.bio_from_echonest.url
+    end
+
+    artist.save
+  end
+end
+
+task :download_artist_bio => :environment do
+  Artist.find_each(batch_size: 1000) do |artist|
     artist.download_echonest_image
   end
 end
