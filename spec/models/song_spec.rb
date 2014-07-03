@@ -84,6 +84,15 @@ describe Song do
 
       Song.not_user_created.should eq([song])
     end
+
+    it "should search by title" do
+      song = create(:song, title: "song 1")
+      song1 = create(:song, title: "lala")
+      song2 = create(:song, title: "lala 1")
+      song3 = create(:song, title: "second song")
+
+      Song.by_title("son").should eq([song, song3])
+    end
   end
 
   context "Methods" do

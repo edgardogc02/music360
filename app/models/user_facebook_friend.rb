@@ -10,4 +10,8 @@ class UserFacebookFriend < ActiveRecord::Base
     self.where(user_id: first_user.id, user_facebook_friend_id: second_user.id).count > 0
   end
 
+  def self.friends_ids
+    self.pluck(:user_facebook_friend_id)
+  end
+
 end

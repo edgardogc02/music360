@@ -111,6 +111,14 @@ describe User do
 
       User.order_by_challenges_count.should eq([user2, user, user1])
     end
+
+    it "should exclude users" do
+      user = create(:user, username: "lalo")
+      user1 = create(:user, username: "user1")
+      user2 = create(:user, username: "user2")
+
+      User.excludes(User.last(2)).should eq([user])
+    end
   end
 
   context "Methods" do

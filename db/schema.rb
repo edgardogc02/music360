@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140626100520) do
+ActiveRecord::Schema.define(version: 20140703103123) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -54,7 +54,7 @@ ActiveRecord::Schema.define(version: 20140626100520) do
     t.datetime "updated_at"
   end
 
-  create_table "challenges", primary_key: "challenge_id", force: true do |t|
+  create_table "challenges", force: true do |t|
     t.integer  "song_id",                       null: false
     t.boolean  "public",        default: false, null: false
     t.string   "challenger_id",                 null: false

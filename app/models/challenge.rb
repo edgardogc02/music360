@@ -27,6 +27,10 @@ class Challenge < ActiveRecord::Base
   scope :default_limit, -> { limit(3) }
   scope :challenged_users_to_remind, -> { pending_only_by_challenged.where("created_at <= ? AND created_at >= ?", 1.days.ago, 2.days.ago) }
   scope :challenger_users_to_remind, -> { pending_by_challenger.where("created_at <= ? AND created_at >= ?", 1.days.ago, 2.days.ago) }
+  scope :by_challenger_username_or_email, ->(username_or_email) { joins(:challenger).where('username LIKE ? OR email LIKE ?', '%'+username_or_email+'%', '%'+username_or_email+'%') }
+  scope :by_challenged_username_or_email, ->(username_or_email) { joins(:challenged).where('username LIKE ? OR email LIKE ?', '%'+username_or_email+'%', '%'+username_or_email+'%') }
+  scope :by_song_title, ->(title) { joins(:song).where('title LIKE ?', '%'+title+'%') }
+  scope :excludes, ->(challenges_ids) { where("challenges.id NOT IN (?)", challenges_ids) }
 
 	def cover_url
 		song.cover_url

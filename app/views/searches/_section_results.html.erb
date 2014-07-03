@@ -1,0 +1,11 @@
+<%= render 'shared/header_page', title: title, sub_header: true, view_more: "View all", view_more_path: view_more_link %>
+
+<div class="thumbnail-grid row">
+  <% if !values.blank? %>
+    <%= render values %>
+  <% else %>
+    <div>
+      No results to show
+    </div>
+  <% end %>
+</div>

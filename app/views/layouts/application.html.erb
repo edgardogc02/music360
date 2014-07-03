@@ -22,6 +22,9 @@
 				    </div>
 				    <div class="navbar-header pull-right">
 				    	<% if signed_in? %>
+
+                <%= render "searches/new" %>
+
                 <% if current_user.admin? %>
                   <%= link_to admin_dashboard_path, {class: "btn", target: "_blank"} do %>
                     <i class="glyphicon glyphicon-eye-open"></i> Admin

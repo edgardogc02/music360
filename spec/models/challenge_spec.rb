@@ -181,6 +181,57 @@ describe Challenge do
       Challenge.challenged_users_to_remind.should eq([challenge6])
       Challenge.challenger_users_to_remind.should eq([challenge5, challenge7])
     end
+
+    it "should search by song title" do
+      song = create(:song, title: "song 1")
+      song1 = create(:song, title: "lalala")
+      challenge = create(:challenge, song: song)
+      challenge1 = create(:challenge, song: song)
+      challenge2 = create(:challenge, song: song1)
+      challenge3 = create(:challenge, song: song)
+
+      Challenge.by_song_title("song").should eq([challenge, challenge1, challenge3])
+    end
+
+    it "should search by challenger username or email" do
+      challenger = create(:user, username: "ruben")
+      challenger1 = create(:user, username: "lalala")
+      challenger2 = create(:user, email: "ruben@fufufu.com")
+      challenger3 = create(:user, email: "jijiji@lala.com")
+
+      challenge = create(:challenge, challenger: challenger)
+      challenge1 = create(:challenge, challenger: challenger1)
+      challenge2 = create(:challenge, challenger: challenger2)
+      challenge3 = create(:challenge, challenger: challenger3)
+      challenge4 = create(:challenge, challenger: challenger)
+
+      Challenge.by_challenger_username_or_email("ruben").should eq([challenge, challenge2, challenge4])
+    end
+
+    it "should search by challenged username or email" do
+      challenged = create(:user, username: "ruben")
+      challenged1 = create(:user, username: "lalala")
+      challenged2 = create(:user, email: "ruben@fufufu.com")
+      challenged3 = create(:user, email: "jijiji@lala.com")
+
+      challenge = create(:challenge, challenged: challenged)
+      challenge1 = create(:challenge, challenged: challenged1)
+      challenge2 = create(:challenge, challenged: challenged2)
+      challenge3 = create(:challenge, challenged: challenged3)
+      challenge4 = create(:challenge, challenged: challenged)
+
+      Challenge.by_challenged_username_or_email("ruben").should eq([challenge, challenge2, challenge4])
+    end
+
+    it "should exclude challenges from results" do
+      challenge = create(:challenge)
+      challenge1 = create(:challenge)
+      challenge2 = create(:challenge)
+      challenge3 = create(:challenge)
+      challenge4 = create(:challenge)
+
+      Challenge.excludes(Challenge.last(2)).should eq([challenge, challenge1, challenge2])
+    end
   end
 
   context "Callbacks" do

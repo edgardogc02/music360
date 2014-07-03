@@ -82,6 +82,8 @@ InstrumentchampPrototype::Application.routes.draw do
 
   resources :user_premium_subscriptions
 
+  resources :searches, only: [:create, :show]
+
   match '/auth/facebook', via: [:get, :post], as: :facebook_signin
   match 'auth/:provider/callback' => "user_omniauth_credentials#create", via: [:get, :post]
   match 'auth/failure' => "user_omniauth_credentials#failure", via: [:get, :post]

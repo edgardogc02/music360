@@ -1,0 +1,11 @@
+<div class="masonry-img col-md-2 col-sm-4 col-xs-6">
+	<div class="overflow_thumb">
+		<%= artist.image %>
+	</div>
+	<div class="actions-content">
+		<div class="spacer-sm">
+			<div class="link_header"><%= link_to artist.title, artist_path(artist) %></div>
+		</div>
+		<%= artist.edit_button %>
+  </div>
+</div>
