@@ -4,7 +4,7 @@ class SearchesController < ApplicationController
 
   def show
     @my_friends = UserDecorator.decorate_collection(current_user.facebook_friends.by_username_or_email(params[:id]).limit(4))
-    @users = UserDecorator.decorate_collection(User.by_username_or_email(params[:id]).excludes(current_user.user_facebook_friends.friends_ids).limit(4))
+    @users = UserDecorator.decorate_collection(User.by_username_or_email(params[:id]).excludes(current_user.user_facebook_friends.friends_ids).exclude(current_user.id).limit(4))
     @artists = ArtistDecorator.decorate_collection(Artist.by_title(params[:id]).limit(4))
     @songs = SongDecorator.decorate_collection(Song.by_title(params[:id]).limit(4))
     @challenges = Challenge.by_challenger_username_or_email(params[:id]).limit(4)
