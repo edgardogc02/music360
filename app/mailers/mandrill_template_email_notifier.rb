@@ -4,8 +4,8 @@ class MandrillTemplateEmailNotifier < MandrillMailer::TemplateMailer
 
   def test(user)
     mandrill_mail template: 'Test',
-                  subject: 'Mandrill template email test!',
-                  to: {email: "edgardo.cabanillas@instrumentchamp.com", name: user.username}
+                  subject: 'Mandrill template email test!'
+                  # to: {email: "edgardo.cabanillas@instrumentchamp.com", name: user.username}
   end
 
 end
