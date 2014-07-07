@@ -9,3 +9,7 @@ if !Rails.env.test?
   }
   ActionMailer::Base.delivery_method = :smtp
 end
+
+MandrillMailer.configure do |config|
+  config.api_key = ENV['MANDRILL_APIKEY']
+end
