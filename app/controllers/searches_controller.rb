@@ -7,12 +7,12 @@ class SearchesController < ApplicationController
     @users = UserDecorator.decorate_collection(User.by_username_or_email(params[:id]).excludes(current_user.user_facebook_friends.friends_ids).exclude(current_user.id).limit(6))
     @artists = ArtistDecorator.decorate_collection(Artist.by_title(params[:id]).limit(6))
     @songs = SongDecorator.decorate_collection(Song.by_title(params[:id]).limit(6))
-    @challenges = Challenge.by_challenger_username_or_email(params[:id]).limit(6)
-    if @challenges.size < 6
-      @challenges += Challenge.by_challenged_username_or_email(params[:id]).excludes(@challenges.map{|id| id}).limit(6 - @challenges.size)
+    @challenges = Challenge.by_challenger_username_or_email(params[:id]).limit(4)
+    if @challenges.size < 4
+      @challenges += Challenge.by_challenged_username_or_email(params[:id]).excludes(@challenges.map{|id| id}).limit(4 - @challenges.size)
     end
-    if @challenges.size < 6
-      @challenges += Challenge.by_song_title(params[:id]).excludes(@challenges.map{|id| id}).limit(6 - @challenges.size)
+    if @challenges.size < 4
+      @challenges += Challenge.by_song_title(params[:id]).excludes(@challenges.map{|id| id}).limit(4 - @challenges.size)
     end
     @challenges = ChallengeDecorator.decorate_collection(@challenges)
   end
