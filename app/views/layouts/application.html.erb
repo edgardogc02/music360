@@ -22,17 +22,19 @@
 				    </div>
 				    <div class="navbar-header pull-right">
 				    	<% if signed_in? %>
-
-                <%= render "searches/new" %>
-
-                <% if current_user.admin? %>
-                  <%= link_to admin_dashboard_path, {class: "btn", target: "_blank"} do %>
-                    <i class="glyphicon glyphicon-eye-open"></i> Admin
-                  <% end %>
-                <% end %>
-					      <%= link_to logout_path, {class: "btn", id: "sign_out"} do %>
-				          <i class="glyphicon glyphicon-log-out"></i> Sign out
-				        <% end %>
+								<div class="clearfix">
+									<div class="pull-left"><%= render "searches/new" %></div>
+									<div class="pull-left">
+										<% if current_user.admin? %>
+		                  <%= link_to admin_dashboard_path, {class: "btn", target: "_blank"} do %>
+		                    <i class="glyphicon glyphicon-eye-open"></i> Admin
+		                  <% end %>
+		                <% end %>
+							      <%= link_to logout_path, {class: "btn", id: "sign_out"} do %>
+						          <i class="glyphicon glyphicon-log-out"></i> Sign out
+						        <% end %>
+									</div>
+								</div>	
 				      <% else %>
 				      	<%= link_to 'Sign up', signup_path, class: 'btn btn-link' %>
 					    	<a href="#" class="btn btn-primary sign-in-btn" data-toggle="modal" data-target="#SignIn" id="sign_in_btn">Sign in</a>
