@@ -5,7 +5,7 @@ class MandrillTemplateEmailNotifier < MandrillMailer::TemplateMailer
   def test_mandrill_template(user)
     mandrill_mail template: 'Test',
                   subject: 'Mandrill template email test!',
-                  to: user.email
+                  to: "edgardo.cabanillas@instrumentchamp.com"
   end
 
 end
