@@ -1,6 +1,8 @@
-<%= form_tag searches_path, {class: "form-inline"} do %>
-  <div class="form-group">
-    <%= text_field_tag "search[value]", nil, {class: "form-control", placeholder: "search...", method: :post} %>
-  </div>
-  <%= submit_tag "Search", {class: "btn btn-success"} %>
-<% end %>
+<div id="search-box">
+	<%= form_tag searches_path, {class: "form-inline"} do %>
+	  <div class="form-group form-control-sm">
+	    <%= text_field_tag "search[value]", nil, {class: "form-control input-sm", placeholder: "search...", method: :post} %>
+	  </div>
+	  <%= submit_tag "Search", {class: "btn btn-primary btn-sm input-sm"} %>
+	<% end %>
+</div>
