@@ -1,9 +1,9 @@
 class MandrillTemplateEmailNotifier < MandrillMailer::TemplateMailer
 
-#  default from: "InstrumentChamp <no-reply@instrumentchamp.com>"
+  default from: "InstrumentChamp <no-reply@instrumentchamp.com>"
 
   def test_mandrill_template(user)
-    mandrill_mail template: 'Test',
+    mandrill_mail template: 'test',
                   subject: 'Mandrill template email test!',
                   to: {email: user.email, name: user.username}
   end
