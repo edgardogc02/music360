@@ -92,6 +92,9 @@ gem 'activeadmin', github: 'gregbell/active_admin'
 # handle https connections
 gem 'httparty'
 
+# send madrill template emails
+gem 'mandrill_mailer'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
