@@ -6,13 +6,13 @@
 <br />
 
 <%= render "section_results", title: "My Friends", values: @my_friends, view_more_link: people_path %>
-<br />
+
 <%= render "section_results", title: "InstrumentChamp Users", values: @users, view_more_link: people_path %>
-<br />
+
 <%= render "section_results", title: "Artists", values: @artists, view_more_link: artists_path %>
-<br />
+
 <%= render "section_results", title: "Songs", values: @songs, view_more_link: songs_path %>
-<br />
+
 <%= render 'shared/header_page', title: "Challenges", sub_header: true, view_more: "View all", view_more_path: challenges_path %>
 
 <% if !@challenges.blank? %>
