@@ -2,10 +2,10 @@ class MandrillTemplateEmailNotifier < MandrillMailer::TemplateMailer
 
   default from: "InstrumentChamp <no-reply@instrumentchamp.com>"
 
-  def test(user)
+  def test_mandrill_template(user)
     mandrill_mail template: 'Test',
                   subject: 'Mandrill template email test!'
-                  # to: {email: "edgardo.cabanillas@instrumentchamp.com", name: user.username}
+                  to: {email: user.email, name: user.username}
   end
 
 end
