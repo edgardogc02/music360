@@ -59,5 +59,5 @@ task :save_top_artists_from_echonest => :environment do
 end
 
 task :test_mandrill_template => :environment do
-  MandrillTemplateEmailNotifier.test(User.last).deliver
+#  MandrillTemplateEmailNotifier.test(User.last).deliver
 end
