@@ -1,14 +1,14 @@
 <%= render "shared/header_page", title: "Showing results for #{params[:id]}" %>
 
-<%= render "section_results", title: "My Friends", values: @my_friends, view_more_link: people_path %>
+<%= render "section_results", title: "My Friends", values: @my_friends, view_more_link: my_friends_search_path(params[:id]) %>
 
-<%= render "section_results", title: "InstrumentChamp Users", values: @users, view_more_link: people_path %>
+<%= render "section_results", title: "InstrumentChamp Users", values: @users, view_more_link: users_search_path(params[:id]) %>
 
-<%= render "section_results", title: "Artists", values: @artists, view_more_link: artists_path %>
+<%= render "section_results", title: "Artists", values: @artists, view_more_link: artists_search_path(params[:id]) %>
 
-<%= render "section_results", title: "Songs", values: @songs, view_more_link: songs_path %>
+<%= render "section_results", title: "Songs", values: @songs, view_more_link: songs_search_path(params[:id]) %>
 
-<%= render 'shared/header_page', title: "Challenges", sub_header: true, view_more: "View all", view_more_path: challenges_path %>
+<%= render 'shared/header_page', title: "Challenges", sub_header: true %>
 
 <% if !@challenges.blank? %>
   <ul class="media-list">

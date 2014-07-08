@@ -1,0 +1,11 @@
+<%= render "shared/header_page", title: title %>
+
+<% if !values.blank? %>
+  <div class="thumbnail-grid row">
+    <%= render values %>
+  </div>
+<% else %>
+  <p>
+    No search results
+  </p>
+<% end %>
