@@ -59,7 +59,7 @@ class User < ActiveRecord::Base
   scope :not_connected_via_facebook, -> { where('oauth_uid IS NULL') }
 
   scope :exclude, ->(user_id) { where('users.id_user != ?', user_id) }
-  scope :excludes, ->(users_ids) { where('users.id_user NOT IN (?)', users_ids) }
+  scope :excludes, ->(users_ids) { where('users.id_user NOT IN (?)', users_ids) if users_ids.any? }
 
   scope :include, ->(user_ids) { where('users.id_user IN (?)', user_ids) }
   scope :search_user_relationships, ->(user) { include(user.user_facebook_friends.pluck(:user_facebook_friend_id) + user.user_followers.pluck(:follower_id) + user.inverse_user_followers.pluck(:user_id) + user.challenges.pluck(:challenged_id) + user.proposed_challenges.pluck(:challenger_id)) }
