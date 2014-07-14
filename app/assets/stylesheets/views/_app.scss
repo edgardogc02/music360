@@ -1,8 +1,33 @@
 /* =APP
 -------------------------------- */
 
-.app-screens {
-  img {
-    padding: 0px 5px 5px 0px
-  }  
+.download-step {
+  margin: 0px;
+  padding: 30px 0px;
+  @include clearfix;
+  
+  li {
+    padding: 0px 30px 10px 0px;
+    text-align: center;
+    list-style: none;
+    float: left;
+    margin: 0px;
+    
+    img {
+    }
+  }
+}
+
+.btn.download_btn {
+  padding-left: 50px;
+  background-repeat: no-repeat;
+  background-position: 12px 12px;
+  
+  &.mac {
+    background-image: image-url('ios_icon.png');
+  }
+  
+  &.win {
+    background-image: image-url('win_icon.png');
+  }
 }

@@ -20,20 +20,25 @@
 					$(location).attr('href',url);
 	      },
 	      steps: [
-	      {
+	      /*{
 	        element: "#tour",
 	        title: "Take the tour",
 	        content: "<p>Welcome to the InstrumentChamp Tour</p><iframe width='560' height='315' src='//www.youtube.com/embed/pSBiT91e5nk?rel=0' frameborder='0' allowfullscreen></iframe>"
-	      },
+	      },*/
 	      {
 	        element: "#home",
 	        title: "Home",
-	        content: "<p>Quick start a song or a challenge</p>"
+	        content: "<p>Quick start a song or a challenge</p><iframe width='480' height='270' src='//www.youtube.com/embed/pSBiT91e5nk?rel=0' frameborder='0' allowfullscreen></iframe>"
 	      },
 	      {
 	        element: "#people",
 	        title: "People",
 	        content: "<p>Connect and challenge your friends</p>"
+	      },
+	      {
+	        element: "#artists",
+	        title: "Artists",
+	        content: "<p>Connect with the most popular music artists and bands</p>"
 	      },
 	      {
 	        element: "#music",
@@ -44,7 +49,7 @@
 	        element: "#challenges",
 	        title: "Challenges",
 	        content: "<p>Create a new challenge, accept a challenge or see the results from your previous challenges</p>"
-	      },
+	      }/*,
 	      {
 	        element: "#help",
 	        title: "Help",
@@ -54,7 +59,7 @@
 	        element: "#apps",
 	        title: "Download",
 	        content: "<p>Download the latest applications</p>"
-	      }/*,
+	      },
 	     {
 	        element: "#premium",
 	        title: "Premium",
@@ -70,5 +75,5 @@
 	<% end %>
 	
 <% else %>
-	<div class='video-container'><iframe width='560' height='315' src='//www.youtube.com/embed/pSBiT91e5nk?rel=0' frameborder='0' allowfullscreen></iframe></div>
+	<div class='video-container'><iframe width='480' height='270' src='//www.youtube.com/embed/pSBiT91e5nk?rel=0' frameborder='0' allowfullscreen></iframe></div>
 <% end %>

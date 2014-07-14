@@ -4,7 +4,7 @@
   background-color: #f8f8f8;
   border-color: #e7e7e7;
   min-height: 0;
-  padding: 15px 0px;
+  padding: 10px 0px;
   margin-bottom: 0;
   @include box-shadow(0, 1px, 3px, rgba(#000, .1));
   
@@ -17,28 +17,36 @@
   }
   
   .navbar-brand:focus {
-      outline: 0;
+    outline: 0;
   }
   
   a {
-      color: #fff;
+    //color: #fff;
+  }
+  
+  .btn-link {
+    margin: 0px;
+    padding: 0px;
+    margin-right: 20px;
+    font-size: 14px;
+    //font-weight: bold;
   }
   
   a.button {
-      color: #333;
+    color: #333;
   }
   
   .nav li a {
-      -webkit-transition: background .3s ease-in-out;
-      -moz-transition: background .3s ease-in-out;
-      transition: background .3s ease-in-out;
+    -webkit-transition: background .3s ease-in-out;
+    -moz-transition: background .3s ease-in-out;
+    transition: background .3s ease-in-out;
   }
   
   .nav li a:hover,
   .nav li a:focus,
   .nav li.active {
-      outline: 0;
-      background-color: rgba(255,255,255,.2);
+    outline: 0;
+    background-color: rgba(255,255,255,.2);
   }
   
   .navbar-toggle {
@@ -55,6 +63,9 @@
       text-align: center;
       font-weight: bold;
     }
+  }
+  .download-modal-btn {
+    padding: 5px 10px;  
   }
 }
 
@@ -159,7 +170,7 @@
   
   &.top-nav-collapse {
     border-top: 1px solid rgba(255,255,255,.3);
-    top: 60px;
+    top: 53px;
     bottom: auto;
   }
 }
@@ -305,6 +316,29 @@ h1.brand-heading {
   .remember_check {
     padding: 10px 0px;
     color: #777;
+  }
+}
+
+.modal-login-user {
+  overflow: hidden;
+  
+  .modal-header, .modal-footer {
+    background: #ebedf2;
+  }
+  
+  .modal-body {
+    padding: 25px;  
+  }
+  
+  .modal-header {
+    padding: 20px 15px;
+  }
+  
+  .modal-footer {
+    margin-top: 0px;
+    font-size: 11px;
+    color: #777;
+    text-align: center;
   }
 }
 

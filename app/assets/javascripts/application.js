@@ -13,13 +13,13 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require bootstrap/alert
-//= require bootstrap/modal
 //= require bootstrap/transition
+//= require bootstrap/alert
 //= require bootstrap/collapse
-//= require bootstrap/scrollspy
+//= require bootstrap/modal
 //= require bootstrap/tooltip
 //= require bootstrap/popover
+//= require bootstrap/scrollspy
 //= require bootstrap/tab
 //= require lib/bootstrap-tour.min
 
@@ -42,3 +42,4 @@
 //= require users
 //= require user_premium_subscriptions
 //= require credit_card_payment_processing
+//= require user_authentication

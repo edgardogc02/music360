@@ -1,6 +1,6 @@
 class AppsController < ApplicationController
 
-  before_action :authorize
+  before_action :authorize, except: [:index]
 
   def index
     if params[:installed]

@@ -28,8 +28,12 @@ class SessionsController < ApplicationController
           else
             signin_user(user)
           end
-          flash[:notice] = "Welcome back, #{user.username}!"
-				  redirect_to root_path
+          if params[:action_modal] == 'download'
+            redirect_to apps_path
+          else
+            flash[:notice] = "Welcome back, #{user.username}!"
+            redirect_to root_path
+          end
 				end
 			else
         format.json do

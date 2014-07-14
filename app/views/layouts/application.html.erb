@@ -11,7 +11,7 @@
 			<%= render "shared/welcome_modal" %>
 		<% end %>
 
-		<nav class="navbar navbar-default navbar-fixed-top" role="navbar">
+		<nav class="navbar navbar-custom navbar-default navbar-fixed-top" role="navbar">
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12">
@@ -22,22 +22,22 @@
 				    </div>
 				    <div class="navbar-header pull-right">
 				    	<% if signed_in? %>
-								<div class="clearfix">
-									<div class="pull-left"><%= render "searches/new" %></div>
-									<div class="pull-left">
-										<% if current_user.admin? %>
-		                  <%= link_to admin_dashboard_path, {class: "btn", target: "_blank"} do %>
-		                    <i class="glyphicon glyphicon-eye-open"></i> Admin
-		                  <% end %>
-		                <% end %>
-							      <%= link_to logout_path, {class: "btn", id: "sign_out"} do %>
-						          <i class="glyphicon glyphicon-log-out"></i> Sign out
-						        <% end %>
-									</div>
-								</div>	
+								<%= render "searches/new" %>
+								
+								<%= link_to "Help", help_path, {class: "btn btn-link", target: "_blank"} %>
+								<%= link_to "Take a tour", tour_path, {class: "btn btn-link"} %>
+								<%= link_to "Upgrade", new_user_premium_subscription_path, {class: "btn btn-link"} %>
+																
+								<% if current_user.admin? %>
+                  <%= link_to "Admin", admin_dashboard_path, {class: "btn btn-link", target: "_blank"} %>
+                <% end %>
+                
+					      <%= link_to "Download", is_mobile? ? mobile_landing_path : apps_path, {class: "btn btn-primary btn-lg download-modal-btn"} %>
+					      <%= link_to "Sign out", logout_path, {class: "btn", id: "sign_out"} %>
 				      <% else %>
-				      	<%= link_to 'Sign up', signup_path, class: 'btn btn-link' %>
-					    	<a href="#" class="btn btn-primary sign-in-btn" data-toggle="modal" data-target="#SignIn" id="sign_in_btn">Sign in</a>
+					      <a href="<%= help_path %>" class="btn btn-link" target="_blank">Help</a>			
+								<a href="#" class="btn btn-link authentication-btn" data-id="login">Log in</a>
+								<a href="#" class="btn btn-primary btn-lg authentication-btn download-modal-btn" data-id="download">Download</a>
 					    <% end %>
 				    </div>
 					</div>
@@ -65,7 +65,7 @@
 				<div class="col-md-10 col-sm-9">
 
           <% flash.each do |name, msg| %>
-            <%= content_tag :div, class: "alert alert-#{name} #{alert_class(name)} alert-dismissable" do %>
+            <% content_tag :div, class: "alert alert-#{name} #{alert_class(name)} alert-dismissable" do %>
               <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
               <%= msg %>
             <% end %>

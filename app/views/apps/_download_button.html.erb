@@ -1,13 +1,23 @@
-<div id="download-btn"></div>
+<% if !current_user.installed_desktop_app? %>
+	<p>Your InstrumentChamp download should start within seconds. If it doesn't, <a href="#" class="restart_download">restart the download.</a></p>
+  <section>
+    <%= link_to "I already installed the app", apps_path(installed: true) %>
+  </section>
+<% else %>
+	<br />
+	<div id="download-btn"></div>
+	<br />
+<% end %>
 
 <%= content_for(:js_scripts) do %>
 	<script type="text/javascript">
 		$(document).ready(function() {
 			var node = $("#download-btn");
 			if (navigator.appVersion.indexOf("Mac")!=-1){
-				node.html('<a class="download_btn" href=""><img src="http://blog.instrumentchamp.com/wp-content/uploads/2014/01/download_ic_osx.png" alt="Download InstrumentChamp for Windows" class="downloadbutton"/></a>');
+				//node.html('<a class="download_btn mac" href=""><img src="http://blog.instrumentchamp.com/wp-content/uploads/2014/01/download_ic_osx.png" alt="Download InstrumentChamp for Windows" class="downloadbutton"/></a>');
+				node.html('<a class="btn btn-primary btn-huge download_btn mac" href="#">Download InstrumentChamp Free</a>');
 			} else {
-		  	node.html('<a class="download_btn" href=""><img src="http://blog.instrumentchamp.com/wp-content/uploads/2014/01/download_ic_win.png" alt="Download InstrumentChamp for Windows" class="downloadbutton"/></a>');
+		  	node.html('<a class="btn btn-primary btn-huge download_btn win" href="#">Download InstrumentChamp Free</a>');
 		  }
 
 			function download_action() {
@@ -23,8 +33,13 @@
 	  	$(".download_btn").click(function(e) {
 			  download_action();
 			});
+			
+			$(".restart_download").click(function(e) {
+			  e.preventDefault();
+			  download_action();
+			});
 
-			<% if params[:auto_download] %>
+			<% if params[:auto_download] or !current_user.installed_desktop_app? %>
 				$(window).load(function() {
 					download_action();
 				});

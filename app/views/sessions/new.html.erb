@@ -21,7 +21,9 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<a href="#page-top" class="btn btn-primary sign-in-btn" data-toggle="modal" data-target="#SignIn">Sign in</a>
+			<a href="<%= help_path %>" class="btn btn-link" target="_blank">Help</a>
+			<a href="#" class="btn btn-link authentication-btn" data-id="login">Log in</a>
+			<a href="#" class="btn btn-primary btn-lg authentication-btn download-modal-btn" data-id="download">Download</a>
 		</div>
 	
 		<div class="collapse navbar-collapse navbar-ex1-collapse navbar-right">
@@ -78,7 +80,7 @@
       		<%= image_tag(asset_path('landing/play-logo.png')) %>
 				</a>
         <h1 class="brand-heading">Learn to play music with a real music game</h1>
-        <%= render 'slider_sign_in', {btn_fb_id: 'facebook_signin', btn_email_id: 'btn_email_signup_top_slide'}%>
+        <%= render 'slider_download', {btn_download_id: 'download_btn_top_slide'}%>
       </div>
     </div>
   </div>
@@ -92,7 +94,7 @@
 	      <p>
 	        InstrumentChamp is a music game service for learning to play music and playing with your friends online. Play with real instruments like acoustic guitar, piano, and drums but you can also sing along.
 	      </p>
-	      <%= render 'slider_sign_in', {btn_fb_id: 'facebook_signin_1', btn_email_id: 'btn_email_signup_what_it_is_slide'}%>
+	      <%= render 'slider_download', {btn_download_id: 'download_btn_what_it_is_slide'}%>
 	    </div>
 	  </div>
   </div>
@@ -109,7 +111,7 @@
         <p>
         	InstrumentChamp also introduces a new graphic interface that makes it possible for anyone to learn to play songs without reading sheet music.
         </p>
-        <%= render 'slider_sign_in', {btn_fb_id: 'facebook_signin_2', btn_email_id: 'btn_email_signup_how_it_works_slide'}%>
+        <%= render 'slider_download', {btn_download_id: 'download_btn_how_it_works_slide'}%>
       </div>
 	  </div>
   </div>
@@ -126,7 +128,7 @@
 	      <p>
 	      	You can choose to upgrade to premium, giving you a multiplayer game to play with family and friends - with no advertising. More and more songs will become available on InstrumentChamp.com and can be purchased on demand.
 	      </p>
-	      <%= render 'slider_sign_in', {btn_fb_id: 'facebook_signin_3', btn_email_id: 'btn_email_signup_what_it_costs_slide'}%>
+	      <%= render 'slider_download', {btn_download_id: 'download_btn_what_it_costs_slide'}%>
 	    </div>
 	  </div>
   </div>

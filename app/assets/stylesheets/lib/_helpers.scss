@@ -67,6 +67,15 @@ ul.no-style {
   }
 }
 
+.text-divider {
+  text-align: center;
+  margin: 15px 0px;
+  background: image-url('text_separator_bg.png') repeat-x center center;
+  span {
+    background: #FFF;
+  }  
+}
+
 .actions {
 	margin: $line-height-base / 2 0;
 	padding: $line-height-base / 2;
