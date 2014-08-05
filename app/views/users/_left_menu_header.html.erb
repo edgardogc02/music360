@@ -1,13 +1,13 @@
 <div class="current-user">
 	<div class="pull-left">
-		<%= link_to person_path(user), class: 'avatar thumbnail' do %>
+		<%= link_to profile_accounts_path, class: 'avatar thumbnail' do %>
 			<%= image_tag user.imagename_url, alt: user.username, class: "" %>
 		<% end %>
 	</div>
 	<div class="pull-left">
 		<div class="current-user-info">
 			<h4>
-				<%= link_to user.username, person_path(user) %>
+				<%= link_to user.username, profile_accounts_path %>
 			</h4>
 			<div class="user-level">
 				<div class="text-muted">Career level</div>

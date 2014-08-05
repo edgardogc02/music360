@@ -67,6 +67,16 @@ ul.no-style {
   }
 }
 
+ul.info-label {
+  span {
+    width: 150px;
+    display: inline-block;
+  }
+  li {
+    padding-bottom: 5px;
+  }
+}
+
 .text-divider {
   text-align: center;
   margin: 15px 0px;
@@ -137,4 +147,6 @@ ul.no-style {
 .pos-relative {
   position: relative;
 }
+
+
 

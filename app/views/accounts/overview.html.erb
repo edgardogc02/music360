@@ -1,0 +1,38 @@
+<%= render 'shared/header_page', title: 'Account overview' %>
+
+<%= render 'shared/header_page', title: 'Profile', sub_header: true %>
+<ul class="no-style info-label">
+	<li><span>Username:</span> <%= @user.username %></li>
+	<li><span>Email:</span> <%= @user.email %></li>
+	<li><span>Career level:</span> <%= @user.level %></li>
+	<li><span>Instrument:</span>
+    <% if @user.instrument %>
+      <%= @user.instrument.name %>
+    <% else %>
+      No instrument chosen
+    <% end %>
+	</li>
+  <li>
+    <span>Following:</span> <%= link_to @user.followed_users.count, following_path(@user) %>
+  </li>
+	<li>
+	  <span>Followers:</span> <%= link_to @user.followers.count, user_follower_path(@user) %>
+	</li>
+</ul>
+
+<br />
+<%= link_to 'View complete profile', profile_accounts_path %>
+<br /><br /><br />
+
+<%= render 'shared/header_page', title: 'Subscription status', sub_header: true %>
+
+<% if @user.premium %>
+	<p>Your <b>InstrumentChamp Premium</b> subscription will be active until <%= l @user.premium_until, format: :notime %></p>
+	<%= link_to 'Manage subscriptions', subscription_accounts_path %>
+<% else %>
+	<p>You are currently using InstrumentChamp Free. To get the most out of InstrumentChamp, sign up for InstrumentChamp Premium.</p>
+	<%= link_to 'Upgrade to premium user', new_user_premium_subscription_path %>
+<% end %>
+
+<br />
+
