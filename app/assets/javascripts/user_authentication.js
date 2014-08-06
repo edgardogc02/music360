@@ -76,10 +76,10 @@ window.onload = function () {
     document.getElementById("password_reset_2").onchange = validatePassword;
 }
 function validatePassword(){
-var pass2=document.getElementById("password_reset_1").value;
-var pass1=document.getElementById("password_reset_2").value;
+var pass2=document.getElementById("password_reset_2").value;
+var pass1=document.getElementById("password_reset_1").value;
 if(pass1!=pass2)
-    document.getElementById("password_reset_1").setCustomValidity("Password doesn't match");
+    document.getElementById("password_reset_2").setCustomValidity("Password doesn't match");
 else
     document.getElementById("password_reset_2").setCustomValidity('');  
 }
