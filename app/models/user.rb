@@ -174,6 +174,13 @@ class User < ActiveRecord::Base
     self.first_challenge_id = challenge_id
     save
   end
+  
+  def send_password_reset
+    generate_token(:password_reset_token)
+    self.password_reset_sent_at = Time.zone.now
+    save!
+    EmailNotifier.password_reset(self).deliver
+  end # end add_user_to_user_list action
 
 	private
 

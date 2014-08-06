@@ -1,0 +1,12 @@
+<%= render 'shared/header_page', title: 'Change Password' %>
+
+<div class="row">
+	<div class="col-lg-4 col-md-4">
+		<%= simple_form_for @user, url: reset_password_reset_path(params[:id]), validate: true do |f| %>
+		  <%= f.input :password %>
+		  <%= f.input :password_confirmation %>	
+			<br />	
+			<%= f.button :submit, "Save" %>
+		<% end %>
+	</div>
+</div>

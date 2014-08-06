@@ -83,6 +83,13 @@ InstrumentchampPrototype::Application.routes.draw do
   get 'logout' => "sessions#destroy", :as => :logout
 
   resources :user_passwords
+  
+  resources :password_resets do
+    member do
+      get :change
+      put :reset
+    end
+  end
 
   resources :instruments
 
