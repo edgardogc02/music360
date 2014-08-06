@@ -50,7 +50,7 @@ class UsersController < ApplicationController
 
 	def update
 	  if @user.update_attributes(user_params)
-      redirect_to person_path(@user), notice: "Your profile was successfully updated"
+      redirect_to profile_accounts_path, notice: "Your profile was successfully updated"
     else
       flash.now[:warning] = "Check the errors below and try again"
       render "edit"
