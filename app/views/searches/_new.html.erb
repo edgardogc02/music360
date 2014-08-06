@@ -1,8 +1,10 @@
 <div id="search-box">
-	<%= form_tag searches_path, {class: "form-inline"} do %>
+	<%= form_tag searches_path, {class: "form-inline main-search-box"} do %>
 	  <div class="form-group form-control-sm">
-	    <%= text_field_tag "search[value]", nil, {class: "form-control input-sm", placeholder: "search...", method: :post} %>
+	    <%= text_field_tag "search[value]", nil, {class: "form-control input-sm", placeholder: "Search for friends, artists, songs and challenges", method: :post} %>
 	  </div>
-	  <%= submit_tag "Search", {class: "btn btn-primary btn-sm input-sm"} %>
+	  <%= button_tag(type: 'submit', class: "btn btn-primary btn-sm input-sm") do %>
+	    <i class="glyphicon glyphicon-search"></i>
+	  <% end %>
 	<% end %>
 </div>

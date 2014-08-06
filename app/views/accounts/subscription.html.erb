@@ -5,7 +5,7 @@
 <% if @user.premium %>
 	<p>Your <b>InstrumentChamp Premium</b> subscription will be active until <%= l @user.premium_until, format: :notime %></p>
 	<% if @subscription %>	
-		<%= link_to "Cancel subscription", user_premium_subscription_path(@subscription), {method: :delete, class: "btn btn-danger"} %>
+		<%= link_to "Cancel subscription", user_premium_subscription_path(@subscription), {method: :delete, class: "btn btn-link"} %>
 	<% end %>	
 <% else %>
 	<p>You are currently using InstrumentChamp Free. To get the most out of InstrumentChamp, sign up for InstrumentChamp Premium.</p>
