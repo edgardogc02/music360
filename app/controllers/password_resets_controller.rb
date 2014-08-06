@@ -7,7 +7,7 @@ class PasswordResetsController < ApplicationController
 
     def edit
       @user = current_user
-      render layout: 'side_bar_logged_in_user_general'
+      #render layout: 'side_bar_logged_in_user_general'
     end # end edit action
 
     def change
@@ -31,7 +31,7 @@ class PasswordResetsController < ApplicationController
       elsif !User.authenticate(@user.username, params[:user][:old_password])
         #flash.now[:warning] = t('reset_password_old_password_incorrect_label')
         render :edit
-      elsif @user.change_password(params[:user][:password])
+      elsif @user.update_attributes(user_password_params)
         #flash[:notice] = t('user_data_successfully_updated_label')
         redirect_to @user
       else
@@ -61,13 +61,19 @@ class PasswordResetsController < ApplicationController
         #flash.now[:warning] = t('reset_password_passwords_dont_match_label')
         render :change
       elsif @user.change_password(params[:user][:password])
-        login_user(@user)
+        signin_user(@user)
         #flash[:notice] = t("reset_password_success_reset_label")
-        redirect_to users_path
+        redirect_to root_url
       else
         #flash.now[:warning] = t('error_please_retry_label')
         render :change
       end
     end # end reset action
+    
+    private
+    
+    def user_password_params
+      params.require(:user).permit(:password, :password_confirmation)
+    end
 
 end # end PasswordResetsController class

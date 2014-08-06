@@ -87,7 +87,7 @@ InstrumentchampPrototype::Application.routes.draw do
   resources :password_resets do
     member do
       get :change
-      put :reset
+      patch :reset
     end
   end
 

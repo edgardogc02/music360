@@ -180,9 +180,37 @@ class User < ActiveRecord::Base
     self.password_reset_sent_at = Time.zone.now
     save!
     EmailNotifier.password_reset(self).deliver
-  end # end add_user_to_user_list action
+  end
+  
+  def change_password(new_password)
+    self.password = new_password
+    self.password_confirmation = new_password
+    if check_password_lenght
+      encrypt_password
+      save
+    else
+      false
+    end
+  end 
 
 	private
+	
+	def check_password_lenght
+    if (self.password.length >= 5 and self.password_confirmation.length >= 5)
+      true
+    else
+      false
+    end
+  end
+  
+  def encrypt_password
+    self.password = User.encrypt(self.password)
+    self.password_confirmation = User.encrypt(self.password_confirmation)
+  end
+  
+  def self.encrypt(password)
+    Digest::SHA512.hexdigest(Digest::SHA512.hexdigest(password).reverse)
+  end
 
 	def self.generate_random_password(length)
     (Digest::SHA1.hexdigest("--#{Time.now.to_s}--"))[0..length]
