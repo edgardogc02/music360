@@ -70,3 +70,16 @@ function hide_sliders() {
   login_view_footer.css('display', 'none');
   sign_up_view_footer.css('display', 'none');
 }
+
+window.onload = function () {
+    document.getElementById("password_reset_1").onchange = validatePassword;
+    document.getElementById("password_reset_2").onchange = validatePassword;
+}
+function validatePassword(){
+var pass2=document.getElementById("password_reset_1").value;
+var pass1=document.getElementById("password_reset_2").value;
+if(pass1!=pass2)
+    document.getElementById("password_reset_1").setCustomValidity("Password doesn't match");
+else
+    document.getElementById("password_reset_2").setCustomValidity('');  
+}

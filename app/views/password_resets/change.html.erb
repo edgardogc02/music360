@@ -3,8 +3,8 @@
 <div class="row">
 	<div class="col-lg-4 col-md-4">
 		<%= simple_form_for @user, url: reset_password_reset_path(params[:id]), validate: true do |f| %>
-		  <%= f.input :password %>
-		  <%= f.input :password_confirmation %>	
+		  <%= f.input :password, input_html: { id: 'password_reset_1' } %>
+		  <%= f.input :password_confirmation, input_html: { id: 'password_reset_2' } %>	
 			<br />	
 			<%= f.button :submit, "Save" %>
 		<% end %>
