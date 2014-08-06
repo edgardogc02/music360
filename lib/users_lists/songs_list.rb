@@ -1,7 +1,7 @@
 class SongsList
 
   def initialize(songs=[], title="", display_all_link="")
-    @songs = users
+    @songs = songs
     @title = title
     @display_all_link = display_all_link
   end

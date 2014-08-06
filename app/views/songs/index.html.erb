@@ -1,19 +1,11 @@
 <%= render 'shared/header_page', title: 'Songs' %>
 
-<%= render 'search_form' %>
+<div class="thumbnail-grid row">
+  <%= render partial: "song", collection: @songs %>
+</div>
 
-<hr />
+<%= render "songs_list", songs_list: @my_songs %>
 
-<% if @categories.blank? and !@songs.blank? %>
+<%= render "songs_list", songs_list: @most_popular_songs %>
 
-  <div class="thumbnail-grid row">
-  	<%= render partial: "song", collection: @songs %>
-  </div>
-
-  <%= paginate @songs %>
-
-<% else %>
-
-	<p class="no-content">No songs found</p>
-
-<% end %>
+<%= render "songs_list", songs_list: @new_songs %>
