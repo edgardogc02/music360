@@ -6,6 +6,11 @@ class EmailNotifier < ActionMailer::Base
     @user = user
     mail to: @user.email
   end
+  
+  def password_reset(user)
+    @user = user
+    mail to: @user.email
+  end # end password_reset action
 
   def user_invitation_message(user_invitation)
     @user_invitation = user_invitation

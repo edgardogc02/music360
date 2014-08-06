@@ -1,0 +1,15 @@
+<%= render 'shared/header_page', title: 'Password Reset' %>
+
+<p>Enter your the email address that you used to register. We'll send you an email with a link to reset your password.</p>
+
+<div class="row">
+	<div class="col-lg-4 col-md-4">
+		<%= form_tag password_resets_path, { method: :post} do %>
+			<%= text_field_tag :email, "", placeholder: "Email", class: "form-control", required: true, autofocus: true, type: 'email' %>
+			<br />
+			<%= submit_tag "Send", {class: "btn btn-primary"} %>
+		<% end %>
+	</div>
+</div>
+
+
