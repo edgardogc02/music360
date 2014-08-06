@@ -7,15 +7,15 @@
   <% end %>
 
   <div class="thumbnail-grid row">
-  	<% if defined? modal %> 
+  	<% if defined? modal %>
   		<%= render songs_list.songs, modal: true %>
   	<% else %>
   		<%= render songs_list.songs %>
   	<% end %>
   </div>
 
-	<hr />
   <% if songs_list.paginate? %>
+    <hr />
     <%= paginate songs_list.songs %>
   <% end %>
 

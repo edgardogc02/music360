@@ -87,6 +87,7 @@ ActiveAdmin.register Song do
       @song.difficulty = 1
       @song.artist_id = 0
       @song.arranger_userid = 1
+      @song.uploader_user_id = current_user.id
       @song.status = "ok"
       @song.published_at = Time.now
       @song.user_created = 1
