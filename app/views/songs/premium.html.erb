@@ -1,0 +1,33 @@
+<%= render 'shared/header_page', title: 'Songs' %>
+
+<ul class="nav nav-tabs">
+  <li class="active"><a href="#free" data-toggle="tab">Free</a></li>
+  <li><a href="#my_songs" data-toggle="tab">My Songs</a></li>
+  <li><a href="#premium_songs" data-toggle="tab">Premium Songs</a></li>
+  <li><a href="#free" data-toggle="tab">All</a></li>
+</ul>
+
+<br />
+
+
+<%= form_tag nil, {class: "form-inline", method: :get} do %>
+  <div class="form-group form-control-sm">
+    <%= label_tag "order" %>
+    <%= select_tag "order", options_for_select([["Most recent", "most_recent"], ["Difficulty", "difficulty"], ["Most Played", "most_played"], ["Most Popular", "most_popular"]], params[:order]), {prompt: "Select...", class: "form-control input-sm"} %>
+  </div>
+  <%= submit_tag "Order" %>
+<% end %>
+
+<% if @categories.blank? and !@songs.blank? %>
+
+  <div class="thumbnail-grid row">
+  	<%= render partial: "song", collection: @songs %>
+  </div>
+
+  <%= paginate @songs %>
+
+<% else %>
+
+	<p class="no-content">No songs found</p>
+
+<% end %>

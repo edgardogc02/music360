@@ -29,7 +29,10 @@ class Song < ActiveRecord::Base
   scope :free, -> { where('cost IS NULL OR cost = 0') }
   scope :paid, -> { where('cost > 0') }
   scope :by_popularity, -> { joins('LEFT JOIN songratings ON songratings.song_id = songs.id').group('case when songratings.song_id is null then songs.id else songratings.song_id end').order('AVG(songratings.rating) DESC, songs.id') }
+  scope :by_published_at, -> { order('published_at DESC') }
   scope :not_user_created, -> { where('user_created IS NULL OR user_created = 0') }
+  scope :user_created, -> { where('user_created = 1') }
+  scope :created_by_user_id, ->(user_id) { where('user_created = 1 AND uploader_user_id = ?', user_id) }
 
 	def desktop_app_uri
 		# Format: "ic:song=Amazing%20grace.mid"

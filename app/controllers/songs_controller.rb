@@ -3,17 +3,23 @@ class SongsController < ApplicationController
 	before_action :set_song, only: [:show, :destroy]
 
 	def index
-	  if display_premium?
-      songs = Song.not_user_created
-	  else
-	    songs = Song.free.not_user_created
-	  end
-	  if params[:title]
-      songs = songs.by_title(params[:title])
+    if params[:title]
+      if display_premium?
+        songs = Song.not_user_created
+      else
+        songs = Song.free.not_user_created
+      end
+      @songs = SongDecorator.decorate_collection(songs.by_title(params[:title]))
     else
-      songs = songs.by_popularity
+      if display_premium?
+        @songs = SongDecorator.decorate_collection(Song.paid.by_popularity.limit(5))
+      else
+        @songs = SongDecorator.decorate_collection(Song.free.not_user_created.by_popularity.limit(5))
+      end
+      @most_popular_songs = ResumedMostPopularSongsList.new
+      @my_songs = ResumedMySongsList.new(current_user)
+      @new_songs = ResumedNewSongsList.new
     end
-    @songs = SongDecorator.decorate_collection(songs.page params[:page])
 	end
 
 	def for_challenge
@@ -22,7 +28,7 @@ class SongsController < ApplicationController
 	end
 
 	def list
-    @songs = SongsListFactory.new(params[:view], params[:page]).songs_list
+    @songs = SongsListFactory.new(params[:view], current_user, params[:page]).songs_list
   end
 
 	def show
