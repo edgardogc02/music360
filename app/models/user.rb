@@ -186,7 +186,6 @@ class User < ActiveRecord::Base
     self.password = new_password
     self.password_confirmation = new_password
     if check_password_lenght
-      encrypt_password
       save
     else
       false
@@ -201,15 +200,6 @@ class User < ActiveRecord::Base
     else
       false
     end
-  end
-  
-  def encrypt_password
-    self.password = User.encrypt(self.password)
-    self.password_confirmation = User.encrypt(self.password_confirmation)
-  end
-  
-  def self.encrypt(password)
-    Digest::SHA512.hexdigest(Digest::SHA512.hexdigest(password).reverse)
   end
 
 	def self.generate_random_password(length)
