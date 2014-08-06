@@ -26,7 +26,14 @@
 								
 								<%= link_to "Help", help_path, {class: "btn btn-link", target: "_blank"} %>
 								<%= link_to "Take a tour", tour_path, {class: "btn btn-link"} %>
-								<%= link_to "Upgrade", new_user_premium_subscription_path, {class: "btn btn-link"} %>
+								
+								<% if current_user.premium? %>
+									<%= link_to "Subscription", subscription_accounts_path, {class: "btn btn-link"} %>
+								<% else %>
+									<%= link_to "Upgrade", new_user_premium_subscription_path, {class: "btn btn-link"} %>
+								<% end %>																
+								
+								<%= link_to "Account", overview_accounts_path, {class: "btn btn-link"} %>
 																
 								<% if current_user.admin? %>
                   <%= link_to "Admin", admin_dashboard_path, {class: "btn btn-link", target: "_blank"} %>
@@ -56,7 +63,6 @@
 		  		<div class="col-md-2 col-sm-3">
 		  			<section class="side-panel pos-relative">
 		  				<%= render "users/left_menu_header", user: current_user %>
-
 		          <%= render "shared/left_menu" %>
 		  			</section>
 		  		</div>

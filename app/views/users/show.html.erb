@@ -5,43 +5,30 @@
 		<%= image_tag @user.imagename_url, class: "thumbnail" %>
 	</div>
 	<div class="col-lg-9 col-md-9">
-		<p>
-			<div>Email: <strong><%= @user.email %></strong></div>
-			<div>Career level: <strong><%= @user.level %></strong></div>
-			<div>Instrument:
-			  <strong>
-		      <% if @user.instrument %>
-		        <%= @user.instrument.name %>
-		      <% else %>
-		        No instrument chosen
-		      <% end %>
-		    </strong>
-			</div>
-		  <div>
-		    Following: <strong><%= link_to @user.followed_users.count, following_path(@user) %></strong>
-		  </div>
-			<div>
-			  Followers: <strong><%= link_to @user.followers.count, user_follower_path(@user) %></strong>
-			</div>
-		</p>
-		<% if is_current_user?(@user) %>
-			<div class="spacer-sm">
-		    <%= link_to "Choose your instrument", edit_user_instrument_path(@user.id), class: "btn btn-primary" %>
-		    <%= link_to "Upload profile image", upload_profile_image_person_path(@user), class: "btn btn-primary" %>
-			</div>
-			<div>
-				<%= link_to "Edit profile", edit_person_path(@user), class: "btn btn-primary" %>
-		    <%= link_to "Change password", edit_user_password_path(@user), class: "btn btn-primary" %>
-		    <%= link_to "Delete profile", person_path(@user), :method => 'delete', class: "btn btn-primary" %>
-		  </div>
-		<% end %>
-		
+		<ul class="no-style info-label">
+			<li><span>Username:</span> <%= @user.username %></li>
+			<li><span>Email:</span> <%= @user.email %></li>
+			<li><span>Career level:</span> <%= @user.level %></li>
+			<li><span>Instrument:</span>
+		    <% if @user.instrument %>
+		      <%= @user.instrument.name %>
+		    <% else %>
+		      No instrument chosen
+		    <% end %>
+			</li>
+		  <li>
+		    <span>Following:</span> <%= link_to @user.followed_users.count, following_path(@user) %>
+		  </li>
+			<li>
+			  <span>Followers:</span> <%= link_to @user.followers.count, user_follower_path(@user) %>
+			</li>
+		</ul>		
 	</div>
 </div>
 
 <br />
 
-<section>
+<section class="hidden">
 	<%= render 'shared/header_page', title: 'Open challenges', sub_header: true %>
 	
 	<ul class="media-list">

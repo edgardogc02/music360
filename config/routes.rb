@@ -59,6 +59,12 @@ InstrumentchampPrototype::Application.routes.draw do
   resources :user_instruments, only: [:edit, :update]
   resources :user_groupies, only: [:index, :create, :destroy]
   resources :user_invitations, only: [:new, :create]
+  
+  resources :accounts, path: "account" do
+    get 'overview', on: :collection
+    get 'profile', on: :collection
+    get 'subscription', on: :collection
+  end
 
   resources :user_facebook_invitations do
     post "accept", on: :collection

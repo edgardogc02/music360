@@ -35,4 +35,9 @@ en:
               blank: "You must select your opponent"
             challenger_id:
               blank: "Someone must be the challenger"
-
+  time:
+    formats:
+      default: "%m/%d/%Y"
+      short: "%m/%d"
+      notime: "%m/%d/%Y"
+      
