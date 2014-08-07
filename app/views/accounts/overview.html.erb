@@ -1,6 +1,9 @@
+<%= render 'nav_menu' %>
+
 <%= render 'shared/header_page', title: 'Account overview' %>
 
 <%= render 'shared/header_page', title: 'Profile', sub_header: true %>
+
 <ul class="no-style info-label">
 	<li><span>Username:</span> <%= @user.username %></li>
 	<li><span>Email:</span> <%= @user.email %></li>
@@ -27,12 +30,21 @@
 <%= render 'shared/header_page', title: 'Subscription status', sub_header: true %>
 
 <% if @user.premium %>
-	<p>Your <b>InstrumentChamp Premium</b> subscription will be active until <%= l @user.premium_until, format: :notime %></p>
+	<% if @subscription %>	
+		<p>
+			Your <b>InstrumentChamp</b> subscription will be automatically renewed the <%= l @user.premium_until, format: :notime %>, unless you cancel your subscription before that time.
+		</p>
+	<% else %>
+		<p>
+			Your <b>InstrumentChamp</b> subscription will be active until the <%= l @user.premium_until, format: :notime %>
+		</p>
+	<% end %>	
 	<%= link_to 'Manage subscriptions', subscription_accounts_path %>
 <% else %>
 	<p>You are currently using InstrumentChamp Free. To get the most out of InstrumentChamp, sign up for InstrumentChamp Premium.</p>
-	<%= link_to 'Upgrade to premium user', new_user_premium_subscription_path %>
+	<br />
+	<%= link_to 'Upgrade to premium user', new_user_premium_subscription_path, class: 'btn btn-primary' %>
 <% end %>
 
-<br />
+
 

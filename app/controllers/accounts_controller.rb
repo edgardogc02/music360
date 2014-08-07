@@ -1,6 +1,6 @@
 class AccountsController < ApplicationController
 	before_action :authorize
-	before_action :set_user
+	before_action :set_user, :get_subscription
 
   def overview
   end
@@ -9,10 +9,13 @@ class AccountsController < ApplicationController
   end
   
   def subscription
-    @subscription = UserPremiumSubscription.find_by user_id: @user.id
   end
   
   def set_user
     @user = User.find(current_user.id)
+  end
+  
+  def get_subscription
+    @subscription = UserPremiumSubscription.find_by user_id: @user.id
   end
 end

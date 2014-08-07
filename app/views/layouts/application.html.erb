@@ -27,13 +27,9 @@
 								<%= link_to "Help", help_path, {class: "btn btn-link", target: "_blank"} %>
 								<%= link_to "Take a tour", tour_path, {class: "btn btn-link"} %>
 								
-								<!--
-								<% if current_user.premium? %>
-									<%= link_to "Subscription", subscription_accounts_path, {class: "btn btn-link"} %>
-								<% else %>
+								<% if !current_user.premium? %>
 									<%= link_to "Upgrade", new_user_premium_subscription_path, {class: "btn btn-link"} %>
-								<% end %>																
-								-->
+								<% end %>
 								
 								<%= link_to "Account", overview_accounts_path, {class: "btn btn-link"} %>
 																

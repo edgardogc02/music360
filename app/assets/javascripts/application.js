@@ -43,3 +43,4 @@
 //= require user_premium_subscriptions
 //= require credit_card_payment_processing
 //= require user_authentication
+//= require confirm_dialog

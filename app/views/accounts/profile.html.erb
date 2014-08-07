@@ -1,3 +1,5 @@
+<%= render 'nav_menu' %>
+
 <%= render 'shared/header_page', title: 'Profile' %>
 
 <div class="row">
@@ -7,8 +9,10 @@
 	</div>
 	<div class="col-lg-5 col-md-5">
 		<%= render 'shared/header_page', title: 'Personal Information', sub_header: true %>
-		<ul class="no-style info-label">
+		<ul class="no-style info-label">			
 			<li><span>Username:</span> <%= @user.username %></li>
+			<li><span>First name:</span> <%= @user.first_name %></li>
+			<li><span>Last name:</span> <%= @user.last_name %></li>
 			<li><span>Email:</span> <%= @user.email %></li>
 			<li><span>Career level:</span> <%= @user.level %></li>
 			<li><span>Instrument:</span>
