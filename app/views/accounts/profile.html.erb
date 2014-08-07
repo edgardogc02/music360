@@ -38,3 +38,11 @@
 		<div><%= link_to "Delete profile", person_path(@user), :method => 'delete', class: "btn btn-link" %></div>
 	</div>
 </div>
+
+<%= content_for(:js_scripts) do %>
+	<script type="text/javascript">
+		$(document).ready(function() {				
+			reload_img_avatar();
+		});
+  </script>
+<% end %>

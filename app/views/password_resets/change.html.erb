@@ -10,3 +10,20 @@
 		<% end %>
 	</div>
 </div>
+
+<%= content_for(:js_scripts) do %>
+	<script type="text/javascript">
+		window.onload = function () {
+	    document.getElementById("password_reset_1").onchange = validatePassword;
+	    document.getElementById("password_reset_2").onchange = validatePassword;
+		}
+		function validatePassword(){
+			var pass2=document.getElementById("password_reset_2").value;
+			var pass1=document.getElementById("password_reset_1").value;
+			if(pass1!=pass2)
+			    document.getElementById("password_reset_2").setCustomValidity("Password doesn't match");
+			else
+			    document.getElementById("password_reset_2").setCustomValidity('');  
+		}
+  </script>
+<% end %>
