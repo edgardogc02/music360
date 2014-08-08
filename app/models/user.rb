@@ -48,6 +48,11 @@ class User < ActiveRecord::Base
   has_many :payments
   has_many :user_premium_subscriptions
 
+  has_many :initiated_groups, class_name: "Group", foreign_key: "initiator_user_id"
+  has_many :user_groups
+  has_many :groups, through: :user_groups
+  has_many :group_invitations, dependent: :destroy
+
   belongs_to :instrument
 
   before_create { generate_token(:auth_token) }
@@ -174,14 +179,14 @@ class User < ActiveRecord::Base
     self.first_challenge_id = challenge_id
     save
   end
-  
+
   def send_password_reset
     generate_token(:password_reset_token)
     self.password_reset_sent_at = Time.zone.now
     save!
     EmailNotifier.password_reset(self).deliver
   end
-  
+
   def change_password(new_password)
     self.password = new_password
     self.password_confirmation = new_password
@@ -190,10 +195,10 @@ class User < ActiveRecord::Base
     else
       false
     end
-  end 
+  end
 
 	private
-	
+
 	def check_password_lenght
     if (self.password.length >= 5 and self.password_confirmation.length >= 5)
       true

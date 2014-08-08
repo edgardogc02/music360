@@ -56,10 +56,15 @@ InstrumentchampPrototype::Application.routes.draw do
 
   resources :categories
 
+  resources :groups do
+    get 'members', on: :member
+    resources :group_invitations
+  end
+
   resources :user_instruments, only: [:edit, :update]
   resources :user_groupies, only: [:index, :create, :destroy]
   resources :user_invitations, only: [:new, :create]
-  
+
   resources :accounts, path: "account" do
     get 'overview', on: :collection
     get 'profile', on: :collection
@@ -83,7 +88,7 @@ InstrumentchampPrototype::Application.routes.draw do
   get 'logout' => "sessions#destroy", :as => :logout
 
   resources :user_passwords
-  
+
   resources :password_resets do
     member do
       get :change

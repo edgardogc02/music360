@@ -48,6 +48,14 @@ module ApplicationHelper
     ary.join(' ')
   end
 
+  def current_action?(controller="", action)
+    if controller
+      params[:controller] == controller
+    else
+      params[:action] == action
+    end
+  end
+
   def mobile_agent?
     return true if params[:mobile] == "1"
     request.user_agent =~ /Mobile|webOS/
