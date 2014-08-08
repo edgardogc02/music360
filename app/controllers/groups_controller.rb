@@ -1,0 +1,60 @@
+class GroupsController < ApplicationController
+	before_action :authorize
+  before_action :set_group, only: [:show, :invite_users, :send_invitation, :members, :join]
+
+  def index
+    @public_groups = GroupDecorator.decorate_collection(Group.public.limit(5))
+    @closed_groups = GroupDecorator.decorate_collection(Group.closed.limit(5))
+    @secret_groups = GroupDecorator.decorate_collection(Group.secret.limit(5))
+  end
+
+	def new
+	  @group = Group.new
+  end
+
+  def show
+  end
+
+  def create
+    @group = current_user.initiated_groups.build(group_params)
+    group_creation = GroupCreation.new(@group)
+
+    if group_creation.save
+      redirect_to @group, notice: "The group was successfully created"
+    else
+      flash.now[:warning] = "Please enter a name and a privacy for the group"
+      render :new
+    end
+  end
+
+  def members
+    @users = UserDecorator.decorate_collection(@group.users)
+  end
+
+  def join
+    user_group = current_user.user_groups.build(group: @group)
+
+    if @group.secret? and !current_user.groups_invited_to_ids.include?(@group.id)
+      flash[:warning] = "You can't join #{@group.name} because it's a secret group and you have no invitation."
+      redirect_to groups_path
+    else
+      if user_group.save
+        redirect_to @group, notice: "You are now a member of #{@group.name}"
+      else
+        flash[:warning] = "You are already a member of #{@group.name}"
+        redirect_to @group
+      end
+    end
+  end
+
+  private
+
+  def group_params
+    params.require(:group).permit(:name, :group_privacy_id)
+  end
+
+  def set_group
+    @group = GroupDecorator.decorate(Group.find(params[:id]))
+  end
+
+end

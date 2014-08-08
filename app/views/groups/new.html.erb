@@ -1,0 +1,14 @@
+<%= render 'shared/header_page', title: 'Groups' %>
+
+<%= simple_form_for @group do |f| %>
+
+  <%= f.input :name %>
+
+  <h2>Privacy</h2>
+  <hr />
+
+  <%= f.association :group_privacy, as: :radio_buttons, label: false, label_method: lambda { |o| ("#{o.name}<div class='group_privacy_description'>#{o.description}</div>").html_safe } %>
+
+  <%= f.button :submit, "Create" %>
+
+<% end %>

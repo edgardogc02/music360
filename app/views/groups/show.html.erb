@@ -1,0 +1,27 @@
+<%= render 'shared/header_page', title: 'Groups' %>
+
+<h2>
+  <%= @group.name %>
+</h2>
+
+<br />
+<h4>
+  Founder
+</h4>
+
+<div>
+  <%= link_to person_path(@group.initiator_user), class: 'thumbnail' do %>
+    <%= image_avatar(@group.initiator_user) %>
+  <% end %>
+  <%= link_to @group.initiator_user, person_path(@group.initiator_user) %>
+</div>
+
+<br />
+<br />
+<br />
+
+<div>
+  <%= link_to "Members", members_group_path(@group), {class: 'btn btn-primary'} %>
+  <%= @group.invite_users_button %>
+  <%= @group.join_button %>
+</div>
