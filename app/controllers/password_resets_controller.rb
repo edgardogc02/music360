@@ -45,10 +45,14 @@ class PasswordResetsController < ApplicationController
         #flash.now[:warning] = t('password_reset_email_empty_label')
         render 'new'
       else
-        user = User.where("lower(email) = ?", params[:email].downcase).first
-
-        user.send_password_reset if user
-        redirect_to root_url, notice: t('reset_password_success_email_sent_label')
+        user = User.where("lower(email) = ?", params[:email].downcase).first        
+        if user
+          user.send_password_reset if user
+          redirect_to root_url, notice: t('reset_password_success_email_sent_label')
+        else
+          flash.now[:warning] = "Email doesn't belong to a registered user"
+          render 'new'
+        end        
       end
     end # end create action
 
