@@ -111,35 +111,55 @@
 </div>
 
 <% if @user_premium_subscription_form.premium_plan %>
+	<div class="modal fade" id="checkout_modal">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	        <h2 class="modal-title">Checkout</h2>
+	      </div>
+	      <%= simple_form_for @user_premium_subscription_form, url: user_premium_subscriptions_path, html: {id: "user_purchase_form", class: "checkout-form"} do |f| %>
+		      <div class="modal-body">
+						<div id="user_premium_subscription_form">
+				      <%= render "shared/credit_card_details", f: f, form_object: @user_premium_subscription_form %>
 
-  <% render "shared/payment_method_selection" %>
-
-	<div id="user_premium_subscription_form">
-    <%= simple_form_for @user_premium_subscription_form, url: user_premium_subscriptions_path, html: {id: "user_purchase_form"} do |f| %>
-
-      <%= render "shared/credit_card_details", f: f, form_object: @user_premium_subscription_form %>
-
-      <%= f.input :premium_plan_id, as: :hidden %>
-      <%= f.input :payment_method_id, input_html: { value: PaymentMethod::CREDIT_CARD_ID }, as: :hidden %>
-      <%= f.input :amount, input_html: { value: @user_premium_subscription_form.premium_plan.price, id: "amount" }, as: :hidden %>
-      <%= f.input :currency, input_html: { value: @user_premium_subscription_form.premium_plan.currency, id: "currency" }, as: :hidden %>
-      <%= f.button :submit, "Purchase Now", {class: "btn btn-primary btn-lg", id: "submit_purchase_form"} %>
-    <% end %>
-  </div>
-
-  <%= content_for(:js_scripts) do %>
-
+				      <%= f.input :premium_plan_id, as: :hidden %>
+				      <%= f.input :payment_method_id, input_html: { value: PaymentMethod::CREDIT_CARD_ID }, as: :hidden %>
+				      <%= f.input :amount, input_html: { value: @user_premium_subscription_form.premium_plan.price, id: "amount" }, as: :hidden %>
+				      <%= f.input :currency, input_html: { value: @user_premium_subscription_form.premium_plan.currency, id: "currency" }, as: :hidden %>
+					  </div>
+		      </div>
+		      <div class="modal-footer">
+		      	<div class="clearfix spacer-sm">
+		      		<div class="pull-left"><%= image_tag(asset_path('secure_form.png')) %></div>
+		      		<div class="pull-right">
+		      			<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+			      		<%= f.button :submit, "Continue", {class: "btn btn-primary", id: "submit_purchase_form"} %>
+		      		</div>
+		      	</div>	
+		      	<br />
+		      	<div class="text-center">
+		      		<div class="spacer-sm">This payment will be billed to the card you specified. The name on the statement will be instrumentchamp.com</div>
+		      		Submit a question to our <a href="mailto: support@instrumentchamp.com">support team</a>.
+		      	</div>
+			    </div>
+				<% end %>
+	    </div>
+	  </div>
+	</div>
+	
+	<%= content_for(:js_scripts) do %>
     <script type="text/javascript">
       var PAYMILL_PUBLIC_KEY = "<%= PAYMILL_PUBLIC_KEY %>";
-    </script>
-    <script type="text/javascript" src="https://bridge.paymill.com/"></script>
-
-    <script type="text/javascript">
+      
       $(document).ready(function() {
         submit_credit_card_payment();
+        $('#checkout_modal').modal({
+		      show: true,
+		      backdrop: 'static'
+		    });
       });
     </script>
-  <% end %>
-
+    <script type="text/javascript" src="https://bridge.paymill.com/"></script>
+  <% end %>	
 <% end %>
 

@@ -19,5 +19,12 @@ root.listing_hover_effects = ->
 
   return
 
-$(document).ready(listing_hover_effects)
-$(document).on('page:load', listing_hover_effects)
+#$(document).ready(listing_hover_effects)
+#$(document).on('page:load', listing_hover_effects)
+$(document).ready ->
+  listing_hover_effects()  if $(".thumbnail-grid").length
+  return
+
+$(document).on "page:load", ->
+  listing_hover_effects()  if $(".thumbnail-grid").length
+  return

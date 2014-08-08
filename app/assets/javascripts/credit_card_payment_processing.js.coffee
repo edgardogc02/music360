@@ -19,7 +19,7 @@ get_error_text = (error_key) ->
 paymill_response_handler = (error, result) ->
   if error
     $(".payment-errors").text get_error_text error.apierror
-    $(".payment-errors").css "display", "inline-block"
+    $(".payment-errors").css "display", "block"
     $("#submit_purchase_form").removeAttr "disabled"
   else
     $(".payment-errors").css "display", "none"

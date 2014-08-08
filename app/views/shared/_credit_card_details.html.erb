@@ -1,31 +1,30 @@
-<div id="credit_card_payment_form_fields">
-  <%= render 'shared/header_page', title: 'Fill in your credit card details', sub_header: true %>
+<h2>Purchase summary</h2>
+						
+<% if form_object.respond_to?(:premium_plan) %>
+	<p><b><%= form_object.premium_plan.duration_in_months %> month premium subscription (recurring <%= form_object.premium_plan.name %>) <%= form_object.premium_plan.currency %> <%= form_object.premium_plan.price %></b></p>
+<% end %>
 
-  <div class="row">
-  	<div class="col-md-4">
-		  <%= f.input :paymill_token, input_html: {id: "paymill_token"}, as: :hidden %>
-		  <%= f.input :card_holdername, input_html: {id: "credit_card_holdername"} %>
-		  <%= f.input :card_number, input_html: {id: "credit_card_number"} %>
-		  <%= f.input :card_cvc, input_html: {id: "credit_card_cvc"} %>
-		  <%= f.input :card_expiry_date, as: :date, discard_day: true, order: [:month, :year], start_year: Date.today.year, end_year: Date.today.year + 15, prompt: "Select...", input_html: {class: "credit_card_expiry_date"} %>
-		</div>
-		<% if form_object.respond_to?(:premium_plan) %>
-  		<div class="col-md-4 col-md-offset-2">
-  			<h2>Plan details</h2>
-  			<p>
-  				<ul class="no-style">
-  					<li><h5><strong>Plan: </strong> Premium</h5></li>
-  					<li><h5><strong>Period: </strong><%= form_object.premium_plan.name %></h5></li>
-  					<li><h5><strong>Amount: </strong><%= form_object.premium_plan.price %> <%= form_object.premium_plan.currency %></h5></li>
-  				</ul>
-  			</p>
-  		</div>
-    <% end %>
-	</div>
+<br />
+
+<div id="credit_card_payment_form_fields">
+	<h2>Payment details</h2>
+	
+		<div class="form-group string optional">
+			<label class="control-label">Accepted Cards</label>
+			<div class="wrap-content">
+				<%= image_tag(asset_path('credit_cards.png')) %>
+			</div>
+		</div>	
+  
+	  <%= f.input :paymill_token, input_html: {id: "paymill_token"}, as: :hidden %>
+	  <%= f.input :card_holdername, input_html: {id: "credit_card_holdername", required: "required"} %>
+	  <%= f.input :card_number, input_html: {id: "credit_card_number", required: "required"} %>
+	  <%= f.input :card_cvc, input_html: {id: "credit_card_cvc", required: "required"} %>
+	  <%= f.input :card_expiry_date, as: :date, discard_day: true, order: [:month, :year], use_month_numbers: true, start_year: Date.today.year, end_year: Date.today.year + 15, prompt: ['Month', 'Year'], input_html: {class: "credit_card_expiry_date"} %>
 
   <div id="paymill_error">
     <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
   </div>
 
-  <p class="payment-errors alert-error span3" style="display:none;"></p>
+  <div class="payment-errors alert alert-warning" style="display:none"></div>
 </div>
