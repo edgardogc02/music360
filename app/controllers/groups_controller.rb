@@ -21,7 +21,7 @@ class GroupsController < ApplicationController
 
   def create
     @group = current_user.initiated_groups.build(group_params)
-    group_creation = GroupCreation.new(@group)
+    group_creation = GroupCreation.new(@group, request)
 
     if group_creation.save
       redirect_to @group, notice: "The group was successfully created"
