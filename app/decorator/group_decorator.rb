@@ -14,4 +14,10 @@ class GroupDecorator < Draper::Decorator
     end
   end
 
+  def edit_button
+    if h.signed_in? and h.current_user == model.initiator_user
+      h.link_to "Edit", h.edit_group_path(model), {class: "btn btn-primary"}
+    end
+  end
+
 end

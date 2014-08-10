@@ -1,15 +1,19 @@
 class GroupsController < ApplicationController
 	before_action :authorize
-  before_action :set_group, only: [:show, :invite_users, :send_invitation, :members, :join]
+  before_action :set_group, only: [:show, :members, :join, :edit, :update]
 
   def index
-    @public_groups = GroupDecorator.decorate_collection(Group.public.limit(5))
-    @closed_groups = GroupDecorator.decorate_collection(Group.closed.limit(5))
-    @secret_groups = GroupDecorator.decorate_collection(Group.secret.limit(5))
+    @my_groups = GroupDecorator.decorate_collection(current_user.groups.limit(5))
+#    @public_groups = GroupDecorator.decorate_collection(Group.public.limit(5))
+#    @closed_groups = GroupDecorator.decorate_collection(Group.closed.limit(5))
+#    @secret_groups = GroupDecorator.decorate_collection(Group.secret.limit(5))
   end
 
 	def new
 	  @group = Group.new
+  end
+
+  def edit
   end
 
   def show
@@ -25,6 +29,16 @@ class GroupsController < ApplicationController
       flash.now[:warning] = "Please enter a name and a privacy for the group"
       render :new
     end
+  end
+
+  def update
+    if @group.update_attributes(group_params)
+      redirect_to @group, notice: "The group was successfully updated"
+    else
+      flash.now[:warning] = "Please enter a name and a privacy for the group"
+      render :edit
+    end
+
   end
 
   def members
@@ -50,7 +64,7 @@ class GroupsController < ApplicationController
   private
 
   def group_params
-    params.require(:group).permit(:name, :group_privacy_id)
+    params.require(:group).permit(:name, :group_privacy_id, :imagename)
   end
 
   def set_group

@@ -1,5 +1,7 @@
 class Group < ActiveRecord::Base
 
+  mount_uploader :imagename, GroupImagenameUploader
+
   validates :name, presence: true
   validates :group_privacy_id, presence: true
 
