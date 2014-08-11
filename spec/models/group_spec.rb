@@ -54,6 +54,31 @@ describe Group do
 
       Group.secret.should eq([group1, group3])
     end
+
+    it "should return the searcheable groups" do
+      pgp = create(:public_group_privacy)
+      cgp = create(:closed_group_privacy)
+      sgp = create(:secret_group_privacy)
+
+      pg1 = create(:group, group_privacy: pgp)
+      pg2 = create(:group, group_privacy: pgp)
+      cg1 = create(:group, group_privacy: cgp)
+      cg2 = create(:group, group_privacy: cgp)
+      sg1 = create(:group, group_privacy: sgp)
+      sg2 = create(:group, group_privacy: sgp)
+
+      Group.searchable.should eq([pg1, pg2, cg1, cg2])
+    end
+
+    it "should search by name" do
+      g1 = create(:group, name: "Group 1")
+      g2 = create(:group, name: "Secret group")
+      g3 = create(:group, name: "Football Fans")
+
+      Group.by_name("Gro").should eq([g1, g2])
+      Group.by_name("fans").should eq([g3])
+    end
+
   end
 
 end

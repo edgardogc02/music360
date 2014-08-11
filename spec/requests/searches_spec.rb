@@ -30,6 +30,10 @@ describe "Searches" do
     it "should display challenges in the search results" do
       pending
     end
+
+    it "should display groups in the search results" do
+      pending
+    end
   end
 
   context "user not signed in" do

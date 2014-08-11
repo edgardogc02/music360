@@ -15,6 +15,8 @@ class Group < ActiveRecord::Base
   scope :public, -> { where(group_privacy: GroupPrivacy.public) }
   scope :closed, -> { where(group_privacy: GroupPrivacy.closed) }
   scope :secret, -> { where(group_privacy: GroupPrivacy.secret) }
+  scope :searchable, -> {where('group_privacy_id IN (?)', [GroupPrivacy.public.id, GroupPrivacy.closed.id])}
+  scope :by_name, ->(name) { where('name LIKE ?', '%'+name+'%') }
 
   def secret?
     group_privacy == GroupPrivacy.secret

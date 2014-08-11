@@ -5,56 +5,56 @@
         <%= image_tag(asset_path('logo.png')) %>
       </div>
       <div class="modal-body">
-      	
+
       	<div class="login-view">
-	      	<%= link_to facebook_signin_path, id: "facebook_signin_4", class: 'fb_button sm' do %>
+	      	<%= link_to facebook_signin_path, id: "facebook_signin", class: 'fb_button sm' do %>
 	        	<div class="Spinner"></div>
 					  <span class="text">Log in with Facebook</span>
-	        <% end %>    	            
-	        <p class="text-divider"><span>or</span></p>     	
+	        <% end %>
+	        <p class="text-divider"><span>or</span></p>
 	        <%= form_tag sessions_path, id: "login-form" do %>
 	          <div class="spacer-sm">
 	          	<%= text_field_tag :username, "", placeholder: "Username", class: "form-control input-lg", required: true, autofocus: true %>
 	          </div>
-	          <%= password_field_tag :password, "", placeholder: "Password", class: "form-control input-lg", required: true %>			      
+	          <%= password_field_tag :password, "", placeholder: "Password", class: "form-control input-lg", required: true %>
 	        	<div class="pull-right remember_check">
 				    	<%= check_box_tag :remember_me, 1, false %> Remember me?
-			      </div>	        
+			      </div>
 		        <%= submit_tag "Sign in", {class: "btn btn-primary btn-lg", id: "sign_in"} %>
 		        <%= hidden_field_tag 'action_modal', '' %>
-	        <% end %>  
-	        
+	        <% end %>
+
 	        <br />
 	        <div class="text-center">
 	        	<div class="spacer-sm"><%= link_to 'Forgot your password?', new_password_reset_path %></div>
 		        <div>Don't have an account? <a href="#" id="sign-up-slide-btn">Sign up</a></div>
-	        </div>	        	
+	        </div>
 	      </div>
-	      
+
 	      <div class="sign-up-view">
 	      	<%= link_to facebook_signin_path, id: "facebook_signin_4", class: 'fb_button sm' do %>
 	        	<div class="Spinner"></div>
 					  <span class="text">Sign up with Facebook</span>
-	        <% end %>        
-	        <p class="text-divider"><span>or</span></p>    
+	        <% end %>
+	        <p class="text-divider"><span>or</span></p>
 	        <p><a href="<%= new_person_path %>" id="sign-up-email-slide-btn">Sign up with your email address</a></p>
 	        Already have an account? <a href="#" id="log-in-slide-btn">Log in</a>
-	      </div>	      
+	      </div>
       </div>
       <div class="modal-footer">
       	<div class="login-view-footer">
-      		If you click "Log in with Facebook" and are not a InstrumentChamp user, you will be registered and you agree to InstrumentChamp's 
-	      	<%= link_to "terms & conditions", terms_of_service_path, target: 'blank' %> 
-	      	and 
+      		If you click "Log in with Facebook" and are not a InstrumentChamp user, you will be registered and you agree to InstrumentChamp's
+	      	<%= link_to "terms & conditions", terms_of_service_path, target: 'blank' %>
+	      	and
 	      	<%= link_to "privacy policy", privacy_policy_path, target: 'blank' %>.
       	</div>
       	<div class="sign-up-view-footer">
-      		By clicking on Sign up, you agree to InstrumentChamp's 
+      		By clicking on Sign up, you agree to InstrumentChamp's
       		<%= link_to "terms & conditions", terms_of_service_path, target: 'blank' %>
-      		and 
+      		and
       		<%= link_to "privacy policy", privacy_policy_path, target: 'blank' %>.
-      	</div>      	
-      </div>     
+      	</div>
+      </div>
     </div>
   </div>
 </div>
