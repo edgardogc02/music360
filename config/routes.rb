@@ -62,6 +62,8 @@ InstrumentchampPrototype::Application.routes.draw do
     resources :group_invitations
   end
 
+  resources :group_invitations, only: [:accept]
+
   resources :user_instruments, only: [:edit, :update]
   resources :user_groupies, only: [:index, :create, :destroy]
   resources :user_invitations, only: [:new, :create]

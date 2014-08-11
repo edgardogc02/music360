@@ -154,6 +154,16 @@ describe "Groups" do
         page.should_not have_content group.name
       end
 
+      it "should list the group invitations" do
+        group = create(:group)
+        create(:group_invitation, user: @user, group: group)
+
+        visit groups_path
+        page.should have_content "Invitations"
+        page.should have_content group.name
+        page.should have_link "Join", join_group_path(group)
+      end
+
       it "should have a link to create a new group" do
         visit groups_path
         page.should have_link "Create new group", new_group_path

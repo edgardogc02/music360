@@ -4,6 +4,7 @@ class GroupsController < ApplicationController
 
   def index
     @my_groups = GroupDecorator.decorate_collection(current_user.groups.limit(5))
+    @group_invitations = GroupDecorator.decorate_collection(current_user.groups_invited_to.limit(5))
 #    @public_groups = GroupDecorator.decorate_collection(Group.public.limit(5))
 #    @closed_groups = GroupDecorator.decorate_collection(Group.closed.limit(5))
 #    @secret_groups = GroupDecorator.decorate_collection(Group.secret.limit(5))
@@ -45,6 +46,7 @@ class GroupsController < ApplicationController
     @users = UserDecorator.decorate_collection(@group.users)
   end
 
+  # TODO: REFACTOR (CREATE A NEW CONTROLLER FOR THIS? CREATE FORM FOR ACTION)
   def join
     user_group = current_user.user_groups.build(group: @group)
 
@@ -52,7 +54,7 @@ class GroupsController < ApplicationController
       flash[:warning] = "You can't join #{@group.name} because it's a secret group and you have no invitation."
       redirect_to groups_path
     else
-      if user_group.save
+      if user_group.save and current_user.group_invitations.by_group(@group.id).first.destroy
         redirect_to @group, notice: "You are now a member of #{@group.name}"
       else
         flash[:warning] = "You are already a member of #{@group.name}"
