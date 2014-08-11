@@ -17,10 +17,9 @@ describe "UploadProfileImage" do
     end
 
     it "should be able to upload profile image using the url textfield" do
-      visit person_path(@user)
-      current_path.should eq(person_path(@user))
-      page.should have_link "Upload profile image", href: upload_profile_image_person_path(@user)
-      click_on "Upload profile image"
+      visit profile_accounts_path
+      page.should have_link "Change profile image", href: upload_profile_image_person_path(@user)
+      click_on "Change profile image"
       current_path.should eq(upload_profile_image_person_path(@user))
       fill_in 'user_remote_imagename_url', with: "http://s3.amazonaws.com/37assets/svn/765-default-avatar.png"
       click_on "Save"

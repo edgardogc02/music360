@@ -6,7 +6,7 @@ class EmailNotifier < ActionMailer::Base
     @user = user
     mail to: @user.email
   end
-  
+
   def password_reset(user)
     @user = user
     mail to: @user.email
@@ -69,4 +69,13 @@ class EmailNotifier < ActionMailer::Base
 
     mail to: @user_premium_subscription.user.email
   end
+
+  def group_invitation_message(group_invitation)
+    @group_invitation = group_invitation
+    @group = group_invitation.group
+    @user = group_invitation.user
+
+    mail to: @user.email
+  end
+
 end

@@ -10,7 +10,7 @@ describe "Challenges" do
 
     it "Create new challenge from songs" do
       click_on "Songs"
-      click_on "challenge_#{@song.id}"
+      first("#challenge_#{@song.id}").click
       current_path.should eq(new_challenge_path)
 
       page.should have_content(@song.title)

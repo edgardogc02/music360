@@ -38,7 +38,7 @@ describe "UserInstrument" do
     end
 
     it "should have a select instrument button in the profile page" do
-      visit person_path(@user)
+      visit profile_accounts_path
       page.should have_link "Choose your instrument", href: edit_user_instrument_path(@user.id)
     end
 

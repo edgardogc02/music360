@@ -12,7 +12,7 @@ describe "UserPassword" do
     end
 
     it "should have a change password button in the user page" do
-      visit person_path(@user)
+      visit profile_accounts_path
       page.should have_link "Change password", href: edit_user_password_path(@user)
     end
 

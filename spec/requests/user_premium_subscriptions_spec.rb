@@ -25,11 +25,10 @@ describe "UserPremiumSubscriptions" do
       create_subscription
 
       user_premium_subscription = @user.user_premium_subscriptions.first
-      visit user_premium_subscription_path(user_premium_subscription)
+      visit subscription_accounts_path
 
-      page.should have_content "Subscription: #{@first_plan.name}"
-      page.should have_content "Premium until: #{@user.premium_until}"
-      page.should have_link "Cancel subscription", href: user_premium_subscription_path(user_premium_subscription)
+      page.should have_content "Your InstrumentChamp subscription will be automatically renewed the #{@user.premium_until}"
+      page.should have_link "Cancel your subscription", href: "#" # user_premium_subscription_path(user_premium_subscription)
     end
 
     it "should be able to cancel a subscription" do

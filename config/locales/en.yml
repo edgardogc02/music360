@@ -24,6 +24,8 @@ en:
       subject: Premium subscription renewal
     user_premium_subscription_renewal_alert_message:
       subject: Premium subscription renewal alert
+    group_invitation_message:
+      subject: Group invitation
   activerecord:
     errors:
       models:
@@ -40,4 +42,4 @@ en:
       default: "%m/%d/%Y"
       short: "%m/%d"
       notime: "%m/%d/%Y"
-      
+

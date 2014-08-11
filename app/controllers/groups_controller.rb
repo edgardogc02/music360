@@ -54,7 +54,10 @@ class GroupsController < ApplicationController
       flash[:warning] = "You can't join #{@group.name} because it's a secret group and you have no invitation."
       redirect_to groups_path
     else
-      if user_group.save and current_user.group_invitations.by_group(@group.id).first.destroy
+      if group_invitation = current_user.group_invitations.by_group(@group.id).first
+        group_invitation.destroy
+      end
+      if user_group.save
         redirect_to @group, notice: "You are now a member of #{@group.name}"
       else
         flash[:warning] = "You are already a member of #{@group.name}"

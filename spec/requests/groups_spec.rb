@@ -261,6 +261,17 @@ describe "Groups" do
           page.find('.alert-warning').should have_content("You can't join #{@group.name} because it's a secret group and you have no invitation.")
         end
       end
+
+      it "should send an email to the invited user" do
+        group = create(:group, initiator_user: @user)
+        invited_user = create(:user)
+
+        visit group_path(group)
+        click_on "Invite users"
+        click_on "submit_group_invitation_#{invited_user.id}"
+
+        last_email.to.should include(invited_user.email)
+      end
     end
   end
 

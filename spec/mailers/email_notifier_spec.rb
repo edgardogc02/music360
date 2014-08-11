@@ -227,6 +227,24 @@ describe EmailNotifier do
     end
   end
 
+  describe "send group invitation message email" do
+    let(:group_invitation) { create(:group_invitation) }
+    let(:mail) { EmailNotifier.group_invitation_message(group_invitation) }
+
+    it "sends group invitation message to the invited user" do
+      mail.subject.should eq("Group invitation")
+      mail.to.should eq([group_invitation.user.email])
+      mail.from.should eq(["no-reply@instrumentchamp.com"])
+    end
+
+    it "renders the body" do
+      mail.body.encoded.should have_content "Hi #{group_invitation.user.username},"
+      mail.body.encoded.should have_content "you were invited you to join \"#{group_invitation.group.name}\" group on InstrumentChamp."
+      mail.body.encoded.should have_link "Join", join_group_url(group_invitation.group, host: group_invitation.user.created_by)
+      check_greeting_lines
+    end
+  end
+
   def check_greeting_lines
     mail.body.encoded.should have_content "Kind regards,"
     mail.body.encoded.should have_content "The instrumentchamp team."

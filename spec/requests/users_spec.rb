@@ -275,7 +275,7 @@ describe "Users" do
 
     it "should have a linked username in the left side bar" do
       visit root_path
-      page.should have_link @user.username, href: person_path(@user.username)
+      page.should have_link @user.username, href: profile_accounts_path
     end
 
     it "should have a edit profile button user show page" do
