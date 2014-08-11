@@ -34,7 +34,7 @@ describe "Apps" do
     it "should save the user selected song" do
       song = create(:song)
       visit songs_path
-      click_on "Play"
+      first("#play_song_#{song.title.squish.downcase.tr(" ","_")}").click
 
       @user.reload
       @user.first_song_id.should eq(song.id)
@@ -52,6 +52,7 @@ describe "Apps" do
 
   context "user not signed in" do
     it "should not display index page" do
+      pending "this was changed (now all users can see this page)"
       visit apps_path
       current_path.should eq(login_path)
     end

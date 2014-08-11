@@ -8,6 +8,8 @@
 
 <%= render "section_results", title: "Songs", values: @songs, view_more_link: songs_search_path(params[:id]) %>
 
+<%= render "section_results", title: "Groups", values: @groups, view_more_link: groups_search_path(params[:id]) %>
+
 <%= render 'shared/header_page', title: "Challenges", sub_header: true %>
 
 <% if !@challenges.blank? %>

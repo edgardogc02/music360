@@ -106,6 +106,7 @@ InstrumentchampPrototype::Application.routes.draw do
     get 'my_friends', on: :member
     get 'artists', on: :member
     get 'songs', on: :member
+    get 'groups', on: :member
   end
 
   match '/auth/facebook', via: [:get, :post], as: :facebook_signin
