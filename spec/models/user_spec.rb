@@ -41,17 +41,27 @@ describe User do
       should have_many(:followed_users).through(:inverse_user_followers).source(:followed)
     end
 
-    [:user_omniauth_credentials, :user_facebook_friends, :user_facebook_invitations, :user_invitations, :user_purchased_songs].each do |assoc|
+    [:user_omniauth_credentials, :user_facebook_friends, :user_facebook_invitations, :user_invitations, :user_purchased_songs, :group_invitations].each do |assoc|
       it "should have has many #{assoc} with dependent destroy" do
         should have_many(assoc).dependent(:destroy)
       end
     end
 
-    it "should have many paid songs through user_purchased_songs" do
-      should have_many(:purchased_songs).through(:user_purchased_songs)
+    [[:purchased_songs, :user_purchased_songs], [:groups, :user_groups]].each do |assoc, through|
+      it "should have many #{assoc} through #{through}" do
+        should have_many(assoc).through(through)
+      end
     end
 
-    [:payments, :user_premium_subscriptions].each do |assoc|
+    it "should have many groups invited to" do
+      should have_many(:groups_invited_to).through(:group_invitations).source(:group)
+    end
+
+    it "shuold have many initiated_groups" do
+      should have_many(:initiated_groups).class_name('Group').with_foreign_key("initiator_user_id")
+    end
+
+    [:payments, :user_premium_subscriptions, :user_groups].each do |assoc|
       it "should have many #{assoc}" do
         should have_many(assoc)
       end

@@ -52,6 +52,7 @@ class User < ActiveRecord::Base
   has_many :user_groups
   has_many :groups, through: :user_groups
   has_many :group_invitations, dependent: :destroy
+  has_many :groups_invited_to, through: :group_invitations, source: :group
 
   belongs_to :instrument
 

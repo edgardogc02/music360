@@ -141,45 +141,37 @@ describe "Groups" do
     end
 
     context "index" do
-      it "should list 5 public groups" do
-        pending
-        public_privacy = create(:public_group_privacy)
-        groups = 6.times.inject([]) { |res, i| res << create(:group, group_privacy: public_privacy) }
+      it "should list my groups" do
+        group = create(:group)
+        user_group = create(:group, initiator_user: @user)
+        create(:user_group, group: user_group, user: @user)
+        user_group1 = create(:group, initiator_user: @user)
+        create(:user_group, group: user_group1, user: @user)
 
         visit groups_path
-        page.should have_content "Public"
-        page.should have_content groups[0].name
-        page.should have_content groups[1].name
-        page.should have_content groups[2].name
-        page.should have_content groups[3].name
-        page.should have_content groups[4].name
-        page.should_not have_content groups[5].name
-      end
-
-      it "should list 5 closed groups" do
-        pending
-        closed_privacy = create(:closed_group_privacy)
-        groups = 6.times.inject([]) { |res, i| create(:group, group_privacy: closed_privacy) }
-
-        visit groups_path
-        save_and_open_page
-        page.should have_content "Closed"
-        page.should have_content groups[0].name
-        page.should have_content groups[1].name
-        page.should have_content groups[2].name
-        page.should have_content groups[3].name
-        page.should have_content groups[4].name
-        page.should_not have_content groups[5].name
-      end
-
-      it "should list the secret groups as well if the searcher user is a member" do
-        pending
+        page.should have_content user_group.name
+        page.should have_content user_group1.name
+        page.should_not have_content group.name
       end
 
       it "should have a link to create a new group" do
-        pending
         visit groups_path
         page.should have_link "Create new group", new_group_path
+      end
+    end
+
+    context "edit" do
+      it "should be able to edit the group name and privacy" do
+        user_group = create(:group, initiator_user: @user)
+        create(:user_group, group: user_group, user: @user)
+
+        visit edit_group_path(user_group)
+        fill_in "group_name", with: "new group name"
+        click_on "Save"
+
+        current_path.should eq(group_path(user_group))
+        page.should have_content "new group name"
+        page.find('.alert-notice').should have_content("The group was successfully updated")
       end
     end
 
@@ -254,7 +246,6 @@ describe "Groups" do
         it "should not be able to join a secret group if not invited" do
           visit group_path(@group)
           click_on "Join"
-          save_and_open_page
           @user.groups.should eq([])
           current_path.should eq(groups_path)
           page.find('.alert-warning').should have_content("You can't join #{@group.name} because it's a secret group and you have no invitation.")

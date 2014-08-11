@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :user, aliases: [:followed, :follower, :challenger, :challenged] do
+  factory :user, aliases: [:followed, :follower, :challenger, :challenged, :initiator_user] do
     sequence(:username) { |n| "testuser#{n}" }
     password "12345"
     password_confirmation { "#{password}" }
@@ -122,6 +122,37 @@ FactoryGirl.define do
   factory :level do
     sequence(:title) { |n| "level_#{n}" }
     xp 0
+  end
+
+  factory :group_privacy do
+    name "Privacy"
+    description "This will be a group with privacy"
+
+    factory :public_group_privacy do
+      name "Public"
+    end
+    factory :closed_group_privacy do
+      name "Closed"
+    end
+    factory :secret_group_privacy do
+      name "Secret"
+    end
+  end
+
+  factory :group do
+    sequence(:name) { |n| "Test Group #{n}" }
+    initiator_user
+    group_privacy
+  end
+
+  factory :user_group do
+    user
+    group
+  end
+
+  factory :group_invitation do
+    user
+    group
   end
 
 end
