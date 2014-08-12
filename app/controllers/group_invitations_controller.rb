@@ -9,8 +9,9 @@ class GroupInvitationsController < ApplicationController
   def create
     group_invitation = @group.group_invitations.build(group_invitation_params)
 
-    if group_invitation.save
-      EmailNotifier.group_invitation_message(group_invitation).deliver
+    group_invitation_completition = GroupInvitationCreation.new(group_invitation)
+
+    if group_invitation_completition.save
       flash[:notice] = "#{group_invitation.user.username} was successfully invited to join #{group_invitation.group.name}"
     else
       flash[:warning] = "Please try again"
