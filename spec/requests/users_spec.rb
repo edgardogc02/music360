@@ -279,7 +279,7 @@ describe "Users" do
     end
 
     it "should have a edit profile button user show page" do
-      visit person_path(@user.username)
+      visit profile_accounts_path
       page.should have_link "Edit profile", href: edit_person_path(@user.username)
     end
 
@@ -295,7 +295,7 @@ describe "Users" do
 
       page.find('.alert-notice').should have_content('Your profile was successfully updated')
 
-      current_path.should eq(person_path("new_username"))
+      current_path.should eq(profile_accounts_path)
       page.should have_content "new_username"
       page.should have_content "new_username@test.com"
 
@@ -308,12 +308,12 @@ describe "Users" do
     end
 
     it "should display a delete profile link" do
-      visit person_path(@user.username)
+      visit profile_accounts_path
       page.should have_link "Delete profile", href: person_path(@user.username)
     end
 
     it "should delete a user" do
-      visit person_path(@user.username)
+      visit profile_accounts_path
       click_on "Delete profile"
       current_path.should eq(login_path)
 
@@ -328,16 +328,16 @@ describe "Users" do
     end
 
     it "should see upload profile image button only in his person url" do
-      visit person_path(@user)
-      page.should have_link "Upload profile image", upload_profile_image_person_path(@user)
+      visit profile_accounts_path
+      page.should have_link "Change profile image", upload_profile_image_person_path(@user)
 
       user = create(:user)
       visit person_path(user)
-      page.should_not have_link "Upload profile image", upload_profile_image_person_path(user)
+      page.should_not have_link "Change profile image", upload_profile_image_person_path(user)
     end
 
     it "should see upload edit profile button only in his person url" do
-      visit person_path(@user)
+      visit profile_accounts_path
       page.should have_link "Edit profile", edit_person_path(@user)
 
       user = create(:user)
@@ -346,7 +346,7 @@ describe "Users" do
     end
 
     it "should see upload delete profile button only in his person url" do
-      visit person_path(@user)
+      visit profile_accounts_path
       page.should have_link "Delete profile", person_path(@user)
 
       user = create(:user)
