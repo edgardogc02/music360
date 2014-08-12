@@ -6,6 +6,9 @@
 
 <%= image_tag @group.imagename_url, alt: @group.name, class: "" %>
 
+<%= render @posts %>
+<%= render "group_posts/form", group: @group %>
+
 <br />
 <h4>
   Founder

@@ -10,7 +10,7 @@ describe "GroupInvitations" do
     end
 
     context "user can invite users (is initiator)" do
-      it "should list users to invite and the invite buttor for each user" do
+      it "should list users to invite and the invite button for each user" do
         group = create(:group, initiator_user: @user)
         users = 3.times.inject([]) { |res, i| res << create(:user) }
 

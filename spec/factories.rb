@@ -1,5 +1,5 @@
 FactoryGirl.define do
-  factory :user, aliases: [:followed, :follower, :challenger, :challenged, :initiator_user] do
+  factory :user, aliases: [:followed, :follower, :challenger, :challenged, :initiator_user, :publisher] do
     sequence(:username) { |n| "testuser#{n}" }
     password "12345"
     password_confirmation { "#{password}" }
@@ -153,6 +153,12 @@ FactoryGirl.define do
   factory :group_invitation do
     user
     group
+  end
+
+  factory :group_post do
+    group
+    publisher
+    sequence(:message) { |n| "Message nr #{n}"}
   end
 
 end

@@ -54,6 +54,8 @@ class User < ActiveRecord::Base
   has_many :group_invitations, dependent: :destroy
   has_many :groups_invited_to, through: :group_invitations, source: :group
 
+  has_many :published_group_posts, class_name: "GroupPost", foreign_key: "publisher_id", dependent: :destroy
+
   belongs_to :instrument
 
   before_create { generate_token(:auth_token) }

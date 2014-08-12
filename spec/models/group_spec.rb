@@ -19,8 +19,12 @@ describe Group do
       should have_many(:users).through(:user_groups)
     end
 
-    it "should have many group invitations" do
+    it "should have many users through user_groups" do
       should have_many(:group_invitations).dependent(:destroy)
+    end
+
+    it "should have many posts with class name GroupPost" do
+      should have_many(:posts).class_name("GroupPost").dependent(:destroy)
     end
   end
 

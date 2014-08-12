@@ -18,6 +18,7 @@ class GroupsController < ApplicationController
   end
 
   def show
+    @posts = @group.posts.last(5)
   end
 
   def create

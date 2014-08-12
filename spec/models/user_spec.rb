@@ -57,7 +57,11 @@ describe User do
       should have_many(:groups_invited_to).through(:group_invitations).source(:group)
     end
 
-    it "shuold have many initiated_groups" do
+    it "should have many published group posts" do
+      should have_many(:published_group_posts).class_name('GroupPost').with_foreign_key("publisher_id").dependent(:destroy)
+    end
+
+    it "should have many initiated_groups" do
       should have_many(:initiated_groups).class_name('Group').with_foreign_key("initiator_user_id")
     end
 

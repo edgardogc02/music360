@@ -11,6 +11,7 @@ class Group < ActiveRecord::Base
   has_many :user_groups
   has_many :users, through: :user_groups
   has_many :group_invitations, dependent: :destroy
+  has_many :posts, class_name: "GroupPost", dependent: :destroy
 
   scope :public, -> { where(group_privacy: GroupPrivacy.public) }
   scope :closed, -> { where(group_privacy: GroupPrivacy.closed) }

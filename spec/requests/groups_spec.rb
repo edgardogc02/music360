@@ -273,6 +273,22 @@ describe "Groups" do
         last_email.to.should include(invited_user.email)
       end
     end
+
+    context "group posts on group show page" do
+      it "should list last 5 posts" do
+        group = create(:group, initiator_user: @user)
+        create(:user_group, group: group, user: @user)
+
+        posts = 6.times.inject([]) { |res, i| res << create(:group_post, group: group, publisher: @user) }
+
+        visit group_path(group)
+
+        (1..5).each do |i|
+          page.should have_content posts[i].message
+        end
+        page.should_not have_content posts[0].message
+      end
+    end
   end
 
   describe "user is not signed in" do
