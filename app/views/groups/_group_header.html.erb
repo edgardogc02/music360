@@ -1,0 +1,26 @@
+<div class="cover-group">
+	<%= image_tag @group.cover_url, alt: @group.name, class: 'cover-img' %>
+	<%= image_tag @group.imagename_url, alt: @group.name, class: 'profile-group-img hidden-xs hidden-sm' %>
+</div>
+
+<div class="clearfix group-nav">
+	<div class="pull-left">
+		<ul class="group-nav-list clearfix">
+			<li><h4><%= @group.name %></h4></li>
+			<li><%= link_to "Members", members_group_path(@group) %></li>
+			<li><%= link_to "Challenges", "#" %></li>
+		</ul>
+	</div>
+	<div class="pull-right">
+		<%= link_to 'Create new group', new_group_path, class: 'btn btn-primary btn-sm' %>
+		<div class="dropdown">
+		  <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+		    <i class="glyphicon glyphicon-cog"></i>
+
+		  </button>
+		  <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dropdownMenu1">
+		    <li role="presentation"><%= @group.edit_button %></li>
+		  </ul>
+		</div>
+	</div>
+</div>
