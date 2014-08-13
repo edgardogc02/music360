@@ -1,5 +1,7 @@
 class Group < ActiveRecord::Base
 
+  include PublicActivity::Common
+
   mount_uploader :imagename, GroupImagenameUploader
 
   validates :name, presence: true

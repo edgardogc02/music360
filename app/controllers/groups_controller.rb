@@ -34,7 +34,9 @@ class GroupsController < ApplicationController
   end
 
   def update
-    if @group.update_attributes(group_params)
+    group_update = GroupUpdate.new(@group, current_user)
+
+    if group_update.save(group_params)
       redirect_to @group, notice: "The group was successfully updated"
     else
       flash.now[:warning] = "Please enter a name and a privacy for the group"

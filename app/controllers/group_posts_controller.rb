@@ -6,17 +6,27 @@ class GroupPostsController < ApplicationController
   end
 
   def create
-    group_post = current_user.published_group_posts.build(group_params)
-    group_post.group = @group
+    @group_post = current_user.published_group_posts.build(group_params)
+    @group_post.group = @group
+    group_post_creation = GroupPostCreation.new(@group_post, current_user)
 
-    if group_post.save
-      group_post.create_activity :create, owner: current_user, group_id: @group.id
-      flash[:notice] = "Your post was successfully created"
+    if group_post_creation.save
+      respond_to do |format|
+        format.html do
+          flash[:notice] = "Your post was successfully created"
+          redirect_to @group
+        end
+        format.js
+      end
     else
-      flash[:warning] = "Please write a message to post"
+      respond_to do |format|
+        format.html do
+          flash[:warning] = "Please write a message to post"
+          redirect_to @group
+        end
+        format.js
+      end
     end
-
-    redirect_to @group
   end
 
   private
