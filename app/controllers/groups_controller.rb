@@ -70,7 +70,7 @@ class GroupsController < ApplicationController
   private
 
   def group_params
-    params.require(:group).permit(:name, :group_privacy_id, :imagename)
+    params.require(:group).permit(:name, :group_privacy_id, :imagename, :description)
   end
 
   def set_group

@@ -8,6 +8,10 @@
   <%= f.association :group_privacy, as: :radio_buttons, label: false, label_method: lambda { |o| ("#{o.name}<div class='group_privacy_description'>#{o.description}</div>").html_safe } %>
 
   <% if !@group.new_record? %>
+    <%= f.input :description %>
+  <% end %>
+
+  <% if !@group.new_record? %>
     <label>Upload an image for this group:</label>
     <p>
       <%= f.file_field :imagename %>

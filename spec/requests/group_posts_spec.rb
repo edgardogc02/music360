@@ -6,7 +6,7 @@ describe "GroupPosts" do
     before(:each) do
       @song = create(:song, cost: 0)
       @user = login
-      @group_privacy = create(:group_privacy)
+      @group_privacy = create(:public_group_privacy)
       @group = create(:group, initiator_user: @user, group_privacy: @group_privacy)
       @user_group = create(:user_group, group: @group, user: @user)
     end

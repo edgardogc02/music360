@@ -274,6 +274,26 @@ describe "Groups" do
       end
     end
 
+    context "description textarea" do
+      it "should not display the description textarea on the new form" do
+        visit new_group_path
+        page.should_not have_field "group_description"
+      end
+
+      it "should be able to update the description textarea on the edit form" do
+        group = create(:group, initiator_user: @user)
+        create(:user_group, user: @user, group: group)
+
+        visit edit_group_path(group)
+        new_description = "new group description"
+        fill_in "group_description", with: "new group description"
+        click_on "Save"
+
+        group.reload
+        group.description.should eq(new_description)
+      end
+    end
+
     context "group posts on group show page" do
 
       context "public and closed groups" do
