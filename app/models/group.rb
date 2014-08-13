@@ -3,6 +3,7 @@ class Group < ActiveRecord::Base
   include PublicActivity::Common
 
   mount_uploader :imagename, GroupImagenameUploader
+  mount_uploader :cover, GroupCoverUploader
 
   validates :name, presence: true
   validates :group_privacy_id, presence: true

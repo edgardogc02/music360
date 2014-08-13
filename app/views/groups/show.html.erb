@@ -1,37 +1,49 @@
-<%= render 'shared/header_page', title: 'Groups' %>
-
-<h2>
-  <%= @group.name %>
-</h2>
-
-<%= image_tag @group.imagename_url, alt: @group.name, class: "" %>
-
-<% if signed_in? and @group.user_can_post?(current_user) %>
-  <div id="group_posts">
-    <%= render @posts.reverse %>
-    <%= render "group_posts/form", group: @group %>
-  </div>
-<% end %>
-
-<br />
-<h4>
-  Founder
-</h4>
-
-<div>
-  <%= link_to person_path(@group.initiator_user), class: 'thumbnail' do %>
-    <%= image_avatar(@group.initiator_user) %>
-  <% end %>
-  <%= link_to @group.initiator_user, person_path(@group.initiator_user) %>
+<div class="cover-group">
+	<%= image_tag @group.cover_url, alt: @group.name, class: 'cover-img' %>
+	<%= image_tag @group.imagename_url, alt: @group.name, class: 'profile-group-img hidden-xs hidden-sm' %>
 </div>
 
-<br />
-<br />
-<br />
+<div class="clearfix group-nav">
+	<div class="pull-left">
+		<ul class="group-nav-list clearfix">
+			<li><h4><%= @group.name %></h4></li>
+			<li><%= link_to "Members", members_group_path(@group) %></li>
+			<li><%= link_to "Challenges", "#" %></li>
+		</ul>
+	</div>
+	<div class="pull-right">
+		<%= link_to 'Create new group', new_group_path, class: 'btn btn-primary btn-sm' %>
+		<div class="dropdown">
+		  <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+		    <i class="glyphicon glyphicon-cog"></i>
 
-<div>
-  <%= link_to "Members", members_group_path(@group), {class: 'btn btn-primary'} %>
-  <%= @group.invite_users_button %>
-  <%= @group.join_button %>
-  <%= @group.edit_button %>
+		  </button>
+		  <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dropdownMenu1">
+		    <li role="presentation"><%= @group.edit_button %></li>
+		  </ul>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col-lg-8">
+		<% if signed_in? and @group.user_can_post?(current_user) %>
+			<h2>New post</h2>
+			<%= render "group_posts/form", group: @group %>
+			<hr />
+			<h2>Posts</h2>
+			<ul class="media-list group-posts">
+				<%= render @posts %>
+			</ul>
+		<% end %>
+	</div>
+	<div class="col-lg-4">
+		<h2>About</h2>
+		<p>
+			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut accumsan feugiat eleifend. Fusce lobortis felis velit. Etiam accumsan mi in malesuada venenatis. Maecenas sollicitudin sagittis eros. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+		</p>
+		<hr />		
+		<%= @group.add_members_button %>
+		<%= @group.join_button %>
+	</div>
 </div>
