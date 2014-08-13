@@ -1,5 +1,6 @@
 <% if !groups.blank? %>
   <%= render 'shared/header_page', title: title, sub_header: true, view_more: "View all", view_more_path: "#" %>
-
-  <%= render groups %>
+	<div class="row">
+		<%= render groups %>
+	</div>
 <% end %>

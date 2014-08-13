@@ -1,8 +1,9 @@
-<div>
-  <%= group.name %>
+<div class="masonry-img col-md-2 col-sm-2 col-xs-6">
+	<%= link_to group, class: 'thumbnail' do %>
+		<%= image_group(group) %>
+	<% end %>
+	<h5><%= link_to group.name, group %></h5>
+	<div class="actions-content">
+		<%= group.join_button %>
+  </div>
 </div>
-<div>
-  <%= link_to "View", group, {class: "btn btn-primary"} %>
-  <%= group.join_button %>
-</div>
-<hr />

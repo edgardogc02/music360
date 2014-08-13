@@ -21,6 +21,7 @@
 //= require bootstrap/popover
 //= require bootstrap/scrollspy
 //= require bootstrap/tab
+//= require bootstrap/dropdown
 //= require lib/bootstrap-tour.min
 
 //= require_tree ./common
