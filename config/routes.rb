@@ -61,6 +61,7 @@ InstrumentchampPrototype::Application.routes.draw do
     get 'join', on: :member
     resources :group_invitations
     resources :group_posts
+    resources :group_activities
   end
 
   resources :group_invitations, only: [:accept]

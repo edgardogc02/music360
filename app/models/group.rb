@@ -23,4 +23,10 @@ class Group < ActiveRecord::Base
     group_privacy == GroupPrivacy.secret
   end
 
+  def user_can_post?(user)
+    group_privacy == GroupPrivacy.public or
+    group_privacy == GroupPrivacy.closed or
+    (group_privacy == GroupPrivacy.secret and user.groups.include?(self))
+  end
+
 end

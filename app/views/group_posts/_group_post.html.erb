@@ -3,6 +3,9 @@
     <%= link_to group_post.publisher.username, person_path(group_post.publisher) %>
   </div>
   <div>
+    (<%= time_ago_in_words(group_post.created_at) %> ago)
+  </div>
+  <div>
     <%= group_post.message %>
   </div>
 </p>

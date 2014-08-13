@@ -1,0 +1,14 @@
+created a post
+
+<% if activity.trackable %>
+  <div>
+    (<%= time_ago_in_words(activity.trackable.created_at) %> ago)
+  </div>
+  <div>
+    <%= activity.trackable.message %>
+  </div>
+<% else %>
+  <div>
+    which has since been removed
+  </div>
+<% end %>

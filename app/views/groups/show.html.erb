@@ -6,8 +6,10 @@
 
 <%= image_tag @group.imagename_url, alt: @group.name, class: "" %>
 
-<%= render @posts %>
-<%= render "group_posts/form", group: @group %>
+<% if signed_in? and @group.user_can_post?(current_user) %>
+  <%= render @posts %>
+  <%= render "group_posts/form", group: @group %>
+<% end %>
 
 <br />
 <h4>

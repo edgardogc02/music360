@@ -10,6 +10,7 @@ class GroupPostsController < ApplicationController
     group_post.group = @group
 
     if group_post.save
+      group_post.create_activity :create, owner: current_user, group_id: @group.id
       flash[:notice] = "Your post was successfully created"
     else
       flash[:warning] = "Please write a message to post"

@@ -275,10 +275,39 @@ describe "Groups" do
     end
 
     context "group posts on group show page" do
-      it "should list last 5 posts" do
-        group = create(:group, initiator_user: @user)
-        create(:user_group, group: group, user: @user)
 
+      context "public and closed groups" do
+        it "should list last 5 posts from a public group" do
+          group = create(:group, initiator_user: @user, group_privacy: create(:public_group_privacy))
+          check_posts(group)
+        end
+
+        it "should list last 5 posts from a closed group" do
+          group = create(:group, initiator_user: @user, group_privacy: create(:closed_group_privacy))
+          check_posts(group)
+        end
+      end
+
+      context "secret group" do
+        it "should list last 5 posts if the user is a member of the group" do
+          group = create(:group, initiator_user: @user, group_privacy: create(:secret_group_privacy))
+          check_posts(group)
+        end
+
+        it "should not list last 5 posts if the user is not a member of the group" do
+          group = create(:group, group_privacy: create(:secret_group_privacy))
+          user = create(:user)
+          create(:user_group, user: user, group: group)
+
+          post = create(:group_post, group: group, publisher: user)
+
+          visit group_path(group)
+          page.should_not have_content post.message
+        end
+      end
+
+      def check_posts(group)
+        create(:user_group, group: group, user: @user)
         posts = 6.times.inject([]) { |res, i| res << create(:group_post, group: group, publisher: @user) }
 
         visit group_path(group)
@@ -288,6 +317,7 @@ describe "Groups" do
         end
         page.should_not have_content posts[0].message
       end
+
     end
   end
 
