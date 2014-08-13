@@ -1,7 +1,5 @@
 updated the group description
 
-<% if activity.trackable %>
-  <div>
-    (<%= time_ago_in_words(activity.trackable.created_at) %> ago)
-  </div>
-<% end %>
+<div>
+  (<%= time_ago_in_words(activity.created_at) %> ago)
+</div>
