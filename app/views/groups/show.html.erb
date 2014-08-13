@@ -32,8 +32,8 @@
 			<%= render "group_posts/form", group: @group %>
 			<hr />
 			<h2>Posts</h2>
-			<ul class="media-list group-posts">
-				<%= render @posts %>
+			<ul class="media-list group-posts" id="group_posts">
+				<%= render @posts.reverse %>
 			</ul>
 		<% end %>
 	</div>
@@ -42,7 +42,7 @@
 		<p>
 			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut accumsan feugiat eleifend. Fusce lobortis felis velit. Etiam accumsan mi in malesuada venenatis. Maecenas sollicitudin sagittis eros. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
 		</p>
-		<hr />		
+		<hr />
 		<%= @group.add_members_button %>
 		<%= @group.join_button %>
 	</div>
