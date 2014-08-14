@@ -1,10 +1,12 @@
 <li class="media">
   <a class="pull-left" href="<%= person_path(group_post.publisher) %>">
-    <img class="media-object thumbnail avatar" src="<%= group_post.publisher.imagename_url %>" />
+    <div class="thumbnail">
+    	<%= image_avatar(group_post.publisher) %>
+    </div>
   </a>
   <div class="media-body">
     <h4 class="media-heading"><%= link_to group_post.publisher.username, person_path(group_post.publisher) %></h4>
-    <div>(<%= time_ago_in_words(group_post.created_at) %> ago)</div>
+    <div class="small spacer-md text-muted"><%= time_ago_in_words(group_post.created_at) %> ago</div>
     <%= group_post.message %>
   </div>
 </li>

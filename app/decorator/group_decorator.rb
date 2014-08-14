@@ -22,5 +22,13 @@ class GroupDecorator < Draper::Decorator
       h.link_to "Edit", h.edit_group_path(model), role: "menuitem", tabindex: "-1"
     end
   end
+  
+  def show_description
+    if model.description.blank?
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut accumsan feugiat eleifend. Fusce lobortis felis velit. Etiam accumsan mi in malesuada venenatis. Maecenas sollicitudin sagittis eros. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos."
+    else
+      model.description
+    end
+  end    
 
 end

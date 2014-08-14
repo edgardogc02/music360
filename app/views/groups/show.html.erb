@@ -1,29 +1,4 @@
-<div class="cover-group">
-	<%= image_tag @group.cover_url, alt: @group.name, class: 'cover-img' %>
-	<%= image_tag @group.imagename_url, alt: @group.name, class: 'profile-group-img hidden-xs hidden-sm' %>
-</div>
-
-<div class="clearfix group-nav">
-	<div class="pull-left">
-		<ul class="group-nav-list clearfix">
-			<li><h4><%= @group.name %></h4></li>
-			<li><%= link_to "Members", members_group_path(@group) %></li>
-			<li><%= link_to "Challenges", "#" %></li>
-		</ul>
-	</div>
-	<div class="pull-right">
-		<%= link_to 'Create new group', new_group_path, class: 'btn btn-primary btn-sm' %>
-		<div class="dropdown">
-		  <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
-		    <i class="glyphicon glyphicon-cog"></i>
-
-		  </button>
-		  <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dropdownMenu1">
-		    <li role="presentation"><%= @group.edit_button %></li>
-		  </ul>
-		</div>
-	</div>
-</div>
+<%= render "group_header" %>
 
 <div class="row">
 	<div class="col-lg-8">
@@ -32,15 +7,15 @@
 			<%= render "group_posts/form", group: @group %>
 			<hr />
 			<h2>Posts</h2>
-			<ul class="media-list group-posts" id="group_posts">
+				<ul class="media-list group-posts" id="group_posts">
 				<%= render @posts.reverse %>
-			</ul>
+			</ul>			
 		<% end %>
 	</div>
 	<div class="col-lg-4">
 		<h2>About</h2>
 		<p>
-			Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut accumsan feugiat eleifend. Fusce lobortis felis velit. Etiam accumsan mi in malesuada venenatis. Maecenas sollicitudin sagittis eros. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos.
+			<%= @group.show_description %>
 		</p>
 		<hr />
 		<%= @group.add_members_button %>
