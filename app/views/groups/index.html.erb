@@ -4,10 +4,13 @@
 
 <br /><br />
 
-<%= render "groups_list", groups: @my_groups, title: "My groups" %>
+<% if !@group_invitations.blank? %>
+	<%= render 'shared/header_page', title: 'Invitations', sub_header: true %>
+	<div class="row">
+		<%= render @group_invitations %>
+	</div>
+<% end %>
 
-<%= render "groups_list", groups: @group_invitations, title: "Invitations" %>
-
-<%= render "groups_list", groups: @public_groups, title: "Public" %>
-
-<%= render "groups_list", groups: @closed_groups, title: "Closed" %>
+<%= render "groups_list", groups_list: @my_groups %>
+<%= render "groups_list", groups_list: @new_groups %>
+<%= render "groups_list", groups_list: @most_popular_groups %>

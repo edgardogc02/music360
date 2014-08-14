@@ -2,6 +2,7 @@
 <html>
 <head>
   <%= render "layouts/head" %>
+  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
 </head>
 <body role="application" class="<%= body_classes %>">
 	<div id="fb-root"></div>
@@ -84,9 +85,6 @@
 	</div>
 
   <%= render "shared/footer" %>
-
-  <!-- Code by Johan (http://johanbrook.com) -->
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
   <%= js_scripts %>
 </body>
 <%= render "shared/zendesk_feedback_tab" %>

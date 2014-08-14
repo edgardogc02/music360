@@ -6,3 +6,14 @@ function reload_img_avatar() {
     $( this ).attr("src", $( this ).attr("src")+"?t=" + new Date().getTime());
   });    
 }
+
+var ready;
+ready = function() {
+  $('body').scrollspy({
+    target: '.bs-docs-sidebar',
+    offset: 40
+  });
+};
+
+$(document).ready(ready);
+$(document).on('page:load', ready);

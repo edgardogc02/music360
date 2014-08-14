@@ -3,11 +3,14 @@ class GroupsController < ApplicationController
   before_action :set_group, only: [:show, :members, :join, :edit, :update]
 
   def index
-    @my_groups = GroupDecorator.decorate_collection(current_user.groups.limit(5))
+    #@my_groups = GroupDecorator.decorate_collection(current_user.groups.limit(5))
     @group_invitations = GroupDecorator.decorate_collection(current_user.groups_invited_to.limit(5))
 #    @public_groups = GroupDecorator.decorate_collection(Group.public.limit(5))
 #    @closed_groups = GroupDecorator.decorate_collection(Group.closed.limit(5))
 #    @secret_groups = GroupDecorator.decorate_collection(Group.secret.limit(5))
+  	@my_groups = ResumedMyGroupsList.new(current_user)
+    @most_popular_groups = ResumedMostPopularGroupsList.new
+    @new_groups = ResumedNewGroupsList.new
   end
 
 	def new
@@ -48,7 +51,11 @@ class GroupsController < ApplicationController
   def members
     @users = UserDecorator.decorate_collection(@group.users)
   end
-
+	
+	def list
+    @groups = GroupsListFactory.new(params[:view], current_user, params[:page]).groups_list
+  end
+	
   # TODO: REFACTOR (CREATE A NEW CONTROLLER FOR THIS? CREATE FORM FOR ACTION)
   def join
     user_group = current_user.user_groups.build(group: @group)
