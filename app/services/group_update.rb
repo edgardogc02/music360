@@ -16,10 +16,20 @@ class GroupUpdate
     end
   end
 
+  private
+
   def save_activity
-    if @group.previous_changes.include?(:description)
-      @group.create_activity :update_description, owner: @updater_user, group_id: @group.id
+    actions_to_log.each do |action|
+      @group.create_activity action , owner: @updater_user, group_id: @group.id
     end
+  end
+
+  def actions_to_log
+    actions = []
+    actions << :update_description if @group.previous_changes.include?(:description)
+    actions << :update_imagename if @group.previous_changes.include?(:imagename)
+    actions << :update_cover if @group.previous_changes.include?(:cover)
+    actions
   end
 
 end

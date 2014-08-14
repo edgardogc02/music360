@@ -61,6 +61,7 @@ class GroupsController < ApplicationController
         group_invitation.destroy
       end
       if user_group.save
+        @group.create_activity :join, owner: current_user, group_id: @group.id
         redirect_to @group, notice: "You are now a member of #{@group.name}"
       else
         flash[:warning] = "You are already a member of #{@group.name}"
