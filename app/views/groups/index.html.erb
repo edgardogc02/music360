@@ -6,7 +6,7 @@
 
 <% if !@group_invitations.blank? %>
 	<%= render 'shared/header_page', title: 'Invitations', sub_header: true %>
-	<div class="row">
+	<div class="row thumbnail-grid">
 		<%= render @group_invitations %>
 	</div>
 <% end %>

@@ -14,7 +14,7 @@ class ResumedMostPopularGroupsList < GroupsList
   end
 
   def groups
-    @groups ||= GroupDecorator.decorate_collection(Group.all.limit(5))
+    @groups ||= GroupDecorator.decorate_collection(Group.all.limit(6))
   end
 
 end

@@ -13,7 +13,7 @@ class GroupDecorator < Draper::Decorator
 
   def join_button
     if h.signed_in? and !UserGroupsManager.new(h.current_user).belongs_to_group?(model)
-      h.link_to "Join", h.join_group_path(model), {class: "btn btn-primary"}
+      h.action_button(h.join_group_path(model), 'Join', {}, 'glyphicon glyphicon-plus')
     end
   end
 

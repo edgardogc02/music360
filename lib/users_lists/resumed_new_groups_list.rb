@@ -14,7 +14,7 @@ class ResumedNewGroupsList < GroupsList
   end
 
   def groups
-    @groups ||= GroupDecorator.decorate_collection(Group.last(5).reverse)
+    @groups ||= GroupDecorator.decorate_collection(Group.last(6).reverse)
   end
 
 end
