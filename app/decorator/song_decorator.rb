@@ -20,9 +20,13 @@ class SongDecorator < Draper::Decorator
     end
   end
 
-  def challenge_button(challenged_id="")
+  def challenge_button(challenged_id="", group_id="")
     if display_challenge_button?
-      h.action_button(h.new_challenge_path(song_id: model.id, challenged_id: challenged_id), 'Challenge', {class: challenge_class_attr, id: "challenge_#{model.id}", data: {song_id: model.id, song_name: model.title}})
+      if group_id
+        h.action_button(h.new_group_challenge_path(Group.find(group_id), song_id: model.id), 'Challenge', {class: challenge_class_attr, id: "challenge_#{model.id}", data: {song_id: model.id, song_name: model.title}})
+      else
+        h.action_button(h.new_challenge_path(song_id: model.id, challenged_id: challenged_id), 'Challenge', {class: challenge_class_attr, id: "challenge_#{model.id}", data: {song_id: model.id, song_name: model.title}})
+      end
     end
   end
 

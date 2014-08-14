@@ -65,8 +65,6 @@ describe "Groups" do
         group = create(:group)
         visit group_path(group)
         page.should have_content(group.name)
-        page.should have_content("Founder")
-        page.should have_link group.initiator_user.username, person_path(group.initiator_user)
       end
 
       it "should display a members button" do
@@ -84,7 +82,7 @@ describe "Groups" do
           end
 
           it "should display a invite users button if founder logged in" do
-            page.should have_link "Invite users", group_group_invitations_path(@group)
+            page.should have_link "Add members", group_group_invitations_path(@group)
           end
         end
 
@@ -95,7 +93,7 @@ describe "Groups" do
           end
 
           it "should not display a invite users button if founder not logged in" do
-            page.should_not have_link "Invite users", group_group_invitations_path(@group)
+            page.should_not have_link "Add members", group_group_invitations_path(@group)
           end
         end
 
@@ -261,17 +259,18 @@ describe "Groups" do
           page.find('.alert-warning').should have_content("You can't join #{@group.name} because it's a secret group and you have no invitation.")
         end
       end
+    end
 
-      it "should send an email to the invited user" do
-        group = create(:group, initiator_user: @user)
-        invited_user = create(:user)
+    it "should send an email to the invited user" do
+      group = create(:group, initiator_user: @user)
+      create(:user_group, user: @user, group: group)
+      invited_user = create(:user)
 
-        visit group_path(group)
-        click_on "Invite users"
-        click_on "submit_group_invitation_#{invited_user.id}"
+      visit group_path(group)
+      click_on "Add members"
+      click_on "submit_group_invitation_#{invited_user.id}"
 
-        last_email.to.should include(invited_user.email)
-      end
+      last_email.to.should include(invited_user.email)
     end
 
     context "description textarea" do
@@ -336,6 +335,21 @@ describe "Groups" do
           page.should have_content posts[i].message
         end
         page.should_not have_content posts[0].message
+      end
+
+      context "create challenge button" do
+        it "should be able to see the button if user is member of the group" do
+          group = create(:group, initiator_user: @user)
+          create(:user_group, group: group, user: @user)
+          visit group_path(group)
+          page.should have_link "Create challenge", new_challenge_group_path(group)
+        end
+
+        it "should not be able to see the button if user is no member" do
+          group = create(:group, initiator_user: @user)
+          visit group_path(group)
+          page.should_not have_link "Create challenge", new_challenge_group_path(group)
+        end
       end
 
     end

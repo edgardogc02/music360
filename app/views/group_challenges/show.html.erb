@@ -1,0 +1,17 @@
+<%= render 'shared/header_page', title: 'Group challenge' %>
+
+<ul class="media-list">
+  <li class="media media-item">
+    <%= image_tag @challenge.cover_url, class: "song-cover pull-left" %>
+    <div class="media-body">
+      <p class="spacer-sm">
+        <%= link_to @challenge.song.title, song_path(@challenge.song) %>
+        by <%= link_to @challenge.song.artist.title, artist_path(@challenge.song.artist)%>
+      </p>
+      <p class="spacer-sm">
+        Created by <%= link_to @challenge.challenger.username, person_path(@challenge.challenger)%>
+        <time datetime="<%= @challenge.created_at%>" pubdate><%= time_ago_in_words(@challenge.created_at)%> ago</time>
+      </p>
+    </div>
+  </li>
+</ul>

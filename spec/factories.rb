@@ -78,6 +78,16 @@ FactoryGirl.define do
     score_u2 0
   end
 
+  factory :group_challenge, class: Challenge do
+    challenger
+    song
+    public false
+    instrument "Guitar"
+    score_u1 0
+    score_u2 0
+    group
+  end
+
   factory :instrument do
     sequence(:name) { |n| "instrument#{n}" }
     visible 1

@@ -9,7 +9,7 @@
 			<h2>Posts</h2>
 				<ul class="media-list group-posts" id="group_posts">
 				<%= render @posts.reverse %>
-			</ul>			
+			</ul>
 		<% end %>
 	</div>
 	<div class="col-lg-4">
@@ -20,5 +20,6 @@
 		<hr />
 		<%= @group.add_members_button %>
 		<%= @group.join_button %>
+    <%= @group.create_challenge_button %>
 	</div>
 </div>

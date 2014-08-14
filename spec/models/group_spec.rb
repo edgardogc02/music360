@@ -15,6 +15,10 @@ describe Group do
       should have_many(:user_groups)
     end
 
+    it "should have many challenges" do
+      should have_many(:challenges)
+    end
+
     it "should have many users through user_groups" do
       should have_many(:users).through(:user_groups)
     end

@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Challenge do
 
   context "Validations" do
-    [:challenger_id, :challenged_id, :song_id, :instrument].each do |attr|
+    [:challenger_id, :song_id, :instrument].each do |attr|
       it "should validate #{attr}" do
         should validate_presence_of(attr)
       end
@@ -13,6 +13,23 @@ describe Challenge do
       it "should validate #{attr}" do
         should allow_value(true, false).for(attr)
       end
+    end
+
+    it "should contain a challenged_id or a group_id" do
+      challenge = build(:challenge)
+      challenge.group_id = nil
+      challenge.challenged_id = nil
+      challenge.save
+      challenge.should_not be_persisted
+
+      challenge.challenged_id = 10
+      challenge.save
+      challenge.should be_persisted
+
+      challenge.challenged_id = nil
+      challenge.group_id = 10
+      challenge.save
+      challenge.should be_persisted
     end
 
     it "should not be able to create a challenge for the same challenged and song twice if it's still open" do
@@ -53,6 +70,10 @@ describe Challenge do
   context "Associations" do
     it "should belongs to song" do
       should belong_to(:song)
+    end
+
+    it "should belongs to group" do
+      should belong_to(:group)
     end
 
     it "should belongs to challenger" do
@@ -232,6 +253,15 @@ describe Challenge do
 
       Challenge.excludes(Challenge.last(2)).should eq([challenge, challenge1, challenge2])
     end
+
+    it "should list only one to one challenges" do
+      challenge1 = create(:challenge)
+      group_challenge = create(:group_challenge)
+      challenge2 = create(:challenge)
+
+      Challenge.one_to_one.should eq([challenge1, challenge2])
+    end
+
   end
 
   context "Callbacks" do

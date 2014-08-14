@@ -1,19 +1,22 @@
 class Challenge < ActiveRecord::Base
 
   validates :challenger_id, presence: true
-  validates :challenged_id, presence: true
+#  validates :challenged_id, presence: true
+#  validates :group_id, presence: true
   validates :song_id, presence: true
   validates :instrument, presence: true
   validates :public, inclusion: {in: [true, false]}
 
-  validate :challenged_and_finished, :on => :create
-  validate :no_own_challenge, :on => :create
+  validate :challenged_and_finished, on: :create
+  validate :no_own_challenge, on: :create
+  validate :challenged_or_group_id, on: :create
 
 	belongs_to :challenger, class_name: "User", foreign_key: "challenger_id"
 	belongs_to :challenged, class_name: "User", foreign_key: "challenged_id"
 	belongs_to :song
   belongs_to :challenger_instrument, class_name: "Instrument", foreign_key: "instrument_u1"
   belongs_to :challenged_instrument, class_name: "Instrument", foreign_key: "instrument_u2"
+  belongs_to :group
 
   before_create :fill_in_extra_fields
 
@@ -31,6 +34,7 @@ class Challenge < ActiveRecord::Base
   scope :by_challenged_username_or_email, ->(username_or_email) { joins(:challenged).where('username LIKE ? OR email LIKE ?', '%'+username_or_email+'%', '%'+username_or_email+'%') }
   scope :by_song_title, ->(title) { joins(:song).where('title LIKE ?', '%'+title+'%') }
   scope :excludes, ->(challenges_ids) { where("challenges.id NOT IN (?)", challenges_ids) }
+  scope :one_to_one, -> { where("challenged_id > 0") }
 
 	def cover_url
 		song.cover_url
@@ -110,6 +114,10 @@ class Challenge < ActiveRecord::Base
 
   def no_own_challenge
     errors.add(:challenger_id, "You can't challenge your self") if self.challenger and self.challenged and self.challenger == self.challenged
+  end
+
+  def challenged_or_group_id
+    errors.add(:challenged_id, "Please select a group or a user to challenge") if self.challenged_id.blank? and self.group_id.blank?
   end
 
   def fill_in_extra_fields

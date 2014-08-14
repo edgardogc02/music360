@@ -16,6 +16,8 @@ class Group < ActiveRecord::Base
   has_many :group_invitations, dependent: :destroy
   has_many :posts, class_name: "GroupPost", dependent: :destroy
 
+  has_many :challenges
+
   scope :public, -> { where(group_privacy: GroupPrivacy.public) }
   scope :closed, -> { where(group_privacy: GroupPrivacy.closed) }
   scope :secret, -> { where(group_privacy: GroupPrivacy.secret) }

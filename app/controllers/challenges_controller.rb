@@ -2,9 +2,9 @@ class ChallengesController < ApplicationController
 	before_action :authorize, except: [:show]
 
 	def index
-		@my_challenges = TabMyChallengesDecorator.decorate(Challenge.not_played_by_user(current_user, Challenge.default_order.default_limit.values))
-    @pending_challenges = TabPendingChallengesDecorator.decorate(Challenge.pending_for_user(current_user, Challenge.default_order.default_limit.values))
-		@challenges_results = TabResultChallengesDecorator.decorate(Challenge.results_for_user(current_user, Challenge.default_order.default_limit.values))
+		@my_challenges = TabMyChallengesDecorator.decorate(Challenge.one_to_one.not_played_by_user(current_user, Challenge.default_order.default_limit.values))
+    @pending_challenges = TabPendingChallengesDecorator.decorate(Challenge.one_to_one.pending_for_user(current_user, Challenge.default_order.default_limit.values))
+		@challenges_results = TabResultChallengesDecorator.decorate(Challenge.one_to_one.results_for_user(current_user, Challenge.default_order.default_limit.values))
 	end
 
 	def new
@@ -30,7 +30,7 @@ class ChallengesController < ApplicationController
   end
 
   def yours
-    @challenges = ChallengeDecorator.decorate_collection(current_user.challenges.default_order)
+    @challenges = ChallengeDecorator.decorate_collection(current_user.challenges.one_to_one.default_order)
 
     if params[:autostart_challenge_id]
       @autostart_challenge = Challenge.find(params[:autostart_challenge_id])
@@ -43,13 +43,13 @@ class ChallengesController < ApplicationController
 
   def list
     if params[:view] == "my_challenges"
-      @challenges = ChallengesDecorator.decorate(Challenge.not_played_by_user(current_user, Challenge.default_order.values))
+      @challenges = ChallengesDecorator.decorate(Challenge.one_to_one.not_played_by_user(current_user, Challenge.default_order.values))
       @title = "My challenges"
     elsif params[:view] == "pending"
-      @challenges = ChallengesDecorator.decorate(Challenge.pending_for_user(current_user, Challenge.default_order.values))
+      @challenges = ChallengesDecorator.decorate(Challenge.one_to_one.pending_for_user(current_user, Challenge.default_order.values))
       @title = "Open challenges"
     elsif params[:view] == "results"
-      @challenges = ChallengesDecorator.decorate(Challenge.results_for_user(current_user, Challenge.default_order.values))
+      @challenges = ChallengesDecorator.decorate(Challenge.one_to_one.results_for_user(current_user, Challenge.default_order.values))
       @title = "Results"
     end
   end
