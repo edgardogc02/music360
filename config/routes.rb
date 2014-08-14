@@ -62,6 +62,7 @@ InstrumentchampPrototype::Application.routes.draw do
     resources :group_invitations
     resources :group_posts
     resources :group_activities
+    get 'list', on: :collection, as: :list
   end
 
   resources :group_invitations, only: [:accept]

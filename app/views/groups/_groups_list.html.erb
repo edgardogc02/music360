@@ -1,6 +1,10 @@
-<% if !groups.blank? %>
-  <%= render 'shared/header_page', title: title, sub_header: true, view_more: "View all", view_more_path: "#" %>
+<% if !groups_list.groups.blank? %>
+  <% if groups_list.display_more? %>
+		<%= render 'shared/header_page', title: groups_list.title, sub_header: true, view_more: 'View all', view_more_path: groups_list.display_more_link %>
+  <% else %>
+  	<%= render 'shared/header_page', title: groups_list.title, sub_header: true %>
+  <% end %>
 	<div class="row">
-		<%= render groups %>
+		<%= render groups_list.groups %>
 	</div>
 <% end %>
