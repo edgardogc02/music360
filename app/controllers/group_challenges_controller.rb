@@ -12,7 +12,7 @@ class GroupChallengesController < ApplicationController
   end
 
   def show
-    @challenge = Challenge.find(params[:id]).decorate
+    @challenge = GroupChallengeDecorator.decorate(Challenge.find(params[:id]))
   end
 
   def create

@@ -57,6 +57,12 @@ class ChallengeDecorator < Draper::Decorator
     value
   end
 
+  protected
+
+  def display_start_challenge_to_user?(user)
+    user and is_user_involved?(user) and !model.has_user_played?(user)
+  end
+
   private
 
   def select_opponent_link_name
@@ -65,10 +71,6 @@ class ChallengeDecorator < Draper::Decorator
     else
       "Choose your opponent"
     end
-  end
-
-  def display_start_challenge_to_user?(user)
-    user and is_user_involved?(user) and !model.has_user_played?(user)
   end
 
   def display_decline_challenge_to_user?(user)
