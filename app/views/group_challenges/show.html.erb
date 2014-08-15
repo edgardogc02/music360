@@ -19,4 +19,14 @@
     </div>
 
   </li>
+
+  <h2>Players</h2>
+
+  <% @results.each do |result| %>
+    <div>
+      <%= link_to result.user.username, person_path(result.user.username) %>
+      <%= result.score %> points
+    </div>
+  <% end %>
+
 </ul>

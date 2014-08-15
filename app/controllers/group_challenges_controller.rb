@@ -13,6 +13,7 @@ class GroupChallengesController < ApplicationController
 
   def show
     @challenge = GroupChallengeDecorator.decorate(Challenge.find(params[:id]))
+    @results = @challenge.songscores.includes(:user)
   end
 
   def create

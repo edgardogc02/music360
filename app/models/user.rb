@@ -56,6 +56,8 @@ class User < ActiveRecord::Base
 
   has_many :published_group_posts, class_name: "GroupPost", foreign_key: "publisher_id", dependent: :destroy
 
+  has_many :songscores
+
   belongs_to :instrument
 
   before_create { generate_token(:auth_token) }
