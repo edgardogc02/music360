@@ -21,5 +21,9 @@ describe "GroupActivities" do
       end
     end
 
+    it "should create a group challenge activity" do
+      pending
+    end
+
   end
 end

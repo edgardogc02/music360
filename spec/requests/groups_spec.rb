@@ -148,7 +148,6 @@ describe "Groups" do
         create(:user_group, group: user_group1, user: @user)
 
         visit groups_path
-        save_and_open_page
         page.should have_content user_group.name
         page.should have_content user_group1.name
         page.should have_content group.name

@@ -1,5 +1,7 @@
 class Challenge < ActiveRecord::Base
 
+  include PublicActivity::Common
+
   validates :challenger_id, presence: true
 #  validates :challenged_id, presence: true
 #  validates :group_id, presence: true

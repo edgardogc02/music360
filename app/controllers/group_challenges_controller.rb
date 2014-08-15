@@ -18,8 +18,9 @@ class GroupChallengesController < ApplicationController
   def create
     @challenge = @group.challenges.build(challenge_group_params)
     @challenge.challenger = current_user
+    group_challenge_creation = GroupChallengeCreation.new(@challenge)
 
-    if @challenge.save
+    if group_challenge_creation.save
       flash[:notice] = "The challenge was successfully created"
       redirect_to [@group, @challenge]
     else
