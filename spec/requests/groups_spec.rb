@@ -141,15 +141,17 @@ describe "Groups" do
     context "index" do
       it "should list my groups" do
         group = create(:group)
+        create(:user_group, group: group, user: @user)
         user_group = create(:group, initiator_user: @user)
         create(:user_group, group: user_group, user: @user)
         user_group1 = create(:group, initiator_user: @user)
         create(:user_group, group: user_group1, user: @user)
 
         visit groups_path
+        save_and_open_page
         page.should have_content user_group.name
         page.should have_content user_group1.name
-        page.should_not have_content group.name
+        page.should have_content group.name
       end
 
       it "should list the group invitations" do
@@ -342,13 +344,13 @@ describe "Groups" do
           group = create(:group, initiator_user: @user)
           create(:user_group, group: group, user: @user)
           visit group_path(group)
-          page.should have_link "Create challenge", new_challenge_group_path(group)
+          page.should have_link "Create challenge", new_group_challenge_path(group)
         end
 
         it "should not be able to see the button if user is no member" do
           group = create(:group, initiator_user: @user)
           visit group_path(group)
-          page.should_not have_link "Create challenge", new_challenge_group_path(group)
+          page.should_not have_link "Create challenge", new_group_challenge_path(group)
         end
       end
 
