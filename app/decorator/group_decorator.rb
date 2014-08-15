@@ -31,7 +31,7 @@ class GroupDecorator < Draper::Decorator
 
   def show_description
     if model.description.blank?
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut accumsan feugiat eleifend. Fusce lobortis felis velit. Etiam accumsan mi in malesuada venenatis. Maecenas sollicitudin sagittis eros. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos."
+      "This is an InstrumentChamp group. You can share information and challenge your friends."
     else
       model.description
     end
