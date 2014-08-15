@@ -19,7 +19,7 @@ class GroupDecorator < Draper::Decorator
 
   def create_challenge_button
     if h.signed_in? and UserGroupsManager.new(h.current_user).belongs_to_group?(model)
-      h.link_to "Create challenge", h.new_group_challenge_path(model), {class: "btn btn-primary"}
+      h.link_to "Create challenge", h.new_group_challenge_path(model), {class: "btn btn-primary", id: "new_group_challenge"}
     end
   end
 

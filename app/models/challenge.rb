@@ -109,7 +109,7 @@ class Challenge < ActiveRecord::Base
 	private
 
 	def challenged_and_finished
-    errors.add(:challenged_id, "You already have an open challenge for that song with that user") if Challenge.where(challenger_id: self.challenger_id, challenged_id: self.challenged_id, song_id: self.song_id).where("score_u1 = 0 OR score_u2 = 0").count > 0
+    errors.add(:challenged_id, "You already have an open challenge for that song with that user") if !challenged_id.blank? and Challenge.where(challenger_id: self.challenger_id, challenged_id: self.challenged_id, song_id: self.song_id).where("score_u1 = 0 OR score_u2 = 0").count > 0
 	end
 
   def no_own_challenge
