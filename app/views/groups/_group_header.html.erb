@@ -6,7 +6,7 @@
 <div class="clearfix group-nav">
 	<div class="pull-left">
 		<ul class="group-nav-list clearfix">
-			<li><h4><%= @group.name %></h4></li>
+			<li><h4><%= link_to @group.name, @group %></h4></li>
 			<li><%= link_to "Members", members_group_path(@group) %></li>
 			<li><%= link_to "Challenges", new_group_challenge_path(@group) %></li>
 		</ul>

@@ -15,7 +15,7 @@ class MostPopularGroupsList < PaginatedGroupsList
   end
 
   def groups
-    @groups ||= GroupDecorator.decorate_collection(Group.all.page page)
+    @groups ||= GroupDecorator.decorate_collection(Group.by_popularity.page page)
   end
 
 end
