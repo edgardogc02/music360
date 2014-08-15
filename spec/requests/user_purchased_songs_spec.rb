@@ -36,7 +36,6 @@ describe "UserPurchasedSongs" do
     user = create(:user)
     visit login_path
 
-    save_and_open_page
 #    page.save_screenshot("page.jpg", :full => true)
 
 #    find_button("sign_in_btn").trigger('click')
