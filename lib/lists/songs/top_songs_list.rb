@@ -15,9 +15,9 @@ class TopSongsList < PaginatedSongsList
   end
 
   def songs
-    @songs ||= SongDecorator.decorate_collection(Song.by_popularity.page page)
+    @songs ||= Song.by_popularity.page page
   end
-  
+
   def paginate?
     true
   end

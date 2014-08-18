@@ -26,4 +26,8 @@ class SongsList
     @songs
   end
 
+  def decorated_songs
+    @decorated_songs ||= SongDecorator.decorate_collection(songs)
+  end
+
 end

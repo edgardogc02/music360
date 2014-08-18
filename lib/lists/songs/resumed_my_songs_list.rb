@@ -15,11 +15,33 @@ class ResumedMySongsList < SongsList
   end
 
   def songs
-    @songs ||= (SongDecorator.decorate_collection(Song.created_by_user_id(current_user.id)) + SongDecorator.decorate_collection(current_user.purchased_songs))[0..4]
+    @songs ||= (created_by_user + purchased)[0..4]
+  end
+
+  def decorated_songs
+    @decorated_songs ||= (created_by_user_decorated + purchased_decorated)[0..4]
   end
 
   def current_user
     @current_user
+  end
+
+  protected
+
+  def created_by_user
+    @created_by_user ||= Song.created_by_user_id(current_user.id)
+  end
+
+  def purchased
+    @purchased ||= current_user.purchased_songs
+  end
+
+  def created_by_user_decorated
+    @created_by_user_decorated ||= SongDecorator.decorate_collection(created_by_user)
+  end
+
+  def purchased_decorated
+    @purchased_decorated ||= SongDecorator.decorate_collection(purchased)
   end
 
 end

@@ -15,7 +15,7 @@ class NewSongsList < PaginatedSongsList
   end
 
   def songs
-    @songs ||= SongDecorator.decorate_collection(Song.not_user_created.by_popularity.page page)
+    @songs ||= Song.not_user_created.by_popularity.page page
   end
 
 end

@@ -1,7 +1,13 @@
 class ResumedMyGroupChallengeSongsList < ResumedMySongsList
 
-  def songs
-    @songs ||= (SongGroupChallengeDecorator.decorate_collection(Song.created_by_user_id(current_user.id)) + SongGroupChallengeDecorator.decorate_collection(current_user.purchased_songs))[0..4]
+  protected
+
+  def created_by_user_decorated
+    @created_by_user_decorated ||= SongGroupChallengeDecorator.decorate_collection(created_by_user)
+  end
+
+  def purchased_decorated
+    @purchased_decorated ||= SongGroupChallengeDecorator.decorate_collection(purchased)
   end
 
 end

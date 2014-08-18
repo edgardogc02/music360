@@ -4,19 +4,19 @@
 	<%= render 'shared/header_page', title: songs_list.title, sub_header: true %>
 <% end %>
 
-<% if songs_list and !songs_list.songs.blank? %>
+<% if songs_list and !songs_list.decorated_songs.blank? %>
 
   <div class="thumbnail-grid row">
   	<% if defined? modal %>
-  		<%= render songs_list.songs, modal: true %>
+  		<%= render songs_list.decorated_songs, modal: true %>
   	<% else %>
-  		<%= render songs_list.songs %>
+  		<%= render songs_list.decorated_songs %>
   	<% end %>
   </div>
 
   <% if songs_list.paginate? %>
     <hr />
-    <%= paginate songs_list.songs %>
+    <%= paginate songs_list.decorated_songs %>
   <% end %>
 
 <% else %>

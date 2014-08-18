@@ -14,7 +14,7 @@ class ResumedMostPopularSongsList < SongsList
   end
 
   def songs
-    @songs ||= SongDecorator.decorate_collection(Song.not_user_created.by_published_at.limit(5))
+    @songs ||= Song.not_user_created.by_published_at.limit(5)
   end
 
 end

@@ -1,7 +1,13 @@
 class MyGroupChallengeSongsList < MySongsList
 
-  def songs
-    @songs ||= Kaminari.paginate_array(SongGroupChallengeDecorator.decorate_collection(Song.created_by_user_id(current_user.id)) + SongGroupChallengeDecorator.decorate_collection(current_user.purchased_songs)).page(page)
+  protected
+
+  def created_by_user_decorated
+    @created_by_user_decorated ||= SongGroupChallengeDecorator.decorate_collection(created_by_user)
+  end
+
+  def purchased_decorated
+    @purchased_decorated ||= SongGroupChallengeDecorator.decorate_collection(purchased)
   end
 
 end
