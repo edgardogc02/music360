@@ -1,10 +1,23 @@
 function reload_img_avatar() {
-  $("img.thumbnail").each(function() {  
-    $( this ).attr("src", $( this ).attr("src")+"?t=" + new Date().getTime());
+  $("img.thumbnail").each(function() {
+    refresh_img(refresh_img($(this)))
   });    
   $(".avatar.thumbnail img").each(function() {  
-    $( this ).attr("src", $( this ).attr("src")+"?t=" + new Date().getTime());
+    refresh_img(refresh_img($(this)))
   });    
+}
+
+function reload_img_group() {
+  $(".cover-group img.cover-img").each(function() {
+    refresh_img(refresh_img($(this)))
+  });    
+  $(".cover-group img.profile-group-img").each(function() {  
+    refresh_img(refresh_img($(this)))
+  });    
+}
+
+function refresh_img(e) { 
+  $(e).attr("src", $(e).attr("src")+"?t=" + new Date().getTime());
 }
 
 var ready;
