@@ -6,10 +6,12 @@
   <%= content_tag :span, 'Winner', class: 'label label-success' if challenge.challenger_won? %>
 </div>
 
-<div>
-  <%= challenge.challenged.username %>: <strong><%= challenge.score_u2 %></strong> points
-  <% if challenge.challenged_instrument %>
-    on <strong><%= challenge.challenged_instrument.name %></strong>
-  <% end %>
-	<%= content_tag :span, 'Winner', class: 'label label-success' if challenge.challenged_won? %>
-</div>
+<% if challenge.challenged %>
+	<div>
+	  <%= challenge.challenged.username %>: <strong><%= challenge.score_u2 %></strong> points
+	  <% if challenge.challenged_instrument %>
+	    on <strong><%= challenge.challenged_instrument.name %></strong>
+	  <% end %>
+		<%= content_tag :span, 'Winner', class: 'label label-success' if challenge.challenged_won? %>
+	</div>
+<% end %>

@@ -8,7 +8,11 @@
 		<p class="spacer-sm">
 	    Created by <%= link_to challenge.challenger.username, person_path(challenge.challenger)%>
 	    <time datetime="<%= challenge.created_at%>" pubdate><%= time_ago_in_words(challenge.created_at)%> ago</time>
-	    (Challenged: <%= link_to challenge.challenged.username, person_path(challenge.challenged)%>)
+	    <% if challenge.challenged %>
+	    	(Challenged: <%= link_to challenge.challenged.username, person_path(challenge.challenged) %>)
+	    <% else %>
+	    	<div>Group: <%= link_to challenge.group.name, challenge.group %></div>
+	    <% end %>
 	  </p>
 	  <div class="clearfix">
       <%= challenge.display_start_challenge_button %>

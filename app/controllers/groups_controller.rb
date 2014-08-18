@@ -1,6 +1,6 @@
 class GroupsController < ApplicationController
 	before_action :authorize
-  before_action :set_group, only: [:show, :members, :join, :edit, :update]
+  before_action :set_group, only: [:show, :members, :join, :edit, :update, :challenges]
 
   def index
     #@my_groups = GroupDecorator.decorate_collection(current_user.groups.limit(5))
@@ -50,6 +50,10 @@ class GroupsController < ApplicationController
 
   def members
     @users = UserDecorator.decorate_collection(@group.users)
+  end
+  
+  def challenges
+    @challenges = ChallengeDecorator.decorate_collection(@group.challenges)
   end
 	
 	def list

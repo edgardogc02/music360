@@ -4,7 +4,9 @@
   <%= render partial: "song", collection: @songs %>
 </div>
 
-<%= render "songs_list", songs_list: @my_songs %>
+<% if !@my_songs.songs.blank? %>
+	<%= render "songs_list", songs_list: @my_songs %>
+<% end %>
 
 <%= render "songs_list", songs_list: @most_popular_songs %>
 

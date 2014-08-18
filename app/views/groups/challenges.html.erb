@@ -1,0 +1,11 @@
+<%= render "group_header" %>
+
+<br />
+
+<%= render 'shared/header_page', title: 'Challenges', sub_header: true %>
+
+<% unless @challenges.blank? %>
+	<ul class="media-list">
+		<%= render @challenges %>
+	</ul>
+<% end %>

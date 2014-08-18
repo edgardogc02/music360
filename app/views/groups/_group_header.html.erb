@@ -8,7 +8,7 @@
 		<ul class="group-nav-list clearfix">
 			<li><h4><%= link_to @group.name, @group %></h4></li>
 			<li><%= link_to "Members", members_group_path(@group) %></li>
-			<li><%= link_to "Challenges", new_group_challenge_path(@group) %></li>
+			<li><%= link_to "Challenges", challenges_group_path(@group) %></li>
 		</ul>
 	</div>
 	<div class="pull-right">
@@ -19,13 +19,13 @@
 
 		  </button>
 		  <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dropdownMenu1">
-		    <li role="presentation"><a href="#" role="menuitem", tabindex="-1">Add people</a></li>
-		    <li role="presentation"><a href="#" role="menuitem", tabindex="-1">Share group</a></li>
-		    <li role="presentation"><a href="#" role="menuitem", tabindex="-1">Send message</a></li>
-		    <li role="presentation"><a href="#" role="menuitem", tabindex="-1">Create new challenge</a></li>
-		    <li role="presentation"><a href="#" role="menuitem", tabindex="-1">Create new group</a></li>
-		    <li role="presentation"><a href="#" role="menuitem", tabindex="-1">Create subgroup</a></li>
-		    <li role="presentation"><a href="#" role="menuitem", tabindex="-1">Leave group</a></li>
+		    <li role="presentation"><a href="<%= group_group_invitations_path(@group) %>" role="menuitem", tabindex="-1">Add people</a></li>
+		    <!--<li role="presentation"><a href="#" role="menuitem", tabindex="-1">Share group</a></li>-->
+		    <!--<li role="presentation"><a href="#" role="menuitem", tabindex="-1">Send message</a></li>-->
+		    <li role="presentation"><a href="<%= new_group_challenge_path(@group) %>" role="menuitem", tabindex="-1">Create new challenge</a></li>
+		    <li role="presentation"><a href="<%= new_group_path %>" role="menuitem", tabindex="-1">Create new group</a></li>
+		    <!--<li role="presentation"><a href="#" role="menuitem", tabindex="-1">Create subgroup</a></li>-->
+		    <!--<li role="presentation"><a href="#" role="menuitem", tabindex="-1">Leave group</a></li>-->
 		    <li role="presentation"><%= @group.edit_button %></li>
 		  </ul>
 		</div>

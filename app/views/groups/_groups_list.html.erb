@@ -1,10 +1,13 @@
+<% if groups_list.display_more? %>
+	<%= render 'shared/header_page', title: groups_list.title, sub_header: true, view_more: 'View all', view_more_path: groups_list.display_more_link %>
+<% else %>
+	<%= render 'shared/header_page', title: groups_list.title, sub_header: true %>
+<% end %>
+
 <% if !groups_list.groups.blank? %>
-  <% if groups_list.display_more? %>
-		<%= render 'shared/header_page', title: groups_list.title, sub_header: true, view_more: 'View all', view_more_path: groups_list.display_more_link %>
-  <% else %>
-  	<%= render 'shared/header_page', title: groups_list.title, sub_header: true %>
-  <% end %>
 	<div class="thumbnail-grid row">
 		<%= render groups_list.groups %>
 	</div>
+<% else %>
+	<p>No groups right now</p>
 <% end %>

@@ -11,6 +11,9 @@
 	</div>
 <% end %>
 
-<%= render "groups_list", groups_list: @my_groups %>
+<% if !@my_groups.groups.blank? %>
+	<%= render "groups_list", groups_list: @my_groups %>
+<% end %>
+
 <%= render "groups_list", groups_list: @new_groups %>
 <%= render "groups_list", groups_list: @most_popular_groups %>

@@ -2,9 +2,9 @@ class ChallengesController < ApplicationController
 	before_action :authorize, except: [:show]
 
 	def index
-		@my_challenges = TabMyChallengesDecorator.decorate(Challenge.one_to_one.not_played_by_user(current_user, Challenge.default_order.default_limit.values))
-    @pending_challenges = TabPendingChallengesDecorator.decorate(Challenge.one_to_one.pending_for_user(current_user, Challenge.default_order.default_limit.values))
-		@challenges_results = TabResultChallengesDecorator.decorate(Challenge.one_to_one.results_for_user(current_user, Challenge.default_order.default_limit.values))
+		@my_challenges = TabMyChallengesDecorator.decorate(Challenge.not_played_by_user(current_user, Challenge.default_order.default_limit.values))
+    @pending_challenges = TabPendingChallengesDecorator.decorate(Challenge.pending_for_user(current_user, Challenge.default_order.default_limit.values))
+		@challenges_results = TabResultChallengesDecorator.decorate(Challenge.results_for_user(current_user, Challenge.default_order.default_limit.values))
 	end
 
 	def new
