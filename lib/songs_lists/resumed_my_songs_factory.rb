@@ -2,14 +2,14 @@ class ResumedMySongsFactory
 
   def initialize(params, user)
     if params[:group_id]
-      @songs = ResumedMyGroupChallengeSongsList.new(user)
+      @songs_list = ResumedMyGroupChallengeSongsList.new(user)
     else
-      @songs = ResumedMySongsList.new(user)
+      @songs_list = ResumedMySongsList.new(user)
     end
   end
 
-  def songs
-    @songs
+  def songs_list
+    @songs_list
   end
 
 end

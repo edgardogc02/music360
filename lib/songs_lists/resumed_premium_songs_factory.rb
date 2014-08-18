@@ -2,20 +2,20 @@ class ResumedPremiumSongsFactory
 
   def initialize(params, display_premium)
     if display_premium
-      @songs = Song.paid.by_popularity.limit(5)
+      @songs_list = Song.paid.by_popularity.limit(5)
     else
-      @songs = Song.free.not_user_created.by_popularity.limit(5)
+      @songs_list = Song.free.not_user_created.by_popularity.limit(5)
     end
 
     if params[:group_id]
-      @songs = SongGroupChallengeDecorator.decorate_collection(@songs)
+      @songs_list = SongGroupChallengeDecorator.decorate_collection(@songs_list)
     else
-      @songs = SongDecorator.decorate_collection(@songs)
+      @songs_list = SongDecorator.decorate_collection(@songs_list)
     end
   end
 
-  def songs
-    @songs
+  def songs_list
+    @songs_list
   end
 
 end

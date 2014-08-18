@@ -4,10 +4,14 @@
   <%= render partial: "song", collection: @songs %>
 </div>
 
-<% if !@my_songs.songs.blank? %>
+<% if @my_songs and !@my_songs.songs.blank? %>
 	<%= render "songs_list", songs_list: @my_songs %>
 <% end %>
 
-<%= render "songs_list", songs_list: @most_popular_songs %>
+<% if @most_popular_songs %>
+  <%= render "songs_list", songs_list: @most_popular_songs %>
+<% end %>
 
-<%= render "songs_list", songs_list: @new_songs %>
+<% if @new_songs %>
+  <%= render "songs_list", songs_list: @new_songs %>
+<% end %>

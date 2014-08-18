@@ -16,10 +16,10 @@ class SongsController < ApplicationController
         @songs = SongDecorator.decorate_collection(songs)
       end
     else
-      @songs = ResumedPremiumSongsFactory.new(params, display_premium?).songs
-      @most_popular_songs = ResumedMostPopularSongsFactory.new(params).songs
-      @my_songs = ResumedMySongsFactory.new(params, current_user).songs
-      @new_songs = ResumedNewSongsFactory.new(params).songs
+      @songs = ResumedPremiumSongsFactory.new(params, display_premium?).songs_list
+      @most_popular_songs = ResumedMostPopularSongsFactory.new(params).songs_list
+      @my_songs = ResumedMySongsFactory.new(params, current_user).songs_list
+      @new_songs = ResumedNewSongsFactory.new(params).songs_list
     end
 	end
 
