@@ -1,5 +1,11 @@
 <li class="media media-item">
-  <%= image_tag challenge.cover_url, class: "song-cover pull-left" %>
+	<div class="pull-left text-center">
+		<%= image_tag challenge.cover_url, class: 'song-cover spacer-sm' %>
+
+		<% if challenge.group %>
+			<p><%= link_to 'View more', group_challenge_path(group_id: challenge.group.id, id: challenge.id) %></p>
+		<% end %>
+	</div>
   <div class="media-body">
     <p class="spacer-sm">
     	<%= link_to challenge.song.title, song_path(challenge.song) %>

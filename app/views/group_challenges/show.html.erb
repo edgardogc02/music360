@@ -1,32 +1,82 @@
-<%= render 'shared/header_page', title: 'Group challenge' %>
+<div class="cover-group">
+	<%= image_tag @challenge.group.cover_url, alt: @challenge.group.name, class: 'cover-img' %>
+	<%= image_tag @challenge.group.imagename_url, alt: @challenge.group.name, class: 'profile-group-img hidden-xs hidden-sm' %>
+</div>
 
-<ul class="media-list">
-  <li class="media media-item">
-    <%= image_tag @challenge.cover_url, class: "song-cover pull-left" %>
-    <div class="media-body">
-      <p class="spacer-sm">
-        <%= link_to @challenge.song.title, song_path(@challenge.song) %>
-        by <%= link_to @challenge.song.artist.title, artist_path(@challenge.song.artist)%>
-      </p>
-      <p class="spacer-sm">
-        Created by <%= link_to @challenge.challenger.username, person_path(@challenge.challenger)%>
-        <time datetime="<%= @challenge.created_at%>" pubdate><%= time_ago_in_words(@challenge.created_at)%> ago</time>
-      </p>
-    </div>
+<div class="clearfix group-nav">
+	<div class="pull-left">
+		<ul class="group-nav-list clearfix">
+			<li>Challenge by: <%= link_to @challenge.group.name, members_group_path(@challenge.group) %></li>
+			<li>Host: <%= @challenge.group.initiator_user.username %></li>
+		</ul>
+	</div>
+	<div class="pull-right">
+		<%= @challenge.display_start_challenge_button %>
+	</div>
+</div>
 
-    <div class="clearfix">
-      <%= @challenge.display_start_challenge_button %>
-    </div>
+<div class="row">
+	<div class="col-lg-8">
+		<ul class="nav nav-tabs" role="tablist">
+		  <li class="active"><a href="#challenge" role="tab" data-toggle="tab">Challenge</a></li>
+		  <li><a href="#players" role="tab" data-toggle="tab">Players</a></li>
+		</ul>
+		
+		<br />
+		
+		<div class="tab-content">
+		  <div class="tab-pane active" id="challenge">
 
-  </li>
-
-  <h2>Players</h2>
-
-  <% @results.each do |result| %>
-    <div>
-      <%= link_to result.user.username, person_path(result.user.username) %>
-      <%= result.score %> points
-    </div>
-  <% end %>
-
-</ul>
+				<ul class="media-list">
+				  <li class="media media-item">
+				    <%= image_tag @challenge.cover_url, class: "song-cover pull-left" %>
+				    <div class="media-body">
+				      <p class="spacer-sm">
+				        <h2><%= link_to @challenge.song.title, song_path(@challenge.song) %></h2>		  					
+				      </p>
+				      <div class="spacer-sm">
+				      	By: <%= link_to @challenge.song.artist.title, artist_path(@challenge.song.artist) %> <br />
+				        <time datetime="<%= @challenge.created_at%>" pubdate><%= time_ago_in_words(@challenge.created_at)%> ago</time>
+				      </div>
+				    </div>
+				  </li>
+				</ul>
+				
+				<% if signed_in? and @group.user_can_post?(current_user) %>
+					<h2>New post</h2>
+					<%= render "group_posts/form", group: @group %>
+					<hr />
+				<% end %>
+				<% if signed_in? and @group.user_can_see_posts?(current_user) %>
+					<h2>Posts</h2>
+					<ul class="media-list group-posts" id="group_posts">
+						<%= render @posts.reverse %>
+					</ul>
+				<% end %>
+		  </div>
+		  <div class="tab-pane" id="players">
+		  	<h2>Players</h2>
+		  	
+		  	<table width="100%" class="datagrid">
+				<tr class="head">
+					<td>User</td>
+					<td>Points</td>
+					<td></td>
+				</tr>
+				<% @results.each do |result| %>
+					<tr class="<%= cycle("odd", "even") %>">
+						<td><%= link_to result.user.username, person_path(result.user), class: 'btn-secondary-color' %></td>
+						<td><%= result.score %> points</td>
+						<td></td>
+					</tr>
+				<% end %>
+			</table>
+		  </div>
+		</div>
+	</div>
+	<div class="col-lg-4">
+		<%= render "groups/leaderboard", group_leaders: @group_leaders %>
+		<hr />
+		<%= @group.add_members_button %>
+	</div>
+</div>
