@@ -1,5 +1,16 @@
 class GroupChallengeDecorator < ChallengeDecorator
+
+  decorates :challenge
+
   delegate_all
+
+  def view_more_songs_link
+    h.group_challenge_songs_path(group_id: model.group_id)
+  end
+
+  def change_song_link
+    h.group_challenge_songs_path(group_id: model.group_id)
+  end
 
   protected
 

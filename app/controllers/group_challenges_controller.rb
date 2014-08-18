@@ -3,12 +3,12 @@ class GroupChallengesController < ApplicationController
   before_action :set_group
 
 	def new
-	  @challenge = @group.challenges.build
+	  @challenge = GroupChallengeDecorator.decorate(@group.challenges.build)
     if params[:song_id].present?
       @challenge.song = Song.find(params[:song_id])
     end
 
-    @songs = SongChallengeDecorator.decorate_collection(Song.not_user_created.free.by_popularity.limit(4))
+    @songs = SongGroupChallengeDecorator.decorate_collection(Song.not_user_created.free.by_popularity.limit(4))
   end
 
   def show
@@ -25,7 +25,7 @@ class GroupChallengesController < ApplicationController
       flash[:notice] = "The challenge was successfully created"
       redirect_to [@group, @challenge]
     else
-      @songs = SongChallengeDecorator.decorate_collection(Song.not_user_created.free.by_popularity.limit(4))
+      @songs = SongGroupChallengeDecorator.decorate_collection(Song.not_user_created.free.by_popularity.limit(4))
       flash.now[:warning] = ("There was an error when creating the challenge" + "<br/>" + @challenge.errors.full_messages.join(', ') + "<br/>" + "Please try again").html_safe
       render 'new'
     end

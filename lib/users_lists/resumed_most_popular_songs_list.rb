@@ -9,8 +9,8 @@ class ResumedMostPopularSongsList < SongsList
     "Most popular"
   end
 
-  def display_more_link
-    list_songs_path(view: "most_popular")
+  def display_more_link(params={})
+    list_songs_path(params.merge(view: "most_popular"))
   end
 
   def songs

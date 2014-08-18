@@ -1,24 +1,25 @@
 class SongsController < ApplicationController
 	before_action :authorize, except: [:show]
 	before_action :set_song, only: [:show, :destroy]
+#  before_action :authorize_group # TODO
 
 	def index
     if params[:title]
       if display_premium?
-        songs = Song.not_user_created
+        songs = Song.not_user_created.by_title(params[:title])
       else
-        songs = Song.free.not_user_created
+        songs = Song.free.not_user_created.by_title(params[:title])
       end
-      @songs = SongDecorator.decorate_collection(songs.by_title(params[:title]))
+      if params[:group_id]
+        @songs = SongGroupChallengeDecorator.decorate_collection(songs)
+      else
+        @songs = SongDecorator.decorate_collection(songs)
+      end
     else
-      if display_premium?
-        @songs = SongDecorator.decorate_collection(Song.paid.by_popularity.limit(5))
-      else
-        @songs = SongDecorator.decorate_collection(Song.free.not_user_created.by_popularity.limit(5))
-      end
-      @most_popular_songs = ResumedMostPopularSongsList.new
-      @my_songs = ResumedMySongsList.new(current_user)
-      @new_songs = ResumedNewSongsList.new
+      @songs = ResumedPremiumSongsFactory.new(params, display_premium?).songs
+      @most_popular_songs = ResumedMostPopularSongsFactory.new(params).songs
+      @my_songs = ResumedMySongsFactory.new(params, current_user).songs
+      @new_songs = ResumedNewSongsFactory.new(params).songs
     end
 	end
 
@@ -28,7 +29,7 @@ class SongsController < ApplicationController
 	end
 
 	def list
-    @songs = SongsListFactory.new(params[:view], current_user, params[:page]).songs_list
+    @songs = SongsListFactory.new(current_user, params).songs_list
   end
 
 	def show

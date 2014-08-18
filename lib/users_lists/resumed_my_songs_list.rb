@@ -10,8 +10,8 @@ class ResumedMySongsList < SongsList
     "My songs"
   end
 
-  def display_more_link
-    list_songs_path(view: "my_songs")
+  def display_more_link(params={})
+    list_songs_path(params.merge(view: "my_songs"))
   end
 
   def songs

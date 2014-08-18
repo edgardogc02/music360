@@ -5,6 +5,7 @@
 		  	<%= text_field_tag "Username or email", params[:title], {name: "title", placeholder: "Title", class: "form-control"} %>
 		  </div>
 		  <%= hidden_field_tag "challenged_id", params[:challenged_id] %>
+      <%= hidden_field_tag "group_id", params[:group_id] %>
 		  <%= submit_tag "Search", {class: "btn btn-primary"} %>
 		<% end %>
 	</div>

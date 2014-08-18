@@ -50,6 +50,8 @@ InstrumentchampPrototype::Application.routes.draw do
     get 'list', on: :collection, as: :list
   end
 
+  resources :group_challenge_songs, only: [:index]
+
   resources :user_purchased_songs, path: "paid-songs" do
     get 'buy', on: :member
   end

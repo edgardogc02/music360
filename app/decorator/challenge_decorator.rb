@@ -57,6 +57,14 @@ class ChallengeDecorator < Draper::Decorator
     value
   end
 
+  def view_more_songs_link
+    h.for_challenge_songs_path(challenged_id: model.challenged_id)
+  end
+
+  def change_song_link
+    h.for_challenge_songs_path(challenged_id: model.challenged_id)
+  end
+
   protected
 
   def display_start_challenge_to_user?(user)

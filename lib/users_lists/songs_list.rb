@@ -10,7 +10,7 @@ class SongsList
     @title
   end
 
-  def display_more_link
+  def display_more_link(params={})
     @display_all_link
   end
 

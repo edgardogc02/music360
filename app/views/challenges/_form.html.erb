@@ -16,7 +16,7 @@
 		  		<div>Writer: <strong><%= @challenge.song.writer %></strong></div>
 		  		<div>Publisher: <strong><%= @challenge.song.publisher %></strong></div>
 		  	</p>
-		  	<div><%= link_to "Change your song", for_challenge_songs_path(challenged_id: @challenge.challenged_id), {class: 'btn btn-primary', data: { toggle: "modal", target: "#selectSong" }} %></div>
+		  	<div><%= link_to "Change your song", @challenge.change_song_link, {class: 'btn btn-primary', data: { toggle: "modal", target: "#selectSong" }} %></div>
 			</div>
 		</div>
   </section>
@@ -30,7 +30,7 @@
 			<% end %>
 
 			<%= content_tag 'div', class: 'header-page-btn' do %>
-				<%= link_to "View more", for_challenge_songs_path(challenged_id: @challenge.challenged_id), {class: '', data: { toggle: "modal", target: "#selectSong" }} %>
+				<%= link_to "View more", @challenge.view_more_songs_link, {class: '', data: { toggle: "modal", target: "#selectSong" }} %>
 			<% end %>
 		</div>
     <p>
@@ -87,7 +87,7 @@
 	    <%= f.input :public, as: :hidden %>
 	    <%= f.input :instrument, as: :hidden, input_html: { value: 'Guitar' } %>
 	    <%= f.association :group, as: :hidden %>
-	    <%= f.button :submit, "Start Challenge", class: 'btn btn-primary btn-lg' %>
+	    <%= f.button :submit, "Create Challenge", class: 'btn btn-primary btn-lg' %>
 	  <% end %>
 	</section>
 <% end %>

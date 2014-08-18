@@ -9,8 +9,8 @@ class ResumedNewSongsList < SongsList
     "New"
   end
 
-  def display_more_link
-    list_songs_path(view: "new")
+  def display_more_link(params={})
+    list_songs_path(params.merge(view: "new"))
   end
 
   def songs

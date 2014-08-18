@@ -32,6 +32,27 @@ describe "GroupChallenges" do
         page.should_not have_link "Create challenge", new_group_challenge_path(@group)
       end
     end
+
+    context "show page" do
+      it "should display the song name" do
+        pending
+      end
+      context "user belongs to group" do
+        it "should show the start challenge button" do
+          pending
+        end
+      end
+      context "user doesn't belong to group" do
+        it "should not display the start challenge button" do
+          pending
+        end
+      end
+
+      it "should display the users that already played the challenge" do
+        pending
+      end
+    end
+
   end
 
   describe "user is not signed in" do
