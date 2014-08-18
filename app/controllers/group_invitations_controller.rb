@@ -3,7 +3,7 @@ class GroupInvitationsController < ApplicationController
   before_action :set_group
 
   def index
-    @users_to_invite = UserDecorator.decorate_collection(User.not_deleted.excludes(@group.user_ids))
+    @users_to_invite = UserDecorator.decorate_collection(User.not_deleted.excludes(@group.user_ids).page(params[:page]))
   end
 
   def create
