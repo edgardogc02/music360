@@ -14,7 +14,7 @@ class ResumedNewSongsList < SongsList
   end
 
   def songs
-    @songs ||= SongDecorator.decorate_collection(Song.not_user_created.by_popularity.limit(5))
+    @songs ||= Song.not_user_created.by_popularity.limit(5)
   end
 
 end
