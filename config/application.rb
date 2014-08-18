@@ -21,9 +21,9 @@ module InstrumentchampPrototype
     # config.i18n.default_locale = :de
 
     config.autoload_paths += %W(#{config.root}/lib)
-    config.autoload_paths += %W(#{config.root}/lib/users_lists) # TODO: include all subdirectories in /lib
-    config.autoload_paths += %W(#{config.root}/lib/songs_lists) # TODO: include all subdirectories in /lib
-    config.autoload_paths += %W(#{config.root}/lib/groups_lists) # TODO: include all subdirectories in /lib
+    config.autoload_paths += %W(#{config.root}/lib/lists/users) # TODO: include all subdirectories in /lib
+    config.autoload_paths += %W(#{config.root}/lib/lists/groups) # TODO: include all subdirectories in /lib
+    config.autoload_paths += %W(#{config.root}/lib/lists/songs) # TODO: include all subdirectories in /lib
 
     config.force_ssl = true
 
