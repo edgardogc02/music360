@@ -86,7 +86,78 @@ describe Group do
       Group.by_name("Gro").should eq([g1, g2])
       Group.by_name("fans").should eq([g3])
     end
+  end
 
+  context "Methods" do
+    it "should return group leaders" do
+      user = create(:user, xp: 10)
+      user1 = create(:user, xp: 19)
+      user2 = create(:user, xp: 7)
+      user3 = create(:user, xp: 5)
+      user4 = create(:user, xp: 0)
+
+      group = create(:group)
+
+      create(:user_group, group: group, user: user)
+      create(:user_group, group: group, user: user1)
+      create(:user_group, group: group, user: user2)
+      create(:user_group, group: group, user: user3)
+      create(:user_group, group: group, user: user4)
+
+      group.leader_users(1).should eq([user1])
+      group.leader_users(2).should eq([user1, user])
+      group.leader_users.should eq([user1, user, user2, user3, user4])
+    end
+
+    context "user_can_see_posts?" do
+      it "should let user see posts if group is public" do
+        group = create(:group, group_privacy: create(:public_group_privacy))
+        user = create(:user)
+        create(:user_group, group: group, user: user)
+
+        group.user_can_see_posts?(user).should be_true
+      end
+
+      it "should let user see posts if group is closed" do
+        group = create(:group, group_privacy: create(:closed_group_privacy))
+        user = create(:user)
+        create(:user_group, group: group, user: user)
+
+        group.user_can_see_posts?(user).should be_true
+      end
+
+      context "secret group" do
+        before(:each) do
+          @group = create(:group, group_privacy: create(:secret_group_privacy))
+          @user = create(:user)
+        end
+
+        it "should let user see posts if is a member" do
+          create(:user_group, group: @group, user: @user)
+          @group.user_can_see_posts?(@user).should be_true
+        end
+
+        it "should not let user see posts if is not a member" do
+          @group.user_can_see_posts?(@user).should_not be_true
+        end
+      end
+    end
+
+    context "user_can_post?" do
+      before(:each) do
+        @group = create(:group, group_privacy: create(:secret_group_privacy))
+        @user = create(:user)
+      end
+
+      it "should let user post if is a group member" do
+        create(:user_group, group: @group, user: @user)
+        @group.user_can_post?(@user).should be_true
+      end
+
+      it "should not let user post if is not a group member" do
+        @group.user_can_post?(@user).should_not be_true
+      end
+    end
   end
 
 end

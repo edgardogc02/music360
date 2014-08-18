@@ -6,6 +6,8 @@
 			<h2>New post</h2>
 			<%= render "group_posts/form", group: @group %>
 			<hr />
+	 <% end %>
+	 <% if signed_in? and @group.user_can_see_posts?(current_user) %>
 			<h2>Posts</h2>
 				<ul class="media-list group-posts" id="group_posts">
 				<%= render @posts.reverse %>
@@ -21,5 +23,6 @@
 		<%= @group.add_members_button %>
 		<%= @group.join_button %>
     <%= @group.create_challenge_button %>
+    <%= render "leaderboard", group_leaders: @group_leaders %>
 	</div>
 </div>

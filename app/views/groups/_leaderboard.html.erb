@@ -1,0 +1,10 @@
+<% if @group_leaders %>
+  <h2>Leaderboard</h2>
+
+  <% @group_leaders.each do |group_leader| %>
+    <div>
+      <%= link_to group_leader.username, person_path(group_leader.username) %>
+      <%= group_leader.xp %> points
+    </div>
+  <% end %>
+<% end %>

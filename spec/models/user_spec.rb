@@ -133,6 +133,15 @@ describe User do
 
       User.excludes(User.last(2)).should eq([user])
     end
+
+    it "should order by xp desc" do
+      user = create(:user, xp: 0)
+      user1 = create(:user, xp: 10)
+      user2 = create(:user, xp: 5)
+      user3 = create(:user, xp: 12)
+
+      User.by_xp.should eq([user3, user1, user2, user])
+    end
   end
 
   context "Methods" do

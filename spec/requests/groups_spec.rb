@@ -338,6 +338,22 @@ describe "Groups" do
         page.should_not have_content posts[0].message
       end
 
+      context "user can post?" do
+        it "should let user post if is a group member" do
+          group = create(:group)
+          create(:user_group, group: group, user: @user)
+
+          visit group_path(group)
+          page.should have_selector(:link_or_button, "Post")
+        end
+
+        it "should not let user post if is not a group member" do
+          group = create(:group)
+          visit group_path(group)
+          page.should_not have_selector(:link_or_button, "Post")
+        end
+      end
+
       context "create challenge button" do
         it "should be able to see the button if user is member of the group" do
           group = create(:group, initiator_user: @user)

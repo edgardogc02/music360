@@ -22,6 +22,7 @@ class GroupsController < ApplicationController
 
   def show
     @posts = @group.posts.last(5)
+    @group_leaders = @group.leader_users(10)
   end
 
   def create
@@ -51,15 +52,15 @@ class GroupsController < ApplicationController
   def members
     @users = UserDecorator.decorate_collection(@group.users)
   end
-  
+
   def challenges
     @challenges = ChallengeDecorator.decorate_collection(@group.challenges)
   end
-	
+
 	def list
     @groups = GroupsListFactory.new(params[:view], current_user, params[:page]).groups_list
   end
-	
+
   # TODO: REFACTOR (CREATE A NEW CONTROLLER FOR THIS? CREATE FORM FOR ACTION)
   def join
     user_group = current_user.user_groups.build(group: @group)
