@@ -32,7 +32,7 @@ describe "Challenges" do
       page.should have_content(@user.username)
       page.should have_content(challenged_user.username)
 
-      click_on "Start Challenge"
+      click_on "Create Challenge"
 
       page.find('.alert-notice').should have_content('The challenge was successfully created')
       current_path.should eq(yours_challenges_path)
@@ -77,7 +77,7 @@ describe "Challenges" do
       page.should have_content("VS")
       page.should have_content(challenged_user.username)
 
-      click_on "Start Challenge"
+      click_on "Create Challenge"
 
       page.find('.alert-notice').should have_content('The challenge was successfully created')
       current_path.should eq(yours_challenges_path)
@@ -96,7 +96,7 @@ describe "Challenges" do
       click_on "People"
       click_on "challenge_#{challenged_user.id}"
       click_on "challenge_#{@song.id}"
-      click_on "Start Challenge"
+      click_on "Create Challenge"
 
       challenge = Challenge.last
       challenge.challenger.should eq(@user)
@@ -136,7 +136,7 @@ describe "Challenges" do
       click_on "People"
       click_on "challenge_#{challenged_user.id}"
       click_on "challenge_#{@song.id}"
-      click_on "Start Challenge"
+      click_on "Create Challenge"
 
       challenge = Challenge.last
       challenge.challenger.should eq(@user)
@@ -151,13 +151,13 @@ describe "Challenges" do
       it "should redirect the user to the app page if they want to start the challenge" do
         private_challenge = create(:challenge, public: false, challenger: @user)
         visit challenges_path
-        page.should have_link "Start challenge", href: apps_path + "?challenge_id=#{private_challenge.id}"
+        page.should have_link "Create challenge", href: apps_path + "?challenge_id=#{private_challenge.id}"
       end
 
       it "should be redirected to the apps page if challenge is public and user wants to start the challenge" do
         public_challenge = create(:challenge, public: true, challenger: @user)
         visit challenges_path
-        page.should have_link "Start challenge", href: apps_path + "?challenge_id=#{public_challenge.id}"
+        page.should have_link "Create challenge", href: apps_path + "?challenge_id=#{public_challenge.id}"
       end
     end
 
@@ -185,18 +185,18 @@ describe "Challenges" do
       it "should have start challenge links if challenge is private and user is involved" do
         private_challenge = create(:challenge, public: false, challenger: @user)
         visit challenges_path
-        page.should have_link "Start challenge", href: private_challenge.decorate.start_challenge_url
+        page.should have_link "Create challenge", href: private_challenge.decorate.start_challenge_url
 
         new_private_challenge = create(:challenge, public: false, challenged: @user)
         visit challenges_path
-        page.should have_link "Start challenge", href: new_private_challenge.decorate.start_challenge_url
+        page.should have_link "Create challenge", href: new_private_challenge.decorate.start_challenge_url
       end
 
       it "should have start challenge links if challenge public" do
         public_challenge = create(:challenge, public: true, challenger: @user)
         visit challenges_path
         page.should have_content public_challenge.song.title
-        page.should have_link "Start challenge", href: public_challenge.decorate.start_challenge_url
+        page.should have_link "Create challenge", href: public_challenge.decorate.start_challenge_url
       end
     end
 
@@ -227,7 +227,7 @@ describe "Challenges" do
 
       current_path.should eq(new_challenge_path)
       click_on "challenge_#{@song.id}"
-      click_on "Start Challenge"
+      click_on "Create Challenge"
 
       page.find('.alert-notice').should have_content('The challenge was successfully created')
       current_path.should eq(yours_challenges_path)
@@ -247,7 +247,7 @@ describe "Challenges" do
       click_on "Choose your opponent"
       click_on "challenge_#{challenged_user.id}"
 
-      click_on "Start Challenge"
+      click_on "Create Challenge"
 
       page.find('.alert-notice').should have_content('The challenge was successfully created')
       current_path.should eq(yours_challenges_path)
@@ -299,19 +299,19 @@ describe "Challenges" do
       click_on 'sign_in'
 
       visit challenge_path(my_challenge)
-      page.should have_link "Start challenge", href: my_challenge.decorate.start_challenge_url
+      page.should have_link "Create challenge", href: my_challenge.decorate.start_challenge_url
 
       click_on "Sign out"
 
       signin_with_facebook
       visit challenge_path(my_challenge)
-      page.should_not have_link "Start challenge", href: my_challenge.decorate.start_challenge_url
+      page.should_not have_link "Create challenge", href: my_challenge.decorate.start_challenge_url
     end
 
     it "should include the user auth_token in the start challenge link" do
       my_challenge = create(:challenge, challenger: @user)
       visit challenge_path(my_challenge)
-      page.should_not have_link "Start challenge", href: my_challenge.desktop_app_uri + "&user_auth_token=" + @user.auth_token
+      page.should_not have_link "Create challenge", href: my_challenge.desktop_app_uri + "&user_auth_token=" + @user.auth_token
     end
 
     it "should display the instrument the user used in the challenge" do
@@ -351,7 +351,7 @@ describe "Challenges" do
       click_on "Choose your opponent"
       click_on "challenge_#{challenged_user.id}"
       click_on "challenge_#{@song.id}"
-      click_on "Start Challenge"
+      click_on "Create Challenge"
 
       @user.reload
       challenged_user.reload
@@ -382,7 +382,7 @@ describe "Challenges" do
     visit people_path
     click_on "challenge_#{challenged_user.id}"
     click_on "challenge_#{@song.id}"
-    click_on "Start Challenge"
+    click_on "Create Challenge"
     Challenge.last
   end
 

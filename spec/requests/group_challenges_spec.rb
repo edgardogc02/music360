@@ -18,7 +18,7 @@ describe "GroupChallenges" do
         page.should have_link "Create challenge", new_group_challenge_path(@group)
         click_on "new_group_challenge"
         click_on "challenge_#{@song.id}"
-        click_on "Start Challenge"
+        click_on "Create Challenge"
 
         challenge = Challenge.last
         current_path.should eq(group_challenge_path(@group, challenge))

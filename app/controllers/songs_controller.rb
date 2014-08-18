@@ -10,7 +10,7 @@ class SongsController < ApplicationController
       else
         songs = Song.free.not_user_created.by_title(params[:title])
       end
-      if params[:group_id]
+      if !params[:group_id].blank?
         @songs = SongGroupChallengeDecorator.decorate_collection(songs)
       else
         @songs = SongDecorator.decorate_collection(songs)
