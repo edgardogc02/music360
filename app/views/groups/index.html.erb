@@ -17,3 +17,11 @@
 
 <%= render "groups_list", groups_list: @new_groups %>
 <%= render "groups_list", groups_list: @most_popular_groups %>
+
+<%= content_for(:js_scripts) do %>
+	<script type="text/javascript">
+		$(document).ready(function() {				
+			reload_img_group();
+		});
+  </script>
+<% end %>
