@@ -3,7 +3,7 @@ class GroupActivitiesController < ApplicationController
   before_action :set_group
 
 	def index
-	  @activities = PublicActivity::Activity.where(group_id: @group.id).order('created_at DESC')
+	  @activities = PublicActivity::Activity.where(group_id: @group.id).order('created_at DESC').page params[:page]
   end
 
   private

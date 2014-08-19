@@ -23,6 +23,7 @@ class GroupsController < ApplicationController
   def show
     @posts = @group.posts.last(5)
     @group_leaders = @group.leader_users(10)
+    @group_activities = PublicActivity::Activity.where(group_id: @group.id).order('created_at DESC').limit(5)
   end
 
   def create

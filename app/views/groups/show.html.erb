@@ -13,6 +13,17 @@
 				<%= render @posts.reverse %>
 			</ul>
 		<% end %>
+
+    <% if !@group_activities.blank? %>
+      <hr />
+      <div>
+        <h2>Activity feed</h2>
+        <%= render @group_activities %>
+        <div>
+          <%= link_to "View more", group_group_activities_path(@group) %>
+        </div>
+      </div>
+    <% end %>
 	</div>
 	<div class="col-lg-4">
 		<h2>About</h2>

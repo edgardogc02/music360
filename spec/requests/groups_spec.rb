@@ -73,6 +73,38 @@ describe "Groups" do
         page.should have_link "Members", members_group_path(group)
       end
 
+      it "should show the leaderboard" do
+        group = create(:group)
+        user = create(:user, xp: 1000)
+        user1 = create(:user, xp: 100)
+        user2 = create(:user, xp: 10000)
+        create(:user_group, user: user, group: group)
+        create(:user_group, user: user1, group: group)
+        create(:user_group, user: user2, group: group)
+
+        visit group_path(group)
+        page.should have_content "Leaderboard"
+        page.should have_content user.username
+        page.should have_content user1.username
+        page.should have_content user2.username
+
+        page.should have_content "1000 points"
+        page.should have_content "100 points"
+        page.should have_content "10000 points"
+      end
+
+      it "should have last 5 activity feeds" do
+        group = create(:group)
+        create(:user_group, user: @user, group: group)
+        group_post = create(:group_post, publisher: @user, group: group)
+        group_post.create_activity :create, owner: @user, group_id: group.id
+
+        visit group_path(group)
+        page.should have_content "Activity feed"
+        page.should have_content "#{@user.username} created a post"
+        page.should have_link "View more", group_group_activities_path(group)
+      end
+
       context "buttons" do
         context "founder logged in" do
           before(:each) do
