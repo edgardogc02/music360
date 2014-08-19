@@ -1,14 +1,7 @@
-created a post
+posted a message
 
-<% if activity.trackable %>
-  <div>
-    (<%= time_ago_in_words(activity.trackable.created_at) %> ago)
-  </div>
-  <div>
-    <%= activity.trackable.message %>
-  </div>
-<% else %>
-  <div>
-    which has since been removed
-  </div>
-<% end %>
+<br />
+
+<ul class="media-list group-posts" id="group_posts">
+  <%= render activity.trackable %>
+</ul>

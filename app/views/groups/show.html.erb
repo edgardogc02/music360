@@ -3,21 +3,13 @@
 <div class="row">
 	<div class="col-lg-8">
 		<% if signed_in? and @group.user_can_post?(current_user) %>
-			<h2>New post</h2>
+			<h2>Status</h2>
 			<%= render "group_posts/form", group: @group %>
-			<hr />
-	 <% end %>
-	 <% if signed_in? and @group.user_can_see_posts?(current_user) %>
-			<h2>Posts</h2>
-				<ul class="media-list group-posts" id="group_posts">
-				<%= render @posts.reverse %>
-			</ul>
-		<% end %>
+	  <% end %>
 
-    <% if !@group_activities.blank? %>
+    <% if !@group_activities.blank? and signed_in? and @group.user_can_see_posts?(current_user) %>
       <hr />
       <div>
-        <h2>Activity feed</h2>
         <%= render @group_activities %>
         <div>
           <%= link_to "View more", group_group_activities_path(@group) %>

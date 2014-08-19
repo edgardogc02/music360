@@ -93,14 +93,13 @@ describe "Groups" do
         page.should have_content "10000 points"
       end
 
-      it "should have last 5 activity feeds" do
+      it "should have last activity feeds" do
         group = create(:group)
         create(:user_group, user: @user, group: group)
         group_post = create(:group_post, publisher: @user, group: group)
         group_post.create_activity :create, owner: @user, group_id: group.id
 
         visit group_path(group)
-        page.should have_content "Activity feed"
         page.should have_content "#{@user.username} created a post"
         page.should have_link "View more", group_group_activities_path(group)
       end

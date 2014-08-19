@@ -3,11 +3,7 @@ class GroupsController < ApplicationController
   before_action :set_group, only: [:show, :members, :join, :edit, :update, :challenges, :destroy]
 
   def index
-    #@my_groups = GroupDecorator.decorate_collection(current_user.groups.limit(5))
     @group_invitations = GroupDecorator.decorate_collection(current_user.groups_invited_to.limit(5))
-#    @public_groups = GroupDecorator.decorate_collection(Group.public.limit(5))
-#    @closed_groups = GroupDecorator.decorate_collection(Group.closed.limit(5))
-#    @secret_groups = GroupDecorator.decorate_collection(Group.secret.limit(5))
   	@my_groups = ResumedMyGroupsList.new(current_user)
     @most_popular_groups = ResumedMostPopularGroupsList.new
     @new_groups = ResumedNewGroupsList.new
@@ -21,9 +17,8 @@ class GroupsController < ApplicationController
   end
 
   def show
-    @posts = @group.posts.last(5)
     @group_leaders = @group.leader_users(10)
-    @group_activities = PublicActivity::Activity.where(group_id: @group.id).order('created_at DESC').limit(5)
+    @group_activities = PublicActivity::Activity.where(group_id: @group.id).order('created_at DESC').limit(10)
   end
 
   def create
