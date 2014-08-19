@@ -105,6 +105,38 @@ describe "Groups" do
         page.should have_link "View more", group_group_activities_path(group)
       end
 
+      context "leave group" do
+        it "should have a leave group button if user is member" do
+          group = create(:group)
+          create(:user_group, group: group, user: @user)
+
+          visit group_path(group)
+          page.should have_link "Leave group", group_path(group)
+        end
+
+        it "should not have a leave group button if user is not member" do
+          group = create(:group)
+
+          visit group_path(group)
+          page.should_not have_link "Leave group", group_path(group)
+        end
+
+        it "should be able to leave a group if member" do
+          group = create(:group)
+          create(:user_group, group: group, user: @user)
+
+          @user.user_groups.should_not eq([])
+
+          visit group_path(group)
+          click_on "Leave group"
+
+          current_path.should eq(group_path(group))
+          page.find('.alert-notice').should have_content("You are no longer a member of this group")
+          @user.reload
+          @user.user_groups.should eq([])
+        end
+      end
+
       context "buttons" do
         context "founder logged in" do
           before(:each) do

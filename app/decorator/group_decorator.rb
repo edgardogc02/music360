@@ -29,6 +29,12 @@ class GroupDecorator < Draper::Decorator
     end
   end
 
+  def leave_group_button
+    if h.signed_in? and UserGroupsManager.new(h.current_user).belongs_to_group?(model)
+      h.link_to "Leave group", h.user_group_path(h.current_user.user_groups.where(group_id: model.id).first), method: :delete, role: "menuitem", tabindex: "-1"
+    end
+  end
+
   def show_description
     if model.description.blank?
       "This is an InstrumentChamp group. You can share information and challenge your friends."

@@ -74,6 +74,7 @@ InstrumentchampPrototype::Application.routes.draw do
   resources :user_instruments, only: [:edit, :update]
   resources :user_groupies, only: [:index, :create, :destroy]
   resources :user_invitations, only: [:new, :create]
+  resources :user_groups, only: [:destroy]
 
   resources :accounts, path: "account" do
     get 'overview', on: :collection
