@@ -20,7 +20,7 @@ class Challenge < ActiveRecord::Base
   belongs_to :challenged_instrument, class_name: "Instrument", foreign_key: "instrument_u2"
   belongs_to :group
 
-  has_many :songscores
+  has_many :song_scores
   has_many :users_already_played, through: :songscores, source: :user
 
   before_create :fill_in_extra_fields

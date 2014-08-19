@@ -56,7 +56,7 @@ class User < ActiveRecord::Base
 
   has_many :published_group_posts, class_name: "GroupPost", foreign_key: "publisher_id", dependent: :destroy
 
-  has_many :songscores
+  has_many :song_scores
 
   belongs_to :instrument
 

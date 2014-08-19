@@ -171,4 +171,12 @@ FactoryGirl.define do
     sequence(:message) { |n| "Message nr #{n}"}
   end
 
+  factory :song_score do
+    song
+    instrument
+    user
+    score 1
+    challenge
+  end
+
 end

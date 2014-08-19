@@ -21,9 +21,9 @@
 		  <li class="active"><a href="#challenge" role="tab" data-toggle="tab">Challenge</a></li>
 		  <li><a href="#players" role="tab" data-toggle="tab">Players</a></li>
 		</ul>
-		
+
 		<br />
-		
+
 		<div class="tab-content">
 		  <div class="tab-pane active" id="challenge">
 
@@ -32,7 +32,7 @@
 				    <%= image_tag @challenge.cover_url, class: "song-cover pull-left" %>
 				    <div class="media-body">
 				      <p class="spacer-sm">
-				        <h2><%= link_to @challenge.song.title, song_path(@challenge.song) %></h2>		  					
+				        <h2><%= link_to @challenge.song.title, song_path(@challenge.song) %></h2>
 				      </p>
 				      <div class="spacer-sm">
 				      	By: <%= link_to @challenge.song.artist.title, artist_path(@challenge.song.artist) %> <br />
@@ -41,7 +41,7 @@
 				    </div>
 				  </li>
 				</ul>
-				
+
 				<% if signed_in? and @group.user_can_post?(current_user) %>
 					<h2>New post</h2>
 					<%= render "group_posts/form", group: @group %>
@@ -56,7 +56,7 @@
 		  </div>
 		  <div class="tab-pane" id="players">
 		  	<h2>Players</h2>
-		  	
+
 		  	<table width="100%" class="datagrid">
 				<tr class="head">
 					<td>User</td>
@@ -75,7 +75,7 @@
 		</div>
 	</div>
 	<div class="col-lg-4">
-		<%= render "groups/leaderboard", group_leaders: @group_leaders %>
+		<%= render "leaderboard", group_leaders: @group_challenge_leaders %>
 		<hr />
 		<%= @group.add_members_button %>
 	</div>
