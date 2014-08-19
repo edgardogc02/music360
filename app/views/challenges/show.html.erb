@@ -3,11 +3,21 @@
   <meta property="og:title" content="<%= @challenge.song.title %> challenge" />
   <meta property="og:type" content="instrumentchamp:challenge" />
   <meta property="og:image" content="<%= asset_url(@challenge.cover_url) %>" />
-  <meta property="og:description" content="<%= @challenge.challenger.username %> challenged <%= @challenge.challenged.username %>" />
+  <% if @challenge.challenged %>
+  	<meta property="og:description" content="<%= @challenge.challenger.username %> challenged <%= @challenge.challenged.username %>" />
+	<% end %>
 <% end %>
 
 <%= render 'shared/header_page', title: 'Challenge' %>
 
-<ul class="media-list">
+<%= debug @challenge %>
+
+<% if @group %>
+	<%= render 'groups/group_header', group: @group %>
+<% else %>
+	no group
+<% end %>
+
+<ul class="media-list hidden">
 	<%= render @challenge %>
 </ul>
