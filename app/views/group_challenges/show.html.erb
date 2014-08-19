@@ -20,7 +20,7 @@
 		<ul class="nav nav-tabs" role="tablist">
 		  <li class="active"><a href="#challenge" role="tab" data-toggle="tab">Challenge</a></li>
 		  <li><a href="#leaderboard" role="tab" data-toggle="tab">Leaderboard</a></li>
-		  <li><a href="#players" role="tab" data-toggle="tab">Players</a></li>
+		  <!--<li><a href="#players" role="tab" data-toggle="tab">Players</a></li>-->
 		</ul>
 
 		<br />
@@ -63,6 +63,7 @@
 		  		<p>No records</p>
 		  	<% end %>
 		  </div>
+		  <!--
 		  <div class="tab-pane" id="players">
 		  	<h2>Players</h2>
 
@@ -85,6 +86,7 @@
 					<p>No records</p>
 				<% end %>		  	
 		  </div>
+		  -->
 		</div>
 	</div>
 	<div class="col-lg-4">
@@ -93,9 +95,9 @@
 			<%= @group.show_description %>
 		</p>
 		<hr />
-		<%= render "groups/members", group: @group %>
 		<%= @group.add_members_button %>
+		<!--<%= render "groups/members", group: @group %>
 		<hr />
-    <%= render "groups/leaderboard", group_leaders: @group_leaders %>
+    <%= render "groups/leaderboard", group_leaders: @group_leaders %>-->
 	</div>
 </div>
