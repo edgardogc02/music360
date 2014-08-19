@@ -94,13 +94,13 @@ describe "Groups" do
       end
 
       it "should have last activity feeds" do
-        group = create(:group)
+        group = create(:group, group_privacy: create(:public_group_privacy))
         create(:user_group, user: @user, group: group)
         group_post = create(:group_post, publisher: @user, group: group)
         group_post.create_activity :create, owner: @user, group_id: group.id
 
         visit group_path(group)
-        page.should have_content "#{@user.username} created a post"
+        page.should have_content group_post.message
         page.should have_link "View more", group_group_activities_path(group)
       end
 
@@ -372,12 +372,12 @@ describe "Groups" do
       end
 
       context "secret group" do
-        it "should list last 5 posts if the user is a member of the group" do
+        it "should list last 10 posts if the user is a member of the group" do
           group = create(:group, initiator_user: @user, group_privacy: create(:secret_group_privacy))
           check_posts(group)
         end
 
-        it "should not list last 5 posts if the user is not a member of the group" do
+        it "should not list last 10 posts if the user is not a member of the group" do
           group = create(:group, group_privacy: create(:secret_group_privacy))
           user = create(:user)
           create(:user_group, user: user, group: group)
@@ -391,14 +391,17 @@ describe "Groups" do
 
       def check_posts(group)
         create(:user_group, group: group, user: @user)
-        posts = 6.times.inject([]) { |res, i| res << create(:group_post, group: group, publisher: @user) }
+        posts = 11.times.inject([]) { |res, i| res << create(:group_post, group: group, publisher: @user) }
+
+        (0..10).each do |i|
+          posts[i].create_activity :create, owner: @user, group_id: group.id
+        end
 
         visit group_path(group)
-
-        (1..5).each do |i|
+        (1..9).each do |i|
           page.should have_content posts[i].message
         end
-        page.should_not have_content posts[0].message
+        page.should_not have_content posts[10].message
       end
 
       context "user can post?" do
