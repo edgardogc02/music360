@@ -50,6 +50,6 @@ class GroupInvitationsController < ApplicationController
   end
 
   def set_group
-    @group = Group.find(params[:group_id])
+    @group = GroupDecorator.decorate(Group.find(params[:group_id]))
   end
 end

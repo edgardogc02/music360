@@ -1,6 +1,6 @@
-<% if @group_challenge_leaders %>
+<% if @resumed_group_challenge_leaders %>
 
-  <h2>Leaderboard</h2>
+  <h2>Top Scores</h2>
 
   <table width="100%" class="datagrid">
     <tr class="head">
@@ -9,10 +9,9 @@
       <td>Points</td>
       <td></td>
     </tr>
-    <% @group_challenge_leaders.each do |group_challenge_leader| %>
+    <% @resumed_group_challenge_leaders.each do |group_challenge_leader| %>
       <tr class="<%= cycle("odd", "even") %>">
         <td>
-        	<%= image_tag group_challenge_leader.user.imagename, class: 'avatar-xs' %>
         	<%= link_to group_challenge_leader.user.username, person_path(group_challenge_leader.user.username) %>
         </td>
         <td><%= group_challenge_leader.instrument.name %></td>

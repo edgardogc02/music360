@@ -56,7 +56,7 @@
 		  </div>
 		  <div class="tab-pane" id="leaderboard">
 		  	<% if !@group_challenge_leaders.blank? %>
-		  		<%= render "leaderboard", group_leaders: @group_challenge_leaders, thumbnail: true %>
+		  		<%= render "leaderboard" %>
 		  	<% else %>
 		  		<h2>Leaderboard</h2>
 		  		<p>No records</p>
@@ -93,12 +93,13 @@
 		<p>
 			<%= @group.show_description %>
 		</p>
-		<hr />
-		<%= @group.add_members_button %>
+		<hr />		
 		<!--<%= render "groups/members", group: @group %>
 		<hr />-->
 		<% if !@resumed_group_challenge_leaders.blank? %>
-    	<%= render "leaderboard", group_leaders: @resumed_group_challenge_leaders, thumbnail: false %>
+    	<%= render "top_scores" %>
    	<% end %>
+   	<hr />
+   	<%= @group.add_members_button %>
 	</div>
 </div>

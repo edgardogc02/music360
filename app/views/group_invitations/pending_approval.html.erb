@@ -1,4 +1,6 @@
-<%= render 'shared/header_page', title: 'Membership requests pending approval' %>
+<%= render "groups/group_header" %>
+
+<%= render 'shared/header_page', title: 'Membership requests pending approval', sub_header: true %>
 
 <% if @pending_invitations.blank? %>
   No membership requests pending approval
