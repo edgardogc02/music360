@@ -1,3 +1,5 @@
-<%= link_to activity.owner.username, person_path(activity.owner) if activity.owner %>
+<% if !activity.trackable.kind_of?(GroupPost) %>
+	<%= link_to activity.owner.username, person_path(activity.owner) if activity.owner %>
+<% end %>
 <%= render_activity activity %>
 <hr />

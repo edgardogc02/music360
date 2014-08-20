@@ -35,6 +35,7 @@
 .group-posts {
   .thumbnail {
     width: 70px;
+    margin-bottom: 0px;
   }
 }
 
@@ -51,5 +52,40 @@
     left: 50px;
     border: 4px solid #FFF;
     width: 125px;
+  }
+}
+
+.group-challenge-item {
+  h2 {
+    margin: 0px;
+    padding: 0px;
+    font-size: 14px;
+  }
+  
+  .item-img {
+    width: 100px;
+    height: 100px;
+    margin-right: 10px;
+    
+    img {
+      width: 100px;
+      height: 100px;
+    }
+  }
+  
+  .item-content {
+    width: 160px;
+  }
+  
+  float: left;
+  width: 290px;
+  //background: #ECF0F0;
+  margin: 15px 15px 0px 0px;
+  //padding: 10px;
+}
+
+.member-widget {
+  .col {
+    padding-right: 0px;
   }
 }

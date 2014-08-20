@@ -1,11 +1,45 @@
 <%= render "group_header" %>
 
-<br />
+<div class="row">
+	<div class="col-lg-8">
+		<%= render 'shared/header_page', title: 'Challenges', sub_header: true %>
 
-<%= render 'shared/header_page', title: 'Challenges', sub_header: true %>
-
-<% unless @challenges.blank? %>
-	<ul class="media-list">
-		<%= render @challenges %>
-	</ul>
-<% end %>
+		<% unless @challenges.blank? %>
+			<div class="thumbnail-grid">				
+				<% @challenges.each do |challenge| %>
+					<div class="group-challenge-item masonry-img">
+						<div class="pull-left item-img">
+							<%= image_tag challenge.cover_url, class: 'song-cover spacer-sm' %>
+						</div>
+					  <div class="pull-left item-content">
+					    <div class="spacer-md">
+					    	<h2><%= link_to challenge.song.title, song_path(challenge.song) %></h2>
+					    	by <%= link_to challenge.song.artist.title, artist_path(challenge.song.artist)%>
+							</div>
+							<div class="spacer-md small">
+						    Created by <%= link_to challenge.challenger.username, person_path(challenge.challenger)%>
+						    <time datetime="<%= challenge.created_at%>" pubdate><%= time_ago_in_words(challenge.created_at)%> ago</time>						    
+						  </div>
+						  <div>
+					      <%= challenge.display_start_group_challenge_button %>
+					      <% if challenge.group %>
+					      	<%= link_to 'View', group_challenge_path(group_id: challenge.group.id, id: challenge.id), class: 'btn btn-primary btn-sm' %>
+					    	<% end %>
+					    </div>
+					  </div>
+					</div>
+				<% end %>
+			</div>
+		<% end %>
+	</div>	
+	<div class="col-lg-4">
+		<h2>About</h2>
+		<p>
+			<%= @group.show_description %>
+		</p>
+		<hr />
+		<%= render "members", group: @group %>
+    <hr />
+    <%= render "leaderboard", group_leaders: @group_leaders %>
+	</div>
+</div>

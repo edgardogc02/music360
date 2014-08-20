@@ -6,8 +6,8 @@
 <div class="clearfix group-nav">
 	<div class="pull-left">
 		<ul class="group-nav-list clearfix">
-			<li>Challenge by: <%= link_to @challenge.group.name, members_group_path(@challenge.group) %></li>
-			<li>Host: <%= @challenge.group.initiator_user.username %></li>
+			<li>Challenge by: <%= link_to @challenge.group.name, @challenge.group %></li>
+			<li>Host: <%= link_to @challenge.group.initiator_user.username, person_path(@challenge.group.initiator_user) %></li>
 		</ul>
 	</div>
 	<div class="pull-right">
@@ -19,7 +19,8 @@
 	<div class="col-lg-8">
 		<ul class="nav nav-tabs" role="tablist">
 		  <li class="active"><a href="#challenge" role="tab" data-toggle="tab">Challenge</a></li>
-		  <li><a href="#players" role="tab" data-toggle="tab">Players</a></li>
+		  <li><a href="#leaderboard" role="tab" data-toggle="tab">Leaderboard</a></li>
+		  <!--<li><a href="#players" role="tab" data-toggle="tab">Players</a></li>-->
 		</ul>
 
 		<br />
@@ -54,29 +55,49 @@
 					</ul>
 				<% end %>
 		  </div>
+		  <div class="tab-pane" id="leaderboard">
+		  	<% if !@group_challenge_leaders.blank? %>
+		  		<%= render "leaderboard", group_leaders: @group_challenge_leaders %>
+		  	<% else %>
+		  		<h2>Leaderboard</h2>
+		  		<p>No records</p>
+		  	<% end %>
+		  </div>
+		  <!--
 		  <div class="tab-pane" id="players">
 		  	<h2>Players</h2>
 
-		  	<table width="100%" class="datagrid">
-				<tr class="head">
-					<td>User</td>
-					<td>Points</td>
-					<td></td>
-				</tr>
-				<% @results.each do |result| %>
-					<tr class="<%= cycle("odd", "even") %>">
-						<td><%= link_to result.user.username, person_path(result.user), class: 'btn-secondary-color' %></td>
-						<td><%= result.score %> points</td>
-						<td></td>
-					</tr>
-				<% end %>
-			</table>
+				<% if !@results.blank? %>
+					<table width="100%" class="datagrid">
+						<tr class="head">
+							<td>User</td>
+							<td>Points</td>
+							<td></td>
+						</tr>
+						<% @results.each do |result| %>
+							<tr class="<%= cycle("odd", "even") %>">
+								<td><%= link_to result.user.username, person_path(result.user), class: 'btn-secondary-color' %></td>
+								<td><%= result.score %> points</td>
+								<td></td>
+							</tr>
+						<% end %>
+					</table>
+				<% else %>
+					<p>No records</p>
+				<% end %>		  	
 		  </div>
+		  -->
 		</div>
 	</div>
 	<div class="col-lg-4">
-		<%= render "leaderboard", group_leaders: @group_challenge_leaders %>
+		<h2>About</h2>
+		<p>
+			<%= @group.show_description %>
+		</p>
 		<hr />
 		<%= @group.add_members_button %>
+		<!--<%= render "groups/members", group: @group %>
+		<hr />
+    <%= render "groups/leaderboard", group_leaders: @group_leaders %>-->
 	</div>
 </div>
