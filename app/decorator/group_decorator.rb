@@ -12,7 +12,9 @@ class GroupDecorator < Draper::Decorator
   end
 
   def join_button
-    if h.signed_in? and !UserGroupsManager.new(h.current_user).belongs_to_group?(model)
+    if h.signed_in? and !UserGroupsManager.new(h.current_user).belongs_to_group?(model) and
+      (!model.secret? or (model.secret? and h.current_user.groups_invited_to.include?(model))) and
+      (!model.closed? or (model.closed? and !h.current_user.groups_invited_to_pending.include?(model)))
       h.action_button(h.join_group_path(model), 'Join', {}, 'glyphicon glyphicon-plus')
     end
   end
@@ -26,6 +28,12 @@ class GroupDecorator < Draper::Decorator
   def edit_button
     if h.signed_in? and h.current_user == model.initiator_user
       h.link_to "Edit", h.edit_group_path(model), role: "menuitem", tabindex: "-1"
+    end
+  end
+
+  def membership_requests_pending_approval_button
+    if h.signed_in? and h.current_user == model.initiator_user
+      h.link_to "Membership requests", h.pending_approval_group_group_invitations_path(model), role: "menuitem", tabindex: "-1"
     end
   end
 

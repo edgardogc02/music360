@@ -62,7 +62,9 @@ InstrumentchampPrototype::Application.routes.draw do
     get 'members', on: :member
     get 'challenges', on: :member
     get 'join', on: :member
-    resources :group_invitations
+    resources :group_invitations do
+      get 'pending_approval', on: :collection
+    end
     resources :group_posts
     resources :group_activities
     resources :challenges, controller: "group_challenges", only: [:new, :create, :show]

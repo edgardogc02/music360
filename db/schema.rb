@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140814082822) do
+ActiveRecord::Schema.define(version: 20140820071653) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -105,6 +105,8 @@ ActiveRecord::Schema.define(version: 20140814082822) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "inviter_user_id"
+    t.boolean  "pending_approval"
   end
 
   create_table "group_posts", force: true do |t|

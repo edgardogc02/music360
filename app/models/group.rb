@@ -30,6 +30,14 @@ class Group < ActiveRecord::Base
     group_privacy == GroupPrivacy.secret
   end
 
+  def public?
+    group_privacy == GroupPrivacy.public
+  end
+
+  def closed?
+    group_privacy == GroupPrivacy.closed
+  end
+
   def leader_users(limit=0)
     leader_users = users.by_xp
     leader_users = leader_users.limit(limit) if limit > 0

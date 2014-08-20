@@ -6,6 +6,10 @@ class GroupInvitationsController < ApplicationController
     @users_to_invite = UserDecorator.decorate_collection(User.not_deleted.excludes(@group.user_ids).page(params[:page]))
   end
 
+  def pending_approval
+    @pending_invitations = @group.group_invitations.pending_approval
+  end
+
   def create
     group_invitation = @group.group_invitations.build(group_invitation_params)
 
@@ -22,7 +26,7 @@ class GroupInvitationsController < ApplicationController
   private
 
   def group_invitation_params
-    params.require(:group_invitation).permit(:user_id)
+    params.require(:group_invitation).permit(:user_id, :inviter_user_id)
   end
 
   def set_group

@@ -1,0 +1,33 @@
+<%= render 'shared/header_page', title: 'Membership requests pending approval' %>
+
+<% if @pending_invitations.blank? %>
+  No membership requests pending approval
+<% else %>
+  <% @pending_invitations.each do |pending_invitation| %>
+    <p>
+      <div>
+        <% if pending_invitation.inviter_user %>
+          Invited user
+        <% else %>
+          User request
+        <% end %>
+      </div>
+      <div>
+        <%= link_to pending_invitation.user.username, person_path(pending_invitation.user) %>
+      </div>
+      <% if pending_invitation.inviter_user %>
+        <div>
+          Inviter user
+        </div>
+        <div>
+          <%= link_to pending_invitation.inviter_user.username, person_path(pending_invitation.inviter_user) %>
+        </div>
+      <% end %>
+      <div>
+        <%= link_to "Accept", "#", {class: "btn btn-primary"} %>
+        <%= link_to "Decline", "#", {class: "btn btn-primary"} %>
+      </div>
+    </p>
+    <hr />
+  <% end %>
+<% end %>
