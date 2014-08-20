@@ -3,7 +3,11 @@ class GroupInvitationsController < ApplicationController
   before_action :set_group, only: [:index, :create, :pending_approval]
 
   def index
-    @users_to_invite = UserDecorator.decorate_collection(User.not_deleted.excludes(@group.user_ids).page(params[:page]))
+    users = User.not_deleted.excludes(@group.user_ids)
+    if params[:username_or_email]
+      users = users.by_username_or_email(params[:username_or_email])
+    end
+    @users_to_invite = UserDecorator.decorate_collection(users.page(params[:page]))
   end
 
   def pending_approval
