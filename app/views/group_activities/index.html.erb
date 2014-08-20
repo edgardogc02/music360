@@ -1,4 +1,6 @@
-<%= render 'shared/header_page', title: 'Activity feed' %>
+<%= render "groups/group_header", group: @group %>
+
+<%= render 'shared/header_page', title: 'Activity feed', sub_header: true %>
 
 <%= render @activities %>
 
