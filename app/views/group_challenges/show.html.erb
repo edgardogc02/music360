@@ -17,6 +17,21 @@
 
 <div class="row">
 	<div class="col-lg-8">
+		<ul class="media-list">
+		  <li class="media media-item no-border">
+		    <%= image_tag @challenge.cover_url, class: "song-cover pull-left" %>
+		    <div class="media-body">
+		      <p class="spacer-sm">
+		        <h2><%= link_to @challenge.song.title, song_path(@challenge.song) %></h2>
+		      </p>
+		      <div class="spacer-sm">
+		      	By: <%= link_to @challenge.song.artist.title, artist_path(@challenge.song.artist) %> <br />
+		        <time datetime="<%= @challenge.created_at%>" pubdate><%= time_ago_in_words(@challenge.created_at)%> ago</time>
+		      </div>
+		    </div>
+		  </li>
+		</ul>
+		
 		<ul class="nav nav-tabs" role="tablist">
 		  <li class="active"><a href="#challenge" role="tab" data-toggle="tab">Challenge</a></li>
 		  <li><a href="#leaderboard" role="tab" data-toggle="tab">Leaderboard</a></li>
@@ -27,22 +42,6 @@
 
 		<div class="tab-content">
 		  <div class="tab-pane active" id="challenge">
-
-				<ul class="media-list">
-				  <li class="media media-item">
-				    <%= image_tag @challenge.cover_url, class: "song-cover pull-left" %>
-				    <div class="media-body">
-				      <p class="spacer-sm">
-				        <h2><%= link_to @challenge.song.title, song_path(@challenge.song) %></h2>
-				      </p>
-				      <div class="spacer-sm">
-				      	By: <%= link_to @challenge.song.artist.title, artist_path(@challenge.song.artist) %> <br />
-				        <time datetime="<%= @challenge.created_at%>" pubdate><%= time_ago_in_words(@challenge.created_at)%> ago</time>
-				      </div>
-				    </div>
-				  </li>
-				</ul>
-
 				<% if signed_in? and @group.user_can_post?(current_user) %>
 					<h2>New post</h2>
 					<%= render "group_posts/form", group: @group %>
@@ -57,7 +56,7 @@
 		  </div>
 		  <div class="tab-pane" id="leaderboard">
 		  	<% if !@group_challenge_leaders.blank? %>
-		  		<%= render "leaderboard", group_leaders: @group_challenge_leaders %>
+		  		<%= render "leaderboard", group_leaders: @group_challenge_leaders, thumbnail: true %>
 		  	<% else %>
 		  		<h2>Leaderboard</h2>
 		  		<p>No records</p>
@@ -97,7 +96,7 @@
 		<hr />
 		<%= @group.add_members_button %>
 		<!--<%= render "groups/members", group: @group %>
-		<hr />
-    <%= render "groups/leaderboard", group_leaders: @group_leaders %>-->
+		<hr />-->
+    <%= render "leaderboard", group_leaders: @resumed_group_challenge_leaders, thumbnail: false %>
 	</div>
 </div>
