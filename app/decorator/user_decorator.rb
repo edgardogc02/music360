@@ -26,9 +26,13 @@ class UserDecorator < Draper::Decorator
     end
   end
 
+  def invite_to_group?
+    false
+  end
+
   def invite_to_group(group_id="")
-    if group_id and h.signed_in? and !UserGroupsManager.new(model).belongs_to_group?(Group.find(group_id.to_i))
-      h.render "group_invitations/form", user_id: model.id
+    if invite_to_group? and group_id and h.signed_in? and !UserGroupsManager.new(model).belongs_to_group?(Group.find(group_id.to_i))
+      h.render "group_invitations/form", user_id: model.id, group: Group.find(group_id.to_i)
     end
   end
 
