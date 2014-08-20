@@ -3,6 +3,10 @@
 <ul class="media-list">
 	<% unless @challenges.blank? %>
 		<%= render partial: "challenge", collection: @challenges %>
+		<% if @paginate %>
+	    <hr />
+	    <%= paginate @challenges %>
+	  <% end %>
 	<% else %>
 </ul>
 

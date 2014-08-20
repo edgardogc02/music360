@@ -1,6 +1,8 @@
 class Challenge < ActiveRecord::Base
 
   include PublicActivity::Common
+  
+  paginates_per 4
 
   validates :challenger_id, presence: true
 #  validates :challenged_id, presence: true
@@ -40,6 +42,7 @@ class Challenge < ActiveRecord::Base
   scope :by_song_title, ->(title) { joins(:song).where('title LIKE ?', '%'+title+'%') }
   scope :excludes, ->(challenges_ids) { where("challenges.id NOT IN (?)", challenges_ids) }
   scope :one_to_one, -> { where("challenged_id > 0") }
+  scope :by_popularity, -> { joins(:song_scores).group('challenge_id').order('COUNT(*) DESC') }
 
 	def cover_url
 		song.cover_url

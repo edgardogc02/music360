@@ -43,14 +43,26 @@ class ChallengesController < ApplicationController
 
   def list
     if params[:view] == "my_challenges"
-      @challenges = ChallengesDecorator.decorate(Challenge.one_to_one.not_played_by_user(current_user, Challenge.default_order.values))
+      @challenges = ChallengeDecorator.decorate_collection(Challenge.not_played_by_user(current_user, Challenge.default_order.values))
       @title = "My challenges"
+      @paginate = false
     elsif params[:view] == "pending"
-      @challenges = ChallengesDecorator.decorate(Challenge.one_to_one.pending_for_user(current_user, Challenge.default_order.values))
+      @challenges = ChallengeDecorator.decorate_collection(Challenge.pending_for_user(current_user, Challenge.default_order.values))
       @title = "Open challenges"
+      @paginate = false
     elsif params[:view] == "results"
-      @challenges = ChallengesDecorator.decorate(Challenge.one_to_one.results_for_user(current_user, Challenge.default_order.values))
+      @challenges = ChallengeDecorator.decorate_collection(Challenge.results_for_user(current_user, Challenge.default_order.values))
       @title = "Results"
+      @paginate = false
+    elsif params[:view] == "new"
+      @challenges = ChallengeDecorator.decorate_collection(Challenge.all.default_order.page params[:page])
+      @title = "New"
+      @paginate = true
+    elsif params[:view] == "most_popular"
+      @challenges = ChallengeDecorator.decorate_collection(Challenge.by_popularity.page params[:page])
+      puts "arg: #{Challenge.by_popularity.inspect}"
+      @title = "Most popular"
+      @paginate = false
     end
   end
 

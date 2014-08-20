@@ -1,5 +1,10 @@
 class ChallengeDecorator < Draper::Decorator
+  
   delegate_all
+
+  def self.collection_decorator_class
+    PaginatingDecorator
+  end
 
   def start_challenge_url
     if !h.is_mobile?
