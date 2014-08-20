@@ -78,4 +78,19 @@ class EmailNotifier < ActionMailer::Base
     mail to: @user.email
   end
 
+  def group_invitation_accepted(user_group)
+    @user_group = user_group
+    @group = user_group.group
+    @user = user_group.user
+
+    mail to: @user.email
+  end
+
+  def group_invitation_rejected(user, group)
+    @group = group
+    @user = user
+
+    mail to: @user.email
+  end
+
 end

@@ -71,7 +71,10 @@ InstrumentchampPrototype::Application.routes.draw do
 		get 'list', on: :collection, as: :list
   end
 
-  resources :group_invitations, only: [:accept]
+  resources :group_invitations, only: [:accept, :reject] do
+    get 'accept', on: :member
+    get 'reject', on: :member
+  end
 
   resources :user_instruments, only: [:edit, :update]
   resources :user_groupies, only: [:index, :create, :destroy]
