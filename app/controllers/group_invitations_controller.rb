@@ -7,7 +7,7 @@ class GroupInvitationsController < ApplicationController
     if params[:username_or_email]
       users = users.by_username_or_email(params[:username_or_email])
     end
-    @users_to_invite = UserDecorator.decorate_collection(users.page(params[:page]))
+    @users_to_invite = UserInvitationDecorator.decorate_collection(users.page(params[:page]))
   end
 
   def pending_approval
