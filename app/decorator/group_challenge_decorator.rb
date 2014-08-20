@@ -12,6 +12,10 @@ class GroupChallengeDecorator < ChallengeDecorator
     h.group_challenge_songs_path(group_id: model.group_id)
   end
 
+  def display_start_challenge_to_user?(user)
+    user and is_user_involved?(user) and UserGroupsManager.new(user).belongs_to_group?(model.group)
+  end
+
   protected
 
     def display_start_challenge_to_user?(user)

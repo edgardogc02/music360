@@ -50,7 +50,7 @@ class GroupsController < ApplicationController
   end
 
   def challenges
-    @challenges = ChallengeDecorator.decorate_collection(@group.challenges)
+    @challenges = GroupChallengeDecorator.decorate_collection(@group.challenges)
   	@group_leaders = @group.leader_users(10)
   end
 
