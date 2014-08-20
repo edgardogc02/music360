@@ -31,7 +31,7 @@
 		    </div>
 		  </li>
 		</ul>
-		
+
 		<ul class="nav nav-tabs" role="tablist">
 		  <li class="active"><a href="#challenge" role="tab" data-toggle="tab">Challenge</a></li>
 		  <li><a href="#leaderboard" role="tab" data-toggle="tab">Leaderboard</a></li>
@@ -43,15 +43,14 @@
 		<div class="tab-content">
 		  <div class="tab-pane active" id="challenge">
 				<% if signed_in? and @group.user_can_post?(current_user) %>
-					<h2>New post</h2>
-					<%= render "group_posts/form", group: @group %>
+					<h2>Status</h2>
+					<%= render "challenge_posts/form", challenge: @challenge %>
 					<hr />
 				<% end %>
 				<% if signed_in? and @group.user_can_see_posts?(current_user) %>
-					<h2>Posts</h2>
-					<ul class="media-list group-posts" id="group_posts">
-						<%= render @posts.reverse %>
-					</ul>
+					<div id="challenge_activities">
+						<%= render @challenge_activities %>
+					</div>
 				<% end %>
 		  </div>
 		  <div class="tab-pane" id="leaderboard">
@@ -83,7 +82,7 @@
 					</table>
 				<% else %>
 					<p>No records</p>
-				<% end %>		  	
+				<% end %>
 		  </div>
 		  -->
 		</div>
@@ -93,7 +92,7 @@
 		<p>
 			<%= @group.show_description %>
 		</p>
-		<hr />		
+		<hr />
 		<!--<%= render "groups/members", group: @group %>
 		<hr />-->
 		<% if !@resumed_group_challenge_leaders.blank? %>

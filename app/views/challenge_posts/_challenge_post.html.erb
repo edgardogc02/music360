@@ -1,0 +1,14 @@
+<ul class="media-list group-posts" id="group_posts">
+  <li class="media">
+    <a class="pull-left" href="<%= person_path(challenge_post.publisher) %>">
+      <div class="thumbnail">
+      	<%= image_avatar(challenge_post.publisher) %>
+      </div>
+    </a>
+    <div class="media-body">
+      <h4 class="media-heading"><%= link_to challenge_post.publisher.username, person_path(challenge_post.publisher) %></h4>
+      <div class="small spacer-md text-muted"><%= time_ago_in_words(challenge_post.created_at) %> ago</div>
+      <%= challenge_post.message %>
+    </div>
+  </li>
+</ul>

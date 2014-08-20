@@ -8,7 +8,7 @@ class SongsController < ApplicationController
       if display_premium?
         songs = Song.not_user_created.by_title(params[:title])
       else
-        songs = Song.free.not_user_created.by_title(params[:title])
+        songs = Song.not_user_created.by_title(params[:title])
       end
       if !params[:group_id].blank?
         @songs = SongGroupChallengeDecorator.decorate_collection(songs)
@@ -24,7 +24,7 @@ class SongsController < ApplicationController
 	end
 
 	def for_challenge
-    @songs = SongChallengeDecorator.decorate_collection(Song.free.not_user_created.by_popularity.limit(4))
+    @songs = SongChallengeDecorator.decorate_collection(Song.not_user_created.by_popularity.limit(4))
     render layout: false
 	end
 
@@ -34,13 +34,13 @@ class SongsController < ApplicationController
 
 	def show
 	  @song = SongDecorator.decorate(@song)
-	  @more_songs = SongChallengeDecorator.decorate_collection(Song.free.not_user_created.by_popularity.limit(4))
+	  @more_songs = SongChallengeDecorator.decorate_collection(Song.not_user_created.by_popularity.limit(4))
 
     @scores = @song.top_scores.limit(5)
 	end
 
   def free
-    @songs = SongDecorator.decorate_collection(Song.free.by_popularity.page params[:page])
+    @songs = SongDecorator.decorate_collection(Song.by_popularity.page params[:page])
   end
 
 	private

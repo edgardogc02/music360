@@ -16,12 +16,12 @@ class GroupChallengesController < ApplicationController
     @results = @challenge.song_scores.includes(:user)
     @group_challenge_leaders = @challenge.song_scores.best_scores
     @resumed_group_challenge_leaders = @challenge.song_scores.best_scores.limit(5)
-    @posts = @challenge.group.posts.last(5)
+    @challenge_activities = PublicActivity::Activity.where(challenge_id: @challenge.id).order('created_at DESC').limit(10)
     @group_leaders = @challenge.group.leader_users(10)
   end
 
   def create
-    @challenge = @group.challenges.build(challenge_group_params)
+    @challenge = GroupChallengeDecorator.decorate(@group.challenges.build(challenge_group_params))
     @challenge.challenger = current_user
     group_challenge_creation = GroupChallengeCreation.new(@challenge)
 

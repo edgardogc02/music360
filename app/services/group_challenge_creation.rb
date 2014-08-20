@@ -18,7 +18,7 @@ class GroupChallengeCreation
   private
 
   def save_activity
-    @challenge.create_activity :group_challenge_create, owner: @challenge.challenger, group_id: @challenge.group.id
+    @challenge.create_activity :group_challenge_create, owner: @challenge.challenger, group_id: @challenge.group.id, challenge_id: @challenge.id
   end
 
 end

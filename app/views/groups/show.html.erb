@@ -9,7 +9,7 @@
 
     <% if !@group_activities.blank? and signed_in? and @group.user_can_see_posts?(current_user) %>
       <hr />
-      <div>
+      <div id="group_activities">
         <%= render @group_activities %>
         <div>
           <%= link_to "View more", group_group_activities_path(@group) %>
@@ -23,7 +23,7 @@
 			<%= @group.show_description %>
 		</p>
 		<hr />
-			<%= render "members", group: @group %>	
+			<%= render "members", group: @group %>
 		<hr />
 		<%= @group.add_members_button %>
 		<%= @group.join_button %>

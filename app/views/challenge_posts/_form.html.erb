@@ -1,0 +1,7 @@
+<%= simple_form_for [challenge, ChallengePost.new], remote: true do |f| %>
+
+  <%= f.input :message, label: false, placeholder: "Write a message" %>
+
+  <%= f.button :submit, "Post" %>
+
+<% end %>

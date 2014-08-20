@@ -32,6 +32,7 @@ InstrumentchampPrototype::Application.routes.draw do
   resources :challenges do
     get 'yours', on: :collection
     get 'list', on: :collection, as: :list
+    resources :challenge_posts
   end
 
   constraints id: /[\w\W*]+/ do

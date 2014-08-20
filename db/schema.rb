@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140820071653) do
+ActiveRecord::Schema.define(version: 20140820143810) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 20140820071653) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "group_id"
+    t.integer  "challenge_id"
   end
 
   add_index "activities", ["owner_id", "owner_type"], name: "index_activities_on_owner_id_and_owner_type", using: :btree
@@ -68,6 +69,14 @@ ActiveRecord::Schema.define(version: 20140820071653) do
 
   create_table "categories", force: true do |t|
     t.string   "title"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "challenge_posts", force: true do |t|
+    t.integer  "challenge_id"
+    t.integer  "publisher_id"
+    t.text     "message"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
