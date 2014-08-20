@@ -15,7 +15,7 @@ class MostPopularSongsList < PaginatedSongsList
   end
 
   def songs
-    @songs ||= Song.not_user_created.by_published_at.page page
+    @songs ||= Song.not_user_created.by_popularity.page page
   end
 
 end

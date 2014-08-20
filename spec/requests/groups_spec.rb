@@ -360,12 +360,12 @@ describe "Groups" do
     context "group posts on group show page" do
 
       context "public and closed groups" do
-        it "should list last 5 posts from a public group" do
+        it "should list last 10 posts from a public group" do
           group = create(:group, initiator_user: @user, group_privacy: create(:public_group_privacy))
           check_posts(group)
         end
 
-        it "should list last 5 posts from a closed group" do
+        it "should list last 10 posts from a closed group" do
           group = create(:group, initiator_user: @user, group_privacy: create(:closed_group_privacy))
           check_posts(group)
         end
