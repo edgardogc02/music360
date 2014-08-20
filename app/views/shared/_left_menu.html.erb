@@ -26,14 +26,15 @@
 					<li class="<%= 'active' if current_page?(list_songs_path(view: "new")) %>"><a href="<%= list_songs_path(view: "new") %>">New</a></li>
 				</ul>
 			</li>
-			<li class="<%= 'active' if current_page?(challenges_path) %>">
+			<li class="<%= 'active' if current_page?(challenges_path) or current_page?(list_challenges_path) %>">
 				<a href="<%= challenges_path %>" id="challenges"><i class='glyphicon glyphicon-flag'></i> Challenges</a>
 				<ul class="nav nav-stacked hidden">
-					<li class="<%= 'active' if current_page?(list_groups_path(view: "my_groups")) %>"><a href="<%= list_groups_path(view: "my_groups") %>">My challenges</a></li>
-					<li class="<%= 'active' if current_page?(list_groups_path(view: "most_popular")) %>"><a href="<%= list_groups_path(view: "most_popular") %>">Most popular</a></li>
-					<li class="<%= 'active' if current_page?(list_groups_path(view: "new")) %>"><a href="<%= list_groups_path(view: "new") %>">New</a></li>
+					<li class="<%= 'active' if current_page?(list_challenges_path(view: "my_challenges")) %>"><a href="<%= list_challenges_path(view: "my_challenges") %>">My challenges</a></li>
+					<li class="<%= 'active' if current_page?(list_challenges_path(view: "most_popular")) %>"><a href="<%= list_challenges_path(view: "most_popular") %>">Most popular</a></li>
+					<li class="<%= 'active' if current_page?(list_challenges_path(view: "new")) %>"><a href="<%= list_challenges_path(view: "new") %>">New</a></li>
 				</ul>
 			</li>
+			<!--
 			<li class="<%= 'active' if current_page?(groups_path) or current_page?(list_groups_path) %>">
 				<a href="<%= groups_path %>" id="groups"><i class='glyphicon glyphicon-th'></i> Groups</a>
 				<ul class="nav nav-stacked">
@@ -42,6 +43,7 @@
 					<li class="<%= 'active' if current_page?(list_groups_path(view: "new")) %>"><a href="<%= list_groups_path(view: "new") %>">New</a></li>
 				</ul>
 			</li>
+			-->
 		</ul>
 	</nav>
 </div>
