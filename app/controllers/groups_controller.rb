@@ -61,12 +61,11 @@ class GroupsController < ApplicationController
   # TODO: REFACTOR (CREATE A NEW CONTROLLER FOR THIS? CREATE FORM FOR ACTION)
   def join
     user_group = current_user.user_groups.build(group: @group)
+    group_invitation = current_user.group_invitations.by_group(@group.id).first
 
-    if @group.secret? and !current_user.groups_invited_to_ids.include?(@group.id)
-      flash[:warning] = "You can't join #{@group.name} because it's a secret group and you have no invitation."
-      redirect_to groups_path
-    else
-      if group_invitation = current_user.group_invitations.by_group(@group.id).first
+    if @group.public?
+
+      if group_invitation
         group_invitation.destroy
       end
       if user_group.save
@@ -76,7 +75,62 @@ class GroupsController < ApplicationController
         flash[:warning] = "You are already a member of #{@group.name}"
         redirect_to @group
       end
+
+    elsif @group.closed?
+
+      if group_invitation
+        if group_invitation.inviter_user == @group.initiator_user # invited by admin user
+          group_invitation.destroy
+
+          if user_group.save
+            @group.create_activity :join, owner: current_user, group_id: @group.id
+            redirect_to @group, notice: "You are now a member of #{@group.name}"
+          else
+            flash[:warning] = "You are already a member of #{@group.name}"
+            redirect_to @group
+          end
+
+        else # invited by a regular user
+          group_invitation.pending_approval = true
+          group_invitation.save
+
+          redirect_to @group, notice: "You'll be accepted as a group member when your membership request has been processed by an admin user of this group"
+        end
+      else
+        group_invitation = current_user.group_invitations.build
+        group_invitation.group = @group
+        group_invitation.pending_approval = true
+        group_invitation.save
+
+        redirect_to @group, notice: "You'll be accepted as a group member when your membership request has been processed by an admin user of this group"
+      end
+
+    elsif @group.secret?
+
+      if group_invitation
+
+        if group_invitation.inviter_user == @group.initiator_user # invited by admin user
+          group_invitation.destroy
+
+          if user_group.save
+            @group.create_activity :join, owner: current_user, group_id: @group.id
+            redirect_to @group, notice: "You are now a member of #{@group.name}"
+          else
+            flash[:warning] = "You are already a member of #{@group.name}"
+            redirect_to @group
+          end
+        else
+          group_invitation.pending_approval = true
+          group_invitation.save
+
+          redirect_to @group, notice: "You'll be accepted as a group member when your membership request has been processed by an admin user of this group"
+        end
+      else
+        flash[:warning] = "You can't join #{@group.name} because it's a secret group and you have no invitation."
+        redirect_to @group
+      end
     end
+
   end
 
   private
