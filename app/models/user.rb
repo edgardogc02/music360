@@ -58,6 +58,7 @@ class User < ActiveRecord::Base
   has_many :groups_invited_to_pending, through: :group_invitations_pending, source: :group
 
   has_many :published_group_posts, class_name: "GroupPost", foreign_key: "publisher_id", dependent: :destroy
+  has_many :published_challenge_posts, class_name: "ChallengePost", foreign_key: "publisher_id", dependent: :destroy
 
   has_many :song_scores
 
