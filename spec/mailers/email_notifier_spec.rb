@@ -245,6 +245,42 @@ describe EmailNotifier do
     end
   end
 
+  describe "send group invitation acceptance email" do
+    let(:user_group) { create(:user_group) }
+    let(:mail) { EmailNotifier.group_invitation_accepted(user_group) }
+
+    it "sends group invitation acceptance message to the invited user" do
+      mail.subject.should eq("Your group membership was accepted")
+      mail.to.should eq([user_group.user.email])
+      mail.from.should eq(["no-reply@instrumentchamp.com"])
+    end
+
+    it "renders the body" do
+      mail.body.encoded.should have_content "Hi #{user_group.user.username},"
+      mail.body.encoded.should have_content "you are now a member of \"#{user_group.group.name}\" on InstrumentChamp."
+      mail.body.encoded.should have_link "Visit group", group_url(user_group.group, host: user_group.user.created_by)
+      check_greeting_lines
+    end
+  end
+
+  describe "send group invitation rejected email" do
+    let(:user) { create(:user) }
+    let(:group) { create(:group) }
+    let(:mail) { EmailNotifier.group_invitation_rejected(user, group) }
+
+    it "sends group invitation acceptance message to the invited user" do
+      mail.subject.should eq("Your group membership was rejected")
+      mail.to.should eq([user.email])
+      mail.from.should eq(["no-reply@instrumentchamp.com"])
+    end
+
+    it "renders the body" do
+      mail.body.encoded.should have_content "Hi #{user.username},"
+      mail.body.encoded.should have_content "your membership to \"#{group.name}\" was rejected."
+      check_greeting_lines
+    end
+  end
+
   def check_greeting_lines
     mail.body.encoded.should have_content "Kind regards,"
     mail.body.encoded.should have_content "The instrumentchamp team."

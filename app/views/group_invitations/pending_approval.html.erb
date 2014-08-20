@@ -24,8 +24,8 @@
         </div>
       <% end %>
       <div>
-        <%= link_to "Accept", "#", {class: "btn btn-primary"} %>
-        <%= link_to "Decline", "#", {class: "btn btn-primary"} %>
+        <%= link_to "Accept", accept_group_invitation_path(pending_invitation), {class: "btn btn-primary"} %>
+        <%= link_to "Decline", reject_group_invitation_path(pending_invitation), {class: "btn btn-primary"} %>
       </div>
     </p>
     <hr />

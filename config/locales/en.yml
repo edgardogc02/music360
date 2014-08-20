@@ -26,6 +26,10 @@ en:
       subject: Premium subscription renewal alert
     group_invitation_message:
       subject: Group invitation
+    group_invitation_accepted:
+      subject: Your group membership was accepted
+    group_invitation_rejected:
+      subject: Your group membership was rejected
   activerecord:
     errors:
       models:
