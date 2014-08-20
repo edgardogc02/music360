@@ -97,6 +97,8 @@
 		<%= @group.add_members_button %>
 		<!--<%= render "groups/members", group: @group %>
 		<hr />-->
-    <%= render "leaderboard", group_leaders: @resumed_group_challenge_leaders, thumbnail: false %>
+		<% if !@resumed_group_challenge_leaders.blank? %>
+    	<%= render "leaderboard", group_leaders: @resumed_group_challenge_leaders, thumbnail: false %>
+   	<% end %>
 	</div>
 </div>
