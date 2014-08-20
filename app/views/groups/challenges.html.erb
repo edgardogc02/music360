@@ -21,7 +21,7 @@
 						    <time datetime="<%= challenge.created_at%>" pubdate><%= time_ago_in_words(challenge.created_at)%> ago</time>						    
 						  </div>
 						  <div>
-					      <%= challenge.display_start_group_challenge_button %>
+					      <%= challenge.display_start_group_challenge_button('Accept') %>
 					      <% if challenge.group %>
 					      	<%= link_to 'View', group_challenge_path(group_id: challenge.group.id, id: challenge.id), class: 'btn btn-primary btn-sm' %>
 					    	<% end %>

@@ -4,8 +4,8 @@ class GroupDecorator < Draper::Decorator
 
   def add_members_button
     if h.signed_in? and h.current_user == model.initiator_user and UserGroupsManager.new(h.current_user).belongs_to_group?(model)
-      h.link_to h.group_group_invitations_path(self), {class: "btn btn-primary"} do
-        h.concat h.content_tag :i, "", {class: "glyphicon glyphicon-plus"}
+      h.link_to h.group_group_invitations_path(self), {class: "btn btn-primary btn-sm"} do
+        #h.concat h.content_tag :i, "", {class: "glyphicon glyphicon-plus"}
         h.concat " Add members"
       end
     end
@@ -21,7 +21,7 @@ class GroupDecorator < Draper::Decorator
 
   def create_challenge_button
     if h.signed_in? and UserGroupsManager.new(h.current_user).belongs_to_group?(model)
-      h.link_to "Create challenge", h.new_group_challenge_path(model), {class: "btn btn-primary", id: "new_group_challenge"}
+      h.link_to "Create challenge", h.new_group_challenge_path(model), {class: "btn btn-primary btn-sm", id: "new_group_challenge"}
     end
   end
 

@@ -12,7 +12,10 @@
 		</ul>
 	</div>
 	<div class="pull-right">
-		<%= link_to 'Create new group', new_group_path, class: 'btn btn-primary btn-sm' %>
+		<%= @group.add_members_button %>
+		<%= @group.join_button %>
+    <%= @group.create_challenge_button %>
+		<%= link_to 'Create new group', new_group_path, class: 'btn btn-primary btn-sm' %>		
 		<% if UserGroupsManager.new(current_user).belongs_to_group?(@group) %>
   		<div class="dropdown">
   		  <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">

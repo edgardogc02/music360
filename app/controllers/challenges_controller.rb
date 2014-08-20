@@ -59,7 +59,9 @@ class ChallengesController < ApplicationController
       @title = "New"
       @paginate = true
     elsif params[:view] == "most_popular"
-      @challenges = ChallengeDecorator.decorate_collection(Challenge.by_popularity.page params[:page])
+
+      @challenges = ChallengeDecorator.decorate_collection(Challenge.by_popularity + Challenge.one_to_one.limit(10))
+      
       @title = "Most popular"
       @paginate = false
     end
