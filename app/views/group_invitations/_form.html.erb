@@ -1,4 +1,4 @@
-<%= simple_form_for [@group, GroupInvitation.new], html: { id: "new_group_invitation_#{user_id}" } do |f| %>
+<%= simple_form_for [group, GroupInvitation.new], html: { id: "new_group_invitation_#{user_id}" } do |f| %>
 
   <%= f.input :user_id, as: :hidden, input_html: { value: user_id } %>
   <%= f.input :inviter_user_id, as: :hidden, input_html: { value: current_user.id } %>
