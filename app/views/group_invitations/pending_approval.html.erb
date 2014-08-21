@@ -5,31 +5,42 @@
 <% if @pending_invitations.blank? %>
   No membership requests pending approval
 <% else %>
-  <% @pending_invitations.each do |pending_invitation| %>
-    <p>
-      <div>
-        <% if pending_invitation.inviter_user %>
-          Invited user
-        <% else %>
-          User request
-        <% end %>
-      </div>
-      <div>
-        <%= link_to pending_invitation.user.username, person_path(pending_invitation.user) %>
-      </div>
-      <% if pending_invitation.inviter_user %>
-        <div>
-          Inviter user
-        </div>
-        <div>
-          <%= link_to pending_invitation.inviter_user.username, person_path(pending_invitation.inviter_user) %>
-        </div>
-      <% end %>
-      <div>
-        <%= link_to "Accept", accept_group_invitation_path(pending_invitation), {class: "btn btn-primary"} %>
-        <%= link_to "Decline", reject_group_invitation_path(pending_invitation), {class: "btn btn-primary"} %>
-      </div>
-    </p>
-    <hr />
-  <% end %>
+	<div class="thumbnail-grid">
+	  <% @pending_invitations.each do |pending_invitation| %>
+	    <div class="group-challenge-item masonry-img">
+	      <div class="spacer-md">
+		      <div class="text-muted">
+		        <% if pending_invitation.inviter_user %>
+		          Invited user
+		        <% else %>
+		          User request
+		        <% end %>
+		      </div>
+		      <div>
+		        <%= link_to pending_invitation.user.username, person_path(pending_invitation.user) %>
+		      </div>
+	      </div>
+	      <% if pending_invitation.inviter_user %>
+	      	<div class="spacer-md">
+		        <div class="text-muted">
+		          Inviter user
+		        </div>
+		        <div>
+		          <%= link_to pending_invitation.inviter_user.username, person_path(pending_invitation.inviter_user) %>
+		        </div>
+		      </div>
+		    <% end %>
+	      <div>
+	        <%= link_to "Accept", accept_group_invitation_path(pending_invitation), {class: "btn btn-primary btn-sm"} %>
+	        <%= link_to "Decline", reject_group_invitation_path(pending_invitation), {class: "btn btn-primary btn-sm"} %>
+	      </div>
+	    </div>
+	  <% end %>
+  </div>
 <% end %>
+
+
+
+
+
+	
