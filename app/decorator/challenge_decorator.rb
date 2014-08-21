@@ -24,7 +24,7 @@ class ChallengeDecorator < Draper::Decorator
     end
   end
   
-  def display_start_group_challenge_button(label="Star challenge")
+  def display_start_group_challenge_button(label="Start challenge")
     if display_start_challenge_to_user?(h.current_user)
       h.link_to label, start_challenge_url, {class: "btn btn-primary btn-sm"}
     end
