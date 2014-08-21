@@ -14,6 +14,7 @@ class Group < ActiveRecord::Base
   has_many :user_groups
   has_many :users, through: :user_groups
   has_many :group_invitations, dependent: :destroy
+  has_many :invited_users, through: :group_invitations, source: :user
   has_many :posts, class_name: "GroupPost", dependent: :destroy
 
   has_many :challenges

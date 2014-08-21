@@ -6,4 +6,8 @@ class UserInvitationDecorator < UserDecorator
     true
   end
 
+  def display_challenge_button?
+    false
+  end
+
 end

@@ -22,6 +22,10 @@ class MySongsList < PaginatedSongsList
     @current_user
   end
 
+  def display_more?
+    false
+  end
+
   protected
 
   def created_by_user
