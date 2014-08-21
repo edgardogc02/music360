@@ -3,7 +3,7 @@ class GroupInvitationsController < ApplicationController
   before_action :set_group, only: [:index, :create, :pending_approval]
 
   def index
-    users = User.not_deleted.excludes(@group.user_ids)
+    users = User.not_deleted.excludes(@group.user_ids).excludes(@group.invited_users.ids)
     if params[:username_or_email]
       users = users.by_username_or_email(params[:username_or_email])
     end
@@ -37,12 +37,16 @@ class GroupInvitationsController < ApplicationController
   def create
     group_invitation = @group.group_invitations.build(group_invitation_params)
 
-    group_invitation_completition = GroupInvitationCreation.new(group_invitation)
-
-    if group_invitation_completition.save
-      flash[:notice] = "#{group_invitation.user.username} was successfully invited to join #{group_invitation.group.name}"
+    if UserGroupsManager.new(group_invitation.user).invited_to_group?(@group)
+        flash[:warning] = "#{group_invitation.user.username} was already invited to this group"
     else
-      flash[:warning] = "Please try again"
+      group_invitation_completition = GroupInvitationCreation.new(group_invitation)
+
+      if group_invitation_completition.save
+        flash[:notice] = "#{group_invitation.user.username} was successfully invited to join #{group_invitation.group.name}"
+      else
+        flash[:warning] = "Please try again"
+      end
     end
     redirect_to group_group_invitations_path(@group)
   end

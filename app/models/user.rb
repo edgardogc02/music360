@@ -52,6 +52,7 @@ class User < ActiveRecord::Base
   has_many :user_groups
   has_many :groups, through: :user_groups
   has_many :group_invitations, dependent: :destroy
+  has_many :all_groups_invited_to, through: :group_invitations, source: :group
   has_many :group_invitations_not_pending, -> { where("pending_approval IS NULL OR pending_approval = 0") }, class_name: "GroupInvitation", dependent: :destroy
   has_many :group_invitations_pending, -> { where(pending_approval: true) }, class_name: "GroupInvitation", dependent: :destroy
   has_many :groups_invited_to, through: :group_invitations_not_pending, source: :group

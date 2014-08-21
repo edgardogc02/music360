@@ -21,13 +21,17 @@ class UserDecorator < Draper::Decorator
   end
 
   def challenge_button(song_id="")
-    if !h.current_action?('group_invitations', 'index')
+    if display_challenge_button?
       h.action_button(h.new_challenge_path(song_id: song_id, challenged_id: user.id), 'Challenge', {class: 'activation2 activation2_challenge activation2_challenge_users', id: "challenge_#{user.id}", data: {user_id: model.id}})
     end
   end
 
   def invite_to_group?
     false
+  end
+
+  def display_challenge_button?
+    h.signed_in? and model != h.current_user
   end
 
   def invite_to_group(group_id="")

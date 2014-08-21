@@ -19,4 +19,8 @@ class UserGroupsManager
     user.group_ids.include?(group.id)
   end
 
+  def invited_to_group?(group)
+    user.all_groups_invited_to.include?(group)
+  end
+
 end
