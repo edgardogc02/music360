@@ -16,6 +16,10 @@ class GroupChallengeDecorator < ChallengeDecorator
     user and is_user_involved?(user) and UserGroupsManager.new(user).belongs_to_group?(model.group)
   end
 
+  def display_remind_button?
+    false
+  end
+
   protected
 
     def display_start_challenge_to_user?(user)

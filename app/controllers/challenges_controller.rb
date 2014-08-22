@@ -30,7 +30,7 @@ class ChallengesController < ApplicationController
   end
 
   def yours
-    @challenges = ChallengeDecorator.decorate_collection(current_user.challenges.one_to_one.default_order)
+    @challenges = ChallengeDecorator.decorate_collection(current_user.challenges.default_order)
 
     if params[:autostart_challenge_id]
       @autostart_challenge = Challenge.find(params[:autostart_challenge_id])
@@ -60,8 +60,8 @@ class ChallengesController < ApplicationController
       @paginate = true
     elsif params[:view] == "most_popular"
 
-      @challenges = ChallengeDecorator.decorate_collection(Challenge.by_popularity + Challenge.one_to_one.limit(10))
-      
+      @challenges = ChallengeDecorator.decorate_collection(Challenge.by_popularity + Challenge.limit(10))
+
       @title = "Most popular"
       @paginate = false
     end

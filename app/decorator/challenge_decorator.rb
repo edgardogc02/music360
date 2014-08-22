@@ -1,5 +1,5 @@
 class ChallengeDecorator < Draper::Decorator
-  
+
   delegate_all
 
   def self.collection_decorator_class
@@ -23,7 +23,7 @@ class ChallengeDecorator < Draper::Decorator
       h.link_to "Start challenge", start_challenge_url, {class: start_challenge_class_attr, id: "challenge_start_#{model.id}"}
     end
   end
-  
+
   def display_start_group_challenge_button(label="Star challenge")
     if display_start_challenge_to_user?(h.current_user)
       h.link_to label, start_challenge_url, {class: "btn btn-primary btn-sm"}
@@ -97,6 +97,7 @@ class ChallengeDecorator < Draper::Decorator
   end
 
   def display_remind_button?
+    model.challenged and
     has_challenger_played? and
     !has_challenged_played? and
     challenge.created_at <= 1.days.ago and
