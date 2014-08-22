@@ -11,11 +11,11 @@ class MySongsList < PaginatedSongsList
   end
 
   def songs
-    @songs ||= Kaminari.paginate_array(created_by_user + purchased).page(page)
+    @songs ||= Kaminari.paginate_array(created_by_user + purchased + free_songs).page(page)
   end
 
   def decorated_songs
-    @decorated_songs ||= Kaminari.paginate_array(created_by_user_decorated + purchased_decorated).page(page)
+    @decorated_songs ||= Kaminari.paginate_array(created_by_user_decorated + purchased_decorated + free_songs_decorated).page(page)
   end
 
   def current_user
@@ -27,6 +27,10 @@ class MySongsList < PaginatedSongsList
   end
 
   protected
+
+  def free_songs
+    @free_songs ||= Song.free
+  end
 
   def created_by_user
     @created_by_user ||= Song.created_by_user_id(current_user.id)
@@ -42,6 +46,10 @@ class MySongsList < PaginatedSongsList
 
   def purchased_decorated
     @purchased_decorated ||= SongDecorator.decorate_collection(purchased)
+  end
+
+  def free_songs_decorated
+    @free_songs_decorated ||= SongDecorator.decorate_collection(free_songs)
   end
 
 end

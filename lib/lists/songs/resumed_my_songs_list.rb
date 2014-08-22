@@ -15,11 +15,11 @@ class ResumedMySongsList < SongsList
   end
 
   def songs
-    @songs ||= (created_by_user + purchased)[0..4]
+    @songs ||= (created_by_user + purchased + free_songs)[0..4]
   end
 
   def decorated_songs
-    @decorated_songs ||= (created_by_user_decorated + purchased_decorated)[0..4]
+    @decorated_songs ||= (created_by_user_decorated + purchased_decorated + free_songs_decorated)[0..4]
   end
 
   def current_user
@@ -27,6 +27,10 @@ class ResumedMySongsList < SongsList
   end
 
   protected
+
+  def free_songs
+    @free_songs ||= Song.free
+  end
 
   def created_by_user
     @created_by_user ||= Song.created_by_user_id(current_user.id)
@@ -42,6 +46,10 @@ class ResumedMySongsList < SongsList
 
   def purchased_decorated
     @purchased_decorated ||= SongDecorator.decorate_collection(purchased)
+  end
+
+  def free_songs_decorated
+    @free_songs_decorated ||= SongDecorator.decorate_collection(free_songs)
   end
 
 end
