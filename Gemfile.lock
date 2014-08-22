@@ -1,11 +1,8 @@
 GIT
-  remote: git://github.com/compass/compass-rails.git
-  revision: 27ed1e3bb269327df3a9d06eea5217ae9fbc6f12
-  branch: 2-0-stable
+  remote: git://github.com/heroku/rails3_serve_static_assets.git
+  revision: 84910ceb4ca2851d650e66d3b22f5008acf253f8
   specs:
-    compass-rails (2.0.0.pre)
-      compass (>= 0.12.2)
-      sprockets (<= 2.11.0)
+    rails3_serve_static_assets (0.0.1)
 
 GIT
   remote: git://github.com/gregbell/active_admin.git
@@ -25,10 +22,13 @@ GIT
       sass-rails
 
 GIT
-  remote: git://github.com/heroku/rails3_serve_static_assets.git
-  revision: 84910ceb4ca2851d650e66d3b22f5008acf253f8
+  remote: git://github.com/compass/compass-rails.git
+  revision: 27ed1e3bb269327df3a9d06eea5217ae9fbc6f12
+  branch: 2-0-stable
   specs:
-    rails3_serve_static_assets (0.0.1)
+    compass-rails (2.0.0.pre)
+      compass (>= 0.12.2)
+      sprockets (<= 2.11.0)
 
 GEM
   remote: https://rubygems.org/
