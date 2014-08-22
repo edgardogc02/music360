@@ -1,0 +1,5 @@
+class ResumedPremiumGroupChallengeSongsList < ResumedPremiumSongsList
+
+  include SongGroupChallengeDecorated
+
+end

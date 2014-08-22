@@ -25,6 +25,12 @@ class SongsListFactory
       else
         @songs_list = NewSongsList.new(params[:page])
       end
+    elsif params[:view] == "featured"
+      if params[:group_id]
+        @songs_list = PremiumGroupChallengeSongsList.new(params[:page])
+      else
+        @songs_list = PremiumSongsList.new(params[:page])
+      end
     end
   end
 
