@@ -61,7 +61,7 @@ class ChallengeDecorator < Draper::Decorator
   end
 
   def start_challenge_class_attr
-    value = 'btn btn-primary pull-left margin-right'
+    value = 'btn btn-primary btn-sm pull-left margin-right'
     if h.signed_in? and h.current_user.installed_desktop_app? and !h.is_mobile?
       value << ' app-play'
     end
@@ -74,6 +74,26 @@ class ChallengeDecorator < Draper::Decorator
 
   def change_song_link
     h.for_challenge_songs_path(challenged_id: model.challenged_id)
+  end
+  
+  def status
+    if display_results?
+      "Finished"
+    else
+      "Pending"
+    end
+  end
+  
+  def show_winner
+    if display_results?      
+      if model.challenger_won?
+        h.concat "Winner: "
+        h.link_to model.challenger.username, h.person_path(model.challenger)
+      elsif
+        h.concat "Winner: "
+        h.link_to model.challenged.username, h.person_path(model.challenged)
+      end
+    end
   end
 
   protected

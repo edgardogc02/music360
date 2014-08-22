@@ -27,6 +27,7 @@ class ChallengesController < ApplicationController
       session[:prepopulate_with_challenge_id] = params[:id]
     end
     @challenge = Challenge.find(params[:id]).decorate
+    @challenge_activities = PublicActivity::Activity.where(challenge_id: @challenge.id).order('created_at DESC').limit(10)
   end
 
   def yours

@@ -4,6 +4,8 @@
 
 		<% if challenge.group %>
 			<p><%= link_to 'View more', group_challenge_path(group_id: challenge.group.id, id: challenge.id) %></p>
+		<% else %>
+			<p><%= link_to 'View more', challenge %></p>
 		<% end %>
 	</div>
   <div class="media-body">

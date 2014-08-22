@@ -9,3 +9,21 @@
     max-width: 100px;
   }
 }
+
+.challenge-participants {
+  margin-left: 50px;
+  
+  a {
+    font-weight: bold;
+    font-size: 13px;
+  }
+  
+  span {
+    padding-left: 10px;
+  }
+  .avatar-xs {
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
+  } 
+}

@@ -113,6 +113,60 @@ class Challenge < ActiveRecord::Base
   def challenged_won?
     has_challenger_played? and has_challenged_played? and score_u1 < score_u2
   end
+  
+  def currently_winner
+    if challenged_won?
+      challenged  
+    elsif has_challenged_played? and !has_challenger_played?
+      challenged
+    else
+      challenger
+    end
+  end
+  
+  def currently_loser
+    if currently_winner == challenger
+      challenged
+    else
+      challenger
+    end
+  end
+  
+  def winner_points
+    if challenged_won?
+      score_u2
+    elsif has_challenged_played? and !has_challenger_played?
+      score_u2
+    else
+      score_u1
+    end    
+  end
+  
+  def loser_points
+    if winner_points == score_u2
+      score_u1
+    else
+      score_u2
+    end 
+  end
+
+  def winner_instrument
+    if challenged_won?
+      challenged_instrument
+    elsif has_challenged_played? and !has_challenger_played?
+      challenged_instrument
+    else
+      challenger_instrument
+    end    
+  end
+  
+  def loser_instrument
+    if winner_instrument == challenged_instrument
+      challenger_instrument
+    else
+      challenged_instrument
+    end 
+  end
 
 	private
 
