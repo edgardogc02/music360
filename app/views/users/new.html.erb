@@ -7,8 +7,7 @@
 		  <%= f.input :email %>
 		  <%= f.input :password %>
 		  <%= f.input :password_confirmation %>
-		  <%= f.input :feedback_call, as: :boolean, label: "Call me for feedback?", wrapper: :inline_checkbox %>
-		  <%= f.input :phone_number, wrapper_html: { class: 'sign_up_phone_number' } %>
+		  <%= f.input :phone_number %>
 		  <%= f.button :submit, "Sign Up" %>
 		<% end %>
 	</div>
