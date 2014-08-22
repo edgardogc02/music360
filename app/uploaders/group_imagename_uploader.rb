@@ -15,7 +15,7 @@ class GroupImagenameUploader < Uploader
   process :process_original_img
 
   def process_original_img
-    resize_to_fill(150, 150)
+    resize_to_fill(160, 160)
   end
 
 end
