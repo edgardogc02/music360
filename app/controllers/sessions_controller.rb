@@ -22,19 +22,19 @@ class SessionsController < ApplicationController
 			      status: { code: 200, message: "OK" }
 			    }
 			  end
-			  format.html do
-  			  if params[:remember_me]
+				format.js do
+          if params[:remember_me]
             signin_user(user, true)
           else
             signin_user(user)
           end
-          if params[:action_modal] == 'download'
-            redirect_to apps_path
+         if params[:action_modal] == 'download'
+           render js: "window.location = '#{apps_path}'"
           else
             flash[:notice] = "Welcome back, #{user.username}!"
-            redirect_to root_path
+            render js: "window.location = '#{root_path}'"
           end
-				end
+        end			
 			else
         format.json do
           render :json => {
@@ -43,10 +43,9 @@ class SessionsController < ApplicationController
             status: { code: 401, message: "Unauthorized" }
           }
         end
-			  format.html do
-  				flash.now.alert = "Invalid username or password"
-  				redirect_to login_path
-  		  end
+  		  format.js do
+          render 'session_fail'
+        end
 			end
 		end
 	end

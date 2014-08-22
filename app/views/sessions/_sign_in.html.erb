@@ -12,7 +12,7 @@
 					  <span class="text">Log in with Facebook</span>
 	        <% end %>
 	        <p class="text-divider"><span>or</span></p>
-	        <%= form_tag sessions_path, id: "login-form" do %>
+	        <%= form_tag sessions_path, id: "login-form", remote: true do %>
 	          <div class="spacer-sm">
 	          	<%= text_field_tag :username, "", placeholder: "Username", class: "form-control input-lg", required: true, autofocus: true %>
 	          </div>
@@ -23,6 +23,10 @@
 		        <%= submit_tag "Sign in", {class: "btn btn-primary btn-lg", id: "sign_in"} %>
 		        <%= hidden_field_tag 'action_modal', '' %>
 	        <% end %>
+	        
+          <%= content_tag :div, class: "credentials-invalid alert alert-danger text-center", style: 'display: none' do %>
+            Username or password invalid
+          <% end %>
 
 	        <br />
 	        <div class="text-center">

@@ -15,7 +15,7 @@ class GroupCoverUploader < Uploader
   process :process_original_img
 
   def process_original_img
-    resize_to_fill(945, 200)
+    resize_to_fill(944, 200)
   end
 
 end
