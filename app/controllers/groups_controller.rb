@@ -97,12 +97,17 @@ class GroupsController < ApplicationController
           redirect_to @group, notice: "You'll be accepted as a group member when your membership request has been processed by an admin user of this group"
         end
       else
-        group_invitation = current_user.group_invitations.build
-        group_invitation.group = @group
-        group_invitation.pending_approval = true
-        group_invitation.save
+        if UserGroupsManager.new(current_user).belongs_to_group?(@group)
+          flash[:warning] = "You are already a member of #{@group.name}"
+          redirect_to @group
+        else
+          group_invitation = current_user.group_invitations.build
+          group_invitation.group = @group
+          group_invitation.pending_approval = true
+          group_invitation.save
 
-        redirect_to @group, notice: "You'll be accepted as a group member when your membership request has been processed by an admin user of this group"
+          redirect_to @group, notice: "You'll be accepted as a group member when your membership request has been processed by an admin user of this group"
+        end
       end
 
     elsif @group.secret?

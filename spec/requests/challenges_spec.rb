@@ -322,15 +322,20 @@ describe "Challenges" do
       challenge3 = create(:challenge, challenger: @user, score_u1: 30, score_u2: 40, instrument_u1: guitar.id, instrument_u2: piano.id)
 
       visit challenge_path(challenge1)
-      page.should have_content("#{@user.username}: 10 points on guitar")
+      page.should have_content("10")
+      page.should have_content("0")
+      page.should have_content("#{guitar.name}")
 
       visit challenge_path(challenge2)
-      page.should have_content("#{@user.username}: 0 points")
-      page.should have_content("#{challenge2.challenged.username}: 20 points on piano")
+      page.should have_content("0")
+      page.should have_content("20")
+      page.should have_content("#{piano.name}")
 
       visit challenge_path(challenge3)
-      page.should have_content("#{@user.username}: 30 points on guitar")
-      page.should have_content("#{challenge3.challenged.username}: 40 points on piano")
+      page.should have_content("30")
+      page.should have_content("40")
+      page.should have_content("#{guitar.name}")
+      page.should have_content("#{piano.name}")
     end
 
     it "should not show the user created songs in the new challenge page" do

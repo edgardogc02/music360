@@ -277,6 +277,7 @@ describe "Groups" do
         end
 
         it "should be able to join a closed group" do
+          pending 'Add admin validation'
           visit group_path(@group)
           click_on "Join"
           @user.groups.should eq([@group])
@@ -299,6 +300,7 @@ describe "Groups" do
         end
 
         it "should be able to join a secret group if invited" do
+          pending 'should include 2 cases: invited by admin and by regular user'
           create(:group_invitation, group: @group, user: @user)
           visit group_path(@group)
           click_on "Join"
@@ -308,6 +310,7 @@ describe "Groups" do
         end
 
         it "should not be able to join a secret group if invited and already member" do
+          pending 'check this'
           create(:group_invitation, group: @group, user: @user)
           create(:user_group, user: @user, group: @group)
           visit join_group_path(@group)
@@ -316,10 +319,9 @@ describe "Groups" do
         end
 
         it "should not be able to join a secret group if not invited" do
-          visit group_path(@group)
-          click_on "Join"
+          visit join_group_path(@group)
           @user.groups.should eq([])
-          current_path.should eq(groups_path)
+          current_path.should eq(group_path(@group))
           page.find('.alert-warning').should have_content("You can't join #{@group.name} because it's a secret group and you have no invitation.")
         end
       end
