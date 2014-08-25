@@ -28,8 +28,14 @@
   <br /><br />
 <% end %>
 
-<%= render "users_list", users_list: @users_search %>
-	
+<% if @users_search and !@users_search.users.empty? %>
+  <%= render "users_list", users_list: @users_search %>
+<% elsif @users_search and @users_search.users.empty? %>
+  <div class="alert alert-warning">
+    No results were found
+  </div>
+<% end %>
+
 <%= render "users_list", users_list: @fb_top_friends %>
 
 <%= render "users_list", users_list: @regular_users %>
