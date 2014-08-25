@@ -15,6 +15,11 @@ class SessionsController < ApplicationController
 
 		respond_to do |format|
 			if user and user.authenticate(params[:password]) and !user.deleted?
+        format.html do
+          authenticate_user(user)
+          flash[:notice] = "Welcome back, #{user.username}!"
+          redirect_to root_path
+        end
 			  format.json do
 			    render :json => {
 			      request: request.url,
@@ -23,19 +28,19 @@ class SessionsController < ApplicationController
 			    }
 			  end
 				format.js do
-          if params[:remember_me]
-            signin_user(user, true)
-          else
-            signin_user(user)
-          end
-         if params[:action_modal] == 'download'
+				  authenticate_user(user)
+          if params[:action_modal] == 'download'
            render js: "window.location = '#{apps_path}'"
           else
             flash[:notice] = "Welcome back, #{user.username}!"
             render js: "window.location = '#{root_path}'"
           end
-        end			
+        end
 			else
+        format.html do
+          flash.now.alert = "Invalid username or password"
+          redirect_to login_path
+        end
         format.json do
           render :json => {
             request: request.url,
@@ -65,4 +70,15 @@ class SessionsController < ApplicationController
   def json_request?
     request.format.json?
   end
+
+  private
+
+  def authenticate_user(user)
+    if params[:remember_me]
+      signin_user(user, true)
+    else
+      signin_user(user)
+    end
+  end
+
 end
