@@ -5,16 +5,7 @@ class SongsController < ApplicationController
 
 	def index
     if params[:title]
-      if display_premium?
-        songs = Song.not_user_created.by_title(params[:title])
-      else
-        songs = Song.not_user_created.by_title(params[:title])
-      end
-      if !params[:group_id].blank?
-        @songs = SongGroupChallengeDecorator.decorate_collection(songs)
-      else
-        @songs = SongDecorator.decorate_collection(songs)
-      end
+      @searched_songs = SearchSongsFactory.new(params, display_premium?).songs_list
     else
       @songs = ResumedPremiumSongsFactory.new(params, display_premium?).songs_list
       @most_popular_songs = ResumedMostPopularSongsFactory.new(params).songs_list

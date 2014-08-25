@@ -1,5 +1,12 @@
 <%= render 'shared/header_page', title: 'Songs' %>
 
+<% if @searched_songs and !@searched_songs.songs.blank? %>
+  <%= render "songs_list", songs_list: @searched_songs %>
+<% elsif @searched_songs and @searched_songs.songs.empty? %>
+  <div class="alert alert-warning">
+    No results were found
+  </div>
+<% end %>
 
 <% if @songs and !@songs.songs.blank? %>
 	<%= render "songs_list", songs_list: @songs %>
