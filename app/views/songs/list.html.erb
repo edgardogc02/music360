@@ -1,9 +1,9 @@
 <%= render 'shared/header_page', title: 'Songs' %>
 
-Difficulty:
-<%= link_to 'All', params.merge({difficulty: 'all'}), {class: 'btn btn-primary'} %>
-<%= link_to 'Easy', params.merge({difficulty: 'easy'}), {class: 'btn btn-primary'} %>
-<%= link_to 'Medium', params.merge({difficulty: 'medium'}), {class: 'btn btn-primary'} %>
-<%= link_to 'Hard', params.merge({difficulty: 'hard'}), {class: 'btn btn-primary'} %>
+<div class="label-content">Difficulty: </div>
+<%= link_to 'All', params.merge({difficulty: 'all'}), {class: 'btn btn-default btn-sm'} %>
+<%= link_to 'Easy', params.merge({difficulty: 'easy'}), {class: 'btn btn-default btn-sm'} %>
+<%= link_to 'Medium', params.merge({difficulty: 'medium'}), {class: 'btn btn-default btn-sm'} %>
+<%= link_to 'Hard', params.merge({difficulty: 'hard'}), {class: 'btn btn-default btn-sm'} %>
 
 <%= render "songs_list", songs_list: @songs %>
