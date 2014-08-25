@@ -5,7 +5,7 @@ class SongsListFactory
       if params[:group_id]
         @songs_list = TopGroupChallengeSongsList.new(params[:page])
       else
-        @songs_list = TopSongsList.new(params[:page])
+        @songs_list = TopSongsList.new(params)
       end
     elsif params[:view] == "my_songs"
       if params[:group_id]

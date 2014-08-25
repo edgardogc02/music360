@@ -1,10 +1,6 @@
-class TopSongsList < PaginatedSongsList
+class TopSongsList < FilteredSongsList
 
   include Rails.application.routes.url_helpers
-
-  def initialize(page)
-    super(page)
-  end
 
   def title
     "Top Songs"
@@ -15,7 +11,7 @@ class TopSongsList < PaginatedSongsList
   end
 
   def songs
-    @songs ||= Song.by_popularity.page page
+    @songs ||= filtered_songs.by_popularity.page page
   end
 
   def paginate?
