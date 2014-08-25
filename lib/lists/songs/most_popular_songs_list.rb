@@ -1,9 +1,9 @@
-class MostPopularSongsList < PaginatedSongsList
+class MostPopularSongsList < FilteredSongsList
 
   include Rails.application.routes.url_helpers
 
-  def initialize(page)
-    super(page)
+  def initialize(params)
+    super(params)
   end
 
   def display_more?
@@ -15,7 +15,7 @@ class MostPopularSongsList < PaginatedSongsList
   end
 
   def songs
-    @songs ||= Song.not_user_created.by_popularity.page page
+    @songs ||= filtered_songs.not_user_created.by_popularity.page page
   end
 
 end

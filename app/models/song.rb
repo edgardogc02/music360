@@ -34,6 +34,11 @@ class Song < ActiveRecord::Base
   scope :user_created, -> { where('user_created = 1') }
   scope :created_by_user_id, ->(user_id) { where('user_created = 1 AND uploader_user_id = ?', user_id) }
 
+  scope :easy, -> { where(difficulty: 1) }
+  scope :medium, -> { where(difficulty: 2) }
+  scope :hard, -> { where(difficulty: 3) }
+
+
 	def desktop_app_uri
 		# Format: "ic:song=Amazing%20grace.mid"
 		"ic:song=#{URI::escape(title)}.mid"

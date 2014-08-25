@@ -2,10 +2,6 @@ class MostPopularGroupsList < PaginatedGroupsList
 
   include Rails.application.routes.url_helpers
 
-  def initialize(page)
-    super(page)
-  end
-
   def display_more?
     false
   end

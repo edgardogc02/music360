@@ -93,6 +93,37 @@ describe Song do
 
       Song.by_title("son").should eq([song, song3])
     end
+
+    it 'should list all the easy songs' do
+      song1 = create(:song, difficulty: 1)
+      song2 = create(:song, difficulty: 1)
+      song3 = create(:song, difficulty: 1)
+      song4 = create(:song, difficulty: 2)
+      song5 = create(:song, difficulty: 3)
+
+      Song.easy.should eq([song1, song2, song3])
+    end
+
+    it 'should list all the medium songs' do
+      song1 = create(:song, difficulty: 1)
+      song2 = create(:song, difficulty: 1)
+      song3 = create(:song, difficulty: 2)
+      song4 = create(:song, difficulty: 2)
+      song5 = create(:song, difficulty: 3)
+
+      Song.medium.should eq([song3, song4])
+    end
+
+    it 'should list all the hard songs' do
+      song1 = create(:song, difficulty: 1)
+      song2 = create(:song, difficulty: 1)
+      song3 = create(:song, difficulty: 2)
+      song4 = create(:song, difficulty: 3)
+      song5 = create(:song, difficulty: 3)
+
+      Song.hard.should eq([song4, song5])
+    end
+
   end
 
   context "Methods" do

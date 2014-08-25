@@ -1,9 +1,10 @@
-class MySongsList < PaginatedSongsList
+class MySongsList < FilteredSongsList
 
   include Rails.application.routes.url_helpers
 
-  def initialize(current_user)
+  def initialize(current_user, params)
     @current_user = current_user
+    super(params)
   end
 
   def title
@@ -29,15 +30,15 @@ class MySongsList < PaginatedSongsList
   protected
 
   def free_songs
-    @free_songs ||= Song.free
+    @free_songs ||= filtered_songs.free
   end
 
   def created_by_user
-    @created_by_user ||= Song.created_by_user_id(current_user.id)
+    @created_by_user ||= filtered_songs.created_by_user_id(current_user.id)
   end
 
   def purchased
-    @purchased ||= current_user.purchased_songs
+    @purchased ||= filtered_songs.where(id: current_user.purchased_songs)
   end
 
   def created_by_user_decorated
