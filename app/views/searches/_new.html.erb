@@ -7,7 +7,7 @@
       <% if params[:controller] == "group_challenges" %>
         <%= hidden_field_tag "search[group_id]", params[:group_id] %>
       <% end %>
-	    <%= text_field_tag "search[value]", nil, {class: "form-control input-sm", placeholder: "Search for friends, artists, songs and challenges", method: :post} %>
+	    <%= text_field_tag "search[value]", nil, {class: "form-control input-sm", placeholder: "Search for friends, artists, songs...", method: :post} %>
 	  </div>
 	  <%= button_tag(type: 'submit', class: "btn btn-primary btn-sm input-sm") do %>
 	    <i class="glyphicon glyphicon-search"></i>

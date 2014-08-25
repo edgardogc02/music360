@@ -1,7 +1,45 @@
 /* Navbar top */
 
 .navbar.navbar-custom {
+  min-height: 0;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  
   background-color: #f8f8f8;
+  border-color: #e7e7e7;
+  min-height: 0;
+  margin-bottom: 0;
+  @include box-shadow(0, 1px, 3px, rgba(#000, .1));
+  
+  .logo.navbar-brand {
+    display: inline-block;
+    padding: 0px;
+    margin: 0px;
+    height: auto;
+  }
+  
+  .navbar-nav > li {
+    text-align: center;
+  }
+  
+  .navbar-nav > li > a {
+    color: $comp;
+    font-size: 14px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    line-height: 16px;
+    
+    &.btn-primary {
+      color: #FFF;
+      
+      &:hover {
+        background: #2d7a78;
+        color: #FFF;
+      }
+    }
+  }
+  
+  /*background-color: #f8f8f8;
   border-color: #e7e7e7;
   min-height: 0;
   padding: 10px 0px;
@@ -66,7 +104,11 @@
   }
   .download-modal-btn {
     padding: 5px 10px;  
-  }
+  }*/
+}
+
+.btn.btn-huge.download-modal-btn {
+  margin-top: 30px;
 }
 
 /* Video intro */
@@ -353,14 +395,27 @@ h1.brand-heading {
 
 @media (max-width: $screen-sm-max) {
   .landing-section {
-    padding-top: 22%;
+    padding-top: 18%;
     padding-bottom: 6%;
   }  
+  
+  .nav-helper-top-landing {
+    margin-right: 10px;
+  }
+  
+  .btn.btn-huge.download-modal-btn {
+    font-size: 14px;
+    margin-top: 20px;
+  }
+    
+  #search-box {
+    margin-right: 0px;
+  }
 }
 
 @media (max-width: $screen-xs-max) {
   .landing-section {
-    padding-top: 28%;
+    padding-top: 35%;
     padding-bottom: 7%;
     
     p {
@@ -387,6 +442,12 @@ h1.brand-heading {
   }  
   .intro-text {
     font-size: 25px;
+  }
+}
+
+@media (max-width: 479px) {
+  .navbar.navbar-custom .download-modal-btn {
+    margin-top: 10px;
   }
 }
 

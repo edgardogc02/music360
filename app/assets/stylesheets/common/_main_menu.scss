@@ -61,3 +61,19 @@
     display: block;           
 }
 
+//RESPONSIVE
+
+.nav-stacked.main-menu-mobile {
+  li {
+    float: left;
+    width: 25%;
+    
+    a {
+      text-align: center;
+    }
+    i {
+      font-size: 20px;
+    }
+  }
+}
+

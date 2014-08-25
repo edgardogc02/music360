@@ -88,15 +88,13 @@
         <td></td>
       </tr>		      
 	  </table>
-	  <!--<hr />
-	  
+	  <hr />	  
 		<% if @challenge.song.artist.bio %>
 			<h2>About <%= @challenge.song.artist.title %></h2>
 			<p>
+				<%= truncate(@challenge.song.artist.bio, length: 1000, separator: ' ') { link_to "Read more", @challenge.song.artist } %>
 				<%= @challenge.song.artist.bio %>
 			</p>
-			<p><%= link_to "View more", @challenge.song.artist %></p>
 		<% end %>
-		-->
 	</div>
 </div>
