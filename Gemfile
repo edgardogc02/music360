@@ -109,6 +109,8 @@ group :development, :test do
   gem 'therubyracer'
   gem 'rspec-rails'
   gem 'thin'
+  gem 'guard-livereload'
+  gem 'rack-livereload'
 end
 
 group :production do
