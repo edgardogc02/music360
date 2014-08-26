@@ -1,55 +1,53 @@
 <% content_for(:facebook_og_meta) do %>
-  <meta property="og:url" content="<%= request.original_url %>" />
-  <meta property="og:title" content="InstrumentChamp - Learn to play guitar, learn to play piano, learn to play drums" />
-  <meta property="og:type" content="website" />
-  <meta property="og:image" content="<%= asset_url('logo_alpha.png') %>" />
-  <meta property="og:description" content="You're invited to start playing InstrumentChamp - the new game that teaches you to play music!" />
+<meta property="og:url" content="<%= request.original_url %>" />
+<meta property="og:title" content="InstrumentChamp - Learn to play guitar, learn to play piano, learn to play drums" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="<%= asset_url('logo_alpha.png') %>" />
+<meta property="og:description" content="You're invited to start playing InstrumentChamp - the new game that teaches you to play music!" />
 <% end %>
 
 <nav class="navbar navbar-custom navbar-default navbar-fixed-top">
-	<div class="container">
-		<div class="navbar-header pull-left page-scroll">
-			<a class="navbar-brand logo" href="#page-top">
-				<%= image_tag(asset_path('logo_alpha.png')) %>
-			</a>
-		</div>
-	
-		<div class="pull-right">
-			<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
-				<span class="sr-only">Toggle navigation</span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-				<span class="icon-bar"></span>
-			</button>					
-		</div>
-		
-		<div class="pull-right nav-helper-top-landing">
-			<a href="<%= help_path %>" class="btn btn-link" target="_blank">Help</a>
-			<a href="#" class="btn btn-link authentication-btn" data-id="login">Log in</a>
-			<a href="#" class="btn btn-primary btn-lg authentication-btn download-modal-btn" data-id="download">Download</a>	
-		</div>
-	
-		<div class="collapse navbar-collapse navbar-ex1-collapse navbar-right">
-			<ul class="nav navbar-nav visible-xs">
-				<li class="page-scroll">
-					<a href="#what-it-is">What it is</a>
-				</li>
-				<li class="page-scroll">
-					<a href="#how-it-works">How it works</a>
-				</li>
-				<li class="page-scroll">
-					<a href="#what-it-costs">What it costs</a>
-				</li>
-			</ul>
-		</div>
+  <div class="container">
+    <div class="navbar-header pull-left page-scroll">
+      <a class="navbar-brand logo" href="#page-top"> <%= image_tag(asset_path('logo_alpha.png')) %> </a>
+    </div>
 
-	</div>
+    <div class="pull-right">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+    <div class="pull-right nav-helper-top-landing">
+      <a href="<%= help_path %>" class="btn btn-link" target="_blank">Help</a>
+      <a href="#" class="btn btn-link authentication-btn" data-id="login">Log in</a>
+      <a href="#" class="btn btn-primary btn-lg authentication-btn download-modal-btn" data-id="download">Download</a>
+    </div>
+
+    <div class="collapse navbar-collapse navbar-ex1-collapse navbar-right">
+      <ul class="nav navbar-nav visible-xs">
+        <li class="page-scroll">
+          <a href="#what-it-is">What it is</a>
+        </li>
+        <li class="page-scroll">
+          <a href="#how-it-works">How it works</a>
+        </li>
+        <li class="page-scroll">
+          <a href="#what-it-costs">What it costs</a>
+      	</li>
+      </ul>
+    </div>
+
+  </div>
 </nav>
 
 <nav class="navbar navbar-custom-links navbar-fixed-bottom hidden-xs">
-	<div class="container">
+  <div class="container">
     <ul class="nav navbar-nav">
-    	<li class="page-scroll hide">
+      <li class="page-scroll hide">
         <a href="#page-top"></a>
       </li>
       <li class="page-scroll">
@@ -62,7 +60,7 @@
         <a href="#what-it-costs">What it costs</a>
       </li>
     </ul>
-	</div>
+  </div>
 </nav>
 
 <%= render 'sign_in' %>
@@ -79,9 +77,7 @@
   <div class="container">
     <div class="row">
       <div class="col-md-8 col-md-offset-2 text-center">
-      	<a href="#" id="video-btn" data-toggle="modal" data-target="#video">
-      		<%= image_tag(asset_path('landing/play-logo.png')) %>
-				</a>
+        <a href="#" id="video-btn" data-toggle="modal" data-target="#video"> <%= image_tag(asset_path('landing/play-logo.png')) %> </a>
         <h1 class="brand-heading">Learn to play music with a real music game</h1>
         <%= render 'slider_download', {btn_download_id: 'download_btn_top_slide'}%>
       </div>
@@ -90,50 +86,50 @@
 </section>
 
 <section id="what-it-is" class="landing-section">
-	<div class="container">
-	  <div class="row">
-  		<div class="col-lg-6">
-	      <h2>A real music game</h2>
-	      <p>
-	        InstrumentChamp is a music game service for learning to play music and playing with your friends online. Play with real instruments like acoustic guitar, piano, and drums but you can also sing along.
-	      </p>
-	      <%= render 'slider_download', {btn_download_id: 'download_btn_what_it_is_slide'}%>
-	    </div>
-	  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6">
+        <h2>A real music game</h2>
+        <p>
+          InstrumentChamp is a music game service for learning to play music and playing with your friends online. Play with real instruments like acoustic guitar, piano, and drums but you can also sing along.
+        </p>
+        <%= render 'slider_download', {btn_download_id: 'download_btn_what_it_is_slide'}%>
+      </div>
+    </div>
   </div>
 </section>
 
 <section id="how-it-works" class="landing-section">
-	<div class="container">
-	  <div class="row">
+  <div class="container">
+    <div class="row">
       <div class="col-lg-8 col-lg-offset-2 text-center">
         <h2>Wireless sound recognition</h2>
         <p>
-					InstrumentChamp is a new music innovation enabled by music sound recognition. It turns your computer into a digital music teacher that listens, analyzes, and gives real-time feedback on how you play.
-				</p>
+          InstrumentChamp is a new music innovation enabled by music sound recognition. It turns your computer into a digital music teacher that listens, analyzes, and gives real-time feedback on how you play.
+        </p>
         <p>
-        	InstrumentChamp also introduces a new graphic interface that makes it possible for anyone to learn to play songs without reading sheet music.
+          InstrumentChamp also introduces a new graphic interface that makes it possible for anyone to learn to play songs without reading sheet music.
         </p>
         <%= render 'slider_download', {btn_download_id: 'download_btn_how_it_works_slide'}%>
       </div>
-	  </div>
+    </div>
   </div>
 </section>
 
 <section id="what-it-costs" class="landing-section">
-	<div class="container">
-	  <div class="row">
-	  	<div class="col-lg-6 col-lg-offset-6 text-right">
-	      <h2>Forever Free</h2>
-	      <p>
-	        InstrumentChamp offers a free service to everyone, where you can learn basic music skills and songs. This is powered by ads from our partners.
-	      </p>
-	      <p>
-	      	You can choose to upgrade to premium, giving you a multiplayer game to play with family and friends - with no advertising. More and more songs will become available on InstrumentChamp.com and can be purchased on demand.
-	      </p>
-	      <%= render 'slider_download', {btn_download_id: 'download_btn_what_it_costs_slide'}%>
-	    </div>
-	  </div>
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 col-lg-offset-6 text-right">
+        <h2>Forever Free</h2>
+        <p>
+          InstrumentChamp offers a free service to everyone, where you can learn basic music skills and songs. This is powered by ads from our partners.
+        </p>
+        <p>
+          You can choose to upgrade to premium, giving you a multiplayer game to play with family and friends - with no advertising. More and more songs will become available on InstrumentChamp.com and can be purchased on demand.
+        </p>
+        <%= render 'slider_download', {btn_download_id: 'download_btn_what_it_costs_slide'}%>
+      </div>
+    </div>
   </div>
 </section>
 
