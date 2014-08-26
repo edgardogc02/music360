@@ -5,7 +5,7 @@
 		<%= render 'shared/header_page', title: 'Challenges', sub_header: true %>
 
 		<% unless @challenges.blank? %>
-			<div class="thumbnail-grid">				
+			<div class="thumbnail-grid">
 				<% @challenges.each do |challenge| %>
 					<div class="group-challenge-item masonry-img">
 						<div class="pull-left item-img">
@@ -18,7 +18,7 @@
 							</div>
 							<div class="spacer-md small">
 						    Created by <%= link_to challenge.challenger.username, person_path(challenge.challenger)%>
-						    <time datetime="<%= challenge.created_at%>" pubdate><%= time_ago_in_words(challenge.created_at)%> ago</time>						    
+						    <time datetime="<%= challenge.created_at%>" pubdate><%= time_ago_in_words(challenge.created_at)%> ago</time>
 						  </div>
 						  <div>
 					      <%= challenge.display_start_group_challenge_button('Accept') %>
@@ -33,7 +33,7 @@
 		<% else %>
 			<%= link_to 'Create new challenge', new_group_challenge_path(@group), class: 'btn btn-primary'  %>
 		<% end %>
-	</div>	
+	</div>
 	<div class="col-lg-4">
 		<h2>About</h2>
 		<p>

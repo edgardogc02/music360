@@ -12,14 +12,16 @@ class GroupChallengeDecorator < ChallengeDecorator
     h.group_challenge_songs_path(group_id: model.group_id)
   end
 
-  def display_start_challenge_to_user?(user)
-    user and is_user_involved?(user) and UserGroupsManager.new(user).belongs_to_group?(model.group)
+  def display_start_group_challenge_button(label="Start challenge")
+    if display_start_challenge_to_user?(h.current_user)
+      h.link_to label, start_challenge_url, {class: "btn btn-primary btn-sm"}
+    end
   end
 
   protected
 
     def display_start_challenge_to_user?(user)
-      user and !model.has_user_played?(user) and UserGroupsManager.new(user).belongs_to_group?(model.group)
+      user and UserGroupsManager.new(user).belongs_to_group?(model.group)
     end
 
 end

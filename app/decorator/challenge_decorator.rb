@@ -24,12 +24,6 @@ class ChallengeDecorator < Draper::Decorator
     end
   end
 
-  def display_start_group_challenge_button(label="Start challenge")
-    if display_start_challenge_to_user?(h.current_user)
-      h.link_to label, start_challenge_url, {class: "btn btn-primary btn-sm"}
-    end
-  end
-
   def display_decline_challenge_button
     if display_decline_challenge_to_user?(h.current_user)
       h.link_to "Decline", h.challenge_path(model), {data: {confirm: "Are you sure?"}, method: :delete, class: "btn btn-primary pull-left"}
@@ -75,7 +69,7 @@ class ChallengeDecorator < Draper::Decorator
   def change_song_link
     h.for_challenge_songs_path(challenged_id: model.challenged_id)
   end
-  
+
   def status
     if display_results?
       "Finished"
@@ -83,9 +77,9 @@ class ChallengeDecorator < Draper::Decorator
       "Pending"
     end
   end
-  
+
   def show_winner
-    if display_results?      
+    if display_results?
       if model.challenger_won?
         h.concat "Winner: "
         h.link_to model.challenger.username, h.person_path(model.challenger)
