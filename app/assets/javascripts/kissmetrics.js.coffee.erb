@@ -1,6 +1,6 @@
 <% if Rails.env.production? and ENV["INCLUDE_KISSMETRICS"] %>
-  $(document).on 'page:load', ->
-    _kmq.push ['trackClick', 'facebook_signin', 'First facebook continue button']
+	ready = ->
+		_kmq.push ['trackClick', 'facebook_signin', 'First facebook continue button']
     _kmq.push ['trackClick', 'facebook_signin_1', 'Second facebook continue button']
     _kmq.push ['trackClick', 'facebook_signin_2', 'Third facebook continue button']
     _kmq.push ['trackClick', 'facebook_signin_3', 'Fourth facebook continue button']
@@ -24,4 +24,7 @@
     _kmq.push ['trackClick', 'btn_crowdfunding_campaign_landing', 'Crowdfunding link']
     _kmq.push ['trackClick', '.activation2', 'Active user clicking play or challenge']
     return
+
+	$(document).ready(ready)
+	$(document).on('page:load', ready)
 <% end %>
