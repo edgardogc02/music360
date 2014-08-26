@@ -18,7 +18,7 @@
 		</ul>
 	</div>
 	<div class="pull-right">
-		<%= @challenge.display_start_challenge_button %>		
+		<%= @challenge.display_start_challenge_button %>
 	</div>
 </div>
 
@@ -86,10 +86,10 @@
         <td><%= @challenge.loser_instrument.name if @challenge.loser_instrument %></td>
         <td><%= @challenge.loser_points %></td>
         <td></td>
-      </tr>		      
+      </tr>
 	  </table>
-	  <hr />	  
-		<% if @challenge.song.artist.bio %>
+	  <hr />
+		<% unless @challenge.song.artist.bio.blank? %>
 			<h2>About <%= @challenge.song.artist.title %></h2>
 			<p>
 				<%= truncate(@challenge.song.artist.bio, length: 1000, separator: ' ') { link_to "Read more", @challenge.song.artist } %>
