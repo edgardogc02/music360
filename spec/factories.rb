@@ -76,6 +76,7 @@ FactoryGirl.define do
     instrument "Guitar"
     score_u1 0
     score_u2 0
+    open 1
   end
 
   factory :group_challenge, class: Challenge do
@@ -86,6 +87,7 @@ FactoryGirl.define do
     score_u1 0
     score_u2 0
     group
+    open 1
   end
 
   factory :instrument do

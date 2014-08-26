@@ -58,6 +58,12 @@ task :save_top_artists_from_echonest => :environment do
   end
 end
 
+task :close_open_and_expired_group_challenges => :environment do
+  Challenge.only_groups.open.where('end_at <= ?', Time.now).find_each(batch_size: 1000) do |challenge|
+    GroupChallengeClosure.new(challenge).close
+  end
+end
+
 task :test_mandrill_template => :environment do
   MandrillTemplateEmailNotifier.test_mandrill_template(User.last).deliver
 end

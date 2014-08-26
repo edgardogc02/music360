@@ -43,6 +43,8 @@ class Challenge < ActiveRecord::Base
   scope :excludes, ->(challenges_ids) { where("challenges.id NOT IN (?)", challenges_ids) }
   scope :one_to_one, -> { where("challenged_id > 0") }
   scope :by_popularity, -> { joins(:song_scores).group('challenge_id').order('COUNT(*) DESC') }
+  scope :open, -> { where(open: true) }
+  scope :only_groups, -> { where('group_id > 0') }
 
 	def cover_url
 		song.cover_url
@@ -168,6 +170,11 @@ class Challenge < ActiveRecord::Base
     end
   end
 
+  def close
+    self.open = 0
+    save
+  end
+
 	private
 
 	def challenged_and_finished
@@ -186,6 +193,7 @@ class Challenge < ActiveRecord::Base
     self.score_u1 = 0 if self.score_u1.nil?
     self.score_u2 = 0 if self.score_u2.nil?
     self.end_at = 1.week.from_now
+    self.open = true
   end
 
 end

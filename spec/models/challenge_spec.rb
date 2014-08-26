@@ -262,6 +262,24 @@ describe Challenge do
       Challenge.one_to_one.should eq([challenge1, challenge2])
     end
 
+    it 'should list only the open challenges' do
+      challenge1 = create(:challenge)
+      challenge2 = create(:challenge)
+      challenge3 = create(:challenge)
+
+      challenge2.open = 0
+      challenge2.save
+
+      Challenge.open.should eq([challenge1, challenge3])
+    end
+
+    it 'should list only group challenges' do
+      challenge1 = create(:challenge)
+      challenge2 = create(:group_challenge)
+      challenge3 = create(:challenge)
+
+      Challenge.only_groups.should eq([challenge2])
+    end
   end
 
   context "Callbacks" do
@@ -271,6 +289,7 @@ describe Challenge do
       challenge.score_u1.should be_zero
       challenge.score_u2.should be_zero
       challenge.end_at.to_date.should eq(1.week.from_now.to_date)
+      challenge.open.should be_true
     end
   end
 
@@ -377,6 +396,15 @@ describe Challenge do
       challenge.challenger_won?.should be_true
       challenge.challenged_won?.should be_false
     end
+
+    it 'should close a challenge' do
+      challenge = create(:challenge)
+      challenge.open.should be_true
+      challenge.close
+      challenge.reload
+      challenge.open.should_not be_true
+    end
+
   end
 
 end
