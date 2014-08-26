@@ -3,18 +3,18 @@ var sign_up_view;
 var login_view_footer;
 var sign_up_view_footer;
 
-$(document).ready(function() {  
-  
-  login_view = $(".login-view");
+var ready;
+ready = function() {
+	login_view = $(".login-view");
   sign_up_view = $(".sign-up-view");
   login_view_footer = $(".login-view-footer");
-  sign_up_view_footer = $(".sign-up-view-footer"); 
-  
-  $(".authentication-btn").click(function(e) {    
+  sign_up_view_footer = $(".sign-up-view-footer");
+
+  $(".authentication-btn").click(function(e) {
     e.preventDefault();
     show_modal_authentication($(this).data("id"));
   });
-  
+
   $("#sign-up-slide-btn").click(function(e) {
     e.preventDefault();
     show_sign_up();
@@ -23,22 +23,25 @@ $(document).ready(function() {
     e.preventDefault();
     show_login();
   });
-  
-});
+};
+
+$(document).ready(ready);
+$(document).on('page:load', ready);
+
 
 function show_modal_authentication(action_prm, modal_type_prm) {
   var action = action_prm;
   var modal_type = modal_type_prm;
- 
+
   hide_sliders();
-    
+
   $("#SignIn .modal-body #action_modal").val(action);
-    
+
   if (action == "download"){
     show_sign_up();
   }else{
     show_login();
-  }    
+  }
   if (modal_type == true){
     $("#SignIn").modal({
       show: true,
@@ -46,7 +49,7 @@ function show_modal_authentication(action_prm, modal_type_prm) {
     });
   }else{
     $("#SignIn").modal('show');
-  }  
+  }
 }
 
 function show_sign_up() {
@@ -66,7 +69,7 @@ function show_login() {
 function hide_sliders() {
   login_view.css('display', 'none');
   sign_up_view.css('display', 'none');
-  
+
   login_view_footer.css('display', 'none');
   sign_up_view_footer.css('display', 'none');
 }

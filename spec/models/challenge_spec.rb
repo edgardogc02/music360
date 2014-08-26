@@ -270,7 +270,6 @@ describe Challenge do
       challenge.should be_persisted
       challenge.score_u1.should be_zero
       challenge.score_u2.should be_zero
-      challenge.end_at.to_date.should eq(1.week.from_now.to_date)
     end
   end
 

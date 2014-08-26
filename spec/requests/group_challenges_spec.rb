@@ -53,25 +53,6 @@ describe "GroupChallenges" do
       end
     end
 
-    context 'email' do
-      it 'should send an email to all group members when a challenge is created' do
-        user1 = create(:user)
-        user2 = create(:user)
-        create(:user_group, user: @user, group: @group)
-        create(:user_group, user: user1, group: @group)
-        create(:user_group, user: user2, group: @group)
-
-        visit group_path(@group)
-        click_on 'Create challenge'
-        click_on 'Challenge'
-        click_on 'Create Challenge'
-
-        ActionMailer::Base.deliveries.first.to.should include(@user.email)
-        ActionMailer::Base.deliveries.second.to.should include(user1.email)
-        ActionMailer::Base.deliveries.last.to.should include(user2.email)
-      end
-    end
-
   end
 
   describe "user is not signed in" do

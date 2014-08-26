@@ -1,7 +1,7 @@
 class Challenge < ActiveRecord::Base
 
   include PublicActivity::Common
-
+  
   paginates_per 4
 
   validates :challenger_id, presence: true
@@ -113,17 +113,17 @@ class Challenge < ActiveRecord::Base
   def challenged_won?
     has_challenger_played? and has_challenged_played? and score_u1 < score_u2
   end
-
+  
   def currently_winner
     if challenged_won?
-      challenged
+      challenged  
     elsif has_challenged_played? and !has_challenger_played?
       challenged
     else
       challenger
     end
   end
-
+  
   def currently_loser
     if currently_winner == challenger
       challenged
@@ -131,7 +131,7 @@ class Challenge < ActiveRecord::Base
       challenger
     end
   end
-
+  
   def winner_points
     if challenged_won?
       score_u2
@@ -139,15 +139,15 @@ class Challenge < ActiveRecord::Base
       score_u2
     else
       score_u1
-    end
+    end    
   end
-
+  
   def loser_points
     if winner_points == score_u2
       score_u1
     else
       score_u2
-    end
+    end 
   end
 
   def winner_instrument
@@ -157,15 +157,15 @@ class Challenge < ActiveRecord::Base
       challenged_instrument
     else
       challenger_instrument
-    end
+    end    
   end
-
+  
   def loser_instrument
     if winner_instrument == challenged_instrument
       challenger_instrument
     else
       challenged_instrument
-    end
+    end 
   end
 
 	private
@@ -185,7 +185,6 @@ class Challenge < ActiveRecord::Base
   def fill_in_extra_fields
     self.score_u1 = 0 if self.score_u1.nil?
     self.score_u2 = 0 if self.score_u2.nil?
-    self.end_at = 1.week.from_now
   end
 
 end
