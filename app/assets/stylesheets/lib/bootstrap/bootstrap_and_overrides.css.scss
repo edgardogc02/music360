@@ -12,8 +12,8 @@ h3 {
 }
 
 h5 {
- color: #333; 
- font-weight: normal; 
+ color: #333;
+ font-weight: normal;
  font-size: 14px;
 }
 
@@ -69,17 +69,21 @@ a.list-group-item.active.tour-tour-element, a.list-group-item.active.tour-tour-e
     display: inline-block;
     margin-bottom: 0;
     vertical-align: middle;
-  } 
+  }
 }
 
 .btn-sm {
   padding: 3px 8px;
 }
 
+.btn.active {
+  @include box-shadow(0px 0px 0px);
+}
+
 
 /* Side notes for calling out things
 -------------------------------------------------- */
- 
+
 /* Base styles (regardless of theme) */
 .bs-callout {
   margin: 20px 0;
@@ -97,7 +101,7 @@ a.list-group-item.active.tour-tour-element, a.list-group-item.active.tour-tour-e
 .bs-callout .highlight {
   background-color: #fff;
 }
- 
+
 /* Themes for different contexts */
 .bs-callout-danger {
   background-color: #fcf2f2;
@@ -157,7 +161,7 @@ color: #456968;
   }
 }
 
-//NAV PILLS 
+//NAV PILLS
 .nav-pills {
   li {
     a {

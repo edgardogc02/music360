@@ -12,7 +12,7 @@
 	<div class="col-lg-9">
 		<ul class="nav nav-tabs">
 			<li class="active"><a href="#info" data-toggle="tab">Info</a></li>
-		  <li><a href="#songs" data-toggle="tab">Songs</a></li>
+		  <li><a href="#songs_tab" data-toggle="tab">Songs</a></li>
 		  <li><a href="#challenges_tab" data-toggle="tab">Challenges</a></li>
 		</ul>
 		<br />
@@ -24,7 +24,7 @@
 					<p>No info available</p>
 				<% end %>
 			</div>
-		  <div class="tab-pane" id="songs">
+		  <div class="tab-pane" id="songs_tab">
 		  	<% if !@songs.blank? %>
 					<section>
 						<%= render 'shared/header_page', title: 'Songs', sub_header: true, view_more: 'View more', view_more_path: songs_path %>
