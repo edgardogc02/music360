@@ -1,5 +1,7 @@
 class SongScore < ActiveRecord::Base
 
+  include PublicActivity::Common
+
   self.table_name = "songscore"
 
   validates :user_id, presence: true
