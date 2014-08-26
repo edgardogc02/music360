@@ -93,4 +93,11 @@ class EmailNotifier < ActionMailer::Base
     mail to: @user.email
   end
 
+  def group_challenge_created(challenge, user)
+    @challenge = challenge
+    @user = user
+
+    mail to: @user.email
+  end
+
 end
