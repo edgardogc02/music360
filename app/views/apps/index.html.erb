@@ -2,15 +2,23 @@
 
 <h2>Thanks for downloading InstrumentChamp</h2>
 
-<% if signed_in? %>
-	<%= render 'download_button', auto_download: params[:auto_download] %>
-<% else %>
+<% if is_mobile? %>
 	<%= content_for(:js_scripts) do %>
 		<script type="text/javascript">
-			$(document).ready(function() {				
-				show_modal_authentication('download', true)
-			});
+			window.location.href = '<%= mobile_landing_path %>'
 	  </script>
+	<% end %>
+<% else %>
+	<% if signed_in? %>
+		<%= render 'download_button', auto_download: params[:auto_download] %>
+	<% else %>
+		<%= content_for(:js_scripts) do %>
+			<script type="text/javascript">
+				$(document).ready(function() {
+					show_modal_authentication('download', true)
+				});
+		  </script>
+		<% end %>
 	<% end %>
 <% end %>
 
@@ -51,7 +59,7 @@
 					<li>Connect your keyboard or digital drumset. Make sure your microphone is activated on your computer to play with acoustic instruments.</li>
 					<li>Start InstrumentChamp.</li>
 				</ol>
-				
+
 				<div class="bs-callout bs-callout-info">
 					<h4>System requirements:</h4>
 					<p>
