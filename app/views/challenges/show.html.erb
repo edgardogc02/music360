@@ -92,8 +92,7 @@
 		<% unless @challenge.song.artist.bio.blank? %>
 			<h2>About <%= @challenge.song.artist.title %></h2>
 			<p>
-				<%= truncate(@challenge.song.artist.bio, length: 1000, separator: ' ') { link_to "Read more", @challenge.song.artist } %>
-				<%= @challenge.song.artist.bio %>
+				<%= truncate(@challenge.song.artist.bio, length: 500, separator: ' ') { link_to "Read more", @challenge.song.artist } %>
 			</p>
 		<% end %>
 	</div>
