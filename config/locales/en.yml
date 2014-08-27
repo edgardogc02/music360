@@ -30,6 +30,8 @@ en:
       subject: Your group membership was accepted
     group_invitation_rejected:
       subject: Your group membership was rejected
+    group_challenge_created:
+      subject: New group challenge created
   activerecord:
     errors:
       models:

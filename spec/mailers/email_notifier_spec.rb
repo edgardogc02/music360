@@ -284,6 +284,26 @@ describe EmailNotifier do
     end
   end
 
+  describe "send group challenge created email" do
+    let(:user) { create(:user) }
+    let(:group_challenge) { create(:group_challenge) }
+    let(:mail) { EmailNotifier.group_challenge_created(group_challenge, user).deliver }
+
+    it "sends group challenge created message to a member user" do
+      mail.subject.should eq("New group challenge created")
+      mail.to.should eq([user.email])
+      mail.from.should eq(["no-reply@instrumentchamp.com"])
+    end
+
+    it "renders the body" do
+      mail.body.encoded.should have_content "Hi #{user.username},"
+      mail.body.encoded.should have_content "There is a new group challenge on \"#{group_challenge.group.name}\" on InstrumentChamp."
+      mail.body.encoded.should have_content "To view the challenge, you can click on the following link:"
+      mail.body.encoded.should have_link "View challenge", group_challenge_url(group_id: group_challenge.group_id, id: group_challenge.id, host: user.created_by)
+      check_greeting_lines
+    end
+  end
+
   def check_greeting_lines
     mail.body.encoded.should have_content "Kind regards,"
     mail.body.encoded.should have_content "The instrumentchamp team."
