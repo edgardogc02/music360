@@ -3,12 +3,12 @@
 /*
 .datepicker.dropdown-menu {
   z-index: 10000;
-  
+
   td span {
     height: 28px;
     line-height: 26px;
   }
-  
+
   th.switch {
     width: 130px;
   }
@@ -25,11 +25,11 @@
     }
     .wrap-content {
       display: inline-block;
-      
+
       input.form-control {
         width: 200px;
       }
-    }  
+    }
   }
   .credit_card_expiry_date {
     display: inline-block;
@@ -47,7 +47,7 @@
     padding-bottom: 5px;
   }
   .modal-dialog {
-    width: 420px;
+    max-width: 420px;
   }
   .alert {
     margin-bottom: 0px;

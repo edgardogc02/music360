@@ -19,7 +19,7 @@
       		Ad-supported
       	</p>
         <div>
-          <a href="<%= apps_path(auto_download: true) %>" data-no-turbolink='true' class="btn btn-primary btn-lg premium_plan_selected">
+          <a href="<%= apps_path(auto_download: true) %>" data-no-turbolink='true' class="btn btn-primary btn-lg premium_plan_selected free">
           	Download InstrumentChamp for free
           </a>
         </div>
@@ -87,13 +87,15 @@
 					  </div>
 		      </div>
 		      <div class="modal-footer">
-		      	<div class="clearfix spacer-sm">
-		      		<div class="pull-left"><%= image_tag(asset_path('secure_form.png')) %></div>
-		      		<div class="pull-right">
-		      			<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-			      		<%= f.button :submit, "Continue", {class: "btn btn-primary", id: "submit_purchase_form"} %>
+		      	<div class="row">
+		      		<div class="col-lg-6 spacer-md">
+		      			<%= image_tag(asset_path('secure_form.png')) %>
 		      		</div>
-		      	</div>	
+							<div class="col-lg-6">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
+			      		<%= f.button :submit, "Continue", {class: "btn btn-primary", id: "submit_purchase_form"} %>
+							</div>
+		      	</div>
 		      	<br />
 		      	<div class="text-center">
 		      		<div class="spacer-sm">This payment will be billed to the card you specified. The name on the statement will be instrumentchamp.com</div>
@@ -104,11 +106,11 @@
 	    </div>
 	  </div>
 	</div>
-	
+
 	<%= content_for(:js_scripts) do %>
     <script type="text/javascript">
       var PAYMILL_PUBLIC_KEY = "<%= PAYMILL_PUBLIC_KEY %>";
-      
+
       $(document).ready(function() {
         submit_credit_card_payment();
         $('#checkout_modal').modal({
@@ -118,6 +120,6 @@
       });
     </script>
     <script type="text/javascript" src="https://bridge.paymill.com/"></script>
-  <% end %>	
+  <% end %>
 <% end %>
 
