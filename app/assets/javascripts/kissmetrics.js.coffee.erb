@@ -1,4 +1,4 @@
-<% if Rails.env.production? and ENV["INCLUDE_KISSMETRICS"] %>
+<% if Rails.env.production? and ENV["INCLUDE_KISSMETRICS"] == 1 %>
   $(document).on 'page:load', ->
     _kmq.push ['trackClick', 'facebook_signin', 'First facebook continue button']
     _kmq.push ['trackClick', 'facebook_signin_1', 'Second facebook continue button']
