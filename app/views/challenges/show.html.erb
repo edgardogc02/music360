@@ -51,21 +51,18 @@
 				<%= image_tag @challenge.challenged.imagename, class: 'avatar-xs' %> <%= link_to @challenge.challenged.username, person_path(@challenge.challenged) %> <span class="text-muted">Challenged</span>
 			</div>
 		</div>
-
-
-			  <div>
-					<% if signed_in? %>
-						<h2>Status</h2>
-						<%= render "challenge_posts/form", challenge: @challenge %>
-						<hr />
-					<% end %>
-					<% if signed_in? %>
-						<div id="challenge_activities">
-							<%= render @challenge_activities %>
-						</div>
-					<% end %>
-			  </div>
-
+	  <div>
+			<% if signed_in? %>
+				<h2>Status</h2>
+				<%= render "challenge_posts/form", challenge: @challenge %>
+				<hr />
+			<% end %>
+			<% if signed_in? %>
+				<div id="challenge_activities">
+					<%= render @challenge_activities %>
+				</div>
+			<% end %>
+	  </div>
 	</div>
 	<div class="col-lg-4">
 		<h2>Scores</h2>

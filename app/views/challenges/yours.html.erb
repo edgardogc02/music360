@@ -1,4 +1,4 @@
-<% if current_user.installed_desktop_app? and @autostart_challenge %>
+<% if current_user.installed_desktop_app? and @autostart_challenge and !is_mobile? %>
   <META HTTP-EQUIV="Refresh" CONTENT="1; URL=<%= @autostart_challenge.desktop_app_uri %>">
 <% end %>
 
