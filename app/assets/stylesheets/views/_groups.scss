@@ -10,27 +10,27 @@
   padding: 10px 0px;
   border-top: 1px solid #e6e6e6;
   border-bottom: 1px solid #e6e6e6;
-  
+
   .group-nav-list {
     list-style: none;
     margin: 4px 0px 0px 0px;
     padding: 0px;
-    
+
     li {
       float: left;
       margin: 0px;
       padding: 0px 20px;
     }
   }
-  
+
   .dropdown {
     display: inline-block;
   }
-  
+
   h4 {
     margin: 0px;
   }
-  
+
   .action_button {
     i {
       display: none;
@@ -48,11 +48,11 @@
 
 .cover-group {
   position: relative;
-  
+
   .cover-img {
     width: 100%;
   }
-  
+
   .profile-group-img {
     position: absolute;
     top: 60px;
@@ -68,22 +68,22 @@
     padding: 0px;
     font-size: 14px;
   }
-  
+
   .item-img {
     width: 100px;
     height: 100px;
     margin-right: 10px;
-    
+
     img {
       width: 100px;
       height: 100px;
     }
   }
-  
+
   .item-content {
     width: 160px;
   }
-  
+
   float: left;
   width: 290px;
   //background: #ECF0F0;
@@ -94,5 +94,27 @@
 .member-widget {
   .col {
     padding-right: 0px;
+  }
+}
+
+.group-nav-list-buttons {
+  float: right;
+}
+
+@media (max-width: $screen-sm-max) {
+  .group-nav-list-buttons {
+    float: left;
+    padding-top: 10px;
+
+    .btn {
+      margin-top: 5px;
+    }
+  }
+
+  .group-nav-list {
+    li:first-child {
+      width: 100%;
+      padding-bottom: 10px;
+    }
   }
 }

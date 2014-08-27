@@ -24,25 +24,26 @@
 
 <div class="row">
 	<div class="col-lg-8">
-		<div class="clearfix">
-			<div class="pull-left">
+
+		<div class="row">
+			<div class="col-lg-6">
 				<h2>Challenge</h2>
-				<ul class="media-list">
-				  <li class="media media-item no-border no-padding">
-				    <%= image_tag @challenge.cover_url, class: "song-cover pull-left" %>
-				    <div class="media-body">
-				      <p class="spacer-sm">
-				        <h2><%= link_to @challenge.song.title, song_path(@challenge.song) %></h2>
-				      </p>
-				      <div class="spacer-sm">
-				      	By: <%= link_to @challenge.song.artist.title, artist_path(@challenge.song.artist) %> <br />
-				        <time datetime="<%= @challenge.created_at%>" pubdate><%= time_ago_in_words(@challenge.created_at)%> ago</time>
-				      </div>
-				    </div>
-				  </li>
-				</ul>
+					<ul class="media-list">
+					  <li class="media media-item no-border no-padding">
+					    <%= image_tag @challenge.cover_url, class: "song-cover pull-left" %>
+					    <div class="media-body">
+					      <p class="spacer-sm">
+					        <h2><%= link_to @challenge.song.title, song_path(@challenge.song) %></h2>
+					      </p>
+					      <div class="spacer-sm">
+					      	By: <%= link_to @challenge.song.artist.title, artist_path(@challenge.song.artist) %> <br />
+					        <time datetime="<%= @challenge.created_at%>" pubdate><%= time_ago_in_words(@challenge.created_at)%> ago</time>
+					      </div>
+					    </div>
+					  </li>
+					</ul>
 			</div>
-			<div class="pull-left challenge-participants">
+			<div class="col-lg-6">
 				<h2>Members</h2>
 				<div class="spacer-md">
 					<%= image_tag @challenge.challenger.imagename, class: 'avatar-xs' %> <%= link_to @challenge.challenger.username, person_path(@challenge.challenger) %> <span class="text-muted">Challenger</span>
@@ -51,20 +52,20 @@
 			</div>
 		</div>
 
-		<br />
 
-	  <div>
-			<% if signed_in? %>
-				<h2>Status</h2>
-				<%= render "challenge_posts/form", challenge: @challenge %>
-				<hr />
-			<% end %>
-			<% if signed_in? %>
-				<div id="challenge_activities">
-					<%= render @challenge_activities %>
-				</div>
-			<% end %>
-	  </div>
+			  <div>
+					<% if signed_in? %>
+						<h2>Status</h2>
+						<%= render "challenge_posts/form", challenge: @challenge %>
+						<hr />
+					<% end %>
+					<% if signed_in? %>
+						<div id="challenge_activities">
+							<%= render @challenge_activities %>
+						</div>
+					<% end %>
+			  </div>
+
 	</div>
 	<div class="col-lg-4">
 		<h2>Scores</h2>

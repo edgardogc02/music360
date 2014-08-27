@@ -11,16 +11,15 @@
 			<li><%= link_to "Challenges", challenges_group_path(@group) %></li>
 		</ul>
 	</div>
-	<div class="pull-right">
+	<div class="group-nav-list-buttons">
 		<%= @group.add_members_button %>
 		<%= @group.join_button %>
     <%= @group.create_challenge_button %>
-		<%= link_to 'Create new group', new_group_path, class: 'btn btn-primary btn-sm' %>		
+		<%= link_to 'Create new group', new_group_path, class: 'btn btn-primary btn-sm' %>
 		<% if UserGroupsManager.new(current_user).belongs_to_group?(@group) %>
   		<div class="dropdown">
   		  <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
   		    <i class="glyphicon glyphicon-cog"></i>
-
   		  </button>
   		  <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dropdownMenu1">
   		    <li role="presentation"><a href="<%= group_group_invitations_path(@group) %>" role="menuitem", tabindex="-1">Add people</a></li>

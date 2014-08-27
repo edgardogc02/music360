@@ -1,9 +1,9 @@
-<h2>Members (<%= group.users.count %>)</h2>		
+<h2>Members (<%= group.users.count %>)</h2>
 <div class="row member-widget">
 	<% group.users.limit(8).each do |user| %>
-	  <div class="col-md-3 col">
-	  	<%= link_to person_path(user), class: 'thumbnail' do %>
-	      <%= image_tag user.imagename_url %>
+	  <div class="col-md-3 col col-xs-3">
+	  	<%= link_to person_path(user) do %>
+	      <%= image_tag user.imagename_url, class: 'thumbnail' %>
 	    <% end %>
 	  </div>
 	<% end %>
