@@ -4,11 +4,11 @@ describe EmailNotifier do
 
   let(:host) { "https://www.instrumentchamp.com" }
 
-  describe "send confirmation email" do
+  describe "send welcome email" do
     let(:user) { create(:user) }
     let(:mail) { EmailNotifier.welcome_message(user) }
 
-    it "sends user confirmation email" do
+    it "sends user welcome email" do
       mail.subject.should eq("Welcome to InstrumentChamp")
       mail.to.should eq([user.email])
       mail.from.should eq(["no-reply@instrumentchamp.com"])
@@ -16,6 +16,9 @@ describe EmailNotifier do
 
     it "renders the body" do
       mail.body.encoded.should have_content "Hi #{user.username}, welcome to InstrumentChamp!"
+      mail.body.encoded.should have_content "This is your account information:"
+      mail.body.encoded.should have_content "Username: #{user.username}"
+      mail.body.encoded.should have_content "Password: #{user.password}"
       mail.body.encoded.should have_link "Challenge a friend", people_path
       mail.body.encoded.should have_link "Learn to play a song", songs_path
       mail.body.encoded.should have_link "Take the tour", tour_path
