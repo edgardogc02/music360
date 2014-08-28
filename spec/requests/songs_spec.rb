@@ -23,7 +23,7 @@ describe "Songs" do
       new_free_song = create(:song, cost: 0)      \
 #      paid_song = create(:song, cost: 1)
 
-      visit root_path
+      visit home_path
 
       page.should have_content "Songs"
       click_on "Songs"

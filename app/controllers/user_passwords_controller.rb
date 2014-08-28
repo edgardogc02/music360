@@ -28,7 +28,7 @@ class UserPasswordsController < ApplicationController
   end
 
   def check_security
-    redirect_to root_path unless current_user == @user
+    redirect_to home_path unless current_user == @user
   end
 
 end

@@ -26,6 +26,6 @@ class InstrumentsController < ApplicationController
   end
 
   def admin_only
-    redirect_to root_path unless current_user.admin?
+    redirect_to home_path unless current_user.admin?
   end
 end

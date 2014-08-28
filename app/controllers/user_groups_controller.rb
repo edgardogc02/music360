@@ -22,7 +22,7 @@ class UserGroupsController < ApplicationController
   end
 
   def check_security
-    redirect_to root_path unless current_user.user_groups.include?(@user_group)
+    redirect_to home_path unless current_user.user_groups.include?(@user_group)
   end
 
 end

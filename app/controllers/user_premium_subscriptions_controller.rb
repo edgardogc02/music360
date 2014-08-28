@@ -29,7 +29,7 @@ class UserPremiumSubscriptionsController < ApplicationController
     user_premium_subscription_manager = UserPremiumSubscriptionManager.new(user_premium_subscription)
 
     if user_premium_subscription_manager.destroy
-      redirect_to root_path, notice: "Your premium subscription was successfully deleted"
+      redirect_to home_path, notice: "Your premium subscription was successfully deleted"
     else
       flash[:warning] = "Something went wrong. Please try again."
       redirect_to user_premium_subscription

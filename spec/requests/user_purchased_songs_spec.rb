@@ -50,7 +50,7 @@ describe "UserPurchasedSongs" do
 #    end
 
 #    click_on 'sign_in'
-#    current_path.should eq(root_path)
+#    current_path.should eq(home_path)
 #    user
 
 #    credit_card_payment_method = create(:payment_method, name: "Credit Card") #, id: PaymentMethod::CREDIT_CARD_ID)

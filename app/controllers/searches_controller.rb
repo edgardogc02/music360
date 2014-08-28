@@ -53,7 +53,7 @@ class SearchesController < ApplicationController
       redirect_to search_path(params[:search][:value], group_id: params[:search][:group_id])
     else
       flash[:warning] = "No value to search"
-      redirect_to root_path
+      redirect_to home_path
     end
   end
 

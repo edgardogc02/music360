@@ -38,13 +38,13 @@ describe "UserPassword" do
     it "should not be able to see edit password view for another user" do
       new_user = create(:user)
       visit edit_user_password_path(new_user)
-      current_path.should eq(root_path)
+      current_path.should eq(home_path)
     end
 
     it "should not be able to update other user's password" do
       new_user = create(:user)
       page.driver.submit :patch, user_password_path(new_user), {user: {password: "12345", password_confirmation: "12345"}, id: new_user.username }
-      current_path.should eq(root_path)
+      current_path.should eq(home_path)
     end
   end
 

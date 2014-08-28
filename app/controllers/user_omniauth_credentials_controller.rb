@@ -12,10 +12,14 @@ class UserOmniauthCredentialsController < ApplicationController
         signin_user(user)
         if user.just_signup?
           flash[:notice] = "Welcome #{user.username}!"
-          redirect_to root_path welcome_tour: true
+          redirect_to home_path welcome_tour: true
         else
-          flash[:notice] = "Welcome back #{user.username}!"
-          redirect_to root_path
+          if request.env["omniauth.params"] and request.env["omniauth.params"]["new_session_action"] == "download"
+          	redirect_to apps_path
+          else
+            flash[:notice] = "Welcome back #{user.username}!"
+            redirect_to home_path
+          end
         end
       else
         redirect_to login_path
@@ -35,7 +39,7 @@ class UserOmniauthCredentialsController < ApplicationController
     if params[:tweet]
       redirect_to new_user_invitation_path(tweet: params[:tweet], tweet_text: params[:tweet_text])
     else
-      redirect_to root_path
+      redirect_to home_path
     end
   end
 end

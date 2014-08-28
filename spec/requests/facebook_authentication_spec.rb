@@ -9,7 +9,7 @@ describe "UserOmniauthCredentials" do
   it "should sign up user for first time with facebook account" do
     signin_with_facebook
     page.find('.alert-notice').should have_content('Welcome Facebook test user!')
-    URI.parse(current_url).request_uri.should eq(root_path(welcome_tour: true))
+    URI.parse(current_url).request_uri.should eq(home_path(welcome_tour: true))
   end
 
   it "should login (already signed up user) user with facebook account" do
@@ -17,7 +17,7 @@ describe "UserOmniauthCredentials" do
     click_on "Sign out"
     signin_with_facebook
     page.find('.alert-notice').should have_content('Welcome back Facebook test user!')
-    URI.parse(current_url).request_uri.should eq(root_path)
+    URI.parse(current_url).request_uri.should eq(home_path)
   end
 
   it "should have the correct values in the users table" do
@@ -46,7 +46,7 @@ describe "UserOmniauthCredentials" do
     click_link "facebook_signin"
 
     page.find('.alert-notice').should have_content('Welcome Dick Smithberg!')
-    URI.parse(current_url).request_uri.should eq(root_path(welcome_tour: true))
+    URI.parse(current_url).request_uri.should eq(home_path(welcome_tour: true))
   end
 
   it "should save all facebook friends when a user signs up" do
@@ -66,7 +66,7 @@ describe "UserOmniauthCredentials" do
     visit login_path
     mock_facebook_auth_hash
     click_link "facebook_signin"
-    current_path.should eq(root_path)
+    current_path.should eq(home_path)
     click_link "Sign out"
     current_path.should eq(login_path)
     user = User.find_by_username "Facebook test user"

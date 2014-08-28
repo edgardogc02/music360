@@ -30,7 +30,7 @@ describe "PagesHome" do
 
   context "user not signed in" do
     it "should not display home page" do
-      visit root_path
+      visit home_path
       current_path.should eq(login_path)
     end
   end

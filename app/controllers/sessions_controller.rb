@@ -18,7 +18,7 @@ class SessionsController < ApplicationController
         format.html do
           authenticate_user(user)
           flash[:notice] = "Welcome back, #{user.username}!"
-          redirect_to root_path
+          redirect_to home_path
         end
 			  format.json do
 			    render :json => {
@@ -33,7 +33,7 @@ class SessionsController < ApplicationController
            render js: "window.location = '#{apps_path}'"
           else
             flash[:notice] = "Welcome back, #{user.username}!"
-            render js: "window.location = '#{root_path}'"
+            render js: "window.location = '#{home_path}'"
           end
         end
 			else

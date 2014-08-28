@@ -57,13 +57,13 @@ class ApplicationController < ActionController::Base
   end
 
   def authorize
-    session[:redirect] = root_path
+    session[:redirect] = home_path
     redirect_to login_path, :alert => "You have to sign in to view this page" unless signed_in?
   end
 
   def not_authorized
     if signed_in?
-      redirect_to root_path
+      redirect_to home_path
     end
   end
 
@@ -73,7 +73,7 @@ class ApplicationController < ActionController::Base
 
   def authenticate_admin_user!
     if !signed_in? or !current_user.admin?
-      redirect_to root_path
+      redirect_to home_path
     end
   end # end authenticate_admin_user! action
 
