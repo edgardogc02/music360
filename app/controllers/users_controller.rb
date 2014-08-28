@@ -41,7 +41,7 @@ class UsersController < ApplicationController
 	  if user_authentication.authenticated?
 	    signin_user(@user)
 	    flash[:notice] = "Hi #{@user.username}!"
-	    redirect_to root_path welcome_msg: true
+	    redirect_to home_path welcome_msg: true
 	  else
 	    flash.now[:warning] = "Check the errors below and try again"
 	    render "new"
@@ -73,6 +73,6 @@ class UsersController < ApplicationController
 	end
 
   def check_security
-    redirect_to root_path unless current_user == @user
+    redirect_to home_path unless current_user == @user
   end
 end

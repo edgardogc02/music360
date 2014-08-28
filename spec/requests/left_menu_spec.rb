@@ -9,9 +9,9 @@ describe "LeftMenu" do
   describe "user is signed in" do
     it "should sign up with correct credentials" do
       user = login
-      visit root_path
+      visit home_path
 
-      page.should have_link "Home", root_path
+      page.should have_link "Home", home_path
       page.should have_link "People", people_path
       page.should have_link "Songs", songs_path
       page.should have_link "Challenges", challenges_path
@@ -24,9 +24,9 @@ describe "LeftMenu" do
 
   describe "user is not signed in" do
     it "should not display left menu links" do
-      visit root_path
+      visit home_path
       current_path.should eq(login_path)
-      page.should_not have_link "Home", root_path
+      page.should_not have_link "Home", home_path
     end
   end
 

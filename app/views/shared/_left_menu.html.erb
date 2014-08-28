@@ -10,8 +10,8 @@
 <div class="hidden-sm hidden-xs">
 	<nav class="bs-docs-sidebar">
 		<ul id="sidebar" class="nav nav-stacked">
-			<li class="<%= 'active' if current_page?(root_path) %>">
-				<a href="<%= root_path %>" id="home"><i class='glyphicon glyphicon-home'></i> Home</a>
+			<li class="<%= 'active' if current_page?(home_path) %>">
+				<a href="<%= home_path %>" id="home"><i class='glyphicon glyphicon-home'></i> Home</a>
 			</li>
 			<li class="<%= 'active' if current_page?(people_path) or current_page?(artists_path) or current_page?(list_people_path) %>">
 				<a href="<%= people_path %>" id="people"><i class='glyphicon glyphicon-user'></i> People</a>

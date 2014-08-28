@@ -20,7 +20,7 @@ describe "Sessions" do
       click_on 'sign_in'
 
       page.find('.alert-notice').should have_content('Welcome back, testuser!')
-      current_path.should eq(root_path)
+      current_path.should eq(home_path)
       page.should have_content("testuser")
     end
 
@@ -54,7 +54,7 @@ describe "Sessions" do
     it "should not be able to login" do
       visit login_path
 
-      current_path.should eq(root_path)
+      current_path.should eq(home_path)
     end
 
     it "should sign out successfully" do

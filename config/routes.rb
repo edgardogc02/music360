@@ -1,7 +1,7 @@
 InstrumentchampPrototype::Application.routes.draw do
 
   ActiveAdmin.routes(self)
-  root to: "pages#home"
+  root to: "sessions#new"
 
   # redirect old pages cached from google
 
@@ -93,6 +93,7 @@ InstrumentchampPrototype::Application.routes.draw do
   end
 
   get 'welcome' => "welcome#index", as: :welcome
+  get 'home' => "pages#home", as: :home
 
   get 'signup' => "users#new", as: :signup
 

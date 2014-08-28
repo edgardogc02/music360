@@ -2,6 +2,8 @@ var login_view;
 var sign_up_view;
 var login_view_footer;
 var sign_up_view_footer;
+var href_signin;
+var href_login;
 
 var ready;
 ready = function() {
@@ -9,6 +11,9 @@ ready = function() {
   sign_up_view = $(".sign-up-view");
   login_view_footer = $(".login-view-footer");
   sign_up_view_footer = $(".sign-up-view-footer");
+
+  href_signin = $('#facebook_signin').attr("href");
+  href_login = $('#facebook_signin_4').attr("href");
 
   $(".authentication-btn").click(function(e) {
     e.preventDefault();
@@ -38,8 +43,12 @@ function show_modal_authentication(action_prm, modal_type_prm) {
   $("#SignIn .modal-body #action_modal").val(action);
 
   if (action == "download"){
-    show_sign_up();
+		$('#facebook_signin_4').attr("href", href_signin+"?new_session_action=download");
+		$('#facebook_signin').attr("href", href_login+"?new_session_action=download");
+		show_sign_up();
   }else{
+  	$('#facebook_signin_4').attr("href", href_signin);
+		$('#facebook_signin').attr("href", href_login);
     show_login();
   }
   if (modal_type == true){

@@ -14,7 +14,7 @@ module LoginMacros
       fill_in 'password', with: user.password
     end
     click_on 'sign_in'
-    current_path.should eq(root_path)
+    current_path.should eq(home_path)
     user
   end
 

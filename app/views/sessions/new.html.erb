@@ -23,7 +23,7 @@
 
     <div class="pull-right nav-helper-top-landing hidden-sm hidden-xs">
       <a href="<%= help_path %>" class="btn btn-link" target="_blank">Help</a>
-      <a href="#" class="btn btn-link authentication-btn" data-id="login">Log in</a>
+      <a href="#" class="btn btn-link authentication-btn login-modal-btn" data-id="login">Log in</a>
       <a href="#" class="btn btn-primary btn-lg authentication-btn download-modal-btn" data-id="download">Download</a>
     </div>
 
@@ -40,7 +40,7 @@
       	</li>
       	<li class="spacer-sm"><hr class="no-padding no-margin" /></li>
       	<li><a href="<%= help_path %>" class="btn btn-link" target="_blank">Help</a></li>
-	      <li><a href="#" class="btn btn-link authentication-btn" data-id="login">Log in</a></li>
+	      <li><a href="#" class="btn btn-link authentication-btn login-modal-btn" data-id="login">Log in</a></li>
 	      <li><a href="#" class="btn btn-primary btn-lg authentication-btn download-modal-btn" data-id="download">Download</a></li>
       </ul>
     </div>
@@ -138,3 +138,11 @@
 </section>
 
 <%= render 'shared/footer' %>
+
+
+
+<% flash.each do |name, msg| %>
+  <%= content_tag :div, class: "hidden" do %>
+    <%= msg %>
+  <% end %>
+<% end %>

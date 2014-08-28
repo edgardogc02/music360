@@ -9,7 +9,7 @@ describe "Users" do
   describe "user not signed in" do
     it "should sign up with correct credentials" do
       signup('testuser', 'testuser@test.com', 'password')
-      current_path.should eq(root_path)
+      current_path.should eq(home_path)
       page.find('.alert-notice').should have_content('Hi testuser!')
       page.should have_content('testuser')
     end
@@ -48,7 +48,7 @@ describe "Users" do
 
       click_on 'sign_in'
 
-      current_path.should eq(root_path)
+      current_path.should eq(home_path)
 
       visit signup_path
 
@@ -274,7 +274,7 @@ describe "Users" do
     end
 
     it "should have a linked username in the left side bar" do
-      visit root_path
+      visit home_path
       page.should have_link @user.username, href: profile_accounts_path
     end
 
@@ -357,26 +357,26 @@ describe "Users" do
     it "should not be able to edit other user profile" do
       user = create(:user)
       visit edit_person_path(user)
-      current_path.should eq(root_path)
+      current_path.should eq(home_path)
     end
 
     it "should not be able to delete other user profile" do
       user = create(:user)
       page.driver.submit :delete, person_path(user), {}
-      current_path.should eq(root_path)
+      current_path.should eq(home_path)
       user.should_not be_deleted
     end
 
     it "should not be able to update other user profile" do
       user = create(:user)
       page.driver.submit :patch, person_path(user), {}
-      current_path.should eq(root_path)
+      current_path.should eq(home_path)
     end
 
     it "should not be able to visit upload profile image for other user" do
       user = create(:user)
       visit upload_profile_image_person_path(user)
-      current_path.should eq(root_path)
+      current_path.should eq(home_path)
     end
   end
 
