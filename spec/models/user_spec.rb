@@ -300,6 +300,14 @@ describe User do
         user.can_buy_song?(paid_song).should be_true
       end
     end
+
+    it 'Should assign xp points to user' do
+      user = create(:user, xp: 90)
+
+      user.assign_xp_points(100)
+      user.xp.should eq(190)
+    end
+
   end
 
   def build_request

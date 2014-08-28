@@ -15,5 +15,10 @@ class SongScore < ActiveRecord::Base
   belongs_to :challenge
 
   scope :best_scores, -> { select('*, MAX(score) AS max_score').group('user_id, instrument').order('max_score DESC').includes(:user) }
+  scope :by_score, -> { order('score DESC') }
+
+  def self.highest_score
+    self.by_score.first
+  end
 
 end

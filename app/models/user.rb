@@ -208,6 +208,11 @@ class User < ActiveRecord::Base
     end
   end
 
+  def assign_xp_points(points)
+    self.xp = self.xp + points
+    save
+  end
+
 	private
 
 	def check_password_lenght

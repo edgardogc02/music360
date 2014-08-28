@@ -23,7 +23,7 @@ class Challenge < ActiveRecord::Base
   belongs_to :group
 
   has_many :song_scores
-  has_many :users_already_played, through: :songscores, source: :user
+  has_many :users_already_played, through: :song_scores, source: :user
 
   before_create :fill_in_extra_fields
 
@@ -52,6 +52,18 @@ class Challenge < ActiveRecord::Base
 
   def desktop_app_uri
     "ic:challenge=#{self.id}"
+  end
+
+  def users_already_played_counter
+    @users_already_played_counter ||= users_already_played.count
+  end
+
+  def group_winner
+    song_scores.highest_score.user
+  end
+
+  def has_group_winner?
+    !song_scores.highest_score.nil?
   end
 
   def has_challenger_played?

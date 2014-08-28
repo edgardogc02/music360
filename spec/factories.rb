@@ -7,6 +7,7 @@ FactoryGirl.define do
     skip_emails true
     created_by "localhost"
     challenges_count 0
+    xp 0
 
     factory :admin do
       admin 1

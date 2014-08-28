@@ -32,6 +32,24 @@ describe SongScore do
       SongScore.best_scores.map{|r| r.max_score }.should eq([2200, 90, 80, 10])
       SongScore.best_scores.map{|r| r.user_id }.should eq([user.id, user1.id, user1.id, user.id])
     end
+
+    it 'should order by score' do
+      song_score = create(:song_score, score: 1000)
+      song_score1 = create(:song_score, score: 100)
+      song_score2 = create(:song_score, score: 500)
+
+      SongScore.by_score.should eq([song_score, song_score2, song_score1])
+    end
+  end
+
+  context 'method' do
+    it 'should return the highest score' do
+      song_score = create(:song_score, score: 1000)
+      song_score1 = create(:song_score, score: 100)
+      song_score2 = create(:song_score, score: 500)
+
+      SongScore.highest_score.should eq(song_score)
+    end
   end
 
 end

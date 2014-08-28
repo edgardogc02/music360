@@ -405,6 +405,44 @@ describe Challenge do
       challenge.open.should_not be_true
     end
 
+    it 'should return the total players that already played a challenge' do
+      challenge = create(:challenge)
+      create(:song_score)
+      3.times.inject([]) { |res, i| res << create(:song_score, challenge: challenge) }
+
+      challenge.users_already_played_counter.should eq(3)
+    end
+
+    it 'should return the group challenge winner' do
+      challenge = create(:challenge)
+      winner = create(:user)
+      user1 = create(:user)
+      user2 = create(:user)
+      user3 = create(:user)
+
+      create(:song_score, challenge: challenge, user: winner, score: 1000)
+      create(:song_score, challenge: challenge, user: user1, score: 800)
+      create(:song_score, challenge: challenge, user: user2, score: 700)
+      create(:song_score, challenge: challenge, user: user3, score: 600)
+
+      challenge.group_winner.should eq(winner)
+    end
+
+    it 'should return has_group_winner?' do
+      challenge = create(:challenge)
+      winner = create(:user)
+      user1 = create(:user)
+
+      create(:song_score, challenge: challenge, user: winner, score: 1000)
+      create(:song_score, challenge: challenge, user: user1, score: 100)
+
+      challenge.has_group_winner?.should be_true
+
+      challenge1 = create(:challenge)
+
+      challenge1.has_group_winner?.should_not be_true
+    end
+
   end
 
 end
