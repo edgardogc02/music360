@@ -32,6 +32,8 @@ en:
       subject: Your group membership was rejected
     group_challenge_created:
       subject: New group challenge created
+    group_challenge_final_position:
+      subject: Group challenge final positions
   activerecord:
     errors:
       models:

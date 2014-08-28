@@ -114,7 +114,20 @@ describe "GroupChallengeClosure" do
     end
 
     it 'notify_users_about_results' do
-      pending
+      group_challenge = create(:group_challenge)
+      song_score1 = create(:song_score, challenge: group_challenge, score: 100)
+      song_score2 = create(:song_score, challenge: group_challenge, score: 10)
+      song_score3 = create(:song_score, challenge: group_challenge, score: 890)
+
+      GroupChallengeClosure.new(group_challenge).close
+
+      ActionMailer::Base.deliveries.first.to.should include(song_score3.user.email)
+      ActionMailer::Base.deliveries.second.to.should include(song_score1.user.email)
+      ActionMailer::Base.deliveries.last.to.should include(song_score2.user.email)
+
+      ActionMailer::Base.deliveries.first.body.raw_source.should include("You got #{song_score3.score} points and finished nr. 1")
+      ActionMailer::Base.deliveries.second.body.raw_source.should include("You got #{song_score1.score} points and finished nr. 2")
+      ActionMailer::Base.deliveries.last.body.raw_source.should include("You got #{song_score2.score} points and finished nr. 3")
     end
   end
 

@@ -101,7 +101,9 @@ class GroupChallengeClosure
   end
 
   def notify_users_about_results
-
+    challenge.song_scores.by_score.each_with_index do |song_score, i|
+      EmailNotifier.group_challenge_final_position(song_score, i+1).deliver
+    end
   end
 
 end

@@ -1,0 +1,38 @@
+<table class="email_container" width="600px;">
+	<tr>
+		<td>
+			<%= render 'email_notifier/header' %>
+		</td>
+	</tr>
+</table>
+<table class="email_container">
+	<tr>
+		<td>
+			<div class="email_content" style="font-family: arial; font-size: 12px; color: #333; padding-left: 20px;">
+				<p style="font-size: 16px;">
+			    Hi <strong><%= @user.username %></strong>,
+			  </p>
+
+				<p>The group challenge <%= link_to @challenge.song.title, group_challenge_url(@challenge.group, @challenge, host: @user.created_by) %> on InstrumentChamp has finished.</p>
+
+        <p>
+          You got <%= @song_score.score %> points and finished nr. <%= @position %>
+          <br />
+          <%= link_to "See leaderboard", group_challenge_url(group_id: @challenge.group_id, id: @challenge.id, host: @user.created_by), {style: "background: #45B9B6; color: #FFF; padding: 10px 20px; font-size: 14px; border-radius: 5px; text-decoration: none;"}  %>
+        </p>
+
+				<p>
+				  Kind regards, <br />
+				  The instrumentchamp team.
+			  </p>
+			</div>
+		</td>
+	</tr>
+</table>
+<table class="email_container">
+	<tr>
+		<td class="email_footer">
+			<%= render 'email_notifier/footer' %>
+		</td>
+	</tr>
+</table>

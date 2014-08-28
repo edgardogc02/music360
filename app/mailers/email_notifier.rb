@@ -100,4 +100,13 @@ class EmailNotifier < ActionMailer::Base
     mail to: @user.email
   end
 
+  def group_challenge_final_position(song_score, position)
+    @user = song_score.user
+    @song_score = song_score
+    @challenge = song_score.challenge
+    @position = position
+
+    mail to: @user.email
+  end
+
 end
