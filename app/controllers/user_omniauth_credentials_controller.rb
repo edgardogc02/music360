@@ -11,7 +11,7 @@ class UserOmniauthCredentialsController < ApplicationController
       if user_authentication.authenticated?
         signin_user(user)
         if user.just_signup?
-          flash[:notice] = ("Welcome #{user.username}! <br /> Please check your email for username and password for client login.").html_safe
+          flash[:notice] = "Welcome #{user.username}!"
           redirect_to root_path welcome_tour: true
         else
           flash[:notice] = "Welcome back #{user.username}!"
