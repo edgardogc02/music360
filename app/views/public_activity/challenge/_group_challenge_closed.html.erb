@@ -1,0 +1,16 @@
+The challenge <%= link_to activity.trackable.song.title, group_challenge_path(activity.trackable.group, activity.trackable) %> has finished
+
+<% activity.trackable.song_scores.highest_scores(3).each do |high_score| %>
+  <div>
+    <%= link_to high_score.user.username, person_path(high_score.user) %> scored
+    <%= high_score.score %> points on <%= high_score.instrument.name %>
+
+    <% if high_score.user == activity.trackable.group_winner %>
+      <span class='label label-success'>Winner</span>
+    <% end %>
+  </div>
+<% end %>
+
+<div class="small text-muted">
+  <%= time_ago_in_words(activity.created_at) %> ago
+</div>

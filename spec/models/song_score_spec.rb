@@ -40,6 +40,15 @@ describe SongScore do
 
       SongScore.by_score.should eq([song_score, song_score2, song_score1])
     end
+
+    it 'should return the highest scores limited by limit' do
+      challenge = create(:challenge)
+      song_score = create(:song_score, challenge: challenge, score: 10)
+      song_score1 = create(:song_score, challenge: challenge, score: 5)
+      song_score2 = create(:song_score, challenge: challenge, score: 7)
+
+      SongScore.highest_scores(2).should eq([song_score, song_score2])
+    end
   end
 
   context 'method' do

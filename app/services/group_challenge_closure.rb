@@ -11,6 +11,7 @@ class GroupChallengeClosure
     assign_extra_xp_points_to_challenge_creator
     notify_users_about_results
     challenge.close
+    save_activity
   end
 
   def ammount_of_users_for_points_level_1
@@ -89,6 +90,10 @@ class GroupChallengeClosure
         challenge.group_winner.assign_xp_points 2000
       end
     end
+  end
+
+  def save_activity
+    challenge.create_activity :group_challenge_closed, group_id: challenge.group.id, challenge_id: challenge.id
   end
 
   def assign_extra_xp_points_to_challenge_creator

@@ -101,6 +101,18 @@ describe "GroupChallengeClosure" do
       end
     end
 
+    context 'save activity feed' do
+      it 'should save an activity feed that the group challenge has finished' do
+        group_challenge = create(:group_challenge)
+        GroupChallengeClosure.new(group_challenge).close
+
+        activity = PublicActivity::Activity.where(challenge_id: group_challenge.id).order('created_at DESC').last
+
+        activity.trackable.should eq(group_challenge)
+        activity.key.should eq('challenge.group_challenge_closed')
+      end
+    end
+
     it 'notify_users_about_results' do
       pending
     end
