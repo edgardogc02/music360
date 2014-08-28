@@ -45,6 +45,7 @@ class Challenge < ActiveRecord::Base
   scope :by_popularity, -> { joins(:song_scores).group('challenge_id').order('COUNT(*) DESC') }
   scope :open, -> { where(open: true) }
   scope :only_groups, -> { where('group_id > 0') }
+  scope :closed, -> { where(open: false) }
 
 	def cover_url
 		song.cover_url

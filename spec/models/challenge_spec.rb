@@ -173,6 +173,17 @@ describe Challenge do
       Challenge.finished.should eq([challenge4, challenge5])
     end
 
+    it "should return only the closed challenges" do
+      challenge1 = create(:challenge)
+      challenge2 = create(:challenge)
+      challenge3 = create(:challenge)
+
+      challenge2.open = false
+      challenge2.save
+
+      Challenge.closed.should eq([challenge2])
+    end
+
     it "should return pending challenges" do
       challenge1 = create(:challenge)
       challenge2 = create(:challenge, score_u2: 100)
