@@ -21,7 +21,7 @@ class GroupChallengeDecorator < ChallengeDecorator
   protected
 
     def display_start_challenge_to_user?(user)
-      user and UserGroupsManager.new(user).belongs_to_group?(model.group)
+      user and UserGroupsManager.new(user).belongs_to_group?(model.group) and challenge.open
     end
 
 end
