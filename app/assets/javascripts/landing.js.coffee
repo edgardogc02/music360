@@ -19,6 +19,13 @@ ready = ->
     , 1700, "easeOutExpo"
     event.preventDefault()
     return
+	
+	$(window).scroll ->
+  if $(".navbar").offset().top > 50
+    $(".navbar-custom-links").addClass "top-nav-collapse"
+  else
+    $(".navbar-custom-links").removeClass "top-nav-collapse"
+  return
 
 $(document).ready(ready)
 $(document).on('page:load', ready)

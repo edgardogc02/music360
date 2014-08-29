@@ -17,8 +17,12 @@
 
         <p>
           To view the challenge, you can click on the following link:
-          <br />
-          <%= link_to "View challenge", group_challenge_url(group_id: @challenge.group_id, id: @challenge.id, host: @user.created_by), {style: "background: #45B9B6; color: #FFF; padding: 10px 20px; font-size: 14px; border-radius: 5px; text-decoration: none;"}  %>
+        </p>
+
+        <p>
+        	<br />
+        	<%= link_to "View challenge", group_challenge_url(group_id: @challenge.group_id, id: @challenge.id, host: @user.created_by), {style: "background: #45B9B6; color: #FFF; padding: 10px 20px; font-size: 14px; border-radius: 5px; text-decoration: none;"}  %>
+        	<br /><br />
         </p>
 
 				<p>
