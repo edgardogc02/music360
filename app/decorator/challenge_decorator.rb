@@ -71,7 +71,7 @@ class ChallengeDecorator < Draper::Decorator
   end
 
   def status
-    if display_results?
+    if has_challenger_played? and has_challenged_played?
       "Finished"
     else
       "Pending"
@@ -83,7 +83,7 @@ class ChallengeDecorator < Draper::Decorator
       if model.challenger_won?
         h.concat "Winner: "
         h.link_to model.challenger.username, h.person_path(model.challenger)
-      elsif
+      elsif model.challenged_won?
         h.concat "Winner: "
         h.link_to model.challenged.username, h.person_path(model.challenged)
       end
