@@ -28,12 +28,12 @@
 
 	<div class="col-lg-4">
 		<%= render 'shared/header_page', title: 'Top Songs', sub_header: true, view_more: 'View more', view_more_path: list_songs_path(view: "top") %>
-				
+
 		<table width="100%" class="datagrid">
 			<% @top_songs.each do |song| %>
 				<tr class="<%= cycle("odd", "even") %>">
 					<td><%= link_to song.title, song_path(song), class: 'btn-secondary-color' %></td>
-					<td><%= song.display_rating %></td>
+					<td class="rating-value"><%= song.display_rating %></td>
 					<td align="right">
 						<%= link_to song.play_url, class: "btn btn-primary btn-sm" do %>
 							<i class="glyphicon glyphicon-play"></i> Play
@@ -43,10 +43,10 @@
 			<% end %>
 		</table>
 	</div>
-	
+
 	<div class="col-lg-4">
 		<%= render 'shared/header_page', title: 'Top Artists', sub_header: true, view_more: 'View more', view_more_path: top_list_artists_path %>
-		
+
 		<table width="100%" class="datagrid">
 			<% @top_artist.each do |artist| %>
 				<tr class="<%= cycle("odd", "even") %>">
@@ -58,10 +58,10 @@
 			<% end %>
 		</table>
 	</div>
-	
-	<div class="col-lg-4">				
+
+	<div class="col-lg-4">
 		<%= render 'shared/header_page', title: 'Top Users', sub_header: true, view_more: 'View more', view_more_path: list_people_path(view: "top") %>
-		
+
 		<table width="100%" class="datagrid">
 			<% @top_users.each do |user| %>
 				<tr class="<%= cycle("odd", "even") %>">

@@ -11,6 +11,10 @@
 			<%= image_tag @song.cover_url, alt: @song.title, class: "thumbnail" %>
 		</p>
 		<p>
+			<div class="spacer-sm">By: <%= link_to @song.artist.title, @song.artist %></div>
+			Writer: <%= @song.writer %>
+		</p>
+		<p>
 			<%= link_to @song.play_url, class: "btn btn-primary" do %>
 				<i class="glyphicon glyphicon-play"></i> Play
 			<% end %>
