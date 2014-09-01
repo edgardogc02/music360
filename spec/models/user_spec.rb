@@ -146,6 +146,23 @@ describe User do
   end
 
   context "Methods" do
+
+    it "should return if a user likes a post" do
+      user = create(:user)
+      group_post = create(:group_post)
+
+      user.likes?(group_post).should_not be_true
+
+      create(:group_post_like, user: user, likeable: group_post)
+
+      user.likes?(group_post).should be_true
+
+      challenge_post = create(:challenge_post)
+      create(:challenge_post_like, user: user, likeable: challenge_post)
+
+      user.likes?(challenge_post).should be_true
+    end
+
     it "should create new user from omniauth facebook credentials" do
       expect { UserAuthentication.new(build_request).authenticated? }.to change{User.count}.by(1)
     end

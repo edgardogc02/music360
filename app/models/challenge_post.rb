@@ -14,7 +14,7 @@ class ChallengePost < ActiveRecord::Base
 
   public
 
-  def likes?(user)
+  def liked_by?(user)
     likers.include?(user)
   end
 

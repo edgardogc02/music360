@@ -85,7 +85,7 @@ class User < ActiveRecord::Base
   scope :by_xp, -> { order('xp DESC') }
 
   def likes?(likeable)
-    likeable.likes?(self)
+    likeable.liked_by?(self)
   end
 
 	def to_s
