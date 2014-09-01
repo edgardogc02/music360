@@ -18,6 +18,10 @@ describe GroupPost do
     it "should belongs to user" do
       should belong_to(:publisher).class_name('User').with_foreign_key("publisher_id")
     end
+
+    it 'should have many likes' do
+      should have_many(:likes).class_name('PostLike')
+    end
   end
 
 end

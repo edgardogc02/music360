@@ -34,7 +34,9 @@ InstrumentchampPrototype::Application.routes.draw do
   resources :challenges do
     get 'yours', on: :collection
     get 'list', on: :collection, as: :list
-    resources :challenge_posts
+    resources :challenge_posts do
+      resources :post_likes
+    end
   end
 
   constraints id: /[\w\W*]+/ do
@@ -68,7 +70,9 @@ InstrumentchampPrototype::Application.routes.draw do
     resources :group_invitations do
       get 'pending_approval', on: :collection
     end
-    resources :group_posts
+    resources :group_posts do
+      resources :post_likes
+    end
     resources :group_activities
     resources :challenges, controller: "group_challenges", only: [:new, :create, :show]
 		get 'list', on: :collection, as: :list

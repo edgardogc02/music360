@@ -65,6 +65,8 @@ class User < ActiveRecord::Base
 
   belongs_to :instrument
 
+  has_many :post_likes
+
   before_create { generate_token(:auth_token) }
 
 #  before_create :fill_in_extra_fields
@@ -81,6 +83,10 @@ class User < ActiveRecord::Base
   scope :order_by_challenges_count, -> { order('challenges_count DESC') }
   scope :premium, -> { where(premium: true) }
   scope :by_xp, -> { order('xp DESC') }
+
+  def likes?(likeable)
+    likeable.likes?(self)
+  end
 
 	def to_s
 		username

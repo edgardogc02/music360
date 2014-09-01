@@ -9,4 +9,13 @@ class GroupPost < ActiveRecord::Base
   belongs_to :group
   belongs_to :publisher, class_name: 'User', foreign_key: 'publisher_id'
 
+  has_many :likes, class_name: 'PostLike', as: :likeable
+  has_many :likers, through: :likes, source: :user
+
+  public
+
+  def likes?(user)
+    likers.include?(user)
+  end
+
 end

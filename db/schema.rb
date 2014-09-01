@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140826132316) do
+ActiveRecord::Schema.define(version: 20140901110231) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -180,6 +180,14 @@ ActiveRecord::Schema.define(version: 20140826132316) do
     t.string   "paymill_token"
     t.string   "currency"
     t.integer  "payment_method_id"
+  end
+
+  create_table "post_likes", force: true do |t|
+    t.integer  "likeable_id"
+    t.string   "likeable_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   create_table "premium_plans", force: true do |t|
