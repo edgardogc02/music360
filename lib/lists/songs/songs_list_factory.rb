@@ -3,25 +3,25 @@ class SongsListFactory
   def initialize(current_user, params)
     if params[:view] == "top"
       if params[:group_id]
-        @songs_list = TopGroupChallengeSongsList.new(params[:page])
+        @songs_list = TopGroupChallengeSongsList.new(params)
       else
         @songs_list = TopSongsList.new(params)
       end
     elsif params[:view] == "my_songs"
       if params[:group_id]
-        @songs_list = MyGroupChallengeSongsList.new(current_user)
+        @songs_list = MyGroupChallengeSongsList.new(current_user, params)
       else
         @songs_list = MySongsList.new(current_user, params)
       end
     elsif params[:view] == "most_popular"
       if params[:group_id]
-        @songs_list = MostPopularGroupChallengeSongsList.new(params[:page])
+        @songs_list = MostPopularGroupChallengeSongsList.new(params)
       else
         @songs_list = MostPopularSongsList.new(params)
       end
     elsif params[:view] == "new"
       if params[:group_id]
-        @songs_list = NewGroupChallengeSongsList.new(params[:page])
+        @songs_list = NewGroupChallengeSongsList.new(params)
       else
         @songs_list = NewSongsList.new(params)
       end

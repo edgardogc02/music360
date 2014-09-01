@@ -6,7 +6,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  helper_method :current_user, :signed_in?, :test_domain_name?, :redirect_to_new_challenge?, :display_premium?
+  helper_method :current_user, :signed_in?, :test_domain_name?, :redirect_to_new_challenge?
 
   def signin_user(user, permanent=false)
     if permanent
@@ -40,10 +40,6 @@ class ApplicationController < ActionController::Base
     groupies_step = OnboardingProcessStep.new("Groupies", user_groupies_path, current_step_name == "Groupies")
 
     @steps = OnboardingProcessSteps.new([welcome_step, instrument_step, groupies_step])
-  end
-
-  def display_premium?
-    Rails.env.development? or (Rails.env.production? and test_domain_name?)
   end
 
   private

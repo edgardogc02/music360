@@ -1,10 +1,10 @@
 class SearchSongsFactory
 
-  def initialize(params, display_premium)
+  def initialize(params)
     if !params[:group_id].blank?
-      @songs_list = SearchGroupChallengeSongsList.new(display_premium, params[:title], params[:page])
+      @songs_list = SearchGroupChallengeSongsList.new(params[:title], params[:page])
     else
-      @songs_list = SearchSongsList.new(display_premium, params[:title], params[:page])
+      @songs_list = SearchSongsList.new(params[:title], params[:page])
     end
   end
 

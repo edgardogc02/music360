@@ -10,4 +10,8 @@ class ResumedMyGroupChallengeSongsList < ResumedMySongsList
     @purchased_decorated ||= SongGroupChallengeDecorator.decorate_collection(purchased)
   end
 
+  def free_songs_decorated
+    @free_songs_decorated ||= SongGroupChallengeDecorator.decorate_collection(free_songs)
+  end
+
 end

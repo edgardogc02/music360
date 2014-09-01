@@ -5,9 +5,9 @@ class SongsController < ApplicationController
 
 	def index
     if params[:title]
-      @searched_songs = SearchSongsFactory.new(params, display_premium?).songs_list
+      @searched_songs = SearchSongsFactory.new(params).songs_list
     else
-      @songs = ResumedPremiumSongsFactory.new(params, display_premium?).songs_list
+      @songs = ResumedPremiumSongsFactory.new(params).songs_list
       @most_popular_songs = ResumedMostPopularSongsFactory.new(params).songs_list
       @my_songs = ResumedMySongsFactory.new(params, current_user).songs_list
       @new_songs = ResumedNewSongsFactory.new(params).songs_list

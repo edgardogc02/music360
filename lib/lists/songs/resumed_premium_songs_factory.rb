@@ -1,6 +1,6 @@
 class ResumedPremiumSongsFactory
 
-  def initialize(params, display_premium)
+  def initialize(params)
     if !params[:group_id].blank?
       @songs_list = ResumedPremiumGroupChallengeSongsList.new
     else
