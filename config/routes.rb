@@ -18,6 +18,8 @@ InstrumentchampPrototype::Application.routes.draw do
   get 'GameManual.pdf', to: redirect("https://www.instrumentchamp.com")
   get 'launchsong', to: redirect("https://www.instrumentchamp.com")
   get 'index.html', to: redirect("https://www.instrumentchamp.com")
+  get 'lv.php', to: redirect("https://www.instrumentchamp.com/download")
+  get 'apps', to: redirect("https://www.instrumentchamp.com/download")
 
   resources :artists do
     resources :songs do
