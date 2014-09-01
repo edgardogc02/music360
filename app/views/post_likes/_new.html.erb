@@ -1,0 +1,7 @@
+<%= content_tag :div, id: "like_" + likeable.class.to_s.underscore + "_" + likeable.id.to_s do %>
+  <% unless current_user.likes?(likeable) %>
+    <%= link_to 'Like', [likeable_parent, likeable, PostLike.new], { remote: true, method: :post } %>
+  <% else %>
+    <%= link_to 'Unlike', [likeable_parent, likeable, PostLike.by_user_and_likeable(current_user, likeable)], { remote: true, method: :delete } %>
+  <% end %>
+<% end %>

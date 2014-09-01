@@ -174,12 +174,28 @@ FactoryGirl.define do
     sequence(:message) { |n| "Message nr #{n}"}
   end
 
+  factory :challenge_post do
+    challenge
+    publisher
+    sequence(:message) { |n| "Message nr #{n}"}
+  end
+
   factory :song_score do
     song
     instrument
     user
     score 1
     challenge
+  end
+
+  factory :group_post_like, class: PostLike do
+    user
+    association :likeable, factory: :group_post
+  end
+
+  factory :challenge_post_like, class: PostLike do
+    user
+    association :likeable, factory: :challenge_post
   end
 
 end

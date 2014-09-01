@@ -9,4 +9,13 @@ class ChallengePost < ActiveRecord::Base
   belongs_to :challenge
   belongs_to :publisher, class_name: 'User', foreign_key: 'publisher_id'
 
+  has_many :likes, class_name: 'PostLike', as: :likeable
+  has_many :likers, through: :likes, source: :user
+
+  public
+
+  def liked_by?(user)
+    likers.include?(user)
+  end
+
 end
