@@ -13,8 +13,4 @@
   </li>
 </ul>
 
-<% unless current_user.likes?(challenge_post) %>
-  <%= link_to 'Like', [challenge_post.challenge, challenge_post, PostLike.new], { method: :post } %>
-<% else %>
-  <%= link_to 'Unlike', [challenge_post.challenge, challenge_post, PostLike.by_user_and_likeable(current_user, challenge_post)], { method: :delete } %>
-<% end %>
+<%= render 'post_likes/new', likeable: challenge_post, likeable_parent: challenge_post.challenge %>

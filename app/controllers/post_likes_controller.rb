@@ -22,6 +22,16 @@ class PostLikesController < ApplicationController
           redirect_to [@likeable.challenge.group, @likeable.challenge]
         end
       end
+      format.js do
+        if post_like.save
+          if @likeable.kind_of?(GroupPost)
+            @likeable_parent = @likeable.group
+          else
+            @likeable_parent = @likeable.challenge
+          end
+          render 'create.js.erb'
+        end
+      end
     end
   end
 
@@ -29,11 +39,23 @@ class PostLikesController < ApplicationController
     @post_like = PostLike.find(params[:id])
     @post_like.destroy
 
-    flash[:warning] = "You don't like this post anymore"
-    if @likeable.kind_of?(GroupPost)
-      redirect_to @likeable.group
-    else
-      redirect_to [@likeable.challenge.group, @likeable.challenge]
+    respond_to do |format|
+      format.html do
+        flash[:warning] = "You don't like this post anymore"
+        if @likeable.kind_of?(GroupPost)
+          redirect_to @likeable.group
+        else
+          redirect_to [@likeable.challenge.group, @likeable.challenge]
+        end
+      end
+      format.js do
+        if @likeable.kind_of?(GroupPost)
+          @likeable_parent = @likeable.group
+        else
+          @likeable_parent = @likeable.challenge
+        end
+        render 'create.js.erb'
+      end
     end
   end
 

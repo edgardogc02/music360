@@ -13,8 +13,4 @@
   </li>
 </ul>
 
-<% unless current_user.likes?(group_post) %>
-  <%= link_to 'Like', [group_post.group, group_post, PostLike.new], { method: :post } %>
-<% else %>
-  <%= link_to 'Unlike', [group_post.group, group_post, PostLike.by_user_and_likeable(current_user, group_post)], { method: :delete } %>
-<% end %>
+<%= render 'post_likes/new', likeable: group_post, likeable_parent: group_post.group %>
