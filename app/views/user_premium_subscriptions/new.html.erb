@@ -3,31 +3,6 @@
 <div class="row">
 	<div class="col-md-6">
 		<div class="well text-center well-plan">
-    	<div class="plan-title_">
-    		<h2>Free</h2>
-    	</div>
-      <div class="plan-descripction">
-      	<p>
-					Learn to play your favorite instrument <br />
-					Challenge your friends online <br />
-					Free access to basic songs
-      	</p>
-      	<p>
-      		<%= image_tag(asset_path('plan_free_icons.png')) %>
-				</p>
-				<p>
-      		Ad-supported
-      	</p>
-        <div>
-          <a href="<%= apps_path(auto_download: true) %>" data-no-turbolink='true' class="btn btn-primary btn-lg premium_plan_selected free">
-          	Download InstrumentChamp for free
-          </a>
-        </div>
-      </div>
-    </div>
-	</div>
-	<div class="col-md-6">
-		<div class="well text-center well-plan">
     	<div class="plan-title">
     		<h2>Premium</h2>
     	</div>
@@ -63,6 +38,31 @@
 				    </div>
 				  <% end %>
 			  </div>
+      </div>
+    </div>
+	</div>
+	<div class="col-md-6">
+		<div class="well text-center well-plan">
+    	<div class="plan-title_">
+    		<h2>Free</h2>
+    	</div>
+      <div class="plan-descripction">
+      	<p>
+					Learn to play your favorite instrument <br />
+					Challenge your friends online <br />
+					Free access to basic songs
+      	</p>
+      	<p>
+      		<%= image_tag(asset_path('plan_free_icons.png')) %>
+				</p>
+				<p>
+      		Ad-supported
+      	</p>
+        <div>
+          <a href="<%= apps_path(auto_download: true) %>" data-no-turbolink='true' class="btn btn-primary btn-lg premium_plan_selected free">
+          	Download InstrumentChamp for free
+          </a>
+        </div>
       </div>
     </div>
 	</div>
