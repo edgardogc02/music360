@@ -2,6 +2,10 @@ class GroupChallengesController < ApplicationController
 	before_action :authorize
   before_action :set_group
 
+	def index
+		render layout: "group"
+	end
+
 	def new
 	  @challenge = GroupChallengeDecorator.decorate(@group.challenges.build)
     if params[:song_id].present?
@@ -9,6 +13,7 @@ class GroupChallengesController < ApplicationController
     end
 
     @songs = SongGroupChallengeDecorator.decorate_collection(Song.not_user_created.free.by_popularity.limit(4))
+    render layout: "group"
   end
 
   def show
@@ -31,7 +36,7 @@ class GroupChallengesController < ApplicationController
     else
       @songs = SongGroupChallengeDecorator.decorate_collection(Song.not_user_created.free.by_popularity.limit(4))
       flash.now[:warning] = ("There was an error when creating the challenge" + "<br/>" + @challenge.errors.full_messages.join(', ') + "<br/>" + "Please try again").html_safe
-      render 'new'
+      render 'new', layout: 'group'
     end
   end
 

@@ -6,9 +6,7 @@
   <meta property="og:description" content="<%= @challenge.challenger.username %> challenged <%= @challenge.challenged.username %>" />
 <% end %>
 
-<div class="cover-group">
-	<%= image_tag asset_path('default_cover_group.png'), class: 'cover-img' %>
-</div>
+<%= render 'shared/header_image_cover', cover: @challenge.song.artist.cover, profile: @challenge.song.cover_url %>
 
 <div class="clearfix group-nav">
 	<div class="pull-left">

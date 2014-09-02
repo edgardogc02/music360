@@ -1,8 +1,8 @@
 class UsersController < ApplicationController
 	before_action :authorize, except: [:create, :new]
 	before_action :not_authorized, only: [:create, :new]
-	before_action :set_user, only: [:show, :edit, :update, :destroy, :upload_profile_image]
-  before_action :check_security, only: [:edit, :update, :destroy, :upload_profile_image]
+	before_action :set_user, only: [:show, :edit, :update, :destroy, :upload_profile_image, :upload_cover_image]
+  before_action :check_security, only: [:edit, :update, :destroy, :upload_profile_image, :upload_cover_image]
 
 	def index
     if params[:username_or_email]
@@ -69,7 +69,7 @@ class UsersController < ApplicationController
 	end
 
 	def user_params
-	  params.require(:user).permit(:username, :email, :password, :password_confirmation, :imagename, :remote_imagename_url, :first_name, :last_name, :phone_number)
+	  params.require(:user).permit(:username, :email, :password, :password_confirmation, :imagename, :remote_imagename_url, :cover, :remote_cover_url, :first_name, :last_name, :phone_number)
 	end
 
   def check_security

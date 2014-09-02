@@ -1,7 +1,4 @@
-<div class="cover-group">
-	<%= image_tag @challenge.group.cover_url, alt: @challenge.group.name, class: 'cover-img' %>
-	<%= image_tag @challenge.group.imagename_url, alt: @challenge.group.name, class: 'profile-group-img hidden-xs hidden-sm' %>
-</div>
+<%= render 'shared/header_image_cover', cover: @challenge.group.cover_url, profile: @challenge.group.imagename_url %>
 
 <div class="clearfix group-nav">
 	<div class="pull-left">

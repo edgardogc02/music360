@@ -5,11 +5,10 @@
 <div class="row">
 	<div class="col-lg-3 col-md-3 text-center">
 		<%= image_tag @user.imagename_url, class: "thumbnail" %>
-		<p><%= link_to "Change profile image", upload_profile_image_person_path(@user), class: "btn btn-link" %></p>
 	</div>
 	<div class="col-lg-5 col-md-5">
 		<%= render 'shared/header_page', title: 'Personal Information', sub_header: true %>
-		<ul class="no-style info-label">			
+		<ul class="no-style info-label">
 			<li><span>Username:</span> <%= @user.username %></li>
 			<li><span>First name:</span> <%= @user.first_name %></li>
 			<li><span>Last name:</span> <%= @user.last_name %></li>
@@ -28,20 +27,39 @@
 			<li>
 			  <span>Followers:</span> <%= link_to @user.followers.count, user_follower_path(@user) %>
 			</li>
-		</ul>	
+		</ul>
 	</div>
 	<div class="col-lg-3 col-md-3">
 		<br /><br /><br />
 		<div><%= link_to "Choose your instrument", edit_user_instrument_path(@user.id), class: "btn btn-link" %></div>
 		<div><%= link_to "Edit profile", edit_person_path(@user), class: "btn btn-link" %></div>
 		<div><%= link_to "Change password", edit_user_password_path(@user), class: "btn btn-link" %></div>
-		<div><%= link_to "Delete profile", person_path(@user), :method => 'delete', class: "btn btn-link" %></div>
+		<hr />
+		<div><%= link_to "Change profile image", upload_profile_image_person_path(@user), class: "btn btn-link" %></div>
+		<div><%= link_to "Change cover image", upload_cover_image_person_path(@user), class: "btn btn-link" %></div>
+		<hr />
+		<div><a data-toggle="modal" data-target="#confirm_modal" href="#" class="btn btn-link">Delete profile</a></div>
+	</div>
+</div>
+
+<div id="confirm_modal" class="modal fade">
+	<div class="modal-dialog">
+		<div class="modal-content">
+	  	<div class="modal-header">
+	    <a class="close" data-dismiss="modal">×</a>
+	    <h4>Are you sure you want to delele your profile?</h4>
+	   </div>
+	   <div class="modal-footer">
+	   	<button class="btn btn-default" data-dismiss="modal" aria-hidden="true">Cancel</button>
+	   	<%= link_to "Continue", person_path(@user), method: :delete, class: 'btn btn-primary' %>
+	   </div>
+		</div>
 	</div>
 </div>
 
 <%= content_for(:js_scripts) do %>
 	<script type="text/javascript">
-		$(document).ready(function() {				
+		$(document).ready(function() {
 			reload_img_avatar();
 		});
   </script>

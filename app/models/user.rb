@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
 
   mount_uploader :imagename, UserImagenameUploader
+  mount_uploader :cover, UserCoverUploader
 
   paginates_per 30
 
@@ -220,6 +221,15 @@ class User < ActiveRecord::Base
     self.xp = self.xp + points
     save
   end
+
+	def completion_percentage_level
+		percent = (self.xp.to_f / Level.top_level_score.to_f * 100.0).round
+		if percent < 50
+			percent.round
+		else
+			percent.floor
+		end
+	end
 
 	private
 

@@ -1,15 +1,20 @@
 <%= set_meta_description "Learn to play #{@song.title} with InstrumentChamp. The best way to learn to play music." %>
 <%= set_page_title "Learn to play #{@song.title} with InstrumentChamp" %>
 
-<%= render 'shared/header_page', title: @song.title, link_text: @song.artist.title, link_path: artist_path(@song.artist) %>
+<%= render 'shared/header_image_cover', cover: @song.artist.cover, profile: @song.cover_url %>
+
+<div class="clearfix main-section-nav">
+	<div class="pull-left">
+		<ul class="main-section-nav-list clearfix">
+			<li><h4><%= @song.title %></h4></li>
+		</ul>
+	</div>
+</div>
 
 <!--<iframe width="300" height="380"  scrolling="no" frameborder="0" allowtransparency="true" style="border:none; overflow:hidden; height:380px;" src="http://www.musicnodes.com/widget/public/view?wid=2105&id=538dbb91f51e46ff6f0008ce&services=spotify,youtube,deezer"></iframe>-->
 
 <div class="row">
 	<div class="col-lg-3">
-		<p>
-			<%= image_tag @song.cover_url, alt: @song.title, class: "thumbnail" %>
-		</p>
 		<p>
 			<div class="spacer-sm">By: <%= link_to @song.artist.title, @song.artist %></div>
 			Writer: <%= @song.writer %>

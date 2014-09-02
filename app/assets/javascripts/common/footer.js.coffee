@@ -1,4 +1,4 @@
-$ ->
+ready = ->
   unless $("body").hasClass("sessions")
     stickyfooter = undefined
     stickyfooter = ->
@@ -9,5 +9,8 @@ $ ->
       return
 
     stickyfooter()
-    $(window).on "resize", stickyfooter
   return
+
+$(document).ready(ready)
+$(document).on('page:load', ready)
+$(window).on "resize", ready

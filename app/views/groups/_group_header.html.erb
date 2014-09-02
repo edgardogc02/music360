@@ -1,11 +1,11 @@
-<div class="cover-group">
+<div class="top-images">
 	<%= image_tag @group.cover_url, alt: @group.name, class: 'cover-img' %>
-	<%= image_tag @group.imagename_url, alt: @group.name, class: 'profile-group-img hidden-xs hidden-sm' %>
+	<%= image_tag @group.imagename_url, alt: @group.name, class: 'profile-img hidden-xs hidden-sm' %>
 </div>
 
-<div class="clearfix group-nav">
+<div class="clearfix main-section-nav">
 	<div class="pull-left">
-		<ul class="group-nav-list clearfix">
+		<ul class="main-section-nav-list clearfix">
 			<li><h4><%= link_to @group.name, @group %></h4></li>
 			<li><%= link_to "Members", members_group_path(@group) %></li>
 			<li><%= link_to "Challenges", challenges_group_path(@group) %></li>

@@ -1,9 +1,9 @@
 # encoding: utf-8
 
-class GroupCoverUploader < Uploader
+class UserCoverUploader < Uploader
 
   def store_dir_folder
-    "cover_images_groups"
+    "cover_images_users"
   end
 
   # Provide a default URL as a default if there hasn't been a file uploaded:

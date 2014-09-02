@@ -8,13 +8,17 @@ class ArtistDecorator < Draper::Decorator
 
   def image
     h.link_to h.artist_path(model) do
-      if model.imagename_url != model.imagename.default_url
-        h.image_tag(model.imagename_url, {alt: model.title, class: 'thumbnail'})
-      elsif model.echonest_image
-        h.image_tag(model.echonest_image.url, {alt: model.title, class: 'thumbnail'})
-      else
-        h.image_tag(model.imagename_url, {alt: model.title, class: 'thumbnail'})
-      end
+    	h.image_tag(image_url, {alt: model.title, class: 'thumbnail'})
+    end
+  end
+
+  def image_url
+    if model.imagename_url != model.imagename.default_url
+      model.imagename_url
+    elsif model.echonest_image
+      model.echonest_image.url
+    else
+      model.imagename_url
     end
   end
 

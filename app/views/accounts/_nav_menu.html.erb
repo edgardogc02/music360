@@ -1,7 +1,13 @@
-<ul class="nav nav-pills spacer-sm">
-  <li class="<%= 'active' if current_page?(overview_accounts_path) %>"><%= link_to "Overview", overview_accounts_path %></li>
-  <li class="<%= 'active' if current_page?(profile_accounts_path) %>"><%= link_to "Profile", profile_accounts_path %></li>
-  <li class="<%= 'active' if current_page?(subscription_accounts_path) %>"><%= link_to "Subscription", subscription_accounts_path %></li>
-</ul>
+<%= render 'shared/header_image_cover', cover: current_user.cover, profile: current_user.imagename_url %>
+
+<div class="clearfix main-section-nav">
+	<div class="pull-left">
+		<ul class="main-section-nav-list clearfix">
+			<li class="<%= 'active' if current_page?(overview_accounts_path) %>"><%= link_to "Overview", overview_accounts_path %></li>
+		  <li class="<%= 'active' if current_page?(profile_accounts_path) %>"><%= link_to "Profile", profile_accounts_path %></li>
+		  <li class="<%= 'active' if current_page?(subscription_accounts_path) %>"><%= link_to "Subscription", subscription_accounts_path %></li>
+		</ul>
+	</div>
+</div>
 
 <br />

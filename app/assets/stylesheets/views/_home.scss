@@ -36,3 +36,35 @@
   margin-bottom: 0px;
   font-size: 14px;
 }
+
+.career-progress {
+  .progress.progress-xp {
+    height: auto;
+
+    .progress-bar {
+      font-size: 16px;
+      font-weight: bold;
+      padding: 10px 0px;
+      font-family: 'Open Sans'
+    }
+  }
+  .btn-group {
+    position: absolute;
+    top: 0px;
+    left: 60px;
+
+    .dropdown-menu span {
+      font-weight: bold;
+      font-size: 14px;
+      width: 80px;
+      display: inline-block;
+    }
+  }
+
+  .label-complete {
+    left: 50px;
+    position: relative;
+    color: #666;
+    z-index: 3;
+  }
+}

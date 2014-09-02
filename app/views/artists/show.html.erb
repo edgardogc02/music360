@@ -1,15 +1,18 @@
 <%= set_meta_description "Challenge #{@artist.title} with InstrumentChamp. The best way to learn to play music." %>
 <%= set_page_title "Challenge #{@artist.title} with InstrumentChamp" %>
 
-<%= render 'shared/header_page', title: @artist.title %>
+<%= render 'shared/header_image_cover', cover: @artist.cover, profile: @artist.image_url %>
+
+<div class="clearfix main-section-nav">
+	<div class="pull-left">
+		<ul class="main-section-nav-list clearfix">
+			<li><h4><%= @artist.title %></h4></li>
+		</ul>
+	</div>
+</div>
 
 <div class="row">
-	<div class="col-lg-3">
-		<p>
-		  <%= @artist.image %>
-		</p>
-	</div>
-	<div class="col-lg-9">
+	<div class="col-lg-12">
 		<ul class="nav nav-tabs">
 			<li class="active"><a href="#info" data-toggle="tab">Info</a></li>
 		  <li><a href="#songs_tab" data-toggle="tab">Songs</a></li>

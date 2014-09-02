@@ -7,9 +7,10 @@ ActiveAdmin.register Artist do
   filter :country
   filter :slug
   filter :imagename
+  filter :cover
   filter :top
 
-  permit_params :title, :bio, :country, :slug, :imagename, :top, :bio_read_more_link, :model
+  permit_params :title, :bio, :country, :slug, :imagename, :top, :bio_read_more_link, :model, :cover
 
   index do
     selectable_column
@@ -20,6 +21,9 @@ ActiveAdmin.register Artist do
     column :slug
     column :imagename do |song|
       image_tag song.imagename_url, {height: "100", width: "100"}
+    end
+    column :cover do |song|
+      image_tag song.cover_url, {height: "100", width: "100"}
     end
     actions
   end
@@ -34,6 +38,7 @@ ActiveAdmin.register Artist do
       f.input :bio_read_more_link
       if !f.object.new_record?
         f.input :imagename, as: :file, :hint => f.template.image_tag(f.object.imagename.url, {height: 100, width: 100})
+        f.input :cover, as: :file, :hint => f.template.image_tag(f.object.cover.url, {height: 200, width: 944})
       end
     end
     f.actions

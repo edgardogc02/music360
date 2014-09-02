@@ -1,4 +1,6 @@
-<%= render 'shared/header_page', title: 'Create Challenge' %>
+<% if !@challenge.group %>
+	<%= render 'shared/header_page', title: 'Create Challenge' %>
+<% end %>
 
 <% if @challenge.song %>
 
@@ -26,7 +28,7 @@
   <section>
     <div class="header-page sub-header">
 			<%= content_tag :h2 do %>
-				1. Choose the challenge
+				1. Choose the challenges
 			<% end %>
 
 			<%= content_tag 'div', class: 'header-page-btn' do %>
@@ -35,7 +37,11 @@
 		</div>
     <p>
 			<div class="thumbnail-grid row">
-				<%= render partial: "songs/song", collection: @songs %>
+				<% if @challenge.group %>
+					<%= render @songs, modal: true %>
+				<% else %>
+					<%= render partial: "songs/song", collection: @songs %>
+				<% end %>
 			</div>
     </p>
   </section>

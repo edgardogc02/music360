@@ -1,44 +1,32 @@
-<%= render 'shared/header_page', title: @user.username %>
+<%= render 'shared/header_image_cover', cover: @user.cover, profile: @user.imagename_url %>
 
-<div class="row">
-	<div class="col-lg-3 col-md-3">
-		<%= image_tag @user.imagename_url, class: "thumbnail" %>
-	</div>
-	<div class="col-lg-9 col-md-9">
-		<ul class="no-style info-label">
-			<li><span>Username:</span> <%= @user.username %></li>
-			<li><span>Email:</span> <%= @user.email %></li>
-			<li><span>Career level:</span> <%= @user.level %></li>
-			<li><span>Instrument:</span>
-		    <% if @user.instrument %>
-		      <%= @user.instrument.name %>
-		    <% else %>
-		      No instrument chosen
-		    <% end %>
-			</li>
-		  <li>
-		    <span>Following:</span> <%= link_to @user.followed_users.count, following_path(@user) %>
-		  </li>
-			<li>
-			  <span>Followers:</span> <%= link_to @user.followers.count, user_follower_path(@user) %>
-			</li>
-		</ul>		
+<div class="clearfix main-section-nav">
+	<div class="pull-left">
+		<ul class="main-section-nav-list clearfix">
+			<li><h4><%= @user.username %></h4></li>
+		</ul>
 	</div>
 </div>
 
 <br />
 
-<section class="hidden">
-	<%= render 'shared/header_page', title: 'Open challenges', sub_header: true %>
-	
-	<ul class="media-list">
-		<% unless @challenges.blank? %>
-			<%= render partial: "challenges/challenge", collection: @challenges %>
-		<% else %>
-	</ul>	
-	
-	<p class="no-content">
-		<%= @user.username%> has no open challenges right now
-	</p>
-	<% end %>
-</section>
+<div>
+	<ul class="no-style info-label">
+		<li><span>Username:</span> <%= @user.username %></li>
+		<li><span>Email:</span> <%= @user.email %></li>
+		<li><span>Career level:</span> <%= @user.level %></li>
+		<li><span>Instrument:</span>
+	    <% if @user.instrument %>
+	      <%= @user.instrument.name %>
+	    <% else %>
+	      No instrument chosen
+	    <% end %>
+		</li>
+	  <li>
+	    <span>Following:</span> <%= link_to @user.followed_users.count, following_path(@user) %>
+	  </li>
+		<li>
+		  <span>Followers:</span> <%= link_to @user.followers.count, user_follower_path(@user) %>
+		</li>
+	</ul>
+</div>
