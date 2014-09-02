@@ -1,0 +1,2 @@
+$('#new_<%= @commentable.class.to_s.underscore %>_<%= @commentable.id.to_s %>').find('#post_comment_comment').val('');
+$('#comment_<%= @commentable.class.to_s.underscore %>_<%= @commentable.id %>').append("<%= j render @post_comment %>");

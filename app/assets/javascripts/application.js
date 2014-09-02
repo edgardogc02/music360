@@ -46,3 +46,4 @@
 //= require user_authentication
 //= require confirm_dialog
 //= require helper
+//= require group_posts

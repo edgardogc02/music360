@@ -36,6 +36,7 @@ InstrumentchampPrototype::Application.routes.draw do
     get 'list', on: :collection, as: :list
     resources :challenge_posts do
       resources :post_likes
+      resources :post_comments
     end
   end
 
@@ -72,6 +73,7 @@ InstrumentchampPrototype::Application.routes.draw do
     end
     resources :group_posts do
       resources :post_likes
+      resources :post_comments
     end
     resources :group_activities
     resources :challenges, controller: "group_challenges", only: [:new, :create, :show]

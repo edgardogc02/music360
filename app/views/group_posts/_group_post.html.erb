@@ -13,4 +13,4 @@
   </li>
 </ul>
 
-<%= render 'post_likes/new', likeable: group_post, likeable_parent: group_post.group %>
+<%= render "group_posts/post_actions", likeable: group_post, likeable_parent: group_post.group, commentable: group_post, commentable_parent: group_post.group %>
