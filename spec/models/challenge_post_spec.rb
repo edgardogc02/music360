@@ -22,6 +22,10 @@ describe ChallengePost do
       should have_many(:likes).class_name('PostLike')
     end
 
+    it 'should have many comments' do
+      should have_many(:comments).class_name('PostComment')
+    end
+
     it 'should have many likers' do
       should have_many(:likers).through(:likes).source(:user)
     end

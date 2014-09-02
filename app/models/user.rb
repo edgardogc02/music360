@@ -67,6 +67,8 @@ class User < ActiveRecord::Base
 
   has_many :post_likes
 
+  has_many :post_comments
+
   before_create { generate_token(:auth_token) }
 
 #  before_create :fill_in_extra_fields

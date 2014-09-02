@@ -1,1 +1,16 @@
-scored <%= activity.trackable.score %> points on <%= activity.trackable.instrument.name %>
+<ul class="media-list group-posts" id="group_posts">
+  <li class="media">
+    <%= link_to group_challenge_path(group_id: activity.trackable.challenge.group.id, id: activity.trackable.challenge.id), class: 'pull-left' do %>
+      <div class="thumbnail">
+        <%= image_tag activity.trackable.challenge.song.cover_url, class: "song-cover" %>
+      </div>
+    <% end %>
+    <div class="media-body">
+      <h4 class="media-heading"><%= link_to activity.owner.username, person_path(activity.owner) if activity.owner %></h4>
+      <div class="small spacer-md text-muted"><%= time_ago_in_words(activity.created_at) %> ago</div>
+      scored <%= activity.trackable.score %> points on <%= activity.trackable.instrument.name %>
+    </div>
+    <%= GroupChallengeDecorator.decorate(activity.trackable.challenge).display_start_group_challenge_button('Accept challenge') %>
+    <%= link_to 'View challenge', group_challenge_path(group_id: activity.trackable.challenge.group.id, id: activity.trackable.challenge.id), class: 'btn btn-primary btn-sm' %>
+  </li>
+</ul>

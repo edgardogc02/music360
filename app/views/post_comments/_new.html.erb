@@ -1,0 +1,6 @@
+<%= simple_form_for [commentable_parent, commentable, PostComment.new], { remote: true, html: { id: "new_"+commentable.class.to_s.underscore+"_"+commentable.id.to_s } } do |f| %>
+  <%= f.input :comment, placeholder: 'Write a comment...' %>
+  <%= f.button :submit, 'Comment' %>
+<% end %>
+
+

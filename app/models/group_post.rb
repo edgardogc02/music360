@@ -12,6 +12,8 @@ class GroupPost < ActiveRecord::Base
   has_many :likes, class_name: 'PostLike', as: :likeable
   has_many :likers, through: :likes, source: :user
 
+  has_many :comments, class_name: 'PostComment', as: :commentable
+
   public
 
   def liked_by?(user)

@@ -81,7 +81,11 @@ class UserAuthentication
       user.save
     end
 
-    send_welcome_email(user) # send welcome email
+    with_password = false
+
+    with_password = true if User.where(ip: user.ip).count > 1
+
+    send_welcome_email(user, with_password) # send welcome email
     FacebookFriendsWorker.perform_async(user.id) # save facebook friends in the db
 
     user.just_signup = true
@@ -170,9 +174,9 @@ class UserAuthentication
     user
   end
 
-  def send_welcome_email(user)
+  def send_welcome_email(user, with_password=false)
     if !user.new_record? and !user.skip_emails # avoid callbacks otherwise the tests and fake facebook users will send emails
-      EmailNotifier.welcome_message(user).deliver
+      EmailNotifier.welcome_message(user, with_password).deliver
     end
   end
 
