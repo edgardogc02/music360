@@ -1,4 +1,6 @@
-click_on_comment_link = ->
+root = exports ? this
+
+root.click_on_comment_link = ->
   $(".comment_link").click (e) ->
     $(this).parent('.post_actions').find('#post_comment_comment').focus()
     e.preventDefault()
