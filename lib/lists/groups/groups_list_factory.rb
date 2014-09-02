@@ -4,9 +4,9 @@ class GroupsListFactory
     if type == "my_groups"
       @groups_list = MyGroupsList.new(current_user)
     elsif type == "most_popular"
-      @groups_list = MostPopularGroupsList.new(page)
+      @groups_list = MostPopularGroupsList.new(page, current_user)
     elsif type == "new"
-      @groups_list = NewGroupsList.new(page)
+      @groups_list = NewGroupsList.new(page, current_user)
     end
   end
 

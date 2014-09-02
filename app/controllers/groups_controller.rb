@@ -5,8 +5,8 @@ class GroupsController < ApplicationController
   def index
     @group_invitations = GroupDecorator.decorate_collection(current_user.groups_invited_to.limit(5))
   	@my_groups = ResumedMyGroupsList.new(current_user)
-    @most_popular_groups = ResumedMostPopularGroupsList.new
-    @new_groups = ResumedNewGroupsList.new
+    @most_popular_groups = ResumedMostPopularGroupsList.new(current_user)
+    @new_groups = ResumedNewGroupsList.new(current_user)
   end
 
 	def new
