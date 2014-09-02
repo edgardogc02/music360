@@ -2,8 +2,9 @@ class EmailNotifier < ActionMailer::Base
 
   default from: "InstrumentChamp <no-reply@instrumentchamp.com>"
 
-  def welcome_message(user)
+  def welcome_message(user, with_password=false)
     @user = user
+    @with_password = with_password
     mail to: @user.email
   end
 

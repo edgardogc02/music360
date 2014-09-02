@@ -111,6 +111,7 @@ group :development, :test do
   gem 'thin'
   gem 'guard-livereload'
   gem 'rack-livereload'
+  gem 'quiet_assets'
 end
 
 group :production do

@@ -271,6 +271,8 @@ GEM
       railties (>= 3.0.0)
     puma (2.8.1)
       rack (>= 1.1, < 2.0)
+    quiet_assets (1.0.3)
+      railties (>= 3.1, < 5.0)
     rack (1.5.2)
     rack-livereload (0.3.15)
       rack
@@ -448,6 +450,7 @@ DEPENDENCIES
   poltergeist
   public_activity
   puma
+  quiet_assets
   rack-livereload
   rack-timeout
   rails (= 4.0.2)

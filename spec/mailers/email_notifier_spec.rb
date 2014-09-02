@@ -4,9 +4,32 @@ describe EmailNotifier do
 
   let(:host) { "https://www.instrumentchamp.com" }
 
-  describe "send welcome email" do
+  describe "send welcome email without password" do
     let(:user) { create(:user) }
     let(:mail) { EmailNotifier.welcome_message(user) }
+
+    it "sends user welcome email" do
+      mail.subject.should eq("Welcome to InstrumentChamp")
+      mail.to.should eq([user.email])
+      mail.from.should eq(["no-reply@instrumentchamp.com"])
+    end
+
+    it "renders the body" do
+      mail.body.encoded.should have_content "Hi #{user.username}, welcome to InstrumentChamp!"
+      mail.body.encoded.should have_link "Challenge a friend", people_path
+      mail.body.encoded.should have_link "Learn to play a song", songs_path
+      mail.body.encoded.should have_link "Take the tour", tour_path
+      mail.body.encoded.should have_link "Download the game", apps_path
+      mail.body.encoded.should have_link "Get help", help_path
+      mail.body.encoded.should have_content "Kind regards"
+      mail.body.encoded.should have_content "The instrumentchamp team."
+      check_greeting_lines
+    end
+  end
+
+  describe "send welcome email with password" do
+    let(:user) { create(:user) }
+    let(:mail) { EmailNotifier.welcome_message(user, true) }
 
     it "sends user welcome email" do
       mail.subject.should eq("Welcome to InstrumentChamp")
