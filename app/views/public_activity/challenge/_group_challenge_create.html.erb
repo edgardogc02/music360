@@ -10,7 +10,7 @@
       <div class="small spacer-md text-muted"><%= time_ago_in_words(activity.created_at) %> ago</div>
       created a group challenge
     </div>
-    <%= GroupChallengeDecorator.decorate(activity.trackable).display_start_group_challenge_button('Accept') %>
-    <%= link_to 'View', group_challenge_path(group_id: activity.trackable.group.id, id: activity.trackable.id), class: 'btn btn-primary btn-sm' %>
+    <%= GroupChallengeDecorator.decorate(activity.trackable).display_start_group_challenge_button('Accept challenge') %>
+    <%= link_to 'View challenge', group_challenge_path(group_id: activity.trackable.group.id, id: activity.trackable.id), class: 'btn btn-primary btn-sm' %>
   </li>
 </ul>
