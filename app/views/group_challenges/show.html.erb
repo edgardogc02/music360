@@ -1,8 +1,8 @@
 <%= render 'shared/header_image_cover', cover: @challenge.group.cover_url, profile: @challenge.group.imagename_url %>
 
-<div class="clearfix group-nav">
+<div class="clearfix main-section-nav">
 	<div class="pull-left">
-		<ul class="group-nav-list clearfix">
+		<ul class="main-section-nav-list clearfix">
 			<li>Challenge by: <%= link_to @challenge.group.name, @challenge.group %></li>
 			<li>Host: <%= link_to @challenge.group.initiator_user.username, person_path(@challenge.group.initiator_user) %></li>
 		</ul>
