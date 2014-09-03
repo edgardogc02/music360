@@ -38,7 +38,7 @@ ActiveAdmin.register Artist do
       f.input :bio_read_more_link
       if !f.object.new_record?
         f.input :imagename, as: :file, :hint => f.template.image_tag(f.object.imagename.url, {height: 100, width: 100})
-        f.input :cover, as: :file, :hint => f.template.image_tag(f.object.cover.url, {height: 200, width: 944})
+        f.input :cover, as: :file, :hint => f.template.image_tag(f.object.cover.url, {height: 200, width: 944}
       end
     end
     f.actions
