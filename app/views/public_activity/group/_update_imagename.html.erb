@@ -1,6 +1,8 @@
-<%= link_to activity.owner.username, person_path(activity.owner) if activity.owner %>
-updated the group image
+<div class="post-feed">
+	<%= link_to activity.owner.username, person_path(activity.owner) if activity.owner %>
+	updated the group image
 
-<div class="small text-muted">
-  <%= time_ago_in_words(activity.created_at) %> ago
+	<div class="small text-muted">
+	  <%= time_ago_in_words(activity.created_at) %> ago
+	</div>
 </div>
