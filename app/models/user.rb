@@ -39,6 +39,7 @@ class User < ActiveRecord::Base
 
   has_many :user_facebook_friends, dependent: :destroy
   has_many :facebook_friends, through: :user_facebook_friends, source: :facebook_friend
+  has_many :facebook_friends_groups, through: :facebook_friends, source: :groups
 
   has_many :user_invitations, dependent: :destroy
   has_many :user_facebook_invitations, dependent: :destroy

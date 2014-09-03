@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140902072624) do
+ActiveRecord::Schema.define(version: 20140902101719) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -63,6 +63,7 @@ ActiveRecord::Schema.define(version: 20140902072624) do
     t.integer  "created_by"
     t.boolean  "top"
     t.string   "bio_read_more_link"
+    t.string   "cover"
   end
 
   add_index "artists", ["slug"], name: "index_artists_on_slug", unique: true, using: :btree
@@ -389,6 +390,7 @@ ActiveRecord::Schema.define(version: 20140902072624) do
     t.integer  "xp"
     t.string   "password_reset_token"
     t.datetime "password_reset_sent_at"
+    t.string   "cover"
   end
 
   add_index "users", ["auth_token"], name: "index_users_on_auth_token", unique: true, using: :btree

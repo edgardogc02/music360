@@ -8,6 +8,11 @@
 
 <%= render 'home_welcome_modal' %>
 
+<% unless @activity_feeds.empty? %>
+  <%= render 'shared/header_page', title: "Activity Feed", sub_header: true %>
+  <%= render @activity_feeds %>
+<% end %>
+
 <%= render 'shared/header_page', title: 'Quick start song', view_more: 'View more', view_more_path: songs_path %>
 
 <div class="thumbnail-grid row">

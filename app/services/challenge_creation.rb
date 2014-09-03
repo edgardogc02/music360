@@ -12,6 +12,7 @@ class ChallengeCreation
       notify_challenged_user
       increment_challenger_challenges
       increment_challenged_challenges
+      save_activity
       true
     else
       false
@@ -24,6 +25,10 @@ class ChallengeCreation
     if challenge.challenged.can_receive_messages?
       EmailNotifier.challenged_user_message(challenge).deliver
     end
+  end
+
+  def save_activity
+    @challenge.create_activity :challenge_create, owner: @challenge.challenger, challenge_id: @challenge.id
   end
 
   def increment_challenger_challenges
