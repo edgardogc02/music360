@@ -20,13 +20,17 @@ class PagesController < ApplicationController
       @top_fb_friends = UserChallengeDecorator.decorate_collection(User.order_by_challenges_count.limit(4))
     end
 
-    group_feeds = PublicActivity::Activity.where(group_id: current_user.groups).order('created_at DESC').limit(10)
+    groups_feeds = PublicActivity::Activity.where(group_id: current_user.groups).order('created_at DESC').limit(10)
 
-    personal_feeds = PublicActivity::Activity.where(owner_id: current_user.id).where(group_id: nil).order('created_at DESC').limit(10)
+    one_to_one_challenge_feeds = PublicActivity::Activity.where(challenge_id: current_user.challenges).where(group_id: nil).order('created_at DESC').limit(10)
+
+    one_to_one_proposed_challenge_feeds = PublicActivity::Activity.where(challenge_id: current_user.proposed_challenges).where(group_id: nil).order('created_at DESC').limit(10)
+
+    personal_feeds = PublicActivity::Activity.where.not(id: one_to_one_challenge_feeds.ids).where.not(id: one_to_one_proposed_challenge_feeds.ids).where(owner_id: current_user.id).where(group_id: nil).order('created_at DESC').limit(10)
 
     friends_activity_feeds = UserFacebookAccount.new(current_user).friends_public_groups_activity_feeds(10)
 
-    @activity_feeds = PublicActivity::Activity.where(id: group_feeds + friends_activity_feeds + personal_feeds).order('created_at DESC').limit(10)
+    @activity_feeds = PublicActivity::Activity.where(id: groups_feeds + friends_activity_feeds + one_to_one_challenge_feeds + one_to_one_proposed_challenge_feeds + personal_feeds).order('created_at DESC').limit(10)
   end
 
   def apps
