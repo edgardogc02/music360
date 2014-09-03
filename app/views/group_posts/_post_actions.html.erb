@@ -1,14 +1,9 @@
 <div class="post_actions">
-  <hr />
-
-  <%= render 'post_likes/new', likeable: likeable, likeable_parent: likeable_parent %>
-
-  <%= link_to "Comment", "#", { class: "comment_link" } %>
-
-  <hr />
-
+	<ul>
+		<li><%= render 'post_likes/new', likeable: likeable, likeable_parent: likeable_parent %></li>
+	  <li><%= link_to "Comment", "#", { class: "comment_link" } %></li>
+	</ul>
   <%= render 'post_comments/index', commentable: commentable %>
-
   <%= render 'post_comments/new', commentable: commentable, commentable_parent: commentable_parent %>
 </div>
 

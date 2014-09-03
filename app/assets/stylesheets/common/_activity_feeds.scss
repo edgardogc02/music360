@@ -1,0 +1,65 @@
+/* =ACTIVITY FEEDS
+---------------------------------------- */
+
+.post-feed {
+  @include box-shadow(0px, 1px, 2px, rgba(#000, .3));
+  //border: 1px solid #dedede;
+  padding: 20px;
+  background: #fbfbfb;
+
+  .thumbnail {
+    width: 70px;
+    margin-bottom: 0px;
+  }
+
+  .user-thumb {
+    margin-right: 15px;
+  }
+
+  .post_actions {
+    ul {
+      background: #FFF;
+      margin: 15px 0px;
+      padding: 5px;
+      @include clearfix;
+      list-style: none;
+
+      li {
+        float: left;
+        margin: 0px;
+        padding: 0px 10px;
+        line-height: 24px;
+      }
+    }
+
+    .post-comment {
+      p {
+        margin-bottom: 10px;
+      }
+      border-bottom: 1px solid #e6e6e6;
+      margin-bottom: 10px;
+    }
+  }
+
+  i.like-icon, i.unlike-icon {
+    display: block;
+    width: 18px;
+    height: 20px;
+    background-image: image-url('like_icon.jpg');
+    background-repeat: no-repeat;
+  }
+
+  i.like-icon {
+    background-position: right center;
+    &:hover, &:active {
+      background-position: left center;
+    }
+  }
+
+  i.unlike-icon {
+    background-position: left center;
+    &:hover, &:active {
+      background-position: right center;
+    }
+  }
+}

@@ -1,16 +1,17 @@
-<ul class="media-list group-posts" id="group_posts">
-  <li class="media">
-    <a class="pull-left" href="<%= person_path(group_post.publisher) %>">
-      <div class="thumbnail">
-      	<%= image_avatar(group_post.publisher) %>
-      </div>
-    </a>
-    <div class="media-body">
-      <h4 class="media-heading"><%= link_to group_post.publisher.username, person_path(group_post.publisher) %></h4>
+<div class="post-feed">
+	<div class="clearfix">
+		<div class="pull-left user-thumb">
+			<a href="<%= person_path(group_post.publisher) %>">
+	      <div class="thumbnail">
+	      	<%= image_avatar(group_post.publisher) %>
+	      </div>
+	    </a>
+		</div>
+		<div class="pull-left">
+			<h4 class="media-heading"><%= link_to group_post.publisher.username, person_path(group_post.publisher) %></h4>
       <div class="small spacer-md text-muted"><%= time_ago_in_words(group_post.created_at) %> ago</div>
       <%= group_post.message %>
-    </div>
-  </li>
-</ul>
-
-<%= render "group_posts/post_actions", likeable: group_post, likeable_parent: group_post.group, commentable: group_post, commentable_parent: group_post.group %>
+		</div>
+	</div>
+	<%= render "group_posts/post_actions", likeable: group_post, likeable_parent: group_post.group, commentable: group_post, commentable_parent: group_post.group %>
+</div>

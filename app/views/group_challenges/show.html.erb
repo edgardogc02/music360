@@ -24,7 +24,7 @@
 		      <div class="spacer-md"><%= @challenge.display_start_group_challenge_button %></div>
 		      <div class="spacer-sm">
 		      	By: <%= link_to @challenge.song.artist.title, artist_path(@challenge.song.artist) %> <br />
-		        <time datetime="<%= @challenge.created_at%>" pubdate><%= time_ago_in_words(@challenge.created_at)%> ago</time>
+		        <div class="small text-muted"><time datetime="<%= @challenge.created_at%>" pubdate><%= time_ago_in_words(@challenge.created_at)%> ago</time></div>
 		      </div>
 		    </div>
 		  </li>

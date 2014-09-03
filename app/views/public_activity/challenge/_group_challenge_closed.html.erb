@@ -1,12 +1,14 @@
-<ul class="media-list group-posts" id="group_posts">
-  <li class="media">
-    <%= link_to group_challenge_path(group_id: activity.trackable.group.id, id: activity.trackable.id), class: 'pull-left' do %>
-      <div class="thumbnail">
-        <%= image_tag activity.trackable.song.cover_url, class: "song-cover" %>
-      </div>
-    <% end %>
-    <div class="media-body">
-      <div class="small spacer-md text-muted"><%= time_ago_in_words(activity.created_at) %> ago</div>
+<div class="post-feed">
+	<div class="clearfix">
+		<div class="pull-left user-thumb">
+			<%= link_to group_challenge_path(group_id: activity.trackable.group.id, id: activity.trackable.id) do %>
+	      <div class="thumbnail">
+	        <%= image_tag activity.trackable.song.cover_url, class: "song-cover" %>
+	      </div>
+	    <% end %>
+		</div>
+		<div class="pull-left">
+			<div class="small spacer-md text-muted"><%= time_ago_in_words(activity.created_at) %> ago</div>
       The challenge <%= link_to activity.trackable.song.title, group_challenge_path(activity.trackable.group, activity.trackable) %> has finished
 
       <% activity.trackable.song_scores.highest_scores(3).each do |high_score| %>
@@ -19,8 +21,6 @@
           <% end %>
         </div>
       <% end %>
-
-    </div>
-  </li>
-</ul>
-
+		</div>
+	</div>
+</div>

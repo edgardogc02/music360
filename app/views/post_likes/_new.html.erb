@@ -1,7 +1,11 @@
 <%= content_tag :div, id: "like_" + likeable.class.to_s.underscore + "_" + likeable.id.to_s do %>
   <% unless current_user.likes?(likeable) %>
-    <%= link_to 'Like', [likeable_parent, likeable, PostLike.new], { remote: true, method: :post } %>
+    <%= link_to [likeable_parent, likeable, PostLike.new], { remote: true, method: :post } do %>
+    	<i class="like-icon"></i>
+    <% end %>
   <% else %>
-    <%= link_to 'Unlike', [likeable_parent, likeable, PostLike.by_user_and_likeable(current_user, likeable)], { remote: true, method: :delete } %>
+    <%= link_to [likeable_parent, likeable, PostLike.by_user_and_likeable(current_user, likeable)], { remote: true, method: :delete } do %>
+    	<i class="unlike-icon"></i>
+    <% end %>
   <% end %>
 <% end %>

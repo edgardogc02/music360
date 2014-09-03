@@ -1,7 +1,16 @@
-<%= link_to activity.owner.username, person_path(activity.owner) if activity.owner %>
-
-joined the group
-
-<div class="small text-muted">
-  <%= time_ago_in_words(activity.created_at) %> ago
+<div class="post-feed">
+	<div class="clearfix">
+		<div class="pull-left user-thumb">
+			<%= link_to person_path(activity.owner) do %>
+	      <div class="thumbnail">
+	      	<%= image_avatar(activity.owner) %>
+	      </div>
+	    <% end %>
+		</div>
+		<div class="pull-left">
+			<h4 class="media-heading"><%= link_to activity.owner.username, person_path(activity.owner) if activity.owner %></h4>
+      <div class="small spacer-md text-muted"><%= time_ago_in_words(activity.created_at) %> ago</div>
+    	Joined the group
+		</div>
+	</div>
 </div>
