@@ -48,12 +48,4 @@ class UserFacebookAccount
     connect.fql_query(sql)
   end
 
-  def friends_public_groups_activity_feeds(limit)
-    @friends_activity_feeds ||= PublicActivity::Activity.where(owner_id: user.facebook_friends).
-                                                          where(id: user.facebook_friends_groups.public).
-                                                          where.not(group_id: user.groups).
-                                                          order('created_at DESC').
-                                                          limit(limit)
-  end
-
 end
