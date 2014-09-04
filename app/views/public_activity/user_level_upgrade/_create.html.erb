@@ -8,6 +8,7 @@
       </a>
     </div>
     <div class="pull-left">
+      <h4 class="media-heading"><%= link_to activity.owner.username, person_path(activity.owner) if activity.owner %></h4>
       <div class="small spacer-md text-muted"><%= time_ago_in_words(activity.created_at) %> ago</div>
       upgraded his career level to <%= activity.trackable.level.title %>
     </div>
