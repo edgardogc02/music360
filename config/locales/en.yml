@@ -34,6 +34,8 @@ en:
       subject: New group challenge created
     group_challenge_final_position:
       subject: Group challenge final positions
+    challenge_final_position:
+      subject: Challenge final positions
   activerecord:
     errors:
       models:

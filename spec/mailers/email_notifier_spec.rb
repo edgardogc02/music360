@@ -348,6 +348,26 @@ describe EmailNotifier do
     end
   end
 
+  describe "send challenge final position email" do
+    let(:song_score) { create(:song_score, challenge: create(:challenge)) }
+    let(:mail) { EmailNotifier.challenge_final_position(song_score, 2).deliver }
+
+    it "sends challenge final position message to a user" do
+      mail.subject.should eq("Challenge final positions")
+      mail.to.should eq([song_score.user.email])
+      mail.from.should eq(["no-reply@instrumentchamp.com"])
+    end
+
+    it "renders the body" do
+      mail.body.encoded.should have_content "Hi #{song_score.user.username},"
+      mail.body.encoded.should have_content "The challenge"
+      mail.body.encoded.should have_link  song_score.challenge.song.title, challenge_url(challenge, host: song_score.user.created_by)
+      mail.body.encoded.should have_content  "on InstrumentChamp has finished."
+      mail.body.encoded.should have_content "You got #{song_score.score} points and finished nr. 2"
+      mail.body.encoded.should have_link "See leaderboard", challenge_url(group, host: song_score.user.created_by)
+      check_greeting_lines
+    end
+  end
   def check_greeting_lines
     mail.body.encoded.should have_content "Kind regards,"
     mail.body.encoded.should have_content "The instrumentchamp team."

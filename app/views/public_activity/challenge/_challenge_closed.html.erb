@@ -1,0 +1,26 @@
+<div class="post-feed">
+	<div class="clearfix">
+		<div class="pull-left user-thumb">
+			<%= link_to challenge_path(activity.trackable) do %>
+	      <div class="thumbnail">
+	        <%= image_tag activity.trackable.song.cover_url, class: "song-cover" %>
+	      </div>
+	    <% end %>
+		</div>
+		<div class="pull-left">
+			<div class="small spacer-md text-muted"><%= time_ago_in_words(activity.created_at) %> ago</div>
+      The challenge <%= link_to activity.trackable.song.title, challenge_path(activity.trackable) %> has finished
+
+      <% activity.trackable.song_scores.highest_scores(2).each do |high_score| %>
+        <div>
+          <%= link_to high_score.user.username, person_path(high_score.user) %> scored
+          <%= high_score.score %> points on <%= high_score.instrument.name %>
+
+          <% if high_score.user == activity.trackable.group_winner %>
+            <span class='label label-success'>Winner</span>
+          <% end %>
+        </div>
+      <% end %>
+		</div>
+	</div>
+</div>

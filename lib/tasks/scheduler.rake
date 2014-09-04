@@ -64,6 +64,18 @@ task :close_open_and_expired_group_challenges => :environment do
   end
 end
 
+task :close_open_and_expired_challenges => :environment do
+  Challenge.one_to_one.open.where('end_at <= ?', Time.now).find_each(batch_size: 1000) do |challenge|
+    ChallengeClosure.new(challenge).close
+  end
+end
+
+task :close_played_challenges => :environment do
+  Challenge.one_to_one.finished.find_each(batch_size: 1000) do |challenge|
+    ChallengeClosure.new(challenge).close
+  end
+end
+
 task :test_mandrill_template => :environment do
   MandrillTemplateEmailNotifier.test_mandrill_template(User.last).deliver
 end
