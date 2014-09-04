@@ -16,7 +16,7 @@ class UserPersonalActivityFeed
                                                   limit(UserPersonalActivityFeed.limit)
   end
 
-  private
+	private
 
   def groups_feeds
     @groups_feeds ||= PublicActivity::Activity.where(group_id: user.groups).
@@ -26,14 +26,14 @@ class UserPersonalActivityFeed
 
   def one_to_one_challenge_feeds
      @one_to_one_challenge_feeds ||= PublicActivity::Activity.where(challenge_id: user.challenges).
-                                                              where(group_id: nil).
+                                                              where("group_id IS NULL OR group_id = 0").
                                                               order('created_at DESC').
                                                               limit(UserPersonalActivityFeed.limit)
   end
 
   def one_to_one_proposed_challenge_feeds
     @one_to_one_proposed_challenge_feeds ||= PublicActivity::Activity.where(challenge_id: user.proposed_challenges).
-                                                                      where(group_id: nil).
+                                                                      where("group_id IS NULL OR group_id = 0").
                                                                       order('created_at DESC').
                                                                       limit(UserPersonalActivityFeed.limit)
   end
@@ -41,7 +41,7 @@ class UserPersonalActivityFeed
   def personal_feeds
     @personal_feeds ||= PublicActivity::Activity.where.not(id: one_to_one_challenge_feeds.ids).
                                                   where.not(id: one_to_one_proposed_challenge_feeds.ids).
-                                                  where(owner_id: user.id).where(group_id: nil).
+                                                  where(owner_id: user.id).where("group_id IS NULL OR group_id = 0").
                                                   order('created_at DESC').
                                                   limit(UserPersonalActivityFeed.limit)
   end

@@ -55,7 +55,7 @@ class ChallengeDecorator < Draper::Decorator
   end
 
   def start_challenge_class_attr
-    value = 'btn btn-primary btn-sm pull-left margin-right'
+    value = 'btn btn-primary btn-sm'
     if h.signed_in? and h.current_user.installed_desktop_app? and !h.is_mobile?
       value << ' app-play'
     end

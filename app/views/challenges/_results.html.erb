@@ -3,7 +3,7 @@
   <% if challenge.challenger_instrument %>
     on <strong><%= challenge.challenger_instrument.name %></strong>
   <% end %>
-  <%= content_tag :span, 'Winner', class: 'label label-success' if challenge.challenger_won? %>
+  <%= content_tag :span, 'Winner', class: 'label label-primary' if challenge.challenger_won? %>
 </div>
 
 <% if challenge.challenged %>
@@ -12,6 +12,6 @@
 	  <% if challenge.challenged_instrument %>
 	    on <strong><%= challenge.challenged_instrument.name %></strong>
 	  <% end %>
-		<%= content_tag :span, 'Winner', class: 'label label-success' if challenge.challenged_won? %>
+		<%= content_tag :span, 'Winner', class: 'label label-primary' if challenge.challenged_won? %>
 	</div>
 <% end %>

@@ -10,9 +10,7 @@
 		<div class="pull-left">
 			<h4 class="media-heading"><%= link_to activity.owner.username, person_path(activity.owner) if activity.owner %></h4>
       <div class="small spacer-md text-muted"><%= time_ago_in_words(activity.created_at) %> ago</div>
-      <div class="spacer-md">created a challenge against</div>
-      <%= link_to activity.trackable.challenged.username, person_path(activity.trackable.challenged) %>
-
+      <div class="spacer-md">created a challenge against <%= link_to activity.trackable.challenged.username, person_path(activity.trackable.challenged) %></div>
 			<%= ChallengeDecorator.decorate(activity.trackable).display_start_challenge_button %>
     	<%= link_to 'View challenge', challenge_path(activity.trackable), class: 'btn btn-primary btn-sm' %>
 		</div>

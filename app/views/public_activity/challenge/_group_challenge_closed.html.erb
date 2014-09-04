@@ -9,7 +9,7 @@
 		</div>
 		<div class="pull-left">
 			<div class="small spacer-md text-muted"><%= time_ago_in_words(activity.created_at) %> ago</div>
-      The challenge <%= link_to activity.trackable.song.title, group_challenge_path(activity.trackable.group, activity.trackable) %> has finished
+      <div class="spacer-md">The challenge <%= link_to activity.trackable.song.title, group_challenge_path(activity.trackable.group, activity.trackable) %> has finished</div>
 
       <% activity.trackable.song_scores.highest_scores(3).each do |high_score| %>
         <div>
@@ -17,7 +17,7 @@
           <%= high_score.score %> points on <%= high_score.instrument.name %>
 
           <% if high_score.user == activity.trackable.group_winner %>
-            <span class='label label-success'>Winner</span>
+            <span class='label label-primary'>Winner</span>
           <% end %>
         </div>
       <% end %>
