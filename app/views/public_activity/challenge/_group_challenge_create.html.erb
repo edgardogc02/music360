@@ -1,19 +1,31 @@
 <div class="post-feed">
 	<div class="clearfix">
 		<div class="pull-left user-thumb">
-			<%= link_to group_challenge_path(group_id: activity.trackable.group.id, id: activity.trackable.id) do %>
+			<%= link_to person_path(activity.owner) do %>
 	      <div class="thumbnail">
-	      	<%= image_tag activity.trackable.song.cover_url %>
+	      	<%= image_tag activity.owner.imagename_url %>
 	      </div>
 	    <% end %>
 		</div>
 		<div class="pull-left">
-			<h4 class="media-heading"><%= link_to activity.owner.username, person_path(activity.owner) if activity.owner %></h4>
-      <div class="small spacer-md text-muted"><%= time_ago_in_words(activity.created_at) %> ago</div>
-      <div class="spacer-md">created a group challenge</div>
+			<h4 class="media-heading"><%= link_to activity.owner.username, person_path(activity.owner) if activity.owner %> <span class="small">created a group challenge in the group <%= link_to activity.trackable.group.name, activity.trackable.group %></span></h4>
+      <div class="smal text-muted"><%= time_ago_in_words(activity.created_at) %> ago</div>
+      <br />
+      <div>
+      	<div class="pull-left user-thumb">
+					<%= link_to group_challenge_path(group_id: activity.trackable.group.id, id: activity.trackable.id) do %>
+			      <div class="thumbnail">
+			      	<%= image_tag activity.trackable.song.cover_url %>
+			      </div>
+			    <% end %>
+				</div>
+      	<div class="pull-left">
+      		<div class="spacer-md"><%= link_to activity.trackable.song.title, group_challenge_path(group_id: activity.trackable.group.id, id: activity.trackable.id) %></div>
 
-      <%= GroupChallengeDecorator.decorate(activity.trackable).display_start_group_challenge_button('Accept challenge') %>
-    	<%= link_to 'View challenge', group_challenge_path(group_id: activity.trackable.group.id, id: activity.trackable.id), class: 'btn btn-primary btn-sm' %>
+		      <%= GroupChallengeDecorator.decorate(activity.trackable).display_start_group_challenge_button('Accept challenge') %>
+		    	<%= link_to 'View challenge', group_challenge_path(group_id: activity.trackable.group.id, id: activity.trackable.id), class: 'btn btn-primary btn-sm' %>
+      	</div>
+      </div>
 		</div>
 	</div>
 </div>

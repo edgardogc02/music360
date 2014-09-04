@@ -8,12 +8,23 @@
 	    <% end %>
 		</div>
 		<div class="pull-left">
-			<h4 class="media-heading"><%= link_to activity.owner.username, person_path(activity.owner) if activity.owner %></h4>
+			<h4 class="media-heading"><%= link_to activity.owner.username, person_path(activity.owner) if activity.owner %> <span class="small">created a challenge against <%= link_to activity.trackable.challenged.username, person_path(activity.trackable.challenged) %></span></h4>
       <div class="small spacer-md text-muted"><%= time_ago_in_words(activity.created_at) %> ago</div>
-      <div class="spacer-md">created a challenge against <%= link_to activity.trackable.challenged.username, person_path(activity.trackable.challenged) %></div>
-			<%= ChallengeDecorator.decorate(activity.trackable).display_start_challenge_button %>
-    	<%= link_to 'View challenge', challenge_path(activity.trackable), class: 'btn btn-primary btn-sm' %>
+      <br />
+      <div>
+      	<div class="pull-left user-thumb">
+					<%= link_to challenge_path(activity.trackable) do %>
+			      <div class="thumbnail">
+			      	<%= image_tag activity.trackable.song.cover_url %>
+			      </div>
+			    <% end %>
+				</div>
+      	<div class="pull-left">
+      		<div class="spacer-md"><%= link_to activity.trackable.song.title, challenge_path(activity.trackable) %></div>
+		      <%= ChallengeDecorator.decorate(activity.trackable).display_start_challenge_button %>
+    			<%= link_to 'View challenge', challenge_path(activity.trackable), class: 'btn btn-primary btn-sm' %>
+      	</div>
+      </div>
 		</div>
 	</div>
 </div>
-
