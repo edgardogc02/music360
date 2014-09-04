@@ -8,9 +8,8 @@
 	    <% end %>
 		</div>
 		<div class="pull-left">
-			<h4 class="media-heading"><%= link_to activity.owner.username, person_path(activity.owner) if activity.owner %></h4>
+			<h4 class="media-heading"><%= link_to activity.owner.username, person_path(activity.owner) if activity.owner %> <span class="small">Joined the group <%= link_to activity.trackable.name, activity.trackable %></span></h4>
       <div class="small spacer-md text-muted"><%= time_ago_in_words(activity.created_at) %> ago</div>
-    	Joined the group <%= link_to activity.trackable.name, activity.trackable %>
 		</div>
 	</div>
 </div>

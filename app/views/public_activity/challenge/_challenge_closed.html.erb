@@ -8,8 +8,8 @@
 	    <% end %>
 		</div>
 		<div class="pull-left">
-			<div class="small spacer-md text-muted"><%= time_ago_in_words(activity.created_at) %> ago</div>
-      <div class="spacer-md">The challenge <%= link_to activity.trackable.song.title, challenge_path(activity.trackable) %> has finished</div>
+      <div class="spacer-sm">The challenge <%= link_to activity.trackable.song.title, challenge_path(activity.trackable) %> has finished</div>
+      <div class="small spacer-md text-muted"><%= time_ago_in_words(activity.created_at) %> ago</div>
 
       <% activity.trackable.song_scores.highest_scores(2).each do |high_score| %>
         <div>

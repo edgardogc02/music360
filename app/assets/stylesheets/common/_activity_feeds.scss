@@ -69,4 +69,17 @@
       background-position: right center;
     }
   }
+
+  .comment-form {
+    .form-group {
+      margin-bottom: 0px;
+    }
+    .comment-text-area {
+      width: 80%;
+      padding-right: 10px;
+    }
+    .comment-btn {
+      padding-top: 5px;
+    }
+  }
 }

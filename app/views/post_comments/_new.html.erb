@@ -1,6 +1,4 @@
-<%= simple_form_for [commentable_parent, commentable, PostComment.new], { remote: true, html: { id: "new_"+commentable.class.to_s.underscore+"_"+commentable.id.to_s } } do |f| %>
-  <%= f.input :comment, placeholder: 'Write a comment...', label: false %>
-  <%= f.button :submit, 'Comment', class: 'btn btn-sm' %>
+<%= simple_form_for [commentable_parent, commentable, PostComment.new], { remote: true, html: { class: 'clearfix comment-form', id: "new_"+commentable.class.to_s.underscore+"_"+commentable.id.to_s } } do |f| %>
+  <div class="pull-left comment-text-area"><%= f.input :comment, placeholder: 'Write a comment...', label: false, input_html: { :rows => 1 } %></div>
+  <div class="pull-left comment-btn"><%= f.button :submit, 'Comment', class: 'btn btn-sm' %></div>
 <% end %>
-
-

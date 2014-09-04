@@ -102,6 +102,7 @@ InstrumentchampPrototype::Application.routes.draw do
 
   get 'welcome' => "welcome#index", as: :welcome
   get 'home' => "pages#home", as: :home
+  get 'personal_activities' => "pages#personal_activities", as: :personal_activities
 
   get 'signup' => "users#new", as: :signup
 

@@ -43,8 +43,9 @@
 		</div>
 		<br />
 		<% unless @activity_feeds.empty? %>
-		  <%= render 'shared/header_page', title: "Activity Feed", sub_header: true %>
 		  <%= render @activity_feeds %>
+		  <br />
+		  <%= link_to 'View more', personal_activities_path %>
 		<% end %>
 	</div>
 	<div class="col-lg-4">
