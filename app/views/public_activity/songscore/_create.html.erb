@@ -6,4 +6,8 @@
     <%= render '/public_activity/songscore/challenge_create', activity: activity %>
   <% end %>
 
+<% else %>
+
+    <%= render '/public_activity/songscore/song_create', activity: activity %>
+
 <% end %>

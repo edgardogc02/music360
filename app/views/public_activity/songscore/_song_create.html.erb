@@ -1,0 +1,16 @@
+<div class="post-feed">
+	<div class="clearfix">
+		<div class="pull-left user-thumb">
+			<%= link_to challenge_path(activity.trackable) do %>
+	      <div class="thumbnail">
+	        <%= image_tag activity.trackable.song.cover_url, class: "song-cover" %>
+	      </div>
+	    <% end %>
+		</div>
+		<div class="pull-left">
+			<h4 class="media-heading"><%= link_to activity.owner.username, person_path(activity.owner) if activity.owner %></h4>
+      <div class="small spacer-md text-muted"><%= time_ago_in_words(activity.created_at) %> ago</div>
+      <div class="spacer-md">scored <%= activity.trackable.score %> points on <%= activity.trackable.instrument.name %></div>
+		</div>
+	</div>
+</div>
