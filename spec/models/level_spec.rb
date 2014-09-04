@@ -9,4 +9,11 @@ describe Level do
       end
     end
   end
+
+  context "Associations" do
+    it 'should have many user_level_upgrades' do
+      should have_many(:user_level_upgrades)
+    end
+  end
+
 end

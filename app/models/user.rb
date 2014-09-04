@@ -71,6 +71,8 @@ class User < ActiveRecord::Base
 
   has_many :post_comments
 
+  has_many :user_level_upgrades
+
   before_create { generate_token(:auth_token) }
 
 #  before_create :fill_in_extra_fields
@@ -219,8 +221,7 @@ class User < ActiveRecord::Base
   end
 
   def assign_xp_points(points)
-    self.xp = self.xp + points
-    save
+    UserXpPointsUpdate.new(self, points).save
   end
 
 	def completion_percentage_level

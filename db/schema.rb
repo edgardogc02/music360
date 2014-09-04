@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140902101719) do
+ActiveRecord::Schema.define(version: 20140904130015) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -309,6 +309,13 @@ ActiveRecord::Schema.define(version: 20140902101719) do
   create_table "user_invitations", force: true do |t|
     t.integer  "user_id"
     t.string   "friend_email"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "user_level_upgrades", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "level_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
