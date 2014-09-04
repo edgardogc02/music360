@@ -8,7 +8,7 @@
 	    </a>
 		</div>
 		<div class="pull-left">
-			<h4 class="media-heading"><%= link_to challenge_post.publisher.username, person_path(challenge_post.publisher) %></h4>
+			<h4 class="media-heading"><%= link_to challenge_post.publisher.username, person_path(challenge_post.publisher) %> <span class="small">posted on the challenge <%= link_to challenge_post.challenge.song.title, challenge_post.challenge %></span></h4>
       <div class="small spacer-md text-muted"><%= time_ago_in_words(challenge_post.created_at) %> ago</div>
       <%= challenge_post.message %>
 		</div>

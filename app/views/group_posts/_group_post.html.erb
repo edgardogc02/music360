@@ -8,7 +8,7 @@
 	    </a>
 		</div>
 		<div class="pull-left">
-			<h4 class="media-heading"><%= link_to group_post.publisher.username, person_path(group_post.publisher) %></h4>
+			<h4 class="media-heading"><%= link_to group_post.publisher.username, person_path(group_post.publisher) %> <span class="small">posted on the group <%= link_to group_post.group.name, group_post.group %></span></h4>
       <div class="small spacer-md text-muted"><%= time_ago_in_words(group_post.created_at) %> ago</div>
       <%= group_post.message %>
 		</div>
