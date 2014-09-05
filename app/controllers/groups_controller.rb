@@ -18,7 +18,7 @@ class GroupsController < ApplicationController
 
   def show
     @group_leaders = @group.leader_users(10)
-    @group_activities = PublicActivity::Activity.where(group_id: @group.id).order('created_at DESC').limit(10)
+    @group_activities = PublicActivity::Activity.where(group_id: @group.id).order('created_at DESC').page(1).per(10)
 
     render layout: "group"
   end

@@ -1,0 +1,6 @@
+$('#more_posts').prepend("<%= j render @activity_feeds %>");
+<% unless @activity_feeds.last_page? %>
+  $('#show_more_posts_link').attr('href', "<%= personal_activities_path(page: params[:page].to_i+1) %>");
+<% else %>
+  $('#show_more_posts_link').remove();
+<% end %>

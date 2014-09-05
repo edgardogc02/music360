@@ -45,7 +45,10 @@
 		<% unless @activity_feeds.empty? %>
 		  <%= render @activity_feeds %>
 		  <br />
-		  <%= link_to 'View more', personal_activities_path %>
+		  <% unless @activity_feeds.last_page? %>
+  		  <div id="more_posts"></div>
+  		  <%= link_to 'View more', personal_activities_path(page: 2), { remote: true, id: "show_more_posts_link" } %>
+  		<% end %>
 		<% end %>
 	</div>
 	<div class="col-lg-4">

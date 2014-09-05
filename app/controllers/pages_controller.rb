@@ -20,12 +20,8 @@ class PagesController < ApplicationController
       @top_fb_friends = UserChallengeDecorator.decorate_collection(User.order_by_challenges_count.limit(4))
     end
 
-    @activity_feeds = UserPersonalActivityFeed.new(current_user).feeds.limit(6)
+    @activity_feeds = UserPersonalActivityFeed.new(current_user).feeds.limit(6).page(1).per(10)
   end
-
-	def personal_activities
-		@activity_feeds = UserPersonalActivityFeed.new(current_user).feeds
-	end
 
   def apps
     redirect_to apps_path(params)

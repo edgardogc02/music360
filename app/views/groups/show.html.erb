@@ -7,8 +7,11 @@
 <div id="group_activities">
   <% if !@group_activities.blank? and signed_in? and @group.user_can_see_posts?(current_user) %>
       <%= render @group_activities %>
-      <div>
-        <%= link_to "View more", group_group_activities_path(@group) %>
-      </div>
+      <% unless @group_activities.last_page? %>
+        <div id="more_posts"></div>
+        <div>
+          <%= link_to "View more", group_group_activities_path(@group, page: 2), { remote: true, id: "show_more_posts_link" } %>
+        </div>
+      <% end %>
   <% end %>
 </div>

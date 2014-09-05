@@ -80,6 +80,8 @@ InstrumentchampPrototype::Application.routes.draw do
 		get 'list', on: :collection, as: :list
   end
 
+  resources :personal_activities, only: [:index]
+
   resources :group_invitations, only: [:accept, :reject] do
     get 'accept', on: :member
     get 'reject', on: :member
@@ -102,7 +104,6 @@ InstrumentchampPrototype::Application.routes.draw do
 
   get 'welcome' => "welcome#index", as: :welcome
   get 'home' => "pages#home", as: :home
-  get 'personal_activities' => "pages#personal_activities", as: :personal_activities
 
   get 'signup' => "users#new", as: :signup
 
