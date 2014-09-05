@@ -361,13 +361,36 @@ describe EmailNotifier do
     it "renders the body" do
       mail.body.encoded.should have_content "Hi #{song_score.user.username},"
       mail.body.encoded.should have_content "The challenge"
-      mail.body.encoded.should have_link  song_score.challenge.song.title, challenge_url(challenge, host: song_score.user.created_by)
+      mail.body.encoded.should have_link song_score.challenge.song.title, challenge_url(song_score.challenge, host: song_score.user.created_by)
       mail.body.encoded.should have_content  "on InstrumentChamp has finished."
       mail.body.encoded.should have_content "You got #{song_score.score} points and finished nr. 2"
-      mail.body.encoded.should have_link "See leaderboard", challenge_url(group, host: song_score.user.created_by)
+      mail.body.encoded.should have_link "See leaderboard", challenge_url(song_score.challenge, host: song_score.user.created_by)
       check_greeting_lines
     end
   end
+
+  describe "send friend group invitation via email" do
+    let(:user) { create(:user) }
+    let(:group) { create(:group) }
+    let(:mail) { EmailNotifier.group_invitation_via_email(user, group, "test@user.com").deliver }
+
+    it "sends group invitation via email to a friend" do
+      mail.subject.should eq("You were invited to join a group on InstrumentChamp")
+      mail.to.should eq(["test@user.com"])
+      mail.from.should eq(["no-reply@instrumentchamp.com"])
+    end
+
+    it "renders the body" do
+      mail.body.encoded.should have_content "Hi,"
+      mail.body.encoded.should have_link user.username, person_url(user.username, host: user.created_by)
+      mail.body.encoded.should have_content "invited you to join the"
+      mail.body.encoded.should have_link group.name, group_url(group, host: user.created_by)
+      mail.body.encoded.should have_content "group on InstrumentChamp"
+      mail.body.encoded.should have_link "View group", group_url(group, host: user.created_by)
+      check_greeting_lines
+    end
+  end
+
   def check_greeting_lines
     mail.body.encoded.should have_content "Kind regards,"
     mail.body.encoded.should have_content "The instrumentchamp team."

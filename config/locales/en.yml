@@ -36,6 +36,8 @@ en:
       subject: Group challenge final positions
     challenge_final_position:
       subject: Challenge final positions
+    group_invitation_via_email:
+      subject: You were invited to join a group on InstrumentChamp
   activerecord:
     errors:
       models:

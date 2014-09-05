@@ -4,7 +4,7 @@ class GroupDecorator < Draper::Decorator
 
   def add_members_button
     if h.signed_in? and UserGroupsManager.new(h.current_user).belongs_to_group?(model)
-      h.link_to h.modal_group_group_invitations_path(self), {class: "btn btn-primary btn-sm", data: { toggle: "modal", target: "#invite_new_members_modal"}} do
+      h.link_to h.modal_group_group_invitations_path(self), {id: "invite_members", class: "btn btn-primary btn-sm", data: { toggle: "modal", target: "#invite_new_members_modal"}} do
         #h.concat h.content_tag :i, "", {class: "glyphicon glyphicon-plus"}
         h.concat "Invite members"
       end

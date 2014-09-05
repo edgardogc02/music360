@@ -61,8 +61,39 @@ describe "GroupInvitations" do
 
       group_invitation.group = group
       group_invitation.user = users[0]
-      current_path.should eq(group_group_invitations_path(group))
+      current_path.should eq(group_path(group))
       page.find('.alert-notice').should have_content("#{users[0].username} was successfully invited to join #{group.name}")
+    end
+
+    it "should be able to invite a friend via email" do
+      group = create(:group)
+      create(:user_group, user: @user, group: group)
+
+      visit group_path(group)
+      first("#invite_members").click
+
+      friend_email = 'test@user.com'
+      fill_in 'email_group_invitation', with: friend_email
+      click_on 'group_invitation_via_email_submit'
+
+      current_path.should eq(group_path(group))
+      page.find('.alert-notice').should have_content("An invitation to join this group was send to #{friend_email}")
+      last_email.to.should include(friend_email)
+    end
+
+    it "should be able to invite a friend via email if email is wrong" do
+      group = create(:group)
+      create(:user_group, user: @user, group: group)
+
+      visit group_path(group)
+      first("#invite_members").click
+
+      wrong_friend_email = 'test'
+      fill_in 'email_group_invitation', with: wrong_friend_email
+      click_on 'group_invitation_via_email_submit'
+
+      current_path.should eq(group_path(group))
+      page.find('.alert-warning').should have_content("#{wrong_friend_email} is not a valid email address")
     end
 
   end

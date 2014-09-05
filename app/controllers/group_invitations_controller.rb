@@ -1,6 +1,6 @@
 class GroupInvitationsController < ApplicationController
 	before_action :authorize
-  before_action :set_group, only: [:index, :create, :pending_approval, :modal]
+  before_action :set_group, only: [:index, :create, :pending_approval, :modal, :via_email]
 
   def index
     users = User.not_deleted.excludes(@group.user_ids).excludes(@group.invited_users.ids).by_xp
@@ -38,6 +38,19 @@ class GroupInvitationsController < ApplicationController
     group_invitation.destroy
     flash[:warning] = "You have rejected the membership to #{user.username}"
     redirect_to pending_approval_group_group_invitations_path(group)
+  end
+
+  def via_email
+    email = params[:email_group_invitation]
+
+    unless email !~ /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/
+      EmailNotifier.group_invitation_via_email(current_user, @group, email).deliver
+      flash[:notice] = "An invitation to join this group was send to #{email}"
+    else
+      flash[:warning] = "#{email} is not a valid email address"
+    end
+
+    redirect_to @group
   end
 
   def create

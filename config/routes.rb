@@ -71,6 +71,7 @@ InstrumentchampPrototype::Application.routes.draw do
     resources :group_invitations do
       get 'pending_approval', on: :collection
       get 'modal', on: :collection
+      post 'via_email', on: :collection
     end
     resources :group_posts do
       resources :post_likes

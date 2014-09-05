@@ -119,4 +119,12 @@ class EmailNotifier < ActionMailer::Base
     mail to: @user.email
   end
 
+  def group_invitation_via_email(user, group, friend_email)
+    @user = user
+    @group = group
+    @friend_email = friend_email
+
+    mail to: @friend_email
+  end
+
 end
