@@ -3,10 +3,10 @@ class GroupDecorator < Draper::Decorator
   delegate_all
 
   def add_members_button
-    if h.signed_in? and h.current_user == model.initiator_user and UserGroupsManager.new(h.current_user).belongs_to_group?(model)
+    if h.signed_in? and UserGroupsManager.new(h.current_user).belongs_to_group?(model)
       h.link_to h.group_group_invitations_path(self), {class: "btn btn-primary btn-sm"} do
         #h.concat h.content_tag :i, "", {class: "glyphicon glyphicon-plus"}
-        h.concat " Add members"
+        h.concat "Invite members"
       end
     end
   end
