@@ -1,5 +1,10 @@
 <%= render 'shared/header_page', title: 'Download' %>
 
+
+<% if params[:uninstall_first] %>
+  <div class="alert alert-warning">You need to uninstall the previous version before installing the new version</div>
+<% end %>
+
 <h2>Thanks for downloading InstrumentChamp</h2>
 
 <% if is_mobile? %>

@@ -28,7 +28,7 @@ class PagesController < ApplicationController
 	end
 
   def apps
-    redirect_to apps_path
+    redirect_to apps_path(params)
   end
 
 end
