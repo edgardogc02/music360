@@ -10,7 +10,7 @@
 <% end %>-->
 
 <div class="row">
-	<div class="col-lg-4 spacer-md"><%= render 'search_form' %></div>
+	<div class="col-lg-4 spacer-md"><%= render 'search_form', action: "index", controller: "users" %></div>
 	<div class="col-lg-8 text-right-sm-left"><%= link_to 'Invite friends', new_user_invitation_path, class: 'btn btn-primary' %></div>
 </div>
 

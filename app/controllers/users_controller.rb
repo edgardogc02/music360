@@ -23,7 +23,7 @@ class UsersController < ApplicationController
 	end
 
   def list
-    @users = UsersListFactory.new(params[:view], current_user, params[:page]).users_list
+    @users = UsersListFactory.new(params[:view], current_user, params[:page], params[:group_id]).users_list
   end
 
 	def show

@@ -70,6 +70,7 @@ InstrumentchampPrototype::Application.routes.draw do
     get 'join', on: :member
     resources :group_invitations do
       get 'pending_approval', on: :collection
+      get 'modal', on: :collection
     end
     resources :group_posts do
       resources :post_likes

@@ -1,4 +1,4 @@
-<%= render 'search_form' %>
+<%= render 'search_form', action: "index", controller: "users" %>
 <br />
 
 <%= render "users_list", users_list: @fb_top_friends, modal: true %>

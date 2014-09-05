@@ -1,6 +1,6 @@
 class GroupInvitationsController < ApplicationController
 	before_action :authorize
-  before_action :set_group, only: [:index, :create, :pending_approval]
+  before_action :set_group, only: [:index, :create, :pending_approval, :modal]
 
   def index
     users = User.not_deleted.excludes(@group.user_ids).excludes(@group.invited_users.ids).by_xp
@@ -8,6 +8,12 @@ class GroupInvitationsController < ApplicationController
       users = users.by_username_or_email(params[:username_or_email])
     end
     @users_to_invite = UserInvitationDecorator.decorate_collection(users.page(params[:page]))
+  end
+
+  def modal
+    @fb_top_friends = ResumedFacebookFriendsGroupInvitationList.new(current_user, @group)
+    @regular_users = ResumedPopularUsersGroupInvitationsList.new(@group)
+    render layout: false
   end
 
   def pending_approval
@@ -48,7 +54,7 @@ class GroupInvitationsController < ApplicationController
         flash[:warning] = "Please try again"
       end
     end
-    redirect_to group_group_invitations_path(@group)
+    redirect_to @group
   end
 
   private

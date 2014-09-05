@@ -1,0 +1,15 @@
+<%= render 'shared/header_page', title: 'Invite members' %>
+
+<%= render 'users/search_form', action: "index", controller: "group_invitations" %>
+<br />
+
+<%= render "users/users_list", users_list: @fb_top_friends, modal: true %>
+
+<%= render "users/users_list", users_list: @regular_users, modal: true %>
+
+
+<script type="text/javascript">
+  $(document).ready(listing_hover_effects);
+  $(document).on('page:load', listing_hover_effects);
+</script>
+
