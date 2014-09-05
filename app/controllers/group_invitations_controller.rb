@@ -3,7 +3,7 @@ class GroupInvitationsController < ApplicationController
   before_action :set_group, only: [:index, :create, :pending_approval]
 
   def index
-    users = User.not_deleted.excludes(@group.user_ids).excludes(@group.invited_users.ids)
+    users = User.not_deleted.excludes(@group.user_ids).excludes(@group.invited_users.ids).by_xp
     if params[:username_or_email]
       users = users.by_username_or_email(params[:username_or_email])
     end

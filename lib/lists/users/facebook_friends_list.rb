@@ -16,7 +16,7 @@ class FacebookFriendsList < PaginatedUsersList
   end
 
   def users
-    @users ||= UserDecorator.decorate_collection(current_user.facebook_friends.page page)
+    @users ||= UserDecorator.decorate_collection(current_user.facebook_friends.by_xp.page page)
   end
 
   def current_user

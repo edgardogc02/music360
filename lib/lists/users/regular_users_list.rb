@@ -16,7 +16,7 @@ class RegularUsersList < PaginatedUsersList
   end
 
   def users
-    @users ||= UserDecorator.decorate_collection(User.not_deleted.exclude(exclude_user.id).limit(50).page page)
+    @users ||= UserDecorator.decorate_collection(User.not_deleted.exclude(exclude_user.id).limit(50).by_xp.page page)
   end
 
   def exclude_user

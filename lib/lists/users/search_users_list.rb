@@ -13,7 +13,7 @@ class SearchUsersList < PaginatedUsersList
   end
 
   def users
-    @users ||= UserDecorator.decorate_collection(User.by_username_or_email(username_or_email).exclude(current_user).page page)
+    @users ||= UserDecorator.decorate_collection(User.by_username_or_email(username_or_email).exclude(current_user).by_xp.page page)
   end
 
   def username_or_email
