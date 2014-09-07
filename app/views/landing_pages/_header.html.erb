@@ -1,0 +1,86 @@
+<nav class="navbar navbar-custom navbar-default navbar-fixed-top">
+  <div class="container">
+    <div class="navbar-header pull-left page-scroll">
+      <a class="navbar-brand logo" href="#page-top"> <%= image_tag(asset_path('logo_alpha.png')) %> </a>
+    </div>
+
+    <div class="pull-right">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+    </div>
+
+		<div class="pull-left nav-secondary-top-landing hidden-sm hidden-xs">
+			<a href="<%= new_session_path %>" class="btn btn-link <%= 'active' if current_page?(new_session_path) %>">Learn to Play</a>
+    	<a href="<%= music_teacher_path %>" class="btn btn-link <%= 'active' if current_page?(music_teacher_path) %>">Music Teachers</a>
+    	<a href="<%= music_artist_path %>" class="btn btn-link <%= 'active' if current_page?(music_artist_path) %>">Music Artists</a>
+    	<a href="<%= guitar_path %>" class="btn btn-link <%= 'active' if current_page?(guitar_path) %>"><i class="icon-instrument guitar-sm"></i></a>
+    	<a href="<%= keyboards_path %>" class="btn btn-link <%= 'active' if current_page?(keyboards_path) %>"><i class="icon-instrument keyboard-sm"></i></a>
+    	<a href="<%= drums_path %>" class="btn btn-link <%= 'active' if current_page?(drums_path) %>"><i class="icon-instrument drums-sm"></i></a>
+    </div>
+
+    <div class="pull-right nav-helper-top-landing hidden-sm hidden-xs">
+      <a href="<%= help_path %>" class="btn btn-link" target="_blank">Help</a>
+      <a href="#" class="btn btn-link authentication-btn login-modal-btn" data-id="login">Log in</a>
+      <a href="#" class="btn btn-primary btn-lg authentication-btn download-modal-btn" data-id="download">Download</a>
+    </div>
+
+    <div class="collapse navbar-collapse navbar-ex1-collapse navbar-right">
+      <ul class="nav navbar-nav visible-xs">
+      	<li><a href="<%= new_session_path %>" class="btn btn-link <%= 'active' if current_page?(new_session_path) %>">Learn to Play</a></li>
+	    	<li><a href="<%= music_teacher_path %>" class="btn btn-link <%= 'active' if current_page?(music_teacher_path) %>">Music Teachers</a></li>
+	    	<li><a href="<%= music_artist_path %>" class="btn btn-link <%= 'active' if current_page?(music_artist_path) %>">Music Artists</a></li>
+	    	<li><a href="<%= guitar_path %>" class="btn btn-link <%= 'active' if current_page?(guitar_path) %>">Guitar</a></li>
+	    	<li><a href="<%= keyboards_path %>" class="btn btn-link <%= 'active' if current_page?(keyboards_path) %>">Keyboard</a></li>
+	    	<li><a href="<%= drums_path %>" class="btn btn-link <%= 'active' if current_page?(drums_path) %>">Drums</a></li>
+				<li class="spacer-sm"><hr class="no-padding no-margin" /></li>
+        <li class="page-scroll">
+          <a href="#what-it-is">What it is</a>
+        </li>
+        <li class="page-scroll">
+          <a href="#how-it-works">How it works</a>
+        </li>
+        <li class="page-scroll spacer-sm">
+          <a href="#what-it-costs">What it costs</a>
+      	</li>
+      	<li class="spacer-sm"><hr class="no-padding no-margin" /></li>
+      	<li><a href="<%= help_path %>" class="btn btn-link" target="_blank">Help</a></li>
+	      <li><a href="#" class="btn btn-link authentication-btn login-modal-btn" data-id="login">Log in</a></li>
+	      <li><a href="#" class="btn btn-primary btn-lg authentication-btn download-modal-btn" data-id="download">Download</a></li>
+      </ul>
+    </div>
+
+  </div>
+</nav>
+
+<nav class="navbar navbar-custom-links navbar-fixed-bottom hidden-xs">
+  <div class="container">
+    <ul class="nav navbar-nav">
+      <li class="page-scroll hide">
+        <a href="#page-top"></a>
+      </li>
+      <li class="page-scroll">
+        <a href="#what-it-is">What it is</a>
+      </li>
+      <li class="page-scroll">
+        <a href="#how-it-works">How it works</a>
+      </li>
+      <li class="page-scroll">
+        <a href="#what-it-costs">What it costs</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+
+<%= render 'sessions/sign_in' %>
+
+<div class="modal fade" id="video" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body"></div>
+    </div>
+  </div>
+</div>
