@@ -21,6 +21,9 @@ class PagesController < ApplicationController
     end
 
     @activity_feeds = UserPersonalActivityFeed.new(current_user).feeds.limit(6).page(1).per(10)
+
+    @current_level = current_user.get_level
+    @next_level = current_user.next_level
   end
 
   def apps

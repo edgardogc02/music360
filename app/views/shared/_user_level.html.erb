@@ -1,0 +1,5 @@
+<div class="icon-level <%= position == 'left' ? 'level-currently' : 'level-next' %> level-home">
+	<div class="level-num <%= level.number >= 10 ? 'big-number' : '' %>"><%= level.number %></div>
+	<div class="level-label"><%= level.title %></div>
+	<div class="level-points"><%= points %>MP</div>
+</div>

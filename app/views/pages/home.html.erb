@@ -10,38 +10,21 @@
 
 <div class="row">
 	<div class="col-lg-8">
-		<div class="hide">
-			<%= render 'shared/header_page', sub_header: true, title: 'My InstrumentChamp Career' %>
-			<br />
-		</div>
-		<div class="row hide">
-			<div class="col-lg-8">
-				<div class="pos-relative career-progress">
-					<div class="progress progress-xp">
-					  <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <%= current_user.completion_percentage_level %>%;">
-					    <span><%= current_user.completion_percentage_level %>%</span>
-					  </div>
-					</div>
-					<div class="btn-group">
-					  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
-					  	<i class='glyphicon glyphicon-plus'></i>
-					  </button>
-					  <ul class="dropdown-menu" role="menu">
-					    <li><a href="#"><span>+ 1000MP</span> Install game </a></li>
-					    <li class="divider"></li>
-					    <li><a href="#"><span>+ 1000MP</span> Play a song</a></li>
-					    <li class="divider"></li>
-					    <li><a href="#"><span>+ 1000MP</span> Create a challenge</a></li>
-					  </ul>
-					</div>
+		<div class="row">
+			<div class="col-lg-3 col-md-3 col-sm-3 level-left text-center">
+				<%= render 'shared/user_level', position: "left", level: @current_level, points: current_user.xp %>
+			</div>
+			<% if @next_level %>
+				<div class="col-lg-6 col-md-6 col-sm-6">
+					<br /><br /><br />
+					<%= render 'shared/progress_bar' %>
 				</div>
-			</div>
-			<div class="col-lg-4">
-				<div class="spacer-sm"><h3 class="no-margin"><%= current_user.level %></h3></div>
-				<p>Currently points: <b><%= current_user.xp %></b></p>
-			</div>
+				<div class="col-lg-3 col-md-3 col-sm-3 level-right text-center">
+					<%= render 'shared/user_level', position: "right", level: @next_level, points: @next_level.xp %>
+				</div>
+			<% end %>
 		</div>
-		<br />
+		<br /><br />
 		<% unless @activity_feeds.empty? %>
 		  <%= render @activity_feeds %>
 		  <br />

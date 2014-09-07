@@ -4,7 +4,7 @@
 [role="navbar"] {
 	padding-top: 10px;
 	@include box-shadow(0, 1px, 3px, rgba(#000, .1));
-	
+
 	.logo {
     font-weight: bold;
     color: $comp;
@@ -37,18 +37,90 @@
 #search-box {
   margin-right: 20px;
   display: inline-block;
-  
+
   .form-control-sm {
     display: inline-block;
   }
-  
+
   .form-inline.main-search-box {
     #search_value {
       width: 200px;
     }
   }
-  
+
   i { margin-right:  0px; }
-  
+
+}
+
+.profile-section {
+  .header-avatar {
+    width: 28px;
+    height: 28px;
+    display: inline-block;
+  }
+
+  .dropdown {
+    display: inline-block;
+
+    .btn.dropdown-toggle {
+      text-align: left;
+      font-size: 11px;
+      line-height: 14px;
+      padding-top: 0px;
+      padding-bottom: 0px;
+      padding-left: 5px;
+
+      b {
+        font-size: 14px;
+      }
+
+      .pull-left {
+        padding-right: 10px;
+      }
+    }
+
+    &.open {
+      .btn.dropdown-toggle {
+        border-color: #f8f8f8;
+        background: none;
+      }
+    }
+  }
+}
+
+@media (max-width: $screen-xs-max) {
+  .profile-section {
+    padding-bottom: 10px;
+  }
+}
+
+.navbar-custom {
+  .progress-bar-header {
+    width: 200px;
+    padding: 0px 20px;
+
+    .career-progress {
+      .progress.progress-xp {
+        margin-bottom: 0px;
+
+        .progress-bar {
+          padding: 6px 0px;
+          margin-bottom: 0px;
+
+          span {
+            font-size: 14px;
+          }
+        }
+      }
+      .dropdown-menu a {
+        text-align: left;
+      }
+    }
+  }
+
+  .btn-huge-header {
+    padding: 7px 50px;
+    margin-right: 20px;
+  }
 }
 
