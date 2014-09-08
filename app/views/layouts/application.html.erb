@@ -18,15 +18,13 @@
             <div class="col-md-12">
               <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                  <% if signed_in? %>
-  							  	<div class="pull-left">
-  							  		<%= image_tag current_user.imagename_url, alt: current_user.username, class: "header-avatar" %>
-  							  	</div>
-  							  	<div class="pull-left hidden-sm">
-  							  		<b><%= current_user.username %></b><br />
-  										<%= current_user.level %>
-  							  	</div>
-                  <% end %>
+                	<div class="pull-left">
+							  		<%= image_tag current_user.imagename_url, alt: current_user.username, class: "header-avatar" %>
+							  	</div>
+							  	<div class="pull-left">
+							  		<div class="spacer-md"></div>
+							  		<i class="glyphicon glyphicon-chevron-down"></i>
+							  	</div>
                 </button>
                 <%= link_to :root, class: "logo navbar-brand" do %>
                 <%= image_tag(asset_path('logo_alpha.png')) %>
