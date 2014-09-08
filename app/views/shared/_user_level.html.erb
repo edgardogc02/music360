@@ -1,5 +1,11 @@
-<div class="icon-level <%= position == 'left' ? 'level-currently' : 'level-next' %> level-home">
+<div class="icon-level <%= position == 'left' ? 'level-currently' : 'level-next' %> level-home hidden-sm hidden-xs">
 	<div class="level-num <%= level.number >= 10 ? 'big-number' : '' %>"><%= level.number %></div>
 	<div class="level-label"><%= level.title %></div>
 	<div class="level-points"><%= points %>MP</div>
+</div>
+
+<div class="visible-sm visible-xs">
+	<img src="http://placehold.it/60x60" class="visible-xs visible-sm" style="margin: 0px auto 10px auto" />
+	<div><b><%= level.title %></b></div>
+	<div><%= points %>MP</div>
 </div>
