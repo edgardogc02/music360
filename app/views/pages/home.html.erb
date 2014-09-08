@@ -26,14 +26,22 @@
 			<% end %>
 		</div>
 		<br /><br />
-		<% unless @activity_feeds.empty? %>
-		  <%= render @activity_feeds %>
-		  <br />
-		  <% unless @activity_feeds.last_page? %>
-  		  <div id="more_posts"></div>
-  		  <%= link_to 'View more', personal_activities_path(page: 2), { remote: true, id: "show_more_posts_link" } %>
+
+    <% if signed_in? %>
+      <h2>Status</h2>
+      <%= render "user_posts/form" %>
+    <% end %>
+    <hr />
+    <div id="user_activities">
+  		<% unless @activity_feeds.empty? %>
+  		  <%= render @activity_feeds %>
+  		  <br />
+  		  <% unless @activity_feeds.last_page? %>
+    		  <div id="more_posts"></div>
+    		  <%= link_to 'View more', personal_activities_path(page: 2), { remote: true, id: "show_more_posts_link" } %>
+    		<% end %>
   		<% end %>
-		<% end %>
+    </div>
 	</div>
 	<div class="col-lg-4">
 		<%= render 'shared/header_page', sub_header: true, title: 'Songs', view_more: 'View more', view_more_path: songs_path %>

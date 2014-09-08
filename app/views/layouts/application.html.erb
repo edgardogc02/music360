@@ -9,7 +9,7 @@
     <header>
 
       <% if signed_in? %>
-      <%= render "shared/welcome_modal" %>
+        <%= render "shared/welcome_modal" %>
       <% end %>
 
       <nav class="navbar navbar-default navbar-custom navbar-fixed-top" role="navigation">
@@ -18,13 +18,15 @@
             <div class="col-md-12">
               <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-							  	<div class="pull-left">
-							  		<%= image_tag current_user.imagename_url, alt: current_user.username, class: "header-avatar" %>
-							  	</div>
-							  	<div class="pull-left hidden-sm">
-							  		<b><%= current_user.username %></b><br />
-										<%= current_user.level %>
-							  	</div>
+                  <% if signed_in? %>
+  							  	<div class="pull-left">
+  							  		<%= image_tag current_user.imagename_url, alt: current_user.username, class: "header-avatar" %>
+  							  	</div>
+  							  	<div class="pull-left hidden-sm">
+  							  		<b><%= current_user.username %></b><br />
+  										<%= current_user.level %>
+  							  	</div>
+                  <% end %>
                 </button>
                 <%= link_to :root, class: "logo navbar-brand" do %>
                 <%= image_tag(asset_path('logo_alpha.png')) %>

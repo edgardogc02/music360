@@ -89,6 +89,7 @@ InstrumentchampPrototype::Application.routes.draw do
     get 'reject', on: :member
   end
 
+  resources :user_posts
   resources :user_instruments, only: [:edit, :update]
   resources :user_groupies, only: [:index, :create, :destroy]
   resources :user_invitations, only: [:new, :create]

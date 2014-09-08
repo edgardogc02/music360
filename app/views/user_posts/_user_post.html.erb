@@ -1,0 +1,16 @@
+<div class="post-feed">
+	<div class="clearfix">
+		<div class="pull-left user-thumb">
+			<a href="<%= person_path(user_post.user) %>">
+	      <div class="thumbnail">
+	      	<%= image_avatar(user_post.user) %>
+	      </div>
+	    </a>
+		</div>
+		<div class="pull-left">
+			<h4 class="media-heading"><%= link_to user_post.user.username, person_path(user_post.user) %> <span class="small">posted</span></h4>
+      <div class="small spacer-md text-muted"><%= time_ago_in_words(user_post.created_at) %> ago</div>
+      <%= user_post.message %>
+		</div>
+	</div>
+</div>

@@ -66,7 +66,7 @@ describe User do
       should have_many(:initiated_groups).class_name('Group').with_foreign_key("initiator_user_id")
     end
 
-    [:payments, :user_premium_subscriptions, :user_groups, :post_likes, :post_comments, :user_level_upgrades].each do |assoc|
+    [:payments, :user_premium_subscriptions, :user_groups, :post_likes, :post_comments, :user_level_upgrades, :user_posts].each do |assoc|
       it "should have many #{assoc}" do
         should have_many(assoc)
       end

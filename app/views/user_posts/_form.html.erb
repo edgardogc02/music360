@@ -1,0 +1,7 @@
+<%= simple_form_for UserPost.new, remote: true do |f| %>
+
+  <%= f.input :message, label: false, placeholder: "Write something..." %>
+
+  <%= f.button :submit, "Post" %>
+
+<% end %>

@@ -73,6 +73,8 @@ class User < ActiveRecord::Base
 
   has_many :user_level_upgrades
 
+  has_many :user_posts
+
   before_create { generate_token(:auth_token) }
 
 #  before_create :fill_in_extra_fields
