@@ -1,19 +1,13 @@
-<li class="media media-item">
-	<div class="pull-left text-center">
+<div class="group-challenge-item masonry-img">
+	<div class="pull-left item-img">
 		<%= image_tag challenge.cover_url, class: 'song-cover spacer-sm' %>
-
-		<% if challenge.group %>
-			<p><%= link_to 'View more', group_challenge_path(group_id: challenge.group.id, id: challenge.id) %></p>
-		<% else %>
-			<p><%= link_to 'View more', challenge %></p>
-		<% end %>
 	</div>
-  <div class="media-body">
-    <p class="spacer-sm">
-    	<%= link_to challenge.song.title, song_path(challenge.song) %>
+  <div class="pull-left item-content">
+    <div class="spacer-md">
+    	<h2><%= link_to challenge.song.title, song_path(challenge.song) %></h2>
     	by <%= link_to challenge.song.artist.title, artist_path(challenge.song.artist)%>
-		</p>
-		<p class="spacer-sm">
+		</div>
+		<div class="spacer-md small">
 	    Created by <%= link_to challenge.challenger.username, person_path(challenge.challenger)%>
 	    <time datetime="<%= challenge.created_at%>" pubdate><%= time_ago_in_words(challenge.created_at)%> ago</time>
 	    <% if challenge.challenged %>
@@ -21,11 +15,15 @@
 	    <% else %>
 	    	<div>Group: <%= link_to challenge.group.name, challenge.group %></div>
 	    <% end %>
-	  </p>
-	  <div class="clearfix">
-      <%= challenge.display_start_challenge_button %>
-    </div>
-    <%= challenge.display_results %>
-    <%= challenge.display_remind_button %>
+	  </div>
+	  <div class="spacer-md">
+	  	<%= challenge.display_results %>
+    	<%= challenge.display_remind_button %>
+	  </div>
+	  <div class="spacer-md">
+			<%= link_to 'View', challenge.group ? group_challenge_path(group_id: challenge.group.id, id: challenge.id) : challenge, class: 'btn btn-primary btn-sm' %>
+	    <%= challenge.display_start_challenge_button %>
+		</div>
+
   </div>
-</li>
+</div>
