@@ -1,13 +1,25 @@
-<!--
-<button type="button" class="navbar-toggle navbar-toggle-main" data-toggle="collapse" data-target=".navbar-ex2-collapse">
-	<span class="sr-only">Toggle navigation</span>
-	<span class="icon-bar"></span>
-	<span class="icon-bar"></span>
-	<span class="icon-bar"></span>
-</button>
--->
+<div class="visible-xs">
+  <ul id="sidebar" class="nav nav-stacked main-menu-mobile clearfix">
+    <li>
+      <a href="<%= home_path %>" id="home"><i class='glyphicon glyphicon-home'></i></a>
+    </li>
+    <li>
+      <a href="<%= people_path %>" id="people"><i class='glyphicon glyphicon-user'></i></a>
+    </li>
+    <li>
+      <a href="<%= artists_path %>" id="people"><i class='glyphicon glyphicon-star'></i></a>
+    </li>
+    <li>
+      <a href="<%= songs_path %>" id="songs"><i class='glyphicon glyphicon-music'></i></a>
+    </li>
+    <li>
+      <a href="<%= challenges_path %>" id="challenges"><i class='glyphicon glyphicon-flag'></i></a>
+    </li>
+  </ul>
+  <hr />
+</div>
 
-<div class="hidden-sm hidden-xs">
+<div class="hidden-xs">
 	<nav class="bs-docs-sidebar">
 		<ul id="sidebar" class="nav nav-stacked">
 			<li class="<%= 'active' if current_page?(home_path) %>">

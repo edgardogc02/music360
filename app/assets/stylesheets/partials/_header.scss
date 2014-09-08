@@ -40,6 +40,7 @@
 
   .form-control-sm {
     display: inline-block;
+    margin-bottom: 0px;
   }
 
   .form-inline.main-search-box {
@@ -122,5 +123,45 @@
     padding: 7px 50px;
     margin-right: 20px;
   }
+
+  .navbar-toggle {
+    margin-top: 0px;
+    border: 0px;
+    padding: 2px 10px 0px 0px;
+    text-align: left;
+    color: $comp;
+
+    img.header-avatar {
+      width: 34px;
+      margin-right: 10px;
+    }
+
+    &:hover {
+      color: #333;
+    }
+
+    &:focus, &:hover {
+      background: none !important;
+    }
+  }
 }
 
+@media (max-width: $screen-sm-max) {
+  .navbar-custom {
+    .btn-huge-header {
+      padding: 5px;
+      margin: 0px;
+    }
+
+    .progress-bar-header {
+      padding-left: 0px;
+      padding-right: 10px;
+    }
+
+    .profile-section {
+      .btn.dropdown-toggle {
+        padding: 0px;
+      }
+    }
+  }
+}

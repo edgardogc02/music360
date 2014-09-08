@@ -18,16 +18,18 @@
             <div class="col-md-12">
               <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                  <span class="sr-only">Toggle navigation</span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
-                  <span class="icon-bar"></span>
+							  	<div class="pull-left">
+							  		<%= image_tag current_user.imagename_url, alt: current_user.username, class: "header-avatar" %>
+							  	</div>
+							  	<div class="pull-left hidden-sm">
+							  		<b><%= current_user.username %></b><br />
+										<%= current_user.level %>
+							  	</div>
                 </button>
                 <%= link_to :root, class: "logo navbar-brand" do %>
                 <%= image_tag(asset_path('logo_alpha.png')) %>
                 <% end %>
               </div>
-
               <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               	<% if signed_in? %>
 	              	<ul class="nav navbar-nav navbar-left">
@@ -42,13 +44,19 @@
                 <ul class="nav navbar-nav navbar-right">
                   <% if signed_in? %>
 
-	                  <li class="profile-section">
+										<li class="visible-xs"><%= link_to "Account", overview_accounts_path %></li>
+								    <li class="visible-xs"><%= link_to "Upgrade", new_user_premium_subscription_path if !current_user.premium? %></li>
+								    <li class="visible-xs"><%= link_to "Admin", admin_dashboard_path, {target: "_blank"} if current_user.admin? %></li>
+								    <li class="divider visible-xs"></li>
+								    <li class="visible-xs"><%= link_to "Sign out", logout_path %></li>
+
+	                  <li class="profile-section hidden-xs">
 	                  	<div class="dropdown">
 											  <a class="btn dropdown-toggle clearfix" data-toggle="dropdown">
 											  	<div class="pull-left">
 											  		<%= image_tag current_user.imagename_url, alt: current_user.username, class: "header-avatar" %>
 											  	</div>
-											  	<div class="pull-left">
+											  	<div class="pull-left hidden-sm">
 											  		<b><%= current_user.username %></b><br />
 														<%= current_user.level %>
 											  	</div>
@@ -99,26 +107,6 @@
             <% if signed_in? %>
             <div class="col-md-2 col-sm-3">
               <section class="side-panel pos-relative">
-                <div class="visible-sm visible-xs">
-                  <ul id="sidebar" class="nav nav-stacked main-menu-mobile clearfix">
-                    <li>
-                      <a href="<%= home_path %>" id="home"><i class='glyphicon glyphicon-home'></i></a>
-                    </li>
-                    <li>
-                      <a href="<%= people_path %>" id="people"><i class='glyphicon glyphicon-user'></i></a>
-                    </li>
-                    <li>
-                      <a href="<%= artists_path %>" id="people"><i class='glyphicon glyphicon-star'></i></a>
-                    </li>
-                    <li>
-                      <a href="<%= songs_path %>" id="songs"><i class='glyphicon glyphicon-music'></i></a>
-                    </li>
-                    <li>
-                      <a href="<%= challenges_path %>" id="challenges"><i class='glyphicon glyphicon-flag'></i></a>
-                    </li>
-                  </ul>
-                  <hr />
-                </div>
                 <%= render "shared/left_menu" %>
               </section>
             </div>
