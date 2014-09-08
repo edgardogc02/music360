@@ -12,7 +12,7 @@ module UserMacros
     user.created_by.should_not be_blank
     # user.city.should_not be_blank # TODO: Check how to test this in test mode is always blank
     user.challenges_count.should eq(0)
-    user.xp.should eq(0)
+    user.xp.should eq(100)
 
     if check_oauth_uid
       user.oauth_uid.should_not be_blank

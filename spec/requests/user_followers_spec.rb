@@ -37,7 +37,25 @@ describe "UserFollowers" do
     end
 
     it "should not email followed user if it's a fake facebook user" do
+      pending
+    end
 
+    context "user has a new follower" do
+      it "should give 100 MP points to the followed user" do
+        followed = create(:user)
+        xp_points = followed.xp
+        @user.follow(followed)
+        followed.reload
+        followed.xp.should eq(xp_points+100)
+      end
+
+      it "should give 50 MP points to the follower user" do
+        followed = create(:user)
+        xp_points = @user.xp
+        @user.follow(followed)
+        @user.reload
+        @user.xp.should eq(xp_points+50)
+      end
     end
   end
 end
