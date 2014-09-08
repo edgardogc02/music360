@@ -4,6 +4,9 @@ describe "ChallengeReminders" do
 
   context "user is sign in" do
     before(:each) do
+      @public_group_privacy = create(:public_group_privacy)
+      @level1 = create(:level, xp: 10)
+
       @song = create(:song, cost: 0)
     end
 
