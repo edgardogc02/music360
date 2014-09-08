@@ -36,13 +36,6 @@
 					<li class="<%= 'active' if current_page?(list_challenges_path(view: "new")) %>"><a href="<%= list_challenges_path(view: "new") %>">New</a></li>
 				</ul>
 			</li>
-			<li class="<%= 'active' if current_page?(tour_path) %>">
-				<a href="<%= tour_path %>" id="help"><i class='glyphicon glyphicon-send'></i> Take a tour</a>
-			</li>
-			<li class="<%= 'active' if current_page?(help_path) %>">
-				<a href="<%= help_path %>" target= "_blank" id="help"><i class='glyphicon glyphicon-question-sign'></i> Help</a>
-			</li>
-			<!--
 			<li class="<%= 'active' if current_page?(groups_path) or current_page?(list_groups_path) %>">
 				<a href="<%= groups_path %>" id="groups"><i class='glyphicon glyphicon-th'></i> Groups</a>
 				<ul class="nav nav-stacked">
@@ -51,7 +44,12 @@
 					<li class="<%= 'active' if current_page?(list_groups_path(view: "new")) %>"><a href="<%= list_groups_path(view: "new") %>">New</a></li>
 				</ul>
 			</li>
-			-->
+			<li class="<%= 'active' if current_page?(tour_path) %>">
+				<a href="<%= tour_path %>" id="help"><i class='glyphicon glyphicon-send'></i> Take a tour</a>
+			</li>
+			<li class="<%= 'active' if current_page?(help_path) %>">
+				<a href="<%= help_path %>" target= "_blank" id="help"><i class='glyphicon glyphicon-question-sign'></i> Help</a>
+			</li>
 		</ul>
 	</nav>
 </div>

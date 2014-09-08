@@ -1,14 +1,14 @@
 <%= render 'shared/header_page', title: @title %>
 
-<ul class="media-list">
-	<% unless @challenges.blank? %>
+<% unless @challenges.blank? %>
+	<div class="thumbnail-grid">
 		<%= render partial: "challenge", collection: @challenges %>
-		<% if @paginate %>
-	    <hr />
-	    <%= paginate @challenges %>
-	  <% end %>
-	<% else %>
-</ul>
+	</div>
+	<% if @paginate %>
+    <hr />
+    <%= paginate @challenges %>
+  <% end %>
+<% else %>
 
 <p class="no-content">
   No challenges right now

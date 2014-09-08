@@ -28,6 +28,10 @@ ready = function() {
   });
 
 	progress_plus_button();
+
+  $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+    listing_hover_effects();
+  });
 };
 
 $(document).ready(ready);
