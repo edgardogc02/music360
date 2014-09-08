@@ -1,5 +1,8 @@
 module FacebookLoginMacros
   def signin_with_facebook
+    public_group_privacy = create(:public_group_privacy)
+    level1 = create(:level, xp: 0)
+
     visit login_path
 
     page.should have_selector('#facebook_signin')

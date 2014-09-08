@@ -3,15 +3,15 @@ require 'spec_helper'
 describe "UserOmniauthCredentials" do
 
   before(:each) do
-    @public_group_privacy = create(:public_group_privacy)
-    @level1 = create(:level, xp: 10)
+    public_group_privacy = create(:public_group_privacy)
+    level1 = create(:level, xp: 0)
     @song = create(:song)
   end
 
   it "should sign up user for first time with facebook account" do
     signin_with_facebook
     page.find('.alert-notice').should have_content('Welcome Facebook test user!')
-    URI.parse(current_url).request_uri.should eq(home_path(welcome_tour: true))
+    URI.parse(current_url).request_uri.should eq(home_path(welcome_msg: true))
   end
 
   it "should login (already signed up user) user with facebook account" do
@@ -48,7 +48,7 @@ describe "UserOmniauthCredentials" do
     click_link "facebook_signin"
 
     page.find('.alert-notice').should have_content('Welcome Dick Smithberg!')
-    URI.parse(current_url).request_uri.should eq(home_path(welcome_tour: true))
+    URI.parse(current_url).request_uri.should eq(home_path(welcome_msg: true))
   end
 
   it "should save all facebook friends when a user signs up" do

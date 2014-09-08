@@ -8,6 +8,9 @@ module LoginMacros
   end
 
   def login_form(user)
+    public_group_privacy = create(:public_group_privacy)
+    level1 = create(:level, xp: 0)
+
     visit login_path
     within("#login-form") do
       fill_in 'username', with: user.username

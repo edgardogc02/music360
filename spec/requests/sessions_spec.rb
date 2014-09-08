@@ -5,6 +5,8 @@ describe "Sessions" do
   describe "sign in" do
     before(:each) do
       @song = create(:song)
+      public_group_privacy = create(:public_group_privacy)
+      level1 = create(:level, xp: 0)
     end
 
     it "Sign in with correct credentials" do

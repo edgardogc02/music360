@@ -135,6 +135,7 @@ FactoryGirl.define do
   factory :level do
     sequence(:title) { |n| "level_#{n}" }
     xp 0
+    number 1
   end
 
   factory :group_privacy do

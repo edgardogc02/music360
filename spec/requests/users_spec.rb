@@ -4,15 +4,12 @@ describe "Users" do
 
   before(:each) do
     @public_group_privacy = create(:public_group_privacy)
-    @closed_group_privacy = create(:closed_group_privacy)
-    @secret_group_privacy = create(:secret_group_privacy)
     @song = create(:song)
+    level1 = create(:level, xp: 0)
   end
 
   describe "user not signed in" do
     it "should sign up with correct credentials" do
-      level1 = create(:level, xp: 10)
-      level2 = create(:level, xp: 40)
       signup('testuser', 'testuser@test.com', 'password')
       current_path.should eq(home_path)
       page.find('.alert-notice').should have_content('Hi testuser!')
@@ -101,9 +98,6 @@ describe "Users" do
     end
 
     it "should create the user facebook friends if it was a facebook fake user" do
-      level1 = create(:level, xp: 10)
-      level2 = create(:level, xp: 40)
-
       visit login_path
 
       mock_facebook_auth_hash
@@ -125,9 +119,6 @@ describe "Users" do
     end
 
     it "should create a new user with phone number" do
-      level1 = create(:level, xp: 10)
-      level2 = create(:level, xp: 40)
-
       visit signup_path
 
       within("#new_user") do
@@ -264,15 +255,6 @@ describe "Users" do
       it "should not show deleted users in search results" do
         pending
       end
-    end
-
-    it "should have a linked username in the left side bar" do
-      level1 = create(:level, xp: 10)
-      level2 = create(:level, xp: 40)
-
-      visit home_path
-
-      page.should have_link @user.username, href: profile_accounts_path
     end
 
     it "should have a edit profile button user show page" do
