@@ -27,6 +27,7 @@ class GroupInvitationsController < ApplicationController
     user_group.save!
     group_invitation.destroy
     EmailNotifier.group_invitation_accepted(user_group).deliver
+    user_group.group.assign_xp_to_owner_after_new_member_joins
     redirect_to pending_approval_group_group_invitations_path(user_group.group), notice: "#{user_group.user.username} is a new member of #{user_group.group.name}"
   end
 

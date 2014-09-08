@@ -73,6 +73,7 @@ class GroupsController < ApplicationController
       end
       if user_group.save
         @group.create_activity :join, owner: current_user, group_id: @group.id
+        @group.assign_xp_to_owner_after_new_member_joins
         redirect_to @group, notice: "You are now a member of #{@group.name}"
       else
         flash[:warning] = "You are already a member of #{@group.name}"
@@ -87,6 +88,7 @@ class GroupsController < ApplicationController
 
           if user_group.save
             @group.create_activity :join, owner: current_user, group_id: @group.id
+            @group.assign_xp_to_owner_after_new_member_joins
             redirect_to @group, notice: "You are now a member of #{@group.name}"
           else
             flash[:warning] = "You are already a member of #{@group.name}"
@@ -122,6 +124,7 @@ class GroupsController < ApplicationController
 
           if user_group.save
             @group.create_activity :join, owner: current_user, group_id: @group.id
+            @group.assign_xp_to_owner_after_new_member_joins
             redirect_to @group, notice: "You are now a member of #{@group.name}"
           else
             flash[:warning] = "You are already a member of #{@group.name}"

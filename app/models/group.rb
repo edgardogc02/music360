@@ -57,4 +57,20 @@ class Group < ActiveRecord::Base
     user.groups.include?(self)
   end
 
+  def assign_xp_to_owner_after_new_member_joins
+    if self.users.count == 2
+      self.initiator_user.assign_xp_points(1000)
+    elsif self.users.count == 10
+      self.initiator_user.assign_xp_points(5000)
+    elsif self.users.count == 50
+      self.initiator_user.assign_xp_points(10000)
+    elsif self.users.count == 200
+      self.initiator_user.assign_xp_points(20000)
+    elsif self.users.count == 500
+      self.initiator_user.assign_xp_points(25000)
+    elsif self.users.count == 1000
+      self.initiator_user.assign_xp_points(50000)
+    end
+  end
+
 end
