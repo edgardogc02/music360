@@ -3,11 +3,16 @@ require 'spec_helper'
 describe "Users" do
 
   before(:each) do
+    @public_group_privacy = create(:public_group_privacy)
+    @closed_group_privacy = create(:closed_group_privacy)
+    @secret_group_privacy = create(:secret_group_privacy)
     @song = create(:song)
   end
 
   describe "user not signed in" do
     it "should sign up with correct credentials" do
+      level1 = create(:level, xp: 10)
+      level2 = create(:level, xp: 40)
       signup('testuser', 'testuser@test.com', 'password')
       current_path.should eq(home_path)
       page.find('.alert-notice').should have_content('Hi testuser!')
@@ -96,6 +101,9 @@ describe "Users" do
     end
 
     it "should create the user facebook friends if it was a facebook fake user" do
+      level1 = create(:level, xp: 10)
+      level2 = create(:level, xp: 40)
+
       visit login_path
 
       mock_facebook_auth_hash
@@ -117,6 +125,9 @@ describe "Users" do
     end
 
     it "should create a new user with phone number" do
+      level1 = create(:level, xp: 10)
+      level2 = create(:level, xp: 40)
+
       visit signup_path
 
       within("#new_user") do
@@ -197,24 +208,6 @@ describe "Users" do
       page.should have_xpath("//input[@name='username_or_email']")
     end
 
-    context "open challenges on user page" do
-      it "should display no open challenges right now" do
-        visit person_path(@user.username)
-        page.should have_content "Open challenges"
-        page.should have_content "#{@user.username} has no open challenges right now"
-      end
-
-      it "should display open challenges in the user show page" do
-        challenge = create(:challenge, challenger: @user).decorate
-        new_challenge = create(:challenge, challenged: @user).decorate
-
-        visit person_path(@user.username)
-        page.should have_content "Open challenges"
-        page.should have_link "Start challenge", challenge.start_challenge_url
-        page.should have_link "Start challenge", new_challenge.start_challenge_url
-      end
-    end
-
     it "should be able to search for a username or email in the users index" do
       pending "extract this to a new spec and check new search functionalities"
       user = create(:user, username: "ronnie")
@@ -274,7 +267,11 @@ describe "Users" do
     end
 
     it "should have a linked username in the left side bar" do
+      level1 = create(:level, xp: 10)
+      level2 = create(:level, xp: 40)
+
       visit home_path
+
       page.should have_link @user.username, href: profile_accounts_path
     end
 
@@ -308,11 +305,13 @@ describe "Users" do
     end
 
     it "should display a delete profile link" do
+      pending 'now works with confirm dialog'
       visit profile_accounts_path
       page.should have_link "Delete profile", href: person_path(@user.username)
     end
 
     it "should delete a user" do
+      pending 'now works with confirm dialog'
       visit profile_accounts_path
       click_on "Delete profile"
       current_path.should eq(login_path)
