@@ -4,13 +4,13 @@
   min-height: 0;
   padding-top: 10px;
   padding-bottom: 10px;
-  
+
   background-color: #f8f8f8;
   border-color: #e7e7e7;
   min-height: 0;
   margin-bottom: 0;
   @include box-shadow(0, 1px, 3px, rgba(#000, .1));
-  
+
   .logo.navbar-brand {
     display: inline-block;
     padding-top: 0px;
@@ -18,35 +18,35 @@
     margin: 0px;
     height: auto;
   }
-  
+
   .navbar-nav > li {
     text-align: center;
   }
-  
+
   .navbar-nav > li > a {
     color: $comp;
     font-size: 14px;
     padding-top: 5px;
     padding-bottom: 5px;
     line-height: 16px;
-    
+
     &.btn-primary {
       color: #FFF;
-      
+
       &:hover {
         background: #2d7a78;
         color: #FFF;
       }
     }
   }
-  
+
   /*background-color: #f8f8f8;
   border-color: #e7e7e7;
   min-height: 0;
   padding: 10px 0px;
   margin-bottom: 0;
   @include box-shadow(0, 1px, 3px, rgba(#000, .1));
-  
+
   .navbar-brand {
     height: auto;
     padding-top: 0px;
@@ -54,15 +54,15 @@
     //margin-left: 0px !important;
     //line-height: 30px;
   }
-  
+
   .navbar-brand:focus {
     outline: 0;
   }
-  
+
   a {
     //color: #fff;
   }
-  
+
   .btn-link {
     margin: 0px;
     padding: 0px;
@@ -70,33 +70,33 @@
     font-size: 14px;
     //font-weight: bold;
   }
-  
+
   a.button {
     color: #333;
   }
-  
+
   .nav li a {
     -webkit-transition: background .3s ease-in-out;
     -moz-transition: background .3s ease-in-out;
     transition: background .3s ease-in-out;
   }
-  
+
   .nav li a:hover,
   .nav li a:focus,
   .nav li.active {
     outline: 0;
     background-color: rgba(255,255,255,.2);
   }
-  
+
   .navbar-toggle {
     float: none;
     margin: 0px 15px 10px 0px;
   }
-  
+
   .sign-in-btn {
     vertical-align: top;
   }
-  
+
   .navbar-collapse .page-scroll{
     a {
       text-align: center;
@@ -104,7 +104,7 @@
     }
   }
   .download-modal-btn {
-    padding: 5px 10px;  
+    padding: 5px 10px;
   }*/
 }
 
@@ -119,7 +119,7 @@
   padding-bottom: 56.25%;
   padding-top: 30px; height: 0; overflow: hidden;
 }
- 
+
 .video-container iframe,
 .video-container object,
 .video-container embed {
@@ -133,52 +133,52 @@
 #video-btn {
   transition: all 0.5s ease;
   -webkit-filter: drop-shadow(0px 0px 0px #FFF);
-  filter:         drop-shadow(0px 0px 0px #FFF); 
+  filter:         drop-shadow(0px 0px 0px #FFF);
 }
 
 #video-btn:hover {
   -webkit-filter: drop-shadow(0px 0px 10px #FFF);
-  filter:         drop-shadow(0px 0px 10px #FFF); 
+  filter:         drop-shadow(0px 0px 10px #FFF);
 }
 
 /* Navbar links */
 
-.navbar.navbar-custom-links {  
+.navbar.navbar-custom-links {
   background-color:rgba(0, 0, 0, 0.8);
   min-height: 0;
   padding: 15px 0px;
   border-bottom: 1px solid rgba(255,255,255,.3);
   margin-bottom: 0;
-  
+
   .navbar-nav {
     display: inline-block;
     float: none;
     width: 100%;
-    
+
     li {
       width: 33%;
     }
-    
+
     a {
       padding-top: 5px;
       padding-bottom: 5px;
     }
   }
-  
+
   .container {
     text-align: center;
   }
-  
+
   .page-scroll .icon-bar {
     background: #FFF;
   }
-  
+
   .page-scroll.active a {
     position: relative;
     background: $comp;
     color: #FFF;
   }
-  
+
   .page-scroll.active a:after {
     top: 100%;
     left: 50%;
@@ -193,12 +193,12 @@
     border-width: 10px;
     margin-left: -10px;
   }
-  
+
   .page-scroll.active a:hover, .page-scroll.active a:focus {
     position: relative;
     background: $comp !important;
   }
-  
+
   .page-scroll a {
     -webkit-transition: background 300ms ease-in 100ms; /* property duration timing-function delay */
     -moz-transition: background 300ms ease-in 100ms;
@@ -206,14 +206,14 @@
     transition: background 300ms ease-in 100ms;
     font-size: 16px;
   }
-  
+
   .page-scroll a:hover, .page-scroll a:focus {
     background: none !important;
   }
-  
+
   &.top-nav-collapse {
     border-top: 1px solid rgba(255,255,255,.3);
-    top: 53px;
+    top: 64px;
     bottom: auto;
   }
 }
@@ -227,9 +227,26 @@
   }
 }
 
+.nav-secondary-top-landing {
+  a {
+    font-size: 14px;
+
+    &.active {
+      background: #eeeeee;
+    }
+  }
+  margin-left: 12%;
+}
+
+@media (max-width: $screen-md-max) {
+  .nav-secondary-top-landing  {
+    margin-left: 2%;
+  }
+}
+
 /* Content */
 
-h1.brand-heading { 
+h1.brand-heading {
   color: #FFF;
 }
 
@@ -243,17 +260,17 @@ h1.brand-heading {
   background-size: cover;
   -o-background-size: cover;
   text-shadow: 2px 2px 5px #000;
-  
+
   p {
     font-size: 20px;
   }
-  
+
   h2 {
     font-size: 32px;
     margin-bottom: 30px;
     color: #fff;
-  } 
-  
+  }
+
 }
 
 #page-top {
@@ -309,7 +326,7 @@ h1.brand-heading {
   -moz-transition: background-color 0.15s linear 0s;
   -o-transition: background-color 0.15s linear 0s;
   display: inline-block;
-  
+
   .separator {
     border-left: 1px solid #2f4a84;
     border-right: 1px solid #4163aa;
@@ -321,36 +338,36 @@ h1.brand-heading {
     left: 60px;
     position: absolute;
   }
-  
+
   .text {
     display: inline-block;
     margin: 10px 0;
   }
-  
+
   &:hover {
     background-color: #334E84;
     color: #FFF;
   }
-  
+
   &.sm {
     width: 100%;
     font-size: 15px;
     padding: 0px;
-    
+
     .text {
       margin: 0px;
     }
   }
-  
+
   &.xs {
     background-position: 8px center;
     font-size: 14px;
     padding: 0 16px 0 50px;
-    
+
     .separator {
       left: 38px;
     }
-    
+
     .text {
       margin: 0px;
     }
@@ -372,19 +389,19 @@ h1.brand-heading {
 
 .modal-login-user {
   overflow: hidden;
-  
+
   .modal-header, .modal-footer {
     background: #ebedf2;
   }
-  
+
   .modal-body {
-    padding: 25px;  
+    padding: 25px;
   }
-  
+
   .modal-header {
     padding: 20px 15px;
   }
-  
+
   .modal-footer {
     margin-top: 0px;
     font-size: 11px;
@@ -399,24 +416,24 @@ h1.brand-heading {
   .landing-section {
     padding-top: 14%;
     padding-bottom: 5%;
-  }  
+  }
 }
 
 @media (max-width: $screen-sm-max) {
   .landing-section {
     padding-top: 18%;
     padding-bottom: 6%;
-  }  
-  
+  }
+
   .nav-helper-top-landing {
     margin-right: 10px;
   }
-  
+
   .btn.btn-huge.download-modal-btn {
     font-size: 14px;
     margin-top: 20px;
   }
-    
+
   #search-box {
     margin-right: 0px;
   }
@@ -426,14 +443,14 @@ h1.brand-heading {
   .landing-section {
     padding-top: 45%;
     padding-bottom: 7%;
-    
+
     p {
       font-size: 14px;
-    }    
+    }
     h2 {
       font-size: 24px;
     }
-  }  
+  }
 }
 @media (min-width: $screen-sm-min) and (max-width: $screen-sm-max) {}
 @media (min-width: $screen-md-min) and (max-width: $screen-md-max) {}
@@ -441,14 +458,14 @@ h1.brand-heading {
   .landing-section {
     padding-top: 15%;
     padding-bottom: 5%;
-  }  
+  }
   .intro {
     padding: 0;
-  }  
+  }
   .brand-heading {
     font-size: 50px;
     text-shadow: 2px 2px 10px #000;
-  }  
+  }
   .intro-text {
     font-size: 25px;
   }

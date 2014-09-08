@@ -121,6 +121,20 @@ class User < ActiveRecord::Base
 		end
 	end
 
+	def get_level
+	  if self.xp.blank?
+	    user_level = Level.where(xp: 0).first
+	    user_level
+	  else
+		  xp_level = Level.where(["xp <= ?", self.xp]).last
+		  xp_level
+		end
+	end
+
+	def next_level
+		Level.where(number: self.get_level.number + 1).first
+	end
+
 	def just_signup?
 	  !self.just_signup.blank?
 	end
@@ -225,11 +239,15 @@ class User < ActiveRecord::Base
   end
 
 	def completion_percentage_level
-		percent = (self.xp.to_f / Level.top_level_score.to_f * 100.0).round
-		if percent < 50
-			percent.round
-		else
-			percent.floor
+		if self.next_level
+			a = self.xp - self.get_level.xp
+			b = self.next_level.xp - self.get_level.xp.to_f
+			percent = a.to_f / b.to_f * 100.0
+			if percent < 50
+				percent.round
+			else
+				percent.floor
+			end
 		end
 	end
 

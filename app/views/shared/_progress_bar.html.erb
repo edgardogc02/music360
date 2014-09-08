@@ -1,0 +1,23 @@
+<div class="pos-relative career-progress">
+	<div class="progress progress-xp">
+	  <div class="progress-bar" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: <%= current_user.completion_percentage_level %>%;">
+	    <span><%= current_user.completion_percentage_level %>%</span>
+	  </div>
+	</div>
+	<div class="btn-group">
+	  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+	  	<i class='glyphicon glyphicon-plus'></i>
+	  </button>
+	  <ul class="dropdown-menu" role="menu">
+	    <% if !current_user.installed_desktop_app? %>
+	    	<li><a href="<%= apps_path %>"><span>+ 100MP</span> Install game </a></li>
+	   		<li class="divider"></li>
+	   	<% end %>
+	    <li><a href="<%= new_challenge_path %>"><span>+ 500MP</span> Create a challenge</a></li>
+	    <li class="divider"></li>
+	    <li><a href="<%= list_challenges_path(view: "my_challenges") %>"><span>+ 1000MP</span> Win a challenge</a></li>
+	    <li class="divider"></li>
+	    <li><a href="<%= new_group_path %>"><span>+ 1000MP</span> Create a group</a></li>
+	  </ul>
+	</div>
+</div>

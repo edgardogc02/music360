@@ -12,7 +12,7 @@ class UserOmniauthCredentialsController < ApplicationController
         signin_user(user)
         if user.just_signup?
           flash[:notice] = "Welcome #{user.username}!"
-          redirect_to home_path welcome_tour: true
+          redirect_to home_path welcome_msg: true
         else
           if request.env["omniauth.params"] and request.env["omniauth.params"]["new_session_action"] == "download"
           	redirect_to apps_path

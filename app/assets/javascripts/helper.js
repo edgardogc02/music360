@@ -28,17 +28,23 @@ ready = function() {
   });
 
 	progress_plus_button();
-
-
 };
 
 $(document).ready(ready);
 $(document).on('page:load', ready);
 
+$( window ).resize(function() {
+  progress_plus_button();
+});
+
 function progress_plus_button(){
-	var progress_bar = $('.progress-xp');
-	var btn_group = $('.career-progress .btn-group');
-	var btn = $('.career-progress .btn-group .btn');
+	$.each($('.career-progress'), function( i, l ){
+
+
+	var career_progress = $(this);
+	var progress_bar = career_progress.children('.progress-xp');
+	var btn_group = career_progress.children('.btn-group');
+	var btn = btn_group.children('.btn');
 
 	var width = progress_bar.children('.progress-bar').width();
 	var parentWidth = progress_bar.offsetParent().width();
@@ -50,7 +56,7 @@ function progress_plus_button(){
 		progress_bar.children('.progress-bar').children('span').addClass('label-complete');
 	}
 
-	if(percent < '91'){
+	if(percent < '80'){
 		btn.css('width', progress_bar.width() - progress_bar.children('.progress-bar').width());
 		btn_group.css('left', progress_bar.children('.progress-bar').width());
 	} else {
@@ -60,4 +66,6 @@ function progress_plus_button(){
 	if(percent == '100'){
 		btn_group.hide();
 	}
+
+	});
 }
