@@ -62,7 +62,7 @@ describe "Sessions" do
     it "should sign out successfully" do
       visit people_path
 
-      click_on 'sign_out'
+      click_on 'Sign out'
       current_path.should eq(login_path)
     end
   end
