@@ -59,6 +59,25 @@ describe SongScore do
 
       SongScore.highest_score.should eq(song_score)
     end
+
+    it 'should return the position in the world' do
+      song = create(:song)
+      song1 = create(:song)
+
+      song_score1 = create(:song_score, song: song, score: 1000)
+      song_score2 = create(:song_score, song: song, score: 100)
+      song_score3 = create(:song_score, song: song, score: 500)
+
+      song_score4 = create(:song_score, song: song1, score: 500)
+      song_score5 = create(:song_score, song: song1, score: 50000)
+
+      song_score1.position_in_the_world.should eq(1)
+      song_score3.position_in_the_world.should eq(2)
+      song_score2.position_in_the_world.should eq(3)
+
+      song_score5.position_in_the_world.should eq(1)
+      song_score4.position_in_the_world.should eq(2)
+    end
   end
 
 end

@@ -10,7 +10,19 @@
 		<div class="pull-left">
 			<h4 class="media-heading"><%= link_to activity.owner.username, person_path(activity.owner) if activity.owner %></h4>
       <div class="small spacer-md text-muted"><%= time_ago_in_words(activity.created_at) %> ago</div>
-      <div class="spacer-md">scored <%= activity.trackable.score %> points on <%= activity.trackable.instrument.name %></div>
+      <div class="spacer-md">
+        played
+        <%= link_to activity.trackable.song.title, artist_song_path(activity.trackable.song.artist, activity.trackable.song) %>
+        by
+        <%= link_to activity.trackable.song.artist.title, artist_path(activity.trackable.song.artist) %>
+        with
+        <%= activity.trackable.instrument.name %>
+        and scored
+        <b><%= activity.trackable.score %></b>
+        for
+        <b><%= activity.trackable.position_in_the_world %> position</b>
+        in the world
+      </div>
 		</div>
 	</div>
 </div>
