@@ -64,12 +64,12 @@ describe "ChallengeReminders" do
         context "challenger and challenged are not facebook friends" do
 
           before(:each) do
-            click_on "Sign out"
+            click_on "sign_out"
             visit login_path
             new_mock_facebook_auth_hash
             click_link "facebook_signin"
             @challenged = User.last
-            click_on "Sign out"
+            click_on "sign_out"
             signin_with_facebook
             @challenge = create(:challenge, challenger: @challenger, challenged: @challenged)
           end
@@ -110,12 +110,12 @@ describe "ChallengeReminders" do
             create_facebook_omniauth_credentials(@challenger)
             UserFacebookFriends.new(@challenger, UserFacebookAccount.new(@challenger).top_friends).save
 
-            click_on "Sign out"
+            click_on "sign_out"
             visit login_path
             mock_facebook_friend_auth_hash
             click_link "facebook_signin"
             @challenged = User.last
-            click_on "Sign out"
+            click_on "sign_out"
             signin_with_facebook
 
             @challenged = User.last

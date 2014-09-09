@@ -68,7 +68,7 @@
 											    <li role="presentation"><%= link_to "Upgrade", new_user_premium_subscription_path if !current_user.premium? %></li>
 											    <li role="presentation"><%= link_to "Admin", admin_dashboard_path, {target: "_blank"} if current_user.admin? %></li>
 											    <li role="presentation" class="divider"></li>
-											    <li role="presentation"><%= link_to "Sign out", logout_path %></li>
+											    <li role="presentation"><%= link_to "Sign out", logout_path, {id: 'sign_out'} %></li>
 											  </ul>
 											</div>
 	                  </li>

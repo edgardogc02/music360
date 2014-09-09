@@ -290,7 +290,7 @@ describe "Challenges" do
       visit challenge_path(my_challenge)
       page.should have_link "Start challenge", href: my_challenge.decorate.start_challenge_url
 
-      click_on "Sign out"
+      click_on "sign_out"
 
       within("#login-form") do
         fill_in "username", with: 'challenged_user'
@@ -301,7 +301,7 @@ describe "Challenges" do
       visit challenge_path(my_challenge)
       page.should have_link "Start challenge", href: my_challenge.decorate.start_challenge_url
 
-      click_on "Sign out"
+      click_on "sign_out"
 
       signin_with_facebook
       visit challenge_path(my_challenge)
