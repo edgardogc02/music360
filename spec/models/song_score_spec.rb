@@ -78,6 +78,30 @@ describe SongScore do
       song_score5.position_in_the_world.should eq(1)
       song_score4.position_in_the_world.should eq(2)
     end
+
+    it 'should return the position in a challenge' do
+      challenge = create(:challenge)
+      challenge1 = create(:challenge)
+
+      song_score1 = create(:song_score, song: challenge.song, challenge: challenge, score: 1000)
+      song_score2 = create(:song_score, song: challenge.song, challenge: challenge, score: 100)
+      song_score3 = create(:song_score, song: challenge.song, challenge: challenge, score: 500)
+
+      song_score4 = create(:song_score, song: challenge1.song, challenge: challenge1, score: 29333)
+      song_score5 = create(:song_score, song: challenge1.song, challenge: challenge1, score: 689787)
+
+      song_score6 = create(:song_score, score: 2658)
+
+      song_score1.position_in_challenge.should eq(1)
+      song_score3.position_in_challenge.should eq(2)
+      song_score2.position_in_challenge.should eq(3)
+
+      song_score4.position_in_challenge.should eq(2)
+      song_score5.position_in_challenge.should eq(1)
+
+      song_score6.position_in_challenge.should eq(1)
+    end
+
   end
 
 end
