@@ -16,8 +16,14 @@ describe Song do
       should belong_to(:category)
     end
 
-    it "should has many song ratings" do
-       should have_many(:song_ratings).dependent(:destroy)
+    [:song_ratings, :song_scores].each do |assoc|
+      it "should has many song #{assoc} with dependent" do
+         should have_many(assoc).dependent(:destroy)
+      end
+    end
+
+    it "should have many activities" do
+      should have_many(:activities).through(:song_scores)
     end
   end
 

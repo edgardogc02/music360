@@ -8,6 +8,10 @@ describe SongScore do
         should belong_to(assoc)
       end
     end
+
+    it "should have many activities" do
+      should have_many(:activities).class_name('PublicActivity::Activity')
+    end
   end
 
   context "Scope" do

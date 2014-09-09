@@ -28,6 +28,8 @@ class SongsController < ApplicationController
 	  @more_songs = SongChallengeDecorator.decorate_collection(Song.not_user_created.by_popularity.limit(4))
 
     @scores = @song.top_scores.limit(5)
+
+    @activity_feeds = @song.activities.order('created_at DESC').page(1).per(10)
 	end
 
   def free
