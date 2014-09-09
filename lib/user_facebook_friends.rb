@@ -26,6 +26,7 @@ class UserFacebookFriends
       user.oauth_uid = facebook_friend.id
       user.challenges_count = 0
       user.save
+      user.xp = 100
       if !Rails.env.test?
         user.remote_imagename_url = facebook_friend.remote_image
         user.save

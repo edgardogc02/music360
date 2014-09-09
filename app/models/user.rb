@@ -36,6 +36,7 @@ class User < ActiveRecord::Base
 
   has_many :followers, through: :user_followers, source: :follower
   has_many :followed_users, through: :inverse_user_followers, source: :followed
+  has_many :followers_groups, through: :followers, source: :groups
 
   has_many :user_facebook_friends, dependent: :destroy
   has_many :facebook_friends, through: :user_facebook_friends, source: :facebook_friend

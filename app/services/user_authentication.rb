@@ -118,6 +118,7 @@ class UserAuthentication
     user.email = auth.info.email
     user.oauth_uid = auth.uid
     user.locale = auth.extra.raw_info.locale
+    user.xp = 100
     user.save
     user
   end
