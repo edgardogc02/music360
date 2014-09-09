@@ -11,17 +11,9 @@
 
 <div class="row">
 	<div class="col-lg-4 spacer-md"><%= render 'search_form', action: "index", controller: "users" %></div>
-	<div class="col-lg-8 text-right-sm-left"><%= link_to 'Invite friends', new_user_invitation_path, class: 'btn btn-primary' %></div>
+	<div class="col-lg-8 text-right-sm-left"><%= link_to 'Invite friends', new_user_invitation_path, class: 'btn btn-primary', data: { toggle: "modal", target: "#inviteFriends" } %></div>
 </div>
 
-<div class="clearfix">
-	<div class="pull-left">
-
-	</div>
-	<div class="pull-right">
-
-	</div>
-</div>
 <br />
 
 <% unless current_user.is_facebook_user? %>
@@ -53,3 +45,13 @@
     $(document).on('page:load', listing_hover_effects);
   </script>
 <% end %>
+
+<div class="modal fade" id="inviteFriends" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content spacer">
+      <div class="modal-body">
+				Loading...
+      </div>
+    </div>
+  </div>
+</div>

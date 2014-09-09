@@ -12,8 +12,6 @@
   <span class="text">Share on facebook</span>
 </a>
 
-<div id="fb-root"></div>
-
 <br /><br />
 <%= render 'shared/header_page', title: 'Twitter', sub_header: true %>
 
@@ -46,13 +44,13 @@
     </div>
   </div>
 
-  <%= content_for(:js_scripts) do %>
-    <script type="text/javascript">
-      $(document).ready(function() {
-        $('#tweet_modal').modal('toggle');
-      });
-    </script>
-  <% end %>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('#tweet_modal').modal('toggle');
+      console.log("algooo");
+    });
+  </script>
+
 <% end %>
 
 <br /><br />
@@ -67,49 +65,50 @@
 	</div>
 </div>
 
-<%= content_for(:js_scripts) do %>
+<script src="https://connect.facebook.net/en_US/all.js"></script>
 
-  <script src="https://connect.facebook.net/en_US/all.js"></script>
+<script type="text/javascript">
+  $(document).ready(function(){
 
-  <script type="text/javascript">
-    $(document).ready(function(){
-      $("#invite_fb_friends").click(function(e) {
-        FB.init({
-          appId: "<%= FACEBOOK_APP_ID %>",
-          cookie: true,
-          status: true,
-          xfbml: true
-        });
+  	console.log("algooo");
 
-        FB.ui({
-          method: 'apprequests',
-          action_type: 'turn',
-          message: "You're invited to start playing InstrumentChamp - the new game that teaches you to play music!"
-        }, requestCallback);
-
-        e.preventDefault();
+    $("#invite_fb_friends").click(function(e) {
+      FB.init({
+        appId: "<%= FACEBOOK_APP_ID %>",
+        cookie: true,
+        status: true,
+        xfbml: true
       });
 
-      function requestCallback(response) {
-        $.post("<%= user_facebook_invitations_path %>", {user_facebook_invitations: {facebook_user_ids: response.to}});
-      }
+      FB.ui({
+        method: 'apprequests',
+        action_type: 'turn',
+        message: "You're invited to start playing InstrumentChamp - the new game that teaches you to play music!"
+      }, requestCallback);
 
-      $("#share_on_facebook").click(function(e) {
-        FB.init({
-          appId: "<%= FACEBOOK_APP_ID %>",
-          cookie: true,
-          status: true,
-          xfbml: true
-        });
-
-        FB.ui({
-          method: 'share',
-          href: 'https://www.instrumentchamp.com'
-        }, function(response){});
-
-        e.preventDefault();
-      });
+      e.preventDefault();
     });
-  </script>
 
-<% end %>
+    function requestCallback(response) {
+      $.post("<%= user_facebook_invitations_path %>", {user_facebook_invitations: {facebook_user_ids: response.to}});
+    }
+
+    $("#share_on_facebook").click(function(e) {
+      FB.init({
+        appId: "<%= FACEBOOK_APP_ID %>",
+        cookie: true,
+        status: true,
+        xfbml: true
+      });
+
+      FB.ui({
+        method: 'share',
+        href: 'https://www.instrumentchamp.com'
+      }, function(response){});
+
+      e.preventDefault();
+    });
+  });
+</script>
+
+<br />
