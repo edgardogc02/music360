@@ -1,0 +1,16 @@
+<div class="post-feed">
+  <div class="clearfix">
+    <div class="pull-left user-thumb">
+      <a href="<%= person_path(activity.trackable.user) %>">
+        <div class="thumbnail">
+          <%= image_avatar(activity.trackable.user) %>
+        </div>
+      </a>
+    </div>
+    <div class="pull-left">
+      <h4 class="media-heading"><%= link_to activity.owner.username, person_path(activity.owner) if activity.owner %></h4>
+      <div class="small spacer-md text-muted"><%= time_ago_in_words(activity.created_at) %> ago</div>
+      got extra <b><%= activity.trackable.mp %></b> MP points
+    </div>
+  </div>
+</div>

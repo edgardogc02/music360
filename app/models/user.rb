@@ -75,6 +75,8 @@ class User < ActiveRecord::Base
 
   has_many :user_posts
 
+  has_many :user_mp_updates, dependent: :destroy
+
   before_create { generate_token(:auth_token) }
 
 #  before_create :fill_in_extra_fields
