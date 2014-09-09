@@ -30,21 +30,25 @@ describe User do
       should have_many(:challenges).with_foreign_key('challenger_id')
     end
 
-    it "should have many proposed challenges" do
-      should have_many(:proposed_challenges).class_name('Challenge').with_foreign_key('challenged_id')
-    end
-
-    it "should have many followers associations" do
-      should have_many(:user_followers).dependent(:destroy)
-      should have_many(:inverse_user_followers).class_name('UserFollower').with_foreign_key("follower_id")
-      should have_many(:followers).through(:user_followers).source(:follower)
-      should have_many(:followed_users).through(:inverse_user_followers).source(:followed)
+    [[:proposed_challenges, 'Challenge', 'challenged_id'], [:inverse_user_followers, 'UserFollower', 'follower_id'],
+      [:initiated_groups, 'Group', 'initiator_user_id']].each do |assoc, class_name, foreign_key|
+      it "should have many #{assoc} with class name #{class_name} and foreign key #{foreign_key}" do
+        should have_many(assoc).class_name(class_name).with_foreign_key(foreign_key)
+      end
     end
 
     [:user_omniauth_credentials, :user_facebook_friends, :user_facebook_invitations, :user_invitations, :user_purchased_songs,
-      :group_invitations, :user_mp_updates].each do |assoc|
+      :group_invitations, :user_mp_updates, :user_followers].each do |assoc|
       it "should have has many #{assoc} with dependent destroy" do
         should have_many(assoc).dependent(:destroy)
+      end
+    end
+
+    [[:followers_groups, :followers, :groups], [:facebook_friends_groups, :facebook_friends, :groups],
+      [:followed_users, :inverse_user_followers, :followed], [:followers, :user_followers, :follower],
+      [:facebook_friends, :user_facebook_friends, :facebook_friend]].each do |assoc, through, source|
+      it "should have many #{assoc} through #{through} with source #{source}" do
+        should have_many(assoc).through(through).source(source)
       end
     end
 
@@ -63,18 +67,10 @@ describe User do
       should have_many(:published_group_posts).class_name('GroupPost').with_foreign_key("publisher_id").dependent(:destroy)
     end
 
-    it "should have many initiated_groups" do
-      should have_many(:initiated_groups).class_name('Group').with_foreign_key("initiator_user_id")
-    end
-
     [:payments, :user_premium_subscriptions, :user_groups, :post_likes, :post_comments, :user_level_upgrades, :user_posts].each do |assoc|
       it "should have many #{assoc}" do
         should have_many(assoc)
       end
-    end
-
-    it "should have many facebook friends" do
-      should have_many(:facebook_friends).through(:user_facebook_friends).source(:facebook_friend)
     end
 
     [:user_category, :instrument].each do |assoc|
