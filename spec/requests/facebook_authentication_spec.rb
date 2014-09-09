@@ -16,7 +16,7 @@ describe "UserOmniauthCredentials" do
 
   it "should login (already signed up user) user with facebook account" do
     signin_with_facebook
-    click_on "Sign out"
+    click_on "sign_out"
     signin_with_facebook
     page.find('.alert-notice').should have_content('Welcome back Facebook test user!')
     URI.parse(current_url).request_uri.should eq(home_path)
@@ -39,7 +39,7 @@ describe "UserOmniauthCredentials" do
 
     click_on "People"
 
-    click_on "Sign out"
+    click_on "sign_out"
     visit login_path
 
     page.should have_selector('#facebook_signin')
@@ -69,7 +69,7 @@ describe "UserOmniauthCredentials" do
     mock_facebook_auth_hash
     click_link "facebook_signin"
     current_path.should eq(home_path)
-    click_link "Sign out"
+    click_link "sign_out"
     current_path.should eq(login_path)
     user = User.find_by_username "Facebook test user"
     user.destroy

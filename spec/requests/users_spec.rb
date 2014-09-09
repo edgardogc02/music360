@@ -107,7 +107,7 @@ describe "Users" do
       create_facebook_omniauth_credentials(user)
       UserFacebookFriends.new(user, UserFacebookAccount.new(user).top_friends).save
 
-      click_on "Sign out"
+      click_on "sign_out"
 
       new_user = User.find "Dick Smithberg"
       new_user.facebook_friends.should eq([])
