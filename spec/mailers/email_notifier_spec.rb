@@ -163,7 +163,7 @@ describe EmailNotifier do
       mail.body.encoded.should have_content "Song: #{user_purchased_song.song.title} by #{user_purchased_song.song.artist.title}"
       mail.body.encoded.should have_content "Payment amount: #{payment.amount} #{payment.currency}"
       mail.body.encoded.should have_content "Payment method: #{payment.payment_method.name}"
-      mail.body.encoded.should have_content "To play the challenge, you can click on the following link:"
+      mail.body.encoded.should have_content "To play the song, you can click on the following link:"
       mail.body.encoded.should have_link song_url(user_purchased_song.song, host: user_purchased_song.user.created_by), song_url(user_purchased_song.song, host: user_purchased_song.user.created_by)
       check_greeting_lines
     end
