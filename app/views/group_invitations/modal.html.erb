@@ -1,14 +1,5 @@
 <%= render 'shared/header_page', title: 'Invite members' %>
 
-<%= form_tag({action: "via_email", method: :post}) do %>
-  <%= label_tag :email_group_invitation, "Invite a friend via email" %>
-  <%= text_field_tag :email_group_invitation %>
-  <%= submit_tag "Invite", {id: "group_invitation_via_email_submit"} %>
-  <%= %>
-<% end %>
-
-<hr />
-
 <%= render 'users/search_form', action: "index", controller: "group_invitations" %>
 <br />
 
@@ -16,8 +7,109 @@
 
 <%= render "users/users_list", users_list: @regular_users, modal: true %>
 
+<%= render 'shared/header_page', title: 'Email', sub_header: true %>
+
+<%= form_tag({action: "via_email", method: :post}, {class: "form-inline form-inline-xs"}) do %>
+  <div class="form-group">
+  	<%= text_field_tag "email_group_invitation", nil, class: "form-control", placeholder: "Invite via email" %>
+  	<%= submit_tag "Invite", {id: "group_invitation_via_email_submit", class: 'btn btn-primary'} %>
+  </div>
+<% end %>
+
+<%= render 'shared/header_page', title: 'Facebook', sub_header: true %>
+
+<a class="fb_button xs" href="#" id="invite_fb_friends">
+  <span class="separator"></span>
+  <span class="text">Invite facebook friends</span>
+</a>
+
+<a class="fb_button xs" href="#" id="share_on_facebook">
+  <span class="separator"></span>
+  <span class="text">Share on facebook</span>
+</a>
+
+<div id="fb-root"></div>
+
+<%= render 'shared/header_page', title: 'Twitter', sub_header: true %>
+
+<div class="row">
+	<div class="col-md-6">
+		<%= form_tag "/auth/twitter", {method: :get} do %>
+		  <div class="form-group">
+		    <%= text_area_tag "tweet_text", "You're invited to play InstrumentChamp (@instrumentchamp) - the new game that teaches you to play music!", {class: 'form-control', rows: 3} %>
+		    <%= hidden_field_tag "tweet", 'true' %>
+		  </div>
+		    <%= submit_tag "Share on Twitter", {class: "btn btn-primary"} %>
+		<% end %>
+	</div>
+</div>
+
+<% if @tweet %>
+  <!-- Modal -->
+  <div class="modal fade" id="tweet_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="myModalLabel">This is the tweet</h4>
+        </div>
+        <div class="modal-body">
+          <iframe border=0 frameborder=0 height=250 width=600 src="https://twitframe.com/show?url=https://twitter.com/<%= @user_twitter_account.username %>/status/<%= @tweet.id %>">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('#tweet_modal').modal('toggle');
+    });
+  </script>
+<% end %>
+
+<script src="https://connect.facebook.net/en_US/all.js"></script>
+
 <script type="text/javascript">
-  $(document).ready(listing_hover_effects);
-  $(document).on('page:load', listing_hover_effects);
+  $(document).ready(function(){
+  	$('hr').hide();
+    $("#invite_fb_friends").click(function(e) {
+      FB.init({
+        appId: "<%= FACEBOOK_APP_ID %>",
+        cookie: true,
+        status: true,
+        xfbml: true
+      });
+
+      FB.ui({
+        method: 'apprequests',
+        action_type: 'turn',
+        message: "You're invited to start playing InstrumentChamp - the new game that teaches you to play music!"
+      }, requestCallback);
+
+      e.preventDefault();
+    });
+
+    function requestCallback(response) {
+      $.post("<%= user_facebook_invitations_path %>", {user_facebook_invitations: {facebook_user_ids: response.to}});
+    }
+
+    $("#share_on_facebook").click(function(e) {
+      FB.init({
+        appId: "<%= FACEBOOK_APP_ID %>",
+        cookie: true,
+        status: true,
+        xfbml: true
+      });
+
+      FB.ui({
+        method: 'share',
+        href: 'https://www.instrumentchamp.com'
+      }, function(response){});
+
+      e.preventDefault();
+    });
+  });
 </script>
 
+<br />
