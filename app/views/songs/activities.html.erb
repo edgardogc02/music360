@@ -1,0 +1,5 @@
+<%= render 'shared/header_page', title: 'Activity feed', sub_header: true %>
+
+<% unless @activity_feeds.empty? %>
+  <%= render @activity_feeds %>
+<% end %>

@@ -23,9 +23,11 @@ InstrumentchampPrototype::Application.routes.draw do
   resources :artists do
     resources :songs do
       get 'free', on: :collection
+      get 'activities', on: :member
     end
     get 'most_popular', on: :collection
     get 'top_list', on: :collection
+    get 'activities', on: :member
   end
 
   resources :apps, path: "download"

@@ -1,6 +1,6 @@
 class ArtistsController < ApplicationController
 	before_action :authorize, except: [:create, :show]
-	before_action :set_artist, only: [:show, :edit, :update, :destroy]
+	before_action :set_artist, only: [:show, :edit, :update, :destroy, :activities]
 
 	def index
 		@artists = ArtistDecorator.decorate_collection(Artist.not_top.limit(12))
@@ -15,6 +15,8 @@ class ArtistsController < ApplicationController
     end
 
     #@node = Musicnodes.new("createalbumnode", "U2").get_album_node.parsed_response
+
+    @activity_feeds = PublicActivity::Activity.where(id: @artist.songs.map{ |s| s.activities}.flatten).order('created_at DESC').page(1).per(10)
 	end
 
   def most_popular
@@ -23,6 +25,14 @@ class ArtistsController < ApplicationController
 
   def top_list
     @artists = Artist.all.page params[:page]
+  end
+
+  def activities
+    @activity_feeds = PublicActivity::Activity.where(id: @artist.songs.map{ |s| s.activities}.flatten).order('created_at DESC').page(params[:page]).per(10)
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
 	private

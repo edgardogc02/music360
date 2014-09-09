@@ -82,3 +82,13 @@
 
 	</div>
 </div>
+
+<% unless @activity_feeds.empty? %>
+  <br />
+  <%= render @activity_feeds %>
+  <br />
+  <% unless @activity_feeds.last_page? %>
+    <div id="more_posts"></div>
+    <%= link_to 'View more', activities_artist_path(@artist, page: 2), { remote: true, id: "show_more_posts_link" } %>
+  <% end %>
+<% end %>

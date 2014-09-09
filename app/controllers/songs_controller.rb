@@ -1,6 +1,6 @@
 class SongsController < ApplicationController
 	before_action :authorize, except: [:show]
-	before_action :set_song, only: [:show, :destroy]
+	before_action :set_song, only: [:show, :destroy, :activities]
 #  before_action :authorize_group # TODO
 
 	def index
@@ -31,6 +31,14 @@ class SongsController < ApplicationController
 
     @activity_feeds = @song.activities.order('created_at DESC').page(1).per(10)
 	end
+
+  def activities
+    @activity_feeds = @song.activities.order('created_at DESC').page(params[:page]).per(10)
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
 
   def free
     @songs = SongDecorator.decorate_collection(Song.by_popularity.page params[:page])
