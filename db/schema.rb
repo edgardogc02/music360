@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140909075628) do
+ActiveRecord::Schema.define(version: 20140910135740) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -46,6 +46,21 @@ ActiveRecord::Schema.define(version: 20140909075628) do
   add_index "activities", ["owner_id", "owner_type"], name: "index_activities_on_owner_id_and_owner_type", using: :btree
   add_index "activities", ["recipient_id", "recipient_type"], name: "index_activities_on_recipient_id_and_recipient_type", using: :btree
   add_index "activities", ["trackable_id", "trackable_type"], name: "index_activities_on_trackable_id_and_trackable_type", using: :btree
+
+  create_table "activity_comments", force: true do |t|
+    t.integer  "user_id"
+    t.text     "comment"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "activity_id"
+  end
+
+  create_table "activity_likes", force: true do |t|
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "activity_id"
+  end
 
   create_table "apps", force: true do |t|
     t.datetime "created_at"
@@ -182,23 +197,6 @@ ActiveRecord::Schema.define(version: 20140909075628) do
     t.string   "paymill_token"
     t.string   "currency"
     t.integer  "payment_method_id"
-  end
-
-  create_table "post_comments", force: true do |t|
-    t.integer  "commentable_id"
-    t.string   "commentable_type"
-    t.integer  "user_id"
-    t.text     "comment"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "post_likes", force: true do |t|
-    t.integer  "likeable_id"
-    t.string   "likeable_type"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.integer  "user_id"
   end
 
   create_table "premium_plans", force: true do |t|

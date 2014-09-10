@@ -1,0 +1,11 @@
+<%= content_tag :div, id: "like_activity_" + activity.id.to_s do %>
+  <% unless current_user.likes?(activity) %>
+    <%= link_to polymorphic_path([ActivityLike.new], activity_id: activity.id), { remote: true, method: :post } do %>
+    	<i class="like-icon"></i>
+    <% end %>
+  <% else %>
+    <%= link_to ActivityLike.by_user_and_activity(current_user, activity), { remote: true, method: :delete } do %>
+    	<i class="unlike-icon"></i>
+    <% end %>
+  <% end %>
+<% end %>

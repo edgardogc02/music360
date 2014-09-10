@@ -1,7 +1,0 @@
-<%= content_tag :div, { id: "comment_"+commentable.class.to_s.underscore+"_"+commentable.id.to_s } do %>
-
-  <% commentable.comments.each do |comment| %>
-    <%= render comment %>
-  <% end %>
-
-<% end %>

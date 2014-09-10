@@ -189,14 +189,4 @@ FactoryGirl.define do
     challenge
   end
 
-  factory :group_post_like, class: PostLike do
-    user
-    association :likeable, factory: :group_post
-  end
-
-  factory :challenge_post_like, class: PostLike do
-    user
-    association :likeable, factory: :challenge_post
-  end
-
 end

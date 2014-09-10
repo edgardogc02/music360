@@ -1,1 +1,0 @@
-$('#like_<%= @likeable.class.to_s.underscore %>_<%= @likeable.id %>').html($("<%= j render "post_likes/new", likeable: @likeable, likeable_parent: @likeable_parent %>").children());

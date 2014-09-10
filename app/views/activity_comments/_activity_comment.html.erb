@@ -1,0 +1,4 @@
+<div class="post-comment">
+  <%= link_to activity_comment.user.username, person_path(activity_comment.user.username) %>
+  <%= simple_format activity_comment.comment %>
+</div>

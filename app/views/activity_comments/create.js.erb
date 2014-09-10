@@ -1,0 +1,2 @@
+$('#new_activity_comment_<%= @activity_comment.activity.id.to_s %>').find('#activity_comment_comment').val('');
+$('#comment_activity_<%= @activity_comment.activity.id %>').append("<%= j render @activity_comment %>");

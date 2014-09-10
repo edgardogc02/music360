@@ -13,5 +13,5 @@
       <%= challenge_post.message %>
 		</div>
 	</div>
-	<%= render "group_posts/post_actions", likeable: challenge_post, likeable_parent: challenge_post.challenge, commentable: challenge_post, commentable_parent: challenge_post.challenge %>
+	<%= render 'activities/actions', activity: activity %>
 </div>

@@ -68,9 +68,9 @@ class User < ActiveRecord::Base
 
   belongs_to :instrument
 
-  has_many :post_likes
-
-  has_many :post_comments
+  has_many :activity_likes
+  has_many :liked_activities, through: :activity_likes, source: :activity
+  has_many :activity_comments
 
   has_many :user_level_upgrades
 
@@ -95,8 +95,8 @@ class User < ActiveRecord::Base
   scope :premium, -> { where(premium: true) }
   scope :by_xp, -> { order('xp DESC') }
 
-  def likes?(likeable)
-    likeable.liked_by?(self)
+  def likes?(activity)
+    self.liked_activities.include?(activity)
   end
 
 	def to_s

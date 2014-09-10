@@ -12,4 +12,5 @@
       <div class="small spacer-md text-muted"><%= time_ago_in_words(activity.created_at) %> ago</div>
 		</div>
 	</div>
+	<%= render 'activities/actions', activity: activity %>
 </div>

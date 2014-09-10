@@ -67,10 +67,14 @@ describe User do
       should have_many(:published_group_posts).class_name('GroupPost').with_foreign_key("publisher_id").dependent(:destroy)
     end
 
-    [:payments, :user_premium_subscriptions, :user_groups, :post_likes, :post_comments, :user_level_upgrades, :user_posts].each do |assoc|
+    [:payments, :user_premium_subscriptions, :user_groups, :activity_likes, :activity_comments, :user_level_upgrades, :user_posts].each do |assoc|
       it "should have many #{assoc}" do
         should have_many(assoc)
       end
+    end
+
+    it "should have many liked_activities through activity_likes with source activity" do
+      should have_many(:liked_activities).through(:activity_likes).source(:activity)
     end
 
     [:user_category, :instrument].each do |assoc|
@@ -144,20 +148,8 @@ describe User do
 
   context "Methods" do
 
-    it "should return if a user likes a post" do
-      user = create(:user)
-      group_post = create(:group_post)
-
-      user.likes?(group_post).should_not be_true
-
-      create(:group_post_like, user: user, likeable: group_post)
-
-      user.likes?(group_post).should be_true
-
-      challenge_post = create(:challenge_post)
-      create(:challenge_post_like, user: user, likeable: challenge_post)
-
-      user.likes?(challenge_post).should be_true
+    it "should return if a user likes an activity" do
+      pending
     end
 
     it "should create new user from omniauth facebook credentials" do

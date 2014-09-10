@@ -30,4 +30,5 @@
     	<%= link_to 'View challenge', group_challenge_path(group_id: activity.trackable.challenge.group.id, id: activity.trackable.challenge.id), class: 'btn btn-primary btn-sm' %>
 		</div>
 	</div>
+	<%= render 'activities/actions', activity: activity %>
 </div>
