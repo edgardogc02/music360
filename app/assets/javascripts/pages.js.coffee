@@ -13,3 +13,8 @@ createOSLink = (os) ->
 
 $ ->
   $(".download-os").attr("href", createOSLink(getOS()))
+
+$ ->
+  $("#modal_app_already_installed").click (e) ->
+    $.get $(this).data("ajax-href"), (data) ->
+      return
