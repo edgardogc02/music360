@@ -442,14 +442,18 @@ h1.brand-heading {
 
 @media (max-width: $screen-xs-max) {
   .landing-section {
-    padding-top: 30%;
+    padding-top: 20%;
     padding-bottom: 7%;
 
     p {
       font-size: 14px;
+      line-height: 20px;
     }
     h2 {
       font-size: 24px;
+    }
+    h3 {
+      font-size: 18px;
     }
   }
 }
