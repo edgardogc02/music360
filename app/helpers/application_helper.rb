@@ -75,6 +75,42 @@ module ApplicationHelper
     end
   end
 
+  def detail_header_thumb
+    if content_for?(:detail_header_thumb)
+      content_for(:detail_header_thumb)
+    end
+  end
+
+  def detail_header_primary_info
+    if content_for?(:detail_header_primary_info)
+      content_for(:detail_header_primary_info)
+    end
+  end
+
+  def detail_header_secondary_info
+    if content_for?(:detail_header_secondary_info)
+      content_for(:detail_header_secondary_info)
+    end
+  end
+
+  def detail_header_nav_left
+    if content_for?(:detail_header_nav_left)
+      content_for(:detail_header_nav_left)
+    end
+  end
+
+  def detail_header_nav_right
+    if content_for?(:detail_header_nav_right)
+      content_for(:detail_header_nav_right)
+    end
+  end
+
+  def detail_right_col
+    if content_for?(:detail_right_col)
+      content_for(:detail_right_col)
+    end
+  end
+
   def facebook_og_meta
     if content_for?(:facebook_og_meta)
       content_for(:facebook_og_meta)

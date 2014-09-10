@@ -1,7 +1,6 @@
 class User < ActiveRecord::Base
 
   mount_uploader :imagename, UserImagenameUploader
-  mount_uploader :cover, UserCoverUploader
 
   paginates_per 30
 

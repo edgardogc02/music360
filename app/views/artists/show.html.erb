@@ -1,94 +1,114 @@
 <%= set_meta_description "Challenge #{@artist.title} with InstrumentChamp. The best way to learn to play music." %>
 <%= set_page_title "Challenge #{@artist.title} with InstrumentChamp" %>
 
-<%= render 'shared/header_image_cover', cover: @artist.cover, profile: @artist.image_url %>
-
-<div class="clearfix main-section-nav">
-	<div class="pull-left">
-		<ul class="main-section-nav-list clearfix">
-			<li><h4><%= @artist.title %></h4></li>
-		</ul>
-	</div>
-	<div class="pull-right">
-		<%= @artist.edit_button %>
-	</div>
-</div>
-
-<div class="row">
-	<div class="col-lg-12">
-		<ul class="nav nav-tabs">
-			<li class="active"><a href="#info" data-toggle="tab">Info</a></li>
-		  <li><a href="#songs_tab" data-toggle="tab">Songs</a></li>
-		  <li><a href="#challenges_tab" data-toggle="tab">Challenges</a></li>
-		</ul>
-		<br />
-		<div class="tab-content">
-			<div class="tab-pane active" id="info">
-				<% if @artist.bio %>
-					<p><%= truncate(@artist.bio, length: 1000, separator: ' ') { link_to "Read more", @artist.bio_read_more_link, {class: 'margin-left', target: '_blank'} } %></p>
-				<% else %>
-					<p>No info available</p>
-				<% end %>
-			</div>
-		  <div class="tab-pane" id="songs_tab">
-		  	<% if !@songs.blank? %>
-					<section>
-						<%= render 'shared/header_page', title: 'Songs', sub_header: true, view_more: 'View more', view_more_path: songs_path %>
-
-						<table width="100%" class="datagrid">
-							<tr class="head">
-								<td>Song</td>
-								<td>Rating</td>
-								<td></td>
-							</tr>
-							<% @songs.each do |song| %>
-								<tr class="<%= cycle("odd", "even") %>">
-									<td><%= link_to song.title, song_path(song), class: 'btn-secondary-color' %></td>
-									<td><%= song.display_rating %></td>
-									<td align="right">
-										<%= link_to song.play_url, class: "btn btn-primary btn-sm" do %>
-											<i class="glyphicon glyphicon-play"></i> Play
-										<% end %>
-										<%= link_to "Challenge", new_challenge_path(song_id: song.id), class: "btn btn-primary btn-sm" %>
-									</td>
-								</tr>
-							<% end %>
-						</table>
-
-					</section>
-				<% else %>
-					<p>No songs</p>
-				<% end %>
-		  </div>
-		  <div class="tab-pane" id="challenges_tab">
-		  	<% if !@challenges.blank? %>
-			  	<%= render 'shared/header_page', title: 'Challenges', sub_header: true, view_more: 'View more', view_more_path: challenges_path %>
-
-					<table width="100%" class="datagrid">
-						<% @challenges.each do |challenge| %>
-							<tr class="<%= cycle("odd", "even") %>">
-								<td class="thumb"><%= image_tag challenge.cover_url, class: "avatar-xs" %></td>
-								<td><%= link_to challenge.song.title, song_path(challenge.song) %>
-					    	by <%= link_to challenge.song.artist.title, artist_path(challenge.song.artist)%></td>
-								<td><%= challenge.display_results %></td>
-							</tr>
-						<% end %>
-					</table>
-				<% else %>
-					<p>No challenges</p>
-				<% end %>
-		  </div>
-		</div>
-
-	</div>
-</div>
-
-<% unless @activity_feeds.empty? %>
-  <br />
-  <%= render @activity_feeds %>
-  <br />
-  <% unless @activity_feeds.last_page? %>
-    <div id="more_posts"></div>
-    <%= link_to 'View more', activities_artist_path(@artist, page: 2), { remote: true, id: "show_more_posts_link" } %>
-  <% end %>
+<%= content_for(:detail_header_thumb) do %>
+	<%= image_tag @artist.image_url %>
 <% end %>
+
+<%= content_for(:detail_header_primary_info) do %>
+	<h3>Artist</h3>
+	<h2><%= @artist.title %></h2>
+	<br class="hidden-xs" />
+	<%= link_to "Challenge", "#", class: "btn btn-primary" %>
+	<%= link_to 'Follow', "#", class: "btn btn-default" %>
+<% end %>
+
+<%= content_for(:detail_header_secondary_info) do %>
+	<div class="hidden-xs"><br /><br /><br /><br /><br /><br /></div>
+	<div><b>Followers:</b> 100000</div>
+	<div><b>Following:</b> 500</div>
+<% end %>
+
+<%= content_for(:detail_header_nav_left) do %>
+	<ul>
+		<li class="active"><a href="#overview_tab" data-toggle="tab">Overview</a></li>
+	  <li><a href="#challenges_tab" data-toggle="tab">Challenges</a></li>
+	  <li><a href="#songs_tab" data-toggle="tab">Songs</a></li>
+	  <li><a href="#biography_tab" data-toggle="tab">Biography</a></li>
+	</ul>
+<% end %>
+
+<%= content_for(:detail_header_nav_right) do %>
+	<%= @artist.edit_button %>
+<% end %>
+
+<%= content_for(:detail_right_col) do %>
+	<h2>Biography</h2>
+	<% if @artist.bio %>
+		<p><%= truncate(@artist.bio, length: 1000, separator: ' ') { link_to "Read more", @artist.bio_read_more_link, {class: 'margin-left', target: '_blank'} } %></p>
+	<% else %>
+		<p>No biography available</p>
+	<% end %>
+	<hr />
+	<h2>Fans leaderboard</h2>
+<% end %>
+
+<div class="tab-content">
+	<div class="tab-pane active" id="overview_tab">
+		<% unless @activity_feeds.empty? %>
+		  <br />
+		  <%= render @activity_feeds %>
+		  <br />
+		  <% unless @activity_feeds.last_page? %>
+		    <div id="more_posts"></div>
+		    <%= link_to 'View more', activities_artist_path(@artist, page: 2), { remote: true, id: "show_more_posts_link" } %>
+		  <% end %>
+		<% end %>
+	</div>
+	<div class="tab-pane" id="challenges_tab">
+		<% if !@challenges.blank? %>
+	  	<%= render 'shared/header_page', title: 'Challenges', sub_header: true, view_more: 'View more', view_more_path: challenges_path %>
+
+			<table width="100%" class="datagrid">
+				<% @challenges.each do |challenge| %>
+					<tr class="<%= cycle("odd", "even") %>">
+						<td class="thumb"><%= image_tag challenge.cover_url, class: "avatar-xs" %></td>
+						<td><%= link_to challenge.song.title, song_path(challenge.song) %>
+			    	by <%= link_to challenge.song.artist.title, artist_path(challenge.song.artist)%></td>
+						<td><%= challenge.display_results %></td>
+					</tr>
+				<% end %>
+			</table>
+		<% else %>
+			<p>No challenges</p>
+		<% end %>
+	</div>
+	<div class="tab-pane" id="songs_tab">
+		<% if !@songs.blank? %>
+			<section>
+				<%= render 'shared/header_page', title: 'Songs', sub_header: true, view_more: 'View more', view_more_path: songs_path %>
+
+				<table width="100%" class="datagrid">
+					<tr class="head">
+						<td>Song</td>
+						<td>Rating</td>
+						<td></td>
+					</tr>
+					<% @songs.each do |song| %>
+						<tr class="<%= cycle("odd", "even") %>">
+							<td><%= link_to song.title, song_path(song), class: 'btn-secondary-color' %></td>
+							<td><%= song.display_rating %></td>
+							<td align="right">
+								<%= link_to song.play_url, class: "btn btn-primary btn-sm" do %>
+									<i class="glyphicon glyphicon-play"></i> Play
+								<% end %>
+								<%= link_to "Challenge", new_challenge_path(song_id: song.id), class: "btn btn-primary btn-sm" %>
+							</td>
+						</tr>
+					<% end %>
+				</table>
+			</section>
+		<% else %>
+			<p>No songs</p>
+		<% end %>
+	</div>
+	<div class="tab-pane" id="biography_tab">
+		<% if @artist.bio %>
+			<p><%= truncate(@artist.bio, length: 1000, separator: ' ') { link_to "Read more", @artist.bio_read_more_link, {class: 'margin-left', target: '_blank'} } %></p>
+		<% else %>
+			<p>No biography available</p>
+		<% end %>
+	</div>
+</div>
+
+

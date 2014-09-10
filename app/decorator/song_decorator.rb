@@ -74,4 +74,17 @@ class SongDecorator < Draper::Decorator
     h.render 'songs/rating', rating: model.rating
   end
 
+  def display_difficulty
+  	case model.difficulty
+		when 3
+		  "Hard"
+		when 2
+		  "Medium"
+		when 1
+		  "Easy"
+		else
+		  "-"
+		end
+  end
+
 end

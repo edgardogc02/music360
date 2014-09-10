@@ -1,67 +1,86 @@
 <%= set_meta_description "Learn to play #{@song.title} with InstrumentChamp. The best way to learn to play music." %>
 <%= set_page_title "Learn to play #{@song.title} with InstrumentChamp" %>
 
-<%= render 'shared/header_image_cover', cover: @song.artist.cover, profile: @song.cover_url %>
 
-<div class="clearfix main-section-nav">
-	<div class="pull-left">
-		<ul class="main-section-nav-list clearfix">
-			<li><h4><%= @song.title %></h4></li>
-		</ul>
+<%= content_for(:detail_header_thumb) do %>
+	<%= image_tag @song.cover_url %>
+<% end %>
+
+<%= content_for(:detail_header_primary_info) do %>
+	<h3>Song by <%= link_to @song.artist.title, @song.artist %></h3>
+	<h2><%= @song.title %></h2>
+	<p>
+		Written by <b><%= @song.writer %></b> <br />
+		Published by <b><%= @song.publisher %></b>
+	</p>
+	<br class="hidden-xs" />
+	<%= link_to "Challenge", new_challenge_path(song_id: @song.id), class: "btn btn-primary" %>
+	<%= link_to 'Practice', @song.play_url, class: "btn btn-default" %>
+<% end %>
+
+<%= content_for(:detail_header_secondary_info) do %>
+	<div><%= render "available_instruments" %></div>
+	<div class="hidden-xs"><br /><br /><br /><br /></div>
+	<div><b>Difficulty:</b> <%= @song.display_difficulty %></div>
+	<div><b>Players:</b> 100000</div>
+<% end %>
+
+<%= content_for(:detail_header_nav_left) do %>
+	<ul>
+		<li class="active"><a href="#overview_tab" data-toggle="tab">Overview</a></li>
+	  <li><a href="#challenges_tab" data-toggle="tab">Challenges</a></li>
+	  <li><a href="#leaderboards_tab" data-toggle="tab">Leaderboards</a></li>
+	</ul>
+<% end %>
+
+
+<div class="tab-content">
+	<div class="tab-pane active" id="overview_tab">
+		<% unless @activity_feeds.empty? %>
+		  <br />
+		  <%= render @activity_feeds %>
+		  <br />
+		  <% unless @activity_feeds.last_page? %>
+		    <div id="more_posts"></div>
+		    <%= link_to 'View more', activities_artist_song_path(@song.artist, @song, page: 2), { remote: true, id: "show_more_posts_link" } %>
+		  <% end %>
+		<% end %>
 	</div>
-</div>
-
-<!--<iframe width="300" height="380"  scrolling="no" frameborder="0" allowtransparency="true" style="border:none; overflow:hidden; height:380px;" src="http://www.musicnodes.com/widget/public/view?wid=2105&id=538dbb91f51e46ff6f0008ce&services=spotify,youtube,deezer"></iframe>-->
-
-<div class="row">
-	<div class="col-lg-3">
-		<p>
-			<div class="spacer-sm">By: <%= link_to @song.artist.title, @song.artist %></div>
-			Writer: <%= @song.writer %>
-		</p>
-		<p>
-			<%= link_to @song.play_url, class: "btn btn-primary" do %>
-				<i class="glyphicon glyphicon-play"></i> Play
-			<% end %>
-			<%= link_to "Create challenge", new_challenge_path(song_id: @song.id), class: "btn btn-primary" %>
-		</p>
+	<div class="tab-pane" id="challenges_tab">
+		Challenges
 	</div>
+	<div class="tab-pane" id="leaderboards_tab">
+		<% unless @scores.blank? %>
+			<div class="col-lg-9">
+				<%= render 'shared/header_page', title: 'Top Scores', sub_header: true %>
 
-	<% unless @scores.blank? %>
-		<div class="col-lg-9">
-			<%= render 'shared/header_page', title: 'Top Scores', sub_header: true %>
-
-			<table width="100%" class="datagrid">
-				<tr class="head">
-					<td>User</td>
-					<td>Points</td>
-					<td>Instrument</td>
-					<td></td>
-				</tr>
-				<% @scores.each do |score| %>
-					<% if score.user and score.score > 0 %>
-						<tr class="<%= cycle("odd", "even") %>">
-							<td><%= link_to score.user.username, person_path(score.user), class: 'btn-secondary-color' %></td>
-							<td><%= score.score %></td>
-							<td><%= score.instrument.name %></td>
-							<td align="right"><%= link_to 'Challenge', new_challenge_path(song_id: score.song.id, challenged_id: score.user.id), class: 'btn btn-primary btn-sm' %></td>
-						</tr>
+				<table width="100%" class="datagrid">
+					<tr class="head">
+						<td>User</td>
+						<td>Points</td>
+						<td>Instrument</td>
+						<td></td>
+					</tr>
+					<% @scores.each do |score| %>
+						<% if score.user and score.score > 0 %>
+							<tr class="<%= cycle("odd", "even") %>">
+								<td><%= link_to score.user.username, person_path(score.user), class: 'btn-secondary-color' %></td>
+								<td><%= score.score %></td>
+								<td><%= score.instrument.name %></td>
+								<td align="right"><%= link_to 'Challenge', new_challenge_path(song_id: score.song.id, challenged_id: score.user.id), class: 'btn btn-primary btn-sm' %></td>
+							</tr>
+						<% end %>
 					<% end %>
-				<% end %>
-			</table>
-		</div>
-	<% end %>
-
+				</table>
+			</div>
+		<% else %>
+			<p>No records</p>
+		<% end %>
+	</div>
 </div>
 
-<% unless @activity_feeds.empty? %>
-  <br />
-  <%= render @activity_feeds %>
-  <br />
-  <% unless @activity_feeds.last_page? %>
-    <div id="more_posts"></div>
-    <%= link_to 'View more', activities_artist_song_path(@song.artist, @song, page: 2), { remote: true, id: "show_more_posts_link" } %>
-  <% end %>
+<%= content_for(:detail_right_col) do %>
+	<h2>Leaderboards</h2>
 <% end %>
 
 <!--

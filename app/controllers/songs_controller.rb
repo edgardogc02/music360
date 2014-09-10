@@ -30,6 +30,8 @@ class SongsController < ApplicationController
     @scores = @song.top_scores.limit(5)
 
     @activity_feeds = @song.activities.order('created_at DESC').page(1).per(10)
+
+    render layout: "detail"
 	end
 
   def activities

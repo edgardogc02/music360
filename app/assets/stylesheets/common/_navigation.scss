@@ -26,36 +26,3 @@
     background: #efefef;
   }
 }
-
-.main-section-nav {
-  margin-bottom: 20px;
-  padding: 10px 0px;
-  border-bottom: 1px solid #e6e6e6;
-
-  .main-section-nav-list {
-    list-style: none;
-    margin: 4px 0px 0px 0px;
-    padding: 0px;
-
-    li {
-      float: left;
-      margin: 0px;
-      padding: 0px 20px;
-    }
-  }
-
-  .dropdown {
-    display: inline-block;
-  }
-
-  h4 {
-    margin: 0px;
-  }
-
-  .action_button {
-    i {
-      display: none;
-    }
-    margin-bottom: 0px;
-  }
-}

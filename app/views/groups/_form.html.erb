@@ -1,18 +1,18 @@
 <div class="row">
 	<div class="col-lg-5">
 		<%= simple_form_for @group, html: {multipart: true} do |f| %>
-		
+
 		  <%= f.input :name %>
-		
+
 			<br /><%= render 'shared/header_page', title: 'Privacy', sub_header: true %>
-		
+
 		  <%= f.association :group_privacy, as: :radio_buttons, label: false, label_method: lambda { |o| ("#{o.name}<div class='group_privacy_description'>#{o.description}</div>").html_safe } %>
-		
+
 		  <% if !@group.new_record? %>
 		  	<br /><%= render 'shared/header_page', title: 'Description', sub_header: true %>
 		    <%= f.input :description, label: false, placeholder: "Description" %>
 		  <% end %>
-		
+
 		  <% if !@group.new_record? %>
 		  	<br /><%= render 'shared/header_page', title: 'Images', sub_header: true %>
 		    <label>Upload an image for this group:</label>
@@ -20,17 +20,11 @@
 		      <%= f.file_field :imagename %>
 		    </p>
 		    <div class="small text-muted">Recommended image size: 160x160 pixels</div>
-		    <hr />
-		    <label>Upload a cover image for this group:</label>
-		    <p>
-		      <%= f.file_field :cover %>
-		    </p>
-		    <div class="small text-muted">Recommended image size: 944x200 pixels</div>
 		  <% end %>
-			
-			<br />		
+
+			<br />
 		  <%= f.button :submit, submit_text %>
-		
+
 		<% end %>
 	</div>
 </div>

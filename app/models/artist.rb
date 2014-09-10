@@ -2,7 +2,6 @@ class Artist < ActiveRecord::Base
 	extend FriendlyId
 
 	mount_uploader :imagename, ArtistImageUploader
-	mount_uploader :cover, ArtistCoverUploader
 
 	paginates_per 30
 

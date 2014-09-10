@@ -17,6 +17,8 @@ class ArtistsController < ApplicationController
     #@node = Musicnodes.new("createalbumnode", "U2").get_album_node.parsed_response
 
     @activity_feeds = PublicActivity::Activity.where(id: @artist.songs.map{ |s| s.activities}.flatten).order('created_at DESC').page(1).per(10)
+
+    render layout: "detail"
 	end
 
   def most_popular
