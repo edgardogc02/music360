@@ -6,7 +6,7 @@
 <meta property="og:description" content="You're invited to start playing InstrumentChamp - the new game that teaches you to play music!" />
 <% end %>
 
-<%= render "header", link1: "What is InstrumentChamp?", link2: "The Music Mission", link3: "Play in a band" %>
+<%= render "header", link1: "What is InstrumentChamp?", link2: "The Music Mission", link3: "InstrumentChamp for Music Teachers" %>
 
 <section id="page-top" class="landing-section">
   <div class="container">
@@ -14,8 +14,7 @@
       <div class="col-md-12 text-center">
         <a href="#" id="video-btn" data-toggle="modal" data-target="#video"> <%= image_tag(asset_path('landing/play-logo.png')) %> </a>
         <h1 class="brand-heading">Make music dreams come true</h1>
-        <p>Help your students become music players, join the mission to make the world play music.</p>
-        <h3>Start a group for your school or class</h3>
+        <h3>Help your students become music players, join the mission to make the world play music.</h3>
         <ul>
 					<li>Create a group challenge</li>
 					<li>Invite students to join with a free student account</li>
@@ -71,14 +70,22 @@
 <section id="s3" class="landing-section">
   <div class="container">
     <div class="row">
-      <div class="col-lg-6 col-lg-offset-6 text-right">
-        <h2>Play in a band</h2>
-        <h3>Rock together with friends in a band.</h3>
+      <div class="col-lg-7 col-lg-offset-5 text-right">
+        <h2>InstrumentChamp for Music Teachers</h2>
+        <h3>Your students can become music players:</h3>
         <p>
-          Invite your friends to play a real music game! With InstrumentChamp you can play with real instruments up to 4 players together.
+        	<ul>
+        		<li>Learn to play instruments</li>
+        		<li>Learn to play songs</li>
+        		<li>Learn to play in a band</li>
+        		<li>Connect with other students, teachers and artists online</li>
+        	</ul>
         </p>
         <p>
         	<%= render "landing_pages/instrument_icons" %>
+        </p>
+        <p>
+        	Sign up now to try it out and invite your students to join with a free student account
         </p>
         <br />
         <%= render "fb_signup", id: "facebook_signin_music_teachers_3" %>

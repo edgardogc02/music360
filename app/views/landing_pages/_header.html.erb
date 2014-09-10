@@ -1,7 +1,7 @@
 <nav class="navbar navbar-custom navbar-default navbar-fixed-top">
   <div class="container">
     <div class="navbar-header pull-left page-scroll">
-      <a class="navbar-brand logo" href="#page-top"> <%= image_tag(asset_path('logo_alpha.png')) %> </a>
+      <a class="navbar-brand logo" href="<%= root_path %>"> <%= image_tag(asset_path('logo_alpha.png')) %> </a>
     </div>
 
     <div class="pull-right">
@@ -14,7 +14,6 @@
     </div>
 
 		<div class="pull-left nav-secondary-top-landing hidden-xs">
-			<a href="<%= root_path %>" class="btn btn-link <%= 'active' if current_page?(root_path) %>">Learn to Play</a>
     	<a href="<%= music_teachers_path %>" class="btn btn-link <%= 'active' if current_page?(music_teachers_path) %>">Music Teachers</a>
     	<a href="<%= music_artists_path %>" class="btn btn-link <%= 'active' if current_page?(music_artists_path) %>">Music Artists</a>
     	<a href="<%= guitar_path %>" class="btn btn-link <%= 'active' if current_page?(guitar_path) %>"><i class="icon-instrument guitar-sm"></i></a>
@@ -30,13 +29,16 @@
 
     <div class="collapse navbar-collapse navbar-ex1-collapse navbar-right">
       <ul class="nav navbar-nav visible-xs">
-      	<li><a href="<%= root_path %>" class="btn btn-link <%= 'active' if current_page?(root_path) %>">Learn to Play</a></li>
 	    	<li><a href="<%= music_teachers_path %>" class="btn btn-link <%= 'active' if current_page?(music_teachers_path) %>">Music Teachers</a></li>
 	    	<li><a href="<%= music_artists_path %>" class="btn btn-link <%= 'active' if current_page?(music_artists_path) %>">Music Artists</a></li>
+	    	<li class="spacer-sm"><hr class="no-padding no-margin" /></li>
 	    	<li><a href="<%= guitar_path %>" class="btn btn-link <%= 'active' if current_page?(guitar_path) %>">Guitar</a></li>
 	    	<li><a href="<%= piano_path %>" class="btn btn-link <%= 'active' if current_page?(piano_path) %>">Piano</a></li>
 	    	<li><a href="<%= drums_path %>" class="btn btn-link <%= 'active' if current_page?(drums_path) %>">Drums</a></li>
 				<li class="spacer-sm"><hr class="no-padding no-margin" /></li>
+				<li class="page-scroll">
+          <a href="#page-top">Music Dreams</a>
+        </li>
         <li class="page-scroll">
           <a href="#s1"><%= link1 %></a>
         </li>
@@ -59,8 +61,8 @@
 <nav class="navbar navbar-custom-links navbar-fixed-bottom hidden-xs">
   <div class="container">
     <ul class="nav navbar-nav">
-      <li class="page-scroll hide">
-        <a href="#page-top"></a>
+      <li class="page-scroll">
+        <a href="#page-top">Music Dreams</a>
       </li>
       <li class="page-scroll">
         <a href="#s1"><%= link1 %></a>
