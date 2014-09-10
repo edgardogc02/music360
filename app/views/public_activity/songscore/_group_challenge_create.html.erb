@@ -8,15 +8,18 @@
 	    <% end %>
 		</div>
 		<div class="pull-left">
-			<h4 class="media-heading"><%= link_to activity.owner.username, person_path(activity.owner) if activity.owner %></h4>
+			<h4 class="media-heading"><%= link_to activity.owner.username, person_path(activity.owner) if activity.owner %>
+				<span class="small">
+					played
+	        <%= link_to activity.trackable.song.title, artist_song_path(activity.trackable.song.artist, activity.trackable.song) %>
+	        by
+	        <%= link_to activity.trackable.song.artist.title, artist_path(activity.trackable.song.artist) %>
+	        in a group challenge by
+	        <%= link_to activity.trackable.challenge.group.name, group_path(activity.trackable.challenge.group) %>.
+	    	</span>
+	    </h4>
       <div class="small spacer-md text-muted"><%= time_ago_in_words(activity.created_at) %> ago</div>
       <div class="spacer-md">
-        played
-        <%= link_to activity.trackable.song.title, artist_song_path(activity.trackable.song.artist, activity.trackable.song) %>
-        by
-        <%= link_to activity.trackable.song.artist.title, artist_path(activity.trackable.song.artist) %>
-        in a group challenge by
-        <%= link_to activity.trackable.challenge.group.name, group_path(activity.trackable.challenge.group) %>.
         The score was
         <b><%= activity.trackable.score %></b>
         giving
