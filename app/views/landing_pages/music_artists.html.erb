@@ -1,0 +1,84 @@
+<% content_for(:facebook_og_meta) do %>
+<meta property="og:url" content="<%= request.original_url %>" />
+<meta property="og:title" content="InstrumentChamp for Music Artists" />
+<meta property="og:type" content="website" />
+<meta property="og:image" content="<%= asset_url('logo_alpha.png') %>" />
+<meta property="og:description" content="You're invited to start playing InstrumentChamp - the new game that teaches you to play music!" />
+<% end %>
+
+<%= render "header", link1: "What is InstrumentChamp?", link2: "Music Games", link3: "Earn a living" %>
+
+<section id="page-top" class="landing-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-md-offset-2 text-center">
+        <a href="#" id="video-btn" data-toggle="modal" data-target="#video"> <%= image_tag(asset_path('landing/play-logo.png')) %> </a>
+        <h1 class="brand-heading">Make your music dream come true</h1>
+        <h3>Connect with your fans and help them play and sing a long to your songs.</h3>
+        <br />
+        <%= render "fb_signup", id: "facebook_signin_music_artists_top" %>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="s1" class="landing-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6">
+        <h2>What is InstrumentChamp?</h2>
+        <h3>InstrumentChamp is a game and social network for music players</h3>
+        <p>
+          You can create your own fan group where you can play together with your awesome fans. Create a challenge and share with your fans on social media.
+        </p>
+        <br />
+				<%= render "fb_signup", id: "facebook_signin_music_artists_1" %>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="s2" class="landing-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2 text-center">
+        <h2>Music Games</h2>
+        <h3>Turn your music into an online music game</h3>
+        <p>
+          InstrumentChamp introduce an interactive music format that you can promote together with your albums or concerts to help your fans play and sing a long.
+        </p>
+        <br />
+        <%= render "fb_signup", id: "facebook_signin_music_artists_2" %>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="s3" class="landing-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-6 col-lg-offset-6 text-right">
+        <h2>Earn a living</h2>
+        <h3>InstrumentChamp can give you extra sources of income.</h3>
+        <p>
+        	<ul>
+						<li>InstrumentChamp Plus - Sell more albums, tickets and merch</li>
+						<li>InstrumentChamp MAP - Music Affiliate Program</li>
+						<li>InstrumentChamp PUB - Publishing deal</li>
+	        </ul>
+        </p>
+        <br />
+        <%= render "fb_signup", id: "facebook_signin_music_artists_3" %>
+      </div>
+    </div>
+  </div>
+</section>
+
+<%= render 'shared/footer' %>
+
+
+<% flash.each do |name, msg| %>
+  <%= content_tag :div, class: "hidden" do %>
+    <%= msg %>
+  <% end %>
+<% end %>

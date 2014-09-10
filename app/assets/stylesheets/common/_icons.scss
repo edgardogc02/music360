@@ -9,8 +9,6 @@ $icons_md_height: 60px;
 $icons_sm_width: 24px;
 $icons_sm_height: 24px;
 
-
-
 [class^="icon-instrument"], [class*=" icon-instrument"], [class^="icon-level"], [class*=" icon-level"] {
 	background-image: image-url('sprite_instruments_level.png');
   background-repeat: no-repeat;
@@ -80,3 +78,34 @@ $icons_sm_height: 24px;
 .level8 { height: 120px; width: 288px; background-position: -288px -480px }
 .level9 { height: 120px; width: 288px; background-position: 0px -600px }
 .level10 { height: 120px; width: 288px; background-position: -288px -600px }
+
+[class^="icon-landing"] {
+  background-image: image-url('landing_icons_sprite.png');
+  background-repeat: no-repeat;
+  display: inline-block;
+}
+
+.l-guitar { height: 75px; width: 75px; background-position: 0px -75px }
+.l-drums { height: 75px; width: 75px; background-position: -75px -75px }
+.l-keyboard { height: 75px; width: 75px; background-position: -150px -75px }
+.l-guitar2 { height: 75px; width: 75px; background-position: -225px -75px }
+.l-saxophone { height: 75px; width: 75px; background-position: -300px -75px }
+.l-trumpet { height: 75px; width: 75px; background-position: -375px -75px }
+
+.l-f1 { height: 75px; width: 75px; background-position: 0px 0px }
+.l-f2 { height: 75px; width: 75px; background-position: -75px 0px }
+.l-f3 { height: 75px; width: 75px; background-position: -150px 0px }
+.l-f4 { height: 75px; width: 75px; background-position: -225px 0px }
+.l-f5 { height: 75px; width: 75px; background-position: -300px 0px }
+.l-f6 { height: 75px; width: 75px; background-position: -375px 0px }
+
+.l-lvl1 { height: 30px; width: 30px; background-position: 0px -150px }
+.l-lvl2 { height: 30px; width: 30px; background-position: -30px -150px }
+.l-lvl3 { height: 30px; width: 30px; background-position: -60px -150px }
+.l-lvl4 { height: 30px; width: 30px; background-position: -90px -150px }
+.l-lvl5 { height: 30px; width: 30px; background-position: -120px -150px }
+.l-lvl6 { height: 30px; width: 30px; background-position: -150px -150px }
+.l-lvl7 { height: 30px; width: 30px; background-position: -180px -150px }
+.l-lvl8 { height: 30px; width: 30px; background-position: -210px -150px }
+.l-lvl9 { height: 30px; width: 30px; background-position: -240px -150px }
+.l-lvl10 { height: 30px; width: 30px; background-position: -270px -150px }

@@ -2,16 +2,16 @@ class LandingPagesController < ApplicationController
 
 	layout "sessions"
 
-  def music_teacher
+  def music_teachers
   end
 
-  def music_artist
+  def music_artists
   end
 
   def guitar
   end
 
-  def keyboards
+  def piano
   end
 
   def drums

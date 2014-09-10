@@ -14,11 +14,11 @@
     </div>
 
 		<div class="pull-left nav-secondary-top-landing hidden-sm hidden-xs">
-			<a href="<%= new_session_path %>" class="btn btn-link <%= 'active' if current_page?(new_session_path) %>">Learn to Play</a>
-    	<a href="<%= music_teacher_path %>" class="btn btn-link <%= 'active' if current_page?(music_teacher_path) %>">Music Teacher</a>
-    	<a href="<%= music_artist_path %>" class="btn btn-link <%= 'active' if current_page?(music_artist_path) %>">Music Artist</a>
+			<a href="<%= root_path %>" class="btn btn-link <%= 'active' if current_page?(root_path) %>">Learn to Play</a>
+    	<a href="<%= music_teachers_path %>" class="btn btn-link <%= 'active' if current_page?(music_teachers_path) %>">Music Teachers</a>
+    	<a href="<%= music_artists_path %>" class="btn btn-link <%= 'active' if current_page?(music_artists_path) %>">Music Artists</a>
     	<a href="<%= guitar_path %>" class="btn btn-link <%= 'active' if current_page?(guitar_path) %>"><i class="icon-instrument guitar-sm"></i></a>
-    	<a href="<%= keyboards_path %>" class="btn btn-link <%= 'active' if current_page?(keyboards_path) %>"><i class="icon-instrument keyboard-sm"></i></a>
+    	<a href="<%= piano_path %>" class="btn btn-link <%= 'active' if current_page?(piano_path) %>"><i class="icon-instrument keyboard-sm"></i></a>
     	<a href="<%= drums_path %>" class="btn btn-link <%= 'active' if current_page?(drums_path) %>"><i class="icon-instrument drums-sm"></i></a>
     </div>
 
@@ -30,21 +30,21 @@
 
     <div class="collapse navbar-collapse navbar-ex1-collapse navbar-right">
       <ul class="nav navbar-nav visible-xs">
-      	<li><a href="<%= new_session_path %>" class="btn btn-link <%= 'active' if current_page?(new_session_path) %>">Learn to Play</a></li>
-	    	<li><a href="<%= music_teacher_path %>" class="btn btn-link <%= 'active' if current_page?(music_teacher_path) %>">Music Teachers</a></li>
-	    	<li><a href="<%= music_artist_path %>" class="btn btn-link <%= 'active' if current_page?(music_artist_path) %>">Music Artists</a></li>
+      	<li><a href="<%= root_path %>" class="btn btn-link <%= 'active' if current_page?(root_path) %>">Learn to Play</a></li>
+	    	<li><a href="<%= music_teachers_path %>" class="btn btn-link <%= 'active' if current_page?(music_teachers_path) %>">Music Teachers</a></li>
+	    	<li><a href="<%= music_artists_path %>" class="btn btn-link <%= 'active' if current_page?(music_artists_path) %>">Music Artists</a></li>
 	    	<li><a href="<%= guitar_path %>" class="btn btn-link <%= 'active' if current_page?(guitar_path) %>">Guitar</a></li>
-	    	<li><a href="<%= keyboards_path %>" class="btn btn-link <%= 'active' if current_page?(keyboards_path) %>">Keyboard</a></li>
+	    	<li><a href="<%= piano_path %>" class="btn btn-link <%= 'active' if current_page?(piano_path) %>">Piano</a></li>
 	    	<li><a href="<%= drums_path %>" class="btn btn-link <%= 'active' if current_page?(drums_path) %>">Drums</a></li>
 				<li class="spacer-sm"><hr class="no-padding no-margin" /></li>
         <li class="page-scroll">
-          <a href="#what-it-is">What it is</a>
+          <a href="#s1"><%= link1 %></a>
         </li>
         <li class="page-scroll">
-          <a href="#how-it-works">How it works</a>
+          <a href="#s2"><%= link2 %></a>
         </li>
         <li class="page-scroll spacer-sm">
-          <a href="#what-it-costs">What it costs</a>
+          <a href="#s3"><%= link3 %></a>
       	</li>
       	<li class="spacer-sm"><hr class="no-padding no-margin" /></li>
       	<li><a href="<%= help_path %>" class="btn btn-link" target="_blank">Help</a></li>
@@ -63,13 +63,13 @@
         <a href="#page-top"></a>
       </li>
       <li class="page-scroll">
-        <a href="#what-it-is">What it is</a>
+        <a href="#s1"><%= link1 %></a>
       </li>
       <li class="page-scroll">
-        <a href="#how-it-works">How it works</a>
+        <a href="#s2"><%= link2 %></a>
       </li>
       <li class="page-scroll">
-        <a href="#what-it-costs">What it costs</a>
+        <a href="#s3"><%= link3 %></a>
       </li>
     </ul>
   </div>

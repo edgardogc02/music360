@@ -110,10 +110,10 @@ InstrumentchampPrototype::Application.routes.draw do
   get 'welcome' => "welcome#index", as: :welcome
   get 'home' => "pages#home", as: :home
 
-  get 'music_teacher' => "landing_pages#music_teacher", as: :music_teacher
-  get 'music_artist' => "landing_pages#music_artist", as: :music_artist
+  get 'music-teachers' => "landing_pages#music_teachers", as: :music_teachers
+  get 'music-artists' => "landing_pages#music_artists", as: :music_artists
   get 'guitar' => "landing_pages#guitar", as: :guitar
-  get 'keyboards' => "landing_pages#keyboards", as: :keyboards
+  get 'piano' => "landing_pages#piano", as: :piano
   get 'drums' => "landing_pages#drums", as: :drums
 
   get 'signup' => "users#new", as: :signup

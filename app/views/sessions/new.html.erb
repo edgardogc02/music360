@@ -1,32 +1,37 @@
 <% content_for(:facebook_og_meta) do %>
 <meta property="og:url" content="<%= request.original_url %>" />
-<meta property="og:title" content="InstrumentChamp - Learn to play guitar, learn to play piano, learn to play drums" />
+<meta property="og:title" content="InstrumentChamp - Make the world play music" />
 <meta property="og:type" content="website" />
 <meta property="og:image" content="<%= asset_url('logo_alpha.png') %>" />
 <meta property="og:description" content="You're invited to start playing InstrumentChamp - the new game that teaches you to play music!" />
 <% end %>
 
-<%= render "landing_pages/header" %>
+<%= render "landing_pages/header", link1: "What is InstrumentChamp?", link2: "The Music Mission", link3: "Play in a band" %>
 
 <section id="page-top" class="landing-section">
   <div class="container">
     <div class="row">
       <div class="col-md-8 col-md-offset-2 text-center">
         <a href="#" id="video-btn" data-toggle="modal" data-target="#video"> <%= image_tag(asset_path('landing/play-logo.png')) %> </a>
-        <h1 class="brand-heading">Learn to play music with a real music game</h1>
+        <h1 class="brand-heading">Make your music dream come true</h1>
+        <p>Be a music player and join the mission to make the world play music.</p>
         <%= render 'slider_download', {btn_download_id: 'download_btn_top_slide'}%>
       </div>
     </div>
   </div>
 </section>
 
-<section id="what-it-is" class="landing-section">
+<section id="s1" class="landing-section">
   <div class="container">
     <div class="row">
       <div class="col-lg-6">
-        <h2>A real music game</h2>
+        <h2>What is InstrumentChamp?</h2>
+        <h3>InstrumentChamp is a game and social network for music players</h3>
         <p>
-          InstrumentChamp is a music game service for learning to play music and playing with your friends online. Play with real instruments like acoustic guitar, piano, and drums but you can also sing along.
+          It is a fun, easy and social way to learn to play music. Practice alone or play with friends online. Learn to play new songs and connect with your favorite artists. The microphone in your computer listen, analyze and give realtime feedback on how you play.
+        </p>
+        <p>
+        	<%= render "landing_pages/features_icons" %>
         </p>
         <%= render 'slider_download', {btn_download_id: 'download_btn_what_it_is_slide'}%>
       </div>
@@ -34,16 +39,17 @@
   </div>
 </section>
 
-<section id="how-it-works" class="landing-section">
+<section id="s2" class="landing-section">
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 text-center">
-        <h2>Wireless sound recognition</h2>
+        <h2>The Music Mission</h2>
+        <h3>Start your music career and join the music mission</h3>
         <p>
-          InstrumentChamp is a new music innovation enabled by music sound recognition. It turns your computer into a digital music teacher that listens, analyzes, and gives real-time feedback on how you play.
+          Improve your music skills and recruit new members to the music mission. That will take you on a music journey where you can become an InstrumentChamp. You can play with both acoustic and electric instruments.
         </p>
         <p>
-          InstrumentChamp also introduces a new graphic interface that makes it possible for anyone to learn to play songs without reading sheet music.
+        	<%= render "landing_pages/career_levels" %>
         </p>
         <%= render 'slider_download', {btn_download_id: 'download_btn_how_it_works_slide'}%>
       </div>
@@ -51,16 +57,17 @@
   </div>
 </section>
 
-<section id="what-it-costs" class="landing-section">
+<section id="s3" class="landing-section">
   <div class="container">
     <div class="row">
       <div class="col-lg-6 col-lg-offset-6 text-right">
-        <h2>Forever Free</h2>
+        <h2>Play in a band</h2>
+        <h3>Rock together with friends in a band</h3>
         <p>
-          InstrumentChamp offers a free service to everyone, where you can learn basic music skills and songs. This is powered by ads from our partners.
+          Invite your friends to play a real music game! With InstrumentChamp you can play with real instruments up to 4 players together.
         </p>
         <p>
-          You can choose to upgrade to premium, giving you a multiplayer game to play with family and friends - with no advertising. More and more songs will become available on InstrumentChamp.com and can be purchased on demand.
+        	<%= render "landing_pages/instrument_icons" %>
         </p>
         <%= render 'slider_download', {btn_download_id: 'download_btn_what_it_costs_slide'}%>
       </div>
