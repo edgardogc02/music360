@@ -2,11 +2,11 @@
 <html>
 	<head>
 		<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
-		<%= render "layouts/head" %>		
+		<%= render "layouts/head" %>
 	</head>
 
-	<body role="landing" class="<%= body_classes %>" data-spy="scroll" data-target=".navbar-custom-links" data-offset="300">
+	<body role="landing" class="<%= body_classes %> landing" data-spy="scroll" data-target=".navbar-custom-links" data-offset="300">
 		<%= yield %>
-	</body>	
+	</body>
 	<%= render "shared/zendesk_feedback_tab" %>
 </html>

@@ -1,5 +1,5 @@
 ready = ->
-  unless $("body").hasClass("sessions")
+  unless $("body").hasClass("landing")
     stickyfooter = undefined
     stickyfooter = ->
       footerHeight = undefined
