@@ -1,32 +1,47 @@
-<%= render 'shared/header_image_cover', cover: @user.cover, profile: @user.imagename_url %>
+<%= content_for(:detail_header_thumb) do %>
+	<%= image_tag @user.imagename_url %>
+<% end %>
 
-<div class="clearfix main-section-nav">
-	<div class="pull-left">
-		<ul class="main-section-nav-list clearfix">
-			<li><h4><%= @user.username %></h4></li>
-		</ul>
-	</div>
-</div>
+<%= content_for(:detail_header_primary_info) do %>
+	<h3>User</h3>
+	<h2><%= @user.username %></h2>
+	<p><%= @user.level %></p>
+	<br class="hidden-xs" />
+	<%= link_to "Challenge", new_challenge_path(challenged_id: @user.id), class: "btn btn-primary" %>
+<% end %>
 
-<br />
+<%= content_for(:detail_header_secondary_info) do %>
+	<%= render "accounts/user_level_info" %>
+<% end %>
 
-<div>
-	<ul class="no-style info-label">
-		<li><span>Username:</span> <%= @user.username %></li>
-		<li><span>Email:</span> <%= @user.email %></li>
-		<li><span>Career level:</span> <%= @user.level %></li>
-		<li><span>Instrument:</span>
-	    <% if @user.instrument %>
-	      <%= @user.instrument.name %>
-	    <% else %>
-	      No instrument chosen
-	    <% end %>
-		</li>
-	  <li>
-	    <span>Following:</span> <%= link_to @user.followed_users.count, following_path(@user) %>
-	  </li>
-		<li>
-		  <span>Followers:</span> <%= link_to @user.followers.count, user_follower_path(@user) %>
-		</li>
+<%= content_for(:detail_header_nav_left) do %>
+	<ul>
+		<li class="active"><a href="#status" role="tab" data-toggle="tab">Overview</a></li>
 	</ul>
+<% end %>
+
+<div class="tab-content">
+  <div class="tab-pane active" id="status">
+		<ul class="no-style info-label">
+			<li><span>Username:</span> <%= @user.username %></li>
+			<li><span>Email:</span> <%= @user.email %></li>
+			<li><span>Career level:</span> <%= @user.level %></li>
+			<li><span>Instrument:</span>
+		    <% if @user.instrument %>
+		      <%= @user.instrument.name %>
+		    <% else %>
+		      No instrument chosen
+		    <% end %>
+			</li>
+		  <li>
+		    <span>Following:</span> <%= link_to @user.followed_users.count, following_path(@user) %>
+		  </li>
+			<li>
+			  <span>Followers:</span> <%= link_to @user.followers.count, user_follower_path(@user) %>
+			</li>
+		</ul>
+  </div>
 </div>
+
+<%= content_for(:detail_right_col) do %>
+<% end %>

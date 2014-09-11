@@ -19,9 +19,19 @@ class GroupDecorator < Draper::Decorator
     end
   end
 
+  def join_toggle_button
+    if h.signed_in? and !UserGroupsManager.new(h.current_user).belongs_to_group?(model) and
+      (!model.secret? or (model.secret? and h.current_user.groups_invited_to.include?(model))) and
+      (!model.closed? or (model.closed? and !h.current_user.groups_invited_to_pending.include?(model)))
+      h.link_to "Join", h.join_group_path(model), {class: "btn btn-default"}
+    elsif h.signed_in? and UserGroupsManager.new(h.current_user).belongs_to_group?(model)
+      h.link_to "Leave group", h.user_group_path(h.current_user.user_groups.where(group_id: model.id).first), method: :delete, class: "btn btn-default"
+    end
+  end
+
   def create_challenge_button
     if h.signed_in? and UserGroupsManager.new(h.current_user).belongs_to_group?(model)
-      h.link_to "Create challenge", h.new_group_challenge_path(model), {class: "btn btn-primary btn-sm", id: "new_group_challenge"}
+      h.link_to "Create challenge", h.new_group_challenge_path(model), {class: "btn btn-primary", id: "new_group_challenge"}
     end
   end
 

@@ -20,7 +20,7 @@ class ChallengeDecorator < Draper::Decorator
 
   def display_start_challenge_button
     if display_start_challenge_to_user?(h.current_user)
-      h.link_to "Start challenge", start_challenge_url, {class: start_challenge_class_attr, id: "challenge_start_#{model.id}"}
+      h.link_to "Accept challenge", start_challenge_url, {class: start_challenge_class_attr, id: "challenge_start_#{model.id}"}
     end
   end
 

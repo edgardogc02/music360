@@ -1,45 +1,26 @@
 <%= render 'nav_menu' %>
 
-<%= render 'shared/header_page', title: 'Profile' %>
-
-<div class="row">
-	<div class="col-lg-3 col-md-3 text-center">
-		<%= image_tag @user.imagename_url, class: "thumbnail" %>
-	</div>
-	<div class="col-lg-5 col-md-5">
-		<%= render 'shared/header_page', title: 'Personal Information', sub_header: true %>
-		<ul class="no-style info-label">
-			<li><span>Username:</span> <%= @user.username %></li>
-			<li><span>First name:</span> <%= @user.first_name %></li>
-			<li><span>Last name:</span> <%= @user.last_name %></li>
-			<li><span>Email:</span> <%= @user.email %></li>
-			<li><span>Career level:</span> <%= @user.level %></li>
-			<li><span>Instrument:</span>
-		    <% if @user.instrument %>
-		      <%= @user.instrument.name %>
-		    <% else %>
-		      No instrument chosen
-		    <% end %>
-			</li>
-		  <li>
-		    <span>Following:</span> <%= link_to @user.followed_users.count, following_path(@user) %>
-		  </li>
-			<li>
-			  <span>Followers:</span> <%= link_to @user.followers.count, user_follower_path(@user) %>
-			</li>
-		</ul>
-	</div>
-	<div class="col-lg-3 col-md-3">
-		<br /><br /><br />
-		<div><%= link_to "Choose your instrument", edit_user_instrument_path(@user.id), class: "btn btn-link" %></div>
-		<div><%= link_to "Edit profile", edit_person_path(@user), class: "btn btn-link" %></div>
-		<div><%= link_to "Change password", edit_user_password_path(@user), class: "btn btn-link" %></div>
-		<hr />
-		<div><%= link_to "Change profile image", upload_profile_image_person_path(@user), class: "btn btn-link" %></div>
-		<hr />
-		<div><a data-toggle="modal" data-target="#confirm_modal" href="#" class="btn btn-link">Delete profile</a></div>
-	</div>
-</div>
+<h2>Personal Information</h2>
+<ul class="no-style info-label">
+	<li><span>Username:</span> <%= @user.username %></li>
+	<li><span>First name:</span> <%= @user.first_name %></li>
+	<li><span>Last name:</span> <%= @user.last_name %></li>
+	<li><span>Email:</span> <%= @user.email %></li>
+	<li><span>Career level:</span> <%= @user.level %></li>
+	<li><span>Instrument:</span>
+    <% if @user.instrument %>
+      <%= @user.instrument.name %>
+    <% else %>
+      No instrument chosen
+    <% end %>
+	</li>
+  <li>
+    <span>Following:</span> <%= link_to @user.followed_users.count, following_path(@user) %>
+  </li>
+	<li>
+	  <span>Followers:</span> <%= link_to @user.followers.count, user_follower_path(@user) %>
+	</li>
+</ul>
 
 <div id="confirm_modal" class="modal fade">
 	<div class="modal-dialog">
@@ -62,4 +43,16 @@
 			reload_img_avatar();
 		});
   </script>
+<% end %>
+
+
+<%= content_for(:detail_right_col) do %>
+	<br />
+	<div><%= link_to "Choose your instrument", edit_user_instrument_path(@user.id), class: "btn btn-link" %></div>
+	<div><%= link_to "Edit profile", edit_person_path(@user), class: "btn btn-link" %></div>
+	<div><%= link_to "Change password", edit_user_password_path(@user), class: "btn btn-link" %></div>
+	<br />
+	<div><%= link_to "Change profile image", upload_profile_image_person_path(@user), class: "btn btn-link" %></div>
+	<br />
+	<div><a data-toggle="modal" data-target="#confirm_modal" href="#" class="btn btn-link">Delete profile</a></div>
 <% end %>

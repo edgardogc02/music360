@@ -1,39 +1,24 @@
-<%= render "group_header" %>
+<%= render 'group_header' %>
+<%= render 'group_right_col' %>
 
-<div class="row">
-	<div class="col-lg-8">
-		<%= render 'shared/header_page', title: 'Challenges', sub_header: true %>
+<ul class="nav nav-tabs" role="tablist">
+  <li class="active"><a href="#open" role="tab" data-toggle="tab">Open</a></li>
+  <li><a href="#finished" role="tab" data-toggle="tab">Finished challenges</a></li>
+  <!--<li><a href="#players" role="tab" data-toggle="tab">Players</a></li>-->
+</ul>
 
-    <ul class="nav nav-tabs" role="tablist">
-      <li class="active"><a href="#open" role="tab" data-toggle="tab">Open</a></li>
-      <li><a href="#finished" role="tab" data-toggle="tab">Finished challenges</a></li>
-      <!--<li><a href="#players" role="tab" data-toggle="tab">Players</a></li>-->
-    </ul>
+<br />
 
-		<br />
-
-    <div class="tab-content">
-      <div class="tab-pane active" id="open">
-        <% unless @open_challenges.empty? %>
-          <%= render 'challenges', challenges: @open_challenges %>
-        <% else %>
-          <br />
-          <%= link_to 'Create new challenge', new_group_challenge_path(@group), class: 'btn btn-primary'  %>
-        <% end %>
-      </div>
-      <div class="tab-pane active" id="finished">
-        <%= render 'challenges', challenges: @finished_challenges %>
-      </div>
-    </div>
-	</div>
-	<div class="col-lg-4">
-		<h2>About</h2>
-		<p>
-			<%= @group.show_description %>
-		</p>
-		<hr />
-		<%= render "members", group: @group %>
-    <hr />
-    <%= render "leaderboard", group_leaders: @group_leaders %>
-	</div>
+<div class="tab-content">
+  <div class="tab-pane active" id="open">
+    <% unless @open_challenges.empty? %>
+      <%= render 'challenges', challenges: @open_challenges %>
+    <% else %>
+      <br />
+      <%= link_to 'Create new challenge', new_group_challenge_path(@group), class: 'btn btn-primary'  %>
+    <% end %>
+  </div>
+  <div class="tab-pane active" id="finished">
+    <%= render 'challenges', challenges: @finished_challenges %>
+  </div>
 </div>

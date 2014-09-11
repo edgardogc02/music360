@@ -66,6 +66,10 @@ class Song < ActiveRecord::Base
     end
   end
 
+  def players
+		self.song_scores.count
+  end
+
   # TODO: MOVE THIS TO THE DB. THERE SHOULD BE A NEW TABLE CALLED PREMIUM_SONGS WITH COST AND CURRENCY
   def currency
     "EUR"

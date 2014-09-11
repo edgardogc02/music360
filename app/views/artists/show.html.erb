@@ -9,14 +9,13 @@
 	<h3>Artist</h3>
 	<h2><%= @artist.title %></h2>
 	<br class="hidden-xs" />
-	<%= link_to "Challenge", "#", class: "btn btn-primary" %>
-	<%= link_to 'Follow', "#", class: "btn btn-default" %>
+	<!--<%= link_to "Challenge", "#", class: "btn btn-primary" %>
+	<%= link_to 'Follow', "#", class: "btn btn-default" %>-->
 <% end %>
 
 <%= content_for(:detail_header_secondary_info) do %>
-	<div class="hidden-xs"><br /><br /><br /><br /><br /></div>
-	<div><b>Followers:</b> 100000</div>
-	<div><b>Following:</b> 500</div>
+	<!--<div><b>Followers:</b> 100000</div>
+	<div><b>Following:</b> 500</div>-->
 <% end %>
 
 <%= content_for(:detail_header_nav_left) do %>
@@ -39,8 +38,7 @@
 	<% else %>
 		<p>No biography available</p>
 	<% end %>
-	<hr />
-	<h2>Fans leaderboard</h2>
+	<!--<h2>Fans leaderboard</h2>-->
 <% end %>
 
 <div class="tab-content">
@@ -76,8 +74,6 @@
 	<div class="tab-pane" id="songs_tab">
 		<% if !@songs.blank? %>
 			<section>
-				<%= render 'shared/header_page', title: 'Songs', sub_header: true, view_more: 'View more', view_more_path: songs_path %>
-
 				<table width="100%" class="datagrid">
 					<tr class="head">
 						<td>Song</td>
@@ -110,5 +106,3 @@
 		<% end %>
 	</div>
 </div>
-
-

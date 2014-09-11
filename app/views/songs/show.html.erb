@@ -1,9 +1,13 @@
 <%= set_meta_description "Learn to play #{@song.title} with InstrumentChamp. The best way to learn to play music." %>
 <%= set_page_title "Learn to play #{@song.title} with InstrumentChamp" %>
 
-
 <%= content_for(:detail_header_thumb) do %>
-	<%= image_tag @song.cover_url %>
+	<div class="song-detail-thumb">
+		<% if @song.cost > 0 %>
+			<div class="hover"><i class="glyphicon glyphicon-lock"></i></div>
+		<% end %>
+		<%= image_tag @song.cover_url %>
+	</div>
 <% end %>
 
 <%= content_for(:detail_header_primary_info) do %>
@@ -13,22 +17,22 @@
 		Written by <b><%= @song.writer %></b> <br />
 		Published by <b><%= @song.publisher %></b>
 	</p>
-	<br class="hidden-xs" />
+	<br class="hidden-xs hidden-sm" />
 	<%= link_to "Challenge", new_challenge_path(song_id: @song.id), class: "btn btn-primary" %>
 	<%= link_to 'Practice', @song.play_url, class: "btn btn-default" %>
 <% end %>
 
 <%= content_for(:detail_header_secondary_info) do %>
 	<div><%= render "available_instruments" %></div>
-	<div class="hidden-xs"><br /><br /><br /><br /></div>
+	<div class="hidden-xs hidden-sm"><br /><br /><br /><br /></div>
 	<div><b>Difficulty:</b> <%= @song.display_difficulty %></div>
-	<div><b>Players:</b> 100000</div>
+	<div><b>Players:</b> <%= @song.players %></div>
 <% end %>
 
 <%= content_for(:detail_header_nav_left) do %>
 	<ul>
 		<li class="active"><a href="#overview_tab" data-toggle="tab">Overview</a></li>
-	  <li><a href="#challenges_tab" data-toggle="tab">Challenges</a></li>
+	  <!--<li><a href="#challenges_tab" data-toggle="tab">Challenges</a></li>-->
 	  <li><a href="#leaderboards_tab" data-toggle="tab">Leaderboards</a></li>
 	</ul>
 <% end %>
@@ -44,6 +48,8 @@
 		    <div id="more_posts"></div>
 		    <%= link_to 'View more', activities_artist_song_path(@song.artist, @song, page: 2), { remote: true, id: "show_more_posts_link" } %>
 		  <% end %>
+		<% else %>
+			<p>No activities</p>
 		<% end %>
 	</div>
 	<div class="tab-pane" id="challenges_tab">
@@ -51,28 +57,27 @@
 	</div>
 	<div class="tab-pane" id="leaderboards_tab">
 		<% unless @scores.blank? %>
-			<div class="col-lg-9">
-				<%= render 'shared/header_page', title: 'Top Scores', sub_header: true %>
-
-				<table width="100%" class="datagrid">
-					<tr class="head">
-						<td>User</td>
-						<td>Points</td>
-						<td>Instrument</td>
-						<td></td>
-					</tr>
-					<% @scores.each do |score| %>
-						<% if score.user and score.score > 0 %>
-							<tr class="<%= cycle("odd", "even") %>">
-								<td><%= link_to score.user.username, person_path(score.user), class: 'btn-secondary-color' %></td>
-								<td><%= score.score %></td>
-								<td><%= score.instrument.name %></td>
-								<td align="right"><%= link_to 'Challenge', new_challenge_path(song_id: score.song.id, challenged_id: score.user.id), class: 'btn btn-primary btn-sm' %></td>
-							</tr>
-						<% end %>
+			<table width="100%" class="datagrid">
+				<tr class="head">
+					<td>User</td>
+					<td>Points</td>
+					<td>Instrument</td>
+					<td></td>
+				</tr>
+				<% @scores.each do |score| %>
+					<% if score.user and score.score > 0 %>
+						<tr class="<%= cycle("odd", "even") %>">
+							<td>
+								<%= image_tag score.user.imagename, class: 'avatar-xs' %>
+								<%= link_to score.user.username, person_path(score.user), class: 'btn-secondary-color' %>
+							</td>
+							<td><%= score.score %></td>
+							<td><i class="icon-instrument <%= score.instrument.name.downcase %>-sm"></i></td>
+							<td align="right"><%= link_to 'Challenge', new_challenge_path(song_id: score.song.id, challenged_id: score.user.id), class: 'btn btn-primary btn-sm' %></td>
+						</tr>
 					<% end %>
-				</table>
-			</div>
+				<% end %>
+			</table>
 		<% else %>
 			<p>No records</p>
 		<% end %>
@@ -80,7 +85,27 @@
 </div>
 
 <%= content_for(:detail_right_col) do %>
-	<h2>Leaderboards</h2>
+	<h2>Top Scores</h2>
+	<% unless @top_scores.blank? %>
+		<table width="100%" class="datagrid">
+			<tr class="head">
+				<td>User</td>
+				<td>Points</td>
+				<td>Instrument</td>
+			</tr>
+			<% @scores.each do |score| %>
+				<% if score.user and score.score > 0 %>
+					<tr class="<%= cycle("odd", "even") %>">
+						<td><%= link_to score.user.username, person_path(score.user), class: 'btn-secondary-color' %></td>
+						<td><%= score.score %></td>
+						<td><i class="icon-instrument <%= score.instrument.name.downcase %>-sm"></i></td>
+					</tr>
+				<% end %>
+			<% end %>
+		</table>
+	<% else %>
+		<p>No records</p>
+	<% end %>
 <% end %>
 
 <!--

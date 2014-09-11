@@ -1,0 +1,10 @@
+<%= content_for(:detail_right_col) do %>
+	<h2>About</h2>
+	<p>
+		<%= @group.show_description %>
+	</p>
+	<hr />
+	<%= render "groups/members", group: @group %>
+  <hr />
+  <%= render "groups/leaderboard_table", group_leaders: @group_leaders %>
+<% end %>

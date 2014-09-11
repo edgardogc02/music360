@@ -1,10 +1,12 @@
-<% if signed_in? and @group.user_can_post?(current_user) %>
-	<h2>Status</h2>
-	<%= render "group_posts/form", group: @group %>
-<% end %>
+<%= render 'group_header' %>
+<%= render 'group_right_col' %>
 
-<hr />
 <div id="group_activities">
+	<% if signed_in? and @group.user_can_post?(current_user) %>
+		<h2>Status</h2>
+		<%= render "group_posts/form", group: @group %>
+		<hr />
+	<% end %>
   <% if !@group_activities.blank? and signed_in? and @group.user_can_see_posts?(current_user) %>
       <%= render @group_activities %>
       <% unless @group_activities.last_page? %>
@@ -14,24 +16,4 @@
         </div>
       <% end %>
   <% end %>
-</div>
-
-<div class="modal fade" id="invite_new_members_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content spacer">
-      <div class="modal-body">
-        Loading...
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="modal fade" id="selectSong" tabindex="-1" role="dialog" aria-labelledby="myModalLabel2" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content spacer">
-      <div class="modal-body">
-        Loading...
-      </div>
-    </div>
-  </div>
 </div>

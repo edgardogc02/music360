@@ -167,11 +167,11 @@ class Challenge < ActiveRecord::Base
 
   def winner_instrument
     if challenged_won?
-      challenged_instrument
+      challenged.instrument
     elsif has_challenged_played? and !has_challenger_played?
-      challenged_instrument
+      challenged.instrument
     else
-      challenger_instrument
+      challenger.instrument
     end
   end
 

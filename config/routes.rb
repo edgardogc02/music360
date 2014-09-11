@@ -68,6 +68,7 @@ InstrumentchampPrototype::Application.routes.draw do
   resources :groups do
     get 'members', on: :member
     get 'challenges', on: :member
+    get 'leaderboard', on: :member
     get 'join', on: :member
     resources :group_invitations do
       get 'pending_approval', on: :collection

@@ -1,0 +1,26 @@
+<%= render 'group_header' %>
+<%= render 'group_right_col' %>
+
+<% if @group_leaders %>
+	<table width="100%" class="datagrid">
+		<tr class="head">
+			<td>User</td>
+			<td>MP</td>
+			<td>Instrument</td>
+			<td></td>
+		</tr>
+		<% @group_leaders.each do |group_leader| %>
+			<tr class="<%= cycle("odd", "even") %>">
+				<td>
+					<%= image_tag group_leader.imagename, class: 'avatar-xs' %>
+					<%= link_to group_leader.username, person_path(group_leader), class: 'btn-secondary-color' %>
+				</td>
+				<td><%= group_leader.xp %></td>
+				<td><i class="icon-instrument <%= group_leader.instrument.name.downcase if group_leader.instrument  %>-sm"></i></td>
+				<td align="right"><%= link_to 'Challenge', new_challenge_path(challenged_id: group_leader.id), class: 'btn btn-primary btn-sm' %></td>
+			</tr>
+		<% end %>
+	</table>
+<% else %>
+	<p>No records</p>
+<% end %>

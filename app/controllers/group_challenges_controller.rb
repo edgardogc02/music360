@@ -3,7 +3,6 @@ class GroupChallengesController < ApplicationController
   before_action :set_group
 
 	def index
-		render layout: "group"
 	end
 
 	def new
@@ -11,9 +10,10 @@ class GroupChallengesController < ApplicationController
     if params[:song_id].present?
       @challenge.song = Song.find(params[:song_id])
     end
-
     @songs = SongGroupChallengeDecorator.decorate_collection(Song.not_user_created.free.by_popularity.limit(4))
-    render layout: "group"
+		@group_leaders = @challenge.group.leader_users(10)
+
+    render layout: "detail"
   end
 
   def show
@@ -23,6 +23,8 @@ class GroupChallengesController < ApplicationController
     @resumed_group_challenge_leaders = @challenge.song_scores.best_scores.limit(5)
     @challenge_activities = PublicActivity::Activity.where(challenge_id: @challenge.id).order('created_at DESC').limit(10)
     @group_leaders = @challenge.group.leader_users(10)
+
+    render layout: "detail"
   end
 
   def create

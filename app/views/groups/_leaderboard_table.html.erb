@@ -4,13 +4,13 @@
 	<table width="100%" class="datagrid">
 		<tr class="head">
 			<td>User</td>
-			<td>Points</td>
+			<td>MP</td>
 			<td></td>
 		</tr>
 		<% @group_leaders.each do |group_leader| %>
 			<tr class="<%= cycle("odd", "even") %>">
 				<td><%= link_to group_leader.username, person_path(group_leader.username) %></td>
-				<td><%= group_leader.xp %> points</td>
+				<td><%= group_leader.xp %>MP</td>
 				<td></td>
 			</tr>
 		<% end %>

@@ -28,6 +28,8 @@ class UsersController < ApplicationController
 
 	def show
 		@challenges = ChallengesDecorator.decorate(Challenge.not_played_by_user(current_user, Challenge.default_order.values))
+
+		render layout: "detail"
 	end
 
 	def new

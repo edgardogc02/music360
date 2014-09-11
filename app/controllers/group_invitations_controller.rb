@@ -18,6 +18,7 @@ class GroupInvitationsController < ApplicationController
 
   def pending_approval
     @pending_invitations = @group.group_invitations.pending_approval
+    render layout: "detail"
   end
 
   def accept

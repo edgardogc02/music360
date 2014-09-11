@@ -1,11 +1,9 @@
 <%= render 'nav_menu' %>
 
-<%= render 'shared/header_page', title: 'Subscription' %>
-
-<%= render 'shared/header_page', title: 'Status', sub_header: true %>
+<h2>Status</h2>
 
 <% if @user.premium %>
-	<% if @subscription %>	
+	<% if @subscription %>
 		<p>
 			Your <b>InstrumentChamp</b> subscription will be automatically renewed the <%= l @user.premium_until, format: :notime %>, unless you cancel your subscription before that time.
 		</p>
@@ -22,8 +20,8 @@
 		    <div id="read_more" class="panel-collapse collapse">
 		      <div class="panel-body">
 		      	<br />
-		      	<p>If for some reason you do not want to continue with your premium account, simply cancel your subscription.</p>		        
-		        		      	
+		      	<p>If for some reason you do not want to continue with your premium account, simply cancel your subscription.</p>
+
 				    <a data-toggle="modal" data-target="#confirm_modal" href="#">
 		          Cancel your subscription
 		        </a>
@@ -31,10 +29,10 @@
 		    </div>
 		  </div>
 		</div>
-		
+
 		<div id="confirm_modal" class="modal fade">
 		  <div class="modal-dialog">
-			    <div class="modal-content">                
+			    <div class="modal-content">
 			      <div class="modal-header">
 			     <a class="close" data-dismiss="modal">×</a>
 			     <h4>Are you sure you want cancel your subscription?</h4>
@@ -46,12 +44,12 @@
 			 </div>
 			</div>
 		</div>
-		
+
 	<% else %>
 		<p>
 			Your <b>InstrumentChamp</b> subscription will be active until the <%= l @user.premium_until, format: :notime %>
 		</p>
-	<% end %>	
+	<% end %>
 <% else %>
 	<p>You are currently using InstrumentChamp Free. To get the most out of InstrumentChamp, sign up for InstrumentChamp Premium.</p>
 	<br />

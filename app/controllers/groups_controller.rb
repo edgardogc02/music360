@@ -1,6 +1,6 @@
 class GroupsController < ApplicationController
 	before_action :authorize
-  before_action :set_group, only: [:show, :members, :join, :edit, :update, :challenges, :destroy]
+  before_action :set_group, only: [:show, :members, :join, :edit, :update, :challenges, :leaderboard, :destroy]
 
   def index
     @group_invitations = GroupDecorator.decorate_collection(current_user.groups_invited_to.limit(5))
@@ -20,7 +20,7 @@ class GroupsController < ApplicationController
     @group_leaders = @group.leader_users(10)
     @group_activities = PublicActivity::Activity.where(group_id: @group.id).order('created_at DESC').page(1).per(10)
 
-    render layout: "group"
+    render layout: "detail"
   end
 
   def create
@@ -49,12 +49,23 @@ class GroupsController < ApplicationController
 
   def members
     @users = UserDecorator.decorate_collection(@group.users)
+    @group_leaders = @group.leader_users(10)
+
+    render layout: "detail"
   end
 
   def challenges
     @open_challenges = GroupChallengeDecorator.decorate_collection(@group.challenges.open)
     @finished_challenges = GroupChallengeDecorator.decorate_collection(@group.challenges.finished)
   	@group_leaders = @group.leader_users(10)
+
+  	render layout: "detail"
+  end
+
+  def leaderboard
+  	@group_leaders = @group.leader_users(10)
+
+  	render layout: "detail"
   end
 
 	def list

@@ -1,98 +1,80 @@
-<%= render 'shared/header_image_cover', cover: @challenge.group.cover_url, profile: @challenge.group.imagename_url %>
+<%= content_for(:detail_header_thumb) do %>
+	<%= image_tag @challenge.cover_url %>
+<% end %>
 
-<div class="clearfix main-section-nav">
-	<div class="pull-left">
-		<ul class="main-section-nav-list clearfix">
-			<li>Challenge by: <%= link_to @challenge.group.name, @challenge.group %></li>
-			<li>Host: <%= link_to @challenge.group.initiator_user.username, person_path(@challenge.group.initiator_user) %></li>
-		</ul>
-	</div>
-	<div class="pull-right">
-		<%= @group.add_members_button %>
-		<%= @challenge.display_start_group_challenge_button %>
-	</div>
-</div>
+<%= content_for(:detail_header_primary_info) do %>
+	<h3>Group Challenge by <%= link_to @group.name, @group %></h3>
+	<h2><%= @group.name %></h2>
+	<p>By: <%= link_to @challenge.song.artist.title, artist_path(@challenge.song.artist) %></p>
+	<br class="hidden-xs" />
+	<%= @challenge.display_start_group_challenge_button('Accept challenge', '') %>
+<% end %>
 
-<div class="row">
-	<div class="col-lg-8">
-		<h2>Challenge</h2>
-		<ul class="media-list">
-		  <li class="media media-item no-border no-padding">
-		    <%= image_tag @challenge.cover_url, class: "song-cover pull-left" %>
-		    <div class="media-body">
-		      <div class="spacer-md"><h2 class="no-margin"><%= link_to @challenge.song.title, song_path(@challenge.song) %></h2></div>
-		      <div class="spacer-md"><%= @challenge.display_start_group_challenge_button %></div>
-		      <div class="spacer-sm">
-		      	By: <%= link_to @challenge.song.artist.title, artist_path(@challenge.song.artist) %> <br />
-		        <div class="small text-muted"><time datetime="<%= @challenge.created_at%>" pubdate><%= time_ago_in_words(@challenge.created_at)%> ago</time></div>
-		      </div>
-		    </div>
-		  </li>
-		</ul>
-		<br />
-		<ul class="nav nav-tabs" role="tablist">
-		  <li class="active"><a href="#status" role="tab" data-toggle="tab">Status</a></li>
-		  <li><a href="#leaderboard" role="tab" data-toggle="tab">Leaderboard</a></li>
-		  <!--<li><a href="#players" role="tab" data-toggle="tab">Players</a></li>-->
-		</ul>
+<%= content_for(:detail_header_secondary_info) do %>
+	<b>Players: </b><%= @group.users.count %>
+<% end %>
 
-		<br />
+<%= content_for(:detail_header_nav_left) do %>
+	<ul>
+		<li class="active"><a href="#status" role="tab" data-toggle="tab">Overview</a></li>
+		<li><a href="#leaderboard" role="tab" data-toggle="tab">Leaderboard</a></li>
+	</ul>
+<% end %>
 
-		<div class="tab-content">
-		  <div class="tab-pane active" id="status">
-				<% if signed_in? and @group.user_can_post?(current_user) %>
-					<%= render "challenge_posts/form", challenge: @challenge %>
-					<hr />
-				<% end %>
-				<% if signed_in? and @group.user_can_see_posts?(current_user) %>
-					<div id="challenge_activities">
-						<%= render @challenge_activities %>
-					</div>
-				<% end %>
-		  </div>
-		  <div class="tab-pane" id="leaderboard">
-		  	<% if !@group_challenge_leaders.blank? %>
-		  		<%= render "leaderboard" %>
-		  	<% else %>
-		  		<p>No records</p>
-		  	<% end %>
-		  </div>
-		  <!--
-		  <div class="tab-pane" id="players">
-		  	<h2>Players</h2>
-
-				<% if !@results.blank? %>
-					<table width="100%" class="datagrid">
-						<tr class="head">
-							<td>User</td>
-							<td>Points</td>
-							<td></td>
-						</tr>
-						<% @results.each do |result| %>
-							<tr class="<%= cycle("odd", "even") %>">
-								<td><%= link_to result.user.username, person_path(result.user), class: 'btn-secondary-color' %></td>
-								<td><%= result.score %> points</td>
-								<td></td>
-							</tr>
-						<% end %>
-					</table>
-				<% else %>
-					<p>No records</p>
-				<% end %>
-		  </div>
-		  -->
+<%= content_for(:detail_header_nav_right) do %>
+	<%= @group.add_members_button %>
+	<%= link_to 'Create new group', new_group_path, class: 'btn btn-primary btn-sm' %>
+	<% if UserGroupsManager.new(current_user).belongs_to_group?(@group) %>
+		<div class="dropdown">
+		  <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+		    <i class="glyphicon glyphicon-cog"></i>
+		  </button>
+		  <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dropdownMenu1">
+		    <li role="presentation"><a href="<%= group_group_invitations_path(@group) %>" role="menuitem", tabindex="-1">Invite members</a></li>
+		    <li role="presentation"><a href="<%= new_group_challenge_path(@group) %>" role="menuitem", tabindex="-1">Create new challenge</a></li>
+		    <li role="presentation"><a href="<%= new_group_path %>" role="menuitem", tabindex="-1">Create new group</a></li>
+		    <li role="presentation"><%= @group.leave_group_button %></li>
+		    <li role="presentation"><%= @group.edit_button %></li>
+		    <li role="presentation"><%= @group.membership_requests_pending_approval_button %></li>
+		  </ul>
 		</div>
-	</div>
-	<div class="col-lg-4">
-		<h2>About</h2>
-		<p>
-			<%= @group.show_description %>
-		</p>
-		<hr />
-		<!--<%= render "groups/members", group: @group %>
-		<hr />-->
-		<% if !@resumed_group_challenge_leaders.blank? %>
-    	<%= render "top_scores" %>
-   	<% end %>
-	</div>
+	<% end %>
+<% end %>
+
+<div class="tab-content">
+  <div class="tab-pane active" id="status">
+		<% if signed_in? and @group.user_can_post?(current_user) %>
+			<h2>Status</h2>
+			<%= render "challenge_posts/form", challenge: @challenge %>
+			<hr />
+		<% end %>
+		<% if signed_in? and @group.user_can_see_posts?(current_user) %>
+			<div id="challenge_activities">
+				<%= render @challenge_activities %>
+			</div>
+		<% end %>
+  </div>
+  <div class="tab-pane" id="leaderboard">
+  	<% if !@group_challenge_leaders.blank? %>
+  		<%= render "leaderboard" %>
+  	<% else %>
+  		<p>No records</p>
+  	<% end %>
+  </div>
 </div>
+
+<%= content_for(:detail_right_col) do %>
+	<h2>About the group <%= link_to @group.name, @group %></h2>
+	<p>
+		<%= @group.show_description %>
+	</p>
+	<hr />
+	<% if !@resumed_group_challenge_leaders.blank? %>
+		<%= render "top_scores" %>
+		<hr />
+	<% end %>
+	<%= render "groups/members", group: @group %>
+  <hr />
+  <%= render "groups/leaderboard_table", group_leaders: @group_leaders %>
+
+<% end %>

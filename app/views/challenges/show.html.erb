@@ -6,90 +6,71 @@
   <meta property="og:description" content="<%= @challenge.challenger.username %> challenged <%= @challenge.challenged.username %>" />
 <% end %>
 
-<%= render 'shared/header_image_cover', cover: @challenge.song.artist.cover, profile: @challenge.song.cover_url %>
+<%= content_for(:detail_header_thumb) do %>
+	<%= image_tag @challenge.song.cover_url %>
+<% end %>
 
-<div class="clearfix main-section-nav">
-	<div class="pull-left">
-		<ul class="main-section-nav-list clearfix">
-			<li><h4><%= @challenge.status %></h4></li>
-			<li><%= @challenge.show_winner %></li>
-		</ul>
-	</div>
-	<div class="pull-right">
-		<%= @challenge.display_start_challenge_button %>
-	</div>
-</div>
+<%= content_for(:detail_header_primary_info) do %>
+	<h3>Challenge</h3>
+	<h2><%= @challenge.song.title %></h2>
+	<p>By: <%= link_to @challenge.song.artist.title, @challenge.song.artist %></p>
+	<br class="hidden-xs hidden-sm" />
+	<%= @challenge.display_start_challenge_button %>
+<% end %>
 
-<div class="row">
-	<div class="col-lg-8">
+<%= content_for(:detail_header_secondary_info) do %>
+	Challenger: <%= link_to @challenge.challenger.username, person_path(@challenge.challenger) %><br />
+	Challenged: <%= link_to @challenge.challenged.username, person_path(@challenge.challenged) %>
+<% end %>
 
-		<div class="row">
-			<div class="col-lg-6">
-				<h2>Challenge</h2>
-					<ul class="media-list">
-					  <li class="media media-item no-border no-padding">
-					    <%= image_tag @challenge.cover_url, class: "song-cover pull-left" %>
-					    <div class="media-body">
-					      <p class="spacer-sm">
-					        <h2><%= link_to @challenge.song.title, song_path(@challenge.song) %></h2>
-					      </p>
-					      <div class="spacer-sm">
-					      	By: <%= link_to @challenge.song.artist.title, artist_path(@challenge.song.artist) %> <br />
-					        <div class="small text-muted"><time datetime="<%= @challenge.created_at%>" pubdate><%= time_ago_in_words(@challenge.created_at)%> ago</time></div>
-					      </div>
-					    </div>
-					  </li>
-					</ul>
+<%= content_for(:detail_header_nav_left) do %>
+	<ul>
+		<li class="active"><a href="#overview_tab" data-toggle="tab">Overview</a></li>
+	</ul>
+<% end %>
+
+<div class="tab-content">
+	<div class="tab-pane active" id="overview_tab">
+		<% if signed_in? %>
+			<h2>Status</h2>
+			<%= render "challenge_posts/form", challenge: @challenge %>
+			<hr />
+		<% end %>
+		<% if signed_in? %>
+			<div id="challenge_activities">
+				<%= render @challenge_activities %>
 			</div>
-			<div class="col-lg-6">
-				<h2>Members</h2>
-				<div class="spacer-md">
-					<%= image_tag @challenge.challenger.imagename, class: 'avatar-xs' %> <%= link_to @challenge.challenger.username, person_path(@challenge.challenger) %> <span class="text-muted">Challenger</span>
-				</div>
-				<%= image_tag @challenge.challenged.imagename, class: 'avatar-xs' %> <%= link_to @challenge.challenged.username, person_path(@challenge.challenged) %> <span class="text-muted">Challenged</span>
-			</div>
-		</div>
-	  <div>
-			<% if signed_in? %>
-				<h2>Status</h2>
-				<%= render "challenge_posts/form", challenge: @challenge %>
-				<hr />
-			<% end %>
-			<% if signed_in? %>
-				<div id="challenge_activities">
-					<%= render @challenge_activities %>
-				</div>
-			<% end %>
-	  </div>
-	</div>
-	<div class="col-lg-4">
-		<h2>Scores</h2>
-	  <table width="100%" class="datagrid">
-	    <tr class="head">
-	      <td>User</td>
-	      <td>Instrument</td>
-	      <td>Points</td>
-	      <td></td>
-	    </tr>
-      <tr class="odd">
-        <td><%= @challenge.currently_winner.username %></td>
-        <td><%= @challenge.winner_instrument.name if @challenge.winner_instrument %></td>
-        <td><%= @challenge.winner_points %></td>
-        <td></td>
-      </tr>
-      <tr class="even">
-        <td><%= @challenge.currently_loser.username %></td>
-        <td><%= @challenge.loser_instrument.name if @challenge.loser_instrument %></td>
-        <td><%= @challenge.loser_points %></td>
-        <td></td>
-      </tr>
-	  </table>
-	  <hr />
-		<% unless @challenge.song.artist.bio.blank? %>
-			<h2>About <%= @challenge.song.artist.title %></h2>
-			<p>
-				<%= truncate(@challenge.song.artist.bio, length: 500, separator: ' ') { link_to "Read more", @challenge.song.artist } %>
-			</p>
 		<% end %>
 	</div>
 </div>
+
+<%= content_for(:detail_right_col) do %>
+	<% unless @challenge.song.artist.bio.blank? %>
+		<h2>About <%= link_to @challenge.song.artist.title, @challenge.song.artist %></h2>
+		<p>
+			<%= truncate(@challenge.song.artist.bio, length: 500, separator: ' ') { link_to "Read more", @challenge.song.artist } %>
+		</p>
+		<hr />
+	<% end %>
+	<h2>Scores</h2>
+  <table width="100%" class="datagrid">
+    <tr class="head">
+      <td>User</td>
+      <td>Instrument</td>
+      <td>Points</td>
+      <td></td>
+    </tr>
+    <tr class="odd">
+      <td><%= @challenge.currently_winner.username %></td>
+      <td><i class="icon-instrument <%= @challenge.winner_instrument.name.downcase if @challenge.winner_instrument %>-sm"></i></td>
+      <td><%= @challenge.winner_points %></td>
+      <td></td>
+    </tr>
+    <tr class="even">
+      <td><%= @challenge.currently_loser.username %></td>
+      <td><i class="icon-instrument <%= @challenge.loser_instrument.name.downcase if @challenge.loser_instrument %>-sm"></i></td>
+      <td><%= @challenge.loser_points %></td>
+      <td></td>
+    </tr>
+  </table>
+<% end %>

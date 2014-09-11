@@ -26,10 +26,9 @@ class SongsController < ApplicationController
 	def show
 	  @song = SongDecorator.decorate(@song)
 	  @more_songs = SongChallengeDecorator.decorate_collection(Song.not_user_created.by_popularity.limit(4))
-
-    @scores = @song.top_scores.limit(5)
-
+		@top_scores = @song.top_scores.limit(5)
     @activity_feeds = @song.activities.order('created_at DESC').page(1).per(10)
+		@scores = @song.top_scores
 
     render layout: "detail"
 	end
