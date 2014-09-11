@@ -15,11 +15,11 @@ class MandrillTemplateEmailNotifier < MandrillMailer::TemplateMailer
                   to: {email: user_purchased_song.user.email, name: user_purchased_song.user.username},
                   vars: { 'USERNAME' => user_purchased_song.user.username,
                           'SONGNAME' => user_purchased_song.song.title,
-                          'SONG_URL' => song_url(user_purchased_song.song),
+                          'SONGURL' => song_url(user_purchased_song.song),
                           'ARTISTNAME' => user_purchased_song.song.artist.title,
                           'WRITTENBY' => user_purchased_song.song.writer,
                           'PUBLISHER' => user_purchased_song.song.publisher,
-                          'PAYMENTAMOUNT' => payment.amount,
+                          'PAYMENTAMOUNT' => payment.currency + ' ' + payment.amount.to_s,
                           'PAYMENTMETHOD' => payment.payment_method.name
                          }
   end
