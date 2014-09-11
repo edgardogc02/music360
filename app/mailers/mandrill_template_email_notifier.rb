@@ -15,7 +15,7 @@ class MandrillTemplateEmailNotifier < MandrillMailer::TemplateMailer
                   to: {email: user_purchased_song.user.email, name: user_purchased_song.user.username},
                   vars: { 'USERNAME' => user_purchased_song.user.username,
                           'SONGNAME' => user_purchased_song.song.title,
-                          'SONGURL' => artist_song_url(user_purchased_song.song.artist, user_purchased_song.song, host: user_purchased_song.user.created_by),
+                          'SONGURL' => artist_song_url(user_purchased_song.song.artist, user_purchased_song.song),
                           'ARTISTNAME' => user_purchased_song.song.artist.title,
                           'WRITTENBY' => user_purchased_song.song.writer,
                           'PUBLISHER' => user_purchased_song.song.publisher,
