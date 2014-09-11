@@ -13,7 +13,7 @@ class MandrillTemplateEmailNotifier < MandrillMailer::TemplateMailer
     mandrill_mail template: 'instrumentchamp-support-receipt-premium-songs',
                   subject: 'Your purchase on InstrumentChamp',
                   to: {email: user_purchased_song.user.email, name: user_purchased_song.user.username},
-                  vars: { 'USERNAME' => user.username,
+                  vars: { 'USERNAME' => user_purchased_song.user.username,
                           'SONGNAME' => user_purchased_song.song.title,
                           'SONG_URL' => song_url(user_purchased_song.song),
                           'ARTISTNAME' => user_purchased_song.song.artist.title,
