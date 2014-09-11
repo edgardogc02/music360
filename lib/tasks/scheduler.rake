@@ -79,3 +79,7 @@ end
 task :test_mandrill_template => :environment do
   MandrillTemplateEmailNotifier.test_mandrill_template(User.last).deliver
 end
+
+task :welcome_email_mandrill_template => :environment do
+  MandrillTemplateEmailNotifier.welcome_email_mandrill_template(User.last).deliver
+end
