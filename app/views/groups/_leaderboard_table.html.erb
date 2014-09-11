@@ -10,7 +10,7 @@
 		<% @group_leaders.each do |group_leader| %>
 			<tr class="<%= cycle("odd", "even") %>">
 				<td><%= link_to group_leader.username, person_path(group_leader.username) %></td>
-				<td><%= group_leader.xp %>MP</td>
+				<td><%= group_leader.xp %></td>
 				<td></td>
 			</tr>
 		<% end %>

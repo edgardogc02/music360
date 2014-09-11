@@ -5,7 +5,6 @@
 <%= content_for(:detail_header_primary_info) do %>
 	<h3>User</h3>
 	<h2><%= @user.username %></h2>
-	<p><%= @user.level %></p>
 	<br class="hidden-xs" />
 	<%= link_to "Challenge", new_challenge_path(challenged_id: @user.id), class: "btn btn-primary" %>
 <% end %>
