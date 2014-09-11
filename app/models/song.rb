@@ -46,6 +46,10 @@ class Song < ActiveRecord::Base
 		"ic:song=#{URI::escape(title)}.mid"
 	end
 
+  def paid?
+    self.cost > 0
+  end
+
   def top_scores
     self.song_scores.order('score DESC')
   end
