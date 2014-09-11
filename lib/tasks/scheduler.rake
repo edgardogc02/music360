@@ -80,6 +80,6 @@ task :test_mandrill_template => :environment do
   MandrillTemplateEmailNotifier.test_mandrill_template(User.last).deliver
 end
 
-task :purchased_song_mandrill_template => :environment do
-  MandrillTemplateEmailNotifier.purchased_song_mandrill_template(UserPurchasedSong.last, Payment.last).deliver
+task :user_premium_subscription_mandrill_template => :environment do
+  MandrillTemplateEmailNotifier.user_premium_subscription_mandrill_template(UserPremiumSubscription.last).deliver
 end
