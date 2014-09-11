@@ -24,4 +24,15 @@ class MandrillTemplateEmailNotifier < MandrillMailer::TemplateMailer
                          }
   end
 
+  def user_premium_subscription_mandrill_template(user_premium_subscription)
+    mandrill_mail template: 'instrumentchamp-support-receipt-premium-songs',
+                  subject: 'InstrumentChamp Support: Receipt - Premium Members',
+                  to: {email: user_premium_subscription.user.email, name: user_premium_subscription.user.username},
+                  vars: { 'USERNAME' => user_premium_subscription.user.username,
+                          'SUBSCRIPTIONMEMBERSHIP' => user_premium_subscription.premium_plan.name,
+                          'PAYMENTAMOUNT' => user_premium_subscription.payment.currency + ' ' + user_premium_subscription.payment.amount.to_s,
+                          'PAYMENTMETHOD' => user_premium_subscription.payment.payment_method.name
+                         }
+  end
+
 end

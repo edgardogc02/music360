@@ -104,7 +104,8 @@ class UserPremiumSubscriptionForm
   end
 
   def subscription_notification
-    EmailNotifier.user_premium_subscription_message(user_premium_subscription).deliver
+    MandrillTemplateEmailNotifier.user_premium_subscription_mandrill_template(user_premium_subscription).deliver
+    # EmailNotifier.user_premium_subscription_message(user_premium_subscription).deliver
   end
 
 end
