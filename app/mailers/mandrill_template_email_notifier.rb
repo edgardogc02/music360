@@ -13,7 +13,8 @@ class MandrillTemplateEmailNotifier < MandrillMailer::TemplateMailer
                   subject: 'Welcome to InstrumentChamp',
                   to: {email: "edgardo.cabanillas@instrumentchamp.com", name: "Edgardo"},
                   vars: { 'USERNAME' => user.username,
-                          'CURRENT_YEAR' => Date.today.year }
+                          'CURRENT_YEAR' => Date.today.year,
+                          'LIST:COMPANY' => 'InstrumentChamp' }
   end
 
 end
