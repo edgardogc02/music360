@@ -90,7 +90,7 @@ class UserPurchasedSongForm
   end
 
   def purchase_notification
-    MandrillTemplateEmailNotifier.welcome_email_mandrill_template(user_purchased_song, payment).deliver
+    MandrillTemplateEmailNotifier.purchased_song_mandrill_template(user_purchased_song, payment).deliver
 #    EmailNotifier.purchased_song_message(user_purchased_song, payment).deliver
   end
 

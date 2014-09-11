@@ -9,7 +9,7 @@ class MandrillTemplateEmailNotifier < MandrillMailer::TemplateMailer
                   vars: { 'USERNAME' => user.username }
   end
 
-  def welcome_email_mandrill_template(user_purchased_song, payment)
+  def purchased_song_mandrill_template(user_purchased_song, payment)
     mandrill_mail template: 'instrumentchamp-support-receipt-premium-songs',
                   subject: 'Your purchase on InstrumentChamp',
                   to: {email: user_purchased_song.user.email, name: user_purchased_song.user.username},
