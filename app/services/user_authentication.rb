@@ -185,8 +185,7 @@ class UserAuthentication
   def autocomplete_new_user_fields(user)
     user.createdtime = Time.now
     user.installed_desktop_app = 0
-    user.premium = true
-    user.premium_until = 3.months.from_now
+    user.premium = false
     user.updated_image = 0
     user.created_by = @request.host
     user.ip = @request.remote_ip
