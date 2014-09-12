@@ -24,7 +24,8 @@ class GroupChallengeCreation
 
   def notify_users
     @challenge.group.users.each do |user|
-      EmailNotifier.group_challenge_created(@challenge, user).deliver
+      MandrillTemplateEmailNotifier.group_challenge_created_mandrill_template(@challenge, user).deliver
+#      EmailNotifier.group_challenge_created(@challenge, user).deliver
     end
   end
 

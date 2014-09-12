@@ -62,5 +62,13 @@ class MandrillTemplateEmailNotifier < MandrillMailer::TemplateMailer
                          }
   end
 
+  def group_challenge_created_mandrill_template(challenge, user)
+    mandrill_mail template: 'groupname-has-challenged-you',
+                  subject: 'New group challenge created',
+                  to: {email: user.email, name: user.username},
+                  vars: { 'GROUPNAME' => challenge.group.name,
+                          'CHALLENGEURL' => group_challenge_url(challenge.group, challenge)
+                         }
+  end
 
 end
