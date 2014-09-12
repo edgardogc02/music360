@@ -83,3 +83,8 @@ end
 task :user_premium_subscription_mandrill_template => :environment do
   MandrillTemplateEmailNotifier.user_premium_subscription_mandrill_template(UserPremiumSubscription.last).deliver
 end
+
+task :remind_challenged_user_mandrill_template => :environment do
+  MandrillTemplateEmailNotifier.remind_challenged_user_mandrill_template(Challenge.last).deliver
+end
+

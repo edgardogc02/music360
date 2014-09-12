@@ -44,4 +44,13 @@ class MandrillTemplateEmailNotifier < MandrillMailer::TemplateMailer
                          }
   end
 
+  def remind_challenged_user_mandrill_template(challenge)
+    mandrill_mail template: 'challenger-is-waiting-for-you-to-accept-the-challe',
+                  subject: 'Challenge reminder on InstrumentChamp',
+                  to: {email: challenge.challenged.email, name: challenge.challenged.username},
+                  vars: { 'USERNAME' => challenge.challenger.username,
+                          'CHALLENGEURL' => challenge_url(challenge)
+                         }
+  end
+
 end
