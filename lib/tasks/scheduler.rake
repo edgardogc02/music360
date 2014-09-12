@@ -76,6 +76,20 @@ task :close_played_challenges => :environment do
   end
 end
 
+task :remind_user_to_install_the_game => :environment do
+  User.where('created_at < ?', 10.minutes.ago).
+        where('created_at > ?', 20.minutes.ago).
+        where('installed_desktop_app IS NULL OR installed_desktop_app = 0').find_each(batch_size: 1000) do |user|
+    MandrillTemplateEmailNotifier.remind_user_to_install_the_game_mandrill_template(user).deliver
+  end
+end
+
+task :remind_user_to_install_the_game => :environment do
+  User.where('created_at < ?', 10.minutes.ago).where('created_at > ?', 20.minutes.ago).find_each(batch_size: 1000) do |user|
+    MandrillTemplateEmailNotifier.remind_user_to_install_the_game_mandrill_template(user).deliver
+  end
+end
+
 task :test_mandrill_template => :environment do
   MandrillTemplateEmailNotifier.test_mandrill_template(User.last).deliver
 end
