@@ -38,6 +38,7 @@ describe "UserPremiumSubscriptionForm" do
   end
 
   it "should send an email after the purchase" do
+    pending 'this is done with mandrill now'
     user = create(:user)
     premium_plan = create(:premium_plan)
     payment_method = create(:payment_method)

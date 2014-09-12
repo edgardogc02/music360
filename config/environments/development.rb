@@ -37,4 +37,6 @@ InstrumentchampPrototype::Application.configure do
 
   config.force_ssl = false
 
+  config.mandrill_mailer.default_url_options = { host: 'http://localhost:3000' }
+
 end
