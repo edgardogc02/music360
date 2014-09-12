@@ -65,7 +65,7 @@
 											  </a>
 											  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
 											  	<li role="presentation"><%= link_to "Account", overview_accounts_path %></li>
-											    <li role="presentation"><%= link_to "Upgrade", new_user_premium_subscription_path if !current_user.premium? %></li>
+											    <li role="presentation"><%= link_to "Upgrade", new_user_premium_path if !current_user.premium? %></li>
 											    <li role="presentation"><%= link_to "Admin", admin_dashboard_path, {target: "_blank"} if current_user.admin? %></li>
 											    <li role="presentation" class="divider"></li>
 											    <li role="presentation"><%= link_to "Sign out", logout_path, {id: 'sign_out'} %></li>
@@ -76,7 +76,7 @@
 	                  	<% if !current_user.installed_desktop_app? %>
 												<%= link_to "Download", is_mobile? ? mobile_landing_path : apps_path, {class: "btn btn-primary btn-lg download-modal-btn btn-huge-header"} %>
 	                  	<% else %>
-	                  		<%= link_to "Premium", !current_user.premium? ? new_user_premium_subscription_path : subscription_accounts_path, {class: "btn btn-primary btn-lg download-modal-btn btn-huge-header"} %>
+	                  		<%= link_to "Premium", !current_user.premium? ? new_user_premium_path : subscription_accounts_path, {class: "btn btn-primary btn-lg download-modal-btn btn-huge-header"} %>
 	                  	<% end %>
 
 	                  </li>

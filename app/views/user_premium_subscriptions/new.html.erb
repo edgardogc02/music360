@@ -8,18 +8,23 @@
     	</div>
       <div class="plan-descripction">
       	<p>
-      		Learn to play guitar, piano and drums<br />
-					Play in a band with your friends<br />
-					Extended catalogue of free songs
+      		Play in a band with your friends <br />
+					Unlock all instruments
       	</p>
       	<p>
-      		<%= image_tag(asset_path('plan_premium_icons.png')) %>
-				</p>
+      		<div class="icon-instrument piano-active"></div>
+					<div class="icon-instrument guitar-active"></div>
+					<div class="icon-instrument guitar2-active"></div>
+					<div class="icon-instrument saxophone-active"></div>
+					<div class="icon-instrument trumpet-active"></div>
+					<div class="icon-instrument drums-active"></div>
+      	</p>
 				<p>
-					Ad-free
+					<h4>Ad-free</h4>
 				</p>
 				<hr />
-				<h3 class="font-weight-normal spacer-md">Choose membership</h3>
+				<h3 class="font-weight-normal spacer-md">Select payment plan</h3>
+				<div class="spacer-md">All plans include a 7-day free trial</div>
 				<div class="row">
 				  <% @premium_plans.each do |premium_plan| %>
 				    <div class="col-md-4 col-sm-4">
@@ -38,31 +43,73 @@
 				    </div>
 				  <% end %>
 			  </div>
+			  <br />
+			  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><h4>30 premium songs included (save $30)</h4></a>
+		  	<div id="collapseOne" class="panel-collapse collapse out">
+		      <div class="panel-body">
+		        <table width="100%">
+		        	<% @premium_songs.each_slice(3) do |slice| -%>
+							  <tr>
+							    <% slice.each do |song| -%>
+							      <td width="33%" align="center" valign="top" style="padding: 5px;"><%=  link_to song.title, song %></td>
+							    <% end -%>
+							  </tr>
+							<% end %>
+		        	<tr>
+		        		<td></td>
+		        		<td></td>
+		        	</tr>
+		        </table>
+		      </div>
+		    </div>
       </div>
     </div>
 	</div>
 	<div class="col-md-6">
 		<div class="well text-center well-plan">
-    	<div class="plan-title_">
+    	<div class="plan-title">
     		<h2>Free</h2>
     	</div>
       <div class="plan-descripction">
       	<p>
-					Learn to play your favorite instrument <br />
-					Challenge your friends online <br />
-					Free access to basic songs
+					Become a music player<br />
+					Choose one instrument
       	</p>
       	<p>
-      		<%= image_tag(asset_path('plan_free_icons.png')) %>
-				</p>
+      		<div class="icon-instrument piano-active"></div>
+					<div class="icon-instrument guitar-disabled"></div>
+					<div class="icon-instrument guitar2-disabled"></div>
+					<div class="icon-instrument saxophone-disabled"></div>
+					<div class="icon-instrument trumpet-disabled"></div>
+					<div class="icon-instrument drums-disabled"></div>
+      	</p>
 				<p>
-      		Ad-supported
+      		<h4>Made possible by ads</h4>
       	</p>
         <div>
           <a href="<%= apps_path(auto_download: true) %>" data-no-turbolink='true' class="btn btn-primary btn-lg premium_plan_selected free">
           	Download InstrumentChamp for free
           </a>
         </div>
+        <br />
+			  <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo"><h4>10 songs included (save $10)</h4></a>
+		  	<div id="collapseTwo" class="panel-collapse collapse out">
+		      <div class="panel-body">
+		        <table width="100%">
+		        	<% @free_songs.each_slice(2) do |slice| -%>
+							  <tr>
+							    <% slice.each do |song| -%>
+							      <td width="50%" align="center" style="padding: 5px;"><%=  link_to song.title, song %></td>
+							    <% end -%>
+							  </tr>
+							<% end %>
+		        	<tr>
+		        		<td></td>
+		        		<td></td>
+		        	</tr>
+		        </table>
+		      </div>
+		    </div>
       </div>
     </div>
 	</div>

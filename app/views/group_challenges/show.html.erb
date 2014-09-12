@@ -8,7 +8,7 @@
 	<p>By: <%= link_to @challenge.song.artist.title, artist_path(@challenge.song.artist) %></p>
 	<br class="hidden-xs" />
 	<%= @challenge.display_start_group_challenge_button('Accept challenge', '') %>
-	<!--<%= @group.add_members_button %>-->
+	<%= @group.add_members_button %>
 <% end %>
 
 <%= content_for(:detail_header_secondary_info) do %>
@@ -78,3 +78,13 @@
   <%= render "groups/leaderboard_table", group_leaders: @group_leaders %>
 
 <% end %>
+
+<div class="modal fade" id="invite_new_members_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content spacer">
+      <div class="modal-body">
+        Loading...
+      </div>
+    </div>
+  </div>
+</div>

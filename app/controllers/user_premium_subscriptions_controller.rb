@@ -6,6 +6,9 @@ class UserPremiumSubscriptionsController < ApplicationController
     @user_premium_subscription_form = UserPremiumSubscriptionForm.new(current_user.user_premium_subscriptions.build)
     @user_premium_subscription_form.user_premium_subscription.premium_plan = PremiumPlan.find(params[:premium_plan_id]) if params[:premium_plan_id]
     @premium_plans = PremiumPlanDecorator.decorate_collection(PremiumPlan.default_order)
+
+    @free_songs = Song.free.limit(10)
+    @premium_songs = Song.paid.limit(30)
   end
 
   def show

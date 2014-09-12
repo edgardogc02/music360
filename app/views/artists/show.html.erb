@@ -23,7 +23,6 @@
 		<li class="active"><a href="#overview_tab" data-toggle="tab">Overview</a></li>
 	  <li><a href="#challenges_tab" data-toggle="tab">Challenges</a></li>
 	  <li><a href="#songs_tab" data-toggle="tab">Songs</a></li>
-	  <li><a href="#biography_tab" data-toggle="tab">Biography</a></li>
 	</ul>
 <% end %>
 
@@ -34,7 +33,7 @@
 <%= content_for(:detail_right_col) do %>
 	<h2>Biography</h2>
 	<% if @artist.bio %>
-		<p><%= truncate(@artist.bio, length: 1000, separator: ' ') { link_to "Read more", @artist.bio_read_more_link, {class: 'margin-left', target: '_blank'} } %></p>
+		<p><%= truncate(@artist.bio, length: 500, separator: ' ') { link_to "Read more", @artist.bio_read_more_link, {class: 'margin-left', target: '_blank'} } %></p>
 	<% else %>
 		<p>No biography available</p>
 	<% end %>
@@ -96,13 +95,6 @@
 			</section>
 		<% else %>
 			<p>No songs</p>
-		<% end %>
-	</div>
-	<div class="tab-pane" id="biography_tab">
-		<% if @artist.bio %>
-			<p><%= truncate(@artist.bio, length: 1000, separator: ' ') { link_to "Read more", @artist.bio_read_more_link, {class: 'margin-left', target: '_blank'} } %></p>
-		<% else %>
-			<p>No biography available</p>
 		<% end %>
 	</div>
 </div>

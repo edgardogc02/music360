@@ -136,6 +136,8 @@ InstrumentchampPrototype::Application.routes.draw do
 
   resources :user_premium_subscriptions
 
+  get 'premium', to: "user_premium_subscriptions#new", as: :new_user_premium
+
   resources :searches, only: [:create, :show] do
     get 'users', on: :member
     get 'my_friends', on: :member
