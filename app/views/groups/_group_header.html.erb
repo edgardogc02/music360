@@ -8,6 +8,7 @@
 	<br class="hidden-xs" />
   <%= @group.create_challenge_button %>
   <%= @group.join_toggle_button %>
+  <%= @group.add_members_button %>
 <% end %>
 
 <%= content_for(:detail_header_secondary_info) do %>
@@ -24,7 +25,6 @@
 <% end %>
 
 <%= content_for(:detail_header_nav_right) do %>
-	<%= @group.add_members_button %>
 	<%= link_to 'Create new group', new_group_path, class: 'btn btn-primary btn-sm' %>
 	<% if UserGroupsManager.new(current_user).belongs_to_group?(@group) %>
 		<div class="dropdown">

@@ -4,10 +4,11 @@
 
 <%= content_for(:detail_header_primary_info) do %>
 	<h3>Group Challenge by <%= link_to @group.name, @group %></h3>
-	<h2><%= @group.name %></h2>
+	<h2><%= @challenge.song.artist.title %></h2>
 	<p>By: <%= link_to @challenge.song.artist.title, artist_path(@challenge.song.artist) %></p>
 	<br class="hidden-xs" />
 	<%= @challenge.display_start_group_challenge_button('Accept challenge', '') %>
+	<%= @group.add_members_button %>
 <% end %>
 
 <%= content_for(:detail_header_secondary_info) do %>
@@ -22,7 +23,6 @@
 <% end %>
 
 <%= content_for(:detail_header_nav_right) do %>
-	<%= @group.add_members_button %>
 	<%= link_to 'Create new group', new_group_path, class: 'btn btn-primary btn-sm' %>
 	<% if UserGroupsManager.new(current_user).belongs_to_group?(@group) %>
 		<div class="dropdown">
