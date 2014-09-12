@@ -93,6 +93,7 @@ class User < ActiveRecord::Base
   scope :order_by_challenges_count, -> { order('challenges_count DESC') }
   scope :premium, -> { where(premium: true) }
   scope :by_xp, -> { order('xp DESC') }
+  scope :not_fake_user, -> { where('email NOT LIKE "%@fakeuser.com%"') }
 
   def likes?(activity)
     self.liked_activities.include?(activity)
@@ -177,6 +178,7 @@ class User < ActiveRecord::Base
 
   def already_installed_desktop_app
     self.installed_desktop_app = true
+    self.installed_desktop_app_at = Time.now
     save
   end
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140910135740) do
+ActiveRecord::Schema.define(version: 20140912095910) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -369,17 +369,17 @@ ActiveRecord::Schema.define(version: 20140910135740) do
 
   create_table "users", primary_key: "id_user", force: true do |t|
     t.string   "password_digest"
-    t.string   "name",                   limit: 128
-    t.string   "email",                  limit: 164
-    t.string   "phone_number",           limit: 16
-    t.string   "username",               limit: 164
-    t.string   "password",               limit: 32
-    t.string   "city",                   limit: 50
-    t.string   "countrycode",            limit: 3
-    t.string   "macaddress",             limit: 40
-    t.string   "productkey",             limit: 36
-    t.string   "confirmcode",            limit: 100
-    t.string   "invitebyuser",           limit: 80
+    t.string   "name",                     limit: 128
+    t.string   "email",                    limit: 164
+    t.string   "phone_number",             limit: 16
+    t.string   "username",                 limit: 164
+    t.string   "password",                 limit: 32
+    t.string   "city",                     limit: 50
+    t.string   "countrycode",              limit: 3
+    t.string   "macaddress",               limit: 40
+    t.string   "productkey",               limit: 36
+    t.string   "confirmcode",              limit: 100
+    t.string   "invitebyuser",             limit: 80
     t.datetime "confirmed"
     t.datetime "converted"
     t.string   "imagename"
@@ -411,6 +411,7 @@ ActiveRecord::Schema.define(version: 20140910135740) do
     t.string   "password_reset_token"
     t.datetime "password_reset_sent_at"
     t.string   "cover"
+    t.datetime "installed_desktop_app_at"
   end
 
   add_index "users", ["auth_token"], name: "index_users_on_auth_token", unique: true, using: :btree

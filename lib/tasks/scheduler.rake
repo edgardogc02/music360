@@ -77,10 +77,22 @@ task :close_played_challenges => :environment do
 end
 
 task :remind_user_to_install_the_game => :environment do
-  User.where('created_at < ?', 10.minutes.ago).
+  User.not_fake_user.
+        where('created_at < ?', 10.minutes.ago).
         where('created_at > ?', 20.minutes.ago).
         where('installed_desktop_app IS NULL OR installed_desktop_app = 0').find_each(batch_size: 1000) do |user|
     MandrillTemplateEmailNotifier.remind_user_to_install_the_game_mandrill_template(user).deliver
+  end
+end
+
+task :remind_user_to_play_songs => :environment do
+  User.not_fake_user.
+      joins('LEFT JOIN songscore ON songscore.user_id = users.id_user').
+      where('songscore.id IS NULL').
+      where(installed_desktop_app: 1).
+      where('installed_desktop_app_at < ?', 10.minutes.ago).
+      where('installed_desktop_app_at > ?', 20.minutes.ago).find_each(batch_size: 1000) do |user|
+    MandrillTemplateEmailNotifier.remind_user_to_play_songs_mandrill_template(user).deliver
   end
 end
 
