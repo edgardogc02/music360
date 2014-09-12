@@ -28,7 +28,7 @@ class SongDecorator < Draper::Decorator
 
   def challenge_button(params, size="")
     if display_challenge_button?
-    	h.link_to 'Challenge', h.new_challenge_path(song_id: model.id, challenged_id: params[:challenged_id]), {class: challenge_class_attr + size, id: "challenge_#{model.id}", data: {song_id: model.id, song_name: model.title}}
+    	h.link_to 'Challenge', h.new_challenge_path(song_id: model.id, challenged_id: params[:challenged_id]), {class: challenge_class_attr + " " + size, id: "challenge_#{model.id}", data: {song_id: model.id, song_name: model.title}}
     end
   end
 
