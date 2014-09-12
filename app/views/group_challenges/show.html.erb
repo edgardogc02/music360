@@ -4,7 +4,7 @@
 
 <%= content_for(:detail_header_primary_info) do %>
 	<h3>Group Challenge by <%= link_to @group.name, @group %></h3>
-	<h2><%= @challenge.song.artist.title %></h2>
+	<h2><%= @challenge.song.title %></h2>
 	<p>By: <%= link_to @challenge.song.artist.title, artist_path(@challenge.song.artist) %></p>
 	<br class="hidden-xs" />
 	<%= @challenge.display_start_group_challenge_button('Accept challenge', '') %>
