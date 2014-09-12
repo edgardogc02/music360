@@ -8,7 +8,7 @@
 	<p>By: <%= link_to @challenge.song.artist.title, artist_path(@challenge.song.artist) %></p>
 	<br class="hidden-xs" />
 	<%= @challenge.display_start_group_challenge_button('Accept challenge', '') %>
-	<%= @group.add_members_button %>
+	<!--<%= @group.add_members_button %>-->
 <% end %>
 
 <%= content_for(:detail_header_secondary_info) do %>
