@@ -45,7 +45,7 @@ describe "Apps" do
     it "should save the user selected song" do
       challenge = create(:challenge, challenger: @user)
       visit challenges_path
-      click_on "Start challenge"
+      click_on "Accept challenge"
 
       @user.reload
       @user.first_challenge_id.should eq(challenge.id)
