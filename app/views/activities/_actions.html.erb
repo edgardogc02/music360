@@ -1,12 +1,16 @@
-<div class="post_actions">
-  <ul>
-    <li><%= render 'activity_likes/new', activity: activity %></li>
-    <li><%= link_to "Comment", "#", { class: "comment_link" } %></li>
-  </ul>
-  <%= render 'activity_comments/index', activity: activity %>
-  <%= render 'activity_comments/new', activity: activity %>
-</div>
+<% if signed_in? %>
 
-<script type="tex/javascript">
-  click_on_comment_link();
-</script>
+  <div class="post_actions">
+    <ul>
+      <li><%= render 'activity_likes/new', activity: activity %></li>
+      <li><%= link_to "Comment", "#", { class: "comment_link" } %></li>
+    </ul>
+    <%= render 'activity_comments/index', activity: activity %>
+    <%= render 'activity_comments/new', activity: activity %>
+  </div>
+
+  <script type="tex/javascript">
+    click_on_comment_link();
+  </script>
+
+<% end %>

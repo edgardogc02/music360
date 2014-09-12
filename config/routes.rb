@@ -159,6 +159,8 @@ InstrumentchampPrototype::Application.routes.draw do
 
   get 'mobile-landing', to: "pages#mobile_landing", as: :mobile_landing
 
+  get "sitemap.xml", to: "sitemap#index", defaults: {:format => :xml}
+
   get ':action' => 'pages'
 
 end
