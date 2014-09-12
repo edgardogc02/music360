@@ -39,7 +39,7 @@ class MandrillTemplateEmailNotifier < MandrillMailer::TemplateMailer
     mandrill_mail template: 'challenger-has-challenged-you',
                   subject: 'You have a new challenge on InstrumentChamp',
                   to: {email: challenge.challenged.email, name: challenge.challenged.username},
-                  vars: { 'USERNAME' => challenge.challenged.username,
+                  vars: { 'USERNAME' => challenge.challenger.username,
                           'CHALLENGEURL' => challenge_url(challenge)
                          }
   end
