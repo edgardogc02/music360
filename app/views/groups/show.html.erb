@@ -1,12 +1,14 @@
 <%= render 'group_header' %>
 <%= render 'group_right_col' %>
 
+
+<% if signed_in? and @group.user_can_post?(current_user) %>
+	<h2>Status</h2>
+	<%= render "group_posts/form", group: @group %>
+	<hr />
+<% end %>
+
 <div id="group_activities">
-	<% if signed_in? and @group.user_can_post?(current_user) %>
-		<h2>Status</h2>
-		<%= render "group_posts/form", group: @group %>
-		<hr />
-	<% end %>
   <% if !@group_activities.blank? and signed_in? and @group.user_can_see_posts?(current_user) %>
       <%= render @group_activities %>
       <% unless @group_activities.last_page? %>

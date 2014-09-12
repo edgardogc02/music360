@@ -14,7 +14,7 @@ class UserPostsController < ApplicationController
           flash[:notice] = "Your post was successfully created"
           redirect_to home_path
         end
-        format.js
+        format.js { @user_post_activity = user_post_creation.activity }
       end
     else
       respond_to do |format|

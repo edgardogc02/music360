@@ -16,7 +16,7 @@ class ChallengePostsController < ApplicationController
           flash[:notice] = "Your post was successfully created"
           redirect_to [@challenge.group, @challenge]
         end
-        format.js
+        format.js { @challenge_post_activity = challenge_post_creation.activity }
       end
     else
       respond_to do |format|

@@ -1,2 +1,2 @@
-$("#challenge_activities").prepend("<%= j render @challenge_post %> <hr />");
+$("#challenge_activities").prepend("<%= j render @challenge_post, activity: @challenge_post_activity %> <hr />");
 $("#challenge_post_message").val('');

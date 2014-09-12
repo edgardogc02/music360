@@ -7,6 +7,10 @@ class GroupPostCreation
     @creator_user = creator_user
   end
 
+  def activity
+    @activity
+  end
+
   def save
     if @group_post.save
       save_activity
@@ -17,7 +21,7 @@ class GroupPostCreation
   end
 
   def save_activity
-    @group_post.create_activity :create, owner: @creator_user, group_id: @group_post.group.id
+    @activity = @group_post.create_activity :create, owner: @creator_user, group_id: @group_post.group.id
   end
 
 end

@@ -6,6 +6,10 @@ class UserPostCreation
     @user_post = user_post
   end
 
+  def activity
+    @activity
+  end
+
   def save
     if @user_post.save
       save_activity
@@ -16,7 +20,7 @@ class UserPostCreation
   end
 
   def save_activity
-    @user_post.create_activity :create, owner: @user_post.user
+    @activity = @user_post.create_activity :create, owner: @user_post.user
   end
 
 end

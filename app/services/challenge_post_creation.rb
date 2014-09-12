@@ -7,6 +7,10 @@ class ChallengePostCreation
     @creator_user = creator_user
   end
 
+  def activity
+    @activity
+  end
+
   def save
     if @challenge_post.save
       save_activity
@@ -17,7 +21,7 @@ class ChallengePostCreation
   end
 
   def save_activity
-    @challenge_post.create_activity :create, owner: @creator_user, challenge_id: @challenge_post.challenge.id
+    @activity = @challenge_post.create_activity :create, owner: @creator_user, challenge_id: @challenge_post.challenge.id
   end
 
 end

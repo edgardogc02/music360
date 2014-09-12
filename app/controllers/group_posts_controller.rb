@@ -16,7 +16,7 @@ class GroupPostsController < ApplicationController
           flash[:notice] = "Your post was successfully created"
           redirect_to @group
         end
-        format.js
+        format.js { @group_post_activity = group_post_creation.activity }
       end
     else
       respond_to do |format|

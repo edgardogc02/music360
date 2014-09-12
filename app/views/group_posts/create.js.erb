@@ -1,2 +1,2 @@
-$("#group_activities").prepend("<%= j render @group_post %> <hr/>");
+$("#group_activities").prepend("<%= j render @group_post, activity: @group_post_activity %> <hr/>");
 $("#group_post_message").val('');
