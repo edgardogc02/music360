@@ -18,8 +18,9 @@
 		Published by <b><%= @song.publisher %></b>
 	</p>
 	<br class="hidden-xs hidden-sm" />
-	<%= link_to "Challenge", new_challenge_path(song_id: @song.id), class: "btn btn-primary" %>
-	<%= link_to 'Practice', @song.play_url, class: "btn btn-default" %>
+	<%= @song.challenge_button(params) %>
+	<%= @song.practice_button %>
+	<%= @song.buy_button %>
 <% end %>
 
 <%= content_for(:detail_header_secondary_info) do %>

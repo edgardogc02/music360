@@ -11,7 +11,7 @@ class SongDecorator < Draper::Decorator
   end
 
   def display_challenge_button?
-    true
+    !paid? or ( h.signed_in? and h.current_user.purchased_songs.include?(self) )
   end
 
   def play_button
@@ -20,9 +20,15 @@ class SongDecorator < Draper::Decorator
     end
   end
 
-  def challenge_button(params)
+  def practice_button
+    if display_play_button?
+    	h.link_to 'Practice', play_url, {class: play_class_attr + " btn btn-default", id: play_id_attr, data: {song_id: model.id, song_name: model.title}}
+    end
+  end
+
+  def challenge_button(params, size="")
     if display_challenge_button?
-      h.action_button(h.new_challenge_path(song_id: model.id, challenged_id: params[:challenged_id]), 'Challenge', {class: challenge_class_attr, id: "challenge_#{model.id}", data: {song_id: model.id, song_name: model.title}})
+    	h.link_to 'Challenge', h.new_challenge_path(song_id: model.id, challenged_id: params[:challenged_id]), {class: challenge_class_attr + " btn btn-default " + size, id: "challenge_#{model.id}", data: {song_id: model.id, song_name: model.title}}
     end
   end
 
@@ -32,9 +38,11 @@ class SongDecorator < Draper::Decorator
     end
   end
 
-  def buy_button
+  def buy_button(size="")
     if h.signed_in? and h.current_user.admin? and h.current_user.can_buy_song?(model) and model.cost?
       h.action_button(h.buy_user_purchased_song_path(model), 'Buy', {id: "buy_song_#{model.id}"})
+
+      h.link_to 'Buy', h.buy_user_purchased_song_path(model), {class: "btn btn-primary " + size, id: "buy_song_#{model.id}"}
     end
   end
 
