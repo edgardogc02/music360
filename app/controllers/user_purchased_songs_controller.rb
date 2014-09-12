@@ -15,7 +15,7 @@ class UserPurchasedSongsController < ApplicationController
 
     if @user_purchased_song_form.save(user_purchased_song_form_params)
       flash[:notice] = "You have successfully purchased this song."
-      redirect_to @user_purchased_song_form.user_purchased_song
+      redirect_to @user_purchased_song_form.song
     else
       flash[:warning] = "Something went wrong. Please try again."
       redirect_to @user_purchased_song_form.song
