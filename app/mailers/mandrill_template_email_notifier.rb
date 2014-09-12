@@ -85,4 +85,11 @@ class MandrillTemplateEmailNotifier < MandrillMailer::TemplateMailer
                   vars: { 'USERNAME' => user.username }
   end
 
+  def improve_music_career_mandrill_template(user)
+    mandrill_mail template: 'improve-your-music-career-retry',
+                  subject: 'Improve your music career',
+                  to: {email: user.email, name: user.username},
+                  vars: { 'USERNAME' => user.username }
+  end
+
 end

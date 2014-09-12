@@ -102,6 +102,15 @@ task :remind_user_to_install_the_game => :environment do
   end
 end
 
+task :improve_music_career_reminder => :environment do
+  User.joins(:song_scores).
+        where('songscore.created_at < ?', 10.minutes.ago).
+        where('songscore.created_at > ?', 12.minutes.ago).find_each(batch_size: 1000) do |user|
+    MandrillTemplateEmailNotifier.improve_music_career_mandrill_template(user).deliver
+  end
+end
+
+
 task :test_mandrill_template => :environment do
   MandrillTemplateEmailNotifier.test_mandrill_template(User.last).deliver
 end
@@ -117,3 +126,8 @@ end
 task :remind_user_to_play_songs_mandrill_template => :environment do
   MandrillTemplateEmailNotifier.remind_user_to_play_songs_mandrill_template(User.find(5505)).deliver
 end
+
+task :improve_music_career_mandrill_template => :environment do
+  MandrillTemplateEmailNotifier.improve_music_career_mandrill_template(User.find(5505)).deliver
+end
+
