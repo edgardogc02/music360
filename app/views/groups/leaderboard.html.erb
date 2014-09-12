@@ -17,7 +17,7 @@
 				</td>
 				<td><%= group_leader.xp %></td>
 				<td><i class="icon-instrument <%= group_leader.instrument.name.downcase if group_leader.instrument  %>-sm"></i></td>
-				<td align="right"><%= link_to 'Challenge', new_challenge_path(challenged_id: group_leader.id), class: 'btn btn-primary btn-sm' %></td>
+				<td align="right"><%= group_leader.challenge_button('btn-sm')%></td>
 			</tr>
 		<% end %>
 	</table>

@@ -1,4 +1,3 @@
-<div class="icon-level level<%= @user.get_level.number %> user-level-display"><span><%= @user.xp %>MP</span></div>
 <% if @user.instrument %>
 	<div>
 		<div class="icon-instrument guitar-<%= @user.instrument.name.downcase == "guitar" ? "active" : "disabled" %>"></div>
@@ -6,3 +5,4 @@
 		<div class="icon-instrument drums-<%= @user.instrument.name.downcase == "drums" ? "active" : "disabled" %>"></div>
 	</div>
 <% end %>
+<div class="icon-level level<%= @user.get_level.number %> user-level-display"><span><%= @user.xp %>MP</span></div>

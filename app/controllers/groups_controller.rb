@@ -63,7 +63,7 @@ class GroupsController < ApplicationController
   end
 
   def leaderboard
-  	@group_leaders = @group.leader_users(10)
+  	@group_leaders = UserDecorator.decorate_collection(@group.leader_users(10))
 
   	render layout: "detail"
   end

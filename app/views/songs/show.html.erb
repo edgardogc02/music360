@@ -86,27 +86,29 @@
 </div>
 
 <%= content_for(:detail_right_col) do %>
-	<h2>Top Scores</h2>
-	<% unless @top_scores.blank? %>
-		<table width="100%" class="datagrid">
-			<tr class="head">
-				<td>User</td>
-				<td>Points</td>
-				<td>Instrument</td>
-			</tr>
-			<% @scores.each do |score| %>
-				<% if score.user and score.score > 0 %>
-					<tr class="<%= cycle("odd", "even") %>">
-						<td><%= link_to score.user.username, person_path(score.user), class: 'btn-secondary-color' %></td>
-						<td><%= score.score %></td>
-						<td><i class="icon-instrument <%= score.instrument.name.downcase %>-sm"></i></td>
-					</tr>
+	<div class="top_scores_songs">
+		<h2>Top Scores</h2>
+		<% unless @top_scores.blank? %>
+			<table width="100%" class="datagrid">
+				<tr class="head">
+					<td>User</td>
+					<td>Points</td>
+					<td>Instrument</td>
+				</tr>
+				<% @scores.each do |score| %>
+					<% if score.user and score.score > 0 %>
+						<tr class="<%= cycle("odd", "even") %>">
+							<td><%= link_to score.user.username, person_path(score.user), class: 'btn-secondary-color' %></td>
+							<td><%= score.score %></td>
+							<td><i class="icon-instrument <%= score.instrument.name.downcase %>-sm"></i></td>
+						</tr>
+					<% end %>
 				<% end %>
-			<% end %>
-		</table>
-	<% else %>
-		<p>No records</p>
-	<% end %>
+			</table>
+		<% else %>
+			<p>No records</p>
+		<% end %>
+	</div>
 <% end %>
 
 <!--
