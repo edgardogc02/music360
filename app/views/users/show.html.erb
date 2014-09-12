@@ -11,36 +11,8 @@
 
 <%= content_for(:detail_header_secondary_info) do %>
 	<%= render "accounts/user_level_info" %>
-<% end %>
-
-<%= content_for(:detail_header_nav_left) do %>
-	<ul>
-		<li class="active"><a href="#status" role="tab" data-toggle="tab">Overview</a></li>
-	</ul>
-<% end %>
-
-<div class="tab-content">
-  <div class="tab-pane active" id="status">
-		<ul class="no-style info-label">
-			<li><span>Username:</span> <%= @user.username %></li>
-			<li><span>Email:</span> <%= @user.email %></li>
-			<li><span>Career level:</span> <%= @user.level %></li>
-			<li><span>Instrument:</span>
-		    <% if @user.instrument %>
-		      <%= @user.instrument.name %>
-		    <% else %>
-		      No instrument chosen
-		    <% end %>
-			</li>
-		  <li>
-		    <span>Following:</span> <%= link_to @user.followed_users.count, following_path(@user) %>
-		  </li>
-			<li>
-			  <span>Followers:</span> <%= link_to @user.followers.count, user_follower_path(@user) %>
-			</li>
-		</ul>
-  </div>
-</div>
-
-<%= content_for(:detail_right_col) do %>
+	<p>
+		Following: <%= link_to @user.followed_users.count, following_path(@user) %> <br />
+		Followers: <%= link_to @user.followers.count, user_follower_path(@user) %>
+	</p>
 <% end %>

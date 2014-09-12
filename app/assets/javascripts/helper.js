@@ -32,6 +32,14 @@ ready = function() {
   $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
     listing_hover_effects();
   });
+
+  $('.songs.show a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
+    if (e.target.innerText == "Leaderboards") {
+    	$('.top_scores_songs').hide();
+    } else {
+    	$('.top_scores_songs').show();
+    }
+  });
 };
 
 $(document).ready(ready);
