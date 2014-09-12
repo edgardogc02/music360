@@ -84,7 +84,10 @@ task :user_premium_subscription_mandrill_template => :environment do
   MandrillTemplateEmailNotifier.user_premium_subscription_mandrill_template(UserPremiumSubscription.last).deliver
 end
 
-task :remind_challenger_user_mandrill_template => :environment do
-  MandrillTemplateEmailNotifier.remind_challenger_user_mandrill_template(Challenge.last).deliver
+task :remind_user_to_install_the_game_mandrill_template => :environment do
+  MandrillTemplateEmailNotifier.remind_user_to_install_the_game_mandrill_template(User.find(5505)).deliver
 end
 
+task :remind_user_to_play_songs_mandrill_template => :environment do
+  MandrillTemplateEmailNotifier.remind_user_to_play_songs_mandrill_template(User.find(5505)).deliver
+end
