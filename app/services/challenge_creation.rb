@@ -23,7 +23,8 @@ class ChallengeCreation
 
   def notify_challenged_user
     if challenge.challenged.can_receive_messages?
-      EmailNotifier.challenged_user_message(challenge).deliver
+      MandrillTemplateEmailNotifier.challenged_user_mandrill_template(challenge).deliver
+      # EmailNotifier.challenged_user_message(challenge).deliver
     end
   end
 
