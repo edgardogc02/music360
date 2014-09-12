@@ -3,7 +3,7 @@
 
 <%= content_for(:detail_header_thumb) do %>
 	<div class="song-detail-thumb">
-		<% if @song.cost > 0 %>
+		<% if @song.display_play_button? %>
 			<div class="hover"><i class="glyphicon glyphicon-lock"></i></div>
 		<% end %>
 		<%= image_tag @song.cover_url %>
