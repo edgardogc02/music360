@@ -71,4 +71,18 @@ class MandrillTemplateEmailNotifier < MandrillMailer::TemplateMailer
                          }
   end
 
+  def remind_user_to_install_the_game_mandrill_template(user)
+    mandrill_mail template: 'instrumentchamp-support-do-you-need-any-help-1',
+                  subject: 'Do you need some help?',
+                  to: {email: user.email, name: user.username},
+                  vars: { 'USERNAME' => user.username }
+  end
+
+  def remind_user_to_play_songs_mandrill_template(user)
+    mandrill_mail template: 'instrumentchamp-support-do-you-need-any-help-2',
+                  subject: 'Do you need some help?',
+                  to: {email: user.email, name: user.username},
+                  vars: { 'USERNAME' => user.username }
+  end
+
 end
