@@ -40,9 +40,13 @@ class SongDecorator < Draper::Decorator
 
   def buy_button(size="")
     if h.signed_in? and h.current_user.can_buy_song?(model) and model.cost?
-      h.action_button(h.buy_user_purchased_song_path(model), 'Buy', {id: "buy_song_#{model.id}"})
+      h.link_to 'Buy', "#", {class: "btn btn-primary " + size, id: "buy_song_#{model.id}", data: {toggle: "modal", target: "#checkout_modal"}}
+    end
+  end
 
-      h.link_to 'Buy', h.buy_user_purchased_song_path(model), {class: "btn btn-primary " + size, id: "buy_song_#{model.id}"}
+  def buy_button_redirect
+    if h.signed_in? and h.current_user.can_buy_song?(model) and model.cost?
+      h.link_to 'Buy', h.song_path(id: model, buy: true), {class: "btn btn-primary btn-sm"}
     end
   end
 

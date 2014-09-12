@@ -10,4 +10,8 @@ class PaymentMethod < ActiveRecord::Base
 
   CREDIT_CARD_ID = 2
 
+  def self.credit_card
+  	PaymentMethod.where(name: "Credit Card").first
+  end
+
 end

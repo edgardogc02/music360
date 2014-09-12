@@ -1,21 +1,28 @@
 <h2>Purchase summary</h2>
-						
+
 <% if form_object.respond_to?(:premium_plan) %>
 	<p><b><%= form_object.premium_plan.duration_in_months %> month premium subscription (recurring <%= form_object.premium_plan.name %>) <%= form_object.premium_plan.currency %> <%= form_object.premium_plan.price %></b></p>
+<% end %>
+
+<% if form_object.respond_to?(:user_purchased_song) %>
+	<p>
+		<b>InstrumentChamp Preimum Sons:</b><br />
+		$<%= form_object.song.cost %> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><%= form_object.song.title %></b> - Written by: <%= form_object.song.writer %>
+	</p>
 <% end %>
 
 <br />
 
 <div id="credit_card_payment_form_fields">
 	<h2>Payment details</h2>
-	
+
 		<div class="form-group string optional">
 			<label class="control-label">Accepted Cards</label>
 			<div class="wrap-content">
 				<%= image_tag(asset_path('credit_cards.png')) %>
 			</div>
-		</div>	
-  
+		</div>
+
 	  <%= f.input :paymill_token, input_html: {id: "paymill_token"}, as: :hidden %>
 	  <%= f.input :card_holdername, input_html: {id: "credit_card_holdername", required: "required"} %>
 	  <%= f.input :card_number, input_html: {id: "credit_card_number", required: "required"} %>

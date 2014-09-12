@@ -29,6 +29,9 @@ class SongsController < ApplicationController
 		@top_scores = @song.top_scores.limit(5)
     @activity_feeds = @song.activities.order('created_at DESC').page(1).per(10)
 		@scores = @song.top_scores
+		@payment_method = PaymentMethod.credit_card
+
+    @user_purchased_song_form = UserPurchasedSongForm.new(current_user.user_purchased_songs.build(song: @song))
 
     render layout: "detail"
 	end

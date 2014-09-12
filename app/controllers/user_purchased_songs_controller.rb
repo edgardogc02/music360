@@ -17,8 +17,8 @@ class UserPurchasedSongsController < ApplicationController
       flash[:notice] = "You have successfully purchased this song."
       redirect_to @user_purchased_song_form.user_purchased_song
     else
-      flash.now[:warning] = "Something went wrong. Please try again."
-      render "buy"
+      flash[:warning] = "Something went wrong. Please try again."
+      redirect_to @user_purchased_song_form.song
     end
   end
 
