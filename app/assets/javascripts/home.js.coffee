@@ -8,11 +8,17 @@ $(document).ready ->
     keyboard: false
     show: true
 
+  $('#welcome_wizard').bootstrapWizard();
+
+  $("#welcome_wizard a").click (e) ->
+    e.preventDefault()
+    return
+
   $(".cancel_welcome_modal").click (e) ->
     e.preventDefault()
     $("#welcomeModal").modal "hide"
     return
 
   return
-  
+
 

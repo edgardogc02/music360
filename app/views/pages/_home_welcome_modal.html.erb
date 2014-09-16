@@ -12,7 +12,143 @@
 	  <div class="modal-dialog">
 	    <div class="modal-content">
 	      <div class="modal-body">
-	      	<div class="row">
+	      	<div class="text-center">
+	      		<%= image_tag(asset_path('logo.png')) %>
+	      	</div>
+				<div id="welcome_wizard">
+					<div class="navbar hide">
+					  <div class="navbar-inner">
+					    <div class="container">
+								<ul>
+									<li><a href="#tab1" data-toggle="tab">First</a></li>
+									<li><a href="#tab2" data-toggle="tab">Second</a></li>
+									<li><a href="#tab3" data-toggle="tab">Third</a></li>
+									<li><a href="#tab4" data-toggle="tab">Forth</a></li>
+									<li><a href="#tab5" data-toggle="tab">Fifth</a></li>
+									<li><a href="#tab6" data-toggle="tab">Sixth</a></li>
+									<li><a href="#tab7" data-toggle="tab">Seventh</a></li>
+								</ul>
+					 		</div>
+						</div>
+					</div>
+					<div class="tab-content">
+				    <div class="tab-pane text-center" id="tab1">
+				    	<h2>The Music Mission</h2>
+				      <h3>Join the mission to make the world play music</h3>
+				      <div class='video-container'><iframe width='560' height='315' src='//www.youtube.com/embed/pSBiT91e5nk?rel=0' frameborder='0' allowfullscreen></iframe></div>
+				    </div>
+				    <div class="tab-pane text-center" id="tab2">
+				      <h2>Become a Music Player</h2>
+				      <h3>Start your music career and become a music player</h3>
+				      <%= render "landing_pages/career_levels" %>
+				    </div>
+						<div class="tab-pane" id="tab3">
+							<h2>Music Points &amp; Career Progress</h2>
+				      <h3>Play and win music points that build your music career</h3>
+				      <p>[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[IMAGE]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]</p>
+					  </div>
+						<div class="tab-pane" id="tab4">
+							<h2>Play music</h2>
+				      <h3>Play new songs in practice mode or challenge your friends online</h3>
+				      <p>[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[IMAGE]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]</p>
+					  </div>
+						<div class="tab-pane" id="tab5">
+							<h2>Select song</h2>
+				      <h3>Start with one of the songs for beginners or find more songs in our music catalogue online</h3>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+							<div class="row thumbnail-grid">
+				      	<% @songs_for_modal.each do |song| %>
+				      		<div class="col-md-3 song-thumb">
+										<%= content_tag :div, class: 'thumbnail' do %>
+											<%= image_tag song.cover_url, class: "song-cover" %>
+										<% end %>
+
+										<div class="actions-content">
+											<div class="spacer-sm">
+												<div class="link_header"><%= link_to song.title, artist_song_path(song.artist, song), class: "song-title" %></div>
+												<div class="link_subheader"><%= link_to song.artist.title, artist_path(song.artist), class: "song-artist" %></div>
+											</div>
+									  </div>
+									</div>
+				      	<% end %>
+				      </div>
+					  </div>
+						<div class="tab-pane" id="tab6">
+							<h2>Select Instrument</h2>
+				      <h3>You can play with both acoustic and digital instruments</h3>
+					  </div>
+						<div class="tab-pane" id="tab7">
+							<h2>Recruit more players to the music mission</h2>
+				      <h3>Connect with your friends, teachers and favorite artists online</h3>
+					  </div>
+					  <div class="tab-pane" id="tab8">
+							<h2>Groups</h2>
+				      <h3>Connect with your local and online music community</h3>
+					  </div>
+					  <div class="tab-pane" id="tab9">
+							<h2>InstrumentChamp Memberships</h2>
+				      <h3></h3>
+					  </div>
+					  <div class="tab-pane" id="tab10">
+							<h2>Make your music dream come true</h2>
+				      <h3></h3>
+					  </div>
+						<ul class="pager wizard">
+							<li class="previous first" style="display:none;"><a href="#">First</a></li>
+							<li class="previous"><a href="#">Previous</a></li>
+							<li class="next last" style="display:none;"><a href="#">Last</a></li>
+						  <li class="next"><a href="#">Next</a></li>
+						</ul>
+					</div>
+				</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	      	<div class="row hide">
 	      		<% if current_user.is_facebook_user? %>
 	      			<div class="col-lg-3">
 		      			<br />
@@ -29,13 +165,13 @@
 							</p>
 						</div>
 	      	</div>
-	      	<div class="row">
+	      	<div class="row hide">
 						<div class="col-lg-12">
 								<div class="fb-facepile" data-href="https://www.facebook.com/instrumentchamp" data-width="560" data-height="60" data-max-rows="1" data-colorscheme="light" data-size="medium" data-show-count="true"></div>
 						</div>
 					</div>
 	      </div>
-	      <div class="modal-footer">
+	      <div class="modal-footer hide">
 	      	<div class="clearfix">
 						<div class="pull-left">
 							<span id="install-btn" class="hide"></span>
@@ -51,3 +187,16 @@
 	  </div>
 	</div>
 <% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+

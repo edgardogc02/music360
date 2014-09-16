@@ -24,6 +24,8 @@ class PagesController < ApplicationController
 
     @current_level = current_user.get_level
     @next_level = current_user.next_level
+
+    @songs_for_modal = Song.order("RAND()").limit(4)
   end
 
   def apps

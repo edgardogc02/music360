@@ -23,6 +23,7 @@
 //= require bootstrap/tab
 //= require bootstrap/dropdown
 //= require lib/bootstrap-tour.min
+//= jquery.bootstrap.wizard.min
 
 //= require_tree ./common
 //= require_tree ./lib
