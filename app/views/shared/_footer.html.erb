@@ -6,7 +6,7 @@
 				<a href="#" data-toggle="modal" data-target="#privacy_policy" class="privacy_policy">Privacy Policy</a> |
 				<a href="#" data-toggle="modal" data-target="#terms_of_service" class="terms_of_service">Terms of Service</a> |
 				<a href="#" data-toggle="modal" data-target="#contact_us" class="contact_us">Contact us</a> |
-				<a href="#" data-toggle="modal" data-target="#press" class="press">Press</a>				
+				<a href="#" data-toggle="modal" data-target="#press" class="press">Press</a>
 			</div>
 			<div class="col-sm-4 col-sm-pull-4 text-center">
 				<div id="logo-footer">© <%= link_to "InstrumentChamp", :root %></div>
@@ -22,8 +22,14 @@
 <div class="modal fade" id="privacy_policy" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
   <div class="modal-dialog modal-lg">
     <div class="modal-content">
+    	<div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+      </div>
       <div class="modal-body">
         <%= render "statics/privacy_policy" %>
+      </div>
+      <div class="modal-footer">
+      	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
@@ -34,6 +40,9 @@
       <div class="modal-body">
         <%= render "statics/terms_of_service" %>
       </div>
+      <div class="modal-footer">
+      	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
     </div>
   </div>
 </div>
@@ -42,6 +51,9 @@
     <div class="modal-content">
       <div class="modal-body">
         <%= render "statics/about_us" %>
+      </div>
+      <div class="modal-footer">
+      	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>
@@ -52,6 +64,9 @@
       <div class="modal-body">
         <%= render "statics/press" %>
       </div>
+      <div class="modal-footer">
+      	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+      </div>
     </div>
   </div>
 </div>
@@ -60,6 +75,9 @@
     <div class="modal-content">
       <div class="modal-body">
         <%= render "statics/contact_us" %>
+      </div>
+      <div class="modal-footer">
+      	<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
       </div>
     </div>
   </div>

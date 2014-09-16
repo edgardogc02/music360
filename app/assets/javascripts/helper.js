@@ -64,7 +64,7 @@ function progress_plus_button(){
 
 	btn.css('height', progress_bar.height());
 
-	if(percent < '10'){
+	if(percent < '20'){
 		progress_bar.children('.progress-bar').children('span').addClass('label-complete');
 	}
 
