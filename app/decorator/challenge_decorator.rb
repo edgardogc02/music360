@@ -32,7 +32,7 @@ class ChallengeDecorator < Draper::Decorator
 
   def display_remind_button
     if display_remind_button?
-      h.link_to "Remind on facebook", h.new_facebook_friend_message_modal_path(challenge_id: model.id), {remote: true, class: "btn btn-warning"}
+      h.link_to "Remind on facebook", h.new_facebook_friend_message_modal_path(challenge_id: model.id), {remote: true, class: "btn btn-warning btn-sm"}
     end
   end
 
