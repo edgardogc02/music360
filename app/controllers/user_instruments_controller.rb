@@ -14,7 +14,7 @@ class UserInstrumentsController < ApplicationController
       if !params[:next].blank?
         redirect_to tour_path
       else
-        redirect_to person_path(current_user)
+        redirect_to overview_accounts_path
       end
     else
       @instruments = Instrument.visible

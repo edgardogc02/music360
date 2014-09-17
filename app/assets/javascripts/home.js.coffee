@@ -10,7 +10,7 @@ $(document).ready ->
 
   $('#welcome_wizard').bootstrapWizard();
 
-  $("#welcome_wizard a").click (e) ->
+  $("#welcome_wizard .pager.wizard a").click (e) ->
     e.preventDefault()
     return
 

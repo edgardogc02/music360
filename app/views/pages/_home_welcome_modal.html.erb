@@ -15,174 +15,195 @@
 	      	<div class="text-center">
 	      		<%= image_tag(asset_path('logo.png')) %>
 	      	</div>
-				<div id="welcome_wizard">
-					<div class="navbar hide">
-					  <div class="navbar-inner">
-					    <div class="container">
-								<ul>
-									<li><a href="#tab1" data-toggle="tab">First</a></li>
-									<li><a href="#tab2" data-toggle="tab">Second</a></li>
-									<li><a href="#tab3" data-toggle="tab">Third</a></li>
-									<li><a href="#tab4" data-toggle="tab">Forth</a></li>
-									<li><a href="#tab5" data-toggle="tab">Fifth</a></li>
-									<li><a href="#tab6" data-toggle="tab">Sixth</a></li>
-									<li><a href="#tab7" data-toggle="tab">Seventh</a></li>
-								</ul>
-					 		</div>
+					<div id="welcome_wizard">
+						<div class="navbar hide">
+						  <div class="navbar-inner">
+						    <div class="container">
+									<ul>
+										<li><a href="#tab1" data-toggle="tab"></a></li>
+										<li><a href="#tab2" data-toggle="tab"></a></li>
+										<li><a href="#tab3" data-toggle="tab"></a></li>
+										<li><a href="#tab4" data-toggle="tab"></a></li>
+										<li><a href="#tab5" data-toggle="tab"></a></li>
+										<li><a href="#tab6" data-toggle="tab"></a></li>
+										<li><a href="#tab7" data-toggle="tab"></a></li>
+										<li><a href="#tab8" data-toggle="tab"></a></li>
+										<li><a href="#tab9" data-toggle="tab"></a></li>
+										<li><a href="#tab10" data-toggle="tab"></a></li>
+									</ul>
+						 		</div>
+							</div>
 						</div>
-					</div>
-					<div class="tab-content">
-				    <div class="tab-pane text-center" id="tab1">
-				    	<h2>The Music Mission</h2>
-				      <h3>Join the mission to make the world play music</h3>
-				      <div class='video-container'><iframe width='560' height='315' src='//www.youtube.com/embed/pSBiT91e5nk?rel=0' frameborder='0' allowfullscreen></iframe></div>
-				    </div>
-				    <div class="tab-pane text-center" id="tab2">
-				      <h2>Become a Music Player</h2>
-				      <h3>Start your music career and become a music player</h3>
-				      <%= render "landing_pages/career_levels" %>
-				    </div>
-						<div class="tab-pane" id="tab3">
-							<h2>Music Points &amp; Career Progress</h2>
-				      <h3>Play and win music points that build your music career</h3>
-				      <p>[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[IMAGE]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]</p>
-					  </div>
-						<div class="tab-pane" id="tab4">
-							<h2>Play music</h2>
-				      <h3>Play new songs in practice mode or challenge your friends online</h3>
-				      <p>[[[[[[[[[[[[[[[[[[[[[[[[[[[[[[IMAGE]]]]]]]]]]]]]]]]]]]]]]]]]]]]]]</p>
-					  </div>
-						<div class="tab-pane" id="tab5">
-							<h2>Select song</h2>
-				      <h3>Start with one of the songs for beginners or find more songs in our music catalogue online</h3>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-							<div class="row thumbnail-grid">
-				      	<% @songs_for_modal.each do |song| %>
-				      		<div class="col-md-3 song-thumb">
-										<%= content_tag :div, class: 'thumbnail' do %>
-											<%= image_tag song.cover_url, class: "song-cover" %>
-										<% end %>
-
-										<div class="actions-content">
-											<div class="spacer-sm">
-												<div class="link_header"><%= link_to song.title, artist_song_path(song.artist, song), class: "song-title" %></div>
-												<div class="link_subheader"><%= link_to song.artist.title, artist_path(song.artist), class: "song-artist" %></div>
-											</div>
-									  </div>
+						<div class="tab-content">
+					    <div class="tab-pane text-center" id="tab1">
+					    	<h2>The Music Mission</h2>
+					      <p>Join the mission to make the world play music</p>
+					      <div class='video-container'><iframe width='560' height='315' src='//www.youtube.com/embed/pSBiT91e5nk?rel=0' frameborder='0' allowfullscreen></iframe></div>
+					    	<a href="<%= edit_user_instrument_path(current_user) %>" class="btn btn-link btn-skip">Skip</a>
+					    </div>
+					    <div class="tab-pane text-center" id="tab2">
+					      <h2>Become a Music Player</h2>
+					      <p>Start your music career and become a music player</p>
+					      <div class="hidden-xs hidden-sm">
+					      	<br /><br /><br />
+					      </div>
+					      <%= render "landing_pages/career_levels" %>
+					      <a href="<%= edit_user_instrument_path(current_user) %>" class="btn btn-link btn-skip">Skip</a>
+					    </div>
+							<div class="tab-pane" id="tab3">
+								<h2>Music Points &amp; Career Progress</h2>
+					      <p>Play and win music points that build your music career</p>
+					      <div class="hidden-xs hidden-sm">
+					      	<br /><br /><br />
+					      </div>
+					      <%= image_tag(asset_path('modal_img1.png')) %>
+					      <a href="<%= edit_user_instrument_path(current_user) %>" class="btn btn-link btn-skip">Skip</a>
+						  </div>
+							<div class="tab-pane" id="tab4">
+								<h2>Play music</h2>
+					      <p>Play new songs in practice mode or challenge your friends online</p>
+					      <div class="hidden-xs hidden-sm">
+					      	<br />
+					      </div>
+					      <%= image_tag(asset_path('modal_img2.png')) %>
+					      <a href="<%= edit_user_instrument_path(current_user) %>" class="btn btn-link btn-skip">Skip</a>
+						  </div>
+							<div class="tab-pane" id="tab5">
+								<h2>Select song</h2>
+					      <p>Start with one of the songs for beginners or find more songs in our music catalogue online</p>
+					      <div class="hidden-xs hidden-sm">
+					      	<br /><br />
+					      </div>
+								<div class="row thumbnail-grid">
+					      	<% @songs_for_modal.each do |song| %>
+					      		<div class="col-md-3 col-sm-3 col-xs-6 song-thumb">
+											<%= content_tag :div, class: 'thumbnail' do %>
+												<%= image_tag song.cover_url, class: "song-cover" %>
+											<% end %>
+	
+											<div class="actions-content">
+												<div class="spacer-sm">
+													<div class="link_header"><%= song.title %></div>
+													<div class="link_subheader"><%= song.artist.title %></div>
+												</div>
+										  </div>
+										</div>
+					      	<% end %>
+					      </div>
+					      <a href="<%= edit_user_instrument_path(current_user) %>" class="btn btn-link btn-skip">Skip</a>
+						  </div>
+							<div class="tab-pane" id="tab6">
+								<h2>Select Instrument</h2>
+					      <p>You can play with both acoustic and digital instruments</p>
+					      <div class="hidden-xs hidden-sm">
+					      	<br /><br />
+					      </div>
+					      <%= image_tag asset_path('modal_img4.png'), class: 'img4' %><br /><br />
+					      <p>The microphone in the computer listen, analyze and give feedback on how you play</p>
+					      <%= image_tag asset_path('modal_img5.png'), class: 'img5' %>
+					      <a href="<%= new_user_premium_path %>" class="btn btn-link btn-skip">Skip</a>
+						  </div>
+							<div class="tab-pane" id="tab7">
+								<h2>Recruit more players to the music mission</h2>
+					      <p>Connect with your friends, teachers and favorite artists online</p>
+					      <div class="hidden-xs hidden-sm">
+					      	<br /><br /><br />
+					      </div>
+					      <%= image_tag asset_path('modal_img6.png'), class: 'img6' %>
+					      <a href="<%= new_user_premium_path %>" class="btn btn-link btn-skip">Skip</a>
+						  </div>
+						  <div class="tab-pane" id="tab8">
+								<h2>Groups</h2>
+					      <p>Connect with your local and online music community</p>
+					      <%= image_tag(asset_path('modal_img3.png')) %>
+					      <a href="<%= new_user_premium_path %>" class="btn btn-link btn-skip">Skip</a>
+						  </div>
+						  <div class="tab-pane" id="tab9">
+								<h2>InstrumentChamp Memberships</h2>
+					      <div class="row">
+									<div class="col-md-6 col-sm-6">
+										<div class="well text-center well-plan">
+								    	<div class="plan-title">
+								    		<h3>Premium</h3>
+								    	</div>
+								      <div class="plan-descripction">
+								      	<p>
+								      		Play in a band with your friends <br />
+													Unlock all instruments
+								      	</p>
+								      	<p>
+								      		<div class="icon-instrument piano-active"></div>
+													<div class="icon-instrument guitar-active"></div>
+													<div class="icon-instrument guitar2-active"></div>
+													<div class="icon-instrument saxophone-active"></div>
+													<div class="icon-instrument trumpet-active"></div>
+													<div class="icon-instrument drums-active"></div>
+								      	</p>
+												<p>
+													<h4>Ad-free</h4>
+												</p>
+												<div>
+								          <a href="<%= new_user_premium_path %>" data-no-turbolink='true' class="btn btn-primary btn-lg premium_plan_selected free">
+								          	Premium
+								          </a>
+								        </div>				
+								      </div>
+								    </div>
 									</div>
-				      	<% end %>
-				      </div>
-					  </div>
-						<div class="tab-pane" id="tab6">
-							<h2>Select Instrument</h2>
-				      <h3>You can play with both acoustic and digital instruments</h3>
-					  </div>
-						<div class="tab-pane" id="tab7">
-							<h2>Recruit more players to the music mission</h2>
-				      <h3>Connect with your friends, teachers and favorite artists online</h3>
-					  </div>
-					  <div class="tab-pane" id="tab8">
-							<h2>Groups</h2>
-				      <h3>Connect with your local and online music community</h3>
-					  </div>
-					  <div class="tab-pane" id="tab9">
-							<h2>InstrumentChamp Memberships</h2>
-				      <h3></h3>
-					  </div>
-					  <div class="tab-pane" id="tab10">
-							<h2>Make your music dream come true</h2>
-				      <h3></h3>
-					  </div>
-						<ul class="pager wizard">
-							<li class="previous first" style="display:none;"><a href="#">First</a></li>
-							<li class="previous"><a href="#">Previous</a></li>
-							<li class="next last" style="display:none;"><a href="#">Last</a></li>
-						  <li class="next"><a href="#">Next</a></li>
-						</ul>
+									<div class="col-md-6 col-sm-6">
+										<div class="well text-center well-plan">
+								    	<div class="plan-title">
+								    		<h3>Free</h3>
+								    	</div>
+								      <div class="plan-descripction">
+								      	<p>
+													Become a music player<br />
+													Choose one instrument
+								      	</p>
+								      	<p>
+								      		<div class="icon-instrument piano-active"></div>
+													<div class="icon-instrument guitar-disabled"></div>
+													<div class="icon-instrument guitar2-disabled"></div>
+													<div class="icon-instrument saxophone-disabled"></div>
+													<div class="icon-instrument trumpet-disabled"></div>
+													<div class="icon-instrument drums-disabled"></div>
+								      	</p>
+												<p>
+								      		<h4>Made possible by ads</h4>
+								      	</p>
+								        <div>
+								          <a href="<%= apps_path(auto_download: true) %>" data-no-turbolink='true' class="btn btn-primary btn-lg premium_plan_selected free">
+								          	Free
+								          </a>
+								        </div>							        
+								      </div>
+								    </div>
+									</div>
+								</div>
+					     	<a href="<%= apps_path %>" class="btn btn-link btn-skip">Skip</a>
+						  </div>
+						  <div class="tab-pane" id="tab10">
+								<h2>Make your music dream come true</h2>
+					      <div class="hidden-xs hidden-sm">
+					      	<br /><br /><br /><br />
+					      </div>
+					      <p><a href="<%= apps_path(auto_download: true) %>" data-no-turbolink='true' class="btn btn-primary btn-lg">Install InstrumentChamp Free</a></p>
+								<p><%= link_to "I've already installed", home_path, { class: "btn btn-link cancel_welcome_modal", id: "modal_app_already_installed", data: {'ajax-href' => apps_path(installed: true)} } %></p>
+						  	<div class="hidden-xs hidden-sm">
+					      	<br /><br /><br /><br /><br /><br /><br />
+					      </div>
+						  	<div class="fb-facepile" data-href="https://www.facebook.com/instrumentchamp" data-width="560" data-height="60" data-max-rows="1" data-colorscheme="light" data-size="medium" data-show-count="true"></div>
+						  	<a href="<%= apps_path %>" class="btn btn-link btn-skip">Skip</a>
+						  </div>
+							<ul class="pager wizard">
+								<li class="previous first" style="display:none;"><a href="#">First</a></li>
+								<li class="previous"><a href="#">Previous</a></li>
+								<li class="next last" style="display:none;"><a href="#">Last</a></li>
+							  <li class="next"><a href="#">Next</a></li>
+							</ul>
+						</div>
 					</div>
 				</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	      	<div class="row hide">
-	      		<% if current_user.is_facebook_user? %>
-	      			<div class="col-lg-3">
-		      			<br />
-		      			<%= image_tag current_user.imagename_url, {alt: current_user.username, class: 'thumbnail'} %>
-		      		</div>
-		      		<div class="col-lg-9">
-	      		<% else %>
-		      		<div class="col-lg-12">
-						<% end %>
-							<h1>Install InstrumentChamp<h1>
-							<h2>Play music with your friends</h2>
-							<p>
-								If you want to play InstrumentChamp you just have to make a quick and easy installation of the InstrumentChamp desktop application. Then you can challenge your friends online.
-							</p>
-						</div>
-	      	</div>
-	      	<div class="row hide">
-						<div class="col-lg-12">
-								<div class="fb-facepile" data-href="https://www.facebook.com/instrumentchamp" data-width="560" data-height="60" data-max-rows="1" data-colorscheme="light" data-size="medium" data-show-count="true"></div>
-						</div>
-					</div>
-	      </div>
-	      <div class="modal-footer hide">
-	      	<div class="clearfix">
-						<div class="pull-left">
-							<span id="install-btn" class="hide"></span>
-							<a href="<%= apps_path(auto_download: true) %>" data-no-turbolink='true' class="btn btn-primary btn-lg">Install InstrumentChamp Free</a>
-							<%= link_to "I've already installed", home_path, { class: "btn btn-link cancel_welcome_modal", id: "modal_app_already_installed", data: {'ajax-href' => apps_path(installed: true)} } %>
-						</div>
-						<div class="pull-right">
-							<%= link_to 'Read more', apps_path, class: "btn btn-link btn-lg" %>
-						</div>
-					</div>
-	      </div>
 	    </div>
 	  </div>
 	</div>

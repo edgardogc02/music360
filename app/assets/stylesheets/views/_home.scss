@@ -128,12 +128,30 @@
 }
 
 #welcome_wizard {
+  .pager li > a, .pager li > span {
+    color: #FFF;
+    background-color: $brand-primary;
+  }
+  .well {
+    margin-bottom: 0px;
+  }
+  .btn-skip {
+    position: absolute;
+    bottom: 27px;
+    right: 90px;
+  }
+  
+  .pager .disabled > a, .pager .disabled > a:hover, .pager .disabled > a:focus, .pager .disabled > span {
+    color: #888;
+    background-color: #FFF;
+  }
+
   h2 {
     font-size: 22px;
     font-weight: bold;
     text-align: center;
     margin-bottom: 10px;
-    margin-top: 30px;
+    margin-top: 15px;
   }
   h3 {
     color: #888;
@@ -141,6 +159,34 @@
     text-align: center;
     margin-top: 0px;
     line-height: 22px;
-    margin-bottom: 30px;
+    margin-bottom: 15px;
+  }
+  
+  .tab-pane {
+    text-align: center;
+    //min-height: 420px;
+    
+    img {
+      width: 100%;
+      max-width: 550px;
+    }
+    
+    .img4 {
+      max-width: 500px;
+    }
+    
+    .img5 {
+      max-width: 267px;
+    }
+    
+    .img6 {
+      max-width: 300px;
+    }
+  }
+}
+
+@media (min-width: $screen-md-min) {
+  .tab-pane {
+    min-height: 420px;
   }
 }

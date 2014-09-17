@@ -16,7 +16,7 @@ class SongDecorator < Draper::Decorator
 
   def play_button
     if display_play_button?
-      h.action_button(play_url, 'Play', {class: play_class_attr, id: play_id_attr, data: {song_id: model.id, song_name: model.title}}, 'glyphicon glyphicon-play')
+      h.action_button(play_url, 'Play', {class: play_class_attr, id: play_id_attr, data: {type: '', song_id: model.id, song_name: model.title, song_cover: model.cover.url}}, 'glyphicon glyphicon-play')
     end
   end
 
