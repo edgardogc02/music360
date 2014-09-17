@@ -16,13 +16,13 @@ class SongDecorator < Draper::Decorator
 
   def play_button
     if display_play_button?
-      h.action_button(play_url, 'Play', {class: play_class_attr, id: play_id_attr, data: {type: '', song_id: model.id, song_name: model.title, song_cover: model.cover.url}}, 'glyphicon glyphicon-play')
+      h.action_button(play_url, 'Play', {class: play_class_attr, id: play_id_attr, data: {type: '', song_id: model.id, song_name: model.title, song_cover: model.cover.url, song_writer: model.writer, song_publisher: model.publisher}}, 'glyphicon glyphicon-play')
     end
   end
 
   def practice_button
     if display_play_button?
-    	h.link_to 'Practice', play_url, {class: play_class_attr + " btn btn-default", id: play_id_attr, data: {song_id: model.id, song_name: model.title}}
+    	h.link_to 'Practice', play_url, {class: play_class_attr + " btn btn-default", id: play_id_attr, data: {type: '', song_id: model.id, song_name: model.title, song_cover: model.cover.url, song_writer: model.writer, song_publisher: model.publisher}}
     end
   end
 

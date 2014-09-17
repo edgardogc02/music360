@@ -11,15 +11,12 @@ ready = function() {
   $("a.app-play").click(function(e) {
     $("#loadingDesktopApp").modal("show");
     $("#loadingDesktopApp .image-loading").attr('src', $( this ).attr("data-song-cover"));
-    $("#loadingDesktopApp #song_name").text($( this ).attr("data-song-name"));
-    $("#loadingDesktopApp #song_name").text($( this ).attr("data-song-name"));
-    $("#loadingDesktopApp #song_name").text($( this ).attr("data-song-name"));
-    $("#loadingDesktopApp #song_name").text($( this ).attr("data-song-name"));
-    $("#loadingDesktopApp #song_name").text($( this ).attr("data-song-name"));
+    $("#loadingDesktopApp .type").text($( this ).attr("data-type"));
+    $("#loadingDesktopApp .song_name").text($( this ).attr("data-song-name"));
+    $("#loadingDesktopApp .written").text($( this ).attr("data-song-writer"));
+    $("#loadingDesktopApp .pubisher").text($( this ).attr("data-song-publisher"));
     close_loading();
   });
-  
-  console.log("asdasd");
 
 };
 
