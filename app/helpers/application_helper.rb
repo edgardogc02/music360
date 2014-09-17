@@ -147,6 +147,10 @@ module ApplicationHelper
     end
   end
 
+  def tour_songs
+    @songs_for_modal = Song.order("RAND()").limit(4)
+  end
+
   def action_button(url, text, options={}, icon=false)
     extra_class = ' btn btn-sm btn-primary action_button'
     if options[:class]

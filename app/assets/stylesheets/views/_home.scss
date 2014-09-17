@@ -140,7 +140,7 @@
     bottom: 27px;
     right: 90px;
   }
-  
+
   .pager .disabled > a, .pager .disabled > a:hover, .pager .disabled > a:focus, .pager .disabled > span {
     color: #888;
     background-color: #FFF;
@@ -161,24 +161,24 @@
     line-height: 22px;
     margin-bottom: 15px;
   }
-  
+
   .tab-pane {
     text-align: center;
     //min-height: 420px;
-    
+
     img {
       width: 100%;
       max-width: 550px;
     }
-    
+
     .img4 {
       max-width: 500px;
     }
-    
+
     .img5 {
       max-width: 267px;
     }
-    
+
     .img6 {
       max-width: 300px;
     }
@@ -188,5 +188,17 @@
 @media (min-width: $screen-md-min) {
   .tab-pane {
     min-height: 420px;
+  }
+}
+
+.loading-song-info {
+  padding-bottom: 10px;
+  p {
+    margin: 0px;
+    font-size: 14px;
+  }
+
+  h2 {
+    margin: 5px 0px;
   }
 }
