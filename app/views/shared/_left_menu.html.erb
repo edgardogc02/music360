@@ -56,8 +56,8 @@
 					<li class="<%= 'active' if current_page?(list_groups_path(view: "new")) %>"><a href="<%= list_groups_path(view: "new") %>">New</a></li>
 				</ul>
 			</li>
-			<li class="<%= 'active' if current_page?(home_path) %>">
-				<a href="<%= home_path(welcome_msg: "true") %>" id="help" data-no-turbolink><i class='glyphicon glyphicon-send'></i> Take a tour</a>
+			<li>
+				<a href="<%= home_path(welcome_msg: "true") %>" id="tour-link" data-no-turbolink><i class='glyphicon glyphicon-send'></i> Take a tour</a>
 			</li>
 			<li class="<%= 'active' if current_page?(help_path) %>">
 				<a href="<%= help_path %>" target= "_blank" id="help"><i class='glyphicon glyphicon-question-sign'></i> Help</a>

@@ -18,6 +18,11 @@ ready = function() {
     close_loading();
   });
 
+  $("#tour-link").click(function(e) {
+  	e.preventDefault();
+		$("#welcomeModal").modal("show");
+  });
+
 };
 
 $(document).ready(ready);

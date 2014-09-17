@@ -2,11 +2,7 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
-$(document).ready ->
-  $("#welcomeModal").modal
-    backdrop: "static"
-    keyboard: false
-    show: true
+ready = ->
 
   $('#welcome_wizard').bootstrapWizard();
 
@@ -14,11 +10,17 @@ $(document).ready ->
     e.preventDefault()
     return
 
+  $("#welcome_wizard .btn-skip").click (e) ->
+    e.preventDefault()
+    $("#welcomeModal").modal "hide"
+    return
+
   $(".cancel_welcome_modal").click (e) ->
     e.preventDefault()
     $("#welcomeModal").modal "hide"
     return
 
-  return
+$(document).ready(ready)
+$(document).on('page:load', ready)
 
 
