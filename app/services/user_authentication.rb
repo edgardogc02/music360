@@ -86,7 +86,7 @@ class UserAuthentication
     with_password = true if User.where(ip: user.ip).count > 1
 
     send_welcome_email(user, with_password) # send welcome email
-    #FacebookFriendsWorker.perform_async(user.id) # save facebook friends in the db
+    FacebookFriendsWorker.perform_async(user.id) # save facebook friends in the db
 
     user.just_signup = true
 
