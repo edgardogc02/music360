@@ -86,7 +86,7 @@ class UserAuthentication
     with_password = true if User.where(ip: user.ip).count > 1
 
     send_welcome_email(user, with_password) # send welcome email
-    FacebookFriendsWorker.perform_async(user.id) # save facebook friends in the db
+    #FacebookFriendsWorker.perform_async(user.id) # save facebook friends in the db
 
     user.just_signup = true
 
@@ -118,7 +118,7 @@ class UserAuthentication
     user.email = auth.info.email
     user.oauth_uid = auth.uid
     user.locale = auth.extra.raw_info.locale
-    user.xp = 100
+    #user.xp = 100
     user.save
     user
   end
@@ -177,7 +177,7 @@ class UserAuthentication
 
   def send_welcome_email(user, with_password=false)
     if !user.new_record? and !user.skip_emails # avoid callbacks otherwise the tests and fake facebook users will send emails
-      MandrillTemplateEmailNotifier.welcome_email_mandrill_template(user).deliver
+      #MandrillTemplateEmailNotifier.welcome_email_mandrill_template(user).deliver
 #      EmailNotifier.welcome_message(user, with_password).deliver
     end
   end

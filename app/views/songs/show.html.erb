@@ -4,7 +4,7 @@
 <%= content_for(:detail_header_thumb) do %>
 	<div class="song-detail-thumb">
 		<% if !@song.display_play_button? %>
-			<div class="hover"><i class="glyphicon glyphicon-lock"></i></div>
+			<div class="hover"><%= image_tag(asset_path('lock_icon.png'), class: "lock-icon") %></div>
 		<% end %>
 		<%= image_tag @song.cover_url %>
 	</div>
