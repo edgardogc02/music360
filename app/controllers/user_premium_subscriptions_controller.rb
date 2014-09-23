@@ -22,6 +22,8 @@ class UserPremiumSubscriptionsController < ApplicationController
     if @user_premium_subscription_form.save(user_premium_subscription_params)
       redirect_to @user_premium_subscription_form.user_premium_subscription, notice: "You have successfully updated your account to premium"
     else
+      @premium_songs = Song.paid.limit(30)
+      @free_songs = Song.free.limit(10)
       @premium_plans = PremiumPlanDecorator.decorate_collection(PremiumPlan.default_order)
       flash.now[:warning] = "Something went wrong. Please try again."
       render "new"
