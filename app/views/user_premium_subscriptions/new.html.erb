@@ -1,5 +1,15 @@
 <%= render 'shared/header_page', title: 'Choose your membership' %>
 
+<% if @user_premium_subscription_form.errors.any? %>
+  <div id="error_explanation">
+    <ul>
+    <% @user_premium_subscription_form.errors.full_messages.each do |msg| %>
+      <li><%= msg %></li>
+    <% end %>
+    </ul>
+  </div>
+<% end %>
+
 <div class="row">
 	<div class="col-md-6">
 		<div class="well text-center well-plan">
