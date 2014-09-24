@@ -7,11 +7,19 @@ class SongDecorator < Draper::Decorator
   end
 
   def display_play_button?
-    !paid? or ( h.signed_in? and h.current_user.purchased_songs.include?(self) )
+    !paid? or ( h.signed_in? and h.current_user.purchased_songs.include?(self) ) or ( h.current_user.premium? and model.premium? )
+  end
+
+  def display_buy_button?
+    if h.signed_in? and h.current_user.premium? and model.premium?
+      false
+    else
+      h.signed_in? and h.current_user.can_buy_song?(model) and model.cost?
+    end
   end
 
   def display_challenge_button?
-    !paid? or ( h.signed_in? and h.current_user.purchased_songs.include?(self) )
+    !paid? or ( h.signed_in? and h.current_user.purchased_songs.include?(self) ) or ( h.current_user.premium? and model.premium? )
   end
 
   def play_button
@@ -39,13 +47,13 @@ class SongDecorator < Draper::Decorator
   end
 
   def buy_button(size="")
-    if h.signed_in? and h.current_user.can_buy_song?(model) and model.cost?
+    if display_buy_button?
       h.link_to 'Buy', "#", {class: "btn btn-primary " + size, id: "buy_song_#{model.id}", data: {toggle: "modal", target: "#checkout_modal"}}
     end
   end
 
   def buy_button_redirect
-    if h.signed_in? and h.current_user.can_buy_song?(model) and model.cost?
+    if display_buy_button?
       h.link_to 'Buy', h.song_path(id: model, buy: true), {class: "btn btn-primary btn-sm"}
     end
   end

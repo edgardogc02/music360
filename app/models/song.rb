@@ -37,7 +37,7 @@ class Song < ActiveRecord::Base
   scope :easy, -> { where(difficulty: 1) }
   scope :medium, -> { where(difficulty: 2) }
   scope :hard, -> { where(difficulty: 3) }
-
+  scope :accessible_for_premium_subscription, -> { where(premium: true) }
 
   has_many :activities, through: :song_scores
 

@@ -19,7 +19,7 @@ class ResumedMySongsList < SongsList
   end
 
   def decorated_songs
-    @decorated_songs ||= (created_by_user_decorated + purchased_decorated + free_songs_decorated)[0..4]
+    @decorated_songs ||= (created_by_user_decorated + songs_for_premium_user_decorated + purchased_decorated + free_songs_decorated)[0..4]
   end
 
   def current_user
@@ -40,6 +40,14 @@ class ResumedMySongsList < SongsList
     @purchased ||= current_user.purchased_songs
   end
 
+  def songs_for_premium_user
+    if current_user.premium?
+      @for_premium_user ||= Song.accessible_for_premium_subscription
+    else
+      @for_premium_user ||= []
+    end
+  end
+
   def created_by_user_decorated
     @created_by_user_decorated ||= SongDecorator.decorate_collection(created_by_user)
   end
@@ -50,6 +58,10 @@ class ResumedMySongsList < SongsList
 
   def free_songs_decorated
     @free_songs_decorated ||= SongDecorator.decorate_collection(free_songs)
+  end
+
+  def songs_for_premium_user_decorated
+    @songs_for_premium_user_decorated ||= SongDecorator.decorate_collection(songs_for_premium_user)
   end
 
 end

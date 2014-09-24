@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140912095910) do
+ActiveRecord::Schema.define(version: 20140924084425) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -245,6 +245,7 @@ ActiveRecord::Schema.define(version: 20140912095910) do
     t.integer  "uploader_user_id"
     t.string   "artist"
     t.string   "copyright"
+    t.boolean  "premium"
   end
 
   add_index "songs", ["slug"], name: "index_songs_on_slug", using: :btree
