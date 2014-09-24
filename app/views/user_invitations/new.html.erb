@@ -65,3 +65,7 @@
 </div>
 
 <br />
+
+<% unless params[:layout] == "modal" %>
+  <%= render "shared/facebook_invite.js" %>
+<% end %>
