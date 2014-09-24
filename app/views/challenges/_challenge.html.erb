@@ -1,4 +1,4 @@
-<% if challenge.song and (challenge.challenged or challenge.group) %>
+<% if challenge.song and challenge.challenger and (challenge.challenged or challenge.group) %>
 	<div class="group-challenge-item masonry-img">
 		<div class="pull-left item-img">
 			<%= image_tag challenge.song.cover_url, class: 'song-cover spacer-sm' %>
