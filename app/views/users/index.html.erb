@@ -11,7 +11,7 @@
 
 <div class="row">
 	<div class="col-lg-4 spacer-md"><%= render 'search_form', action: "index", controller: "users" %></div>
-	<div class="col-lg-8 text-right-sm-left"><%= link_to 'Invite friends', new_user_invitation_path, class: 'btn btn-primary', data: { toggle: "modal", target: "#inviteFriends" } %></div>
+	<div class="col-lg-8 text-right-sm-left"><%= link_to 'Invite friends', new_user_invitation_path(layout: "modal"), class: 'btn btn-primary', data: { toggle: "modal", target: "#inviteFriends" } %></div>
 </div>
 
 <br />

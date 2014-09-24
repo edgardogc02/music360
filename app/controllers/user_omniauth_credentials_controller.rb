@@ -37,7 +37,7 @@ class UserOmniauthCredentialsController < ApplicationController
     current_user.user_omniauth_credentials.create_or_update_from_omniauth(request.env["omniauth.auth"])
 
     if params[:tweet]
-      #redirect_to new_user_invitation_path(tweet: params[:tweet], tweet_text: params[:tweet_text])
+      redirect_to new_user_invitation_path(tweet: params[:tweet], tweet_text: params[:tweet_text])
     else
       redirect_to home_path
     end

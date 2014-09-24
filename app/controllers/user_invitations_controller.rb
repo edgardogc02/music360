@@ -9,7 +9,11 @@ class UserInvitationsController < ApplicationController
       @tweet = @user_twitter_account.tweet("#{params[:tweet_text][0..104]} #{root_url}")
     end
 
-    render "new", layout: false
+    if params[:layout] == "modal"
+      render "new", layout: false
+    else
+      render "new"
+    end
   end
 
   def create
