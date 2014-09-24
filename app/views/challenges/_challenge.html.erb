@@ -1,4 +1,4 @@
-<% if challenge.song %>
+<% if challenge.song and (challenge.challenged or challenge.group) %>
 	<div class="group-challenge-item masonry-img">
 		<div class="pull-left item-img">
 			<%= image_tag challenge.song.cover_url, class: 'song-cover spacer-sm' %>
@@ -13,7 +13,7 @@
 		    <time datetime="<%= challenge.created_at%>" pubdate><%= time_ago_in_words(challenge.created_at)%> ago</time>
 		    <% if challenge.challenged %>
 		    	(Challenged: <%= link_to challenge.challenged.username, person_path(challenge.challenged) %>)
-		    <% else %>
+		    <% elsif challenge.group %>
 		    	<div>Group: <%= link_to challenge.group.name, challenge.group %></div>
 		    <% end %>
 		  </div>
