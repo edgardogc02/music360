@@ -1,0 +1,42 @@
+<script type="text/javascript">
+  $(document).ready(function(){
+
+    $('body').on('click', '#invite_fb_friends', function(e) {
+
+      FB.init({
+        appId: "<%= FACEBOOK_APP_ID %>",
+        cookie: true,
+        status: true,
+        xfbml: true
+      });
+
+      FB.ui({
+        method: 'apprequests',
+        action_type: 'turn',
+        message: "Join me on @InstrumentChamp. It's a game and social network for music players! #PlayMusic"
+      }, requestCallback);
+
+      e.preventDefault();
+    });
+
+    function requestCallback(response) {
+      $.post("<%= user_facebook_invitations_path %>", {user_facebook_invitations: {facebook_user_ids: response.to}});
+    }
+
+    $('body').on('click', '#share_on_facebook', function(e) {
+      FB.init({
+        appId: "<%= FACEBOOK_APP_ID %>",
+        cookie: true,
+        status: true,
+        xfbml: true
+      });
+
+      FB.ui({
+        method: 'share',
+        href: 'https://www.instrumentchamp.com'
+      }, function(response){});
+
+      e.preventDefault();
+    });
+  });
+</script>
