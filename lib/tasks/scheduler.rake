@@ -71,7 +71,7 @@ task :close_open_and_expired_challenges => :environment do
 end
 
 task :close_played_challenges => :environment do
-  Challenge.one_to_one.finished.find_each(batch_size: 1000) do |challenge|
+  Challenge.one_to_one.open.finished.find_each(batch_size: 1000) do |challenge|
     ChallengeClosure.new(challenge).close
   end
 end
