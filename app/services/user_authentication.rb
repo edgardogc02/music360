@@ -177,7 +177,7 @@ class UserAuthentication
 
   def send_welcome_email(user, with_password=false)
     if !user.new_record? and !user.skip_emails # avoid callbacks otherwise the tests and fake facebook users will send emails
-      #MandrillTemplateEmailNotifier.welcome_email_mandrill_template(user).deliver
+      MandrillTemplateEmailNotifier.welcome_email_mandrill_template(user).deliver
 #      EmailNotifier.welcome_message(user, with_password).deliver
     end
   end

@@ -97,13 +97,13 @@ task :remind_user_to_play_songs => :environment do
 end
 
 task :remind_user_to_install_the_game => :environment do
-  User.where('created_at < ?', 10.minutes.ago).where('created_at > ?', 20.minutes.ago).find_each(batch_size: 1000) do |user|
+  User.not_fake_user.where('created_at < ?', 10.minutes.ago).where('created_at > ?', 20.minutes.ago).find_each(batch_size: 1000) do |user|
     MandrillTemplateEmailNotifier.remind_user_to_install_the_game_mandrill_template(user).deliver
   end
 end
 
 task :improve_music_career_reminder => :environment do
-  User.joins(:song_scores).
+  User.not_fake_user.joins(:song_scores).
         where('songscore.created_at < ?', 10.minutes.ago).
         where('songscore.created_at > ?', 12.minutes.ago).find_each(batch_size: 1000) do |user|
     MandrillTemplateEmailNotifier.improve_music_career_mandrill_template(user).deliver
