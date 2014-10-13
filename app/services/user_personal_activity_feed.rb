@@ -50,14 +50,14 @@ class UserPersonalActivityFeed
 
   def friends_groups_activity_feeds
     @friends_groups_activity_feeds ||= PublicActivity::Activity.where(owner_id: user.facebook_friends).
-                                                                where(group_id: user.facebook_friends_groups.public.ids).
-                                                                where.not(group_id: user.groups.ids).
+                                                                where(group_id: user.facebook_friends_groups.public.map{|g| g.id}).
+                                                                where.not(group_id: user.groups).
                                                                 order('created_at DESC').
                                                                 limit(UserPersonalActivityFeed.limit)
   end
 
   def friends_activity_feeds
-    @friends_activity_feeds ||= PublicActivity::Activity.where(owner_id: user.facebook_friends).
+    @friends_activity_feeds ||= PublicActivity::Activity.where(owner_id: user.facebook_friends.ids).
                                                                 where(group_id: nil).
                                                                 order('created_at DESC').
                                                                 limit(UserPersonalActivityFeed.limit)
@@ -65,8 +65,8 @@ class UserPersonalActivityFeed
 
   def followers_groups_activity_feeds
     @followers_groups_activity_feeds ||= PublicActivity::Activity.where(owner_id: user.followers).
-                                                                  where(group_id: user.followers_groups.public.ids).
-                                                                  where.not(group_id: user.groups.ids).
+                                                                  where(group_id: user.followers_groups.public.map{|g| g.id}).
+                                                                  where.not(group_id: user.groups.map{|g| g.id}).
                                                                   order('created_at DESC').
                                                                   limit(UserPersonalActivityFeed.limit)
   end
