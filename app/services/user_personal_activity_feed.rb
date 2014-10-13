@@ -11,7 +11,7 @@ class UserPersonalActivityFeed
   end
 
   def feeds
-    @activity_feeds ||= PublicActivity::Activity.where(id: groups_feeds.ids + personal_feeds.ids).
+    @activity_feeds ||= PublicActivity::Activity.where(["id IN (?)", groups_feeds.ids + personal_feeds.ids]).
                                                   order('created_at DESC').
                                                   limit(UserPersonalActivityFeed.limit)
   end
