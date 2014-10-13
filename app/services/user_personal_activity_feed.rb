@@ -21,20 +21,20 @@ class UserPersonalActivityFeed
 	private
 
   def groups_feeds
-    @groups_feeds ||= PublicActivity::Activity.where(group_id: user.groups).
+    @groups_feeds ||= PublicActivity::Activity.where(group_id: user.groups.map{|g| g.id}).
                                                 order('created_at DESC').
                                                 limit(UserPersonalActivityFeed.limit)
   end
 
   def one_to_one_challenge_feeds
-     @one_to_one_challenge_feeds ||= PublicActivity::Activity.where(challenge_id: user.challenges).
+     @one_to_one_challenge_feeds ||= PublicActivity::Activity.where(challenge_id: user.challenges.ids).
                                                               where("group_id IS NULL OR group_id = 0").
                                                               order('created_at DESC').
                                                               limit(UserPersonalActivityFeed.limit)
   end
 
   def one_to_one_proposed_challenge_feeds
-    @one_to_one_proposed_challenge_feeds ||= PublicActivity::Activity.where(challenge_id: user.proposed_challenges).
+    @one_to_one_proposed_challenge_feeds ||= PublicActivity::Activity.where(challenge_id: user.proposed_challenges.ids).
                                                                       where("group_id IS NULL OR group_id = 0").
                                                                       order('created_at DESC').
                                                                       limit(UserPersonalActivityFeed.limit)
@@ -49,7 +49,7 @@ class UserPersonalActivityFeed
   end
 
   def friends_groups_activity_feeds
-    @friends_groups_activity_feeds ||= PublicActivity::Activity.where(owner_id: user.facebook_friends).
+    @friends_groups_activity_feeds ||= PublicActivity::Activity.where(owner_id: user.facebook_friends.ids).
                                                                 where(group_id: user.facebook_friends_groups.public.map{|g| g.id}).
                                                                 where.not(group_id: user.groups).
                                                                 order('created_at DESC').
