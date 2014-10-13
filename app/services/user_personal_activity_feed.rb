@@ -51,7 +51,7 @@ class UserPersonalActivityFeed
   def friends_groups_activity_feeds
     @friends_groups_activity_feeds ||= PublicActivity::Activity.where(owner_id: user.facebook_friends.ids).
                                                                 where(group_id: user.facebook_friends_groups.public.map{|g| g.id}).
-                                                                where.not(group_id: user.groups).
+                                                                where.not(group_id: user.groups.map{|g| g.id}).
                                                                 order('created_at DESC').
                                                                 limit(UserPersonalActivityFeed.limit)
   end
@@ -64,7 +64,7 @@ class UserPersonalActivityFeed
   end
 
   def followers_groups_activity_feeds
-    @followers_groups_activity_feeds ||= PublicActivity::Activity.where(owner_id: user.followers).
+    @followers_groups_activity_feeds ||= PublicActivity::Activity.where(owner_id: user.followers.ids).
                                                                   where(group_id: user.followers_groups.public.map{|g| g.id}).
                                                                   where.not(group_id: user.groups.map{|g| g.id}).
                                                                   order('created_at DESC').
