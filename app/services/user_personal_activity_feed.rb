@@ -11,9 +11,9 @@ class UserPersonalActivityFeed
   end
 
   def feeds
-    @activity_feeds ||= PublicActivity::Activity.where(id: groups_feeds + friends_gruoups_activity_feeds + friends_activity_feeds +
-                                                            followers_groups_activity_feeds + followers_activity_feeds + one_to_one_challenge_feeds +
-                                                            one_to_one_proposed_challenge_feeds + personal_feeds).
+    @activity_feeds ||= PublicActivity::Activity.where(id: groups_feeds.ids + friends_gruoups_activity_feeds.ids + friends_activity_feeds.ids +
+                                                            followers_groups_activity_feeds.ids + followers_activity_feeds.ids + one_to_one_challenge_feeds.ids +
+                                                            one_to_one_proposed_challenge_feeds.ids + personal_feeds.ids).
                                                   order('created_at DESC').
                                                   limit(UserPersonalActivityFeed.limit)
   end
