@@ -9,7 +9,7 @@ ActiveAdmin.register Song do
   filter :length
   filter :difficulty
   filter :status
-  filter :onclient
+  #filter :onclient
   filter :writer
   filter :created_at
   filter :published_at
@@ -54,14 +54,14 @@ ActiveAdmin.register Song do
       if !f.object.new_record?
         f.input :cover, as: :file, :hint => f.template.image_tag(f.object.cover.url, {height: 100, width: 100})
       end
-      f.input :midi, as: :file
-      f.input :length
-      f.input :difficulty
-      f.input :status
-      f.input :onclient
+      f.input :midi, as: :file, :label => "Midi (Same name as title)"
+      f.input :length, :label => "Length(sec)"
+      f.input :difficulty, :label => "Difficulty(3=hard,2=medium,1=easy)"
+      f.input :status, :label => "Status(3=hard,2=medium,1=easy)"
+      #f.input :onclient
       f.input :writer
-      f.input :arranger_userid
-      f.input :published_at
+      f.input :arranger_userid, :label => "Arranger(1243=Mauro, 0=Magnus)"
+      f.input :published_at, :label => "Published at(leave blank->NOW)"
       f.input :publisher
       f.input :cost
     end
@@ -83,14 +83,15 @@ ActiveAdmin.register Song do
       @song.midi = params[:song][:midi]
       @song.title = params[:song][:midi].original_filename[0..-5]
       @song.writer = "default"
-      @song.length = 1
+      @song.length = 60
       @song.difficulty = 1
       @song.artist_id = 0
-      @song.arranger_userid = 1
+      @song.arranger_userid = 1243
       @song.uploader_user_id = current_user.id
-      @song.status = "ok"
+      @song.status = "playable"
       @song.published_at = Time.now
-      @song.user_created = 1
+      @song.user_created = 0
+      @song.onclient = 0
     end
 
     if @song.save
