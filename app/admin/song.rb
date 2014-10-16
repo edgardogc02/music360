@@ -42,9 +42,10 @@ ActiveAdmin.register Song do
     column :slug
     column :user_created
     column :midi
-    column :created_at
+    #column :created_at
     actions
   end
+
 
   form(html: { multipart: true }) do |f|
     f.inputs "Details" do
@@ -54,16 +55,16 @@ ActiveAdmin.register Song do
       if !f.object.new_record?
         f.input :cover, as: :file, :hint => f.template.image_tag(f.object.cover.url, {height: 100, width: 100})
       end
-      f.input :midi, as: :file, :label => "Midi (Same name as title)"
+      f.input :midi, as: :file, :label => "Midi", :hint => "Same filename as title"
       f.input :length, :label => "Length(sec)"
-      f.input :difficulty, :label => "Difficulty(3=hard,2=medium,1=easy)"
-      f.input :status, :label => "Status(3=hard,2=medium,1=easy)"
+      f.input :difficulty, :label => "Difficulty", :hint => "3=hard, 2=medium, 1=easy"
+      f.input :status, :label => "Status", :hint => "playable"
       #f.input :onclient
       f.input :writer
-      f.input :arranger_userid, :label => "Arranger(1243=Mauro, 0=Magnus)"
-      f.input :published_at, :label => "Published at(leave blank->NOW)"
+      f.input :arranger_userid, :label => "Arranger", :hint => "1243=Mauro, 0=Magnus"
+      f.input :published_at, :label => "Published at", :hint => "Created automatically if left blank", :required => false
       f.input :publisher
-      f.input :cost
+      f.input :cost, :hint => "Euro"
     end
     f.actions
   end
