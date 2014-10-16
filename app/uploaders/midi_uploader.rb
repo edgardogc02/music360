@@ -15,9 +15,7 @@ class MidiUploader < Uploader
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
   def filename
-    #original_filename.sub(" ", "_") if original_filename
     original_filename.sub("_", " ") if original_filename
-    original_filename.sub("-", " ") if original_filename
   end
 
 end
