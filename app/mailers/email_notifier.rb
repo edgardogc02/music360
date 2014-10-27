@@ -5,7 +5,7 @@ class EmailNotifier < ActionMailer::Base
   def welcome_message(user, with_password=false)
     @user = user
     @with_password = with_password
-    mail to: @user.email
+    mail to: "edgardo.cabanillas@instrumentchamp.com" # @user.email
   end
 
   def password_reset(user)
