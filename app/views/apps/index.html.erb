@@ -5,6 +5,12 @@
   <div class="alert alert-warning">You need to uninstall the previous version before installing the new version</div>
 <% end %>
 
+<% unless current_user.installed_desktop_app? %>
+  <div class="alert alert-success">
+    This is your verification code for account verification: <%= current_user.auth_token %>
+  </div>
+<% end %>
+
 <h2>Thanks for downloading InstrumentChamp</h2>
 
 <% if is_mobile? %>
