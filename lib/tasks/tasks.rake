@@ -26,4 +26,8 @@ namespace :users do
     end
   end
 
+  task :test_welcome_email => :environment do
+    MandrillTemplateEmailNotifier.welcome_email_mandrill_template(User.last).deliver
+  end
+
 end
