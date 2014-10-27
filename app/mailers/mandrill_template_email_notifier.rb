@@ -6,7 +6,8 @@ class MandrillTemplateEmailNotifier < MandrillMailer::TemplateMailer
     mandrill_mail template: 'welcome-to-instrumentchamp-be-a-music-player',
                   subject: 'Welcome to InstrumentChamp - Be a music player',
                   to: {email: user.email, name: user.username},
-                  vars: { 'USERNAME' => user.username }
+                  vars: { 'USERNAME' => user.username,
+                           'AUTH_TOKEN' => user.auth_token }
   end
 
   def purchased_song_mandrill_template(user_purchased_song, payment)
