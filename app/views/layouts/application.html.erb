@@ -53,6 +53,19 @@
 								    <li class="divider visible-xs"></li>
 								    <li class="visible-xs"><%= link_to "Sign out", logout_path %></li>
 
+										<li class="margin-right">
+                      <%= link_to cart_path(current_user.current_cart), {class: "btn btn-info"} do %>
+                        <%= content_tag :i, nil, class: "glyphicon glyphicon-shopping-cart" %>
+                        <%= current_user.current_cart.line_items.count %>
+                      <% end %>
+                    </li>
+                    <li class="margin-right">
+                      <%= link_to "#", {class: "btn btn-danger"} do %>
+                        <%= content_tag :i, nil, class: "glyphicon glyphicon-heart" %>
+                        0
+                      <% end %>
+                    </li>
+
 	                  <li class="profile-section hidden-xs">
 	                  	<div class="dropdown">
 											  <a class="btn dropdown-toggle clearfix" data-toggle="dropdown">
@@ -73,9 +86,7 @@
 											  </ul>
 											</div>
 	                  </li>
-	                  <li>
-	                    <%= link_to "Cart", cart_path(current_user.current_cart), {class: "btn btn-primary"} %>
-	                  </li>
+
 	                  <li>
 	                  	<% if !current_user.installed_desktop_app? %>
 												<%= link_to "Download", is_mobile? ? mobile_landing_path : apps_path, {class: "btn btn-primary btn-lg download-modal-btn btn-huge-header"} %>

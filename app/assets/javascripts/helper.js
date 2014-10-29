@@ -40,6 +40,8 @@ ready = function() {
     	$('.top_scores_songs').show();
     }
   });
+
+  $("[data-toggle='tooltip']").tooltip();
 };
 
 $(document).ready(ready);

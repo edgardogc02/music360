@@ -1,4 +1,54 @@
-/* =SONGS
----------------------------- */
+.truncate {
+  width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
 
+.song_actions {
+  .btn-sm {
+    padding: 2px 4px;
+  }
+}
 
+.song_edit {
+  position: absolute;
+  top: 0px;
+  left: 15px;
+}
+
+.btn-sm.btn-big-icon {
+  padding: 3px 6px;
+  i {
+    font-size: 14px;
+  }
+}
+
+.btn-lg.btn-big-icon {
+  padding: 6px 10px;
+  i {
+    font-size: 20px;
+  }
+}
+
+.song_cost {
+  position: relative;
+  top: 5px;
+  left: 10px;
+}
+
+.navbar.navbar-custom {
+  .btn.btn-danger, .btn.btn-info {
+    color: #FFF;
+  }
+
+  .btn.btn-info:hover {
+    background-color: #39b3d7;
+    border-color: #269abc;
+  }
+
+  .btn.btn-danger:hover {
+    background-color: #d2322d;
+    border-color: #ac2925;
+  }
+}

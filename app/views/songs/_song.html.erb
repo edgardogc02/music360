@@ -9,17 +9,33 @@
 		<%= image_tag song.cover_url, class: "song-cover" %>
 	<% end %>
 
-	<div class="actions-content">
-		<div class="spacer-sm">
-			<div class="link_header"><%= link_to song.title, artist_song_path(song.artist, song), class: "song-title" %></div>
-			<div class="link_subheader"><%= link_to song.artist.title, artist_path(song.artist), class: "song-artist" %></div>
+  <div class="actions-content">
+		<div class="spacer-md">
+			<div class="link_header truncate primary-text-color" data-toggle="tooltip" title="<%= song.title %>"><%= link_to song.title, artist_song_path(song.artist, song), class: "song-title" %></div>
+			<div class="link_subheader truncate primary-text-color" data-toggle="tooltip" title="<%= song.artist.title %>"><%= link_to song.artist.title, artist_path(song.artist), class: "song-artist" %></div>
 		</div>
-		<div>
-		  <%= song.play_button %>
-		  <%= song.challenge_button(params, "btn-sm") %>
-		  <%= song.edit_button %>
-		  <%= song.buy_button_redirect %>
-		  <%= song.add_to_cart_button %>
+		<% if song.display_buy_button? %>
+      <div class="song_actions text-center">
+        <ul class="list-inline">
+          <li>
+            <%= song.add_to_cart_button("btn-sm") %>
+          </li>
+          <li class="no-padding">
+            <%= song.show_cost %>
+          </li>
+          <li>
+            <%= song.wish_button("btn-sm") %>
+          </li>
+        </ul>
+      </div>
+		<% else %>
+      <div class="song_actions">
+  		  <%= song.play_button %>
+  		  <%= song.challenge_button(params, "btn-sm") %>
+  	  </div>
+    <% end %>
+	  <div class="song_edit">
+	    <%= song.edit_button %>
 	  </div>
   </div>
 </div>

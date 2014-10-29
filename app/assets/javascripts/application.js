@@ -22,6 +22,7 @@
 //= require bootstrap/scrollspy
 //= require bootstrap/tab
 //= require bootstrap/dropdown
+//= require bootstrap/tooltip
 //= require lib/bootstrap-tour.min
 //= jquery.bootstrap.wizard.min
 

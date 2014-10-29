@@ -42,25 +42,45 @@ class SongDecorator < Draper::Decorator
 
   def edit_button
     if h.signed_in? and h.current_user.admin?
-      h.action_button(h.edit_admin_song_path(model), 'Edit')
+      h.link_to h.edit_admin_song_path(model), class: 'btn btn-sm btn-default' do
+        h.content_tag :i, nil, class: "glyphicon glyphicon-pencil"
+      end
     end
   end
 
   def buy_button(size="")
     if display_buy_button?
-      h.link_to 'Buy', "#", {class: "btn btn-primary " + size, id: "buy_song_#{model.id}", data: {toggle: "modal", target: "#checkout_modal"}}
+      h.link_to "#", {class: "btn btn-info btn-big-icon " + size, id: "buy_song_#{model.id}", data: {toggle: "modal", target: "#checkout_modal"}} do
+        h.content_tag :i, nil, class: "glyphicon glyphicon-shopping-cart"
+      end
     end
   end
 
-  def add_to_cart_button
+  def wish_button(size="")
     if display_buy_button?
-      h.button_to "Add to cart", h.line_items_path(song_id: model), {class: "btn btn-primary btn-sm"}
+      h.link_to "#", {class: "btn btn-danger btn-big-icon " + size, id: "buy_song_#{model.id}", data: {toggle: "modal", target: "#checkout_modal"}} do
+        h.content_tag :i, nil, class: "glyphicon glyphicon-heart"
+      end
+    end
+  end
+
+  def add_to_cart_button(size="")
+    if display_buy_button?
+      h.button_to h.line_items_path(song_id: model), {class: "btn btn-info btn-big-icon " + size} do
+        h.content_tag :i, nil, class: "glyphicon glyphicon-shopping-cart"
+      end
     end
   end
 
   def buy_button_redirect
     if display_buy_button?
       h.link_to 'Buy', h.song_path(id: model, buy: true), {class: "btn btn-primary btn-sm"}
+    end
+  end
+
+  def show_cost
+    if display_buy_button?
+      "$" + model.cost.to_s
     end
   end
 
