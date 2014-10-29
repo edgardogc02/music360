@@ -65,7 +65,9 @@ class User < ActiveRecord::Base
 
   has_many :song_scores
 
-  has_one :cart
+  has_one :cart, dependent: :destroy
+  has_one :wishlist, dependent: :destroy
+  has_many :wishlist_items, through: :wishlist, dependent: :destroy
 
   belongs_to :instrument
 
@@ -111,6 +113,10 @@ class User < ActiveRecord::Base
 
   def current_cart
     cart || create_cart
+  end
+
+  def current_wishlist
+    wishlist || create_wishlist
   end
 
   # TODO: Refactor me

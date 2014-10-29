@@ -1,0 +1,9 @@
+<%= render 'shared/header_page', title: 'Wishlist' %>
+
+<% @wishlist.wishlist_items.each do |wishlist_item| %>
+  <p>
+    <%= image_tag wishlist_item.song.cover_url, class: "avatar-sm" %>
+    <%= wishlist_item.song.title %>
+    <%= wishlist_item.song.decorate.add_to_cart_button("btn-sm") %>
+  </p>
+<% end %>

@@ -1,6 +1,6 @@
-class CartsController < InheritedResources::Base
+class CartsController < ApplicationController
 
-  before_action :authorize, except: [:show]
+  before_action :authorize
 
   def show
     @cart = current_user.current_cart

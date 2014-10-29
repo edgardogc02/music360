@@ -60,11 +60,9 @@ class SongDecorator < Draper::Decorator
     end
   end
 
-  def wish_button(size="")
+  def add_to_wishlist_button(size="")
     if display_buy_button?
-      h.link_to "#", {class: "btn btn-danger btn-big-icon " + size, id: "buy_song_#{model.id}", data: {toggle: "modal", target: "#checkout_modal"}} do
-        h.content_tag :i, nil, class: "glyphicon glyphicon-heart"
-      end
+      h.render 'wishlist_items/new', {song: model, size: size}
     end
   end
 

@@ -1,15 +1,13 @@
-class LineItemsController < ApplicationController
+class WishlistItemsController < ApplicationController
 
   before_action :authorize
 
   def create
-    cart = current_user.current_cart
-    @line_item = cart.add_song(params[:song_id]) if params[:song_id]
-    @line_item = cart.add_premium_plan(params[:premium_plan_id]) if params[:premium_plan_id]
+    @wishlist_item = current_user.current_wishlist.wishlist_items.build(wishlist_item_params)
 
     respond_to do |format|
-      if @line_item.save
-        format.html { redirect_to @line_item.cart, notice: "The item was added to your cart" }
+      if @wishlist_item.save
+        format.html { redirect_to @wishlist_item.wishlist, notice: "The song was added to your wishlist" }
         format.js
       else
         format.html do
@@ -25,6 +23,12 @@ class LineItemsController < ApplicationController
     line_item = LineItem.find(params[:id])
     line_item.destroy
     redirect_to current_user.current_cart, notice: "The item was successfully removed from your cart"
+  end
+
+  private
+
+  def wishlist_item_params
+    params.require(:wishlist_item).permit(:song_id)
   end
 
 end
