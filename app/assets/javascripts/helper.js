@@ -42,6 +42,19 @@ ready = function() {
   });
 
   $("[data-toggle='tooltip']").tooltip();
+  //$("[data-toggle='popover']").popover();
+  $("[data-toggle='popover']").click(function(e){
+    e.preventDefault();
+  });
+
+  $("[data-toggle='popover']").popover({
+    html : true,
+    content: function() {
+      return $('.cart_popover_content').html();
+    }
+  }).on("show.bs.popover", function(){
+    $(this).data("bs.popover").tip().css("width", "400");
+  });
 };
 
 $(document).ready(ready);

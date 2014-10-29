@@ -1,0 +1,26 @@
+<% unless cart.line_items.empty? %>
+  <div class="shopping-cart-popover">
+    <% cart.line_items.each do |line_item| %>
+      <ul class="list-inline">
+        <li><%= image_tag line_item.buyable.cover_url, class: "avatar-xs" %></li>
+        <li class="title primary-text-color"><%= link_to line_item.buyable.title, line_item.buyable %></li>
+        <li><%= number_to_currency(line_item.buyable.cost) %></li>
+      </ul>
+      <hr />
+    <% end %>
+  </div>
+  <div class="text-right">
+    <%= link_to cart_path(current_user.current_cart), {class: "btn btn-default btn-sm"} do %>
+      View cart
+    <% end %>
+    <%= link_to cart_path(current_user.current_cart), {class: "btn btn-info btn-sm"} do %>
+      Checkout
+    <% end %>
+  </div>
+<% else %>
+
+  <p>
+    Your shooping cart is empty.
+  </p>
+
+<% end %>
