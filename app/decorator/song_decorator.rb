@@ -52,6 +52,12 @@ class SongDecorator < Draper::Decorator
     end
   end
 
+  def add_to_cart_button
+    if display_buy_button?
+      h.button_to "Add to cart", h.line_items_path(song_id: model), {class: "btn btn-primary btn-sm"}
+    end
+  end
+
   def buy_button_redirect
     if display_buy_button?
       h.link_to 'Buy', h.song_path(id: model, buy: true), {class: "btn btn-primary btn-sm"}

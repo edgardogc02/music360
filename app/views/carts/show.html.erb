@@ -1,0 +1,33 @@
+<%= render 'shared/header_page', title: 'Cart' %>
+
+<% unless @cart.line_items.empty? %>
+
+  <% @cart.line_items.each do |line_item| %>
+
+    <p>
+      <div>
+        <%= line_item.quantity %>
+        <%= line_item.song.title %>
+        <%= number_to_currency(line_item.song.cost) %>
+        <%= link_to "Remove", line_item_path(line_item), {method: :delete, class: 'btn btn-danger'} %>
+      </div>
+    </p>
+
+  <% end %>
+
+  <p>
+    Total: <%= number_to_currency(@cart.total_price) %>
+  </p>
+
+  <p>
+    <%= link_to "Continue shooping", songs_path, {class: "btn btn-default"} %>
+    <%= link_to "Checkout", new_checkout_path, {class: "btn btn-primary"} %>
+  </p>
+
+<% else %>
+
+  <div class="alert alert-warning">
+    Your shooping cart is empty.
+  </div>
+
+<% end %>

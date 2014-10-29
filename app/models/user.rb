@@ -65,6 +65,8 @@ class User < ActiveRecord::Base
 
   has_many :song_scores
 
+  has_one :cart
+
   belongs_to :instrument
 
   has_many :activity_likes
@@ -106,6 +108,10 @@ class User < ActiveRecord::Base
 	def self.lars_willner
 	  User.find_by_username("Lars Willner")
 	end
+
+  def current_cart
+    cart || create_cart
+  end
 
   # TODO: Refactor me
 	def level

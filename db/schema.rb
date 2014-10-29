@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140924084425) do
+ActiveRecord::Schema.define(version: 20141027124658) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -82,6 +82,12 @@ ActiveRecord::Schema.define(version: 20140924084425) do
   end
 
   add_index "artists", ["slug"], name: "index_artists_on_slug", unique: true, using: :btree
+
+  create_table "carts", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+  end
 
   create_table "categories", force: true do |t|
     t.string   "title"
@@ -178,6 +184,14 @@ ActiveRecord::Schema.define(version: 20140924084425) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "number"
+  end
+
+  create_table "line_items", force: true do |t|
+    t.integer  "song_id"
+    t.integer  "cart_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "quantity",   default: 1
   end
 
   create_table "payment_methods", force: true do |t|

@@ -74,6 +74,9 @@
 											</div>
 	                  </li>
 	                  <li>
+	                    <%= link_to "Cart", cart_path(current_user.current_cart), {class: "btn btn-primary"} %>
+	                  </li>
+	                  <li>
 	                  	<% if !current_user.installed_desktop_app? %>
 												<%= link_to "Download", is_mobile? ? mobile_landing_path : apps_path, {class: "btn btn-primary btn-lg download-modal-btn btn-huge-header"} %>
 	                  	<% else %>

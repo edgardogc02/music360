@@ -1,5 +1,9 @@
 InstrumentchampPrototype::Application.routes.draw do
 
+  resources :line_items
+
+  resources :carts
+
   ActiveAdmin.routes(self)
   root to: "sessions#new"
 
@@ -145,6 +149,10 @@ InstrumentchampPrototype::Application.routes.draw do
     get 'songs', on: :member
     get 'groups', on: :member
   end
+
+  resources :line_items
+  resources :carts
+  resources :checkouts
 
   match '/auth/facebook', via: [:get, :post], as: :facebook_signin
   match 'auth/:provider/callback' => "user_omniauth_credentials#create", via: [:get, :post]
