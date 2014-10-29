@@ -31,7 +31,9 @@ class SongsController < ApplicationController
 		@scores = @song.top_scores
 		@payment_method = PaymentMethod.credit_card
 
-    @user_purchased_song_form = UserPurchasedSongForm.new(current_user.user_purchased_songs.build(song: @song))
+    if current_user
+      @user_purchased_song_form = UserPurchasedSongForm.new(current_user.user_purchased_songs.build(song: @song))
+    end
 
     render layout: "detail"
 	end
