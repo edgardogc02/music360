@@ -70,7 +70,7 @@ class SongDecorator < Draper::Decorator
 
   def add_to_cart_button(size="")
     if display_buy_button?
-      h.button_to h.line_items_path(song_id: model), {class: "btn btn-info btn-big-icon " + size} do
+      h.button_to h.line_items_path(song_id: model), {class: "btn btn-info btn-big-icon " + size, remote: true} do
         h.content_tag :i, nil, class: "glyphicon glyphicon-shopping-cart"
       end
     end

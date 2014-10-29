@@ -56,7 +56,9 @@
 										<li class="margin-right">
                       <%= link_to cart_path(current_user.current_cart), {class: "btn btn-info"} do %>
                         <%= content_tag :i, nil, class: "glyphicon glyphicon-shopping-cart" %>
-                        <%= current_user.current_cart.line_items.count %>
+                        <span id="cart_count">
+                          <%= current_user.current_cart.line_items.count %>
+                        </span>
                       <% end %>
                     </li>
                     <li class="margin-right">
@@ -140,6 +142,20 @@
               <main role="main">
                 <%= content_for?(:content) ? yield(:content) : yield %>
               </main>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="add_to_shooping_cart_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content spacer">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+              <h4 class="modal-title" id="myModalLabel">Shooping Cart</h4>
+            </div>
+            <div class="modal-body">
+              The item was added to your cart
             </div>
           </div>
         </div>
