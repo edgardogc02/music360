@@ -68,9 +68,9 @@
                     </div>
 
                     <li class="margin-right">
-                      <%= link_to "#", {class: "btn btn-danger"} do %>
+                      <%= link_to wishlist_path(current_user.current_wishlist), {class: "btn btn-danger"} do %>
                         <%= content_tag :i, nil, class: "glyphicon glyphicon-heart" %>
-                        0
+                        <%= current_user.current_wishlist.wishlist_items.count %>
                       <% end %>
                     </li>
 
