@@ -10,8 +10,8 @@
 	<% end %>
 
 	<div class="actions-content">
-		<div class="spacer-sm">
-			<div class="link_header"><%= link_to user.username, person_path(user) %></div>
+		<div class="spacer-md">
+			<div class="link_header truncate primary-text-color" data-toggle="tooltip" title="<%= user.username %>"><%= link_to user.username, person_path(user) %></div>
 		</div>
 
 		<%= user.display_follow_button %>
@@ -19,4 +19,3 @@
 		<%= user.invite_to_group(params[:group_id]) %>
 	</div>
 </div>
-
