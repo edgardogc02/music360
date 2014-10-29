@@ -54,13 +54,19 @@
 								    <li class="visible-xs"><%= link_to "Sign out", logout_path %></li>
 
 										<li class="margin-right">
-                      <%= link_to cart_path(current_user.current_cart), {class: "btn btn-info"} do %>
+                      <%= link_to cart_path(current_user.current_cart), {class: "btn btn-info", title: "Shopping Cart", data: {toggle: "popover", placement: "bottom", html: "true"}} do %>
                         <%= content_tag :i, nil, class: "glyphicon glyphicon-shopping-cart" %>
                         <span id="cart_count">
                           <%= current_user.current_cart.line_items.count %>
                         </span>
                       <% end %>
+                      <!--<button type="button" class="btn btn-lg btn-danger" data-toggle="popover" title="Shopping Cart" data-placement="bottom" data-html="true">Cart</button>-->
                     </li>
+
+                    <div class="cart_popover_content hide">
+                      <%= render 'carts/popover_cart', cart: current_user.current_cart %>
+                    </div>
+
                     <li class="margin-right">
                       <%= link_to "#", {class: "btn btn-danger"} do %>
                         <%= content_tag :i, nil, class: "glyphicon glyphicon-heart" %>

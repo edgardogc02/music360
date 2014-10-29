@@ -15,16 +15,16 @@
 			<div class="link_subheader truncate primary-text-color" data-toggle="tooltip" title="<%= song.artist.title %>"><%= link_to song.artist.title, artist_path(song.artist), class: "song-artist" %></div>
 		</div>
 		<% if song.display_buy_button? %>
-      <div class="song_actions text-center">
+      <div class="song_actions">
         <ul class="list-inline">
-          <li class="left">
+          <li class="no-padding">
             <%= song.add_to_cart_button("btn-sm") %>
           </li>
           <li class="no-padding">
-            <%= song.show_cost %>
-          </li>
-          <li class="right">
             <%= song.add_to_wishlist_button("btn-sm") %>
+          </li>
+          <li class="">
+            <%= song.show_cost %>
           </li>
         </ul>
       </div>
