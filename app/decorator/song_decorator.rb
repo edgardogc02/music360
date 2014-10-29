@@ -69,8 +69,8 @@ class SongDecorator < Draper::Decorator
   end
 
   def add_to_cart_button(size="")
-    if display_buy_button?
-      h.button_to h.line_items_path(song_id: model), {class: "btn btn-info btn-big-icon " + size, remote: true} do
+    if display_buy_button? and !h.current_user.current_cart.songs.include?(model)
+      h.button_to h.line_items_path(song_id: model), {id: "add_to_cart_#{model.id}", class: "btn btn-info btn-big-icon " + size, remote: true} do
         h.content_tag :i, nil, class: "glyphicon glyphicon-shopping-cart"
       end
     end
@@ -84,7 +84,7 @@ class SongDecorator < Draper::Decorator
 
   def show_cost
     if display_buy_button?
-      "$" + model.cost.to_s
+      h.number_to_currency(model.cost)
     end
   end
 

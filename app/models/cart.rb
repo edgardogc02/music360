@@ -2,6 +2,8 @@ class Cart < ActiveRecord::Base
 
   belongs_to :user
   has_many :line_items, dependent: :destroy
+  has_many :songs, through: :line_items, source: :buyable, source_type: 'Song'
+  has_many :premium_plans, through: :line_items, source: :buyable, source_type: 'PremiumPlan'
 
   def add_song(song_id)
     add_buyable(Song.find(song_id))
