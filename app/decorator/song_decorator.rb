@@ -61,7 +61,7 @@ class SongDecorator < Draper::Decorator
   end
 
   def add_to_wishlist_button(size="")
-    if display_buy_button?
+    if display_buy_button? and !h.current_user.current_wishlist.songs.include?(model)
       h.render 'wishlist_items/new', {song: model, size: size}
     end
   end

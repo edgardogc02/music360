@@ -20,9 +20,9 @@ class WishlistItemsController < ApplicationController
   end
 
   def destroy
-    line_item = LineItem.find(params[:id])
-    line_item.destroy
-    redirect_to current_user.current_cart, notice: "The item was successfully removed from your cart"
+    wishlist_item = WishlistItem.find(params[:id])
+    wishlist_item.destroy
+    redirect_to current_user.current_wishlist, notice: "The item was successfully removed from your wishlist"
   end
 
   private
