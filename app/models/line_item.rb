@@ -1,12 +1,10 @@
 class LineItem < ActiveRecord::Base
 
-  belongs_to :song
   belongs_to :cart
-
-  validates :song_id, presence: true
+  belongs_to :buyable, polymorphic: true
 
   def total_price
-    quantity * song.cost
+    buyable.cost
   end
 
 end

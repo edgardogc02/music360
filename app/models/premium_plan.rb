@@ -5,4 +5,12 @@ class PremiumPlan < ActiveRecord::Base
   scope :default_order, -> { order('display_position ASC') }
   scope :one_month_plan, -> { where(duration_in_months: 1).first }
 
+  def title
+    name
+  end
+
+  def cost
+    price
+  end
+
 end

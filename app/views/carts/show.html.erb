@@ -6,9 +6,8 @@
 
     <p>
       <div>
-        <%= line_item.quantity %>
-        <%= line_item.song.title %>
-        <%= number_to_currency(line_item.song.cost) %>
+        <%= line_item.buyable.title %>
+        <%= number_to_currency(line_item.buyable.cost) %>
         <%= link_to "Remove", line_item_path(line_item), {method: :delete, class: 'btn btn-danger'} %>
       </div>
     </p>
