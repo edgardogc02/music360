@@ -7,7 +7,9 @@ class SongDecorator < Draper::Decorator
   end
 
   def display_play_button?
-    !paid? or ( h.signed_in? and h.current_user.purchased_songs.include?(self) ) or ( h.current_user.premium? and model.premium? )
+    if h.signed_in?
+      !paid? or ( h.signed_in? and h.current_user.purchased_songs.include?(self) ) or ( h.current_user.premium? and model.premium? )
+    end
   end
 
   def display_buy_button?
@@ -19,7 +21,9 @@ class SongDecorator < Draper::Decorator
   end
 
   def display_challenge_button?
-    !paid? or ( h.signed_in? and h.current_user.purchased_songs.include?(self) ) or ( h.current_user.premium? and model.premium? )
+    if h.signed_in?
+      !paid? or ( h.signed_in? and h.current_user.purchased_songs.include?(self) ) or ( h.current_user.premium? and model.premium? )
+    end
   end
 
   def play_button
