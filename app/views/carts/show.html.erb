@@ -1,27 +1,57 @@
-<%= render 'shared/header_page', title: 'Cart' %>
+<%= render 'shared/header_page', title: 'Shopping cart and Checkout' %>
 
 <% unless @cart.line_items.empty? %>
 
-  <% @cart.line_items.each do |line_item| %>
+  <div class="row">
+    <div class="col-lg-6">
+      <h2>Shopping cart</h2>
 
-    <p>
-      <div>
-        <%= line_item.buyable.title %>
-        <%= number_to_currency(line_item.buyable.cost) %>
-        <%= link_to "Remove", line_item_path(line_item), {method: :delete, class: 'btn btn-danger'} %>
+      <table width="100%" class="shopping-cart-datagrid">
+        <tr class="head">
+          <td>Product description</td>
+          <td>Price</td>
+          <td></td>
+        </tr>
+        <% @cart.line_items.each do |line_item| %>
+          <tr>
+            <td>
+              <% if line_item.has_song? %>
+                <%= image_tag line_item.buyable.cover_url, class: "avatar-sm" %>
+                <%= link_to line_item.buyable.title, line_item.buyable %>
+              <% else %>
+                <%= line_item.buyable.title %> Suscription
+              <% end %>
+            </td>
+            <td><%= number_to_currency(line_item.buyable.cost) %></td>
+            <td align="right">
+              <%= link_to line_item_path(line_item), {method: :delete, class: 'btn btn-sm btn-default'} do %>
+                <i class="glyphicon glyphicon-trash"></i>
+              <% end %>
+            </td>
+          </tr>
+        <% end %>
+      </table>
+
+      <br /><br />
+
+      <div class="text-right">
+        <p>
+          <b>Total &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <%= number_to_currency(@cart.total_price) %></b>
+        </p>
+
+        <!--
+        <p>
+          <%= link_to "Continue shooping", songs_path, {class: "btn btn-default"} %>
+          <%= link_to "Checkout", new_checkout_path, {class: "btn btn-primary"} %>
+        </p>
+        -->
       </div>
-    </p>
 
-  <% end %>
-
-  <p>
-    Total: <%= number_to_currency(@cart.total_price) %>
-  </p>
-
-  <p>
-    <%= link_to "Continue shooping", songs_path, {class: "btn btn-default"} %>
-    <%= link_to "Checkout", new_checkout_path, {class: "btn btn-primary"} %>
-  </p>
+    </div>
+    <div class="col-lg-6">
+      <h2>Checkout</h2>
+    </div>
+  </div>
 
 <% else %>
 

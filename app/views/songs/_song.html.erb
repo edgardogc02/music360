@@ -17,13 +17,13 @@
 		<% if song.display_buy_button? %>
       <div class="song_actions text-center">
         <ul class="list-inline">
-          <li>
+          <li class="left">
             <%= song.add_to_cart_button("btn-sm") %>
           </li>
           <li class="no-padding">
             <%= song.show_cost %>
           </li>
-          <li>
+          <li class="right">
             <%= song.wish_button("btn-sm") %>
           </li>
         </ul>

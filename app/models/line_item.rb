@@ -7,4 +7,12 @@ class LineItem < ActiveRecord::Base
     buyable.cost
   end
 
+  def has_song?
+    buyable.is_a?(Song)
+  end
+
+  def has_premium_plan?
+    buyable.is_a?(PremiumPlan)
+  end
+
 end

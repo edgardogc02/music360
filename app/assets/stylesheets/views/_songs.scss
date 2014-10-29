@@ -9,6 +9,21 @@
   .btn-sm {
     padding: 2px 4px;
   }
+
+  .list-inline {
+    margin-bottom: 0px;
+    margin-left: 0px;
+
+    .right {
+      padding-right: 0px;
+      padding-left: 8px;
+    }
+
+    .left {
+      padding-left: 0px;
+      padding-right: 8px;
+    }
+  }
 }
 
 .song_edit {
@@ -18,7 +33,7 @@
 }
 
 .btn-sm.btn-big-icon {
-  padding: 3px 6px;
+  padding: 2px 6px;
   i {
     font-size: 14px;
   }
