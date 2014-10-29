@@ -115,7 +115,7 @@ class SongDecorator < Draper::Decorator
   end
 
   def challenge_class_attr
-    'btn btn-primary activation2 activation2_challenge_songs'
+    'btn btn-primary activation2 activation2_challenge_songs action_button'
   end
 
   def display_rating

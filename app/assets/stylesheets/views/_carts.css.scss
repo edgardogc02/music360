@@ -1,0 +1,20 @@
+.shopping-cart-popover {
+  .title {
+    width: 160px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding: 5px 0px 0px 10px;
+  }
+  .items {
+    padding: 10px 0px;
+    border-bottom: 1px solid #DDD;
+  }
+  .price {
+    padding-top: 5px;
+  }
+
+  .items:last-child {
+    margin-bottom: 10px;
+  }
+}
