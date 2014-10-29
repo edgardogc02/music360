@@ -107,3 +107,45 @@
     width: 85px;
   }
 }
+
+.shopping-cart-datagrid {
+  .head {
+    color: $brand-primary;
+    font-size: 14px;
+
+    td {
+      padding-bottom: 15px;
+      border-bottom: 0px;
+    }
+  }
+  td {
+    padding: 8px 5px;
+    text-align: center;
+    border-bottom: 1px solid #EFEFEF;
+  }
+  .odd {
+    td {
+      background: #ECF0F0;
+    }
+  }
+  .avatar-sm {
+    margin-right: 5px;
+  }
+  td:first-child
+  {
+    padding-left: 0px;
+    text-align: left;
+  }
+  td:last-child
+  {
+    padding-right: 0px;
+    text-align: right;
+  }
+  td.thumb
+  {
+    width: 50px;
+  }
+  .rating-value {
+    width: 85px;
+  }
+}
