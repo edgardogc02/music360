@@ -16,7 +16,7 @@
   </div>
   <div class="text-right">
     <p>
-      <b>Total: &nbsp;&nbsp;&nbsp; <%= number_to_currency(cart.total_price) %></b>
+      <b>Total: &nbsp;&nbsp;&nbsp; <%= number_to_currency(cart.subtotal) %></b>
     </p>
     <%= link_to cart_path(current_user.current_cart), {class: "btn btn-default"} do %>
       View cart

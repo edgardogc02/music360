@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141029140621) do
+ActiveRecord::Schema.define(version: 20141030141159) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -87,6 +87,7 @@ ActiveRecord::Schema.define(version: 20141029140621) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.integer  "discount_code_id"
   end
 
   create_table "categories", force: true do |t|
@@ -118,6 +119,15 @@ ActiveRecord::Schema.define(version: 20141029140621) do
     t.integer  "group_id"
     t.datetime "end_at"
     t.boolean  "open"
+  end
+
+  create_table "discount_codes", force: true do |t|
+    t.string   "code"
+    t.datetime "valid_from"
+    t.datetime "valid_to"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.float    "discount_price"
   end
 
   create_table "friendly_id_slugs", force: true do |t|

@@ -34,17 +34,30 @@
 
       <br /><br />
 
-      <div class="text-right">
-        <p>
-          <b>Total &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <%= number_to_currency(@cart.total_price) %></b>
-        </p>
+      <div>
+        <%= simple_form_for @cart, html: {class: "form-inline"} do |f| %>
+          Discount code
+          <%= f.input :discount_code_code, label: false %>
+          <%= f.submit "ok", {class: 'btn btn-primary'} %>
+        <% end %>
+      </div>
 
-        <!--
-        <p>
-          <%= link_to "Continue shooping", songs_path, {class: "btn btn-default"} %>
-          <%= link_to "Checkout", new_checkout_path, {class: "btn btn-primary"} %>
-        </p>
-        -->
+      <div class="text-right">
+        <div>
+          Subtotal &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <%= number_to_currency(@cart.subtotal) %>
+        </div>
+        <% if @cart.discount_code %>
+          <div>
+            Discount &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -<%= number_to_currency(@cart.discount_code.discount_price) %>
+          </div>
+        <% end %>
+        <div>
+          Taxes &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <%= number_to_currency(@cart.taxes) %>
+        </div>
+        <br />
+        <div>
+          <b>Grand Total &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <%= number_to_currency(@cart.total_price) %></b>
+        </div>
       </div>
 
     </div>

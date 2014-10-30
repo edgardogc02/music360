@@ -34,6 +34,11 @@ ActiveAdmin.register_page "Dashboard" do
           link_to Level.count, admin_levels_path
         end
       end
+      column do
+        panel "DiscountCodes" do
+          link_to DiscountCode.count, admin_discount_codes_path
+        end
+      end
     end
   end
 end
