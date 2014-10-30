@@ -4,6 +4,7 @@ class CartsController < ApplicationController
 
   def show
     @cart = current_user.current_cart
+    @payment_form = PaymentForm.new(@cart)
   end
 
   def update

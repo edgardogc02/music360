@@ -2,6 +2,7 @@ class LineItem < ActiveRecord::Base
 
   belongs_to :cart
   belongs_to :buyable, polymorphic: true
+  belongs_to :payment
 
   def total_price
     buyable.cost

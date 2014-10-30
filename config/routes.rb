@@ -151,6 +151,7 @@ InstrumentchampPrototype::Application.routes.draw do
   resources :checkouts
   resources :wishlists
   resources :wishlist_items
+  resources :payments
 
   match '/auth/facebook', via: [:get, :post], as: :facebook_signin
   match 'auth/:provider/callback' => "user_omniauth_credentials#create", via: [:get, :post]

@@ -1,7 +1,7 @@
 class Cart < ActiveRecord::Base
 
   belongs_to :user
-  has_many :line_items, dependent: :destroy
+  has_many :line_items
   has_many :songs, through: :line_items, source: :buyable, source_type: 'Song'
   has_many :premium_plans, through: :line_items, source: :buyable, source_type: 'PremiumPlan'
   belongs_to :discount_code
@@ -32,6 +32,13 @@ class Cart < ActiveRecord::Base
 
   def taxes
     2
+  end
+
+  def assign_payment(payment)
+    line_items.each do |line_item|
+      line_item.payment = payment
+      line_item.save
+    end
   end
 
   private

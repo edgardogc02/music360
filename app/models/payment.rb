@@ -5,5 +5,6 @@ class Payment < ActiveRecord::Base
 
   has_many :user_premium_subscriptions
   has_many :user_purchased_songs
+  has_many :line_items
 
 end

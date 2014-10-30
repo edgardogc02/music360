@@ -63,8 +63,58 @@
     </div>
     <div class="col-lg-6">
       <h2>Checkout</h2>
+
+      <%= simple_form_for @payment_form, url: payments_path, html: {id: "user_purchase_form", class: "checkout-form"} do |f| %>
+        <div id="credit_card_payment_form_fields">
+            <div class="form-group string optional">
+              <label class="control-label">Accepted Cards</label>
+              <div class="wrap-content">
+                <%= image_tag(asset_path('credit_cards.png')) %>
+              </div>
+            </div>
+
+            <%= f.input :paymill_token, input_html: {id: "paymill_token"}, as: :hidden %>
+            <%= f.input :card_holdername, input_html: {id: "credit_card_holdername", required: "required"} %>
+            <%= f.input :card_number, input_html: {id: "credit_card_number", required: "required"} %>
+            <%= f.input :card_cvc, input_html: {id: "credit_card_cvc", required: "required"} %>
+            <%= f.input :card_expiry_date, as: :date, discard_day: true, order: [:month, :year], use_month_numbers: true, start_year: Date.today.year, end_year: Date.today.year + 15, prompt: ['Month', 'Year'], input_html: {class: "credit_card_expiry_date"} %>
+
+          <div id="paymill_error">
+            <noscript>JavaScript is not enabled and is required for this form. First enable it in your web browser settings.</noscript>
+          </div>
+
+          <div class="payment-errors alert alert-warning" style="display:none"></div>
+        </div>
+
+        <%= f.input :payment_method_id, input_html: { value: PaymentMethod::CREDIT_CARD_ID }, as: :hidden %>
+        <%= f.input :amount, input_html: { value: @cart.total_price, id: "amount" }, as: :hidden %>
+        <%= f.input :currency, input_html: { value: "EUR", id: "currency" }, as: :hidden %>
+
+        <div>
+          <%= f.button :submit, "Buy Now", {class: "btn btn-primary", id: "submit_purchase_form"} %>
+        </div>
+        <br />
+        <div>
+          <%= image_tag(asset_path('secure_form.png')) %>
+        </div>
+        <div class="text-center">
+          <div class="spacer-sm">This payment will be billed to the card you specified. The name on the statement will be instrumentchamp.com</div>
+          Submit a question to our <a href="mailto: support@instrumentchamp.com">support team</a>.
+        </div>
+      <% end %>
     </div>
   </div>
+
+  <%= content_for(:js_scripts) do %>
+    <script type="text/javascript">
+      var PAYMILL_PUBLIC_KEY = "<%= PAYMILL_PUBLIC_KEY %>";
+
+      $(document).ready(function() {
+        submit_credit_card_payment();
+      });
+    </script>
+    <script type="text/javascript" src="https://bridge.paymill.com/"></script>
+  <% end %>
 
 <% else %>
 
