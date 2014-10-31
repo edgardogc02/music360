@@ -12,8 +12,8 @@ class LineItem < ActiveRecord::Base
     buyable.is_a?(Song)
   end
 
-  def has_premium_plan?
-    buyable.is_a?(PremiumPlan)
+  def has_premium_plan_as_gift?
+    buyable.is_a?(PremiumPlanAsGift)
   end
 
 end

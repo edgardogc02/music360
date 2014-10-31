@@ -33,4 +33,11 @@ namespace :users do
     RedeemCodeType.create!(name: 'gift')
   end
 
+  task :create_premium_plan_as_gifts => :environment do
+    PremiumPlanAsGift.delete_all
+    PremiumPlanAsGift.create!(price: 5.99, name: "1 Month Subscription", display_position: 1, duration_in_months: 1, currency: "EUR")
+    PremiumPlanAsGift.create!(price: 15.99, name: "3 Months Subscription", display_position: 2, duration_in_months: 3, currency: "EUR")
+    PremiumPlanAsGift.create!(price: 59.99, name: "12 Months Subscription", display_position: 3, duration_in_months: 12, currency: "EUR")
+  end
+
 end

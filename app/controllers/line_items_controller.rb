@@ -5,7 +5,7 @@ class LineItemsController < ApplicationController
   def create
     cart = current_user.current_cart
     @line_item = cart.add_song(params[:song_id]) if params[:song_id]
-    @line_item = cart.add_premium_plan(params[:premium_plan_id]) if params[:premium_plan_id]
+    @line_item = cart.add_premium_plan_as_gift(params[:premium_plan_as_gift_id]) if params[:premium_plan_as_gift_id]
 
     respond_to do |format|
       if @line_item.save

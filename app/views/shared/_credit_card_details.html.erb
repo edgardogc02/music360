@@ -7,7 +7,7 @@
 <% if form_object.respond_to?(:user_purchased_song) %>
 	<p>
 		<b>InstrumentChamp Premium Song:</b><br />
-		<%= number_to_currency(form_object.song.cost) %> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><%= form_object.song.title %></b> - Written by: <%= form_object.song.writer %>
+		<%= number_to_euro(form_object.song.cost) %> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <b><%= form_object.song.title %></b> - Written by: <%= form_object.song.writer %>
 	</p>
 <% end %>
 

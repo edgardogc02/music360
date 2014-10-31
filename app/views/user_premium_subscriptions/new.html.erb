@@ -39,11 +39,6 @@
 			          <div>
 			            <%= link_to "Get Premium", new_user_premium_subscription_path(premium_plan_id: premium_plan.id), {class: "btn btn-primary premium_plan_selected"} %>
 			          </div>
-			          <div>
-                  <%= button_to line_items_path(premium_plan_id: premium_plan), {class: "btn btn-info btn-big-icon"} do %>
-                    <%= content_tag :i, nil, class: "glyphicon glyphicon-shopping-cart" %>
-                  <% end %>
-			          </div>
 			        </div>
 				    </div>
 				  <% end %>
@@ -175,3 +170,4 @@
   <% end %>
 <% end %>
 
+<%= link_to "Subscriptions as gifts", premium_plan_as_gifts_path, {class: "btn btn-primary"} %>

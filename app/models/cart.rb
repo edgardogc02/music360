@@ -14,8 +14,8 @@ class Cart < ActiveRecord::Base
     add_buyable(Song.find(song_id))
   end
 
-  def add_premium_plan(premium_plan_id)
-    add_buyable(PremiumPlan.find(premium_plan_id))
+  def add_premium_plan_as_gift(premium_plan_as_gift_id)
+    add_buyable(PremiumPlanAsGift.find(premium_plan_as_gift_id))
   end
 
   def subtotal

@@ -82,7 +82,7 @@ class SongDecorator < Draper::Decorator
 
   def show_cost
     if display_buy_button?
-      h.number_to_currency(model.cost)
+      h.number_to_euro(model.cost)
     end
   end
 

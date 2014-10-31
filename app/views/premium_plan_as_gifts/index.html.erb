@@ -1,0 +1,19 @@
+<%= render 'shared/header_page', title: 'Premium plan as gift' %>
+
+<% @premium_plan_as_gifts.each do |premium_plan_as_gift| %>
+
+  <p>
+    <div>
+      <%= premium_plan_as_gift.name %>
+    </div>
+    <div>
+      <%= number_to_euro(premium_plan_as_gift.price) %>
+    </div>
+    <div>
+      <%= button_to line_items_path(premium_plan_as_gift_id: premium_plan_as_gift.id), {class: "btn btn-info btn-big-icon"} do %>
+        <%= content_tag :i, nil, class: "glyphicon glyphicon-shopping-cart" %>
+      <% end %>
+    </div>
+  </p>
+
+<% end %>

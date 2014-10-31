@@ -19,10 +19,10 @@
                 <%= image_tag line_item.buyable.cover_url, class: "avatar-sm" %>
                 <%= link_to line_item.buyable.title, line_item.buyable %>
               <% else %>
-                <%= line_item.buyable.title %> Suscription
+                <%= line_item.buyable.title %>
               <% end %>
             </td>
-            <td><%= number_to_currency(line_item.buyable.cost) %></td>
+            <td><%= number_to_euro(line_item.buyable.cost) %></td>
             <td align="right">
               <%= link_to line_item_path(line_item), {method: :delete, class: 'btn btn-sm btn-default'} do %>
                 <i class="glyphicon glyphicon-trash"></i>
@@ -44,19 +44,19 @@
 
       <div class="text-right">
         <div>
-          Subtotal &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <%= number_to_currency(@cart.subtotal) %>
+          Subtotal &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <%= number_to_euro(@cart.subtotal) %>
         </div>
         <% if @cart.discount_code %>
           <div>
-            Discount &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -<%= number_to_currency(@cart.discount_code.discount_price) %>
+            Discount &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -<%= number_to_euro(@cart.discount_code.discount_price) %>
           </div>
         <% end %>
         <div>
-          Taxes &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <%= number_to_currency(@cart.taxes) %>
+          Taxes &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <%= number_to_euro(@cart.taxes) %>
         </div>
         <br />
         <div>
-          <b>Grand Total &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <%= number_to_currency(@cart.total_price) %></b>
+          <b>Grand Total &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <%= number_to_euro(@cart.total_price) %></b>
         </div>
       </div>
 
