@@ -36,6 +36,11 @@
 
       <div>
         <%= simple_form_for @cart, html: {class: "form-inline"} do |f| %>
+          <div>
+            <%= f.input :mark_as_gift, label: false %>
+            <%= f.label :mark_as_gift, "This purchase is a gift to someone" %>
+          </div>
+
           Discount code
           <%= f.input :discount_code_code, label: false %>
           <%= f.submit "ok", {class: 'btn btn-primary'} %>
@@ -48,7 +53,7 @@
         </div>
         <% if @cart.discount_code %>
           <div>
-            Discount &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -<%= number_to_euro(@cart.discount_code.discount_price) %>
+            Discount &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -<%= number_to_euro(@cart.discount_price) %>
           </div>
         <% end %>
         <div>

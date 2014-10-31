@@ -50,3 +50,4 @@
 //= require confirm_dialog
 //= require helper
 //= require group_posts
+//= require carts

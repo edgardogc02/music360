@@ -23,11 +23,21 @@ class Cart < ActiveRecord::Base
   end
 
   def total_price
-    @total_price ||= subtotal + taxes - discount_price
+    @total_price ||= subtotal - discount_price + taxes
   end
 
   def discount_price
-    discount_code ? discount_code.discount_price : 0
+    if discount_code
+      if discount_code.discount_price
+        discount_code.discount_price
+      elsif discount_code.discount_percentage
+        discount_code.discount_percentage*subtotal/100
+      else
+        0
+      end
+    else
+      0
+    end
   end
 
   def taxes
@@ -53,7 +63,7 @@ class Cart < ActiveRecord::Base
   end
 
   def assign_discount_code_if_available
-    if discount_code_code
+    if !discount_code_code.blank?
       discount_code = DiscountCode.where(code: discount_code_code).first
 
       if discount_code

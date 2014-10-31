@@ -22,7 +22,7 @@ class CartsController < ApplicationController
   private
 
   def cart_params
-    params.require(:cart).permit(:discount_code_code)
+    params.require(:cart).permit(:discount_code_code, :mark_as_gift)
   end
 
 end

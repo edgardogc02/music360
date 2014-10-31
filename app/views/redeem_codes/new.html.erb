@@ -1,0 +1,10 @@
+<%= render 'shared/header_page', title: 'Specify gift receiver' %>
+
+Do you know the username of the gift receiver? Otehrwise leave it blank.
+
+<%= simple_form_for [@payment, @redeem_code] do |f| %>
+
+  <%= f.input :gift_receiver %>
+  <%= f.submit 'Generate voucher' %>
+
+<% end %>

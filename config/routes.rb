@@ -151,7 +151,9 @@ InstrumentchampPrototype::Application.routes.draw do
   resources :checkouts
   resources :wishlists
   resources :wishlist_items
-  resources :payments
+  resources :payments do
+    resources :redeem_codes
+  end
   resources :premium_plan_as_gifts
 
   match '/auth/facebook', via: [:get, :post], as: :facebook_signin

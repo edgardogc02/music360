@@ -36,13 +36,20 @@ class PaymentForm
   def save(params)
     payment.attributes = params.slice(:amount, :payment_method_id, :paymill_token, :currency)
     payment.status = "Confirmed"
+    payment.gift = cart.mark_as_gift
 
     if valid?
       ActiveRecord::Base.transaction do
         payment.save
-        save_user_purchased_songs
-        save_user_purchased_subscriptions
+        save_user_purchased_songs unless payment.gift?
+#        save_user_purchased_subscriptions
         cart.assign_payment(payment)
+
+        if paymill_token
+          paymill_payment = Paymill::Payment.create(token: paymill_token)
+          paymill_transaction = Paymill::Transaction.create(amount: (amount*100).to_i, currency: payment.currency, payment: paymill_payment.id, description: "#{user.email} songs checkout")
+        end
+
         cart.destroy
         purchase_notification
       end
@@ -61,11 +68,6 @@ class PaymentForm
     cart.line_items.each do |line_item|
       if line_item.has_song?
         cart.user.user_purchased_songs.create(song: line_item.buyable, payment: payment)
-
-        if paymill_token
-          paymill_payment = Paymill::Payment.create(token: paymill_token)
-          paymill_transaction = Paymill::Transaction.create(amount: (amount*100).to_i, currency: payment.currency, payment: paymill_payment.id, description: "#{user.email} songs checkout")
-        end
       end
     end
   end

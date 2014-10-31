@@ -1,3 +1,6 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://coffeescript.org/
+cart_mark_as_gift = ->
+  $("#cart_mark_as_gift").click ->
+    $(this).parents('form').submit()
+
+$(document).ready(cart_mark_as_gift)
+$(document).on('page:load', cart_mark_as_gift)
