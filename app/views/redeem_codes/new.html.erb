@@ -1,10 +1,10 @@
 <%= render 'shared/header_page', title: 'Specify gift receiver' %>
 
-Do you know the username of the gift receiver? Otehrwise leave it blank.
+Do you know the username or the email of the gift receiver? Otherwise leave it blank.
 
 <%= simple_form_for [@payment, @redeem_code] do |f| %>
 
   <%= f.input :gift_receiver %>
-  <%= f.submit 'Generate voucher' %>
+  <%= f.submit 'Generate voucher', {class: 'btn btn-primary'} %>
 
 <% end %>

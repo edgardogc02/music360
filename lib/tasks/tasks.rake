@@ -26,13 +26,6 @@ namespace :users do
     end
   end
 
-  task :create_redeem_code_types => :environment do
-    RedeemCodeType.delete_all
-    RedeemCodeType.create!(name: 'song')
-    RedeemCodeType.create!(name: 'subscription')
-    RedeemCodeType.create!(name: 'gift')
-  end
-
   task :create_premium_plan_as_gifts => :environment do
     PremiumPlanAsGift.delete_all
     PremiumPlanAsGift.create!(price: 5.99, name: "1 Month Subscription", display_position: 1, duration_in_months: 1, currency: "EUR")

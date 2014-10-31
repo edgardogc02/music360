@@ -28,6 +28,8 @@ class Song < ActiveRecord::Base
   has_many :line_items, as: :buyable
   has_many :wishlist_item, dependent: :destroy
 
+  has_many :redeem_codes, as: :redeemable
+
   scope :by_title, ->(title) { where('title LIKE ?', '%'+title+'%') }
   scope :free, -> { where('(cost IS NULL OR cost = 0) AND (user_created IS NULL OR user_created = 0)') }
   scope :paid, -> { where('cost > 0') }

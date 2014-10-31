@@ -12,7 +12,7 @@ class RedeemCodesController < ApplicationController
     @redeem_code = RedeemCode.new
 
     respond_to do |format|
-      if @redeem_code.create_code_from_payment and @payment.assign_redeem_code(@redeem_code.reload)
+      if @redeem_code.create_code_from_payment(@payment)
         format.html { redirect_to root_path, notice: "Your redeem code is #{@redeem_code.code}" }
       else
         format.html do

@@ -42,7 +42,6 @@ class PaymentForm
       ActiveRecord::Base.transaction do
         payment.save
         save_user_purchased_songs unless payment.gift?
-#        save_user_purchased_subscriptions
         cart.assign_payment(payment)
 
         if paymill_token
@@ -70,33 +69,6 @@ class PaymentForm
         cart.user.user_purchased_songs.create(song: line_item.buyable, payment: payment)
       end
     end
-  end
-
-  def save_user_purchased_subscriptions
-    cart.line_items.each do |line_item|
-      if line_item.has_premium_plan?
-        user_premium_subscription = cart.user.user_premium_subscriptions.build(premium_plan: line_item.buyable, payment: payment)
-
-        if paymill_token
-          paymill_client = Paymill::Client.create(email: user.email, description: user.email)
-          paymill_payment = Paymill::Payment.create(token: paymill_token, client: paymill_client.id)
-          paymill_subscription = Paymill::Subscription.create(offer: user_premium_subscription.premium_plan.paymill_id, client: paymill_client.id, payment: paymill_payment.id)
-          user_premium_subscription.paymill_subscription_token = paymill_subscription.id
-          user_premium_subscription.save
-        end
-
-        update_user_premium_account
-      end
-    end
-  end
-
-  def update_user_premium_account
-    user.premium = true
-    user.premium_until = premium_plan.duration_in_months.to_i.months.from_now
-    user.save
-  end
-
-  def process_payment_with_paymill
   end
 
   def paymill_token_if_credit_card

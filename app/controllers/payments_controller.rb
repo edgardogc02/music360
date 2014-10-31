@@ -7,7 +7,7 @@ class PaymentsController < ApplicationController
 
     if @payment_form.save(payment_form_params)
       flash[:notice] = "The checkout was successfully done."
-      if @payment_form.payment.gift?
+      if @payment_form.payment.gift? or @payment_form.payment.has_premium_plan_as_gift?
         redirect_to new_payment_redeem_code_path(@payment_form.payment)
       else
         redirect_to root_path

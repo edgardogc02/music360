@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141031115024) do
+ActiveRecord::Schema.define(version: 20141031135702) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -225,7 +225,6 @@ ActiveRecord::Schema.define(version: 20141031115024) do
     t.string   "currency"
     t.integer  "payment_method_id"
     t.boolean  "gift"
-    t.integer  "redeem_code_id"
   end
 
   create_table "premium_plan_as_gifts", force: true do |t|
@@ -249,19 +248,14 @@ ActiveRecord::Schema.define(version: 20141031115024) do
     t.string   "currency"
   end
 
-  create_table "redeem_code_types", force: true do |t|
-    t.string   "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
   create_table "redeem_codes", force: true do |t|
     t.string   "code"
     t.datetime "valid_from"
     t.datetime "valid_to"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "redeem_code_type_id"
+    t.integer  "redeemable_id"
+    t.string   "redeemable_type"
   end
 
   create_table "songratings", force: true do |t|
