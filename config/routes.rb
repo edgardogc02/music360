@@ -156,6 +156,8 @@ InstrumentchampPrototype::Application.routes.draw do
   end
   resources :premium_plan_as_gifts
 
+  resources :user_redeem_codes
+
   match '/auth/facebook', via: [:get, :post], as: :facebook_signin
   match 'auth/:provider/callback' => "user_omniauth_credentials#create", via: [:get, :post]
   match 'auth/failure' => "user_omniauth_credentials#failure", via: [:get, :post]

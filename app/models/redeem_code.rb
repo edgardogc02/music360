@@ -8,6 +8,7 @@ class RedeemCode < ActiveRecord::Base
     self.code = generate_random_code
     self.valid_from = Time.now
     self.valid_to = 1.year.from_now
+    self.max_number_of_uses = 1
 
     if payment.gift?
       self.redeemable = payment
@@ -16,6 +17,14 @@ class RedeemCode < ActiveRecord::Base
     end
 
     save
+  end
+
+  def still_valid?
+    valid_to >= Time.now and valid_from <= Time.now
+  end
+
+  def still_usable?
+    max_number_of_uses > UserRedeemCode.where(redeem_code: self).count
   end
 
   private

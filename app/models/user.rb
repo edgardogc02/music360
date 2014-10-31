@@ -81,6 +81,8 @@ class User < ActiveRecord::Base
 
   has_many :user_mp_updates, dependent: :destroy
 
+  has_many :user_redeem_codes, dependent: :destroy
+
   before_create { generate_token(:auth_token) }
 
 #  before_create :fill_in_extra_fields

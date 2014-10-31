@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141031135702) do
+ActiveRecord::Schema.define(version: 20141031164444) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -256,6 +256,7 @@ ActiveRecord::Schema.define(version: 20141031135702) do
     t.datetime "updated_at"
     t.integer  "redeemable_id"
     t.string   "redeemable_type"
+    t.integer  "max_number_of_uses"
   end
 
   create_table "songratings", force: true do |t|
@@ -414,6 +415,13 @@ ActiveRecord::Schema.define(version: 20141031135702) do
     t.datetime "updated_at"
     t.string   "token"
     t.integer  "payment_id"
+  end
+
+  create_table "user_redeem_codes", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "redeem_code_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "users", primary_key: "id_user", force: true do |t|
