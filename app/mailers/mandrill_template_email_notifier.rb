@@ -3,7 +3,7 @@ class MandrillTemplateEmailNotifier < MandrillMailer::TemplateMailer
   default from: "no-reply@instrumentchamp.com", from_name: "InstrumentChamp"
 
   def welcome_email_mandrill_template(user)
-    mandrill_mail template: 'welcome-to-instrumentchamp-be-a-music-player',
+    mandrill_mail template: 'welcome-to-instrumentchamp-be-a-music-player-2',
                   subject: 'Welcome to InstrumentChamp - Be a music player',
                   to: {email: user.email, name: user.username},
                   vars: { 'USERNAME' => user.username,
