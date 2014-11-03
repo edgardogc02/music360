@@ -14,13 +14,16 @@ class UserRedeemCode < ActiveRecord::Base
 
     if redeem_code
       if redeem_code.still_valid?
-        if redeem_code.still_usable?
+        if UserRedeemCode.redeem_code_used_by_user?(redeem_code, self.user)
+          errors.add :redeem_code_id, "You already used this code"
+          false
+        elsif !redeem_code.still_usable?
+          errors.add :redeem_code_id, "The code is not usable anymore"
+          false
+        else
           self.redeem_code = redeem_code
           redeem_objects
           save
-        else
-          errors.add :redeem_code_id, "The code is not usable anymore"
-          false
         end
       else
         errors.add :redeem_code_id, "The code has expired"
@@ -30,6 +33,10 @@ class UserRedeemCode < ActiveRecord::Base
       errors.add :redeem_code_id, "The code is invalid"
       false
     end
+  end
+
+  def self.redeem_code_used_by_user?(redeem_code, user)
+    !UserRedeemCode.where(user: user, redeem_code: redeem_code).first.nil?
   end
 
   private
