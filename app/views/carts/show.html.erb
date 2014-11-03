@@ -3,7 +3,7 @@
 <% unless @cart.line_items.empty? %>
 
   <div class="row">
-    <div class="col-lg-6">
+    <div class="col-lg-6 shopping-cart-cont">
       <h2>Shopping cart</h2>
 
       <table width="100%" class="shopping-cart-datagrid">
@@ -36,7 +36,7 @@
 
       <div>
         <%= simple_form_for @cart, html: {class: "form-inline"} do |f| %>
-          <div>
+          <div class="well well-sm well-gift-card">
             <%= f.input :mark_as_gift, label: false %>
             <%= f.label :mark_as_gift, "This purchase is a gift to someone" %>
           </div>
@@ -47,26 +47,19 @@
         <% end %>
       </div>
 
-      <div class="text-right">
-        <div>
-          Subtotal &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <%= number_to_euro(@cart.subtotal) %>
-        </div>
+      <div class="text-right total-price">
+        Subtotal <span><%= number_to_euro(@cart.subtotal) %></span>
         <% if @cart.discount_code %>
-          <div>
-            Discount &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; -<%= number_to_euro(@cart.discount_price) %>
-          </div>
+          Discount<span>-<%= number_to_euro(@cart.discount_price) %></span>
         <% end %>
-        <div>
-          Taxes &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <%= number_to_euro(@cart.taxes) %>
-        </div>
         <br />
-        <div>
-          <b>Grand Total &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <%= number_to_euro(@cart.total_price) %></b>
-        </div>
+        Taxes <span><%= number_to_euro(@cart.taxes) %></span>
+        <br /><br />
+        <b>Grand Total <span><%= number_to_euro(@cart.total_price) %></span></b>
       </div>
 
     </div>
-    <div class="col-lg-6">
+    <div class="col-lg-6 checkout-cont">
       <h2>Checkout</h2>
 
       <%= simple_form_for @payment_form, url: payments_path, html: {id: "user_purchase_form", class: "checkout-form"} do |f| %>
@@ -95,13 +88,15 @@
         <%= f.input :amount, input_html: { value: @cart.total_price, id: "amount" }, as: :hidden %>
         <%= f.input :currency, input_html: { value: "EUR", id: "currency" }, as: :hidden %>
 
-        <div>
-          <%= f.button :submit, "Buy Now", {class: "btn btn-primary", id: "submit_purchase_form"} %>
-        </div>
         <br />
         <div>
-          <%= image_tag(asset_path('secure_form.png')) %>
+          <%= f.button :submit, "Buy Now", {class: "btn btn-primary btn-lg btn-buy", id: "submit_purchase_form"} %>
         </div>
+        <br />
+        <div class="text-center">
+          <%= image_tag(asset_path('secure_form_white.jpg')) %>
+        </div>
+        <br />
         <div class="text-center">
           <div class="spacer-sm">This payment will be billed to the card you specified. The name on the statement will be instrumentchamp.com</div>
           Submit a question to our <a href="mailto: support@instrumentchamp.com">support team</a>.

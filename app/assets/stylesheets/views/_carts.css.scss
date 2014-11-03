@@ -18,3 +18,43 @@
     margin-bottom: 10px;
   }
 }
+
+.well-gift-card {
+  label {
+    font-weight: normal;
+    color: $brand-primary;
+    padding-left: 10px;
+  }
+}
+
+.total-price {
+  span {
+    width: 60px;
+    display: inline-block;
+  }
+}
+
+.shopping-cart-cont {
+  border-right: 1px solid #DEDEDE;
+  padding-right: 40px !important;
+}
+
+.checkout-cont {
+  padding-left: 40px !important;
+
+  .wrap-content {
+    width: 308px;
+
+    input {
+      width: 100% !important;
+    }
+  }
+
+  .credit_card_expiry_date {
+    width: 152px;
+  }
+}
+
+.btn-buy {
+  width: 100%;
+}
