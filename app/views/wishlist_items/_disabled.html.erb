@@ -1,6 +1,6 @@
 <%= form_for current_user.current_wishlist.wishlist_items.build(song: song) do |f| %>
   <%= f.hidden_field :song_id %>
-  <%= f.button :button, {class: "btn btn-danger btn-big-icon #{size}"} do %>
+  <%= f.button :button, {class: "btn btn-danger btn-big-icon #{size} btn-disabled", disabled: "disabled"} do %>
     <%= content_tag :i, nil, class: "glyphicon glyphicon-heart" %>
   <% end %>
 <% end %>

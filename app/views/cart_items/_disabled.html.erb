@@ -1,0 +1,3 @@
+<%= button_to line_items_path(song_id: song), {id: "add_to_cart_#{song.id}", class: "btn btn-info btn-big-icon btn-disabled " + size, disabled: "disabled", remote: true} do %>
+  <%= content_tag :i, nil, class: "glyphicon glyphicon-shopping-cart" %>
+<% end %>

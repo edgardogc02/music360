@@ -61,15 +61,21 @@ class SongDecorator < Draper::Decorator
   end
 
   def add_to_wishlist_button(size="")
-    if display_buy_button? and !h.current_user.current_wishlist.songs.include?(model)
-      h.render 'wishlist_items/new', {song: model, size: size}
+    if display_buy_button?
+      if !h.current_user.current_wishlist.songs.include?(model)
+        h.render 'wishlist_items/new', {song: model, size: size}
+      else
+        h.render 'wishlist_items/disabled', {song: model, size: size}
+      end
     end
   end
 
   def add_to_cart_button(size="")
-    if display_buy_button? and !h.current_user.current_cart.songs.include?(model)
-      h.button_to h.line_items_path(song_id: model), {id: "add_to_cart_#{model.id}", class: "btn btn-info btn-big-icon " + size, remote: true} do
-        h.content_tag :i, nil, class: "glyphicon glyphicon-shopping-cart"
+    if display_buy_button?
+      if !h.current_user.current_cart.songs.include?(model)
+        h.render 'cart_items/new', {song: model, size: size}
+      else
+        h.render 'cart_items/disabled', {song: model, size: size}
       end
     end
   end

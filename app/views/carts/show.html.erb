@@ -47,8 +47,11 @@
         <% end %>
       </div>
 
+      <br />
+
       <div class="text-right total-price">
         Subtotal <span><%= number_to_euro(@cart.subtotal) %></span>
+        <br />
         <% if @cart.discount_code %>
           Discount<span>-<%= number_to_euro(@cart.discount_price) %></span>
         <% end %>
