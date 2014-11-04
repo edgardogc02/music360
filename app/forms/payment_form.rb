@@ -53,6 +53,7 @@ class PaymentForm
         cart.destroy
         purchase_notification
       end
+
       true
     else
       false
@@ -79,8 +80,7 @@ class PaymentForm
   end
 
   def purchase_notification
-#    MandrillTemplateEmailNotifier.purchased_song_mandrill_template(user_purchased_song, payment).deliver
-#    EmailNotifier.purchased_song_message(user_purchased_song, payment).deliver
+    MandrillTemplateEmailNotifier.welcome_email_mandrill_template(user, payment).deliver
   end
 
 end
