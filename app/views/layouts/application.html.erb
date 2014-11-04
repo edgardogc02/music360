@@ -154,39 +154,41 @@
         </div>
       </div>
 
-      <div class="modal fade" id="add_to_shooping_cart_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content spacer">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-              <h4 class="modal-title" id="myModalLabel">Shooping Cart</h4>
-            </div>
-            <div class="modal-body">
-              <div class="detail-item"></div>
-              <div class="text-right">
-                <%= link_to "View cart", cart_path(current_user.current_cart), class: "btn btn-primary" %>
+      <% if signed_in? %>
+        <div class="modal fade" id="add_to_shooping_cart_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content spacer">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">Shooping Cart</h4>
+              </div>
+              <div class="modal-body">
+                <div class="detail-item"></div>
+                <div class="text-right">
+                  <%= link_to "View cart", cart_path(current_user.current_cart), class: "btn btn-primary" %>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      <div class="modal fade" id="add_to_wishlist_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content spacer">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-              <h4 class="modal-title" id="myModalLabel">Wishlist</h4>
-            </div>
-            <div class="modal-body">
-              <div class="detail-item"></div>
-              <div class="text-right">
-                <%= link_to "View wishlist", wishlist_path(current_user.current_wishlist), class: "btn btn-primary" %>
+        <div class="modal fade" id="add_to_wishlist_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content spacer">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">Wishlist</h4>
+              </div>
+              <div class="modal-body">
+                <div class="detail-item"></div>
+                <div class="text-right">
+                  <%= link_to "View wishlist", wishlist_path(current_user.current_wishlist), class: "btn btn-primary" %>
+                </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
+      <% end %>
 
       <%= render "shared/footer" %>
       <%= js_scripts %>
