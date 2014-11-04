@@ -1,0 +1,45 @@
+<div class="modal fade checkout-ok-modal" id="checkout-ok" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4>
+          Thank you for your purchase!
+        </h4>
+      </div>
+      <div class="modal-body">
+        <p>
+          Please share InstrumentChamp with your friends on social media if you like our mission to make the world play music. You will both get a bonus song when they sign up!
+        </p>
+        <br />
+        <div class="text-center">
+          <ul class="list-inline">
+            <li>
+              <a class="fb_button xs" href="#" id="share_on_facebook">
+                <span class="separator"></span>
+                <span class="text">Share on facebook</span>
+              </a>
+            </li>
+            <li>
+              <a class="fb_button xs" href="#" id="share_on_facebook">
+                <span class="separator"></span>
+                <span class="text">Share on facebook</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+			</div>
+    </div>
+  </div>
+</div>
+
+<% if params[:chk] %>
+	<%= content_for(:js_scripts) do %>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$("#checkout-ok").modal({
+			    show: true
+				})
+			});
+	  </script>
+	<% end %>
+<% end %>

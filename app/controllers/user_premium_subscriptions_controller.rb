@@ -9,6 +9,8 @@ class UserPremiumSubscriptionsController < ApplicationController
 
     @free_songs = Song.free.limit(10)
     @premium_songs = Song.accessible_for_premium_subscription
+
+    @premium_plan_as_gifts = PremiumPlanAsGift.order(:display_position)
   end
 
   def show
