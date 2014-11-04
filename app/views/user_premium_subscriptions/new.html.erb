@@ -25,7 +25,7 @@
 				<hr />
 				<h3 class="font-weight-normal spacer-md">Select payment plan</h3>
 				<div class="spacer-md">All plans include a 7-day free trial</div>
-				<div class="row">
+				<div class="row spacer-sm">
 				  <% @premium_plans.each do |premium_plan| %>
 				    <div class="col-md-4 col-sm-4">
 			      	<div class="plan-title">
@@ -43,6 +43,15 @@
 				    </div>
 				  <% end %>
 			  </div>
+			  <div class="row">
+          <% @premium_plan_as_gifts.each do |premium_plan_as_gift| %>
+            <div class="col-md-4 col-sm-4 text-center">
+              <%= button_to line_items_path(premium_plan_as_gift_id: premium_plan_as_gift.id), {class: "btn btn-info btn-big-icon", remote: true} do %>
+                Gift Premium
+              <% end %>
+            </div>
+          <% end %>
+        </div>
 			  <br />
 			  <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne"><h4>30 premium songs included (save $30)</h4></a>
 		  	<div id="collapseOne" class="panel-collapse collapse out">
@@ -170,4 +179,4 @@
   <% end %>
 <% end %>
 
-<%= link_to "Subscriptions as gifts", premium_plan_as_gifts_path, {class: "btn btn-primary"} %>
+<!--<%= link_to "Subscriptions as gifts", premium_plan_as_gifts_path, {class: "btn btn-primary"} %>-->
