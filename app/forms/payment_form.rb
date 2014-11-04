@@ -80,7 +80,7 @@ class PaymentForm
   end
 
   def purchase_notification
-    MandrillTemplateEmailNotifier.welcome_email_mandrill_template(user, payment).deliver
+    MandrillTemplateEmailNotifier.instrumentchamp_checkout_receipt_template(user, payment).deliver
   end
 
 end

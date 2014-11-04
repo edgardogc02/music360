@@ -101,7 +101,7 @@ class MandrillTemplateEmailNotifier < MandrillMailer::TemplateMailer
                   vars: { 'USERNAME' => received_by }
   end
 
-  def instrumentchamp_checkout_receipt(user, payment)
+  def instrumentchamp_checkout_receipt_template(user, payment)
     mandrill_mail template: 'instrumentchamp-support-receipt',
                   subject: 'InstrumentChamp Support: Receipt',
                   to: {email: user.email, name: user.username},
