@@ -80,7 +80,7 @@ class PaymentForm
   end
 
   def purchase_notification
-    MandrillTemplateEmailNotifier.instrumentchamp_checkout_receipt_template(user, payment).deliver
+    MandrillTemplateEmailNotifier.instrumentchamp_checkout_receipt_template(user, payment).deliver if Rails.env.production?
   end
 
 end
