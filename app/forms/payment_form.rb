@@ -37,6 +37,7 @@ class PaymentForm
     payment.attributes = params.slice(:amount, :payment_method_id, :paymill_token, :currency)
     payment.status = "Confirmed"
     payment.gift = cart.mark_as_gift
+    payment.discount_code_id = cart.discount_code_id
 
     if valid?
       ActiveRecord::Base.transaction do

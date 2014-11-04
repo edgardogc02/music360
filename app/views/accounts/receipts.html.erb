@@ -1,0 +1,29 @@
+<%= render 'nav_menu' %>
+
+<h2>Receipts</h2>
+
+<% unless current_user.payments.empty? %>
+
+  <table>
+    <tr>
+      <td>Order number</td>
+      <td>Amount</td>
+      <td>Created at</td>
+      <td></td>
+    </tr>
+
+    <% current_user.payments.order('created_at DESC').each do |payment| %>
+      <tr>
+        <td><%= link_to payment.id, payment %></td>
+        <td><%= number_to_euro(payment.amount) %></td>
+        <td><%= l payment.created_at, format: :long %></td>
+        <td><%= link_to "View details", payment, {class: "btn btn-primary"}%></td>
+      </tr>
+    <% end %>
+
+  </table>
+
+<% else %>
+	<p>You have currently no orders or receipts on InstrumentChamp.</p>
+<% end %>
+

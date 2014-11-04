@@ -98,6 +98,7 @@ InstrumentchampPrototype::Application.routes.draw do
     get 'overview', on: :collection
     get 'profile', on: :collection
     get 'subscription', on: :collection
+    get 'receipts', on: :collection
   end
 
   resources :user_facebook_invitations do

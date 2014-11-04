@@ -48,7 +48,7 @@ class RedeemCode < ActiveRecord::Base
   end
 
   def gift_receiver_is_valid
-    if gift_receiver
+    if !gift_receiver.blank?
       if !gift_receiver_is_email? and User.find_by_username(gift_receiver).nil? and User.find_by_email(gift_receiver).nil?
         errors.add :gift_receiver, "That user doesn't exist on InstrumentChamp"
         false

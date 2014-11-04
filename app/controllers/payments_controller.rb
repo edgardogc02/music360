@@ -1,6 +1,11 @@
 class PaymentsController < ApplicationController
 
   before_action :authorize
+  before_action :authorize_user, only: :show
+
+  def show
+    @payment = Payment.find(params[:id])
+  end
 
   def create
     @payment_form = PaymentForm.new(current_user.current_cart)
@@ -34,6 +39,10 @@ class PaymentsController < ApplicationController
 
   def payment_form_params
     params.require(:payment_form).permit(:cart_id, :amount, :payment_method_id, :paymill_token, :currency)
+  end
+
+  def authorize_user
+    redirect_to root_path unless current_user.payment_ids.include?(params[:id].to_i)
   end
 
 end

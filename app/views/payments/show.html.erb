@@ -1,0 +1,33 @@
+<%= render 'shared/header_page', title: 'Payment' %>
+
+<table width="100%" class="shopping-cart-datagrid">
+  <tr class="head">
+    <td>Product description</td>
+    <td>Price</td>
+  </tr>
+  <% @payment.line_items.each do |line_item| %>
+    <tr>
+      <td>
+        <% if line_item.has_song? %>
+          <%= image_tag line_item.buyable.cover_url, class: "avatar-sm" %>
+          <%= link_to line_item.buyable.title, line_item.buyable %>
+        <% else %>
+          <%= line_item.buyable.title %>
+        <% end %>
+      </td>
+      <td><%= number_to_euro(line_item.buyable.cost) %></td>
+    </tr>
+  <% end %>
+</table>
+
+<div class="text-right total-price">
+  Subtotal <span><%= number_to_euro(@payment.subtotal) %></span>
+  <br />
+  <% if @payment.discount_code %>
+    Discount<span>-<%= number_to_euro(@payment.discount_price) %></span>
+  <% end %>
+  <br />
+  Taxes <span><%= number_to_euro(@payment.taxes) %></span>
+  <br /><br />
+  <b>Grand Total <span><%= number_to_euro(@payment.total_price) %></span></b>
+</div>
