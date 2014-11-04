@@ -27,6 +27,7 @@ paymill_response_handler = (error, result) ->
     form = $("#user_purchase_form")
     $("#paymill_token").val(result.token)
     form.get(0).submit()
+    $("#progress_checkout").modal true
   $(".submit-button").removeAttr "disabled"
   return
 
