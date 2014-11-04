@@ -1,0 +1,4 @@
+$('#add_to_wishlist_modal').modal('toggle');
+$('#add_to_wishlist_modal .detail-item').html('<%= @wishlist_item.song.title %> by <%= @wishlist_item.song.artist.title %> was added to your Wishlist');
+$('#wishlist_count').html('<%= current_user.current_wishlist.wishlist_items.count %>');
+$('#add_to_wishlist_<%= @wishlist_item.song.id %>').prop("disabled", true);

@@ -1,4 +1,5 @@
 $('#add_to_shooping_cart_modal').modal('toggle');
+$('#add_to_shooping_cart_modal .detail-item').html('<%= @line_item.buyable.title %> by <%= @line_item.buyable.artist.title %> was added to your Shopping Cart');
 $('#cart_count').html('<%= current_user.current_cart.line_items.count %>');
 $('#add_to_cart_<%= @line_item.buyable.id %>').prop("disabled", true);
 $('.cart_popover_content').html("<%= j render 'carts/popover_cart', cart: current_user.current_cart %>");
