@@ -2,6 +2,8 @@ class RedeemCode < ActiveRecord::Base
 
   belongs_to :redeemable, polymorphic: true
 
+  validate :gift_receiver_is_valid
+
   attr_accessor :gift_receiver
 
   def create_code_from_payment(payment)
@@ -31,6 +33,15 @@ class RedeemCode < ActiveRecord::Base
 
   def generate_random_code
     ((Digest::SHA1.hexdigest("--#{Time.now.to_s}--"))[0..8]).upcase
+  end
+
+  def gift_receiver_is_valid
+    if gift_receiver
+      if !gift_receiver.include?('@') and User.find_by_username(gift_receiver).nil? and User.find_by_email(gift_receiver).nil?
+        errors.add :gift_receiver, "That user doesn't exist on InstrumentChamp"
+        false
+      end
+    end
   end
 
 end

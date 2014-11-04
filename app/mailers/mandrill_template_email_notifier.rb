@@ -86,11 +86,19 @@ class MandrillTemplateEmailNotifier < MandrillMailer::TemplateMailer
                   vars: { 'USERNAME' => user.username }
   end
 
-  def improve_music_career_mandrill_template(user)
-    mandrill_mail template: 'improve-your-music-career-retry',
-                  subject: 'Improve your music career',
+  def gift_from_friend_mandrill_template(email, gift_giver_username, redeem_code)
+    mandrill_mail template: 'you-received-a-gift-from-a-friend',
+                  subject: 'You received a gift from a friend',
+                  to: {email: email},
+                  vars: { 'USERNAME' => gift_giver_username,
+                           'REDEEM_CODE' => redeem_code.code}
+  end
+
+  def gift_accepted_mandrill_template(user, received_by)
+    mandrill_mail template: 'your-gift-was-accepted',
+                  subject: 'Your gift was accepted',
                   to: {email: user.email, name: user.username},
-                  vars: { 'USERNAME' => user.username }
+                  vars: { 'USERNAME' => received_by }
   end
 
 end
