@@ -41,7 +41,17 @@ class Cart < ActiveRecord::Base
   end
 
   def taxes
-    2
+    res = 0
+
+    line_items.each do |line_item|
+      if line_item.has_song?
+        res += line_item.buyable.cost*6/100
+      elsif line_item.has_premium_plan_as_gift?
+        res += line_item.buyable.cost*25/100
+      end
+    end
+
+    res
   end
 
   def assign_payment(payment)

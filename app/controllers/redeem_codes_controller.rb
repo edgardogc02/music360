@@ -14,6 +14,7 @@ class RedeemCodesController < ApplicationController
     respond_to do |format|
       if @redeem_code.create_code_from_payment(@payment)
         format.html do
+          @redeem_code.send_emails(current_user)
           redirect_to root_path, notice: "Your redeem code is #{@redeem_code.code}"
         end
       else
