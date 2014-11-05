@@ -35,7 +35,7 @@ class RedeemCode < ActiveRecord::Base
     if Rails.env.production?
       receiver_email = !gift_receiver_email.blank? ? gift_receiver_email : User.find_by_username(gift_receiver_username).email
       MandrillTemplateEmailNotifier.gift_from_friend_mandrill_template(receiver_email, gift_giver.username, self).deliver
-      MandrillTemplateEmailNotifier.gift_accepted_mandrill_template(gift_giver, gift_receiver).deliver
+      MandrillTemplateEmailNotifier.gift_accepted_mandrill_template(gift_giver, receiver_email).deliver
     end
   end
 
