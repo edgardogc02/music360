@@ -80,7 +80,7 @@
 }
 
 .form-inline.form-send-redeem-code {
-  .form-control {
+  .field_with_errors .form-control, .form-control {
     width: 300px;
     display: inline;
   }
