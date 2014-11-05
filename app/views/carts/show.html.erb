@@ -48,19 +48,40 @@
       </div>
 
       <br />
+      <br />
 
-      <div class="text-right total-price">
-        Subtotal <span><%= number_to_euro(@cart.subtotal) %></span>
-        <br />
-        <% if @cart.discount_code %>
-          Discount<span>-<%= number_to_euro(@cart.discount_price) %></span>
-          <br />
-        <% end %>
-        Taxes <span><%= number_to_euro(@cart.taxes) %></span>
-        <br /><br />
-        <b>Grand Total <span><%= number_to_euro(@cart.total_price) %></span></b>
+      <div class="row">
+        <div class="col-lg-6">
+          <% if @cart.discount_code %>
+            <h4 class="no-margin">Discount Information</h4>
+            <br />
+            <ul class="no-style">
+              <%= content_tag :li do %>
+                <b>Code:</b> <%= @cart.discount_code.code %>
+              <% end %>
+              <%= content_tag :li do %>
+                <b>Discount Price:</b> <%= @cart.discount_code.discount_price %>
+              <% end if @cart.discount_code.discount_price %>
+              <%= content_tag :li do %>
+                <b>Discount Percentage:</b> <%= @cart.discount_code.discount_percentage %>%
+              <% end if @cart.discount_code.discount_percentage %>
+            </ul>
+          <% end %>
+        </div>
+        <div class="col-lg-6">
+          <div class="text-right total-price">
+            Subtotal <span><%= number_to_euro(@cart.subtotal) %></span>
+            <br />
+            <% if @cart.discount_code %>
+              Discount<span>-<%= number_to_euro(@cart.discount_price) %></span>
+              <br />
+            <% end %>
+            Taxes <span><%= number_to_euro(@cart.taxes) %></span>
+            <br /><br />
+            <b>Grand Total <span><%= number_to_euro(@cart.total_price) %></span></b>
+          </div>
+        </div>
       </div>
-
     </div>
     <div class="col-lg-6 checkout-cont">
       <h2>Checkout</h2>
