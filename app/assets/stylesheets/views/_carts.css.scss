@@ -58,3 +58,29 @@
 .btn-buy {
   width: 100%;
 }
+
+@media screen {
+  #printSection {
+      display: none;
+  }
+}
+
+@media print {
+  body * {
+    visibility:hidden;
+  }
+  #printSection, #printSection * {
+    visibility:visible;
+  }
+  #printSection {
+    position:absolute;
+    left:0;
+    top:0;
+  }
+}
+
+.form-inline.form-send-redeem-code {
+  .form-control {
+    width: 300px;
+  }
+}

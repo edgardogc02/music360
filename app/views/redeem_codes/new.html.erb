@@ -1,14 +1,74 @@
-<%= render 'shared/header_page', title: 'Specify gift receiver' %>
+<%= render 'shared/header_page', title: 'Thank you for your purchase!' %>
 
-<p>Do you know the username or the email of the gift receiver? Otherwise leave it blank.</p>
+<!--<h2>Thank you for your purchase!</h2>-->
+
+This is the gift redeem code: <div class="well display-inline well-sm margin-left"><b class="primary-text-color"><%= @redeem_code.code %></b></div>
+
+<br />
+
+<h4>How do you want to send the gift?</h4>
+
+<br />
+
+<p><b>1. On InstrumentChamp to an existing user</b></p>
 
 <div class="row">
   <div class="col-lg-6">
-    <%= simple_form_for [@payment, @redeem_code] do |f| %>
+    <%= form_tag send_code_payment_redeem_codes_path, {class: 'form-inline form-send-redeem-code'} do |f| %>
 
-      <%= f.input :gift_receiver %>
-      <%= f.submit 'Generate voucher', {class: 'btn btn-primary'} %>
+      <%= hidden_field_tag "redeem_code", @redeem_code.id %>
+      <%= text_field_tag "gift_receiver", nil, {name: "gift_receiver", placeholder: "Specify InstrumentChamp username", class: "form-control"} %>
+      <%= submit_tag "Send", {class: "btn btn-primary"} %>
 
     <% end %>
+
+    <hr />
+  </div>
+</div>
+
+<p><b>2. As a gift card to send with email</b></p>
+
+<div class="row">
+  <div class="col-lg-6">
+    <%= form_tag send_code_payment_redeem_codes_path, {class: 'form-inline form-send-redeem-code'} do |f| %>
+
+      <%= hidden_field_tag "redeem_code", @redeem_code.id %>
+      <%= text_field_tag "gift_receiver", nil, {name: "gift_receiver", placeholder: "Specify email to your friend", class: "form-control"} %>
+      <%= submit_tag "Send", {class: "btn btn-primary"} %>
+
+    <% end %>
+
+    <hr />
+  </div>
+</div>
+
+<p><b>3. As a gift card to send with email</b></p>
+
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#redeem_code_to_print_modal">
+  <i class="glyphicon glyphicon-print margin-right"></i> Print
+</button>
+
+
+<div class="modal fade" id="redeem_code_to_print_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content spacer">
+      <div class="modal-body">
+        <div>
+          <div id="printThis">
+            <%= image_tag(asset_path('logo_beta.png')) %>
+            <hr />
+            <h2>Thank you for your purchase!</h2>
+            <h4>This is the gift redeem code</h4>
+            <h1 class="well display-inline"><%= @redeem_code.code %></h1>
+          </div>
+          <div class="text-right">
+            <button id="btnPrint" class="btn btn-primary">
+              <i class="glyphicon glyphicon-print margin-right"></i> Print
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </div>
   </div>
 </div>

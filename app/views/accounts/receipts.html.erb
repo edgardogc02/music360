@@ -4,8 +4,8 @@
 
 <% unless current_user.payments.empty? %>
 
-  <table>
-    <tr>
+  <table width="100%" class="shopping-cart-datagrid">
+    <tr class="head">
       <td>Order number</td>
       <td>Amount</td>
       <td>Created at</td>
@@ -17,7 +17,7 @@
         <td><%= link_to payment.id, payment %></td>
         <td><%= number_to_euro(payment.amount) %></td>
         <td><%= l payment.created_at, format: :long %></td>
-        <td><%= link_to "View details", payment, {class: "btn btn-primary"}%></td>
+        <td><%= link_to "View details", payment, {class: "btn btn-primary btn-sm"}%></td>
       </tr>
     <% end %>
 

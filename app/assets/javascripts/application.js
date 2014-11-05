@@ -51,3 +51,4 @@
 //= require helper
 //= require group_posts
 //= require carts
+//= require print

@@ -1,8 +1,12 @@
 <%= render 'shared/header_page', title: 'Redeem code' %>
 
-<%= simple_form_for @user_redeem_code do |f| %>
+<div class="row">
+  <div class="col-lg-6">
+    <%= simple_form_for @user_redeem_code do |f| %>
 
-    <%= f.input :code %>
-    <%= f.submit "Redeem", {class: 'btn btn-primary'} %>
+      <%= f.input :code %>
+      <%= f.submit "Redeem", {class: 'btn btn-primary'} %>
 
-<% end %>
+    <% end %>
+  </div>
+</div>

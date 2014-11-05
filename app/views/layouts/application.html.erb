@@ -48,6 +48,7 @@
                   <% if signed_in? %>
 
 										<li class="visible-xs"><%= link_to "Account", overview_accounts_path %></li>
+										<li class="visible-xs"><%= link_to "Redeem code", new_user_redeem_code_path %></li>
 								    <li class="visible-xs"><%= link_to "Upgrade", new_user_premium_subscription_path if !current_user.premium? %></li>
 								    <li class="visible-xs"><%= link_to "Admin", admin_dashboard_path, {target: "_blank"} if current_user.admin? %></li>
 								    <li class="divider visible-xs"></li>
@@ -88,6 +89,7 @@
 											  </a>
 											  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
 											  	<li role="presentation"><%= link_to "Account", overview_accounts_path %></li>
+											  	<li role="presentation"><%= link_to "Redeem code", new_user_redeem_code_path %></li>
 											    <li role="presentation"><%= link_to "Upgrade", new_user_premium_path if !current_user.premium? %></li>
 											    <li role="presentation"><%= link_to "Admin", admin_dashboard_path, {target: "_blank"} if current_user.admin? %></li>
 											    <li role="presentation" class="divider"></li>
