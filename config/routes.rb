@@ -153,11 +153,7 @@ InstrumentchampPrototype::Application.routes.draw do
   resources :wishlists
   resources :wishlist_items
   resources :payments do
-    resources :redeem_codes do
-      collection do
-        post 'send_code', as: :send_code
-      end
-    end
+    resources :redeem_codes
   end
   resources :premium_plan_as_gifts
 

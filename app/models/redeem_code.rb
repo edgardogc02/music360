@@ -2,9 +2,11 @@ class RedeemCode < ActiveRecord::Base
 
   belongs_to :redeemable, polymorphic: true
 
-  validate :gift_receiver_is_valid
+  validate :gift_receiver_username_is_valid
+  validate :gift_receiver_email_is_valid
 
-  attr_accessor :gift_receiver
+  attr_accessor :gift_receiver_username
+  attr_accessor :gift_receiver_email
 
   def create_code_from_payment(payment)
     self.code = generate_random_code
@@ -30,8 +32,8 @@ class RedeemCode < ActiveRecord::Base
   end
 
   def send_emails(gift_giver)
-    if Rails.env.production? and gift_receiver
-      receiver_email = gift_receiver_is_email? ? gift_receiver : User.find_by_username(gift_receiver).email
+    if Rails.env.production?
+      receiver_email = !gift_receiver_email.blank? ? gift_receiver_email : User.find_by_username(gift_receiver_username).email
       MandrillTemplateEmailNotifier.gift_from_friend_mandrill_template(receiver_email, gift_giver.username, self).deliver
       MandrillTemplateEmailNotifier.gift_accepted_mandrill_template(gift_giver, gift_receiver).deliver
     end
@@ -47,10 +49,19 @@ class RedeemCode < ActiveRecord::Base
     gift_receiver and gift_receiver.include?('@')
   end
 
-  def gift_receiver_is_valid
-    if !gift_receiver.blank?
-      if !gift_receiver_is_email? and User.find_by_username(gift_receiver).nil? and User.find_by_email(gift_receiver).nil?
-        errors.add :gift_receiver, "That user doesn't exist on InstrumentChamp"
+  def gift_receiver_username_is_valid
+    if !gift_receiver_username.blank?
+      if User.find_by_username(gift_receiver_username).nil?
+        errors.add :gift_receiver_username, "That user doesn't exist on InstrumentChamp"
+        false
+      end
+    end
+  end
+
+  def gift_receiver_email_is_valid
+    if !gift_receiver_email.blank?
+      if !gift_receiver_email.include?('@')
+        errors.add :gift_receiver_email, "The email is not valid"
         false
       end
     end

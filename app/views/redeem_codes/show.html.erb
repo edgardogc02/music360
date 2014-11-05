@@ -1,7 +1,5 @@
 <%= render 'shared/header_page', title: 'Thank you for your purchase!' %>
 
-<!--<h2>Thank you for your purchase!</h2>-->
-
 This is the gift redeem code: <div class="well display-inline well-sm margin-left"><b class="primary-text-color"><%= @redeem_code.code %></b></div>
 
 <br />
@@ -14,12 +12,9 @@ This is the gift redeem code: <div class="well display-inline well-sm margin-lef
 
 <div class="row">
   <div class="col-lg-6">
-    <%= form_tag send_code_payment_redeem_codes_path, {class: 'form-inline form-send-redeem-code'} do |f| %>
-
-      <%= hidden_field_tag "redeem_code", @redeem_code.id %>
-      <%= text_field_tag "gift_receiver", nil, {name: "gift_receiver", placeholder: "Specify InstrumentChamp username", class: "form-control"} %>
-      <%= submit_tag "Send", {class: "btn btn-primary"} %>
-
+    <%= form_for [@payment, @redeem_code], html: {class: 'form-inline form-send-redeem-code'} do |f| %>
+      <%= f.text_field :gift_receiver_username, {placeholder: "Specify InstrumentChamp username", class: "form-control"} %>
+      <%= f.submit "Send", {class: "btn btn-primary"} %>
     <% end %>
 
     <hr />
@@ -30,12 +25,9 @@ This is the gift redeem code: <div class="well display-inline well-sm margin-lef
 
 <div class="row">
   <div class="col-lg-6">
-    <%= form_tag send_code_payment_redeem_codes_path, {class: 'form-inline form-send-redeem-code'} do |f| %>
-
-      <%= hidden_field_tag "redeem_code", @redeem_code.id %>
-      <%= text_field_tag "gift_receiver", nil, {name: "gift_receiver", placeholder: "Specify email to your friend", class: "form-control"} %>
-      <%= submit_tag "Send", {class: "btn btn-primary"} %>
-
+    <%= form_for  [@payment, @redeem_code], html: {class: 'form-inline form-send-redeem-code'} do |f| %>
+      <%= f.text_field :gift_receiver_email, {placeholder: "Specify email to your friend", class: "form-control"} %>
+      <%= f.submit "Send", {class: "btn btn-primary"} %>
     <% end %>
 
     <hr />

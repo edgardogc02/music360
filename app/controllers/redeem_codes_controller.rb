@@ -6,21 +6,28 @@ class RedeemCodesController < ApplicationController
     @payment = Payment.find(params[:payment_id])
     @redeem_code = RedeemCode.new
     @redeem_code.create_code_from_payment(@payment)
+    redirect_to [@payment, @redeem_code]
   end
 
-  def send_code
-    #@payment = Payment.find(params[:payment_id])
-    @redeem_code = RedeemCode.find(params[:redeem_code])
-    @redeem_code.gift_receiver = params[:gift_receiver]
+  def show
+    @payment = Payment.find(params[:payment_id])
+    @redeem_code = RedeemCode.find(params[:id])
+  end
+
+  def update
+    @payment = Payment.find(params[:payment_id])
+    @redeem_code = RedeemCode.find(params[:id])
 
     respond_to do |format|
-      if @redeem_code.send_emails(params[:gift_receiver])
+      if @redeem_code.update_attributes(redeem_code_params)
         format.html do
-          redirect_to root_path, notice: "Your redeem code is #{@redeem_code.code}"
+          @redeem_code.send_emails(current_user)
+          redirect_to root_path, notice: "The redeem code was successfully sent"
         end
       else
         format.html do
-          redirect_to root_path, notice: "#{@redeem_code.errors.inspect}"
+          flash[:warning] = @redeem_code.errors.full_messages.join(', ').html_safe
+          render :show
         end
       end
     end
@@ -29,7 +36,7 @@ class RedeemCodesController < ApplicationController
   private
 
   def redeem_code_params
-    params.require(:redeem_code).permit(:gift_receiver).permit(:send_to)
+    params.require(:redeem_code).permit(:gift_receiver_username, :gift_receiver_email)
   end
 
 end

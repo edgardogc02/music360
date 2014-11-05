@@ -20,10 +20,11 @@
               </a>
             </li>
             <li>
-              <a class="fb_button xs" href="#" id="share_on_facebook">
-                <span class="separator"></span>
-                <span class="text">Share on facebook</span>
-              </a>
+              <%= form_tag "/auth/twitter", {method: :get} do %>
+                <%= hidden_field_tag "tweet_text", "Join me on @InstrumentChamp. It's a game and social network for music players! #PlayMusic" %>
+                <%= hidden_field_tag "tweet", 'true' %>
+                <%= submit_tag "Share on Twitter", {class: "btn btn-primary btn-lg"} %>
+              <% end %>
             </li>
           </ul>
         </div>
@@ -31,6 +32,31 @@
     </div>
   </div>
 </div>
+
+<% if @tweet %>
+  <!-- Modal -->
+  <div class="modal fade" id="tweet_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+          <h4 class="modal-title" id="myModalLabel">This is the tweet</h4>
+        </div>
+        <div class="modal-body">
+          <iframe border=0 frameborder=0 height=250 width=600 src="https://twitframe.com/show?url=https://twitter.com/<%= @user_twitter_account.username %>/status/<%= @tweet.id %>">
+          </iframe>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $('#tweet_modal').modal('toggle');
+    });
+  </script>
+
+<% end %>
 
 <% if params[:chk] %>
 	<%= content_for(:js_scripts) do %>
@@ -43,3 +69,5 @@
 	  </script>
 	<% end %>
 <% end %>
+
+<%= render "shared/facebook_invite.js" %>
