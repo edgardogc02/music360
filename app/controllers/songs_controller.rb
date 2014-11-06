@@ -1,5 +1,5 @@
 class SongsController < ApplicationController
-	before_action :authorize, except: [:show]
+	before_action :redirect_to_current_if_not_signed_in
 	before_action :set_song, only: [:show, :destroy, :activities]
 #  before_action :authorize_group # TODO
 
@@ -55,4 +55,5 @@ class SongsController < ApplicationController
 	def set_song
 		@song = Song.find(params[:id])
 	end
+
 end

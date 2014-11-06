@@ -1,12 +1,27 @@
-<%= render 'shared/header_page', title: 'Redeem code' %>
+<% if signed_in? %>
 
-<div class="row">
-  <div class="col-lg-6">
-    <%= simple_form_for @user_redeem_code do |f| %>
+<div class="text-center">
+  <h1 class="brand-heading">Redeem code</h1>
+  <p>
+    Enter your redeem code <br />
+    (gift code, promo code)
+  </p>
+  <%= simple_form_for @user_redeem_code do |f| %>
 
-      <%= f.input :code %>
-      <%= f.submit "Redeem", {class: 'btn btn-primary'} %>
+    <%= f.input :code, label: false %>
+    <%= f.submit "Redeem", {class: 'btn btn-primary btn-huge'} %>
 
-    <% end %>
-  </div>
+  <% end %>
 </div>
+
+<% else %>
+
+  <%= content_for(:js_scripts) do %>
+    <script type="text/javascript">
+      $(document).ready(function() {
+        show_modal_authentication("", true)
+      });
+    </script>
+  <% end %>
+
+<% end %>

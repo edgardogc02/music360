@@ -17,8 +17,8 @@ class SessionsController < ApplicationController
 			if user and user.authenticate(params[:password]) and !user.deleted?
         format.html do
           authenticate_user(user)
-          flash[:notice] = "Welcome back, #{user.username}!"
-          redirect_to home_path
+          #flash[:notice] = "Welcome back, #{user.username}!"
+          redirect_to last_visited_page
         end
 			  format.json do
 			    render :json => {
@@ -32,8 +32,8 @@ class SessionsController < ApplicationController
           if params[:action_modal] == 'download'
            render js: "window.location = '#{apps_path}'"
           else
-            flash[:notice] = "Welcome back, #{user.username}!"
-            render js: "window.location = '#{home_path}'"
+            #flash[:notice] = "Welcome back, #{user.username}!"
+            render js: "window.location = '#{last_visited_page}'"
           end
         end
 			else

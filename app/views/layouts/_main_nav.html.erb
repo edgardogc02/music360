@@ -1,0 +1,110 @@
+<nav class="navbar navbar-default navbar-custom navbar-fixed-top" role="navigation">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="navbar-header">
+          <% if signed_in? %>
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+              <div class="pull-left">
+                <%= image_tag current_user.imagename_url, alt: current_user.username, class: "header-avatar" %>
+              </div>
+              <div class="pull-left">
+                <div class="spacer-md"></div>
+                <i class="glyphicon glyphicon-chevron-down"></i>
+              </div>
+            </button>
+          <% end %>
+          <%= link_to :root, class: "logo navbar-brand" do %>
+            <%= image_tag(asset_path('logo_beta.png')) %>
+          <% end %>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <% if signed_in? %>
+            <ul class="nav navbar-nav navbar-left">
+              <li class="progress-bar-header hidden-xs">
+                <%= render 'shared/progress_bar' %>
+              </li>
+              <li>
+                <%= render "searches/new" %>
+              </li>
+            </ul>
+          <% end %>
+          <ul class="nav navbar-nav navbar-right">
+            <% if signed_in? %>
+
+              <li class="visible-xs"><%= link_to "Account", overview_accounts_path %></li>
+              <li class="visible-xs"><%= link_to "Redeem code", user_redeem_path %></li>
+              <li class="visible-xs"><%= link_to "Upgrade", new_user_premium_subscription_path if !current_user.premium? %></li>
+              <li class="visible-xs"><%= link_to "Admin", admin_dashboard_path, {target: "_blank"} if current_user.admin? %></li>
+              <li class="divider visible-xs"></li>
+              <li class="visible-xs"><%= link_to "Sign out", logout_path %></li>
+
+              <li class="margin-right">
+                <%= link_to cart_path(current_user.current_cart), {class: "btn btn-info", title: "Shopping Cart", data: {toggle: "popover", placement: "bottom", html: "true"}} do %>
+                  <%= content_tag :i, nil, class: "glyphicon glyphicon-shopping-cart" %>
+                  <span id="cart_count">
+                    <%= current_user.current_cart.line_items.count %>
+                  </span>
+                <% end %>
+              </li>
+
+              <div class="cart_popover_content hide">
+                <%= render 'carts/popover_cart', cart: current_user.current_cart %>
+              </div>
+
+              <li class="margin-right">
+                <%= link_to wishlist_path(current_user.current_wishlist), {class: "btn btn-danger"} do %>
+                  <%= content_tag :i, nil, class: "glyphicon glyphicon-heart" %>
+                  <span id="wishlist_count">
+                    <%= current_user.current_wishlist.wishlist_items.count %>
+                  </span>
+                <% end %>
+              </li>
+
+              <li class="profile-section hidden-xs">
+                <div class="dropdown">
+                  <a class="btn dropdown-toggle clearfix" data-toggle="dropdown">
+                    <div class="pull-left">
+                      <%= image_tag current_user.imagename_url, alt: current_user.username, class: "header-avatar" %>
+                    </div>
+                    <div class="pull-left hidden-sm">
+                      <b><%= current_user.username %></b><br />
+                      <%= current_user.level %>
+                    </div>
+                  </a>
+                  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
+                    <li role="presentation"><%= link_to "Account", overview_accounts_path %></li>
+                    <li role="presentation"><%= link_to "Redeem code", user_redeem_path %></li>
+                    <li role="presentation"><%= link_to "Upgrade", new_user_premium_path if !current_user.premium? %></li>
+                    <li role="presentation"><%= link_to "Admin", admin_dashboard_path, {target: "_blank"} if current_user.admin? %></li>
+                    <li role="presentation" class="divider"></li>
+                    <li role="presentation"><%= link_to "Sign out", logout_path, {id: 'sign_out'} %></li>
+                  </ul>
+                </div>
+              </li>
+
+              <li>
+                <% if !current_user.installed_desktop_app? %>
+                  <%= link_to "Download", is_mobile? ? mobile_landing_path : apps_path, {class: "btn btn-primary btn-lg download-modal-btn btn-huge-header"} %>
+                <% else %>
+                  <%= link_to "Premium", !current_user.premium? ? new_user_premium_path : subscription_accounts_path, {class: "btn btn-primary btn-lg download-modal-btn btn-huge-header"} %>
+                <% end %>
+
+              </li>
+            <% else %>
+              <li>
+                <a href="<%= help_path %>" class="btn btn-link" target="_blank">Help</a>
+              </li>
+              <li>
+                <a href="#" class="btn btn-link authentication-btn" data-id="login">Log in</a>
+              </li>
+              <li>
+                <a href="#" class="btn btn-primary btn-lg authentication-btn download-modal-btn" data-id="download">Download</a>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</nav>

@@ -22,8 +22,8 @@
           <li>
             <a href="#" class="btn btn-primary btn-huge authentication-btn" id="download_btn_top_slide" data-id="download">Get started</a>
           </li>
-          <li>
-            <a href="#" class="btn btn-primary btn-huge redeem-btn" id="download_btn_top_slide" data-id="download">Redeem code?</a>
+          <li data-no-turbolink>
+            <%= link_to "Redeem code?", user_redeem_path, class: "btn btn-primary btn-huge redeem-btn" %>
           </li>
         </ul>
       </div>

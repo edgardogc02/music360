@@ -42,6 +42,10 @@ class ApplicationController < ActionController::Base
     @steps = OnboardingProcessSteps.new([welcome_step, instrument_step, groupies_step])
   end
 
+  def last_visited_page
+    session[:redirect]? session[:redirect] : root_path
+  end
+
   private
 
   def current_user
@@ -55,6 +59,10 @@ class ApplicationController < ActionController::Base
   def authorize
     session[:redirect] = home_path
     redirect_to login_path, :alert => "You have to sign in to view this page" unless signed_in?
+  end
+
+  def redirect_to_current_if_not_signed_in
+    session[:redirect] = request.original_url unless signed_in?
   end
 
   def not_authorized

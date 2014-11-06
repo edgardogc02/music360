@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+	<head>
+		<%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+		<%= render "layouts/head" %>
+	</head>
+
+	<body role="landing" class="<%= body_classes %> landing" data-spy="scroll" data-target=".navbar-custom-links" data-offset="300">
+
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top" role="navigation">
+      <div class="container">
+        <%= link_to :root, class: "logo navbar-brand" do %>
+          <%= image_tag(asset_path('logo_beta.png')) %>
+        <% end %>
+      </div>
+    </nav>
+
+		<section id="big-image-layout" class="landing-section">
+      <div class="container">
+        <% flash.each do |name, msg| %>
+          <%= content_tag :div, class: "alert alert-#{name} #{alert_class(name)} alert-dismissable" do %>
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">
+              &times;
+            </button>
+            <%= msg %>
+          <% end %>
+        <% end %>
+
+        <%= yield %>
+      </div>
+    </section>
+
+    <%= render 'sessions/sign_in' %>
+    <%= js_scripts %>
+	</body>
+
+</html>

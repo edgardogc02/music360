@@ -119,10 +119,7 @@
   <%= content_for(:js_scripts) do %>
     <script type="text/javascript">
       $(document).ready(function() {
-        $("#song_modal").modal({
-          show: true,
-          backdrop: 'static'
-        });
+        show_modal_authentication("", true)
       });
     </script>
   <% end %>

@@ -315,6 +315,11 @@ h1.brand-heading {
   //background-attachment: fixed;
 }
 
+#big-image-layout {
+  background: image-url('landing/slide0_darker.jpg') no-repeat center center;
+  //background-attachment: fixed;
+}
+
 
 /* FB - Button */
 
@@ -535,5 +540,22 @@ h1.brand-heading {
 .box-dark {
   background-color:rgba(0, 0, 0, 0.6);
   padding: 15px;
+}
+
+#big-image-layout {
+  padding-top: 150px;
+  text-shadow: 0px 0px 0px #000;
+
+  .wrap-content {
+    text-align: center;
+    display: inline-block;
+
+    input {
+      width: 200px;
+    }
+  }
+  .btn-huge {
+    width: 200px;
+  }
 }
 

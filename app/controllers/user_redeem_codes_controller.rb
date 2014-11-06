@@ -1,9 +1,13 @@
 class UserRedeemCodesController < ApplicationController
 
-  before_action :authorize
+  before_action :redirect_to_current_if_not_signed_in
+
+  layout "background_image"
 
   def new
-    @user_redeem_code = current_user.user_redeem_codes.build
+    if current_user
+      @user_redeem_code = current_user.user_redeem_codes.build
+    end
   end
 
   def create
