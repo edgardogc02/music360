@@ -213,7 +213,7 @@
 
   &.top-nav-collapse {
     border-top: 1px solid rgba(255,255,255,.3);
-    top: 64px;
+    top: 54px;
     bottom: auto;
   }
 }
@@ -280,8 +280,24 @@ h1.brand-heading {
 }
 
 #page-top {
-  background: image-url('landing/slide0.jpg') no-repeat center center;
+  background: image-url('landing/slide0.jpg') no-repeat top center;
   //background-attachment: fixed;
+
+  &.landing-section {
+    padding-top: 100px;
+  }
+
+  .btn-actions {
+    margin-top: 20px;
+
+    .redeem-btn {
+      background-color:rgba(0, 0, 0, 0.4);
+
+      &:hover {
+        background-color:rgba(0, 0, 0, 0.6);
+      }
+    }
+  }
 }
 
 #s1 {
@@ -464,6 +480,11 @@ h1.brand-heading {
     padding-top: 15%;
     padding-bottom: 5%;
   }
+
+  #s2.landing-section {
+    padding-top: 8%;
+  }
+
   .intro {
     padding: 0;
   }
@@ -511,5 +532,8 @@ h1.brand-heading {
   }
 }
 
-
+.box-dark {
+  background-color:rgba(0, 0, 0, 0.6);
+  padding: 15px;
+}
 

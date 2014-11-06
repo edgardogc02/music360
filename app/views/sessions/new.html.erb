@@ -6,16 +6,26 @@
 <meta property="og:description" content="Join me on @InstrumentChamp. It's a game and social network for music players! #PlayMusic" />
 <% end %>
 
-<%= render "landing_pages/header", link1: "What is InstrumentChamp?", link2: "The Music Mission", link3: "Play in a band" %>
+<%= render "landing_pages/header", link1: "What is InstrumentChamp?", link2: "Play in a band", link3: "The Music Mission" %>
 
 <section id="page-top" class="landing-section">
   <div class="container">
     <div class="row">
       <div class="col-md-8 col-md-offset-2 text-center">
-        <a href="#" id="video-btn" data-toggle="modal" data-target="#video"> <%= image_tag(asset_path('landing/play-logo.png')) %> </a>
+        <!--<a href="#" id="video-btn" data-toggle="modal" data-target="#video"> <%= image_tag(asset_path('landing/play-logo.png')) %> </a>-->
         <h1 class="brand-heading">Make your music dream come true</h1>
         <p>Be a music player and join the mission to make the world play music.</p>
-        <%= render 'slider_download', {btn_download_id: 'download_btn_top_slide'}%>
+
+        <%= image_tag(asset_path('landing/top_icons_instruments.png')) %>
+
+        <ul class="list-inline btn-actions">
+          <li>
+            <a href="#" class="btn btn-primary btn-huge authentication-btn" id="download_btn_top_slide" data-id="download">Get started</a>
+          </li>
+          <li>
+            <a href="#" class="btn btn-primary btn-huge redeem-btn" id="download_btn_top_slide" data-id="download">Redeem code?</a>
+          </li>
+        </ul>
       </div>
     </div>
   </div>
@@ -25,14 +35,20 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-6">
-        <h2>What is InstrumentChamp?</h2>
-        <h3>InstrumentChamp is a game and social network for music players</h3>
-        <p>
-          It is a fun, easy and social way to learn to play music. Practice alone or play with friends online. Learn to play new songs and connect with your favorite artists. The microphone in your computer listen, analyze and give realtime feedback on how you play.
-        </p>
-        <p>
-        	<%= render "landing_pages/features_icons" %>
-        </p>
+        <div class="box-dark">
+          <h2>What is InstrumentChamp?</h2>
+          <h3>InstrumentChamp is a game and social network for music players</h3>
+          <p>
+            It is a fun, easy and social way to learn to play music. Practice alone or play with friends online. Learn to play new songs and connect with your favorite artists. The microphone in your computer listen, analyze and give realtime feedback on how you play.
+          </p>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class='video-container'><iframe width='560' height='315' src='//www.youtube.com/embed/pSBiT91e5nk?rel=0' frameborder='0' allowfullscreen></iframe></div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-6">
         <%= render 'slider_download', {btn_download_id: 'download_btn_what_it_is_slide'}%>
       </div>
     </div>
@@ -43,15 +59,13 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-lg-offset-2 text-center">
-        <h2>The Music Mission</h2>
-        <h3>Start your music career and join the music mission</h3>
+        <h2>Play in a band</h2>
+        <h3>Rock together with friends in a band</h3>
         <p>
-          Improve your music skills and recruit new members to the music mission. That will take you on a music journey where you can become an InstrumentChamp. You can play with both acoustic and electric instruments.
+          Invite your friends to play a real music game! With InstrumentChamp you can play with real instruments up to 4 players together.
         </p>
-        <p>
-        	<%= render "landing_pages/career_levels" %>
-        </p>
-        <%= render 'slider_download', {btn_download_id: 'download_btn_how_it_works_slide'}%>
+        <%= image_tag(asset_path('landing/screenshot_landing.jpg'), class: "full-width") %>
+        <%= render 'slider_download', {btn_download_id: 'download_btn_what_it_costs_slide'}%>
       </div>
     </div>
   </div>
@@ -61,15 +75,14 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-6 col-lg-offset-6 text-right">
-        <h2>Play in a band</h2>
-        <h3>Rock together with friends in a band</h3>
-        <p>
-          Invite your friends to play a real music game! With InstrumentChamp you can play with real instruments up to 4 players together.
-        </p>
-        <p>
-        	<%= render "landing_pages/instrument_icons" %>
-        </p>
-        <%= render 'slider_download', {btn_download_id: 'download_btn_what_it_costs_slide'}%>
+        <div class="box-dark">
+          <h2>The Music Mission</h2>
+          <h3>Start your music career and join the music mission</h3>
+          <p>
+            Improve your music skills and recruit new members to the music mission. That will take you on a music journey where you can become an InstrumentChamp. You can play with both acoustic and electric instruments.
+          </p>
+        </div>
+        <%= render 'slider_download', {btn_download_id: 'download_btn_how_it_works_slide'}%>
       </div>
     </div>
   </div>
