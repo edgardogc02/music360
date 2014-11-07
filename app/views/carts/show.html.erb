@@ -72,11 +72,12 @@
           <div class="text-right total-price">
             Subtotal <span><%= number_to_euro(@cart.subtotal) %></span>
             <br />
+            including VAT <span><%= number_to_euro(@cart.taxes) %></span>
+            <br />
             <% if @cart.discount_code %>
               Discount<span>-<%= number_to_euro(@cart.discount_price) %></span>
               <br />
             <% end %>
-            Taxes <span><%= number_to_euro(@cart.taxes) %></span>
             <br /><br />
             <b>Grand Total <span><%= number_to_euro(@cart.total_price) %></span></b>
           </div>

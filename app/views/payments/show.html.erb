@@ -25,14 +25,14 @@
 <div class="text-right total-price">
   Subtotal <span><%= number_to_euro(@payment.subtotal) %></span>
   <br />
+  including VAT <span><%= number_to_euro(@payment.taxes) %></span>
+  <br />
   <% if @payment.discount_code %>
     Discount<span>-<%= number_to_euro(@payment.discount_price) %></span>
     <br />
   <% end %>
-  Taxes <span><%= number_to_euro(@payment.taxes) %></span>
   <br /><br />
   <b>Grand Total <span><%= number_to_euro(@payment.total_price) %></span></b>
-
   <br /><br /><br /><br />
   <%= link_to "Back to all my receipts", receipts_accounts_path, class: "btn btn-default" %>
 </div>
