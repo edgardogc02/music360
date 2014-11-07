@@ -17,8 +17,8 @@ class UserOmniauthCredentialsController < ApplicationController
           if request.env["omniauth.params"] and request.env["omniauth.params"]["new_session_action"] == "download"
           	redirect_to apps_path
           else
-            flash[:notice] = "Welcome back #{user.username}!"
-            redirect_to home_path
+            #flash[:notice] = "Welcome back #{user.username}!"
+            redirect_to last_visited_page
           end
         end
       else
