@@ -164,4 +164,11 @@
       }
     }
   }
+
+  .navbar-custom {
+    .navbar-collapse.in {
+      overflow-y: initial;
+    }
+  }
 }
+
