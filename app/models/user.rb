@@ -113,6 +113,10 @@ class User < ActiveRecord::Base
 	  User.find_by_username("Lars Willner")
 	end
 
+	def self.magnus_willner
+    User.find_by_username("Magnus Willner")
+  end
+
   def current_cart
     cart || create_cart
   end
