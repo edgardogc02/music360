@@ -1,1 +1,5 @@
-<a href="#" class="btn btn-primary btn-huge authentication-btn btn-full-width" id="<%= btn_download_id %>" data-id="download">Get started</a>
+<% if is_mobile? %>
+  <%= link_to "Get started", "#", {class: btn_class, data: {id: "login"}, id: btn_download_id} %>
+<% else %>
+  <%= link_to "Get started", "#", {class: btn_class, data: {id: "download"}, id: btn_download_id} %>
+<% end %>

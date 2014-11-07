@@ -20,7 +20,7 @@
 
         <ul class="list-inline btn-actions">
           <li>
-            <a href="#" class="btn btn-primary btn-huge authentication-btn" id="download_btn_top_slide" data-id="download">Get started</a>
+            <%= render 'slider_download', {btn_download_id: 'download_btn_top_slide', btn_class: "btn btn-primary btn-huge authentication-btn"} %>
           </li>
           <li data-no-turbolink>
             <%= link_to "Redeem code?", user_redeem_path, class: "btn btn-primary btn-huge redeem-btn" %>
@@ -49,7 +49,7 @@
     </div>
     <div class="row">
       <div class="col-lg-6">
-        <%= render 'slider_download', {btn_download_id: 'download_btn_what_it_is_slide'}%>
+        <%= render 'slider_download', {btn_download_id: 'download_btn_what_it_is_slide', btn_class: "btn btn-primary btn-huge authentication-btn btn-full-width"} %>
       </div>
     </div>
   </div>
@@ -65,7 +65,7 @@
           Invite your friends to play a real music game! With InstrumentChamp you can play with real instruments up to 4 players together.
         </p>
         <%= image_tag(asset_path('landing/screenshot_landing.jpg'), class: "full-width") %>
-        <%= render 'slider_download', {btn_download_id: 'download_btn_what_it_costs_slide'}%>
+        <%= render 'slider_download', {btn_download_id: 'download_btn_what_it_costs_slide', btn_class: "btn btn-primary btn-huge authentication-btn btn-full-width"}%>
       </div>
     </div>
   </div>
@@ -82,7 +82,7 @@
             Improve your music skills and recruit new members to the music mission. That will take you on a music journey where you can become an InstrumentChamp. You can play with both acoustic and electric instruments.
           </p>
         </div>
-        <%= render 'slider_download', {btn_download_id: 'download_btn_how_it_works_slide'}%>
+        <%= render 'slider_download', {btn_download_id: 'download_btn_how_it_works_slide', btn_class: "btn btn-primary btn-huge authentication-btn btn-full-width"}%>
       </div>
     </div>
   </div>
