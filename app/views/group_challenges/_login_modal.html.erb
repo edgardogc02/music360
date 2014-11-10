@@ -24,7 +24,7 @@
             <%= image_tag @challenge.song.cover_url, class: "cover" %>
             <div class="info-content">
               <div class="primary">Challenge <%= link_to @challenge.song.title, @challenge.song, data: {no_turbolink: true} %></div>
-              <div class="primary">Group <%= link_to @challenge.group.name, person_path(@challenge.challenger), data: {no_turbolink: true} %></div>
+              <div class="primary">Group <%= link_to @challenge.group.name, @challenge.group, data: {no_turbolink: true} %></div>
             </div>
           </div>
           <div class="col-md-5">
