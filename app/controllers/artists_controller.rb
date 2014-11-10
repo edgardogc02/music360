@@ -1,5 +1,6 @@
 class ArtistsController < ApplicationController
 	before_action :authorize, except: [:create, :show]
+	before_action :redirect_to_current_if_not_signed_in, only: [:show]
 	before_action :set_artist, only: [:show, :edit, :update, :destroy, :activities]
 
 	def index

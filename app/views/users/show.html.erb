@@ -16,3 +16,13 @@
 		Followers: <%= link_to @user.followers.count, user_follower_path(@user) %>
 	</p>
 <% end %>
+
+<% if !signed_in? %>
+  <%= content_for(:js_scripts) do %>
+    <script type="text/javascript">
+      $(document).ready(function() {
+       show_modal_authentication();
+      });
+    </script>
+  <% end %>
+<% end %>

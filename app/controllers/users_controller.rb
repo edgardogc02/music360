@@ -1,8 +1,9 @@
 class UsersController < ApplicationController
-	before_action :authorize, except: [:create, :new]
+	before_action :authorize, except: [:create, :new, :show]
 	before_action :not_authorized, only: [:create, :new]
 	before_action :set_user, only: [:show, :edit, :update, :destroy, :upload_profile_image, :upload_cover_image]
   before_action :check_security, only: [:edit, :update, :destroy, :upload_profile_image, :upload_cover_image]
+  before_action :redirect_to_current_if_not_signed_in, only: [:show]
 
 	def index
     if params[:username_or_email]
@@ -27,7 +28,9 @@ class UsersController < ApplicationController
   end
 
 	def show
-		@challenges = ChallengesDecorator.decorate(Challenge.not_played_by_user(current_user, Challenge.default_order.values))
+	  if signed_in?
+		  @challenges = ChallengesDecorator.decorate(Challenge.not_played_by_user(current_user, Challenge.default_order.values))
+		end
 
 		render layout: "detail"
 	end

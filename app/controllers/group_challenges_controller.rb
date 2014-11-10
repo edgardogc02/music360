@@ -1,5 +1,6 @@
 class GroupChallengesController < ApplicationController
-	before_action :authorize
+	before_action :authorize, except: [:show]
+  before_action :redirect_to_current_if_not_signed_in, only: [:show]
   before_action :set_group
 
 	def index

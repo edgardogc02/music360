@@ -24,23 +24,27 @@
 	</ul>
 <% end %>
 
-<%= content_for(:detail_header_nav_right) do %>
-	<%= link_to 'Create new group', new_group_path, class: 'btn btn-primary btn-sm' %>
-	<% if UserGroupsManager.new(current_user).belongs_to_group?(@group) %>
-		<div class="dropdown">
-		  <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
-		    <i class="glyphicon glyphicon-cog"></i>
-		  </button>
-		  <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dropdownMenu1">
-		    <li role="presentation"><a href="<%= group_group_invitations_path(@group) %>" role="menuitem", tabindex="-1">Invite members</a></li>
-		    <li role="presentation"><a href="<%= new_group_challenge_path(@group) %>" role="menuitem", tabindex="-1">Create new challenge</a></li>
-		    <li role="presentation"><a href="<%= new_group_path %>" role="menuitem", tabindex="-1">Create new group</a></li>
-		    <li role="presentation"><%= @group.leave_group_button %></li>
-		    <li role="presentation"><%= @group.edit_button %></li>
-		    <li role="presentation"><%= @group.membership_requests_pending_approval_button %></li>
-		  </ul>
-		</div>
-	<% end %>
+<% if signed_in? %>
+
+  <%= content_for(:detail_header_nav_right) do %>
+  	<%= link_to 'Create new group', new_group_path, class: 'btn btn-primary btn-sm' %>
+  	<% if UserGroupsManager.new(current_user).belongs_to_group?(@group) %>
+  		<div class="dropdown">
+  		  <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
+  		    <i class="glyphicon glyphicon-cog"></i>
+  		  </button>
+  		  <ul class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dropdownMenu1">
+  		    <li role="presentation"><a href="<%= group_group_invitations_path(@group) %>" role="menuitem", tabindex="-1">Invite members</a></li>
+  		    <li role="presentation"><a href="<%= new_group_challenge_path(@group) %>" role="menuitem", tabindex="-1">Create new challenge</a></li>
+  		    <li role="presentation"><a href="<%= new_group_path %>" role="menuitem", tabindex="-1">Create new group</a></li>
+  		    <li role="presentation"><%= @group.leave_group_button %></li>
+  		    <li role="presentation"><%= @group.edit_button %></li>
+  		    <li role="presentation"><%= @group.membership_requests_pending_approval_button %></li>
+  		  </ul>
+  		</div>
+  	<% end %>
+  <% end %>
+
 <% end %>
 
 <div class="modal fade" id="invite_new_members_modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel1" aria-hidden="true">

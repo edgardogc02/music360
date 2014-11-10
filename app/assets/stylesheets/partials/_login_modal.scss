@@ -1,0 +1,114 @@
+
+#section_login_modal {
+
+  .modal-backdrop {
+    background-color: #f00;
+  }
+
+  .modal-header {
+    border-bottom: 0px;
+  }
+
+  .cover {
+    max-width: 100%;
+    width: 100%;
+  }
+
+  .modal-content {
+    background: none;
+    box-shadow: 0px 0px 0px 0px;
+    border: 0px;
+
+    .cost {
+      color: #FFF;
+      font-size: 20px;
+      margin-left: 20px;
+    }
+  }
+
+  h2 {
+    color: #FFF;
+    font-size: 28px;
+    margin: 0px;
+  }
+
+  h3 {
+    color: #FFF;
+    font-weight: normal;
+    font-size: 24px;
+    margin-right: 20px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
+
+  .login-view {
+    background:rgb(0,0,0);
+    background: transparent\9;
+    background:rgba(0,0,0,0.4);
+    color: #FFF;
+
+    padding: 20px;
+
+    .text-divider {
+      span {
+        color: #FFF;
+        background: none;
+      }
+    }
+
+    .remember_check {
+      color: #FFF;
+    }
+  }
+
+  .left-side {
+    padding: 0px;
+    background:rgb(0,0,0);
+    background: transparent\9;
+    background:rgba(0,0,0,0.4);
+
+    .info-content {
+      padding: 15px 10px;
+    }
+    .primary {
+      color: #FFF;
+      font-size: 16px;
+    }
+
+    .secondary {
+      font-size: 20px;
+      font-weight: bold;
+    }
+  }
+
+  .login-title {
+    color: #FFF;
+    text-align: center;
+    margin: 10px 0px 26px 0px;
+    font-size: 20px;
+  }
+}
+
+@media (min-width: $screen-md-min) {
+  #section_login_modal {
+    .login-view, .login-title {
+      //max-width: 300px;
+    }
+  }
+}
+
+@media (max-width: $screen-md-max) {
+  #section_login_modal {
+    .login-title {
+      margin-top: 20px;
+    }
+  }
+}
+
+.songs, .artists, .challenges, .groups, .group_challenges {
+  &.show.modal-open {
+    .modal-backdrop {
+      opacity: 0.9;
+    }
+  }
+}

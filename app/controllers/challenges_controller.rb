@@ -1,5 +1,6 @@
 class ChallengesController < ApplicationController
 	before_action :authorize, except: [:show]
+	before_action :redirect_to_current_if_not_signed_in, only: [:show]
 
 	def index
 		@my_challenges = TabMyChallengesDecorator.decorate(Challenge.not_played_by_user(current_user, Challenge.default_order.default_limit.values))
