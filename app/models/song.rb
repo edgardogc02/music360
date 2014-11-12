@@ -38,6 +38,7 @@ class Song < ActiveRecord::Base
   scope :not_user_created, -> { where('user_created IS NULL OR user_created = 0') }
   scope :user_created, -> { where('user_created = 1') }
   scope :created_by_user_id, ->(user_id) { where('user_created = 1 AND uploader_user_id = ?', user_id) }
+  scope :featured, -> { where('display_feature = true or cost > 0').order("display_feature DESC") }
 
   scope :easy, -> { where(difficulty: 1) }
   scope :medium, -> { where(difficulty: 2) }

@@ -25,6 +25,16 @@
 <%= link_to 'View complete profile', profile_accounts_path %>
 <br /><br />
 
+<% if current_user %>
+  <% unless current_user.installed_desktop_app? %>
+    <br />
+    <span class="well well-sm">
+      This is your verification code for account verification: <b class="primary-text-color"><%= current_user.auth_token %></b>
+    </span>
+    <br /><br />
+  <% end %>
+<% end %>
+
 <h2>Subscription status</h2>
 
 <% if @user.premium %>

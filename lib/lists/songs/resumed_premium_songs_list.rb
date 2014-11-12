@@ -14,7 +14,7 @@ class ResumedPremiumSongsList < SongsList
   end
 
   def songs
-    @songs ||= Song.paid.by_popularity.limit(5)
+    @songs ||= Song.featured.limit(5)
   end
 
 end

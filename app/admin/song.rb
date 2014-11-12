@@ -19,7 +19,7 @@ ActiveAdmin.register Song do
   scope :free
   scope :paid
 
-  permit_params :category_id, :artist_id, :title, :cover, :length, :difficulty, :status, :onclient, :writer, :arranger_userid, :published_at, :publisher, :cost, :midi, :on, :model
+  permit_params :category_id, :artist_id, :title, :cover, :length, :difficulty, :status, :onclient, :writer, :arranger_userid, :published_at, :publisher, :cost, :midi, :on, :model, :display_feature
 
   index do
     selectable_column
@@ -42,6 +42,7 @@ ActiveAdmin.register Song do
     column :slug
     column :user_created
     column :midi
+    column :display_feature
     #column :created_at
     actions
   end
@@ -65,6 +66,7 @@ ActiveAdmin.register Song do
       f.input :published_at, :label => "Published at", :hint => "Created automatically if left blank", :required => false
       f.input :publisher
       f.input :cost, :hint => "Euro"
+      f.input :display_feature, :label => "Display on featured songs?", :hint => ""
     end
     f.actions
   end

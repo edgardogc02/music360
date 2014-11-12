@@ -15,7 +15,7 @@ class PremiumSongsList < PaginatedSongsList
   end
 
   def songs
-    @songs ||= Song.paid.by_popularity.page page
+    @songs ||= Song.featured.page page
   end
 
 end
