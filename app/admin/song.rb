@@ -66,7 +66,7 @@ ActiveAdmin.register Song do
       f.input :published_at, :label => "Published at", :hint => "Created automatically if left blank", :required => false
       f.input :publisher
       f.input :cost, :hint => "Euro"
-      f.input :display_feature, :label => "Display on featured songs?", :hint => ""
+      f.input :display_feature, :label => "Display on featured songs?"
     end
     f.actions
   end
