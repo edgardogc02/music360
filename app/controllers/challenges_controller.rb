@@ -34,8 +34,7 @@ class ChallengesController < ApplicationController
   end
 
   def yours
-    @challenges = ChallengeDecorator.decorate_collection(current_user.challenges.default_order)
-
+    @challenges = ChallengeDecorator.decorate_collection(current_user.challenges.default_order.page params[:page])
     if params[:autostart_challenge_id]
       @autostart_challenge = Challenge.find(params[:autostart_challenge_id])
 
@@ -47,27 +46,25 @@ class ChallengesController < ApplicationController
 
   def list
     if params[:view] == "my_challenges"
-      @challenges = ChallengeDecorator.decorate_collection(Challenge.not_played_by_user(current_user, Challenge.default_order.values))
+      @challenges = Kaminari.paginate_array(ChallengeDecorator.decorate_collection(Challenge.not_played_by_user(current_user, Challenge.default_order.values))).page(params[:page]).per(9)
       @title = "My challenges"
-      @paginate = false
+      @paginate = true
     elsif params[:view] == "pending"
-      @challenges = ChallengeDecorator.decorate_collection(Challenge.pending_for_user(current_user, Challenge.default_order.values))
+      @challenges = Kaminari.paginate_array(ChallengeDecorator.decorate_collection(Challenge.pending_for_user(current_user, Challenge.default_order.values))).page(params[:page]).per(9)
       @title = "Open challenges"
-      @paginate = false
+      @paginate = true
     elsif params[:view] == "results"
-      @challenges = ChallengeDecorator.decorate_collection(Challenge.results_for_user(current_user, Challenge.default_order.values))
+      @challenges = ChallengeDecorator.decorate_collection(Kaminari.paginate_array(Challenge.results_for_user(current_user, Challenge.default_order.values)).page(params[:page])).per(9)
       @title = "Results"
-      @paginate = false
+      @paginate = true
     elsif params[:view] == "new"
       @challenges = ChallengeDecorator.decorate_collection(Challenge.all.default_order.page params[:page])
       @title = "New"
       @paginate = true
     elsif params[:view] == "most_popular"
-
-      @challenges = ChallengeDecorator.decorate_collection(Challenge.by_popularity + Challenge.limit(10))
-
+      @challenges = Kaminari.paginate_array(ChallengeDecorator.decorate_collection(Challenge.by_popularity + Challenge.limit(10))).page(params[:page]).per(9)
       @title = "Most popular"
-      @paginate = false
+      @paginate = true
     end
   end
 

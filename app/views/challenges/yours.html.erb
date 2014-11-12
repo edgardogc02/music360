@@ -4,16 +4,17 @@
 
 <%= render 'shared/header_page', title: 'Your challenges' %>
 
-<ul class="media-list">
-	<% unless @challenges.blank? %>
-		<%= render partial: "challenge", collection: @challenges %>
-	<% else %>
-</ul>
+<% unless @challenges.blank? %>
+  <ul class="media-list clearfix">
+    <%= render partial: "challenge", collection: @challenges %>
+  </ul>
+  <hr />
+  <%= paginate @challenges %>
+<% else %>
 
 <p class="no-content">
-  No open challenges right now
+  No challenges right now
 </p>
-
 
 <% end %>
 
