@@ -26,6 +26,10 @@ class PagesController < ApplicationController
     @next_level = current_user.next_level
 
     @songs_for_modal = Song.order("RAND()").limit(4)
+
+    if params[:rd]
+      @redeem_code = RedeemCode.where(code: params[:rd]).first
+    end
   end
 
   def apps
