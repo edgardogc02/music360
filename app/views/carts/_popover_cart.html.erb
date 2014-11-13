@@ -7,6 +7,7 @@
             <div class="pull-left"><%= image_tag line_item.buyable.cover_url, class: "avatar-xs" %></div>
             <div class="pull-left primary-text-color title"><%= link_to line_item.buyable.title, line_item.buyable %></div>
           <% else %>
+            <div class="pull-left"><%= image_tag(asset_path('logo_icon.png'), class: "avatar-xs") %></div>
             <div class="pull-left primary-text-color title"><%= line_item.buyable.title %></div>
           <% end %>
           <div class="pull-right price"><%= number_to_euro(line_item.buyable.cost) %></div>

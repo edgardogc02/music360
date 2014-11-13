@@ -19,6 +19,7 @@
                 <%= image_tag line_item.buyable.cover_url, class: "avatar-sm" %>
                 <%= link_to line_item.buyable.title, line_item.buyable %>
               <% else %>
+                <%= image_tag(asset_path('logo_icon.png'), class: "avatar-sm") %>
                 <%= line_item.buyable.title %>
               <% end %>
             </td>

@@ -1,0 +1,63 @@
+<% if @redeem_code %>
+  <div class="modal fade redeem-modal" id="redeem-ok" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4>
+            The code was redeemed!
+          </h4>
+        </div>
+        <div class="modal-body">
+          <table width="100%" class="shopping-cart-datagrid">
+            <tr class="head">
+              <td>Benefits</td>
+              <td></td>
+            </tr>
+            <% if @redeem_code.redeemable.is_a?(Payment) %>
+              <% @redeem_code.redeemable.line_items.each do |item| %>
+                <% if item.has_song? %>
+                  <tr>
+                    <td>
+                      <%= image_tag item.buyable.cover_url, class: "avatar-sm" %>
+                      <%= item.buyable.title %>
+                    </td>
+                    <td></td>
+                  </tr>
+                <% end %>
+                <% if item.has_premium_plan_as_gift? %>
+                  <tr>
+                    <td>
+                      <%= image_tag(asset_path('logo_icon.png'), class: "avatar-sm") %>
+                      Premium plan: <%= item.buyable.name %>
+                    </td>
+                    <td></td>
+                  </tr>
+                <% end %>
+              <% end %>
+
+            <% elsif @redeem_code.redeemable.is_a?(Song) %>
+            <% elsif @redeem_code.redeemable.is_a?(PremiumPlanAsGift) %>
+              <tr>
+                <td>
+                  <%= image_tag(asset_path('logo_icon.png'), class: "avatar-sm") %>
+                  Premium plan: <%= @redeem_code.redeemable.name %>
+                </td>
+                <td></td>
+              </tr>
+            <% end %>
+          </table>
+  			</div>
+      </div>
+    </div>
+  </div>
+
+	<%= content_for(:js_scripts) do %>
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$("#redeem-ok").modal({
+			    show: true
+				})
+			});
+	  </script>
+	<% end %>
+<% end %>
