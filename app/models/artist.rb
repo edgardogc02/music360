@@ -27,7 +27,7 @@ class Artist < ActiveRecord::Base
 
   def download_echonest_image
     echo_image = echonest_image
-    if echo_image
+    if echo_image and self.imagename.blank?
       download_remote_image(echonest_image.url)
     end
   end
