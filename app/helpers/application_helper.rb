@@ -148,7 +148,7 @@ module ApplicationHelper
   end
 
   def tour_songs
-    @songs_for_modal = Song.order("RAND()").limit(4)
+    Song.featured.limit(4)
   end
 
   def action_button(url, text, options={}, icon=false)

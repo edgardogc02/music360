@@ -43,17 +43,18 @@
 				      <h2>Become a Music Player</h2>
 				      <p>Start your music career and become a music player</p>
 				      <div class="hidden-xs hidden-sm">
+				        <br />
 				      </div>
-				      <div><div class="levels-lnd"><div class="icon-landing l-lvl1"></div> <span>Anonymous</span></div></div>
-							<div><div class="levels-lnd"><div class="icon-landing l-lvl2"></div> <span>Dreamer</span></div></div>
-							<div><div class="levels-lnd"><div class="icon-landing l-lvl3"></div> <span>Beginner</span></div></div>
-							<div><div class="levels-lnd"><div class="icon-landing l-lvl4"></div> <span>Music Student</span></div></div>
-							<div><div class="levels-lnd"><div class="icon-landing l-lvl5"></div> <span>Band Member</span></div></div>
-							<div><div class="levels-lnd"><div class="icon-landing l-lvl6"></div> <span>Indie Artist</span></div></div>
-							<div><div class="levels-lnd"><div class="icon-landing l-lvl7"></div> <span>Rockstar</span></div></div>
-							<div><div class="levels-lnd"><div class="icon-landing l-lvl8"></div> <span>Headliner</span></div></div>
-							<div><div class="levels-lnd"><div class="icon-landing l-lvl9"></div> <span>Hall of Fame</span></div></div>
-							<div><div class="levels-lnd"><div class="icon-landing l-lvl10"></div> <span>InstrumentChamp</span></div></div>
+				      <div><div class="levels-lnd"><span class="lvl-num">1</span> <span>Anonymous</span></div></div>
+							<div><div class="levels-lnd"><span class="lvl-num">2</span> <span>Dreamer</span></div></div>
+							<div><div class="levels-lnd"><span class="lvl-num">3</span> <span>Beginner</span></div></div>
+							<div><div class="levels-lnd"><span class="lvl-num">4</span> <span>Music Student</span></div></div>
+							<div><div class="levels-lnd"><span class="lvl-num">5</span> <span>Band Member</span></div></div>
+							<div><div class="levels-lnd"><span class="lvl-num">6</span> <span>Indie Artist</span></div></div>
+							<div><div class="levels-lnd"><span class="lvl-num">7</span> <span>Rockstar</span></div></div>
+							<div><div class="levels-lnd"><span class="lvl-num">8</span> <span>Headliner</span></div></div>
+							<div><div class="levels-lnd"><span class="lvl-num">9</span> <span>Hall of Fame</span></div></div>
+							<div><div class="levels-lnd"><span class="lvl-num">10</span> <span>InstrumentChamp</span></div></div>
 				      <a href="<%= edit_user_instrument_path(current_user) %>" class="btn btn-link btn-skip">End tour</a>
 				    </div>
 						<div class="tab-pane" id="tab3">
@@ -81,20 +82,22 @@
 				      	<br /><br />
 				      </div>
 							<div class="row thumbnail-grid">
-				      	<% tour_songs.each do |song| %>
-				      		<div class="col-md-3 col-sm-3 col-xs-6 song-thumb">
-										<%= content_tag :div, class: 'thumbnail' do %>
-											<%= image_tag song.cover_url, class: "song-cover" %>
-										<% end %>
+							  <% if !tour_songs.blank? %>
+  				      	<% tour_songs.each do |song| %>
+  				      		<div class="col-md-3 col-sm-3 col-xs-6 song-thumb">
+  										<%= content_tag :div, class: 'thumbnail' do %>
+  											<%= image_tag song.cover_url, class: "song-cover" %>
+  										<% end %>
 
-										<div class="actions-content">
-											<div class="spacer-sm">
-												<div class="link_header"><%= song.title %></div>
-												<div class="link_subheader"><%= song.artist.title %></div>
-											</div>
-									  </div>
-									</div>
-				      	<% end %>
+  										<div class="actions-content">
+  											<div class="spacer-sm">
+  												<div class="link_header"><%= song.title %></div>
+  												<div class="link_subheader"><%= song.artist.title %></div>
+  											</div>
+  									  </div>
+  									</div>
+  				      	<% end %>
+  				      <% end %>
 				      </div>
 				      <a href="<%= edit_user_instrument_path(current_user) %>" class="btn btn-link btn-skip">End Tour</a>
 					  </div>
@@ -102,9 +105,12 @@
 							<h2>Select Instrument</h2>
 				      <p>You can play with both acoustic and digital instruments</p>
 				      <div class="hidden-xs hidden-sm">
-				      	<br /><br />
+				      	<br />
 				      </div>
 				      <%= image_tag asset_path('modal_img4.png'), class: 'img4' %><br /><br />
+				      <div class="hidden-xs hidden-sm">
+                <br />
+              </div>
 				      <p>The microphone in the computer listen, analyze and give feedback on how you play</p>
 				      <%= image_tag asset_path('modal_img5.png'), class: 'img5' %>
 				      <a href="<%= new_user_premium_path %>" class="btn btn-link btn-skip">End Tour</a>

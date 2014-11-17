@@ -167,20 +167,23 @@
     //min-height: 420px;
 
     img {
-      width: 100%;
-      max-width: 550px;
+      width: auto;
+      max-width: 100%;
+      height: auto;
+      //width: 100%;
+      //max-width: 550px;
     }
 
     .img4 {
-      max-width: 500px;
+      //max-width: 500px;
     }
 
     .img5 {
-      max-width: 267px;
+      //max-width: 267px;
     }
 
     .img6 {
-      max-width: 300px;
+      //max-width: 300px;
     }
   }
 }
@@ -201,4 +204,15 @@
   h2 {
     margin: 5px 0px;
   }
+}
+
+.lvl-num {
+  border: 4px solid #548E8E;
+  padding: 2px 3px;
+  width: 32px;
+  font-weight: bold;
+  font-size: 14px;
+  display: inline-block;
+  text-align: center;
+  @include rounded(50px)
 }

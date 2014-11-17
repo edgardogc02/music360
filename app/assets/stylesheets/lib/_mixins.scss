@@ -27,12 +27,12 @@
 
 // Respond mixin for including contents
 // for other viewports.
-// 
+//
 // Usage:
 // 	@include respond($small-screen) {
 // 		/* code */
 // 	}
-// 	
+//
 // 	May be nested.
 @mixin respond($width, $mode: "max") {
 	@media only screen and (#{$mode}-width: $width) {
@@ -84,6 +84,11 @@
   }
 }
 
+@mixin rounded($radius) {
+  -webkit-border-radius: $radius;
+  -moz-border-radius: $radius;
+  border-radius: $radius;
+}
 
 // Functions
 

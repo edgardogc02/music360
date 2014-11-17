@@ -4,7 +4,7 @@
 .current-user {
   margin-bottom: 20px;
   @include clearfix;
-  
+
   .thumbnail {
     margin-bottom: 0px;
   }
@@ -26,7 +26,7 @@
 @media (max-width: $screen-xs-max) {
   .side-panel {
     margin-bottom: 20px;
-    
+
     .current-user {
       margin-bottom: 0px;
     }
@@ -35,6 +35,10 @@
         float: left;
         width: 50%;
       }
-    } 
-  }  
+    }
+  }
+}
+
+.username-header {
+  width: 120px;
 }
