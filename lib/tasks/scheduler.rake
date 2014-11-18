@@ -50,7 +50,6 @@ end
 task :create_fake_artists_users => :environment do
   Artist.find_each(batch_size: 1000) do |artist|
     ArtistFakeUser.new(artist).create_fake_user
-    print artist.title + "\n"
   end
 end
 
