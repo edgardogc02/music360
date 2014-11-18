@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141112133139) do
+ActiveRecord::Schema.define(version: 20141118103802) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "namespace"
@@ -79,6 +79,7 @@ ActiveRecord::Schema.define(version: 20141112133139) do
     t.boolean  "top"
     t.string   "bio_read_more_link"
     t.string   "cover"
+    t.integer  "user_id"
   end
 
   add_index "artists", ["slug"], name: "index_artists_on_slug", unique: true, using: :btree

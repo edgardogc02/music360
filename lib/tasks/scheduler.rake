@@ -22,10 +22,10 @@ end
 
 task :download_artist_bio => :environment do
   Artist.find_each(batch_size: 1000) do |artist|
-    bio_from_echonest = artist.bio_from_echonest
-    if bio_from_echonest
-      artist.bio = artist.bio_from_echonest.text
-      artist.bio_read_more_link = artist.bio_from_echonest.url
+    echonest_artist = EchonestArtist.new(artist.title)
+    if echonest_artist.bio
+      artist.bio = echonest_artist.bio.text[0..1000]
+      artist.bio_read_more_link = echonest_artist.bio.url
     end
 
     artist.save
@@ -40,21 +40,17 @@ end
 
 task :save_top_artists_from_echonest => :environment do
   Artist.top_from_echonest(12).each do |echonest_artist|
-    artist = Artist.find_by_title(echonest_artist.name)
-
-    artist = Artist.create(title: echonest_artist.name, top: 1) unless artist
-
-    if !echonest_artist.images.blank?
-      artist.remote_imagename_url = echonest_artist.images.first.url
+    unless Artist.find_by_title(echonest_artist.name)
+      e_artist = EchonestArtist.new(echonest_artist.name, 1)
+      e_artist.save_artist_to_db
     end
+  end
+end
 
-    bio_from_echonest = artist.bio_from_echonest
-    if bio_from_echonest
-      artist.bio = artist.bio_from_echonest.text
-      artist.bio_read_more_link = artist.bio_from_echonest.url
-    end
-
-    artist.save
+task :create_fake_artists_users => :environment do
+  Artist.find_each(batch_size: 1000) do |artist|
+    ArtistFakeUser.new(artist).create_fake_user
+    print artist.title + "\n"
   end
 end
 

@@ -1,4 +1,4 @@
 <%= simple_form_for current_user.inverse_user_followers.find_by(user_id: user.id), html: {id: "new_user_follower_#{user.id}", method: :delete} do |f| %>
 <% end %>
 
-<%= link_to "Unfollow", "#", {class: "unfollow_user btn btn-sm btn-default"} %>
+<%= link_to "Unfollow", "#", {class: "unfollow_user btn btn-primary"} %>

@@ -11,6 +11,7 @@
 	<br class="hidden-xs" />
 	<!--<%= link_to "Challenge", "#", class: "btn btn-primary" %>
 	<%= link_to 'Follow', "#", class: "btn btn-default" %>-->
+	<%= render 'users/follow_unfollow', user: @artist.user %>
 <% end %>
 
 <%= content_for(:detail_header_secondary_info) do %>

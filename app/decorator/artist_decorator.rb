@@ -13,7 +13,7 @@ class ArtistDecorator < Draper::Decorator
   end
 
   def image_url
-    if model.imagename_url != model.imagename.default_url
+    if model.imagename.present?
       model.imagename_url
     elsif model.echonest_image
       model.echonest_image.url

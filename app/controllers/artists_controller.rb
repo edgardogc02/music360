@@ -17,7 +17,7 @@ class ArtistsController < ApplicationController
 
     #@node = Musicnodes.new("createalbumnode", "U2").get_album_node.parsed_response
 
-    @activity_feeds = PublicActivity::Activity.where(id: @artist.songs.map{ |s| s.activities}.flatten).order('created_at DESC').page(1).per(10)
+    @activity_feeds = [] # PublicActivity::Activity.where(id: @artist.songs.map{ |s| s.activities}.flatten).order('created_at DESC').page(1).per(10)
 
     render layout: "detail"
 	end
@@ -43,7 +43,9 @@ class ArtistsController < ApplicationController
 	def set_artist
 	  @artist = Artist.find(params[:id])
   rescue ActiveRecord::RecordNotFound
-    @artist = EchonestArtist.new(params[:id])
+    echonest_artist = EchonestArtist.new(params[:id])
+    echonest_artist.save_artist_to_db
+    @artist = echonest_artist.artist
 	end
 
 	def artist_params

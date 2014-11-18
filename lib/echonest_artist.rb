@@ -1,38 +1,39 @@
 class EchonestArtist
 
-  include Rails.application.routes.url_helpers
+  attr_accessor :artist
 
-  def initialize(name)
-    @name = name
+  def initialize(name, top=0)
     @title = name.titleize
+    @top = top
   end
 
   def title
     @title
   end
-  
-  def songs
-    false
-  end
-
-  def challenges
-    false
-  end
 
   def bio
-    @bio ||= Echowrap.artist_biographies(name: name, results: 2, start: 1, license: "cc-by-sa").first
+    @bio ||= Echowrap.artist_biographies(name: self.title, results: 2, start: 1, license: "cc-by-sa").first if Echowrap.artist_biographies(name: title)
   end
 
-  def name
-    @name
+  def image
+    @image ||= Echowrap.artist_images(name: self.title).first
   end
-  
-  def public_image_url
-    @public_image_url ||= Echowrap.artist_images(name: name, results: 1).first
-  end
-  
-  def imagename_url
-    false
+
+  def save_artist_to_db
+    unless self.artist = Artist.find_by_title(title)
+
+      self.artist = Artist.create(title: title, top: @top)
+
+      self.artist.download_echonest_image
+
+      if bio
+        self.artist.bio = bio.text[0..1000]
+        self.artist.bio_read_more_link = bio.url
+      end
+
+      self.artist.save!
+      ArtistFakeUser.new(self.artist).create_fake_user
+    end
   end
 
 end
