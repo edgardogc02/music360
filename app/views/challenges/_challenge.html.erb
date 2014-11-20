@@ -1,12 +1,15 @@
 <% if challenge.song and challenge.challenger and (challenge.challenged or challenge.group) %>
 	<div class="group-challenge-item masonry-img">
-		<div class="pull-left item-img">
-			<%= image_tag challenge.song.cover_url, class: 'song-cover spacer-sm' %>
-		</div>
-	  <div class="pull-left item-content">
-	    <div class="spacer-md">
-	    	<h2><%= link_to challenge.song.title, song_path(challenge.song) %></h2>
-	    	by <%= link_to challenge.song.artist.title, artist_path(challenge.song.artist)%>
+
+	  <div class="item-content">
+	    <div class="clearfix spacer-md header-item">
+	      <div class="pull-left item-img">
+          <%= image_tag challenge.song.cover_url, class: 'song-cover spacer-sm' %>
+        </div>
+	      <div class="pull-left">
+  	    	<h2 class="truncate primary-text-color"><%= link_to challenge.song.title, song_path(challenge.song) %></h2>
+  	    	<div class="truncate">by <%= link_to challenge.song.artist.title, artist_path(challenge.song.artist)%></div>
+	    	</div>
 			</div>
 			<div class="spacer-md small">
 		    Created by <%= link_to challenge.challenger.username, person_path(challenge.challenger)%>
@@ -17,8 +20,10 @@
 		    	<div>Group: <%= link_to challenge.group.name, challenge.group %></div>
 		    <% end %>
 		  </div>
-		  <div class="spacer-md">
+		  <div class="spacer-sm">
 		  	<%= challenge.display_results %>
+		  </div>
+		  <div class="spacer-sm">
 	    	<%= challenge.display_remind_button %>
 		  </div>
 		  <div class="spacer-md">

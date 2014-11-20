@@ -6,6 +6,12 @@
 }
 
 .group-challenge-item {
+
+  .header-item {
+    .truncate {
+      max-width: 225px;
+    }
+  }
   h2 {
     margin: 0px;
     padding: 0px;
@@ -13,18 +19,18 @@
   }
 
   .item-img {
-    width: 100px;
-    height: 100px;
+    width: 50px;
+    height: 50px;
     margin-right: 10px;
 
     img {
-      width: 100px;
-      height: 100px;
+      width: 50px;
+      height: 50px;
     }
   }
 
   .item-content {
-    width: 160px;
+    //width: 160px;
   }
 
   float: left;
