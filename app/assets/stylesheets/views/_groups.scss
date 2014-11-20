@@ -5,17 +5,24 @@
   font-weight: normal;
 }
 
+.group-challenge-item.masonry-img {
+  float: left;
+  width: 300px;
+  margin: 15px 15px 0px 0px;
+}
+
 .group-challenge-item {
 
   .header-item {
     .truncate {
-      max-width: 225px;
+      max-width: 195px;
     }
   }
   h2 {
     margin: 0px;
     padding: 0px;
     font-size: 14px;
+    line-height: 20px;
   }
 
   .item-img {
@@ -30,14 +37,16 @@
   }
 
   .item-content {
-    //width: 160px;
-  }
+    border: 1px solid #ececec;
+    padding: 15px;
+    background: #fbfbfb;
 
-  float: left;
-  width: 290px;
-  //background: #ECF0F0;
-  margin: 15px 15px 0px 0px;
-  //padding: 10px;
+    .link_actions {
+      .btn {
+        margin-top: 5px;
+      }
+    }
+  }
 }
 
 .member-widget {

@@ -11,7 +11,7 @@
   	    	<div class="truncate">by <%= link_to challenge.song.artist.title, artist_path(challenge.song.artist)%></div>
 	    	</div>
 			</div>
-			<div class="spacer-md small">
+			<div class="spacer-sm small">
 		    Created by <%= link_to challenge.challenger.username, person_path(challenge.challenger)%>
 		    <time datetime="<%= challenge.created_at%>" pubdate><%= time_ago_in_words(challenge.created_at)%> ago</time>
 		    <% if challenge.challenged %>
@@ -23,12 +23,10 @@
 		  <div class="spacer-sm">
 		  	<%= challenge.display_results %>
 		  </div>
-		  <div class="spacer-sm">
-	    	<%= challenge.display_remind_button %>
-		  </div>
-		  <div class="spacer-md">
-				<%= link_to 'View', challenge.group ? group_challenge_path(group_id: challenge.group.id, id: challenge.id) : challenge, class: 'btn btn-primary btn-sm' %>
+		  <div class="link_actions">
+		    <div><%= challenge.display_remind_button %></div>
 		    <%= challenge.display_start_challenge_button %>
+		    <%= link_to 'View', challenge.group ? group_challenge_path(group_id: challenge.group.id, id: challenge.id) : challenge, class: 'btn btn-primary btn-sm' %>
 			</div>
 
 	  </div>
