@@ -342,7 +342,7 @@ h1.brand-heading {
   margin: 0 auto;
   padding: 0 20px 0 80px;
   position: relative;
-  text-align: center;
+  /*text-align: center;*/
   transition: background-color 0.15s linear 0s;
   -webkit-transition: background-color 0.15s linear 0s;
   -moz-transition: background-color 0.15s linear 0s;
@@ -366,7 +366,7 @@ h1.brand-heading {
     margin: 10px 0;
   }
 
-  &:hover {
+  &:hover, &:focus {
     background-color: #334E84;
     color: #FFF;
   }
@@ -378,6 +378,83 @@ h1.brand-heading {
 
     .text {
       margin: 0px;
+      position: relative;
+      left: 60px;
+    }
+  }
+
+  &.xs {
+    background-position: 8px center;
+    font-size: 14px;
+    padding: 0 16px 0 50px;
+
+    .separator {
+      left: 38px;
+    }
+
+    .text {
+      margin: 0px;
+    }
+  }
+}
+
+.twitter_button {
+  background: image-url('landing/twitter_icon.png');
+  background-size: 24px 24px;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -moz-background-clip: padding;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  background-color: #3b94d9;
+  background-position: 19px center;
+  background-repeat: no-repeat;
+  color: #FFF;
+  cursor: pointer;
+  font-size: 20px;
+  line-height: 40px;
+  margin: 0 auto;
+  padding: 0 20px 0 80px;
+  position: relative;
+  /*text-align: center;*/
+  transition: background-color 0.15s linear 0s;
+  -webkit-transition: background-color 0.15s linear 0s;
+  -moz-transition: background-color 0.15s linear 0s;
+  -o-transition: background-color 0.15s linear 0s;
+  display: inline-block;
+
+  .separator {
+    border-left: 1px solid #2f4a84;
+    border-right: 1px solid #4163aa;
+    transition: border-color 0.15s linear 0s;
+    -webkit-transition: border-color 0.15s linear 0s;
+    -moz-transition: border-color 0.15s linear 0s;
+    -o-transition: border-color 0.15s linear 0s;
+    height: 100%;
+    left: 60px;
+    position: absolute;
+  }
+
+  .text {
+    display: inline-block;
+    margin: 10px 0;
+  }
+
+  &:hover, &:focus {
+    background-color: #3080BE;
+    color: #FFF;
+  }
+
+  &.sm {
+    width: 100%;
+    font-size: 15px;
+    padding: 0px;
+
+    .text {
+      margin: 0px;
+      position: relative;
+      left: 60px;
     }
   }
 

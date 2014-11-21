@@ -6,10 +6,10 @@
 	<h3>User</h3>
 	<h2><%= @user.username %></h2>
 	<br class="hidden-xs" />
-	<%= link_to "Challenge", new_challenge_path(challenged_id: @user.id), class: "btn btn-primary" %>
-	<br class="hidden-xs" />
-	<br class="hidden-xs" />
-  <%= render 'users/follow_unfollow', user: @user %>
+	<ul class="list-inline">
+	  <li class="no-padding"><%= link_to "Challenge", new_challenge_path(challenged_id: @user.id), class: "btn btn-primary" %></li>
+    <li class="no-padding"><%= render 'users/follow_unfollow', user: @user %></li>
+	</ul>
 <% end %>
 
 <%= content_for(:detail_header_secondary_info) do %>

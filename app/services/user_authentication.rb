@@ -115,15 +115,24 @@ class UserAuthentication
 
   def update_user_from_omniauth(user)
     auth = @request.env["omniauth.auth"]
-    user.email = auth.info.email
+
+    #user.email = auth.info.email
+    if auth.info.email.present?
+      user.email = auth.info.email
+    else
+      user.email = user.email
+    end
+
     user.oauth_uid = auth.uid
     user.locale = auth.extra.raw_info.locale
     #user.xp = 100
     user.save
+
     user
   end
 
   def from_twitter_omniauth
+
     auth = @request.env["omniauth.auth"]
 
     user = find_user_from_twitter_omniauth
@@ -136,6 +145,7 @@ class UserAuthentication
   end
 
   def find_user_from_twitter_omniauth
+    auth = @request.env["omniauth.auth"]
     existing_user = nil
     existing_user = User.where(username: auth.info.nickname).first if existing_user.nil?
 
@@ -153,7 +163,7 @@ class UserAuthentication
     user.first_name = auth.info.name.split(" ").first
     user.last_name = auth.info.name.split(" ").second
     user.username = auth.info.nickname
-    user.email = User.generate_random_password(5) + "@lalala.com" # TODO
+    user.email = auth.uid + "@changeemail.com" # TODO
     user.password = User.generate_random_password(5)
     user.password_confirmation = user.password
     user.oauth_uid = auth.uid
@@ -169,7 +179,9 @@ class UserAuthentication
   end
 
   def update_from_twitter_omniauth(user)
-    user = update_from_omniauth(user)
+    auth = @request.env["omniauth.auth"]
+
+    user = update_user_from_omniauth(user)
     user.user_omniauth_credentials.create_or_update_from_omniauth(auth)
 
     user
@@ -177,7 +189,7 @@ class UserAuthentication
 
   def send_welcome_email(user, with_password=false)
     if !user.new_record? and !user.skip_emails # avoid callbacks otherwise the tests and fake facebook users will send emails
-      MandrillTemplateEmailNotifier.welcome_email_mandrill_template(user).deliver
+      #MandrillTemplateEmailNotifier.welcome_email_mandrill_template(user).deliver
 #      EmailNotifier.welcome_message(user, with_password).deliver
     end
   end

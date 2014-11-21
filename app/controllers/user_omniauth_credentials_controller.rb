@@ -10,16 +10,20 @@ class UserOmniauthCredentialsController < ApplicationController
 
       if user_authentication.authenticated?
         signin_user(user)
-        if user.just_signup?
-          flash[:notice] = "Welcome #{user.username}!"
-          redirect_to home_path welcome_msg: true
-        else
-          if request.env["omniauth.params"] and request.env["omniauth.params"]["new_session_action"] == "download"
-          	redirect_to apps_path
+        if user.email_verified?
+          if user.just_signup?
+            flash[:notice] = "Welcome #{user.username}!"
+            redirect_to home_path welcome_msg: true
           else
-            #flash[:notice] = "Welcome back #{user.username}!"
-            redirect_to last_visited_page
+            if request.env["omniauth.params"] and request.env["omniauth.params"]["new_session_action"] == "download"
+            	redirect_to apps_path
+            else
+              #flash[:notice] = "Welcome back #{user.username}!"
+              redirect_to last_visited_page
+            end
           end
+        else
+          redirect_to home_path add_email: true
         end
       else
         redirect_to login_path

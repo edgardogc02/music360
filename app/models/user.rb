@@ -277,6 +277,10 @@ class User < ActiveRecord::Base
 		end
 	end
 
+	def email_verified?
+    self.email && self.email !~ /changeemail\b/
+  end
+
 	private
 
 	def check_password_lenght

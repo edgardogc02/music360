@@ -15,8 +15,8 @@
 <% end %>
 
 <%= content_for(:detail_header_secondary_info) do %>
-	<!--<div><b>Followers:</b> 100000</div>
-	<div><b>Following:</b> 500</div>-->
+	<div>Following: <%= link_to @artist.user.followed_users.count, following_path(@artist.user) %></div>
+	<div>Followers: <%= link_to @artist.user.followers.count, user_follower_path(@artist.user) %></div>
 <% end %>
 
 <%= content_for(:detail_header_nav_left) do %>

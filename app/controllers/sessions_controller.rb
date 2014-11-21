@@ -17,8 +17,11 @@ class SessionsController < ApplicationController
 			if user and user.authenticate(params[:password]) and !user.deleted?
         format.html do
           authenticate_user(user)
-          #flash[:notice] = "Welcome back, #{user.username}!"
-          redirect_to last_visited_page
+          if user.email_verified?
+            redirect_to last_visited_page
+          else
+            redirect_to home_path welcome_msg: true
+          end
         end
 			  format.json do
 			    render :json => {

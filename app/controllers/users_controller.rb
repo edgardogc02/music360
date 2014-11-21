@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 	before_action :authorize, except: [:create, :new, :show]
 	before_action :not_authorized, only: [:create, :new]
-	before_action :set_user, only: [:show, :edit, :update, :destroy, :upload_profile_image, :upload_cover_image]
+	before_action :set_user, only: [:show, :edit, :update, :destroy, :upload_profile_image, :upload_cover_image, :finish_signup]
   before_action :check_security, only: [:edit, :update, :destroy, :upload_profile_image, :upload_cover_image]
   before_action :redirect_to_current_if_not_signed_in, only: [:show]
 
@@ -65,6 +65,15 @@ class UsersController < ApplicationController
 	def destroy
 	  @user.destroy
 	  redirect_to logout_path, notice: "Your profile was successfully deleted"
+	end
+
+	def finish_signup
+	  if @user.update_attributes(user_params)
+      redirect_to profile_accounts_path, notice: "Your email was successfully updated"
+    else
+      flash[:warning] = "Email is invalid"
+      redirect_to home_path add_email: true
+    end
 	end
 
 	private

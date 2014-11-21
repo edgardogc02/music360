@@ -6,10 +6,15 @@
       </div>
       <div class="modal-body">
       	<div class="login-view">
-	      	<%= link_to facebook_signin_path, id: "facebook_signin", class: 'fb_button sm' do %>
-	        	<div class="Spinner"></div>
-					  <span class="text">Log in with Facebook</span>
-	        <% end %>
+      	  <div class="spacer-sm">
+  	      	<%= link_to facebook_signin_path, id: "facebook_signin", class: 'fb_button sm' do %>
+  	        	<div class="Spinner"></div>
+  					  <span class="text">Log in with Facebook</span>
+  	        <% end %>
+	        </div>
+	        <%= link_to twitter_signin_path, id: "twitter_signin", class: 'twitter_button sm' do %>
+            <span class="text">Log in with Twitter</span>
+          <% end %>
 	        <p class="text-divider"><span>or</span></p>
 	        <%= form_tag sessions_path, id: "login-form", remote: true do %>
 	          <div class="spacer-sm">
@@ -35,10 +40,16 @@
 	      </div>
 
 	      <div class="sign-up-view">
-	      	<%= link_to facebook_signin_path, id: "facebook_signin_4", class: 'fb_button sm' do %>
-	        	<div class="Spinner"></div>
-					  <span class="text">Sign up with Facebook</span>
-	        <% end %>
+	        <div class="spacer-sm">
+  	      	<%= link_to facebook_signin_path, id: "facebook_signin_4", class: 'fb_button sm' do %>
+  	        	<div class="Spinner"></div>
+  					  <span class="text">Sign up with Facebook</span>
+  	        <% end %>
+	        </div>
+	        <%= link_to twitter_signin_path, id: "twitter_signin_2", class: 'twitter_button sm' do %>
+            <div class="Spinner"></div>
+            <span class="text">Sign up with Twitter</span>
+          <% end %>
 	        <p class="text-divider"><span>or</span></p>
 	        <p><a href="<%= new_person_path %>" id="sign-up-email-slide-btn">Sign up with your email address</a></p>
 	        Already have an account? <a href="#" id="log-in-slide-btn">Log in</a>
