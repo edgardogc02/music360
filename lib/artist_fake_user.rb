@@ -16,7 +16,7 @@ class ArtistFakeUser
   end
 
   def remote_image
-    @artist.remote_imagename_url
+    @artist.imagename_url
   end
 
   def user_already_exists?
