@@ -36,6 +36,7 @@ class ArtistFakeUser
       user.email = email
       user.challenges_count = 0
       user.xp = 100
+      user.save!
       user.remote_imagename_url = remote_image
       user.save!
 
