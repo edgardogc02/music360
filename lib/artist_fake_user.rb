@@ -38,7 +38,7 @@ class ArtistFakeUser
       user.xp = 100
       user.save!
       user.remote_imagename_url = remote_image
-      user.save!
+      user.save
 
       @artist.user = user
       @artist.save!
