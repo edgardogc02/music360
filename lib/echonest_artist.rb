@@ -19,6 +19,10 @@ class EchonestArtist
     @image ||= Echowrap.artist_images(name: self.title).first
   end
 
+  def twitter
+    @image ||= Echowrap.artist_twitter(name: self.title).twitter
+  end
+
   def save_artist_to_db
     unless self.artist = Artist.find_by_title(title)
 
@@ -29,6 +33,10 @@ class EchonestArtist
       if bio
         self.artist.bio = bio.text[0..1000]
         self.artist.bio_read_more_link = bio.url
+      end
+
+      if twitter
+        self.artist.twitter = twitter
       end
 
       self.artist.save!

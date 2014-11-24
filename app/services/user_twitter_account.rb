@@ -52,4 +52,8 @@ class UserTwitterAccount
     connect.update(text)
   end
 
+  def follow(user)
+    connect.follow(user)
+  end
+
 end

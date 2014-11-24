@@ -107,7 +107,7 @@
 
 .songs, .artists, .challenges, .groups, .group_challenges {
   &.show.modal-open {
-    .modal-backdrop {
+    .modal-backdrop.darker {
       opacity: 0.9;
     }
   }

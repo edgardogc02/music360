@@ -32,6 +32,17 @@ task :download_artist_bio => :environment do
   end
 end
 
+task :download_artist_twitter => :environment do
+  Artist.find_each(batch_size: 1000) do |artist|
+    echonest_artist = EchonestArtist.new(artist.title)
+    if echonest_artist.twitter
+      artist.twitter = echonest_artist.twitter
+    end
+
+    artist.save
+  end
+end
+
 task :download_artist_images => :environment do
   Artist.find_each(batch_size: 1000) do |artist|
     artist.download_echonest_image

@@ -9,11 +9,18 @@ class UserInvitationsController < ApplicationController
       @tweet = @user_twitter_account.tweet("#{params[:tweet_text][0..104]} #{root_url}")
     end
 
+    if params[:to_follow]
+      @user_twitter_account.follow(params[:to_follow])
+    end
+
     if params[:layout] == "modal"
       render "new", layout: false
+    elsif params[:path]
+      redirect_to params[:path]
     else
-      render "new"
+      redirect_to people_path
     end
+
   end
 
   def create
@@ -30,6 +37,6 @@ class UserInvitationsController < ApplicationController
   private
 
   def user_invitation_params
-    params.require(:user_invitation).permit(:friend_email)
+    params.require(:user_invitation).permit(:friend_email, :path)
   end
 end

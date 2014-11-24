@@ -1,0 +1,40 @@
+<%= content_for(:js_scripts) do %>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $(".challenge_btn").click(function(e){
+        e.preventDefault();
+        $("#twitter_challenge_modal").modal({
+          show: true,
+          backdrop: 'static'
+        });
+      });
+      //$('#twitter_challenge_modal').on('shown.bs.modal', function (e) {
+        //$(".modal-backdrop").addClass("darker");
+      //});
+    });
+  </script>
+<% end %>
+
+<div class="modal fade" id="twitter_challenge_modal">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h4>Share challenge on twitter</h4>
+      </div>
+      <div class="modal-body">
+        <%= form_tag "/auth/twitter", {method: :get} do %>
+          <div class="form-group">
+            <%= text_area_tag "tweet_text", "I challenged @#{artist.twitter} on @InstrumentChamp!. It's a game and social network for music players! #PlayMusic", {class: 'form-control', rows: 3} %>
+            <%= hidden_field_tag "tweet", 'true' %>
+            <%= hidden_field_tag "path", new_challenge_path(challenged_id: artist.user.id) %>
+            <%= hidden_field_tag "to_follow", artist.twitter %>
+          </div>
+          <div class="text-right">
+            <%= submit_tag "Share on Twitter", {class: "btn btn-primary"} %>
+            <%= link_to "Skip", new_challenge_path(challenged_id: artist.user.id), {class: "btn btn-default"} %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

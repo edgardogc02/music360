@@ -9,7 +9,7 @@ ActiveAdmin.register Artist do
   filter :imagename
   filter :top
 
-  permit_params :title, :bio, :country, :slug, :imagename, :top, :bio_read_more_link, :model, :cover
+  permit_params :title, :bio, :country, :slug, :imagename, :top, :bio_read_more_link, :model, :cover, :twitter
 
   index do
     selectable_column
@@ -21,6 +21,7 @@ ActiveAdmin.register Artist do
     column :imagename do |song|
       image_tag song.imagename_url, {height: "100", width: "100"}
     end
+    column :twitter
     actions
   end
 
@@ -31,6 +32,7 @@ ActiveAdmin.register Artist do
       f.input :country, :as => :string
       f.input :slug
       f.input :top
+      f.input :twitter
       f.input :bio_read_more_link
       if !f.object.new_record?
         f.input :imagename, as: :file, :hint => f.template.image_tag(f.object.imagename.url, {height: 100, width: 100})

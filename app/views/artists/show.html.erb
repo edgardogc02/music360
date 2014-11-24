@@ -9,7 +9,7 @@
 	<h3>Artist</h3>
 	<h2><%= @artist.title %></h2>
 	<br class="hidden-xs" />
-	<%= link_to "Challenge", new_challenge_path(challenged_id: @artist.user.id), class: "btn btn-primary" %>
+	<%= link_to "Challenge", new_challenge_path(challenged_id: @artist.user.id), class: "btn btn-primary challenge_btn" %>
 	<!--<%= link_to 'Follow', "#", class: "btn btn-default" %>-->
 	<div class="display-inline">
 	 <%= render 'users/follow_unfollow', user: @artist.user %>
@@ -122,3 +122,7 @@
 </div>
 
 <%= render "login_modal" %>
+
+<% if @artist.twitter.present? %>
+  <%= render "twitter_challenge_modal", artist: @artist %>
+<% end %>
