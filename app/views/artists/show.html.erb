@@ -9,9 +9,11 @@
 	<h3>Artist</h3>
 	<h2><%= @artist.title %></h2>
 	<br class="hidden-xs" />
-	<!--<%= link_to "Challenge", "#", class: "btn btn-primary" %>
-	<%= link_to 'Follow', "#", class: "btn btn-default" %>-->
-	<%= render 'users/follow_unfollow', user: @artist.user %>
+	<%= link_to "Challenge", new_challenge_path(challenged_id: @artist.user.id), class: "btn btn-primary" %>
+	<!--<%= link_to 'Follow', "#", class: "btn btn-default" %>-->
+	<div class="display-inline">
+	 <%= render 'users/follow_unfollow', user: @artist.user %>
+	</div>
 <% end %>
 
 <%= content_for(:detail_header_secondary_info) do %>
@@ -38,7 +40,26 @@
 	<% else %>
 		<p>No biography available</p>
 	<% end %>
-	<!--<h2>Fans leaderboard</h2>-->
+
+	<% unless @artist.user.followers.blank? %>
+    <hr />
+  	<div class="top_scores_songs">
+      <h2>Fans leaderboard</h2>
+      <table width="100%" class="datagrid">
+        <tr class="head">
+          <td>User</td>
+          <td>MP</td>
+        </tr>
+        <% @artist.user.followers.by_xp.limit(10).each do |follower| %>
+          <tr class="<%= cycle("odd", "even") %>">
+            <td><%= link_to follower.username, person_path(follower), class: 'btn-secondary-color' %></td>
+            <td><%= follower.xp %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  <% end %>
+
 <% end %>
 
 <div class="tab-content">
