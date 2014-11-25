@@ -39,6 +39,7 @@ module ApplicationHelper
     ary << controller.controller_name
     ary << controller.action_name
     ary << 'mobile' if mobile_agent?
+    ary << 'no-signed-in' if !signed_in?
 
     unless classes.nil?
       method = classes.is_a?(Array) ? :concat : :<<

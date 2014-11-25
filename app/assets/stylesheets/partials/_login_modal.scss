@@ -84,7 +84,7 @@
   .login-title {
     color: #FFF;
     text-align: center;
-    margin: 10px 0px 26px 0px;
+    //margin: 10px 0px 26px 0px;
     font-size: 20px;
   }
 }
@@ -105,10 +105,11 @@
   }
 }
 
+
 .songs, .artists, .challenges, .groups, .group_challenges {
-  &.show.modal-open {
-    .modal-backdrop.darker {
-      opacity: 0.9;
+  &.show.modal-open.no-signed-in {
+    .modal-backdrop {
+      opacity: 1;
     }
   }
 }
