@@ -27,6 +27,10 @@
             <%= hidden_field_tag "to_follow", artist.twitter %>
           </div>
           <div class="text-right">
+            <span class="margin-right">
+              <%= check_box_tag(:follow_artist) %>
+              <%= label_tag(:follow_artist, "Follow on Twitter") %>
+            </span>
             <%= submit_tag "Share on Twitter", {class: "btn btn-primary"} %>
             <%= link_to "Skip", new_challenge_path(challenged_id: artist.user.id), {class: "btn btn-default"} %>
           </div>

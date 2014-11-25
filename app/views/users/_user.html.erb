@@ -13,8 +13,9 @@
 		<div class="spacer-md">
 			<div class="link_header truncate primary-text-color" data-toggle="tooltip" title="<%= user.username %>"><%= link_to user.username, person_path(user) %></div>
 		</div>
-
-		<%= user.display_follow_button %>
+		<div class="spacer-sm">
+		  <%= user.display_follow_button %>
+		</div>
 		<%= user.challenge_button(params[:song_id]) %>
 		<%= user.invite_to_group(params[:group_id]) %>
 	</div>

@@ -1,5 +1,5 @@
 <% if current_user.following?(user) %>
-  <%= render 'users/unfollow', user: user %>
+  <%= render 'users/unfollow', user: user, size: "" %>
 <% else %>
-  <%= render 'users/follow', user: user %>
+  <%= render 'users/follow', user: user, size: "" %>
 <% end %>

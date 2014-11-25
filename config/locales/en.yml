@@ -49,6 +49,12 @@ en:
               blank: "You must select your opponent"
             challenger_id:
               blank: "Someone must be the challenger"
+        user:
+          attributes:
+            email:
+              blank: "Can't be blank"
+              taken: "The email is used by an existing user. Please submit a new email address."
+              invalid: "The email format is incorrect, please submit a correct email."
   time:
     formats:
       default: "%m/%d/%Y"

@@ -3,7 +3,7 @@
     <div class="modal-content">
       <div class="modal-header">
         <h4>
-          Add Email
+          Add email
         </h4>
       </div>
       <div class="modal-body">
@@ -24,13 +24,15 @@
             </div>
           <% end %>
           <div class="form-group">
-            <%= f.label :email %>
+            <div>Please add your email to receive game notifications.</div>
+            <br />
             <div class="controls">
-              <%= f.text_field :email, :autofocus => true, :value => '', class: 'form-control input-lg', placeholder: 'Example: email@me.com' %>
+              <%= f.text_field :email, :autofocus => true, :value => '', :required => true, class: 'form-control input-lg', placeholder: 'Example: email@me.com' %>
             </div>
           </div>
-          <div class="actions">
+          <div class="actions text-right">
             <%= f.submit 'Continue', :class => 'btn btn-primary' %>
+            <%= link_to "Skip", home_path(welcome_msg: true), class: "btn btn-default" %>
           </div>
         <% end %>
 			</div>

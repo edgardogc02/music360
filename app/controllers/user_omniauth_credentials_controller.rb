@@ -10,20 +10,20 @@ class UserOmniauthCredentialsController < ApplicationController
 
       if user_authentication.authenticated?
         signin_user(user)
-        if user.email_verified?
-          if user.just_signup?
+        if user.just_signup?
+          if user.email_verified?
             flash[:notice] = "Welcome #{user.username}!"
             redirect_to home_path welcome_msg: true
           else
-            if request.env["omniauth.params"] and request.env["omniauth.params"]["new_session_action"] == "download"
-            	redirect_to apps_path
-            else
-              #flash[:notice] = "Welcome back #{user.username}!"
-              redirect_to last_visited_page
-            end
+            redirect_to home_path add_email: true
           end
         else
-          redirect_to home_path add_email: true
+          if request.env["omniauth.params"] and request.env["omniauth.params"]["new_session_action"] == "download"
+          	redirect_to apps_path
+          else
+            #flash[:notice] = "Welcome back #{user.username}!"
+            redirect_to last_visited_page
+          end
         end
       else
         redirect_to login_path
@@ -41,7 +41,7 @@ class UserOmniauthCredentialsController < ApplicationController
     current_user.user_omniauth_credentials.create_or_update_from_omniauth(request.env["omniauth.auth"])
 
     if params[:tweet]
-      redirect_to new_user_invitation_path(tweet: params[:tweet], tweet_text: params[:tweet_text], path: params[:path], to_follow: params[:to_follow])
+      redirect_to new_user_invitation_path(tweet: params[:tweet], tweet_text: params[:tweet_text], path: params[:path], to_follow: params[:to_follow], follow_artist: params[:follow_artist])
     else
       redirect_to home_path
     end

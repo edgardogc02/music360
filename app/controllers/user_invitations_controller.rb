@@ -9,7 +9,7 @@ class UserInvitationsController < ApplicationController
       @tweet = @user_twitter_account.tweet("#{params[:tweet_text][0..104]} #{root_url}")
     end
 
-    if params[:to_follow]
+    if params[:follow_artist]
       @user_twitter_account.follow(params[:to_follow])
     end
 
@@ -37,6 +37,6 @@ class UserInvitationsController < ApplicationController
   private
 
   def user_invitation_params
-    params.require(:user_invitation).permit(:friend_email, :path)
+    params.require(:user_invitation).permit(:friend_email, :path, :follow_artist)
   end
 end
