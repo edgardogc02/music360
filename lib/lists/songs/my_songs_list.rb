@@ -12,11 +12,11 @@ class MySongsList < FilteredSongsList
   end
 
   def songs
-    @songs ||= Kaminari.paginate_array(created_by_user + purchased + free_songs).page(page)
+    @songs ||= Song.where(id: created_by_user + purchased + free_songs).page(page)
   end
 
   def decorated_songs
-    @decorated_songs ||= Kaminari.paginate_array(created_by_user_decorated + purchased_decorated + free_songs_decorated + songs_for_premium_user_decorated).page(page)
+    @decorated_songs ||= SongDecorator.decorate_collection(Song.where(id: created_by_user_decorated + purchased_decorated + free_songs_decorated + songs_for_premium_user_decorated).by_popularity.page(page))
   end
 
   def current_user
