@@ -12,15 +12,15 @@
 	<%= link_to "Challenge", new_challenge_path(challenged_id: @artist.user.id), class: "btn btn-primary challenge_btn" %>
 	<!--<%= link_to 'Follow', "#", class: "btn btn-default" %>-->
 	<% if signed_in? %>
-  	<div class="display-inline">
-  	 <%= render 'users/follow_unfollow', user: @artist.user %>
+  	<div class="display-inline artist-show-follow">
+  	 <%= render 'users/follow_unfollow', user: @artist.user, css_classes: "" %>
   	</div>
   <% end %>
 <% end %>
 
 <%= content_for(:detail_header_secondary_info) do %>
 	<div>Following: <%= link_to @artist.user.followed_users.count, following_path(@artist.user) %></div>
-	<div>Followers: <%= link_to @artist.user.followers.count, user_follower_path(@artist.user) %></div>
+	<div>Followers: <%= render "users/followers_count", user: @artist.user %></div>
 <% end %>
 
 <%= content_for(:detail_header_nav_left) do %>

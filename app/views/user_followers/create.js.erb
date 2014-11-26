@@ -1,0 +1,11 @@
+if ($('#follow_<%= @followed_user.id %>').parent('.artist-show-follow').length > 0) {
+  $('#follow_<%= @followed_user.id %>').replaceWith("<%= j render 'users/follow_unfollow', user: @followed_user, css_classes: "" %>");
+} else {
+  $('#follow_<%= @followed_user.id %>').replaceWith("<%= j render 'users/follow_unfollow', user: @followed_user, css_classes: "btn-sm" %>");
+}
+
+
+
+if ($('#followers_count').length) {
+  $('#followers_count').html('<%= j render "users/followers_count", user: @followed_user %>');
+}

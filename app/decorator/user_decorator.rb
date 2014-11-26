@@ -12,11 +12,7 @@ class UserDecorator < Draper::Decorator
 
   def display_follow_button
     if display_follow_button?
-      if h.current_user.following?(user)
-        h.render 'users/unfollow', user: model, size: "btn-sm"
-      else
-        h.render 'users/follow', user: model, size: "btn-sm"
-      end
+      h.render 'users/follow_unfollow', user: model, css_classes: "btn-sm"
     end
   end
 
