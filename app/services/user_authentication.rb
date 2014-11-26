@@ -169,6 +169,8 @@ class UserAuthentication
     user.oauth_uid = auth.uid
     user.locale = auth.extra.raw_info.locale
 
+    user.just_signup = true
+
     user = autocomplete_new_user_fields(user)
     user.save!
 
