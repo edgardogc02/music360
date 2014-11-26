@@ -1,24 +1,23 @@
 <%= render 'shared/header_page', title: 'Most popular 50 artists' %>
 
 <div class="thumbnail-grid row">
-  <% @artists.each do |artist| %>		
+  <% @artists.each do |artist| %>
 		<div class="masonry-img col-md-2 col-sm-4 col-xs-6">
 			<div class="thumbnail">
 				<div class="overflow_thumb">
-					<%= link_to artist_path(artist.name.parameterize) do %>
-			      <% if !artist.images.empty? %>
-							<%= image_tag artist.images.first.url %>
-						<% else %>
-							<%= image_tag(asset_path('default_artist.png')) %>
-						<% end %>
+					<%= link_to artist_path(artist.title) do %>
+			      <%= artist.image %>
 					<% end %>
 				</div>
 				<div class="actions-content">
 					<div class="spacer-sm">
-						<div class="link_header"><%= link_to artist.name, artist_path(artist.name.parameterize) %></div>
+						<div class="link_header"><%= link_to artist.title, artist_path(artist) %></div>
 					</div>
+          <div class="spacer-sm">
+            <%= artist.user.decorate.display_follow_button %>
+          </div>
 	  		</div>
 	  	</div>
-  	</div>  	
+  	</div>
   <% end %>
 </div>

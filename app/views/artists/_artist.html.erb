@@ -7,5 +7,8 @@
 			<div class="link_header"><%= link_to artist.title, artist_path(artist) %></div>
 		</div>
 		<%= artist.edit_button %>
+    <div class="spacer-sm">
+      <%= artist.user.decorate.display_follow_button %>
+    </div>
   </div>
 </div>

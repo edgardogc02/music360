@@ -8,7 +8,7 @@ class ArtistFakeUser
   end
 
   def username
-    @username ||= I18n.transliterate(@artist.title)
+    @username ||= I18n.transliterate(@artist.title).gsub(/[^a-zA-Z0-9@.\-\_\s]/, '')
   end
 
   def email

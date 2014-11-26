@@ -23,7 +23,15 @@ class ArtistsController < ApplicationController
 	end
 
   def most_popular
-    @artists = Echowrap.artist_top_hottt(results: 50, bucket: ['hotttnesss', 'images'])
+    @artists = ArtistDecorator.decorate_collection(Artist.top)
+#    @artists = []
+#
+#    echonest_top_artists = Echowrap.artist_top_hottt(results: 50, bucket: ['hotttnesss', 'images'])
+#    echonest_top_artists.each do |echonest_top_artist|
+#      echonest_artist = EchonestArtist.new(echonest_top_artist.name, 1)
+#      echonest_artist.save_artist_to_db
+#      @artists << echonest_artist.artist
+#    end
   end
 
   def top_list
