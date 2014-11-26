@@ -18,6 +18,10 @@ class AccountsController < ApplicationController
    render layout: "detail"
   end
 
+  def refer
+    render layout: "detail"
+  end
+
   def set_user
     @user = User.find(current_user.id)
   end
