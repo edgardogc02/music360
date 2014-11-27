@@ -12,13 +12,13 @@ class UserDecorator < Draper::Decorator
 
   def display_follow_button
     if display_follow_button?
-      h.render 'users/follow_unfollow', user: model, css_classes: "btn-sm"
+      h.render 'users/follow_unfollow', user: model, css_classes: "btn-sm action_button"
     end
   end
 
-  def challenge_button(song_id="")
+  def challenge_button(song_id="", data={})
     if display_challenge_button?
-      h.action_button(h.new_challenge_path(song_id: song_id, challenged_id: user.id), 'Challenge', {class: 'activation2 activation2_challenge activation2_challenge_users', id: "challenge_#{user.id}", data: {user_id: model.id}})
+      h.action_button(h.new_challenge_path(song_id: song_id, challenged_id: user.id), 'Challenge', {class: "activation2 activation2_challenge activation2_challenge_users", id: "challenge_#{user.id}", data: data.merge({user_id: model.id})})
     end
   end
 

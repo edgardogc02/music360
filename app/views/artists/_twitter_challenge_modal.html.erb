@@ -1,9 +1,9 @@
 <%= content_for(:js_scripts) do %>
   <script type="text/javascript">
     $(document).ready(function() {
-      $(".challenge_btn").click(function(e){
+      $("#<%= element_id %>").click(function(e){
         e.preventDefault();
-        $("#twitter_challenge_modal").modal({
+        $("#twitter_artist_"+$(this).data('artist-id')).modal({
           show: true,
           backdrop: 'static'
         });
@@ -12,7 +12,7 @@
   </script>
 <% end %>
 
-<div class="modal fade" id="twitter_challenge_modal">
+<div class="modal fade" id="<%= modal_id %>">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">

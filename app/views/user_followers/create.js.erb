@@ -1,7 +1,7 @@
 if ($('#follow_<%= @followed_user.id %>').parent('.artist-show-follow').length > 0) {
   $('#follow_<%= @followed_user.id %>').replaceWith("<%= j render 'users/follow_unfollow', user: @followed_user, css_classes: "" %>");
 } else {
-  $('#follow_<%= @followed_user.id %>').replaceWith("<%= j render 'users/follow_unfollow', user: @followed_user, css_classes: "btn-sm" %>");
+  $('#follow_<%= @followed_user.id %>').replaceWith("<%= j render 'users/follow_unfollow', user: @followed_user, css_classes: "btn-sm action_button" %>");
 }
 
 if ($('#followers_count').length) {

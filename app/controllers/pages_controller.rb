@@ -7,7 +7,7 @@ class PagesController < ApplicationController
 
     users =  User.not_deleted.exclude(current_user).search_user_relationships(current_user).limit(4) | User.exclude(current_user.id).order_by_challenges_count.limit(4)
 
-    @users = UserChallengeDecorator.decorate_collection(users.take(4))
+    @users = UserDecorator.decorate_collection(users.take(4))
     @songs = SongQuickStartDecorator.decorate_collection(Song.not_user_created.by_popularity.limit(4))
 
     @instruments = Instrument.visible

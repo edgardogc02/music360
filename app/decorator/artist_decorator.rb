@@ -6,6 +6,26 @@ class ArtistDecorator < Draper::Decorator
     PaginatingDecorator
   end
 
+  def display_challenge_button?
+    h.signed_in? and model.user != h.current_user
+  end
+
+  def challenge_button(song_id="")
+    if display_challenge_button?
+      user.decorate.challenge_button(song_id, {artist_id: model.id})
+    end
+  end
+
+  def display_follow_button?
+    true
+  end
+
+  def display_follow_button
+    if display_follow_button?
+      user.decorate.display_follow_button
+    end
+  end
+
   def image
     h.link_to h.artist_path(model) do
     	h.image_tag(image_url, {alt: model.title, class: 'thumbnail'})

@@ -8,7 +8,13 @@
 		</div>
 		<%= artist.edit_button %>
     <div class="spacer-sm">
-      <%= artist.user.decorate.display_follow_button %>
+      <%= artist.decorate.display_follow_button %>
+      <%= artist.decorate.challenge_button(params[:song_id]) %>
     </div>
   </div>
 </div>
+
+<% if artist.twitter.present? %>
+  <%= render "twitter_challenge_modal", artist: artist, modal_id: "twitter_artist_#{artist.id}", element_id: "challenge_#{artist.user.id}" %>
+<% end %>
+
