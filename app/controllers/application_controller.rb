@@ -1,6 +1,6 @@
 class ApplicationController < ActionController::Base
 
-  before_action :autologin_if_needed
+  before_action :autologin_if_needed, :invited_by, :save_invited_by_to_current_user
 
   # Prevent CSRF attacks by raising an exception.
   # For APIs, you may want to use :null_session instead.
@@ -27,6 +27,20 @@ class ApplicationController < ActionController::Base
       if user
         signin_user(user)
       end
+    end
+  end
+
+  def invited_by
+    if params[:pid] and !signed_in?
+      session[:invited_by] = params[:pid]
+    end
+  end
+
+  def save_invited_by_to_current_user
+    if signed_in? and session[:invited_by]
+      current_user.invitebyuser = session[:invited_by]
+      current_user.save
+      session[:invited_by] = nil
     end
   end
 
