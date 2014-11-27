@@ -19,7 +19,7 @@
 
         <p>
         	<br />
-        		<%= link_to "Sign up", root_url(host: @user_invitation.user.created_by), {style: "background: #45B9B6; color: #FFF; padding: 10px 20px; font-size: 14px; border-radius: 5px; text-decoration: none;"} %>
+        		<%= link_to "Sign up", root_url(host: @user_invitation.user.created_by, pid: @user_invitation.user.id), {style: "background: #45B9B6; color: #FFF; padding: 10px 20px; font-size: 14px; border-radius: 5px; text-decoration: none;"} %>
         	<br /><br />
         </p>
 
