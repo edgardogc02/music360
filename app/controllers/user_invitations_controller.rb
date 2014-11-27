@@ -6,7 +6,7 @@ class UserInvitationsController < ApplicationController
 
     if params[:tweet] and params[:tweet_text]
       @user_twitter_account = UserTwitterAccount.new(current_user)
-      @tweet = @user_twitter_account.tweet("#{params[:tweet_text][0..104]} #{root_url}")
+      @tweet = @user_twitter_account.tweet("#{params[:tweet_text][0..104]} #{root_url}?pid=#{current_user.id}")
     end
 
     if params[:follow_artist]
