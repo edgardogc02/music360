@@ -14,6 +14,17 @@ $(document).on('page:load', unfollow_user)
 $(document).ready(follow_user)
 $(document).on('page:load', follow_user)
 
+unfollow_user_hover = ->
+  $(document).on
+    mouseenter: ->
+      $(this).html('Unfollow')
+    mouseleave: ->
+      $(this).html('Following')
+  , ".unfollow_user"
+
+$(document).ready(unfollow_user_hover)
+$(document).on('page:load', unfollow_user_hover)
+
 click_on_feedback_call = ->
   $(document).on 'click', '#user_feedback_call', (e) ->
     $('.sign_up_phone_number').toggle()
