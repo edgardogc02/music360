@@ -9,7 +9,7 @@
 	<ul class="list-inline">
 	  <li class="no-padding"><%= link_to "Challenge", new_challenge_path(challenged_id: @user.id), class: "btn btn-primary" %></li>
 	  <% if signed_in? %>
-      <li class="no-padding"><%= render 'users/follow_unfollow', user: @user %></li>
+      <li class="no-padding"><%= render 'users/follow_unfollow', user: @user, css_classes: "" %></li>
     <% end %>
 	</ul>
 <% end %>

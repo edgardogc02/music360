@@ -33,7 +33,7 @@
 
       FB.ui({
         method: 'share',
-        href: 'https://www.instrumentchamp.com/login'
+        href: 'https://www.instrumentchamp.com/login?pid='+<%= current_user.id %>
       }, function(response){});
 
       e.preventDefault();
