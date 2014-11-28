@@ -29,6 +29,10 @@
 	</ul>
 <% end %>
 
+<%= content_for(:detail_header_nav_right) do %>
+  <%= refresh_button("btn-sm") %>
+<% end %>
+
 <div class="tab-content">
 	<div class="tab-pane active" id="overview_tab">
 		<% if signed_in? %>
