@@ -172,4 +172,12 @@ module ApplicationHelper
     number_to_currency(amount, unit: '€', format: '%n %u')
   end
 
+  def refresh_button(css_classes="" )
+    link_to url_for(params), {class: "btn btn-primary #{css_classes}"} do
+      content_tag :span, {class: "glyphicon glyphicon-refresh"} do
+        content_tag :span, "Refresh", {class: "refresh-text"}
+      end
+    end
+  end
+
 end

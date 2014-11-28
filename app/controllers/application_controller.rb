@@ -37,7 +37,7 @@ class ApplicationController < ActionController::Base
   end
 
   def save_invited_by_to_current_user
-    if signed_in? and session[:invited_by] and !current_user.invitebyuser and session[:invited_by] != current_user.id
+    if signed_in? and session[:invited_by] and !current_user.invitebyuser and session[:invited_by].to_i != current_user.id
       current_user.invitebyuser = session[:invited_by]
       current_user.save
       session[:invited_by] = nil

@@ -62,7 +62,7 @@ class ChallengesController < ApplicationController
       @title = "New"
       @paginate = true
     elsif params[:view] == "most_popular"
-      @challenges = Kaminari.paginate_array(ChallengeDecorator.decorate_collection(Challenge.by_popularity + Challenge.limit(10))).page(params[:page]).per(9)
+      @challenges = ChallengeDecorator.decorate_collection(Challenge.by_popularity.page(params[:page]))
       @title = "Most popular"
       @paginate = true
     end

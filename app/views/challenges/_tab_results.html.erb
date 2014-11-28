@@ -2,6 +2,7 @@
 	<div class="page-header clearfix">
 		<h2 class="pull-left" style="margin-top: 0px"><%= challenges.title %></h2>
 		<%= content_tag 'div', class: 'btn-content pull-right' do %>
+      <%= refresh_button('btn-sm') %>
 			<%= challenges.view_all_link %>
 		<% end %>
 	</div>

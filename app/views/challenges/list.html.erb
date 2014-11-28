@@ -1,8 +1,14 @@
 <%= render 'shared/header_page', title: @title %>
 
+<div class="clearfix">
+  <div class="pull-right refresh-button-home">
+    <%= refresh_button %>
+  </div>
+</div>
+
 <% unless @challenges.blank? %>
 	<div class="thumbnail-grid">
-		<%= render partial: "challenge", collection: @challenges %>
+		<%= render @challenges %>
 	</div>
 	<% if @paginate %>
     <hr />

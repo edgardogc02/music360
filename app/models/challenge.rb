@@ -42,7 +42,7 @@ class Challenge < ActiveRecord::Base
   scope :by_song_title, ->(title) { joins(:song).where('title LIKE ?', '%'+title+'%') }
   scope :excludes, ->(challenges_ids) { where("challenges.id NOT IN (?)", challenges_ids) }
   scope :one_to_one, -> { where("challenged_id > 0") }
-  scope :by_popularity, -> { joins(:song_scores).group('challenge_id').order('COUNT(*) DESC') }
+  scope :by_popularity, -> { joins('LEFT JOIN songscore ON songscore.challenge_id = challenges.id').group('challenges.id').order('COUNT(*) DESC') }
   scope :open, -> { where(open: true) }
   scope :only_groups, -> { where('group_id > 0') }
   scope :closed, -> { where(open: false) }
