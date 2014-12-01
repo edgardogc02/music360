@@ -19,6 +19,7 @@ class SongScore < ActiveRecord::Base
   scope :best_scores, -> { select('*, MAX(score) AS max_score').group('user_id, instrument').order('max_score DESC').includes(:user) }
   scope :highest_scores, ->(limit) { select('*, MAX(score) AS max_score').group('user_id, instrument').order('max_score DESC').includes(:user).limit(limit) }
   scope :by_score, -> { order('score DESC') }
+  scope :by_datetime_desc, -> { order('datetime DESC') }
 
   public
 

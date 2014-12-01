@@ -45,6 +45,8 @@ class Song < ActiveRecord::Base
   scope :hard, -> { where(difficulty: 3) }
   scope :accessible_for_premium_subscription, -> { where(premium: true) }
 
+  scope :by_songscore_datetime_desc, -> { order('songscore.datetime DESC') }
+
   has_many :activities, through: :song_scores
 
 	def desktop_app_uri
