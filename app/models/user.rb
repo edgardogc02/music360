@@ -25,6 +25,7 @@ class User < ActiveRecord::Base
 
 	has_many :challenges, foreign_key: "challenger_id"
   has_many :proposed_challenges, class_name: "Challenge", foreign_key: "challenged_id"
+  has_many :challenged_users, through: :challenges, source: :challenged
 
 	belongs_to :user_category
 	has_secure_password
@@ -64,6 +65,7 @@ class User < ActiveRecord::Base
   has_many :published_challenge_posts, class_name: "ChallengePost", foreign_key: "publisher_id", dependent: :destroy
 
   has_many :song_scores
+  has_many :played_songs, through: :song_scores, source: :song
 
   has_one :cart, dependent: :destroy
   has_one :wishlist, dependent: :destroy
@@ -279,6 +281,29 @@ class User < ActiveRecord::Base
 
 	def email_verified?
     self.email && self.email !~ /changeemail\b/
+  end
+
+  def song_selection_for_challenge(limit)
+    songs = played_songs.by_songscore_datetime_desc.limit(limit).uniq
+    if songs.size < limit
+      songs = songs + Song.not_user_created.free.by_popularity.limit(limit - songs.size).where.not(id: songs.map{|s| s.id}).to_a
+    end
+
+    songs
+  end
+
+  def users_for_challenge(limit)
+    users = challenged_users.group(:id_user).order('COUNT(*) DESC').uniq.limit(limit).to_a # most challenged users
+
+    if users.size < limit
+      users = users + followed_users.where.not(id_user: users.map{|u| u.id_user}).limit(limit - users.size).to_a # users I follow
+    end
+
+    if users.size < limit
+      users = users + User.where.not(id_user: users.map{|u| u.id_user}).order_by_challenges_count.exclude(self).limit(limit - users.size)
+    end
+
+    users
   end
 
 	private

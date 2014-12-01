@@ -50,8 +50,8 @@ class ChallengeDecorator < Draper::Decorator
     end
   end
 
-  def select_opponent_link
-    h.link_to select_opponent_link_name, select_opponent_path, {data: { toggle: "modal", target: "#selectUser"}}
+  def select_opponent_link(css_classes="")
+    h.link_to select_opponent_link_name, select_opponent_path, {class: "#{css_classes}", data: { toggle: "modal", target: "#selectUser"}}
   end
 
   def start_challenge_class_attr
@@ -102,7 +102,7 @@ class ChallengeDecorator < Draper::Decorator
     if model.challenged
       "Change your opponent"
     else
-      "Choose your opponent"
+      "View more"
     end
   end
 

@@ -20,7 +20,8 @@ class ChallengesController < ApplicationController
 
 		prepopulate_challenge_if_needed
 
-		@songs = SongChallengeDecorator.decorate_collection(Song.not_user_created.free.by_popularity.limit(4))
+		@songs = SongChallengeDecorator.decorate_collection(current_user.song_selection_for_challenge(12))
+		@users = UserChallengeDecorator.decorate_collection(current_user.users_for_challenge(12))
 	end
 
   def show
@@ -76,7 +77,8 @@ class ChallengesController < ApplicationController
 	    flash[:notice] = "The challenge was successfully created"
 	    redirect_to yours_challenges_path(autostart_challenge_id: @challenge.id, send_fb_notification: 1)
 	  else
-	    @songs = SongChallengeDecorator.decorate_collection(Song.not_user_created.free.by_popularity.limit(4))
+	    @songs = SongChallengeDecorator.decorate_collection(current_user.song_selection_for_challenge(12))
+	    @users = UserChallengeDecorator.decorate_collection(current_user.users_for_challenge(12))
 	    flash.now[:warning] = ("There was an error when creating the challenge" + "<br/>" + @challenge.errors.full_messages.join(', ') + "<br/>" + "Please try again").html_safe
 	    render 'new'
 	  end
