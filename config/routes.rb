@@ -140,7 +140,7 @@ InstrumentchampPrototype::Application.routes.draw do
 
   get 'premium', to: "user_premium_subscriptions#new", as: :new_user_premium
 
-  resources :searches, only: [:create, :show] do
+  resources :searches, only: [:create, :show], constraints: {id: /[A-Za-z0-9_\-!@$&%*()+={}:;.<>\s]+/} do
     get 'users', on: :member
     get 'my_friends', on: :member
     get 'artists', on: :member
