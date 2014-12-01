@@ -15,6 +15,6 @@
 </div>
 
 <% if artist.twitter.present? %>
-  <%= render "twitter_challenge_modal", artist: artist, modal_id: "twitter_artist_#{artist.id}", element_id: "challenge_#{artist.user.id}" %>
+  <%= render "/artists/twitter_challenge_modal", artist: artist, modal_id: "twitter_artist_#{artist.id}", element_id: "challenge_#{artist.user.id}" %>
 <% end %>
 
