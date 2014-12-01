@@ -9,4 +9,12 @@ class GroupPost < ActiveRecord::Base
   belongs_to :group
   belongs_to :publisher, class_name: 'User', foreign_key: 'publisher_id'
 
+  auto_html_for :message do
+    html_escape
+    image
+    youtube(:width => 400, :height => 250, :autoplay => false)
+    link :target => "_blank", :rel => "nofollow"
+    simple_format
+  end
+
 end

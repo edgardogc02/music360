@@ -98,6 +98,9 @@ gem 'mandrill_mailer'
 # activity
 gem 'public_activity'
 
+# video and links on user comments and activities
+gem "auto_html"
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false

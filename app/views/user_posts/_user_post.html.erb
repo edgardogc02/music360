@@ -10,7 +10,7 @@
 		<div class="pull-left">
 			<h4 class="media-heading"><%= link_to user_post.user.username, person_path(user_post.user) %> <span class="small">posted</span></h4>
       <div class="small spacer-md text-muted"><%= time_ago_in_words(user_post.created_at) %> ago</div>
-      <%= user_post.message %>
+      <%= user_post.message_html %>
 		</div>
 	</div>
 	<%= render 'activities/actions', activity: activity %>
