@@ -293,7 +293,7 @@ class User < ActiveRecord::Base
   end
 
   def users_for_challenge(limit)
-    users = challenged_users.group(:id_user).order('COUNT(*) DESC').uniq.limit(limit).to_a # most challenged users
+    users = most_challenged_users(limit).to_a
 
     if users.size < limit
       users = users + followed_users.where.not(id_user: users.map{|u| u.id_user}).limit(limit - users.size).to_a # users I follow
@@ -304,6 +304,10 @@ class User < ActiveRecord::Base
     end
 
     users
+  end
+
+  def most_challenged_users(limit)
+    challenged_users.group(:id_user).order('COUNT(*) DESC').uniq.limit(limit)
   end
 
 	private
