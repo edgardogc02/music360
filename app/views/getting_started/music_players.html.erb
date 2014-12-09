@@ -1,0 +1,22 @@
+<h1>Connect with other music players</h1>
+<br />
+<p>
+  Playing music is more fun when playing together.
+  Connect with other music players in the community,
+  you can follow and unfollow them later.
+</p>
+<br />
+<%= link_to "Continue", getting_started_music_challenges_path, class: "btn btn-primary btn-lg btn-full-width" %>
+
+<br /><br />
+
+<h3>Popular music players</h3>
+
+<% @popular_players.each do |player| %>
+  <div class="text-left">
+    <%= image_tag player.imagename, class: "avatar-sm pull-left margin-right" %>
+    <h4><%= player.username %></h4>
+    Career level: <%= player.level %>
+  </div>
+  <hr />
+<% end %>

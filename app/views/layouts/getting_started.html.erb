@@ -1,0 +1,35 @@
+<!doctype html>
+<html>
+  <head>
+    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <%= render "layouts/head" %>
+  </head>
+
+  <body role="landing" class="<%= body_classes %> landing" data-spy="scroll" data-target=".navbar-custom-links" data-offset="300">
+
+    <nav class="navbar navbar-default navbar-custom navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="pull-left">
+          <%= link_to :root, class: "logo navbar-brand" do %>
+            <%= image_tag(asset_path('logo_beta.png')) %>
+          <% end %>
+          <span class="getting-started-label primary-text-color">
+            Getting started
+          </span>
+        </div>
+        <div class="pull-right">
+          <%= render "layouts/step_counter", step: @step %>
+        </div>
+      </div>
+    </nav>
+
+    <section class="getting-started-content">
+      <div class="container text-center">
+        <%= yield %>
+      </div>
+    </section>
+
+    <%= js_scripts %>
+  </body>
+
+</html>

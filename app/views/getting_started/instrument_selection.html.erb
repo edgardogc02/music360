@@ -1,0 +1,15 @@
+<h1>What’s your favorite instrument?</h1>
+<br />
+<p>
+  Choose the instrument you want to play. You can play
+  InstrumentChamp with both digital and acoustic instruments.
+</p>
+<%= simple_form_for current_user, url: user_instrument_path(current_user.id, getting_started: true) do |f| %>
+  <%= f.collection_radio_buttons :instrument_id, @instruments, :id, :name %>
+  <br /><br />
+  <%= f.button :submit, "Continue", class: "btn btn-primary btn-lg btn-full-width" %>
+
+  <div class="pull-right">
+    <%= link_to "skip", getting_started_music_players_path, class: "btn btn-link btn-lg" %>
+  </div>
+<% end %>

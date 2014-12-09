@@ -11,8 +11,10 @@ class UserInstrumentsController < ApplicationController
   def update
     if current_user.update_attributes(user_instrument_params)
       #flash[:notice] = "Your instrument was successfully updated"
-      if !params[:next].blank?
+      if params[:next].present?
         redirect_to tour_path
+      elsif params[:getting_started]
+        redirect_to getting_started_music_players_path
       else
         redirect_to overview_accounts_path
       end

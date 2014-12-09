@@ -1,0 +1,31 @@
+<h1>Create a music challenge</h1>
+<br />
+<p>
+  Challenge your friends and start your InstrumentChamp music career.
+</p>
+<br />
+<%= link_to "Challenge & Continue", getting_started_invite_friends_path, class: "btn btn-primary btn-lg" %>
+<br />
+<br />
+
+<h3>Your first InstrumentChamp challenge</h3>
+
+<div class="text-left">
+  <%= image_tag @song.cover, class: "avatar-sm pull-left margin-right" %>
+  <h4><%= @song.title %></h4>
+  by <%= @song.artist.title %>
+</div>
+
+<h3>Music players you follow</h3>
+
+<% @popular_players.each do |player| %>
+  <div class="text-left">
+    <%= image_tag player.imagename, class: "avatar-sm pull-left margin-right" %>
+    <h4><%= player.username %></h4>
+    Career level: <%= player.level %>
+    <%= link_to "#", class: "btn btn-default btn-xs pull-right" do %>
+      <%= content_tag :i, nil, class: "glyphicon glyphicon-remove" %>
+    <% end %>
+  </div>
+  <hr />
+<% end %>

@@ -176,6 +176,13 @@ InstrumentchampPrototype::Application.routes.draw do
 #  get 'get-premium', to: "statics#get_premium", as: :get_premium
   get 'get-free', to: "statics#get_free", as: :get_free
 
+  get 'getting-started', to: 'getting_started#index', as: :getting_started
+  get 'getting-started/instrument-selection', to: 'getting_started#instrument_selection', as: :getting_started_instrument_selection
+  get 'getting-started/music-players', to: 'getting_started#music_players', as: :getting_started_music_players
+  get 'getting-started/music-challenges', to: 'getting_started#music_challenges', as: :getting_started_music_challenges
+  get 'getting-started/invite-friends', to: 'getting_started#invite_friends', as: :getting_started_invite_friends
+  get 'getting-started/download', to: 'getting_started#download', as: :getting_started_download
+
   get 'help', to: redirect("https://instrumentchamp.zendesk.com"), as: :help
 
   get 'mobile-landing', to: "pages#mobile_landing", as: :mobile_landing
