@@ -18,6 +18,14 @@ class GroupChallengeDecorator < ChallengeDecorator
     end
   end
 
+  def show_description
+    if description
+      description
+    else
+      "No description for this challenge yet"
+    end
+  end
+
   protected
 
     def display_start_challenge_to_user?(user)

@@ -17,6 +17,10 @@ class GroupChallengesController < ApplicationController
     render layout: "detail"
   end
 
+  def edit
+    @challenge = GroupChallengeDecorator.decorate(Challenge.find(params[:id]))
+  end
+
   def show
     @challenge = GroupChallengeDecorator.decorate(Challenge.find(params[:id]))
     @results = @challenge.song_scores.includes(:user)
@@ -43,10 +47,20 @@ class GroupChallengesController < ApplicationController
     end
   end
 
+  def update
+    @challenge = Challenge.find(params[:id])
+
+    if @challenge.update_attributes(challenge_group_params)
+      redirect_to [@group, @challenge], notice: "The challenge was successfully updated"
+    else
+      render :edit
+    end
+  end
+
   private
 
   def challenge_group_params
-    params.require(:challenge).permit(:song_id, :challenged_id, :instrument, :public, :group_id)
+    params.require(:challenge).permit(:song_id, :challenged_id, :instrument, :public, :group_id, :start_at, :description, :duration_in_days)
   end
 
   def set_group

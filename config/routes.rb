@@ -77,7 +77,7 @@ InstrumentchampPrototype::Application.routes.draw do
     end
     resources :group_posts
     resources :group_activities
-    resources :challenges, controller: "group_challenges", only: [:new, :create, :show]
+    resources :challenges, controller: "group_challenges"
 		get 'list', on: :collection, as: :list
   end
 

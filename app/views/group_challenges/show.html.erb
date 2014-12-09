@@ -69,9 +69,9 @@
 </div>
 
 <%= content_for(:detail_right_col) do %>
-	<h2>About the group <%= link_to @group.name, @group %></h2>
+	<h2>About the challenge <%= link_to @challenge.song.title, [@group, @challenge] %></h2>
 	<p>
-		<%= @group.show_description %>
+		<%= simple_format @challenge.show_description %>
 	</p>
 	<hr />
 	<% if !@resumed_group_challenge_leaders.blank? %>

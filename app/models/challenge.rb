@@ -2,6 +2,8 @@ class Challenge < ActiveRecord::Base
 
   include PublicActivity::Common
 
+  attr_accessor :duration_in_days
+
   paginates_per 9
 
   validates :challenger_id, presence: true
