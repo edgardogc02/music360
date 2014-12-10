@@ -13,10 +13,13 @@
 <h3>Popular music players</h3>
 
 <% @popular_players.each do |player| %>
-  <div class="text-left">
+  <div class="text-left clearfix">
     <%= image_tag player.imagename, class: "avatar-sm pull-left margin-right" %>
     <h4><%= player.username %></h4>
     Career level: <%= player.level %>
+    <div class="pull-right follow-user">
+      <%= player.display_follow_button %>
+    </div>
   </div>
   <hr />
 <% end %>

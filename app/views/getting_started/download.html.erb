@@ -1,7 +1,80 @@
-<div class="text-center">
-  <h1>Download the game for free</h1>
-  <p>
-    Download and install the game to play your first challenges. You can then find more songs and friends in the online community.
-  </p>
-  <%= link_to "Start download", home_path, class: "btn btn-primary btn-lg" %>
+<h1>Download the game for free</h1>
+<br />
+<p>
+  Download and install the game to play your first challenges. You can then find more songs and friends in the online community.
+</p>
+<br />
+
+<div id="download-btn"></div>
+
+<%= content_for(:more) do %>
+  <br /><br />
+  <ul class="list-inline">
+    <li>
+      <%= image_tag(asset_path('download_step1.png')) %>
+      <h5>Download InstrumentChamp</h5>
+    </li>
+    <li>
+      <%= image_tag(asset_path('download_step2.png')) %>
+      <h5>Run the installer</h5>
+    </li>
+    <li>
+      <%= image_tag(asset_path('download_step3.png')) %>
+      <h5>Login</h5>
+    </li>
+    <li>
+      <%= image_tag(asset_path('download_step4.png')) %>
+      <h5>Have fun!</h5>
+    </li>
+  </ul>
+<% end %>
+
+<%= content_for(:js_scripts) do %>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      var node = $("#download-btn");
+      if (navigator.appVersion.indexOf("Mac")!=-1){
+        //node.html('<a class="download_btn mac" href=""><img src="http://blog.instrumentchamp.com/wp-content/uploads/2014/01/download_ic_osx.png" alt="Download InstrumentChamp for Windows" class="downloadbutton"/></a>');
+        node.html('<a class="btn btn-primary btn-lg btn-dwn btn-full-width" href="#">Download InstrumentChamp Free</a>');
+      } else {
+        node.html('<a class="btn btn-primary btn-lg btn-dwn btn-full-width" href="#">Download InstrumentChamp Free</a>');
+      }
+
+      function download_action() {
+        $("#getReady").modal("show");
+        if (navigator.appVersion.indexOf("Mac")!=-1){
+          window.location = "<%= mac_download_link %>";
+        } else {
+          window.location = "<%= windows_download_link %>";
+        }
+        window.focus();
+      }
+
+      $(".btn-dwn").click(function(e) {
+        e.preventDefault();
+        download_action();
+      });
+
+      $('#getReady').on('hidden.bs.modal', function (e) {
+        window.location = "<%= home_path %>";
+      })
+
+      <% if params[:auto_download] or !current_user.installed_desktop_app? %>
+        $(window).load(function() {
+          //download_action();
+        });
+      <% end %>
+    });
+
+  </script>
+<% end %>
+
+<div class="modal fade" id="getReady" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-body">
+        <h3 class="text-center">Install InstrumentChamp and get your <%= display_instrument %> ready</h3>
+      </div>
+    </div>
+  </div>
 </div>
