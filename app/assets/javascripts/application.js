@@ -27,6 +27,9 @@
 //= require lib/bootstrap-tour.min
 //= jquery.bootstrap.wizard.min
 
+//= require moment
+//= require bootstrap-datetimepicker
+
 //= require_tree ./common
 //= require_tree ./lib
 

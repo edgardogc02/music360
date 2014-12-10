@@ -8,7 +8,7 @@
 
   <div class="row">
     <div class="col-md-6">
-      <%= f.input :start_at, input_html: { class: '' } %>
+      <%= f.input :start_at, as: :string, input_html: { id: 'datetimepicker', data: {"date-format" => "YYYY-MM-DD hh:mm A"} } %>
     </div>
     <div class="col-md-6">
       <%= f.input :duration_in_days, as: "integer" %>
