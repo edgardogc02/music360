@@ -27,6 +27,7 @@
   <%= content_for(:detail_header_nav_right) do %>
     <%= refresh_button('btn-sm') %>
   	<%= link_to 'Create new group', new_group_path, class: 'btn btn-primary btn-sm' %>
+  	<!--
   	<% if UserGroupsManager.new(current_user).belongs_to_group?(@group) %>
   		<div class="dropdown">
   		  <button class="btn btn-primary btn-sm dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown">
@@ -42,6 +43,8 @@
   		  </ul>
   		</div>
   	<% end %>
+  	-->
+  	<%= @challenge.display_edit_button %>
   <% end %>
 
 <% end %>

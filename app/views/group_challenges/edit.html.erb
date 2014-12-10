@@ -2,12 +2,24 @@
 
 <%= render "challenges/form", path: [@group, @challenge] %>
 
+<br /><br />
+
 <%= simple_form_for [@group, @challenge] do |f| %>
 
-  <%= f.input :start_at %>
-  <%= f.input :duration_in_days %>
+  <div class="row">
+    <div class="col-md-6">
+      <%= f.input :start_at, as: "string", input_html: { class: 'datepicker' } %>
+    </div>
+    <div class="col-md-6">
+      <%= f.input :duration_in_days, as: "integer" %>
+    </div>
+  </div>
+
   <%= f.input :description %>
 
-  <%= f.submit "Save", {class: "btn btn-primary"} %>
+  <div class="text-right">
+    <%= link_to "Back", group_challenge_path(@group, @challenge), class: "btn btn-default" %>
+    <%= f.submit "Save", {class: "btn btn-primary"} %>
+  </div>
 
 <% end %>

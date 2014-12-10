@@ -26,6 +26,12 @@ class GroupChallengeDecorator < ChallengeDecorator
     end
   end
 
+  def display_edit_button
+    if is_user_challenger?(h.current_user)
+      h.link_to "Edit", h.edit_group_challenge_path(group_id: model.group_id), {class: "btn btn-primary btn-sm"}
+    end
+  end
+
   protected
 
     def display_start_challenge_to_user?(user)

@@ -31,6 +31,9 @@
 
 <%= content_for(:detail_header_nav_right) do %>
   <%= refresh_button("btn-sm") %>
+  <% if signed_in? %>
+    <!--<%= @challenge.display_edit_button %>-->
+  <% end %>
 <% end %>
 
 <div class="tab-content">
