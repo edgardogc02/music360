@@ -19,7 +19,7 @@ class ChallengeDecorator < Draper::Decorator
   end
 
   def display_start_challenge_button
-    if display_start_challenge_to_user?(h.current_user)
+    if challenge_already_started? and display_start_challenge_to_user?(h.current_user)
       h.link_to "Accept challenge", start_challenge_url, {class: start_challenge_class_attr, id: "challenge_start_#{model.id}", data: {type: 'Challenge', song_name: model.song.title, song_cover: model.song.cover.url, song_writer: model.song.writer, song_publisher: model.song.publisher}}
     end
   end
@@ -100,6 +100,10 @@ class ChallengeDecorator < Draper::Decorator
 
   def display_start_challenge_to_user?(user)
     user and is_user_involved?(user) and !model.has_user_played?(user)
+  end
+
+  def challenge_already_started?
+    !model.start_at.present? or model.start_at <= Time.now
   end
 
   private

@@ -13,13 +13,13 @@ class GroupChallengeDecorator < ChallengeDecorator
   end
 
   def display_start_group_challenge_button(label="Accept challenge", size="btn-sm")
-    if display_start_challenge_to_user?(h.current_user)
+    if challenge_already_started? and display_start_challenge_to_user?(h.current_user)
       h.link_to label, start_challenge_url, {class: "btn btn-primary app-play " + size, data: {type: 'Group Challenge by ' + model.group.name , song_name: model.song.title, song_cover: model.song.cover.url, song_writer: model.song.writer, song_publisher: model.song.publisher}}
     end
   end
 
   def show_description
-    if description
+    if description.present?
       description
     else
       "No description for this challenge yet"

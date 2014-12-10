@@ -28,6 +28,7 @@ class Challenge < ActiveRecord::Base
   has_many :users_already_played, through: :song_scores, source: :user
 
   before_create :fill_in_extra_fields
+  before_update :fill_in_end_at
 
   scope :public, -> { where(public: true) }
   scope :pending_by_challenger, -> { where('score_u1 = 0') }
@@ -208,7 +209,18 @@ class Challenge < ActiveRecord::Base
     self.score_u1 = 0 if self.score_u1.nil?
     self.score_u2 = 0 if self.score_u2.nil?
     self.end_at = 1.week.from_now
+    self.start_at = Time.now
     self.open = true
+  end
+
+  def fill_in_end_at
+    if self.start_at.present?
+      if self.duration_in_days.present?
+        self.end_at = self.start_at + self.duration_in_days.to_i.days
+      else
+        self.end_at = self.start_at + 7.days
+      end
+    end
   end
 
 end

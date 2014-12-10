@@ -19,6 +19,7 @@ class GroupChallengesController < ApplicationController
 
   def edit
     @challenge = GroupChallengeDecorator.decorate(Challenge.find(params[:id]))
+    @challenge.duration_in_days = 7
   end
 
   def show
