@@ -1,7 +1,46 @@
 <div class="text-center">
   <h1>Invite your friends</h1>
+  <br />
   <p>
     Music is social, invite your friends to join InstrumentChamp. You will get a surprise bonus when they join!
   </p>
-  <%= link_to "Challenge & Continue", getting_started_download_path, class: "btn btn-primary btn-lg" %>
+  <br />
+
+  <div class="row">
+    <div class="col-lg-6">
+      <a class="fb_button xs" href="#" id="share_on_facebook">
+        <span class="separator"></span>
+        <span class="text">Share on facebook</span>
+      </a>
+    </div>
+    <div class="col-lg-6">
+      <a class="fb_button xs" href="#" id="invite_fb_friends">
+        <span class="separator"></span>
+        <span class="text">Invite facebook friends</span>
+      </a>
+    </div>
+  </div>
+
+  <br />
+
+  <div class="row">
+    <div class="col-lg-6">
+      <%= link_to twitter_signin_path, id: "twitter_signin", class: 'tweet twitter_button xs text-left', title: "Join me on @InstrumentChamp. It's a game and social network for music players! #PlayMusic" do %>
+        <span class="separator"></span>
+        <span class="text">Share on twitter</span>
+      <% end %>
+    </div>
+    <div class="col-lg-6">
+      <%= simple_form_for @user_invitation, remote: true, wrapper: "inline" do |f| %>
+        <%= f.input :friend_email, placeholder: "Invite with email", label: false %>
+        <%= f.button :submit, "Invite" %>
+      <% end %>
+    </div>
+  </div>
+
+  <br /><br />
+
+  <%= link_to "Continue", getting_started_download_path, class: "btn btn-primary btn-lg btn-full-width" %>
 </div>
+
+<%= render "shared/facebook_invite.js" %>

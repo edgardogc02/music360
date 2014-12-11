@@ -36,8 +36,14 @@ SimpleForm.setup do |config|
       input.use :error, wrap_with: { tag: 'span', class: 'help-inline' }
     end
   end
-  
+
   config.wrappers :inline_checkbox, :tag => 'div', :class => 'checkbox', :error_class => 'has-error' do |b|
+    b.use :html5
+    b.use :placeholder
+    b.use :label_input
+  end
+
+  config.wrappers :inline, :tag => 'div', :class => 'display-inline align-top', :error_class => 'has-error' do |b|
     b.use :html5
     b.use :placeholder
     b.use :label_input

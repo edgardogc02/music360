@@ -39,6 +39,7 @@
 //= require categories
 //= require challenges
 //= require facebook
+//= require twitter
 //= require home
 //= require kissmetrics
 //= require landing

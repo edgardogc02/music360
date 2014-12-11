@@ -13,7 +13,7 @@ class GettingStartedController < ApplicationController
   end
 
   def music_players
-    @popular_players = User.by_xp.limit(6)
+    @popular_players = UserDecorator.decorate_collection(User.by_xp.limit(6))
     @step = 3
   end
 
@@ -24,6 +24,7 @@ class GettingStartedController < ApplicationController
   end
 
   def invite_friends
+    @user_invitation = current_user.user_invitations.build
     @step = 5
   end
 

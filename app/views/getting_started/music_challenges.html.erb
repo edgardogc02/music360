@@ -4,17 +4,21 @@
   Challenge your friends and start your InstrumentChamp music career.
 </p>
 <br />
-<%= link_to "Challenge & Continue", getting_started_invite_friends_path, class: "btn btn-primary btn-lg" %>
+<%= link_to "Challenge & Continue", getting_started_invite_friends_path, class: "btn btn-primary btn-lg btn-full-width" %>
 <br />
 <br />
 
 <h3>Your first InstrumentChamp challenge</h3>
 
-<div class="text-left">
-  <%= image_tag @song.cover, class: "avatar-sm pull-left margin-right" %>
-  <h4><%= @song.title %></h4>
-  by <%= @song.artist.title %>
+<div class="display-inline text-left">
+  <%= image_tag @song.cover, class: "avatar-sm display-inline margin-right align-top" %>
+  <div class="display-inline align-top">
+    <h4 class="no-margin"><%= @song.title %></h4>
+    by <%= @song.artist.title %>
+  </div>
 </div>
+
+<br /><br />
 
 <h3>Music players you follow</h3>
 
