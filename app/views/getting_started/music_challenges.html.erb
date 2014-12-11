@@ -1,35 +1,52 @@
 <h1>Create a music challenge</h1>
 <br />
-<p>
+<p class="description">
   Challenge your friends and start your InstrumentChamp music career.
 </p>
 <br />
-<%= link_to "Challenge & Continue", getting_started_invite_friends_path, class: "btn btn-primary btn-lg btn-full-width" %>
+
+<%= form_tag create_multiple_challenges_path do %>
+
+  <%= hidden_field_tag :song_id, @song.id %>
+  <% @following_players.each do |player| %>
+    <%= hidden_field_tag :user_ids, player.id_user, {name: "challenged_ids[]", id: "challenge_player_#{player.id_user}"} %>
+  <% end %>
+
+  <%= submit_tag "Challenge & Continue", class: "btn btn-primary btn-lg btn-full-width" %>
+  <div class="pull-right">
+    <%= link_to "skip", getting_started_invite_friends_path, class: "btn btn-link btn-lg" %>
+  </div>
+
+<% end %>
+
 <br />
 <br />
 
 <h3>Your first InstrumentChamp challenge</h3>
 
-<div class="display-inline text-left">
-  <%= image_tag @song.cover, class: "avatar-sm display-inline margin-right align-top" %>
-  <div class="display-inline align-top">
-    <h4 class="no-margin"><%= @song.title %></h4>
-    by <%= @song.artist.title %>
+<div class="group-challenge-item">
+  <div class="display-inline text-left item-content">
+    <%= image_tag @song.cover, class: "avatar-sm display-inline margin-right align-top" %>
+    <div class="display-inline align-top">
+      <h4 class="no-margin"><%= @song.title %></h4>
+      by <%= @song.artist.title %>
+    </div>
   </div>
 </div>
 
-<br /><br />
+<br />
 
 <h3>Music players you follow</h3>
 
-<% @popular_players.each do |player| %>
-  <div class="text-left">
-    <%= image_tag player.imagename, class: "avatar-sm pull-left margin-right" %>
-    <h4><%= player.username %></h4>
-    Career level: <%= player.level %>
-    <%= link_to "#", class: "btn btn-default btn-xs pull-right" do %>
-      <%= content_tag :i, nil, class: "glyphicon glyphicon-remove" %>
-    <% end %>
-  </div>
-  <hr />
-<% end %>
+<div class="group-challenge-item">
+  <% @following_players.each do |player| %>
+    <div class="text-left challenged-player item-content">
+      <%= image_tag player.imagename, class: "avatar-sm pull-left margin-right" %>
+      <h4><%= player.username %></h4>
+      Career level: <%= player.level %>
+      <%= link_to "#", {class: "btn btn-default btn-xs pull-right remove-btn remove-challenge-player", data: {id: player.id_user}} do %>
+        <%= content_tag :i, nil, class: "glyphicon glyphicon-remove" %>
+      <% end %>
+    </div>
+  <% end %>
+</div>

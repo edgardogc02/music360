@@ -3,8 +3,29 @@
 
 .getting-started-content {
   .container {
-    max-width: 500px;
-    padding-top: 80px;
+    max-width: 620px;
+    padding: 80px 60px 40px 60px;
+    background: #FFF;
+
+    .description {
+      font-size: 14px;
+    }
+
+    .remove-btn {
+      position: relative;
+      top: -30px;
+      color: #999;
+    }
+
+    .download-img {
+      li {
+        width: 123px;
+
+        img {
+          width: 100%;
+        }
+      }
+    }
   }
 
   input[type="radio"] {
@@ -24,4 +45,8 @@
   font-weight: bold;
   position: relative;
   top: 5px;
+}
+
+.getting_started {
+  background: #efefef;
 }

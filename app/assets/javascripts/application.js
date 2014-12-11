@@ -56,3 +56,4 @@
 //= require group_posts
 //= require carts
 //= require print
+//= require getting_started

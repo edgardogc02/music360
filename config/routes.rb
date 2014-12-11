@@ -36,6 +36,7 @@ InstrumentchampPrototype::Application.routes.draw do
     get 'yours', on: :collection
     get 'list', on: :collection, as: :list
     resources :challenge_posts
+    post 'create_multiple', on: :collection
   end
 
   constraints id: /[\w\W*]+/ do
@@ -44,7 +45,9 @@ InstrumentchampPrototype::Application.routes.draw do
       get 'list', on: :collection, as: :list
       get 'for_challenge', on: :collection
     end
-    resources :user_followers, only: [:show, :create, :destroy]
+    resources :user_followers, only: [:show, :create, :destroy] do
+      post 'create_multiple', on: :collection
+    end
     resources :following, only: [:show]
   end
 

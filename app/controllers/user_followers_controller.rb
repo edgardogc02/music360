@@ -15,6 +15,14 @@ class UserFollowersController < ApplicationController
     end
   end
 
+  def create_multiple
+    #return render text: "#{params.inspect}"
+    params[:follow_ids].each do |followed_user_id|
+      followed_user = current_user.inverse_user_followers.create(user_id: followed_user_id)
+    end
+    redirect_to getting_started_music_challenges_path
+  end
+
   def destroy
     @followed_user = UserFollower.find(params[:id]).followed
     current_user.unfollow(@followed_user)
