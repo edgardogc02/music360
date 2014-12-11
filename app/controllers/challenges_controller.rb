@@ -59,11 +59,11 @@ class ChallengesController < ApplicationController
       @title = "Results"
       @paginate = true
     elsif params[:view] == "new"
-      @challenges = ChallengeDecorator.decorate_collection(Challenge.all.default_order.page params[:page])
+      @challenges = ChallengeDecorator.decorate_collection(Challenge.started.default_order.page params[:page])
       @title = "New"
       @paginate = true
     elsif params[:view] == "most_popular"
-      @challenges = ChallengeDecorator.decorate_collection(Challenge.by_popularity.page(params[:page]))
+      @challenges = ChallengeDecorator.decorate_collection(Challenge.started.by_popularity.page(params[:page]))
       @title = "Most popular"
       @paginate = true
     end
