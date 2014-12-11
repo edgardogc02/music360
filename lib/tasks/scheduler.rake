@@ -116,6 +116,13 @@ task :improve_music_career_reminder => :environment do
   end
 end
 
+task :start_challenge_notifications => :environment do
+  Challenge.where('start_at <= ? AND start_at >= ?', Time.now, Time.now+30.minutes).each do |challenge|
+    gchc = GroupChallengeCreation.new(@challenge)
+    gchc.save
+  end
+end
+
 
 task :test_mandrill_template => :environment do
   MandrillTemplateEmailNotifier.test_mandrill_template(User.last).deliver

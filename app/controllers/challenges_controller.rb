@@ -3,7 +3,7 @@ class ChallengesController < ApplicationController
 	before_action :redirect_to_current_if_not_signed_in, only: [:show]
 
 	def index
-		@my_challenges = TabMyChallengesDecorator.decorate(Challenge.open.not_played_by_user(current_user, Challenge.default_order.default_limit.values))
+		@my_challenges = TabMyChallengesDecorator.decorate(Challenge.open.started.not_played_by_user(current_user, Challenge.default_order.default_limit.values))
     @pending_challenges = TabPendingChallengesDecorator.decorate(Challenge.pending_for_user(current_user, Challenge.default_order.default_limit.values))
 		@challenges_results = TabResultChallengesDecorator.decorate(Challenge.results_for_user(current_user, Challenge.default_order.default_limit.values))
 	end
@@ -47,7 +47,7 @@ class ChallengesController < ApplicationController
 
   def list
     if params[:view] == "my_challenges"
-      @challenges = Kaminari.paginate_array(ChallengeDecorator.decorate_collection(Challenge.open.not_played_by_user(current_user, Challenge.default_order.values))).page(params[:page]).per(9)
+      @challenges = Kaminari.paginate_array(ChallengeDecorator.decorate_collection(Challenge.open.started.not_played_by_user(current_user, Challenge.default_order.values))).page(params[:page]).per(9)
       @title = "My challenges"
       @paginate = true
     elsif params[:view] == "pending"

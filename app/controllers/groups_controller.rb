@@ -56,7 +56,7 @@ class GroupsController < ApplicationController
   end
 
   def challenges
-    @open_challenges = GroupChallengeDecorator.decorate_collection(@group.challenges.open)
+    @open_challenges = GroupChallengeDecorator.decorate_collection(@group.challenges.open.started)
     @finished_challenges = GroupChallengeDecorator.decorate_collection(@group.challenges.finished)
   	@group_leaders = @group.leader_users(10)
 

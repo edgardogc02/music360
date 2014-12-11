@@ -93,6 +93,20 @@
 <%= content_tag 'div', class: 'btn-content' do %>
 	<section>
 	  <%= simple_form_for path do |f| %>
+
+      <% if @challenge.group.present? %>
+        <div class="row">
+          <div class="col-md-6">
+            <%= f.input :start_at, as: :string, input_html: { id: 'datetimepicker', data: {"date-format" => "YYYY-MM-DD hh:mm A"} } %>
+          </div>
+          <div class="col-md-6">
+            <%= f.input :duration_in_days, as: "integer" %>
+          </div>
+        </div>
+
+        <%= f.input :description %>
+      <% end %>
+
 	    <%= f.association :challenger, as: :hidden %>
 	    <%= f.association :challenged, as: :hidden %>
 	    <%= f.association :song, as: :hidden %>

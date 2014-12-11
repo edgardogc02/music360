@@ -49,6 +49,7 @@ class Challenge < ActiveRecord::Base
   scope :open, -> { where(open: true) }
   scope :only_groups, -> { where('group_id > 0') }
   scope :closed, -> { where(open: false) }
+  scope :started, -> { where('start_at <= ?', Time.now) }
 
 	def cover_url
 		song.cover_url
@@ -209,7 +210,7 @@ class Challenge < ActiveRecord::Base
     self.score_u1 = 0 if self.score_u1.nil?
     self.score_u2 = 0 if self.score_u2.nil?
     self.end_at = 1.week.from_now
-    self.start_at = Time.now
+    self.start_at = Time.now unless self.start_at.present?
     self.open = true
   end
 

@@ -7,7 +7,7 @@ class GroupChallengesController < ApplicationController
 	end
 
 	def new
-	  @challenge = GroupChallengeDecorator.decorate(@group.challenges.build)
+	  @challenge = GroupChallengeDecorator.decorate(@group.challenges.build(start_at: Time.now.utc, duration_in_days: 7))
     if params[:song_id].present?
       @challenge.song = Song.find(params[:song_id])
     end

@@ -8,8 +8,10 @@ class GroupChallengeCreation
 
   def save
     if challenge.save
-      save_activity
-      notify_users
+      if challenge.start_at <= Time.now
+        save_activity
+        notify_users
+      end
       true
     else
       false
