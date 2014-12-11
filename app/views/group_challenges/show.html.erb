@@ -1,9 +1,8 @@
 <% content_for(:facebook_og_meta) do %>
   <meta property="og:url" content="<%= request.original_url %>" />
   <meta property="og:title" content="Group challenge by <%= @group.name %>. Play music with your friends online with InstrumentChamp" />
-  <meta property="og:type" content="instrumentchamp:challenge" />
   <meta property="og:image" content="<%= asset_url(@challenge.cover_url) %>" />
-  <meta property="og:description" content="Group challenge by <%= @group.name %>. Play music with your friends online with InstrumentChamp" />
+  <meta property="og:description" content="Learn to play guitar, learn to play piano, learn to play drums and more on InstrumentChamp" />
 <% end %>
 
 <%= set_page_title "Group challenge by #{@group.name}. Play music with your friends online with InstrumentChamp" %>

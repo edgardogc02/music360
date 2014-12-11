@@ -69,4 +69,6 @@
   </div>
 </div>
 
-<%= render "shared/facebook_invite.js" %>
+<% if signed_in? %>
+  <%= render "shared/facebook_invite.js" %>
+<% end %>
