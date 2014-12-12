@@ -24,6 +24,7 @@
 //= require bootstrap/dropdown
 //= require bootstrap/tooltip
 //= require bootstrap/popover
+//= require bootstrap/button
 //= require lib/bootstrap-tour.min
 //= jquery.bootstrap.wizard.min
 

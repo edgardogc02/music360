@@ -5,11 +5,21 @@
   InstrumentChamp with both digital and acoustic instruments.
 </p>
 <%= simple_form_for current_user, url: user_instrument_path(current_user.id, getting_started: true) do |f| %>
-  <%= f.collection_radio_buttons :instrument_id, @instruments, :id, :name do |b| %>
-    <div>
-      <%= b.label { b.radio_button + " " + b.text } %>
-    </div>
-  <% end %>
+
+  <br />
+  <div class="btn-group" data-toggle="buttons">
+    <% @instruments.each do |instrument| %>
+      <label class="btn btn-default select_instrument_started" data-instrument-id="<%= instrument.id %>">
+        <input type="radio" name="options" id="option1" autocomplete="off">
+        <div class="icon-instrument <%= instrument.name.downcase %>-active"></div>
+        <div><%= instrument.name %></div>
+      </label>
+    <% end %>
+  </div>
+
+  <div>
+    <%= f.hidden_field :instrument_id %>
+  </div>
 
   <br /><br />
   <%= f.button :submit, "Continue", class: "btn btn-primary btn-lg btn-full-width" %>

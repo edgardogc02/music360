@@ -10,22 +10,24 @@
 
     <nav class="navbar navbar-default navbar-custom navbar-fixed-top" role="navigation">
       <div class="container">
-        <div class="pull-left">
-          <%= link_to :root, class: "logo navbar-brand" do %>
-            <%= image_tag(asset_path('logo_beta.png')) %>
-          <% end %>
-          <span class="getting-started-label primary-text-color">
-            Getting started
-          </span>
-        </div>
-        <div class="pull-right">
-          <%= render "layouts/step_counter", step: @step %>
-        </div>
+        <%= link_to :root, class: "logo navbar-brand" do %>
+          <%= image_tag(asset_path('logo_beta.png')) %>
+        <% end %>
       </div>
     </nav>
 
     <section class="getting-started-content">
       <div class="text-center">
+        <div id="getting_started_header" class="clearfix">
+          <div class="pull-left">
+            <span class="getting-started-label">
+              Getting started
+            </span>
+          </div>
+          <div class="pull-right">
+            <%= render "layouts/step_counter", step: @step %>
+          </div>
+        </div>
         <div class="container">
           <%= yield %>
         </div>

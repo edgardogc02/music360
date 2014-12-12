@@ -7,14 +7,15 @@
   <br />
 
   <div class="row">
-    <div class="col-lg-6">
-      <a class="fb_button xs" href="#" id="share_on_facebook">
+    <div class="col-sm-6">
+      <a class="fb_button xs full-width" href="#" id="share_on_facebook">
         <span class="separator"></span>
         <span class="text">Share on facebook</span>
       </a>
     </div>
-    <div class="col-lg-6">
-      <a class="fb_button xs" href="#" id="invite_fb_friends">
+    <br class="visible-xs" />
+    <div class="col-sm-6">
+      <a class="fb_button xs full-width" href="#" id="invite_fb_friends">
         <span class="separator"></span>
         <span class="text">Invite facebook friends</span>
       </a>
@@ -24,16 +25,17 @@
   <br />
 
   <div class="row">
-    <div class="col-lg-6">
-      <%= link_to twitter_signin_path, id: "twitter_signin", class: 'tweet twitter_button xs text-left', title: "Join me on @InstrumentChamp. It's a game and social network for music players! #PlayMusic" do %>
+    <div class="col-sm-6">
+      <%= link_to twitter_signin_path, id: "twitter_signin", class: 'tweet twitter_button xs full-width', title: "Join me on @InstrumentChamp. It's a game and social network for music players! #PlayMusic" do %>
         <span class="separator"></span>
         <span class="text">Share on twitter</span>
       <% end %>
     </div>
-    <div class="col-lg-6">
-      <%= simple_form_for @user_invitation, remote: true, wrapper: "inline" do |f| %>
-        <%= f.input :friend_email, placeholder: "Invite with email", label: false %>
-        <%= f.button :submit, "Invite" %>
+    <br class="visible-xs" />
+    <div class="col-sm-6">
+      <%= simple_form_for @user_invitation, remote: true, wrapper: "inline", html: {class: "pos-relative"} do |f| %>
+        <%= f.input :friend_email, placeholder: "Invite with email", label: false, wrapper_html: {class: "full-width"} %>
+        <%= f.button :submit, "Invite", class: "invite-btn" %>
       <% end %>
     </div>
   </div>

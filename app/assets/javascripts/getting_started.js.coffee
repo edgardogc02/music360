@@ -9,5 +9,9 @@ ready = ->
     $(this).parents('.follow-player').remove()
     e.preventDefault()
 
+  $(".select_instrument_started").click (e) ->
+    e.preventDefault()
+    $('#user_instrument_id').val($(this).data("instrument-id"))
+
 $(document).ready(ready)
 $(document).on('page:load', ready)

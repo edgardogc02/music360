@@ -1,52 +1,91 @@
 /* =GETTING STARTED
 -------------------------------- */
 
-.getting-started-content {
+.getting_started {
+  background: #efefef;
+
   .container {
-    max-width: 620px;
-    padding: 80px 60px 40px 60px;
-    background: #FFF;
+    max-width: 640px;
+  }
 
-    .description {
-      font-size: 14px;
-    }
+  .getting-started-content {
+    background: #efefef;
+    padding-top: 52px;
 
-    .remove-btn {
-      position: relative;
-      top: -30px;
-      color: #999;
-    }
+    .container {
+      max-width: 620px;
+      padding: 30px 60px 40px 60px;
+      background: #FFF;
 
-    .download-img {
-      li {
-        width: 123px;
+      .description {
+        font-size: 14px;
+      }
 
-        img {
-          width: 100%;
+      .remove-btn {
+        position: relative;
+        top: -30px;
+        color: #999;
+      }
+
+      .download-img {
+        li {
+          width: 123px;
+
+          img {
+            width: 100%;
+          }
         }
+      }
+    }
+
+    .follow-user {
+      position: relative;
+      top: -20px;
+    }
+
+    #new_user_invitation {
+      #user_invitation_friend_email {
+        padding-top: 18px;
+        padding-bottom: 18px;
+      }
+
+      .invite-btn {
+        position: absolute;
+        top: 0px;
+        right: 0px;
+        padding-top: 10px;
+        padding-bottom: 9px;
       }
     }
   }
 
-  input[type="radio"] {
-    -webkit-appearance: checkbox; /* Chrome, Safari, Opera */
-    -moz-appearance: checkbox;    /* Firefox */
-    -ms-appearance: checkbox;     /* not currently supported */
+  .step-counter, .getting-started-label {
+    color: #379491;
   }
 
-  .follow-user {
-    position: relative;
-    top: -20px;
+  .step-counter {
+    font-size: 14px;
+  }
+
+  .getting-started-label {
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  #getting_started_header {
+    background: #F9F9F9;
+    max-width: 620px;
+    margin: 0 auto;
+    padding: 15px 20px;
+    border-bottom: 1px solid #e7e7e7;
+    margin-top: 30px;
   }
 }
 
-.step-counter, .getting-started-label {
-  font-size: 15px;
-  font-weight: bold;
-  position: relative;
-  top: 5px;
-}
-
-.getting_started {
-  background: #efefef;
+@media (max-width: $screen-xs-max) {
+  .getting-started-content {
+    .container {
+      padding: 80px 20px 40px 20px;
+    }
+  }
 }
