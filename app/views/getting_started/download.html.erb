@@ -3,6 +3,16 @@
 <p class="description">
   Download and install the game to play your first challenges. You can then find more songs and friends in the online community.
 </p>
+
+<% if current_user %>
+  <% unless current_user.installed_desktop_app? %>
+    <br />
+    <div class="well well-sm">
+      This is your verification code for account verification: <b class="primary-text-color"><%= current_user.auth_token %></b>
+    </div>
+  <% end %>
+<% end %>
+
 <br />
 
 <div id="download-btn"></div>

@@ -47,7 +47,7 @@ class UsersController < ApplicationController
 	  if user_authentication.authenticated?
 	    signin_user(@user)
 	    flash[:notice] = "Hi #{@user.username}!"
-	    redirect_to home_path welcome_msg: true
+	    redirect_to getting_started_path
 	  else
 	    flash.now[:warning] = "Check the errors below and try again"
 	    render "new"

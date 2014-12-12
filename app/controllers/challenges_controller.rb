@@ -106,7 +106,7 @@ class ChallengesController < ApplicationController
 
   def create_multiple
     params[:challenged_ids].each do |challenged_id|
-      challenge = current_user.challenges.create(song_id: params[:song_id], challenged_id: challenged_id, public: false, instrument: current_user.instrument)
+      challenge = current_user.challenges.create(song_id: params[:song_id], challenged_id: challenged_id, public: false, instrument: 0)
     end
     redirect_to getting_started_invite_friends_path
   end
