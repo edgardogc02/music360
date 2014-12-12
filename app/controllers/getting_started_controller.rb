@@ -20,6 +20,7 @@ class GettingStartedController < ApplicationController
   def music_challenges
     @song = Song.first
     @following_players = UserDecorator.decorate_collection(current_user.followed_users.by_xp.limit(6))
+    @popular_players = UserDecorator.decorate_collection(User.not_deleted.exclude(current_user).by_xp.limit(6))
     @step = 4
   end
 

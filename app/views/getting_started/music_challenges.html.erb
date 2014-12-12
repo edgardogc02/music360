@@ -36,17 +36,36 @@
 
 <br />
 
-<h3>Music players you follow</h3>
+<% if @following_players.any? %>
+  <h3>Music players you follow</h3>
 
-<div class="group-challenge-item">
-  <% @following_players.each do |player| %>
-    <div class="text-left challenged-player item-content">
-      <%= image_tag player.imagename, class: "avatar-sm pull-left margin-right" %>
-      <h4><%= player.username %></h4>
-      Career level: <%= player.level %>
-      <%= link_to "#", {class: "btn btn-default btn-xs pull-right remove-btn remove-challenge-player", data: {id: player.id_user}} do %>
-        <%= content_tag :i, nil, class: "glyphicon glyphicon-remove" %>
-      <% end %>
-    </div>
-  <% end %>
-</div>
+  <div class="group-challenge-item">
+    <% @following_players.each do |player| %>
+      <div class="text-left challenged-player item-content">
+        <%= image_tag player.imagename, class: "avatar-sm pull-left margin-right" %>
+        <h4><%= player.username %></h4>
+        Career level: <%= player.level %>
+        <%= link_to "#", {class: "btn btn-default btn-xs pull-right remove-btn remove-challenge-player", data: {id: player.id_user}} do %>
+          <%= content_tag :i, nil, class: "glyphicon glyphicon-remove" %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <h3>Popular music players</h3>
+
+  <div class="group-challenge-item">
+    <% @popular_players.each do |player| %>
+      <div class="text-left challenged-player item-content">
+        <%= image_tag player.imagename, class: "avatar-sm pull-left margin-right" %>
+        <h4><%= player.username %></h4>
+        Career level: <%= player.level %>
+        <%= link_to "#", {class: "btn btn-default btn-xs pull-right remove-btn remove-challenge-player", data: {id: player.id_user}} do %>
+          <%= content_tag :i, nil, class: "glyphicon glyphicon-remove" %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
+
