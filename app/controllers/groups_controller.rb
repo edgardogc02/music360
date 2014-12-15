@@ -56,9 +56,10 @@ class GroupsController < ApplicationController
   end
 
   def challenges
-    @open_challenges = GroupChallengeDecorator.decorate_collection(@group.challenges.open.started)
-    @finished_challenges = GroupChallengeDecorator.decorate_collection(@group.challenges.finished)
+    @open_challenges = GroupChallengeDecorator.decorate_collection(@group.challenges.open.started.default_order)
+    @finished_challenges = GroupChallengeDecorator.decorate_collection(@group.challenges.finished.default_order)
   	@group_leaders = @group.leader_users(10)
+  	@not_started_challenges = GroupChallengeDecorator.decorate_collection(@group.challenges.not_started.default_order)
 
   	render layout: "detail"
   end

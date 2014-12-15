@@ -50,6 +50,7 @@ class Challenge < ActiveRecord::Base
   scope :only_groups, -> { where('group_id > 0') }
   scope :closed, -> { where(open: false) }
   scope :started, -> { where('start_at <= ?', Time.now) }
+  scope :not_started, -> { where('start_at > ?', Time.now) }
 
 	def cover_url
 		song.cover_url

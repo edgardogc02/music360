@@ -4,6 +4,7 @@
 <ul class="nav nav-tabs" role="tablist">
   <li class="active"><a href="#open" role="tab" data-toggle="tab">Open</a></li>
   <li><a href="#finished" role="tab" data-toggle="tab">Finished challenges</a></li>
+  <li><a href="#created" role="tab" data-toggle="tab">Created</a></li>
   <!--<li><a href="#players" role="tab" data-toggle="tab">Players</a></li>-->
 </ul>
 
@@ -20,5 +21,8 @@
   </div>
   <div class="tab-pane active" id="finished">
     <%= render 'challenges', challenges: @finished_challenges %>
+  </div>
+  <div class="tab-pane active" id="created">
+    <%= render 'challenges', challenges: @not_started_challenges %>
   </div>
 </div>
