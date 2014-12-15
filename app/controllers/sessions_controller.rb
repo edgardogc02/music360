@@ -20,7 +20,7 @@ class SessionsController < ApplicationController
           if user.email_verified?
             redirect_to last_visited_page
           else
-            redirect_to home_path welcome_msg: true
+            redirect_to getting_started_path
           end
         end
 			  format.json do

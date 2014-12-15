@@ -13,7 +13,7 @@ class UserOmniauthCredentialsController < ApplicationController
         if user.just_signup?
           if user.email_verified?
             flash[:notice] = "Welcome #{user.username}!"
-            redirect_to home_path welcome_msg: true
+            redirect_to getting_started_path
           else
             redirect_to home_path add_email: true
           end

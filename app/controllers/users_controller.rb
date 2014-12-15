@@ -71,7 +71,7 @@ class UsersController < ApplicationController
 	def finish_signup
 	  if @user.update_attributes(user_params)
 	    flash[:notice] = "Your email was successfully updated"
-      redirect_to home_path welcome_msg: true
+      redirect_to getting_started_path
     else
       flash[:warning] = @user.errors.full_messages.join(', ').html_safe
       redirect_to home_path add_email: true
