@@ -110,8 +110,8 @@ end
 
 task :improve_music_career_reminder => :environment do
   User.not_fake_user.joins(:song_scores).
-        where('songscore.created_at < ?', 10.minutes.ago).
-        where('songscore.created_at > ?', 12.minutes.ago).find_each(batch_size: 1000) do |user|
+        where('songscore.datetime < ?', 10.minutes.ago).
+        where('songscore.datetime > ?', 12.minutes.ago).find_each(batch_size: 1000) do |user|
     MandrillTemplateEmailNotifier.improve_music_career_mandrill_template(user).deliver
   end
 end
