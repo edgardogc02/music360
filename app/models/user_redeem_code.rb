@@ -10,7 +10,7 @@ class UserRedeemCode < ActiveRecord::Base
 
 
   def save_and_redeem(params)
-    redeem_code = RedeemCode.where(code: params[:code]).first
+    redeem_code = RedeemCode.where(code: params[:code].strip).first
 
     if redeem_code
       if redeem_code.still_valid?

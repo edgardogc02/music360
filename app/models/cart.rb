@@ -74,6 +74,7 @@ class Cart < ActiveRecord::Base
 
   def assign_discount_code_if_available
     if !discount_code_code.blank?
+      discount_code_code.strip!
       discount_code = DiscountCode.where(code: discount_code_code).first
 
       if discount_code
