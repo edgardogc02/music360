@@ -55,7 +55,7 @@ class ChallengesController < ApplicationController
       @title = "Open challenges"
       @paginate = true
     elsif params[:view] == "results"
-      @challenges = Kaminari.paginate_array(ChallengeDecorator.decorate_collection(Challenge.results_for_user(current_user, Challenge.default_order.values)).page(params[:page])).per(9)
+      @challenges = Kaminari.paginate_array(ChallengeDecorator.decorate_collection(Challenge.results_for_user(current_user, Challenge.default_order.values))).page(params[:page]).per(9)
       @title = "Results"
       @paginate = true
     elsif params[:view] == "new"
