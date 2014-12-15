@@ -15,6 +15,7 @@
 	<h3>Group Challenge by <%= link_to @group.name, @group %></h3>
 	<h2><%= @challenge.song.title %></h2>
 	<p>By: <%= link_to @challenge.song.artist.title, artist_path(@challenge.song.artist) %></p>
+	<p><%= @group.join_button %></p>
 	<br class="hidden-xs" />
 	<%= @challenge.display_start_group_challenge_button('Accept challenge', '') %>
 	<%= @group.add_members_button %>
