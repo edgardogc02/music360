@@ -1,28 +1,18 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is the code for the discontinued website instrumentchamp.com. It was a social network where users used to learn how to play musical instruments and also challenge his/her friends.
 
-Things you may want to cover:
+The project was divided into 2 sections. The website (this code) and a desktop application.
 
-* Ruby version
+### In the website users could:
+* Register
+* Invite facebook friends
+* Buy premium plans
+* Create groups
+* See activity feeds
+* Challenge friends
+* Follow other users or artists
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+### In the desktop application users could:
+* Play and learn how to play musical instruments
+* Perform challenges with friends
